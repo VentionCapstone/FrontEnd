@@ -1,10 +1,11 @@
+import { Container } from '@mui/material';
 import { Outlet } from 'react-router-dom';
+
 function AuthLayout() {
   return (
-    <div>
-      <h1>Auth Layout</h1>
+    <Container maxWidth="sm">
       <Outlet />
-    </div>
+    </Container>
   );
 }
 
