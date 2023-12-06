@@ -2,6 +2,9 @@ import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import React from 'react';
 import PrivateRoute from './PrivateRoute';
 import UserRoute from './UserRoute';
+import PersonalInfo from '../pages/profile/personal-info';
+import LoginAndSecurity from '../pages/profile/login-and-security';
+import ProfileSetting from '../pages/profile/profile-settings';
 
 const MainLayout = React.lazy(() => import('../layouts/MainLayout'));
 const UserLayout = React.lazy(() => import('../layouts/UserLayout'));
@@ -27,11 +30,11 @@ const routes = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
-      {
-        index: true,
-        element: <Navigate to="settings" />,
-      },
-      { path: 'settings', element: <Profile /> },
+      { index: true, element: <Profile /> },
+      { path: 'personal-info', element: <PersonalInfo /> },
+      { path: 'login-and-security', element: <LoginAndSecurity /> },
+      { path: 'settings', element: <ProfileSetting /> },
+      { path: '*', element: <Navigate to="/account" /> },
     ],
   },
   {
