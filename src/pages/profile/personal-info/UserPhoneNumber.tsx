@@ -23,7 +23,7 @@ export const PhoneNumber = ({ collapsePanel }: { collapsePanel: () => void }) =>
 
   return (
     <>
-      <Typography variant={'sm'} color={'darkGrey.main'}>
+      <Typography variant={'sm'} color={'secondary2.main'}>
         Add a number so confirmed guests and Airbnb can get in touch. You can add other numbers and
         choose how they’re used.
       </Typography>

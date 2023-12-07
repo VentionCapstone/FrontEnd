@@ -22,7 +22,7 @@ function PersonalInfo() {
       <EditablePanel
         panelHeading={'Legal name'}
         initial={
-          <Typography variant={'sm'} color={'darkGrey.main'}>
+          <Typography variant={'sm'} color={'secondary2.main'}>
             John Smith
           </Typography>
         }
@@ -32,7 +32,7 @@ function PersonalInfo() {
       <EditablePanel
         panelHeading={'Gender'}
         initial={
-          <Typography variant={'sm'} color={'darkGrey.main'}>
+          <Typography variant={'sm'} color={'secondary2.main'}>
             Male
           </Typography>
         }
@@ -42,7 +42,7 @@ function PersonalInfo() {
       <EditablePanel
         panelHeading={'Where you live'}
         initial={
-          <Typography variant={'sm'} color={'darkGrey.main'}>
+          <Typography variant={'sm'} color={'secondary2.main'}>
             Uzbeskistan
           </Typography>
         }
@@ -52,7 +52,7 @@ function PersonalInfo() {
       <EditablePanel
         panelHeading={'Phone number'}
         initial={
-          <Typography variant={'sm'} color={'darkGrey.main'}>
+          <Typography variant={'sm'} color={'secondary2.main'}>
             +998998021998
           </Typography>
         }
@@ -62,7 +62,7 @@ function PersonalInfo() {
       <EditablePanel
         panelHeading={'About you'}
         initial={
-          <Typography variant={'sm'} color={'darkGrey.main'}>
+          <Typography variant={'sm'} color={'secondary2.main'}>
             Write something fun and punchy.
           </Typography>
         }

@@ -3,7 +3,7 @@ import { Button, Stack, TextField, Typography } from '@mui/material';
 export const FullName = ({ collapsePanel }: { collapsePanel: () => void }) => {
   return (
     <>
-      <Typography variant={'sm'} color={'darkGrey.main'}>
+      <Typography variant={'sm'} color={'secondary2.main'}>
         This is the name on your travel document, which could be a license or a passport.
       </Typography>
 

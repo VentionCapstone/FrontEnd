@@ -1,25 +1,25 @@
 import { Button, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 
-export const Gender = ({ collapsePanel }: { collapsePanel: () => void }) => {
+export const ProfileLang = ({ collapsePanel }: { collapsePanel: () => void }) => {
   return (
     <>
       <Typography variant={'sm'} color={'secondary2.main'}>
-        Select your gender
+        This updates what you read on Airbnb, and how we communicate with you.
       </Typography>
 
       <FormControl sx={{ display: 'block', my: 4 }}>
-        <InputLabel id="user-age-select-label">Age</InputLabel>
+        <InputLabel id="profile-lang-select-label">Language</InputLabel>
         <Select
           fullWidth
           size="small"
-          value={'male'}
-          labelId="user-age-select-label"
-          id="user-age-select"
-          label="Age"
+          value={'English'}
+          labelId="profile-lang-select-label"
+          id="profile-lang-select"
+          label="Language"
           sx={{ maxWidth: '40rem' }}
         >
-          <MenuItem value={'male'}>Male</MenuItem>
-          <MenuItem value={'female'}>Female</MenuItem>
+          <MenuItem value={'English'}>English</MenuItem>
+          <MenuItem value={'Russian'}>Russian</MenuItem>
         </Select>
       </FormControl>
 

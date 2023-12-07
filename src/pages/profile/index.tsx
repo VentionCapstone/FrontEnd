@@ -69,7 +69,7 @@ function Profile() {
             User
           </Typography>
 
-          <Typography variant={'sm'} noWrap sx={{ color: 'darkGrey.main' }}>
+          <Typography variant={'sm'} noWrap sx={{ color: 'secondary2.main' }}>
             user@mail.com
           </Typography>
         </Stack>
@@ -89,7 +89,7 @@ function Profile() {
               <Typography fontSize={'1.125rem'} fontWeight={600}>
                 Airbnb your place
               </Typography>
-              <Typography variant={'sm'} color={'darkGrey.main'}>
+              <Typography variant={'sm'} color={'secondary2.main'}>
                 It`s simple to get set up and start earning.
               </Typography>
             </Stack>
@@ -124,7 +124,7 @@ function Profile() {
               <Typography
                 variant={'sm'}
                 display={{ xs: 'none', md: 'block' }}
-                color={'darkGrey.main'}
+                color={'secondary2.main'}
               >
                 Update your password and secure your account
               </Typography>
@@ -161,7 +161,7 @@ function Profile() {
               <Typography
                 variant={'sm'}
                 display={{ xs: 'none', md: 'block' }}
-                color={'darkGrey.main'}
+                color={'secondary2.main'}
               >
                 Provide personal details and how we can reach you
               </Typography>
@@ -190,7 +190,7 @@ function Profile() {
               <Typography mb={{ md: '0.5rem' }} fontWeight={{ md: 600 }}>
                 Settings
               </Typography>
-              <Typography display={{ xs: 'none', md: 'block' }} color={'darkGrey.main'}>
+              <Typography display={{ xs: 'none', md: 'block' }} color={'secondary2.main'}>
                 Set your default language, and currency
               </Typography>
             </Box>

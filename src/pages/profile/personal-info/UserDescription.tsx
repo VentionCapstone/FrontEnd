@@ -3,7 +3,7 @@ import { Box, Button, TextField, Typography } from '@mui/material';
 export const Description = ({ collapsePanel }: { collapsePanel: () => void }) => {
   return (
     <>
-      <Typography variant={'sm'} color={'darkGrey.main'}>
+      <Typography variant={'sm'} color={'secondary2.main'}>
         Tell us a little bit about yourself, so your future hosts or guests can get to know you.
       </Typography>
 

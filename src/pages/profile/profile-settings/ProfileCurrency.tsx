@@ -1,25 +1,25 @@
 import { Button, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 
-export const Gender = ({ collapsePanel }: { collapsePanel: () => void }) => {
+export const ProfileCurrency = ({ collapsePanel }: { collapsePanel: () => void }) => {
   return (
     <>
       <Typography variant={'sm'} color={'secondary2.main'}>
-        Select your gender
+        Select currency you prefer
       </Typography>
 
       <FormControl sx={{ display: 'block', my: 4 }}>
-        <InputLabel id="user-age-select-label">Age</InputLabel>
+        <InputLabel id="profile-lang-select-label">Currency</InputLabel>
         <Select
           fullWidth
           size="small"
-          value={'male'}
-          labelId="user-age-select-label"
-          id="user-age-select"
-          label="Age"
+          value={'US Dollar'}
+          labelId="profile-lang-select-label"
+          id="profile-lang-select"
+          label="Currency"
           sx={{ maxWidth: '40rem' }}
         >
-          <MenuItem value={'male'}>Male</MenuItem>
-          <MenuItem value={'female'}>Female</MenuItem>
+          <MenuItem value={'US Dollar'}>US Dollar</MenuItem>
+          <MenuItem value={'Canadian Dollar'}>Canadian Dollarsian</MenuItem>
         </Select>
       </FormControl>
 

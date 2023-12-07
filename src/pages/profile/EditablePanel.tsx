@@ -19,9 +19,9 @@ const EditablePanel = ({ panelHeading, editable, initial }: EditablePanelType) =
   };
 
   return (
-    <Box py={4} borderBottom={'1px solid'} borderColor={'darkGrey.light'}>
+    <Box py={4} borderBottom={'1px solid'} borderColor={'secondary2.light'}>
       <Stack direction={'row'} gap={4} justifyContent={'space-between'} alignItems={'center'}>
-        <Typography>{panelHeading}</Typography>
+        <Typography fontWeight={600}>{panelHeading}</Typography>
         <Button
           disableRipple
           size="small"

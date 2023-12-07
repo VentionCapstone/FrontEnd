@@ -3,7 +3,7 @@ import { Button, FormControl, InputLabel, MenuItem, Select, Typography } from '@
 export const Country = ({ collapsePanel }: { collapsePanel: () => void }) => {
   return (
     <>
-      <Typography variant={'sm'} color={'darkGrey.main'}>
+      <Typography variant={'sm'} color={'secondary2.main'}>
         Select country
       </Typography>
 
