@@ -2,11 +2,11 @@ import { createTheme } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
   interface Palette {
-    darkGrey: Palette['primary'];
+    secondary2: Palette['primary'];
   }
 
   interface PaletteOptions {
-    darkGrey?: PaletteOptions['primary'];
+    secondary2?: PaletteOptions['primary'];
   }
 
   interface BreakpointOverrides {
@@ -37,6 +37,8 @@ declare module '@mui/material/Typography' {
   }
 }
 
+const COLOR_PRIMARY = '#222222';
+
 export const theme = createTheme({
   spacing: 4,
   typography: {
@@ -60,12 +62,12 @@ export const theme = createTheme({
   },
   palette: {
     primary: {
-      main: '#222222',
+      main: COLOR_PRIMARY,
     },
     secondary: {
       main: '#FF385C',
     },
-    darkGrey: {
+    secondary2: {
       light: '#DDDDDD',
       main: '#717171',
     },
@@ -84,7 +86,7 @@ export const theme = createTheme({
     MuiTypography: {
       styleOverrides: {
         root: {
-          color: '#222222',
+          color: COLOR_PRIMARY,
           fontFamily: 'Nunito, sans-serif',
         },
       },
