@@ -3,11 +3,11 @@ import { useState } from 'react';
 
 type EditablePanelType = {
   panelHeading: string;
-  initialValue: string;
-  renderProps: (collapse: () => void) => JSX.Element;
+  initial: JSX.Element;
+  editable: (collapse: () => void) => JSX.Element;
 };
 
-const EditablePanel = ({ panelHeading, renderProps, initialValue }: EditablePanelType) => {
+const EditablePanel = ({ panelHeading, editable, initial }: EditablePanelType) => {
   const [expanded, setExpanded] = useState(false);
 
   const collapsePanel = () => {
@@ -38,13 +38,7 @@ const EditablePanel = ({ panelHeading, renderProps, initialValue }: EditablePane
           {expanded ? 'Cancel' : 'Edit'}
         </Button>
       </Stack>
-      {expanded ? (
-        renderProps(collapsePanel)
-      ) : (
-        <Typography variant={'sm'} color={'darkGrey.main'}>
-          {initialValue}
-        </Typography>
-      )}
+      {expanded ? editable(collapsePanel) : initial}
     </Box>
   );
 };
