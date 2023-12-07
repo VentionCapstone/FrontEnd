@@ -12,7 +12,7 @@ export const Description = ({ collapsePanel }: { collapsePanel: () => void }) =>
           id="standard-multiline-flexible"
           multiline
           minRows={2}
-          maxRows={4}
+          maxRows={6}
           fullWidth
           sx={{ maxWidth: '40rem' }}
         />
