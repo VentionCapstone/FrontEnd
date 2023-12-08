@@ -2,12 +2,18 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from './config/react-query';
 import Routes from './routes/routes';
 import { Toaster } from 'react-hot-toast';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { theme } from './theme';
+import './index.css';
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Routes />
-      <Toaster />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Routes />
+        <Toaster />
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }
