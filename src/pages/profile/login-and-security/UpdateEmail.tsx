@@ -1,6 +1,14 @@
 import { Button, TextField, Typography } from '@mui/material';
+import { useState } from 'react';
 
-export const UpdateEmail = ({ collapsePanel }: { collapsePanel: () => void }) => {
+export const UpdateEmail = ({
+  collapsePanel,
+  userEmail,
+}: {
+  collapsePanel: () => void;
+  userEmail: string;
+}) => {
+  const [email, setEmail] = useState(userEmail);
   return (
     <>
       <Typography variant={'sm'} color={'secondary2.main'}>
@@ -8,6 +16,10 @@ export const UpdateEmail = ({ collapsePanel }: { collapsePanel: () => void }) =>
       </Typography>
 
       <TextField
+        value={email}
+        onChange={(e) => {
+          setEmail(e.target.value);
+        }}
         fullWidth
         type={'email'}
         size="small"

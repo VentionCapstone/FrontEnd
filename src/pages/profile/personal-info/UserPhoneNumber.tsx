@@ -11,8 +11,14 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 
-export const PhoneNumber = ({ collapsePanel }: { collapsePanel: () => void }) => {
-  const [inputValue, setInputValue] = useState('');
+export const PhoneNumber = ({
+  collapsePanel,
+  userPhoneNumber,
+}: {
+  collapsePanel: () => void;
+  userPhoneNumber: string | null;
+}) => {
+  const [inputValue, setInputValue] = useState(userPhoneNumber);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;

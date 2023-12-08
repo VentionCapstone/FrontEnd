@@ -3,8 +3,17 @@ import Stack from '@mui/material/Stack';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import InputLabel from '@mui/material/InputLabel';
 import Typography from '@mui/material/Typography';
+import { useEffect, useState } from 'react';
 
 export const UserImage = () => {
+  const [newImg, setNewImg] = useState<File | undefined>(undefined);
+
+  useEffect(() => {
+    if (newImg) {
+      //upload img
+    }
+  }, [newImg]);
+
   return (
     <Box width={'12rem'} position={'relative'} mx={{ xs: 'auto', md: 0 }}>
       <Box
@@ -39,7 +48,13 @@ export const UserImage = () => {
         </Stack>
       </InputLabel>
 
-      <input type="file" id="post-user-image" accept="image/*" style={{ display: 'none' }} />
+      <input
+        onChange={(e) => setNewImg(e?.target?.files?.[0])}
+        type="file"
+        id="post-user-image"
+        accept="image/*"
+        style={{ display: 'none' }}
+      />
     </Box>
   );
 };

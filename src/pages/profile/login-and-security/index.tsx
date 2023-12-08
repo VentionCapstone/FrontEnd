@@ -1,6 +1,6 @@
 import EditablePanel from '../EditablePanel';
 import { Typography } from '@mui/material';
-import { UpdateEmail } from './updateEmail';
+import { UpdateEmail } from './UpdateEmail';
 import { UpdatePassword } from './UpdatePassword';
 
 function LoginAndSecurity() {
@@ -17,7 +17,7 @@ function LoginAndSecurity() {
             user@mail.com
           </Typography>
         }
-        editable={(data) => <UpdateEmail collapsePanel={data} />}
+        editable={(data) => <UpdateEmail collapsePanel={data} userEmail="user@mail.com" />}
       />
 
       <EditablePanel

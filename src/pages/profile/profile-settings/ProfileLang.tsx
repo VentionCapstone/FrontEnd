@@ -1,18 +1,37 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Stack,
+  Typography,
+} from '@mui/material';
+import { useState } from 'react';
 
-export const ProfileLang = ({ collapsePanel }: { collapsePanel: () => void }) => {
+export const ProfileLang = ({
+  collapsePanel,
+  userLang,
+}: {
+  collapsePanel: () => void;
+  userLang: string;
+}) => {
+  const [currency, setCurrency] = useState<string>(userLang);
   return (
-    <>
+    <Stack gap={4}>
       <Typography variant={'sm'} color={'secondary2.main'}>
         This updates what you read on Airbnb, and how we communicate with you.
       </Typography>
 
-      <FormControl sx={{ display: 'block', my: 4 }}>
+      <FormControl size="small" sx={{ maxWidth: '40rem' }}>
         <InputLabel id="profile-lang-select-label">Language</InputLabel>
         <Select
+          value={currency}
+          onChange={(e) => {
+            setCurrency(e.target.value);
+          }}
           fullWidth
           size="small"
-          value={'English'}
           labelId="profile-lang-select-label"
           id="profile-lang-select"
           label="Language"
@@ -23,9 +42,14 @@ export const ProfileLang = ({ collapsePanel }: { collapsePanel: () => void }) =>
         </Select>
       </FormControl>
 
-      <Button onClick={collapsePanel} variant={'contained'} size="small" sx={{ fontWeight: 600 }}>
+      <Button
+        onClick={collapsePanel}
+        variant={'contained'}
+        size="small"
+        sx={{ fontWeight: 600, mr: 'auto' }}
+      >
         Save
       </Button>
-    </>
+    </Stack>
   );
 };

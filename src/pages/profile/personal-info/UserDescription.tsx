@@ -1,6 +1,8 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
+import { useState } from 'react';
 
 export const Description = ({ collapsePanel }: { collapsePanel: () => void }) => {
+  const [description, setDescription] = useState('');
   return (
     <>
       <Typography variant={'sm'} color={'secondary2.main'}>
@@ -9,6 +11,10 @@ export const Description = ({ collapsePanel }: { collapsePanel: () => void }) =>
 
       <Box my={4}>
         <TextField
+          value={description}
+          onChange={(e) => {
+            setDescription(e.target.value);
+          }}
           id="standard-multiline-flexible"
           multiline
           minRows={2}

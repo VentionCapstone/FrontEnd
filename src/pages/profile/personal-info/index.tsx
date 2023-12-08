@@ -26,7 +26,9 @@ function PersonalInfo() {
             John Smith
           </Typography>
         }
-        editable={(data) => <FullName collapsePanel={data} />}
+        editable={(data) => (
+          <FullName collapsePanel={data} userFirstName={'John'} userLastName={'Smith'} />
+        )}
       />
 
       <EditablePanel
@@ -36,7 +38,7 @@ function PersonalInfo() {
             Male
           </Typography>
         }
-        editable={(data) => <Gender collapsePanel={data} />}
+        editable={(data) => <Gender collapsePanel={data} userGender={''} />}
       />
 
       <EditablePanel
@@ -46,7 +48,7 @@ function PersonalInfo() {
             Uzbeskistan
           </Typography>
         }
-        editable={(data) => <Country collapsePanel={data} />}
+        editable={(data) => <Country collapsePanel={data} userCountry={'Uzbekistan'} />}
       />
 
       <EditablePanel
@@ -56,7 +58,7 @@ function PersonalInfo() {
             +998998021998
           </Typography>
         }
-        editable={(data) => <PhoneNumber collapsePanel={data} />}
+        editable={(data) => <PhoneNumber collapsePanel={data} userPhoneNumber={'998021998'} />}
       />
 
       <EditablePanel

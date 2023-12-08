@@ -6,8 +6,10 @@ import Typography from '@mui/material/Typography';
 import EditablePanel from '../EditablePanel';
 import { ProfileLang } from './ProfileLang';
 import { ProfileCurrency } from './ProfileCurrency';
+import { useState } from 'react';
 
 function ProfileSettings() {
+  const [theme, setTheme] = useState<'LIGHT' | 'DARK'>('LIGHT');
   return (
     <>
       <Typography mb={10} fontSize={{ xs: '1.5rem', md: '2rem' }} fontWeight={800} component={'h1'}>
@@ -26,13 +28,14 @@ function ProfileSettings() {
         <Typography fontWeight={600}>Theme</Typography>
         <FormControl>
           <Select
+            value={theme}
+            onChange={(e) => setTheme(e.target.value as typeof theme)}
             size="small"
-            value={'Light'}
             labelId="profile-theme-select-label"
             id="profile-theme-select-label"
           >
-            <MenuItem value={'Light'}>Light</MenuItem>
-            <MenuItem value={'Dark'}>Dark</MenuItem>
+            <MenuItem value={'LIGHT'}>Light</MenuItem>
+            <MenuItem value={'DARK'}>Dark</MenuItem>
           </Select>
         </FormControl>
       </Stack>
@@ -44,7 +47,7 @@ function ProfileSettings() {
             English
           </Typography>
         }
-        editable={(data) => <ProfileLang collapsePanel={data} />}
+        editable={(data) => <ProfileLang collapsePanel={data} userLang="" />}
       />
 
       <EditablePanel
@@ -54,7 +57,7 @@ function ProfileSettings() {
             United States dollar
           </Typography>
         }
-        editable={(data) => <ProfileCurrency collapsePanel={data} />}
+        editable={(data) => <ProfileCurrency collapsePanel={data} userCurrency="" />}
       />
     </>
   );
