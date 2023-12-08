@@ -1,6 +1,10 @@
 export type ErrorResponse = {
+  success: boolean;
+  error: Error;
+};
+
+export type Error = {
   message: string;
-  statusCode: number;
   error: string;
-  info?: object;
+  statusCode: number;
 };

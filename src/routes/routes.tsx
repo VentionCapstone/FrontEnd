@@ -9,6 +9,7 @@ const AuthLayout = React.lazy(() => import('../layouts/AuthLayout'));
 const Main = React.lazy(() => import('../pages/main'));
 const SignIn = React.lazy(() => import('../pages/sign-in'));
 const Profile = React.lazy(() => import('../pages/profile'));
+const VerifyEmail = React.lazy(() => import('../pages/auth/verify-email'));
 
 const routes = createBrowserRouter([
   {
@@ -35,13 +36,16 @@ const routes = createBrowserRouter([
     ],
   },
   {
-    path: '/',
+    path: '/auth',
     element: (
       <UserRoute>
         <AuthLayout />
       </UserRoute>
     ),
-    children: [{ path: 'sign-in', element: <SignIn /> }],
+    children: [
+      { path: 'sign-in', element: <SignIn /> },
+      { path: 'verify', element: <VerifyEmail /> },
+    ],
   },
 ]);
 
