@@ -36,7 +36,7 @@ const routes = createBrowserRouter([
     ],
   },
   {
-    path: 'auth',
+    path: '/auth',
     element: (
       <UserRoute>
         <AuthLayout />
