@@ -16,6 +16,7 @@ type PasswordInputProps<TFieldValues extends FieldValues> = {
   placeholder: string;
   control: Control<TFieldValues>;
   confirmPassword?: string;
+  setIsPasswordValid: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const PasswordInput = <TFieldValues extends FieldValues>({
@@ -24,6 +25,7 @@ const PasswordInput = <TFieldValues extends FieldValues>({
   placeholder,
   control,
   confirmPassword,
+  setIsPasswordValid,
 }: PasswordInputProps<TFieldValues>) => {
   const [showPassword, setShowPassword] = useState(false);
   const [passwordError, setPasswordError] = useState<string | null>(null);
@@ -42,8 +44,11 @@ const PasswordInput = <TFieldValues extends FieldValues>({
       setPasswordError(
         'Password must be at least 8  long and include at least one uppercase letter, one lowercase letter, one number, and one special character.'
       );
+      setIsPasswordValid(false);
     } else {
       setPasswordError(null);
+
+      setIsPasswordValid(true);
     }
   };
 

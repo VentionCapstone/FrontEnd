@@ -2,15 +2,16 @@ import { Box, Divider, Stack, Typography } from '@mui/material';
 import ButtonPrimary from '../../components/ButtonPrimary';
 import InputForm from '../../components/InputForm';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import axios from 'axios';
 import PasswordInput from '../../components/PasswordInput';
-
-type TFormData = {
-  email: string;
-  password: string;
-};
+import httpClient from '../../api/httpClient';
+import { AuthData, LoginResponse } from '../../types/auth.types';
+import { useAppDispatch } from '../../hooks/redux-hooks';
+import { setToken } from '../../stores/slices/authSlice';
+import { useState } from 'react';
 
 const SignIn = () => {
+  const dispatch = useAppDispatch();
+
   const { handleSubmit, control } = useForm({
     defaultValues: {
       email: '',
@@ -18,12 +19,13 @@ const SignIn = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<TFormData> = async (data: TFormData) => {
-    try {
-      const response = await axios.post('http://localhost:3000/api/auth/signin', data);
-      console.log(response.data);
-    } catch (error) {
-      console.error('Error submitting form:', error);
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
+
+  const onSubmit: SubmitHandler<AuthData> = async (data: AuthData) => {
+    if (isPasswordValid) {
+      const response = await httpClient.post<LoginResponse>('/auth/signin', data);
+      localStorage.setItem('sub', response.data.id);
+      dispatch(setToken(response.data.tokens.access_token));
     }
   };
   return (
@@ -54,9 +56,10 @@ const SignIn = () => {
               label="Password"
               placeholder="Password"
               control={control}
+              setIsPasswordValid={setIsPasswordValid}
             />
           </Stack>
-          <ButtonPrimary>Sign in</ButtonPrimary>
+          <ButtonPrimary disbabled={isPasswordValid}>Sign in</ButtonPrimary>
         </form>
       </Stack>
     </Box>

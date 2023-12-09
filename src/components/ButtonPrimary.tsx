@@ -1,15 +1,24 @@
-import { Button } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 type ButtonPrimaryProps = {
   children: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+  disbabled?: boolean;
+  loading?: boolean | undefined;
 };
 
 function ButtonPrimary({ children }: ButtonPrimaryProps) {
   return (
-    <Button type="submit" size="large" variant="contained" color="error" sx={{ mt: 4 }} fullWidth>
+    <LoadingButton
+      type="submit"
+      size="large"
+      variant="contained"
+      color="error"
+      sx={{ mt: 4 }}
+      fullWidth
+    >
       {children}
-    </Button>
+    </LoadingButton>
   );
 }
 

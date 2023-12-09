@@ -3,36 +3,33 @@ import { Link } from 'react-router-dom';
 import ButtonPrimary from '../../components/ButtonPrimary';
 import InputForm from '../../components/InputForm';
 import { Controller, useForm } from 'react-hook-form';
-import axios from 'axios';
 import type { SubmitHandler } from 'react-hook-form';
 import PasswordInput from '../../components/PasswordInput';
-
-export type TFormData = {
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
+import httpClient from '../../api/httpClient';
+import toast from 'react-hot-toast';
+import { useState } from 'react';
+import { AuthData } from '../../types/auth.types';
 
 const Signup = () => {
   const { handleSubmit, control, watch } = useForm({
     defaultValues: {
       email: '',
       password: '',
-      confirmPassword: '',
+      confirm_password: '',
     },
   });
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const onSubmit: SubmitHandler<TFormData> = async (data: TFormData) => {
-    try {
-      const response = await axios.post('http://localhost:3000/api/auth/signup', data);
-      console.log(response.data);
-
-      if (data.password !== data.confirmPassword) {
-        console.log('passwords do not match');
-      }
-      console.log(data);
-    } catch (error) {
-      console.error('Error submitting form:', error);
+  const onSubmit: SubmitHandler<AuthData> = async (data: AuthData) => {
+    if (isPasswordValid) {
+      setIsLoading(true);
+      const response = await httpClient.post<{ success: boolean; message: string }>(
+        '/auth/signup',
+        data
+      );
+      toast.success(response.data.message);
+      setIsLoading(false);
     }
   };
 
@@ -58,16 +55,20 @@ const Signup = () => {
               label="Password"
               placeholder="Password"
               control={control}
+              setIsPasswordValid={setIsPasswordValid}
             />
             <PasswordInput
-              name="confirmPassword"
+              name="confirm_password"
               label="Confirm password"
               placeholder="Confirm password"
               control={control}
               confirmPassword={watch('password')}
+              setIsPasswordValid={setIsPasswordValid}
             />
           </Box>
-          <ButtonPrimary>Sign up</ButtonPrimary>
+          <ButtonPrimary loading={isLoading} disbabled={isPasswordValid}>
+            Sign up
+          </ButtonPrimary>
         </form>
         <Typography variant="subtitle2" align="center" color="gray">
           if you already have an account, please{' '}
