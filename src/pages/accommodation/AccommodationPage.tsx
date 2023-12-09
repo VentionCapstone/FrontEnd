@@ -19,6 +19,8 @@ interface FormInput {
     city: string;
     country: string;
     zipCode: string;
+    latitude: number;
+    longitude: number;
   };
 }
 
@@ -40,6 +42,8 @@ const MyForm: React.FC = () => {
       city: '',
       country: '',
       zipCode: '',
+      latitude: 0,
+      longitude: 0,
     },
   });
 
@@ -134,6 +138,33 @@ const MyForm: React.FC = () => {
             />
           </Grid>
 
+          {/* availability */}
+          <Grid item xs={12}>
+            <div>
+              <label>Availability:</label>
+              <div>
+                <label>
+                  <input
+                    type="radio"
+                    value="true"
+                    checked={formData.accommodation.availability === true}
+                    onChange={() => handleChange('accommodation', 'availability', true)}
+                  />
+                  Available
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    value="false"
+                    checked={formData.accommodation.availability === false}
+                    onChange={() => handleChange('accommodation', 'availability', false)}
+                  />
+                  Not Available
+                </label>
+              </div>
+            </div>
+          </Grid>
+
           <Grid item xs={12}>
             <TextField
               label="Available From"
@@ -193,6 +224,24 @@ const MyForm: React.FC = () => {
               fullWidth
               value={formData.address.zipCode}
               onChange={(e) => handleChange('address', 'zipCode', e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Latitude"
+              type="text"
+              fullWidth
+              value={formData.address.latitude}
+              onChange={(e) => handleChange('address', 'latitude', Number(e.target.value))}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Longitude"
+              type="text"
+              fullWidth
+              value={formData.address.longitude}
+              onChange={(e) => handleChange('address', 'longitude', Number(e.target.value))}
             />
           </Grid>
 
