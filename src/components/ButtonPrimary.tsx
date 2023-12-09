@@ -7,7 +7,7 @@ type ButtonPrimaryProps = {
 
 function ButtonPrimary({ children }: ButtonPrimaryProps) {
   return (
-    <Button type="submit" size="large" variant="contained" color="error" sx={{ my: 1 }} fullWidth>
+    <Button type="submit" size="large" variant="contained" color="error" sx={{ mt: 4 }} fullWidth>
       {children}
     </Button>
   );

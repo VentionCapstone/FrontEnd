@@ -1,0 +1,103 @@
+import React, { useState } from 'react';
+import {
+  FormControl,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  Typography,
+} from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Control, Controller, FieldValues, Path } from 'react-hook-form';
+
+type PasswordInputProps<TFieldValues extends FieldValues> = {
+  name: Path<TFieldValues>;
+  label: string;
+  placeholder: string;
+  control: Control<TFieldValues>;
+  confirmPassword?: string;
+};
+
+const PasswordInput = <TFieldValues extends FieldValues>({
+  name,
+  label,
+  placeholder,
+  control,
+  confirmPassword,
+}: PasswordInputProps<TFieldValues>) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordError, setPasswordError] = useState<string | null>(null);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
+
+  const validatePassword = (value: string) => {
+    const strongPasswordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (!strongPasswordRegex.test(value)) {
+      setPasswordError(
+        'Password must be at least 8  long and include at least one uppercase letter, one lowercase letter, one number, and one special character.'
+      );
+    } else {
+      setPasswordError(null);
+    }
+  };
+
+  const validateConfirmPassword = (confirmPasswordValue: string, passwordValue: string) => {
+    if (confirmPasswordValue !== passwordValue) {
+      setPasswordError("Passwords don't match");
+    } else {
+      setPasswordError(null);
+    }
+  };
+
+  return (
+    <Controller
+      name={name}
+      control={control}
+      render={({ field, fieldState }) => (
+        <FormControl fullWidth variant="outlined">
+          <InputLabel htmlFor={`outlined-adornment-${name}`}>{label}</InputLabel>
+          <OutlinedInput
+            {...field}
+            error={fieldState.invalid || !!passwordError}
+            required
+            label={label}
+            placeholder={placeholder}
+            id={`outlined-adornment-${name}`}
+            type={showPassword ? 'text' : 'password'}
+            onChange={(e) => {
+              field.onChange(e);
+              validatePassword(e.target.value);
+
+              if (confirmPassword) {
+                validateConfirmPassword(confirmPassword, e.target.value);
+              }
+            }}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+          <Typography variant="caption" color="error">
+            {passwordError}
+          </Typography>
+        </FormControl>
+      )}
+    />
+  );
+};
+
+export default PasswordInput;
