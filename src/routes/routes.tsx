@@ -41,7 +41,7 @@ const routes = createBrowserRouter([
         <AuthLayout />
       </UserRoute>
     ),
-    children: [{ path: 'sign-in', element: <SignIn /> }],
+    children: [{ path: 'signin', element: <SignIn /> }],
   },
 ]);
 

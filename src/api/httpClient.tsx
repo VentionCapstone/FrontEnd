@@ -46,7 +46,9 @@ async function resErrInterceptor(error: AxiosError<ErrorResponse>) {
         if ('error' in res) {
           store.dispatch(removeToken());
           httpClient.defaults.headers.common['Authorization'] = '';
-          toast.error('Your session has expired. Please login again.');
+          toast.error(
+            error.response?.data?.error.message || 'Your session has expired, please sign in again'
+          );
 
           return res;
         }
