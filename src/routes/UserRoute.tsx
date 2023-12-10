@@ -3,7 +3,7 @@ import { useAppSelector } from '../hooks/redux-hooks';
 
 function UserRoute({ children }: { children: React.ReactNode }) {
   const isLoggedIn = useAppSelector((state) => state.auth.token) !== null;
-  return !isLoggedIn ? children : <Navigate to="/" />;
+  return !isLoggedIn ? children : <Navigate to="/account" />;
 }
 
 export default UserRoute;

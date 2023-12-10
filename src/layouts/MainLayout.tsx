@@ -1,11 +1,15 @@
 import { Outlet } from 'react-router-dom';
+import MainNavigation from '../components/MainNavigation';
+import { Container } from '@mui/material';
 
 function MainLayout() {
   return (
-    <div>
-      <h1>Main Layout</h1>
-      <Outlet />
-    </div>
+    <>
+      <MainNavigation maxWidth={'2xl'} />
+      <Container maxWidth={'2xl'} disableGutters sx={{ padding: '1.5rem' }}>
+        <Outlet />
+      </Container>
+    </>
   );
 }
 
