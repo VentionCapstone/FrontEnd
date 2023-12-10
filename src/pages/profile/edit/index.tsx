@@ -28,7 +28,7 @@ const CustomStack = styled(Stack)<StackProps>(({ theme }) => ({
   },
 }));
 
-function Profile() {
+function EditProfile() {
   return (
     <>
       <Typography mb={'2rem'} fontSize={'2rem'} fontWeight={600} component={'h1'}>
@@ -226,4 +226,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default EditProfile;
