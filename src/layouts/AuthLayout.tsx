@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
-import MainNavigation from '../components/MainNavigation';
 import { Container } from '@mui/material';
+import MainNavigation from '../components/MainNavigation';
+
 function AuthLayout() {
   return (
     <>
