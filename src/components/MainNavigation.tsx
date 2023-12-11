@@ -23,19 +23,14 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
 
   const { mutate } = useLogoutMutation();
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setAnchorEl(null);
-  };
+  }, []);
 
-  const handleClick = useCallback(
-    () => ({
-      account: () => navigate('/account'),
-      logout: () => mutate(),
-      signIn: () => navigate('auth/signin'),
-      signUp: () => navigate('auth/signup'),
-    }),
-    [navigate, mutate]
-  );
+  const handleGoToAccount = useCallback(() => navigate('/account'), [navigate]);
+  const handleSignIn = useCallback(() => navigate('auth/signin'), [navigate]);
+  const handleSignUp = useCallback(() => navigate('auth/signup'), [navigate]);
+  const handleLogout = useCallback(() => mutate(), [mutate]);
 
   return (
     <Container maxWidth={maxWidth} disableGutters sx={{ padding: '1rem' }}>
@@ -108,18 +103,18 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
         >
           {isLoggedIn && !isError
             ? [
-                <MenuItem key="account" onClick={handleClick().account}>
+                <MenuItem key="account" onClick={handleGoToAccount}>
                   Account
                 </MenuItem>,
-                <MenuItem key="logout" onClick={handleClick().logout}>
+                <MenuItem key="logout" onClick={handleLogout}>
                   Logout
                 </MenuItem>,
               ]
             : [
-                <MenuItem key="signIn" onClick={handleClick().signIn}>
+                <MenuItem key="signIn" onClick={handleSignIn}>
                   Sign In
                 </MenuItem>,
-                <MenuItem key="signUp" onClick={handleClick().signUp}>
+                <MenuItem key="signUp" onClick={handleSignUp}>
                   Sign Up
                 </MenuItem>,
               ]}
