@@ -1,8 +1,8 @@
-import { ProfileResponse } from './profile.types';
+import { UserResponse } from './profile.types';
 
 export type AuthState = {
   token: string | null;
-  user: ProfileResponse | null;
+  user: UserResponse | null;
 };
 
 export type RefreshingPromise = { access_token: string } | { error: Error };

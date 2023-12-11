@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { AuthState } from '../../types/auth.types';
-import { ProfileResponse } from '../../types/profile.types';
+import { UserResponse } from '../../types/profile.types';
 
 const initialState: AuthState = {
   token: null || localStorage.getItem('access_token'),
@@ -20,7 +20,7 @@ export const authSlice = createSlice({
       state.token = null;
       localStorage.removeItem('access_token');
     },
-    setProfile: (state, action: PayloadAction<ProfileResponse>) => {
+    setProfile: (state, action: PayloadAction<UserResponse>) => {
       state.user = action.payload;
     },
     removeProfile: (state) => {

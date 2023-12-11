@@ -14,7 +14,7 @@ export const Gender = ({
   userGender,
 }: {
   collapsePanel: () => void;
-  userGender: 'MALE' | 'FEMALE' | '';
+  userGender: 'MALE' | 'FEMALE';
 }) => {
   const [gender, setGender] = useState(userGender);
 

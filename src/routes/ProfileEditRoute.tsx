@@ -1,8 +1,9 @@
 import { Navigate, Outlet } from 'react-router-dom';
+import { useAppSelector } from '../hooks/redux-hooks';
 
 function ProfileEditRoute() {
-  const isCreated = false;
-  return isCreated ? <Outlet /> : <Navigate to={'/account/create'} />;
+  const profile = useAppSelector((state) => state.auth.user?.Profile);
+  return profile ? <Outlet /> : <Navigate to={'/account/create'} />;
 }
 
 export default ProfileEditRoute;

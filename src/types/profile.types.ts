@@ -1,4 +1,4 @@
-export interface ProfileResponse {
+export interface UserResponse {
   id: string;
   firstName: string | null;
   lastName: string | null;
@@ -10,5 +10,17 @@ export interface ProfileResponse {
   isDeleted: boolean;
   hashedRefreshToken: string;
   activationLink: string | null;
-  Profile: object | null;
+  Profile: IProfile | null;
+}
+
+export interface IProfile {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  photoUrl: string;
+  gender: 'MALE' | 'FEMALE';
+  country: string;
+  language: string;
+  uiTheme: 'LIGHT' | 'DARK';
+  description: string;
 }

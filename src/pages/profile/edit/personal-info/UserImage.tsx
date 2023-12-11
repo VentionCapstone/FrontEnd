@@ -3,16 +3,12 @@ import Stack from '@mui/material/Stack';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import InputLabel from '@mui/material/InputLabel';
 import Typography from '@mui/material/Typography';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export const UserImage = () => {
   const [newImg, setNewImg] = useState<File | undefined>(undefined);
 
-  useEffect(() => {
-    if (newImg) {
-      //upload img
-    }
-  }, [newImg]);
+  console.log(newImg);
 
   return (
     <Box width={'12rem'} position={'relative'} mx={{ xs: 'auto', md: 0 }}>

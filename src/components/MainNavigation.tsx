@@ -7,7 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import httpClient from '../api/httpClient';
-import { ProfileResponse } from '../types/profile.types';
+import { UserResponse } from '../types/profile.types';
 import { logout, setProfile } from '../stores/slices/authSlice';
 
 function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) {
@@ -26,7 +26,7 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
   const { isError } = useQuery({
     queryKey: ['user'],
     queryFn: async () => {
-      const { data } = await httpClient.get<ProfileResponse>(`/users/${userId}`);
+      const { data } = await httpClient.get<UserResponse>(`/users/${userId}`);
       dispatch(setProfile(data));
       return data;
     },

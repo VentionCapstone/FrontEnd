@@ -38,7 +38,7 @@ function PersonalInfo() {
             Male
           </Typography>
         }
-        editable={(data) => <Gender collapsePanel={data} userGender={''} />}
+        editable={(data) => <Gender collapsePanel={data} userGender={'MALE'} />}
       />
 
       <EditablePanel

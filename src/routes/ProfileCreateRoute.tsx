@@ -1,8 +1,9 @@
 import { Navigate } from 'react-router-dom';
+import { useAppSelector } from '../hooks/redux-hooks';
 
 function ProfileCreateRoute({ children }: { children: React.ReactNode }) {
-  const isCreated = false;
-  return !isCreated ? children : <Navigate to={'/account/edit'} />;
+  const profile = useAppSelector((state) => state.auth.user?.Profile);
+  return !profile ? children : <Navigate to={'/account/edit'} />;
 }
 
 export default ProfileCreateRoute;
