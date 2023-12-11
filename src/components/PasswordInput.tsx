@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { Control, Controller, FieldValues, Path } from 'react-hook-form';
+import { Control, Controller, ControllerRenderProps, FieldValues, Path } from 'react-hook-form';
 
 type PasswordInputProps<TFieldValues extends FieldValues> = {
   name: Path<TFieldValues>;
@@ -60,6 +60,18 @@ const PasswordInput = <TFieldValues extends FieldValues>({
     }
   };
 
+  const handlePasswordChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+    field: ControllerRenderProps<TFieldValues, Path<TFieldValues>>
+  ) => {
+    field.onChange(e);
+    validatePassword(e.target.value);
+
+    if (confirmPassword) {
+      validateConfirmPassword(confirmPassword, e.target.value);
+    }
+  };
+
   return (
     <Controller
       name={name}
@@ -75,14 +87,7 @@ const PasswordInput = <TFieldValues extends FieldValues>({
             placeholder={placeholder}
             id={`outlined-adornment-${name}`}
             type={showPassword ? 'text' : 'password'}
-            onChange={(e) => {
-              field.onChange(e);
-              validatePassword(e.target.value);
-
-              if (confirmPassword) {
-                validateConfirmPassword(confirmPassword, e.target.value);
-              }
-            }}
+            onChange={(e) => handlePasswordChange(e, field)}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
