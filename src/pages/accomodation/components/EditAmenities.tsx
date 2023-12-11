@@ -91,12 +91,9 @@ export default function EditAmenities({ accomodationId, isNew }: EditAmenitiesPr
     [customAmenity, otherAmenities]
   );
 
-  const removeCustomAmenity = useCallback(
-    (amenity: string) => () => {
-      setOtherAmenities((prev) => prev.filter((a) => a !== amenity));
-    },
-    []
-  );
+  const removeCustomAmenity = useCallback((amenity: string) => {
+    setOtherAmenities((prev) => prev.filter((a) => a !== amenity));
+  }, []);
 
   // create or update amenities
   const saveAmenities = useCallback(() => {
@@ -174,7 +171,7 @@ export default function EditAmenities({ accomodationId, isNew }: EditAmenitiesPr
                     label={amenity}
                     icon={<Check />}
                     selected={true}
-                    onDelete={removeCustomAmenity(amenity)}
+                    onDelete={() => removeCustomAmenity(amenity)}
                   />
                 </ListItem>
               ))}
