@@ -1,70 +1,41 @@
 import { Button, Menu, MenuItem, Box, Container, ContainerProps, Typography } from '@mui/material';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
-import { logout, setUser } from '../stores/slices/authSlice';
-import { UserResponse } from '../types/profile.types';
-import httpClient from '../api/httpClient';
+import { useAppSelector } from '../hooks/redux-hooks';
+import useLogoutMutation from '../api/mutations/account/useLogoutMutation';
+import useGetUserQuery from '../api/queries/account/useGetUserQuery';
 import logo from '../assets/logo.png';
 
 function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) {
   const isLoggedIn = useAppSelector((state) => state.auth.token) !== null;
   const userId = localStorage.getItem('sub');
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleTouch = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const { isError } = useQuery({
-    queryKey: ['user'],
-    queryFn: async () => {
-      const { data } = await httpClient.get<UserResponse>(`/users/${userId}`);
-      dispatch(setUser(data));
-      return data;
-    },
-    enabled: isLoggedIn && userId !== null,
-  });
+  const { isError } = useGetUserQuery(userId, isLoggedIn);
 
-  const { mutate } = useMutation({
-    mutationKey: ['logout'],
-    mutationFn: async () => {
-      await httpClient.post('/auth/signout');
-    },
-    onSuccess: () => {
-      dispatch(logout());
-      queryClient.removeQueries();
-      navigate('/');
-    },
-  });
+  const { mutate } = useLogoutMutation();
 
-  const handleClose = (action: string) => {
-    switch (action) {
-      case 'account':
-        navigate('/account');
-        break;
-      case 'logout':
-        mutate();
-        break;
-      case 'signIn':
-        navigate('auth/signin');
-        break;
-      case 'signUp':
-        navigate('auth/signup');
-        break;
-      default:
-        break;
-    }
-
+  const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleClick = useCallback(
+    () => ({
+      account: () => navigate('/account'),
+      logout: () => mutate(),
+      signIn: () => navigate('auth/signin'),
+      signUp: () => navigate('auth/signup'),
+    }),
+    [navigate, mutate]
+  );
 
   return (
     <Container maxWidth={maxWidth} disableGutters sx={{ padding: '1rem' }}>
@@ -107,7 +78,7 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
           aria-controls={open ? 'basic-menu' : undefined}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
-          onClick={handleClick}
+          onClick={handleTouch}
           sx={{
             'display': 'flex',
             'alignItems': 'center',
@@ -137,18 +108,18 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
         >
           {isLoggedIn && !isError
             ? [
-                <MenuItem key="account" onClick={() => handleClose('account')}>
+                <MenuItem key="account" onClick={handleClick().account}>
                   Account
                 </MenuItem>,
-                <MenuItem key="logout" onClick={() => handleClose('logout')}>
+                <MenuItem key="logout" onClick={handleClick().logout}>
                   Logout
                 </MenuItem>,
               ]
             : [
-                <MenuItem key="signIn" onClick={() => handleClose('signIn')}>
+                <MenuItem key="signIn" onClick={handleClick().signIn}>
                   Sign In
                 </MenuItem>,
-                <MenuItem key="signUp" onClick={() => handleClose('signUp')}>
+                <MenuItem key="signUp" onClick={handleClick().signUp}>
                   Sign Up
                 </MenuItem>,
               ]}

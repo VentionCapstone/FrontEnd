@@ -13,14 +13,14 @@ export interface UserResponse {
   profile: Profile | null;
 }
 
-export type Profile = {
+export interface Profile {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  photoUrl: string;
+  imageUrl: string;
   gender: string;
   country: string;
   language: string;
   uiTheme: string;
   description: string;
-};
+}

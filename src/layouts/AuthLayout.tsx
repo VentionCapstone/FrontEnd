@@ -6,7 +6,7 @@ function AuthLayout() {
   return (
     <>
       <MainNavigation maxWidth={'xl'} />
-      <Container maxWidth={'xl'} disableGutters sx={{ padding: '1.5rem' }}>
+      <Container maxWidth={'xl'} disableGutters sx={{ padding: 6 }}>
         <Outlet />
       </Container>
     </>

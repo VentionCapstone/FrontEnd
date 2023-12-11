@@ -6,7 +6,7 @@ function MainLayout() {
   return (
     <>
       <MainNavigation maxWidth={'2xl'} />
-      <Container maxWidth={'2xl'} disableGutters sx={{ padding: '1.5rem' }}>
+      <Container maxWidth={'2xl'} disableGutters sx={{ padding: 6 }}>
         <Outlet />
       </Container>
     </>
