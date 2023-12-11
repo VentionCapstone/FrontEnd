@@ -20,12 +20,20 @@ const SignIn = () => {
   });
 
   const [isPasswordValid, setIsPasswordValid] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit: SubmitHandler<AuthData> = async (data: AuthData) => {
-    if (isPasswordValid) {
-      const response = await httpClient.post<LoginResponse>('/auth/signin', data);
-      localStorage.setItem('sub', response.data.id);
-      dispatch(setToken(response.data.tokens.access_token));
+    try {
+      if (isPasswordValid) {
+        setIsLoading(true);
+        const response = await httpClient.post<LoginResponse>('/auth/signin', data);
+        localStorage.setItem('sub', response.data.id);
+        setIsLoading(false);
+        dispatch(setToken(response.data.tokens.access_token));
+      }
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
     }
   };
   return (
@@ -59,7 +67,9 @@ const SignIn = () => {
               setIsPasswordValid={setIsPasswordValid}
             />
           </Stack>
-          <ButtonPrimary disbabled={isPasswordValid}>Sign in</ButtonPrimary>
+          <ButtonPrimary loading={isLoading} disbabled={isPasswordValid}>
+            Sign in
+          </ButtonPrimary>
         </form>
       </Stack>
     </Box>

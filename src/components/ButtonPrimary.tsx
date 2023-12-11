@@ -4,12 +4,13 @@ type ButtonPrimaryProps = {
   children: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   disbabled?: boolean;
-  loading?: boolean | undefined;
+  loading?: boolean;
 };
 
-function ButtonPrimary({ children }: ButtonPrimaryProps) {
+function ButtonPrimary({ children, loading }: ButtonPrimaryProps) {
   return (
     <LoadingButton
+      loading={loading}
       type="submit"
       size="large"
       variant="contained"
