@@ -17,10 +17,12 @@ export type AmenityListResponse = {
   success: boolean;
 };
 
+export type Amenities = {
+  [key: string]: boolean | string;
+};
+
 export type AccommodationAmenitiesResponse = {
-  data: {
-    [key: string]: boolean | string;
-  };
+  data: Amenities;
 };
 
 export type EditAmenitiesResponse = AccommodationAmenitiesResponse & {

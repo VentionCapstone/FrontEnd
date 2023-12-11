@@ -3,7 +3,7 @@ import { ReactElement } from 'react';
 
 type CustomChipProps = {
   icon: ReactElement;
-  selected: boolean | undefined;
+  selected?: boolean;
   label: string;
   onDelete?: () => void;
   handleSelect?: () => void;

@@ -1,36 +1,14 @@
-import { useQuery } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
-import {
-  AcUnit,
-  Check,
-  ChildFriendly,
-  ConnectingAirports,
-  Grass,
-  Kitchen,
-  LocalHospital,
-  LocalLaundryService,
-  LocalParking,
-  LocationCity,
-  Pets,
-  Pool,
-  SmokingRooms,
-  Tv,
-  VolumeOff,
-  Wifi,
-} from '@mui/icons-material';
+import { FormEvent, useCallback, useEffect, useState } from 'react';
 import { Button, Typography, Box, List, ListItem, TextField } from '@mui/material';
-import httpClient from '../../../api/httpClient';
-import LoadingPrimary from '../../../components/LoadingPrimary';
-import CustomChip from './CustomChip';
+import { Check } from '@mui/icons-material';
 import toast from 'react-hot-toast';
 import { AxiosError } from 'axios';
-import {
-  AccommodationAmenitiesResponse,
-  AmenityList,
-  AmenityListResponse,
-  EditAmenitiesProps,
-  EditAmenitiesResponse,
-} from '../../../types/amenity.types';
+import LoadingPrimary from '../../../components/LoadingPrimary';
+import CustomChip from './CustomChip';
+import { Amenities, AmenityList, EditAmenitiesProps } from '../../../types/amenity.types';
+import { useGetAmenityList } from '../../../api/queries/amenity/useGetAmenityList';
+import { useGetAccomodationAmenities } from '../../../api/queries/amenity/useGetAccomodationAmenities';
+import { useSaveAmenities } from '../../../api/mutations/amenity/useSaveAmenities';
 
 export default function EditAmenities({ accomodationId, isNew }: EditAmenitiesProps) {
   const [isNewAccomodation, setIsNewAccomodation] = useState<boolean>(isNew);
@@ -39,35 +17,21 @@ export default function EditAmenities({ accomodationId, isNew }: EditAmenitiesPr
   const [customAmenity, setCustomAmenity] = useState<string>('');
 
   // get all predefined amenities
-  const { data: amenities } = useQuery({
-    queryKey: ['amenities_list'],
-    queryFn: async () => {
-      const { data } = await httpClient.get<AmenityListResponse>('/amenities/list');
-      return buildAmenityList(data.data);
-    },
-  });
+  const { data: amenities } = useGetAmenityList();
 
   // get all amenities for this accomodation
   const {
     data: accomodationAmenities,
     isError,
     error,
-  } = useQuery({
-    queryKey: ['accomodation_amenities', accomodationId, isNewAccomodation],
-    queryFn: async () => {
-      if (isNewAccomodation) return {};
+  } = useGetAccomodationAmenities({ accomodationId, isNewAccomodation });
 
-      const { data } = await httpClient.get<AccommodationAmenitiesResponse>(
-        `/amenities/${accomodationId}`
-      );
-      return data.data;
-    },
-    retry: 0,
-  });
+  // save amenities
+  const { mutate } = useSaveAmenities(accomodationId);
 
   // if there is no amenity list on this accomodation
   useEffect(() => {
-    if (isError) {
+    if (isError && error) {
       const { response } = error as AxiosError;
       if (response?.status === 404) {
         setIsNewAccomodation(true);
@@ -92,61 +56,65 @@ export default function EditAmenities({ accomodationId, isNew }: EditAmenitiesPr
     }
   }, [accomodationAmenities, amenities, isNewAccomodation]);
 
-  const handleSelect = (id: string) => {
-    if (currentAmenities) {
-      const updatedAmenities = currentAmenities.map((amenity) =>
-        amenity.id === id ? { ...amenity, added: !amenity.added } : amenity
-      );
-      setCurrentAmenities(updatedAmenities);
-    }
-  };
-
-  const addCustomAmenity = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (customAmenity.trim()) {
-      if (customAmenity.includes(',')) {
-        toast.error('Amenity cannot contain commas');
-        return;
+  const handleSelect = useCallback(
+    (id: string) => {
+      if (currentAmenities) {
+        const updatedAmenities = currentAmenities.map((amenity) =>
+          amenity.id === id ? { ...amenity, added: !amenity.added } : amenity
+        );
+        setCurrentAmenities(updatedAmenities);
       }
+    },
+    [currentAmenities]
+  );
 
-      const exists = otherAmenities?.find((amenity) => amenity === customAmenity);
+  const addCustomAmenity = useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
 
-      if (!exists) {
-        setOtherAmenities((prev) => [...prev, customAmenity]);
-        setCustomAmenity('');
-      } else {
-        toast.error('Amenity already exists');
+      if (customAmenity.trim()) {
+        if (customAmenity.includes(',')) {
+          toast.error('Amenity cannot contain commas');
+          return;
+        }
+
+        const exists = otherAmenities?.find((amenity) => amenity === customAmenity);
+
+        if (!exists) {
+          setOtherAmenities((prev) => [...prev, customAmenity]);
+          setCustomAmenity('');
+        } else {
+          toast.error('Amenity already exists');
+        }
       }
-    }
-  };
+    },
+    [customAmenity, otherAmenities]
+  );
+
+  const removeCustomAmenity = useCallback(
+    (amenity: string) => () => {
+      setOtherAmenities((prev) => prev.filter((a) => a !== amenity));
+    },
+    []
+  );
 
   // create or update amenities
-  const saveAmenities = async () => {
+  const saveAmenities = useCallback(() => {
     const amenitiesToSave = currentAmenities?.reduce(
       (acc, amenity) => {
         acc[amenity.id] = Boolean(amenity.added);
         return acc;
       },
-      { otherAmenities: otherAmenities.join(',') } as { [key: string]: boolean | string }
+      { otherAmenities: otherAmenities.join(',') } as Amenities
     );
 
-    let data;
-
-    if (isNewAccomodation) {
-      ({ data } = await httpClient.post<EditAmenitiesResponse>(
-        `/amenities/${accomodationId}`,
-        amenitiesToSave
-      ));
-    } else {
-      ({ data } = await httpClient.put<EditAmenitiesResponse>(
-        `/amenities/${accomodationId}`,
-        amenitiesToSave
-      ));
+    if (!amenitiesToSave) {
+      toast.error('No amenities to save');
+      return;
     }
 
-    toast.success(data.message);
-  };
+    mutate({ amenitiesToSave, isNewAccomodation });
+  }, [currentAmenities, mutate, isNewAccomodation, otherAmenities]);
 
   return (
     <Box
@@ -206,9 +174,7 @@ export default function EditAmenities({ accomodationId, isNew }: EditAmenitiesPr
                     label={amenity}
                     icon={<Check />}
                     selected={true}
-                    onDelete={() => {
-                      setOtherAmenities((prev) => prev.filter((a) => a !== amenity));
-                    }}
+                    onDelete={removeCustomAmenity(amenity)}
                   />
                 </ListItem>
               ))}
@@ -263,84 +229,4 @@ export default function EditAmenities({ accomodationId, isNew }: EditAmenitiesPr
       </Button>
     </Box>
   );
-}
-
-function buildAmenityList(amenities: string[]): AmenityList {
-  const amenityList: AmenityList = [];
-
-  amenities.forEach((amenity) => {
-    switch (amenity) {
-      case 'isQuiteArea':
-        amenityList.push({ id: 'isQuiteArea', name: 'Quite Area', icon: <VolumeOff /> });
-        break;
-      case 'hasWifi':
-        amenityList.push({ id: 'hasWifi', name: 'Wifi', icon: <Wifi /> });
-        break;
-      case 'isChildFriendly':
-        amenityList.push({
-          id: 'isChildFriendly',
-          name: 'Child Friendly',
-          icon: <ChildFriendly />,
-        });
-        break;
-      case 'isCloseToCenter':
-        amenityList.push({
-          id: 'isCloseToCenter',
-          name: 'Close To Center',
-          icon: <LocationCity />,
-        });
-        break;
-      case 'hasAirConditioning':
-        amenityList.push({ id: 'hasAirConditioning', name: 'Air Conditioning', icon: <AcUnit /> });
-        break;
-      case 'hasAirportTransfer':
-        amenityList.push({
-          id: 'hasAirportTransfer',
-          name: 'Airport Transfer',
-          icon: <ConnectingAirports />,
-        });
-        break;
-      case 'hasBackyard':
-        amenityList.push({ id: 'hasBackyard', name: 'Backyard', icon: <Grass /> });
-        break;
-      case 'hasHospitalNearby':
-        amenityList.push({
-          id: 'hasHospitalNearby',
-          name: 'Hospital Nearby',
-          icon: <LocalHospital />,
-        });
-        break;
-      case 'hasKitchen':
-        amenityList.push({ id: 'hasKitchen', name: 'Kitchen', icon: <Kitchen /> });
-        break;
-      case 'hasLaundryService':
-        amenityList.push({
-          id: 'hasLaundryService',
-          name: 'Laundry Service',
-          icon: <LocalLaundryService />,
-        });
-        break;
-      case 'hasParking':
-        amenityList.push({ id: 'hasParking', name: 'Parking', icon: <LocalParking /> });
-        break;
-      case 'hasPetAllowance':
-        amenityList.push({ id: 'hasPetAllowance', name: 'Pet Allowance', icon: <Pets /> });
-        break;
-      case 'hasSmokingAllowance':
-        amenityList.push({
-          id: 'hasSmokingAllowance',
-          name: 'Smoking Allowance',
-          icon: <SmokingRooms />,
-        });
-        break;
-      case 'hasSwimmingPool':
-        amenityList.push({ id: 'hasSwimmingPool', name: 'Swimming Pool', icon: <Pool /> });
-        break;
-      case 'hasTv':
-        amenityList.push({ id: 'hasTv', name: 'Tv', icon: <Tv /> });
-        break;
-    }
-  });
-
-  return amenityList;
 }
