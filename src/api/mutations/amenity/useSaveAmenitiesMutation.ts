@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 import { Amenities, EditAmenitiesResponse } from '../../../types/amenity.types';
 import httpClient from '../../httpClient';
-import toast from 'react-hot-toast';
 
 type Params = {
   amenitiesToSave: Amenities;
