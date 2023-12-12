@@ -3,7 +3,7 @@ import { useAppSelector } from '../hooks/redux-hooks';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const isLoggedIn = useAppSelector((state) => state.auth.token) !== null;
-  return isLoggedIn ? children : <Navigate to="/sign-in" />;
+  return isLoggedIn ? children : <Navigate to="/auth/signin" />;
 }
 
 export default PrivateRoute;
