@@ -24,7 +24,7 @@ const updateAmenities = async (amenitiesToSave: Amenities, accomodationId: strin
   return data;
 };
 
-export const useSaveAmenities = (accomodationId: string) => {
+export const useSaveAmenitiesMutation = (accomodationId: string) => {
   return useMutation({
     mutationFn: async ({ amenitiesToSave, isNewAccomodation }: Params) => {
       if (isNewAccomodation) return await createAmenities(amenitiesToSave, accomodationId);

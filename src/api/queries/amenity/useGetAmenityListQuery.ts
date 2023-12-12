@@ -8,7 +8,7 @@ const fetchAmenityList = async () => {
   return data;
 };
 
-export const useGetAmenityList = () => {
+export const useGetAmenityListQuery = () => {
   return useQuery({
     queryKey: ['amenities_list'],
     queryFn: async () => {

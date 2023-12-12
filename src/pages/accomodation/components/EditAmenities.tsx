@@ -6,9 +6,9 @@ import { AxiosError } from 'axios';
 import LoadingPrimary from '../../../components/LoadingPrimary';
 import CustomChip from './CustomChip';
 import { Amenities, AmenityList, EditAmenitiesProps } from '../../../types/amenity.types';
-import { useGetAmenityList } from '../../../api/queries/amenity/useGetAmenityList';
-import { useGetAccomodationAmenities } from '../../../api/queries/amenity/useGetAccomodationAmenities';
-import { useSaveAmenities } from '../../../api/mutations/amenity/useSaveAmenities';
+import { useGetAmenityListQuery } from '../../../api/queries/amenity/useGetAmenityListQuery';
+import { useGetAccomodationAmenitiesQuery } from '../../../api/queries/amenity/useGetAccomodationAmenitiesQuery';
+import { useSaveAmenitiesMutation } from '../../../api/mutations/amenity/useSaveAmenitiesMutation';
 
 export default function EditAmenities({ accomodationId, isNew }: EditAmenitiesProps) {
   const [isNewAccomodation, setIsNewAccomodation] = useState<boolean>(isNew);
@@ -17,17 +17,17 @@ export default function EditAmenities({ accomodationId, isNew }: EditAmenitiesPr
   const [customAmenity, setCustomAmenity] = useState<string>('');
 
   // get all predefined amenities
-  const { data: amenities } = useGetAmenityList();
+  const { data: amenities } = useGetAmenityListQuery();
 
   // get all amenities for this accomodation
   const {
     data: accomodationAmenities,
     isError,
     error,
-  } = useGetAccomodationAmenities({ accomodationId, isNewAccomodation });
+  } = useGetAccomodationAmenitiesQuery({ accomodationId, isNewAccomodation });
 
   // save amenities
-  const { mutate } = useSaveAmenities(accomodationId);
+  const { mutate } = useSaveAmenitiesMutation(accomodationId);
 
   // if there is no amenity list on this accomodation
   useEffect(() => {

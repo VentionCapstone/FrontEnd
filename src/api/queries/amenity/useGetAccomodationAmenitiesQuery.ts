@@ -14,7 +14,7 @@ type Params = {
   accomodationId: string;
 };
 
-export const useGetAccomodationAmenities = ({ accomodationId, isNewAccomodation }: Params) => {
+export const useGetAccomodationAmenitiesQuery = ({ accomodationId, isNewAccomodation }: Params) => {
   return useQuery({
     queryKey: ['accomodation_amenities', accomodationId, isNewAccomodation],
     queryFn: async () => {
