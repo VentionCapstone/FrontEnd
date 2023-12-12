@@ -1,10 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { AuthState } from '../../types/auth.types';
+import { createSlice } from '@reduxjs/toolkit';
 import { UserResponse } from '../../types/profile.types';
+import { AuthState } from '../../types/auth.types';
 
 const initialState: AuthState = {
-  token: null || localStorage.getItem('access_token'),
+  token: localStorage.getItem('access_token'),
   user: null,
 };
 
@@ -20,20 +20,21 @@ export const authSlice = createSlice({
       state.token = null;
       localStorage.removeItem('access_token');
     },
-    setProfile: (state, action: PayloadAction<UserResponse>) => {
+    setUser: (state, action: PayloadAction<UserResponse>) => {
       state.user = action.payload;
     },
-    removeProfile: (state) => {
+    removeUser: (state) => {
       state.user = null;
     },
     logout: (state) => {
       state.token = null;
       state.user = null;
       localStorage.removeItem('access_token');
+      localStorage.removeItem('sub');
     },
   },
 });
 
-export const { setToken, removeToken, setProfile, removeProfile, logout } = authSlice.actions;
+export const { setToken, removeToken, setUser, removeUser, logout } = authSlice.actions;
 
 export default authSlice.reducer;

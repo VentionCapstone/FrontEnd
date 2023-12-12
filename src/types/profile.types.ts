@@ -10,17 +10,17 @@ export interface UserResponse {
   isDeleted: boolean;
   hashedRefreshToken: string;
   activationLink: string | null;
-  Profile: IProfile | null;
+  profile: Profile | null;
 }
 
-export interface IProfile {
+export interface Profile {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  photoUrl: string;
-  gender: 'MALE' | 'FEMALE';
+  imageUrl: string;
+  gender: string;
   country: string;
   language: string;
-  uiTheme: 'LIGHT' | 'DARK';
+  uiTheme: string;
   description: string;
 }
