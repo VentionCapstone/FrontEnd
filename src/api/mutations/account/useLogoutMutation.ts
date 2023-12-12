@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 import httpClient from '../../httpClient';
 import { useAppDispatch } from '../../../hooks/redux-hooks';
 import { logout } from '../../../stores/slices/authSlice';
-import { useNavigate } from 'react-router-dom';
 
 function useLogoutMutation() {
   const dispatch = useAppDispatch();

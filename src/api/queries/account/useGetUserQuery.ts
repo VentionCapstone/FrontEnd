@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import httpClient from '../../httpClient';
 import { UserResponse } from '../../../types/profile.types';
 import { useAppDispatch } from '../../../hooks/redux-hooks';
 import { setUser } from '../../../stores/slices/authSlice';
+import httpClient from '../../httpClient';
 
 function useGetUserQuery(userId: string | null, isLoggedIn: boolean) {
   const dispatch = useAppDispatch();
