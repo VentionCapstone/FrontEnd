@@ -16,7 +16,7 @@ function useLogoutMutation() {
     },
     onSuccess: () => {
       dispatch(logout());
-      queryClient.removeQueries();
+      queryClient.clear();
       navigate('/');
     },
   });

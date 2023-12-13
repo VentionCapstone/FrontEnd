@@ -1,26 +1,14 @@
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useMutation } from '@tanstack/react-query';
-import toast from 'react-hot-toast';
 import { useEffect } from 'react';
-import httpClient from '../../api/httpClient';
-import LoadingPrimary from '../../components/LoadingPrimary';
 import { Box, Typography } from '@mui/material';
+import { useSearchParams } from 'react-router-dom';
+import LoadingPrimary from '../../components/LoadingPrimary';
+import useVerifyEmailMutation from '../../api/mutations/auth/useVerifyEmailMutation';
 
 function VerifyEmail() {
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token') || '';
-  const navigate = useNavigate();
 
-  const { isPending, mutate } = useMutation({
-    mutationKey: ['verify-email'],
-    mutationFn: async () => {
-      await httpClient.post<string>('/auth/verify', { token });
-    },
-    onSuccess: () => {
-      toast.success('Email verified');
-      navigate('/auth/signin');
-    },
-  });
+  const { isPending, mutate } = useVerifyEmailMutation(token);
 
   useEffect(() => {
     mutate();
