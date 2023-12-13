@@ -8,16 +8,8 @@ import {
   Typography,
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { Control, Controller, ControllerRenderProps, FieldValues, Path } from 'react-hook-form';
-
-type PasswordInputProps<TFieldValues extends FieldValues> = {
-  name: Path<TFieldValues>;
-  label: string;
-  placeholder: string;
-  control: Control<TFieldValues>;
-  confirmPassword?: string;
-  setIsPasswordValid: React.Dispatch<React.SetStateAction<boolean>>;
-};
+import { Controller, ControllerRenderProps, FieldValues, Path } from 'react-hook-form';
+import { PasswordInputProps } from '../types/auth.types';
 
 const PasswordInput = <TFieldValues extends FieldValues>({
   name,

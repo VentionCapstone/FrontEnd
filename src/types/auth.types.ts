@@ -1,12 +1,14 @@
+import { Control, FieldValues, Path } from 'react-hook-form';
+
 export type AuthState = {
   token: string | null;
 };
 
-export type AuthData = {
+export interface AuthData {
   email: string;
   password: string;
   confirm_password?: string;
-};
+}
 
 export type RefreshingPromise = { access_token: string } | { error: Error };
 
@@ -23,4 +25,13 @@ export interface LoginResponse {
 export interface Tokens {
   access_token: string;
   refresh_token: string;
+}
+
+export interface PasswordInputProps<TFieldValues extends FieldValues> {
+  name: Path<TFieldValues>;
+  label: string;
+  placeholder: string;
+  control: Control<TFieldValues>;
+  confirmPassword?: string;
+  setIsPasswordValid: React.Dispatch<React.SetStateAction<boolean>>;
 }
