@@ -41,7 +41,7 @@ const Signup = () => {
       <Divider />
       <Stack p={4} spacing={3}>
         <Typography variant="h5">Welcome to Airbnb</Typography>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={(e) => void handleSubmit(onSubmit)(e)}>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
             <Controller
               name="email"

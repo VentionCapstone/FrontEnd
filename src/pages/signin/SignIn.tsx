@@ -44,7 +44,7 @@ const SignIn = () => {
       <Divider />
       <Stack p={4} spacing={2}>
         <Typography variant="h5">Please login</Typography>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={(e) => void handleSubmit(onSubmit)(e)}>
           <Stack direction="column" spacing={3}>
             <Controller
               name="email"
