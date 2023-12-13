@@ -16,20 +16,16 @@ export default function EditAmenities({ accomodationId, isNew }: EditAmenitiesPr
   const [otherAmenities, setOtherAmenities] = useState<string[]>([]);
   const [customAmenity, setCustomAmenity] = useState<string>('');
 
-  // get all predefined amenities
   const { data: amenities } = useGetAmenityListQuery();
 
-  // get all amenities for this accomodation
   const {
     data: accomodationAmenities,
     isError,
     error,
   } = useGetAccomodationAmenitiesQuery({ accomodationId, isNewAccomodation });
 
-  // save amenities
   const { mutate } = useSaveAmenitiesMutation(accomodationId);
 
-  // if there is no amenity list on this accomodation
   useEffect(() => {
     if (isError && error) {
       const { response } = error as AxiosError;
@@ -39,7 +35,6 @@ export default function EditAmenities({ accomodationId, isNew }: EditAmenitiesPr
     }
   }, [isError, error]);
 
-  // set current amenities
   useEffect(() => {
     if (accomodationAmenities && amenities) {
       const otherAmenitiesStr = accomodationAmenities.otherAmenities as string;
@@ -95,7 +90,6 @@ export default function EditAmenities({ accomodationId, isNew }: EditAmenitiesPr
     setOtherAmenities((prev) => prev.filter((a) => a !== amenity));
   }, []);
 
-  // create or update amenities
   const saveAmenities = useCallback(() => {
     const amenitiesToSave = currentAmenities?.reduce(
       (acc, amenity) => {

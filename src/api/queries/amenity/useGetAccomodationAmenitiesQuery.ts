@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import httpClient from '../../httpClient';
 import { AccommodationAmenitiesResponse } from '../../../types/amenity.types';
+import { AMENITIES_ROUTE } from '../../routes';
 
 const fetchAccomodationAmenities = async (accomodationId: string) => {
   const { data } = await httpClient.get<AccommodationAmenitiesResponse>(
-    `/amenities/${accomodationId}`
+    `${AMENITIES_ROUTE}/${accomodationId}`
   );
   return data;
 };
