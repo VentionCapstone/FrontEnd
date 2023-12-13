@@ -1,16 +1,15 @@
-import { Container } from '@mui/material';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Outlet } from 'react-router-dom';
+import { Container } from '@mui/material';
+import MainNavigation from '../components/MainNavigation';
 
 function AuthLayout() {
-  const queryClient = new QueryClient();
-
   return (
-    <Container maxWidth="sm">
-      <QueryClientProvider client={queryClient}>
+    <>
+      <MainNavigation maxWidth={'xl'} />
+      <Container maxWidth={'xl'} disableGutters sx={{ padding: 6 }}>
         <Outlet />
-      </QueryClientProvider>
-    </Container>
+      </Container>
+    </>
   );
 }
 

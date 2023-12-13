@@ -1,5 +1,8 @@
+import { UserResponse } from './profile.types';
+
 export type AuthState = {
   token: string | null;
+  user: UserResponse | null;
 };
 
 export type AuthData = {
@@ -16,10 +19,12 @@ export interface RefreshResponse {
   tokens: Tokens;
   message: string;
 }
+
 export interface LoginResponse {
   tokens: Tokens;
   id: string;
 }
+
 export interface Tokens {
   access_token: string;
   refresh_token: string;
