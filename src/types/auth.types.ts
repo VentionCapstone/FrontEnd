@@ -1,7 +1,9 @@
 import { Control, FieldValues, Path } from 'react-hook-form';
+import { UserResponse } from './profile.types';
 
 export type AuthState = {
   token: string | null;
+  user: UserResponse | null;
 };
 
 export interface AuthData {
