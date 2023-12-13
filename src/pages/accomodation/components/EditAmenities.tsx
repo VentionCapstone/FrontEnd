@@ -5,14 +5,14 @@ import toast from 'react-hot-toast';
 import { AxiosError } from 'axios';
 import LoadingPrimary from '../../../components/LoadingPrimary';
 import CustomChip from './CustomChip';
-import { Amenities, AmenityList, EditAmenitiesProps } from '../../../types/amenity.types';
+import { Amenities, AmenitySetting, EditAmenitiesProps } from '../../../types/amenity.types';
 import { useGetAmenityListQuery } from '../../../api/queries/amenity/useGetAmenityListQuery';
 import { useGetAccomodationAmenitiesQuery } from '../../../api/queries/amenity/useGetAccomodationAmenitiesQuery';
 import { useSaveAmenitiesMutation } from '../../../api/mutations/amenity/useSaveAmenitiesMutation';
 
 export default function EditAmenities({ accomodationId, isNew }: EditAmenitiesProps) {
   const [isNewAccomodation, setIsNewAccomodation] = useState<boolean>(isNew);
-  const [currentAmenities, setCurrentAmenities] = useState<AmenityList | undefined>(undefined);
+  const [currentAmenities, setCurrentAmenities] = useState<AmenitySetting[] | undefined>(undefined);
   const [otherAmenities, setOtherAmenities] = useState<string[]>([]);
   const [customAmenity, setCustomAmenity] = useState<string>('');
 

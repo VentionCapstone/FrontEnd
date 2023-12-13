@@ -5,12 +5,12 @@ export type EditAmenitiesProps = {
   isNew: boolean;
 };
 
-export type AmenityList = {
+export type AmenitySetting = {
   id: string;
   name: string;
   icon: ReactElement;
   added?: boolean;
-}[];
+};
 
 export type AmenityListResponse = {
   data: string[];
