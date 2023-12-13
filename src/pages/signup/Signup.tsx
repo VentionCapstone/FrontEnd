@@ -1,14 +1,14 @@
 import { Box, Divider, Stack, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import ButtonPrimary from '../../components/ButtonPrimary';
-import InputForm from '../../components/InputForm';
+import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
 import PasswordInput from '../../components/PasswordInput';
 import httpClient from '../../api/httpClient';
 import toast from 'react-hot-toast';
-import { useState } from 'react';
 import { AuthData } from '../../types/auth.types';
+import ButtonPrimary from '../../components/ButtonPrimary';
+import InputForm from '../../components/InputForm';
 
 const Signup = () => {
   const { handleSubmit, control, watch } = useForm({
@@ -42,7 +42,7 @@ const Signup = () => {
       <Stack p={4} spacing={3}>
         <Typography variant="h5">Welcome to Airbnb</Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
             <Controller
               name="email"
               control={control}

@@ -1,13 +1,13 @@
 import { Box, Divider, Stack, Typography } from '@mui/material';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useState } from 'react';
 import ButtonPrimary from '../../components/ButtonPrimary';
 import InputForm from '../../components/InputForm';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import PasswordInput from '../../components/PasswordInput';
-import httpClient from '../../api/httpClient';
-import { AuthData, LoginResponse } from '../../types/auth.types';
 import { useAppDispatch } from '../../hooks/redux-hooks';
 import { setToken } from '../../stores/slices/authSlice';
-import { useState } from 'react';
+import { AuthData, LoginResponse } from '../../types/auth.types';
+import PasswordInput from '../../components/PasswordInput';
+import httpClient from '../../api/httpClient';
 
 const SignIn = () => {
   const dispatch = useAppDispatch();
@@ -38,14 +38,14 @@ const SignIn = () => {
   };
   return (
     <Box sx={{ mx: 'auto', mt: '100px', border: '1px solid #b0b0b0', borderRadius: 2 }}>
-      <Typography variant="subtitle1" align="center" margin={2} fontWeight="bold">
+      <Typography variant="subtitle1" align="center" margin={5} fontWeight="bold">
         Sign In
       </Typography>
       <Divider />
       <Stack p={4} spacing={2}>
         <Typography variant="h5">Please login</Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack direction="column" spacing={1}>
+          <Stack direction="column" spacing={3}>
             <Controller
               name="email"
               control={control}
