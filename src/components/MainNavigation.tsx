@@ -1,17 +1,17 @@
 import { Button, Menu, MenuItem, Box, Container, ContainerProps, Typography } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { Link, useNavigate } from 'react-router-dom';
-import { useCallback, useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useAppSelector } from '../hooks/redux-hooks';
+import { useCallback, useState } from 'react';
+import { Link } from 'react-router-dom';
 import useLogoutMutation from '../api/mutations/account/useLogoutMutation';
+import { mainNavigationStyles as styles } from './mainNavigationStyles';
 import useGetUserQuery from '../api/queries/account/useGetUserQuery';
+import { useAppSelector } from '../hooks/redux-hooks';
 import logo from '../assets/logo.png';
 
 function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) {
   const isLoggedIn = useAppSelector((state) => state.auth.token) !== null;
   const userId = localStorage.getItem('sub');
-  const navigate = useNavigate();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -27,42 +27,16 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
     setAnchorEl(null);
   }, []);
 
-  const handleGoToAccount = useCallback(() => navigate('/account'), [navigate]);
-  const handleSignIn = useCallback(() => navigate('auth/signin'), [navigate]);
-  const handleSignUp = useCallback(() => navigate('auth/signup'), [navigate]);
-  const handleLogout = useCallback(() => mutate(), [mutate]);
+  const handleLogout = () => mutate();
 
   return (
-    <Container maxWidth={maxWidth} disableGutters sx={{ padding: '1rem' }}>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
-        <Box
-          sx={{
-            'display': 'flex',
-            'alignItems': 'center',
-            '& img': {
-              width: '2.5rem',
-              height: '2.5rem',
-            },
-          }}
-        >
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+    <Container maxWidth={maxWidth} disableGutters sx={styles.container}>
+      <Box sx={styles.headerBox}>
+        <Box sx={styles.logoBox}>
+          <Link to="/">
+            <Box sx={styles.logoBox}>
               <img src={logo} alt="logo" />
-              <Typography
-                variant="h5"
-                sx={{
-                  marginLeft: '1rem',
-                  color: 'secondary.main',
-                  fontWeight: 'bold',
-                  marginX: '0.5rem',
-                }}
-              >
+              <Typography variant="h5" sx={styles.logoText}>
                 airbnb
               </Typography>
             </Box>
@@ -74,20 +48,7 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           onClick={handleTouch}
-          sx={{
-            'display': 'flex',
-            'alignItems': 'center',
-            'justifyContent': 'space-between',
-            'textTransform': 'none',
-            'borderRadius': '2rem',
-            'borderColor': 'secondary2.main',
-            'color': 'secondary2.main',
-            'borderWidth': '1px',
-            'borderStyle': 'solid',
-            '& svg': {
-              marginLeft: '0.5rem',
-            },
-          }}
+          sx={styles.button}
         >
           <MenuIcon />
           <AccountCircleIcon fontSize="large" />
@@ -100,22 +61,23 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
           MenuListProps={{
             'aria-labelledby': 'basic-button',
           }}
+          sx={styles.menu}
         >
           {isLoggedIn && !isError
             ? [
-                <MenuItem key="account" onClick={handleGoToAccount}>
-                  Account
+                <MenuItem key="account">
+                  <Link to="/account">Account</Link>
                 </MenuItem>,
                 <MenuItem key="logout" onClick={handleLogout}>
                   Logout
                 </MenuItem>,
               ]
             : [
-                <MenuItem key="signIn" onClick={handleSignIn}>
-                  Sign In
+                <MenuItem key="signIn">
+                  <Link to="/auth/signin">Sign In</Link>
                 </MenuItem>,
-                <MenuItem key="signUp" onClick={handleSignUp}>
-                  Sign Up
+                <MenuItem key="sighUp">
+                  <Link to="/auth/signup">Sign Up</Link>
                 </MenuItem>,
               ]}
         </Menu>

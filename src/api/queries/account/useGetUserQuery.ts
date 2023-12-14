@@ -3,6 +3,7 @@ import { UserResponse } from '../../../types/profile.types';
 import { useAppDispatch } from '../../../hooks/redux-hooks';
 import { setUser } from '../../../stores/slices/authSlice';
 import httpClient from '../../httpClient';
+import { EndpointsConfig } from '../../../config/endpoints.config';
 
 function useGetUserQuery(userId: string | null, isLoggedIn: boolean) {
   const dispatch = useAppDispatch();
@@ -10,7 +11,9 @@ function useGetUserQuery(userId: string | null, isLoggedIn: boolean) {
   return useQuery({
     queryKey: ['user'],
     queryFn: async () => {
-      const { data } = await httpClient.get<UserResponse>(`/users/${userId}`);
+      const { data } = await httpClient.get<UserResponse>(
+        EndpointsConfig.Account.GetUser(userId as string)
+      );
       dispatch(setUser(data));
       return data;
     },
