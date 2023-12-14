@@ -9,12 +9,13 @@ import EditProfile from '../pages/profile/edit';
 import PersonalInfo from '../pages/profile/edit/personal-info';
 import LoginAndSecurity from '../pages/profile/edit/login-and-security';
 import ProfileSetting from '../pages/profile/edit/profile-settings';
+import Signup from '../pages/signup/Signup';
 
 const MainLayout = React.lazy(() => import('../layouts/MainLayout'));
 const UserLayout = React.lazy(() => import('../layouts/UserLayout'));
 const AuthLayout = React.lazy(() => import('../layouts/AuthLayout'));
 const Main = React.lazy(() => import('../pages/main'));
-const SignIn = React.lazy(() => import('../pages/sign-in'));
+const SignIn = React.lazy(() => import('../pages/signin'));
 
 const routes = createBrowserRouter([
   {
@@ -64,7 +65,10 @@ const routes = createBrowserRouter([
         <AuthLayout />
       </UserRoute>
     ),
-    children: [{ path: 'signin', element: <SignIn /> }],
+    children: [
+      { path: 'signin', element: <SignIn /> },
+      { path: 'signup', element: <Signup /> },
+    ],
   },
 ]);
 
