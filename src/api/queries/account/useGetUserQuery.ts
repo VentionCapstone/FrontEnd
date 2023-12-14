@@ -11,7 +11,7 @@ function useGetUserQuery(userId: string | null, isLoggedIn: boolean) {
     queryKey: ['user'],
     queryFn: async () => {
       const { data } = await httpClient.get<UserResponse>(`/users/${userId}`);
-      dispatch(setUser(data));
+      dispatch(setUser(data.data));
       return data;
     },
     enabled: isLoggedIn && userId !== null,

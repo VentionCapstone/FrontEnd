@@ -7,6 +7,8 @@ import {
 import { Box, Button, Link, Paper, Stack, Typography, StackProps } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
+import { useAppSelector } from '../../../hooks/redux-hooks';
+import useLogoutMutation from '../../../api/mutations/account/useLogoutMutation';
 
 const CustomStack = styled(Stack)<StackProps>(({ theme }) => ({
   height: '100%',
@@ -29,6 +31,11 @@ const CustomStack = styled(Stack)<StackProps>(({ theme }) => ({
 }));
 
 function EditProfile() {
+  const { mutate } = useLogoutMutation();
+  const user = useAppSelector((state) => state.auth.user);
+  const fullname = user && user.firstName + ' ' + user.lastName;
+  const imageUrl = user?.Profile?.imageUrl ?? '';
+
   return (
     <>
       <Typography mb={'2rem'} fontSize={'2rem'} fontWeight={600} component={'h1'}>
@@ -38,6 +45,8 @@ function EditProfile() {
       <Stack mt={'2rem'} mb={'3rem'} gap={'1.5rem'} justifyContent={'space-between'}>
         <Stack alignItems={'center'}>
           <Box
+            component={'img'}
+            src={imageUrl}
             sx={{
               width: {
                 xs: '9rem',
@@ -50,6 +59,7 @@ function EditProfile() {
               bgcolor: 'primary.main',
               borderRadius: '50%',
               flexShrink: 0,
+              objectFit: 'cover',
             }}
           ></Box>
 
@@ -66,11 +76,11 @@ function EditProfile() {
               overflowWrap: 'break-word',
             }}
           >
-            User
+            {fullname}
           </Typography>
 
           <Typography variant={'sm'} noWrap sx={{ color: 'secondary2.main' }}>
-            user@mail.com
+            {user?.email}
           </Typography>
         </Stack>
 
@@ -206,6 +216,7 @@ function EditProfile() {
       </Stack>
 
       <Button
+        onClick={() => mutate()}
         fullWidth
         variant={'outlined'}
         sx={{

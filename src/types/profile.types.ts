@@ -1,4 +1,9 @@
 export interface UserResponse {
+  message: string;
+  data: User;
+}
+
+export interface User {
   id: string;
   firstName: string | null;
   lastName: string | null;
@@ -10,10 +15,11 @@ export interface UserResponse {
   isDeleted: boolean;
   hashedRefreshToken: string;
   activationLink: string | null;
-  profile: Profile | null;
+  Profile: Profile | null;
 }
 
 export interface Profile {
+  id: string;
   firstName: string;
   lastName: string;
   phoneNumber: string;

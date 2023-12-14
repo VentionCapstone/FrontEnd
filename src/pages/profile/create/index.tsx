@@ -26,7 +26,7 @@ function CreateProfile() {
     control,
   } = useForm<Profile>();
 
-  const [imageUrl, setImageUrl] = useState<string>('');
+  const [imageUrl, setImageUrl] = useState('');
   const [selectedCountry, setSelectedCountry] = useState<PhoneCodesByCountry>(
     PHONE_CODES_BY_COUNTRY[0]
   );
@@ -38,6 +38,8 @@ function CreateProfile() {
       ...data,
       phoneNumber: selectedCountry.code + data.phoneNumber,
       imageUrl,
+      language: 'en',
+      uiTheme: 'DARK',
     };
 
     mutate(userProfile);
