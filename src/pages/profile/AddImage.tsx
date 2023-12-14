@@ -4,13 +4,13 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import { ChangeEventHandler } from 'react';
-import { convertImageToBase64 } from '../../../utils';
+import { convertImageToBase64 } from '../../utils';
 
-function UserImage({
+function AddImage({
   imageUrl,
   setImageUrl,
 }: {
-  imageUrl: string;
+  imageUrl: string | undefined;
   setImageUrl: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const handleChangeInput: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -73,4 +73,4 @@ function UserImage({
   );
 }
 
-export default UserImage;
+export default AddImage;

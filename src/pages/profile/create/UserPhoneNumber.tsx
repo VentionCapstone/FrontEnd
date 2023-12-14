@@ -3,7 +3,7 @@ import FormControl from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
@@ -11,10 +11,7 @@ import { Profile } from '../../../types/profile.types';
 import { PHONE_CODES_BY_COUNTRY } from '../constants';
 import { PhoneCodesByCountry } from '../constants.types';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
-
-const phoneNumLengthRegEx = (length: number) => {
-  return new RegExp(`^\\d{${length}}$`);
-};
+import { phoneNumLengthRegEx } from '../../../utils';
 
 function UserPhoneNumber({
   register,
@@ -27,6 +24,13 @@ function UserPhoneNumber({
   selectedCountry: PhoneCodesByCountry;
   setSelectedCountry: React.Dispatch<React.SetStateAction<PhoneCodesByCountry>>;
 }) {
+  const handleCountryChange = (e: SelectChangeEvent<string>) => {
+    const selectedCountryName = e.target.value;
+    const country = PHONE_CODES_BY_COUNTRY.find((country) => country.name === selectedCountryName);
+
+    if (country) setSelectedCountry(country);
+  };
+
   return (
     <Box>
       <Typography fontWeight={600} mb={{ xs: 3, md: 4 }}>
@@ -38,14 +42,7 @@ function UserPhoneNumber({
           <InputLabel id="number-country-select-label">Coutry</InputLabel>
           <Select
             value={selectedCountry.name}
-            onChange={(e) => {
-              const selectedCountryName = e.target.value;
-              const country = PHONE_CODES_BY_COUNTRY.find((c) => c.name === selectedCountryName);
-
-              if (country) {
-                setSelectedCountry(country);
-              }
-            }}
+            onChange={handleCountryChange}
             labelId="number-country-select-label"
             id="number-country-select"
             label="Country"
@@ -67,6 +64,8 @@ function UserPhoneNumber({
                 message: 'Please enter a valid phone number',
               },
             })}
+            error={!!errors.phoneNumber}
+            helperText={errors.phoneNumber?.message}
             fullWidth
             size="small"
             label="Phone number"
@@ -77,11 +76,6 @@ function UserPhoneNumber({
               inputProps: { maxLength: selectedCountry.numLength },
             }}
           />
-          {errors.phoneNumber && (
-            <Typography variant={'xs'} mt={1} color={'error.main'}>
-              {errors.phoneNumber.message}
-            </Typography>
-          )}
         </Box>
       </Stack>
     </Box>

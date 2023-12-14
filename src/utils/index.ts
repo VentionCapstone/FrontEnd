@@ -11,3 +11,7 @@ export const convertImageToBase64 = (file: File): Promise<string> => {
     reader.onload = () => resolve(reader.result as string);
   });
 };
+
+export const phoneNumLengthRegEx = (length: number) => {
+  return new RegExp(`^\\d{${length}}$`);
+};

@@ -24,29 +24,23 @@ function UserFullName({
             {...register('firstName', {
               required: 'This field is required',
             })}
+            error={!!errors.firstName}
+            helperText={errors.firstName?.message}
             fullWidth
             size="small"
             label="First name"
           />
-          {errors.firstName && (
-            <Typography variant={'xs'} mt={1} color={'error.main'}>
-              {errors.firstName.message}
-            </Typography>
-          )}
         </Box>
 
         <Box width={'100%'}>
           <TextField
             {...register('lastName', { required: 'This field is required' })}
+            error={!!errors.lastName}
+            helperText={errors.lastName?.message}
             fullWidth
             size="small"
             label="Last name"
           />
-          {errors.lastName && (
-            <Typography variant={'xs'} mt={1} color={'error.main'}>
-              {errors.lastName.message}
-            </Typography>
-          )}
         </Box>
       </Stack>
     </Box>

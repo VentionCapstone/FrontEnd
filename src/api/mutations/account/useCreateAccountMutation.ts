@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import httpClient from '../../httpClient';
 import { Profile } from '../../../types/profile.types';
+import toast from 'react-hot-toast';
 
 function useCreateAccountMutation() {
   const navigate = useNavigate();
@@ -12,7 +13,8 @@ function useCreateAccountMutation() {
       await httpClient.post('/users/profile', profileToSave);
     },
     onSuccess: () => {
-      navigate('/');
+      navigate('/account');
+      toast.success('Profile created!');
     },
   });
 }

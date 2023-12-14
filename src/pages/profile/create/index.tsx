@@ -7,10 +7,9 @@ import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-
 import { useState } from 'react';
 import { SubmitHandler, useForm, Controller } from 'react-hook-form';
-import UserImage from './UserImage';
+import AddImage from '../AddImage';
 import UserFullName from './UserFullName';
 import UserPhoneNumber from './UserPhoneNumber';
 import { Profile } from '../../../types/profile.types';
@@ -53,7 +52,7 @@ function CreateProfile() {
 
       <form onSubmit={(e) => void handleSubmit(onSubmit)(e)}>
         <Stack gap={8}>
-          <UserImage imageUrl={imageUrl} setImageUrl={setImageUrl} />
+          <AddImage imageUrl={imageUrl} setImageUrl={setImageUrl} />
 
           <UserFullName register={register} errors={errors} />
 

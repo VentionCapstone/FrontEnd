@@ -18,9 +18,9 @@ export interface Profile {
   lastName: string;
   phoneNumber: string;
   imageUrl: string;
-  gender: string;
+  gender: 'MALE' | 'FEMALE';
   country: string;
   language: string;
-  uiTheme: string;
+  uiTheme: 'LIGHT' | 'DARK';
   description: string;
 }
