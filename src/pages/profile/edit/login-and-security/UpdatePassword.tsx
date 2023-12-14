@@ -1,4 +1,4 @@
-import { Box, Button, InputLabel, Stack, TextField } from '@mui/material';
+import { Button, Stack, TextField } from '@mui/material';
 import { ChangeEvent, useState } from 'react';
 
 export const UpdatePassword = ({ collapsePanel }: { collapsePanel: () => void }) => {
@@ -15,54 +15,45 @@ export const UpdatePassword = ({ collapsePanel }: { collapsePanel: () => void })
   };
 
   return (
-    <Stack gap={4} maxWidth={'40rem'} mt={3}>
-      <Box>
-        <InputLabel htmlFor="user-pass-updata-current">Current password</InputLabel>
+    <>
+      <Stack gap={4} mt={3} mb={6} maxWidth={'40rem'}>
         <TextField
           value={passwords.currentPass}
           onChange={handleChange}
           fullWidth
           required
+          label={'Current password'}
           type={'password'}
           size="small"
           name="currentPass"
         />
-      </Box>
 
-      <Box>
-        <InputLabel htmlFor="user-pass-updata-new">New password</InputLabel>
         <TextField
           value={passwords.newPass}
           onChange={handleChange}
           fullWidth
           required
+          label={'New password'}
           type={'password'}
           size="small"
           name="newPass"
         />
-      </Box>
 
-      <Box>
-        <InputLabel htmlFor="user-pass-updata-confirm">Confirm password</InputLabel>
         <TextField
           value={passwords.confirmPass}
           onChange={handleChange}
           fullWidth
           required
+          label={'Confirm password'}
           type={'password'}
           size="small"
           name="confirmPass"
         />
-      </Box>
+      </Stack>
 
-      <Button
-        onClick={collapsePanel}
-        variant={'contained'}
-        size="small"
-        sx={{ fontWeight: 600, mr: 'auto', mt: 3 }}
-      >
+      <Button onClick={collapsePanel} variant={'contained'} size="small" sx={{ fontWeight: 600 }}>
         Change
       </Button>
-    </Stack>
+    </>
   );
 };

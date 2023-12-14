@@ -1,12 +1,4 @@
-import {
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Stack,
-  Typography,
-} from '@mui/material';
+import { Button, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import { useState } from 'react';
 
 export const ProfileLang = ({
@@ -18,12 +10,15 @@ export const ProfileLang = ({
 }) => {
   const [currency, setCurrency] = useState<string>(userLang);
   return (
-    <Stack gap={4}>
-      <Typography variant={'sm'} color={'secondary2.main'}>
+    <>
+      <Typography variant={'sm'} color={'secondary2.main'} mt={1}>
         This updates what you read on Airbnb, and how we communicate with you.
       </Typography>
 
-      <FormControl size="small" sx={{ maxWidth: '40rem' }}>
+      <FormControl
+        size="small"
+        sx={{ display: 'block', maxWidth: '40rem', mt: { xs: 2, md: 4 }, mb: 6 }}
+      >
         <InputLabel id="profile-lang-select-label">Language</InputLabel>
         <Select
           value={currency}
@@ -42,14 +37,9 @@ export const ProfileLang = ({
         </Select>
       </FormControl>
 
-      <Button
-        onClick={collapsePanel}
-        variant={'contained'}
-        size="small"
-        sx={{ fontWeight: 600, mr: 'auto' }}
-      >
+      <Button onClick={collapsePanel} variant={'contained'} size="small" sx={{ fontWeight: 600 }}>
         Save
       </Button>
-    </Stack>
+    </>
   );
 };

@@ -31,11 +31,16 @@ function PersonalInfo() {
 
   return user && profile ? (
     <>
-      <Typography fontSize={{ xs: '1.5rem', md: '2rem' }} fontWeight={600} component={'h1'}>
+      <Typography
+        mb={{ xs: 4, md: 6, lg: 10 }}
+        fontSize={{ xs: '1.5rem', md: '2rem' }}
+        fontWeight={600}
+        component={'h1'}
+      >
         Personal Info
       </Typography>
 
-      <Stack mt={12} direction={{ md: 'row' }}>
+      <Stack direction={{ md: 'row' }}>
         <Box mx={{ md: 12, lg: 20 }} mb={{ xs: 12 }}>
           <AddImage imageUrl={profile?.imageUrl} setImageUrl={setNewProfileImage} />
         </Box>

@@ -1,12 +1,4 @@
-import {
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Stack,
-  Typography,
-} from '@mui/material';
+import { Button, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import { useState } from 'react';
 
 export const ProfileCurrency = ({
@@ -18,12 +10,15 @@ export const ProfileCurrency = ({
 }) => {
   const [currency, setCurrency] = useState<string>(userCurrency);
   return (
-    <Stack gap={4}>
-      <Typography variant={'sm'} color={'secondary2.main'}>
+    <>
+      <Typography variant={'sm'} color={'secondary2.main'} mt={1}>
         Select currency you prefer
       </Typography>
 
-      <FormControl size="small" sx={{ maxWidth: '40rem' }}>
+      <FormControl
+        size="small"
+        sx={{ display: 'block', maxWidth: '40rem', mt: { xs: 2, md: 4 }, mb: 6 }}
+      >
         <InputLabel id="profile-lang-select-label">Currency</InputLabel>
         <Select
           value={currency}
@@ -36,19 +31,14 @@ export const ProfileCurrency = ({
           id="profile-lang-select"
           label="Currency"
         >
-          <MenuItem value={'USD'}>US Dollar</MenuItem>
-          <MenuItem value={'CD'}>Canadian Dollarsian</MenuItem>
+          <MenuItem value={'USD'}>US Dollars</MenuItem>
+          <MenuItem value={'CD'}>Canadian Dollars</MenuItem>
         </Select>
       </FormControl>
 
-      <Button
-        onClick={collapsePanel}
-        variant={'contained'}
-        size="small"
-        sx={{ fontWeight: 600, mr: 'auto' }}
-      >
+      <Button onClick={collapsePanel} variant={'contained'} size="small" sx={{ fontWeight: 600 }}>
         Save
       </Button>
-    </Stack>
+    </>
   );
 };

@@ -9,6 +9,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { useAppSelector } from '../../../hooks/redux-hooks';
 import useLogoutMutation from '../../../api/mutations/account/useLogoutMutation';
+import { MuiStylesObject } from '../../../types/utility.types';
 
 const CustomStack = styled(Stack)<StackProps>(({ theme }) => ({
   height: '100%',
@@ -30,6 +31,23 @@ const CustomStack = styled(Stack)<StackProps>(({ theme }) => ({
   },
 }));
 
+const styles = {
+  userImage: {
+    width: {
+      xs: '9rem',
+      md: '12rem',
+    },
+    height: {
+      xs: '9rem',
+      md: '12rem',
+    },
+    bgcolor: 'primary.main',
+    borderRadius: '50%',
+    flexShrink: 0,
+    objectFit: 'cover',
+  },
+} satisfies MuiStylesObject;
+
 function EditProfile() {
   const { mutate } = useLogoutMutation();
   const user = useAppSelector((state) => state.auth.user);
@@ -44,24 +62,7 @@ function EditProfile() {
 
       <Stack mt={'2rem'} mb={'3rem'} gap={'1.5rem'} justifyContent={'space-between'}>
         <Stack alignItems={'center'}>
-          <Box
-            component={'img'}
-            src={imageUrl}
-            sx={{
-              width: {
-                xs: '9rem',
-                md: '12rem',
-              },
-              height: {
-                xs: '9rem',
-                md: '12rem',
-              },
-              bgcolor: 'primary.main',
-              borderRadius: '50%',
-              flexShrink: 0,
-              objectFit: 'cover',
-            }}
-          ></Box>
+          <Box component={'img'} src={imageUrl} sx={styles.userImage}></Box>
 
           <Typography
             variant={'xl'}

@@ -10,18 +10,17 @@ export const UpdateEmail = ({
   userEmail: string;
 }) => {
   const [email, setEmail] = useState(userEmail);
-
   const { mutate } = useUpdateEmailMutation(email);
 
   const handleSubmit = () => {
-    if (email) mutate();
+    if (email && email !== userEmail) mutate();
 
     collapsePanel();
   };
 
   return (
     <>
-      <Typography variant={'sm'} color={'secondary2.main'}>
+      <Typography variant={'sm'} color={'secondary2.main'} mt={1}>
         Type your new email address
       </Typography>
 
@@ -34,8 +33,7 @@ export const UpdateEmail = ({
         type={'email'}
         size="small"
         label="email"
-        name="email-update"
-        sx={{ display: 'block', maxWidth: '40rem', my: '1rem' }}
+        sx={{ display: 'block', maxWidth: '40rem', mt: { xs: 2, md: 4 }, mb: 6 }}
       />
 
       <Button onClick={handleSubmit} variant={'contained'} size="small" sx={{ fontWeight: 600 }}>
