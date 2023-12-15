@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
-import LoadingPrimary from '../../components/LoadingPrimary';
+import LoadingPrimary from '../../components/loader/LoadingPrimary';
 import useVerifyEmailMutation from '../../api/mutations/auth/useVerifyEmailMutation';
 
 function VerifyEmail() {
