@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Controller, ControllerRenderProps, FieldValues, Path } from 'react-hook-form';
-import { PasswordInputProps } from '../types/auth.types';
+import { PasswordInputProps } from '../../types/auth.types';
 
 const PasswordInput = <TFieldValues extends FieldValues>({
   name,

@@ -1,12 +1,12 @@
 import { Box, Divider, Stack, Typography } from '@mui/material';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useState } from 'react';
-import ButtonPrimary from '../../components/ButtonPrimary';
-import InputForm from '../../components/InputForm';
+import ButtonPrimary from '../../components/button/ButtonPrimary';
+import InputForm from '../../components/input/InputForm';
 import { useAppDispatch } from '../../hooks/redux-hooks';
 import { setToken } from '../../stores/slices/authSlice';
 import { AuthData, LoginResponse } from '../../types/auth.types';
-import PasswordInput from '../../components/PasswordInput';
+import PasswordInput from '../../components/input/PasswordInput';
 import httpClient from '../../api/httpClient';
 
 const SignIn = () => {
