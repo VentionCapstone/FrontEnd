@@ -3,11 +3,12 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
-import useLogoutMutation from '../api/mutations/account/useLogoutMutation';
-import { mainNavigationStyles as styles } from './mainNavigationStyles';
-import useGetUserQuery from '../api/queries/account/useGetUserQuery';
-import { useAppSelector } from '../hooks/redux-hooks';
-import logo from '../assets/logo.png';
+import useLogoutMutation from '../../api/mutations/account/useLogoutMutation';
+import { mainNavigationStyles as styles } from './MainNavigation.styles';
+import useGetUserQuery from '../../api/queries/account/useGetUserQuery';
+import { useAppSelector } from '../../hooks/redux-hooks';
+import logo from '../../assets/logo.png';
+import { RoutesConfig } from '../../config/routes.config';
 
 function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) {
   const isLoggedIn = useAppSelector((state) => state.auth.token) !== null;
@@ -33,7 +34,7 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
     <Container maxWidth={maxWidth} disableGutters sx={styles.container}>
       <Box sx={styles.headerBox}>
         <Box sx={styles.logoBox}>
-          <Link to="/">
+          <Link to={RoutesConfig.Root}>
             <Box sx={styles.logoBox}>
               <img src={logo} alt="logo" />
               <Typography variant="h5" sx={styles.logoText}>
@@ -66,7 +67,7 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
           {isLoggedIn && !isError
             ? [
                 <MenuItem key="account">
-                  <Link to="/account">Account</Link>
+                  <Link to={RoutesConfig.Account.Root}>Account</Link>
                 </MenuItem>,
                 <MenuItem key="logout" onClick={handleLogout}>
                   Logout
@@ -74,10 +75,10 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
               ]
             : [
                 <MenuItem key="signIn">
-                  <Link to="/auth/signin">Sign In</Link>
+                  <Link to={RoutesConfig.Auth.SignIn}>Sign In</Link>
                 </MenuItem>,
                 <MenuItem key="sighUp">
-                  <Link to="/auth/signup">Sign Up</Link>
+                  <Link to={RoutesConfig.Auth.SignUp}>Sign Up</Link>
                 </MenuItem>,
               ]}
         </Menu>
