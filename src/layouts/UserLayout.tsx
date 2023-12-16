@@ -1,6 +1,6 @@
 import { Container } from '@mui/material';
 import { Outlet } from 'react-router-dom';
-import MainNavigation from '../components/MainNavigation';
+import MainNavigation from '../components/navigation/MainNavigation';
 
 function UserLayout() {
   return (

@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { Amenities, EditAmenitiesResponse } from '../../../types/amenity.types';
 import httpClient from '../../httpClient';
-import { AMENITIES_ROUTE } from '../../routes';
+import { EndpointsConfig } from '../../../config/endpoints.config';
+import { Amenities, EditAmenitiesResponse } from '../../../types/amenity.types';
 
 type Params = {
   amenitiesToSave: Amenities;
@@ -11,7 +11,7 @@ type Params = {
 
 const createAmenities = async (amenitiesToSave: Amenities, accomodationId: string) => {
   const { data } = await httpClient.post<EditAmenitiesResponse>(
-    `${AMENITIES_ROUTE}/${accomodationId}`,
+    EndpointsConfig.Amenity.Root(accomodationId),
     amenitiesToSave
   );
   return data;
@@ -19,7 +19,7 @@ const createAmenities = async (amenitiesToSave: Amenities, accomodationId: strin
 
 const updateAmenities = async (amenitiesToSave: Amenities, accomodationId: string) => {
   const { data } = await httpClient.put<EditAmenitiesResponse>(
-    `${AMENITIES_ROUTE}/${accomodationId}`,
+    EndpointsConfig.Amenity.Root(accomodationId),
     amenitiesToSave
   );
   return data;

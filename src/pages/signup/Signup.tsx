@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
-import PasswordInput from '../../components/PasswordInput';
+import PasswordInput from '../../components/input/PasswordInput';
 import httpClient from '../../api/httpClient';
 import toast from 'react-hot-toast';
 import { AuthData } from '../../types/auth.types';
-import ButtonPrimary from '../../components/ButtonPrimary';
-import InputForm from '../../components/InputForm';
+import ButtonPrimary from '../../components/button/ButtonPrimary';
+import InputForm from '../../components/input/InputForm';
 
 const Signup = () => {
   const { handleSubmit, control, watch } = useForm({
