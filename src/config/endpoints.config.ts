@@ -1,10 +1,15 @@
 export const EndpointsConfig = {
   Auth: {
     VerifyEmail: '/auth/verify',
+    UpdateEmail: '/auth/email',
     SignOut: '/auth/signout',
   },
   Account: {
     GetUser: (userId: string) => `/users/${userId}`,
+    GetUserProfile: (profileId: string) => `/users/profile/${profileId}`,
+    UpdateUserProfile: (profileId: string) => `/users/profile/${profileId}`,
+    DeleteUserProfile: (profileId: string) => `/users/profile/${profileId}`,
+    CreateUserProfile: '/users/profile',
   },
   Amenity: {
     Root: (accommodationId: string) => `/amenities/${accommodationId}`,

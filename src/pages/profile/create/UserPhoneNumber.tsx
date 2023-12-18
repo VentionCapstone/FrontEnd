@@ -47,8 +47,8 @@ function UserPhoneNumber({
             id="number-country-select"
             label="Country"
           >
-            {PHONE_CODES_BY_COUNTRY.map((country, index) => (
-              <MenuItem key={index} value={country.name}>
+            {PHONE_CODES_BY_COUNTRY.map((country) => (
+              <MenuItem key={country.name} value={country.name}>
                 {country.name}
               </MenuItem>
             ))}

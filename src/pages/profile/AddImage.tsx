@@ -5,12 +5,14 @@ import Typography from '@mui/material/Typography';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import { ChangeEventHandler } from 'react';
 import { convertImageToBase64 } from '../../utils';
+import toast from 'react-hot-toast';
+import { Profile } from '../../types/profile.types';
 
 function AddImage({
   imageUrl,
   setImageUrl,
 }: {
-  imageUrl: string | undefined;
+  imageUrl: Profile['imageUrl'];
   setImageUrl: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const handleChangeInput: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -22,7 +24,7 @@ function AddImage({
       .then((imageBase64) => {
         setImageUrl(imageBase64);
       })
-      .catch((error) => console.log(error));
+      .catch(() => toast.error('Image conversion failed!'));
   };
 
   return (

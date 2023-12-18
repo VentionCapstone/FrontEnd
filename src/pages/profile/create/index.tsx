@@ -7,13 +7,14 @@ import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+
 import { useState } from 'react';
 import { SubmitHandler, useForm, Controller } from 'react-hook-form';
 import AddImage from '../AddImage';
 import UserFullName from './UserFullName';
 import UserPhoneNumber from './UserPhoneNumber';
-import { Profile } from '../../../types/profile.types';
-import { PHONE_CODES_BY_COUNTRY } from '../constants';
+import { Gender, Profile, ThemeMode } from '../../../types/profile.types';
+import { DEFAULT_COUNTRY, PHONE_CODES_BY_COUNTRY } from '../constants';
 import { PhoneCodesByCountry } from '../constants.types';
 import useCreateAccountMutation from '../../../api/mutations/account/useCreateAccountMutation';
 
@@ -27,9 +28,7 @@ function CreateProfile() {
   } = useForm<Profile>();
 
   const [imageUrl, setImageUrl] = useState('');
-  const [selectedCountry, setSelectedCountry] = useState<PhoneCodesByCountry>(
-    PHONE_CODES_BY_COUNTRY[0]
-  );
+  const [selectedCountry, setSelectedCountry] = useState<PhoneCodesByCountry>(DEFAULT_COUNTRY);
 
   const { mutate, isPending } = useCreateAccountMutation();
 
@@ -39,7 +38,7 @@ function CreateProfile() {
       phoneNumber: selectedCountry.code + data.phoneNumber,
       imageUrl,
       language: 'en',
-      uiTheme: 'DARK',
+      uiTheme: ThemeMode.light,
     };
 
     mutate(userProfile);
@@ -94,7 +93,7 @@ function CreateProfile() {
                   <Controller
                     name="gender"
                     control={control}
-                    defaultValue="MALE"
+                    defaultValue={Gender.male}
                     render={({ field }) => (
                       <Select {...field} labelId="user-gender-select-label" label="Gender">
                         <MenuItem value={'MALE'}>Male</MenuItem>

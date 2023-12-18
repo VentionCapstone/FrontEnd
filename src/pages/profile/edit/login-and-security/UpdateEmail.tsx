@@ -1,5 +1,5 @@
 import { Button, TextField, Typography } from '@mui/material';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import useUpdateEmailMutation from '../../../../api/mutations/account/useUpdateEmailMutation';
 
 export const UpdateEmail = ({
@@ -11,6 +11,10 @@ export const UpdateEmail = ({
 }) => {
   const [email, setEmail] = useState(userEmail);
   const { mutate } = useUpdateEmailMutation(email);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setEmail(e.target.value);
+  };
 
   const handleSubmit = () => {
     if (email && email !== userEmail) mutate();
@@ -26,9 +30,7 @@ export const UpdateEmail = ({
 
       <TextField
         value={email}
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
+        onChange={handleChange}
         fullWidth
         type={'email'}
         size="small"

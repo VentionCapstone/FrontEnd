@@ -1,20 +1,33 @@
-import { Button, FormControl, Grid, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import {
+  Button,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  Typography,
+} from '@mui/material';
 import { useState } from 'react';
-import { Profile } from '../../../../types/profile.types';
+import { Profile, Gender as GenderEnum } from '../../../../types/profile.types';
 import { useAppSelector } from '../../../../hooks/redux-hooks';
 import useEditAccountMutation from '../../../../api/mutations/account/useEditAccountMutation';
+import { getProfile } from '../../../../stores/slices/authSlice';
 
 const Gender = ({
   collapsePanel,
   initialGender,
 }: {
   collapsePanel: () => void;
-  initialGender: Profile['gender'];
+  initialGender: Profile['gender'] | undefined;
 }) => {
-  const profileId = useAppSelector((state) => state.auth.user?.Profile?.id) ?? '';
+  const profileId = useAppSelector(getProfile)?.id ?? '';
   const { mutate } = useEditAccountMutation(profileId);
+  const [gender, setGender] = useState(initialGender ?? GenderEnum.male);
 
-  const [gender, setGender] = useState(initialGender);
+  const handleChange = (e: SelectChangeEvent<GenderEnum>) => {
+    setGender(e.target.value as GenderEnum);
+  };
 
   const handleSubmit = () => {
     if (gender && gender !== initialGender) {
@@ -34,7 +47,7 @@ const Gender = ({
           <FormControl size="small" fullWidth>
             <InputLabel id="user-gender-select-label">Gender</InputLabel>
             <Select
-              onChange={(e) => setGender(e.target.value as typeof initialGender)}
+              onChange={handleChange}
               value={gender}
               labelId="user-gender-select-label"
               id="user-gender-select"

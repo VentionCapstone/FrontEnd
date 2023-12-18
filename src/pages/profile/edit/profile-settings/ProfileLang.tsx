@@ -1,4 +1,12 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  Typography,
+} from '@mui/material';
 import { useState } from 'react';
 
 export const ProfileLang = ({
@@ -9,6 +17,10 @@ export const ProfileLang = ({
   userLang: string;
 }) => {
   const [currency, setCurrency] = useState<string>(userLang);
+
+  const handleChange = (e: SelectChangeEvent<string>) => {
+    setCurrency(e.target.value);
+  };
   return (
     <>
       <Typography variant={'sm'} color={'secondary2.main'} mt={1}>
@@ -22,9 +34,7 @@ export const ProfileLang = ({
         <InputLabel id="profile-lang-select-label">Language</InputLabel>
         <Select
           value={currency}
-          onChange={(e) => {
-            setCurrency(e.target.value);
-          }}
+          onChange={handleChange}
           fullWidth
           size="small"
           labelId="profile-lang-select-label"

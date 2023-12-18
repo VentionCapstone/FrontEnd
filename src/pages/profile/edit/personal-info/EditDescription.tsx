@@ -3,15 +3,16 @@ import { useState } from 'react';
 import { Profile } from '../../../../types/profile.types';
 import { useAppSelector } from '../../../../hooks/redux-hooks';
 import useEditAccountMutation from '../../../../api/mutations/account/useEditAccountMutation';
+import { getProfile } from '../../../../stores/slices/authSlice';
 
 const Description = ({
   collapsePanel,
   initialDescription,
 }: {
   collapsePanel: () => void;
-  initialDescription: Profile['description'];
+  initialDescription: Profile['description'] | undefined;
 }) => {
-  const profileId = useAppSelector((state) => state.auth.user?.Profile?.id) ?? '';
+  const profileId = useAppSelector(getProfile)?.id ?? '';
   const { mutate } = useEditAccountMutation(profileId);
 
   const [description, setDescription] = useState(initialDescription);

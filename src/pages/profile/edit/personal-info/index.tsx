@@ -1,27 +1,28 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
+
+import { useCallback, useEffect, useState } from 'react';
+import { useAppSelector } from '../../../../hooks/redux-hooks';
 import EditablePanel from '../EditablePanel';
 import FullName from './EditFullName';
 import Gender from './EditGender';
 import Country from './EditCountry';
 import Description from './EditDescription';
 import PhoneNumber from './EditPhoneNumber';
-import { useAppSelector } from '../../../../hooks/redux-hooks';
 import AddImage from '../../AddImage';
-import { useEffect, useState } from 'react';
 import useEditAccountMutation from '../../../../api/mutations/account/useEditAccountMutation';
-import LoadingPrimary from '../../../../components/LoadingPrimary';
+import LoadingPrimary from '../../../../components/loader/LoadingPrimary';
+import { getUser, getProfile } from '../../../../stores/slices/authSlice';
 
 function PersonalInfo() {
-  const user = useAppSelector((state) => state.auth.user);
-  const profile = useAppSelector((state) => state.auth.user?.Profile);
+  const user = useAppSelector(getUser);
+  const profile = useAppSelector(getProfile);
   const profileId = profile?.id ?? '';
+  const imageUrl = profile?.imageUrl ?? '';
 
   const { mutate } = useEditAccountMutation(profileId);
   const [newProfileImage, setNewProfileImage] = useState('');
-
-  const fullname = user && user.firstName + ' ' + user.lastName;
 
   useEffect(() => {
     if (newProfileImage) {
@@ -29,7 +30,42 @@ function PersonalInfo() {
     }
   }, [newProfileImage, mutate]);
 
-  return user && profile ? (
+  const fullNameRenderProps = useCallback(
+    (data: () => void) => (
+      <FullName
+        collapsePanel={data}
+        initialFirstName={user?.firstName}
+        initialLastName={user?.lastName}
+      />
+    ),
+    [user?.firstName, user?.lastName]
+  );
+
+  const genderRenderProps = useCallback(
+    (data: () => void) => <Gender collapsePanel={data} initialGender={profile?.gender} />,
+    [profile?.gender]
+  );
+
+  const countryRenderProps = useCallback(
+    (data: () => void) => <Country collapsePanel={data} initialCountry={profile?.country} />,
+    [profile?.country]
+  );
+
+  const phoneNumberRenderProps = useCallback(
+    (data: () => void) => <PhoneNumber collapsePanel={data} />,
+    []
+  );
+
+  const descriptionRenderProps = useCallback(
+    (data: () => void) => (
+      <Description collapsePanel={data} initialDescription={profile?.description} />
+    ),
+    [profile?.description]
+  );
+
+  if (!user || !profile) return <LoadingPrimary />;
+
+  return (
     <>
       <Typography
         mb={{ xs: 4, md: 6, lg: 10 }}
@@ -41,8 +77,8 @@ function PersonalInfo() {
       </Typography>
 
       <Stack direction={{ md: 'row' }}>
-        <Box mx={{ md: 12, lg: 20 }} mb={{ xs: 12 }}>
-          <AddImage imageUrl={profile?.imageUrl} setImageUrl={setNewProfileImage} />
+        <Box mr={{ md: 12, lg: 20 }} mb={{ xs: 12 }}>
+          <AddImage imageUrl={imageUrl} setImageUrl={setNewProfileImage} />
         </Box>
 
         <Box
@@ -57,16 +93,10 @@ function PersonalInfo() {
             panelHeading={'Legal name'}
             initial={
               <Typography variant={'sm'} color={'secondary2.main'}>
-                {fullname}
+                {user.firstName + ' ' + user.lastName}
               </Typography>
             }
-            editable={(data) => (
-              <FullName
-                collapsePanel={data}
-                initialFirstName={user.firstName}
-                initialLastName={user.lastName}
-              />
-            )}
+            editable={fullNameRenderProps}
           />
 
           <EditablePanel
@@ -76,7 +106,7 @@ function PersonalInfo() {
                 {profile.gender}
               </Typography>
             }
-            editable={(data) => <Gender collapsePanel={data} initialGender={profile.gender} />}
+            editable={genderRenderProps}
           />
 
           <EditablePanel
@@ -86,17 +116,17 @@ function PersonalInfo() {
                 {profile.country}
               </Typography>
             }
-            editable={(data) => <Country collapsePanel={data} initialCountry={profile.country} />}
+            editable={countryRenderProps}
           />
 
           <EditablePanel
             panelHeading={'Phone number'}
             initial={
               <Typography variant={'sm'} color={'secondary2.main'}>
-                +{profile.phoneNumber}
+                {profile.phoneNumber}
               </Typography>
             }
-            editable={(data) => <PhoneNumber collapsePanel={data} />}
+            editable={phoneNumberRenderProps}
           />
 
           <EditablePanel
@@ -106,15 +136,11 @@ function PersonalInfo() {
                 Write something fun and punchy.
               </Typography>
             }
-            editable={(data) => (
-              <Description collapsePanel={data} initialDescription={profile.description} />
-            )}
+            editable={descriptionRenderProps}
           />
         </Box>
       </Stack>
     </>
-  ) : (
-    <LoadingPrimary />
   );
 }
 

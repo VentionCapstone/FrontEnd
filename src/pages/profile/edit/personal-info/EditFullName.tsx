@@ -1,21 +1,22 @@
 import { Button, Grid, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
-import { User } from '../../../../types/profile.types';
+import { User } from '../../../../types/user.types';
 import { useAppSelector } from '../../../../hooks/redux-hooks';
 import useEditAccountMutation from '../../../../api/mutations/account/useEditAccountMutation';
+import { getProfile } from '../../../../stores/slices/authSlice';
 
 type FullNameProps = {
   collapsePanel: () => void;
-  initialFirstName: User['firstName'];
-  initialLastName: User['lastName'];
+  initialFirstName: User['firstName'] | undefined;
+  initialLastName: User['lastName'] | undefined;
 };
 
 const FullName = ({ collapsePanel, initialFirstName, initialLastName }: FullNameProps) => {
-  const profileId = useAppSelector((state) => state.auth.user?.Profile?.id) ?? '';
+  const profileId = useAppSelector(getProfile)?.id ?? '';
   const { mutate } = useEditAccountMutation(profileId);
 
-  const [firstName, setFirstName] = useState(initialFirstName);
-  const [lastName, setLastName] = useState(initialLastName);
+  const [firstName, setFirstName] = useState(initialFirstName ?? '');
+  const [lastName, setLastName] = useState(initialLastName ?? '');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

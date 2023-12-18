@@ -7,10 +7,21 @@ import Typography from '@mui/material/Typography';
 import EditablePanel from '../EditablePanel';
 import { ProfileLang } from './ProfileLang';
 import { ProfileCurrency } from './ProfileCurrency';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 function ProfileSettings() {
   const [theme, setTheme] = useState<'LIGHT' | 'DARK'>('LIGHT');
+
+  const languageRenderProps = useCallback(
+    (data: () => void) => <ProfileLang collapsePanel={data} userLang="English" />,
+    []
+  );
+
+  const currencyRenderProps = useCallback(
+    (data: () => void) => <ProfileCurrency collapsePanel={data} userCurrency="USD" />,
+    []
+  );
+
   return (
     <>
       <Typography
@@ -54,17 +65,17 @@ function ProfileSettings() {
               English
             </Typography>
           }
-          editable={(data) => <ProfileLang collapsePanel={data} userLang="English" />}
+          editable={languageRenderProps}
         />
 
         <EditablePanel
           panelHeading={'Preferred currency'}
           initial={
             <Typography variant={'sm'} color={'secondary2.main'}>
-              United States dollar
+              US Dollars
             </Typography>
           }
-          editable={(data) => <ProfileCurrency collapsePanel={data} userCurrency="USD" />}
+          editable={currencyRenderProps}
         />
       </Box>
     </>

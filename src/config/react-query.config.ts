@@ -8,3 +8,17 @@ export const queryClient = new QueryClient({
     },
   },
 });
+
+export const QUERY_KEYS = {
+  query: {
+    user: 'user',
+    amenitiesList: 'amenities_list',
+    accomodationAmenities: 'accomodation_amenities',
+  },
+  mutation: {
+    createAccount: 'create_account',
+    editAccount: 'edit_account',
+    verifyEmail: 'verify_email',
+    logout: 'logout',
+  },
+} as const;

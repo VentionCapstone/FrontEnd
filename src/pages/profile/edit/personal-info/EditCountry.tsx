@@ -1,21 +1,34 @@
-import { Button, FormControl, Grid, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import {
+  Button,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  Typography,
+} from '@mui/material';
 import { useState } from 'react';
 import { Profile } from '../../../../types/profile.types';
 import { useAppSelector } from '../../../../hooks/redux-hooks';
 import useEditAccountMutation from '../../../../api/mutations/account/useEditAccountMutation';
 import { PHONE_CODES_BY_COUNTRY } from '../../constants';
+import { getProfile } from '../../../../stores/slices/authSlice';
 
 const Country = ({
   collapsePanel,
   initialCountry,
 }: {
   collapsePanel: () => void;
-  initialCountry: Profile['country'];
+  initialCountry: Profile['country'] | undefined;
 }) => {
-  const profileId = useAppSelector((state) => state.auth.user?.Profile?.id) ?? '';
+  const profileId = useAppSelector(getProfile)?.id ?? '';
   const { mutate } = useEditAccountMutation(profileId);
+  const [country, setCountry] = useState(initialCountry ?? '');
 
-  const [country, setCountry] = useState(initialCountry);
+  const handleChange = (e: SelectChangeEvent<string>) => {
+    setCountry(e.target.value);
+  };
 
   const handleSubmit = () => {
     if (country && country !== initialCountry) {
@@ -37,9 +50,7 @@ const Country = ({
             <InputLabel id="user-country-select-label">Coutry</InputLabel>
             <Select
               value={country}
-              onChange={(e) => {
-                setCountry(e.target.value);
-              }}
+              onChange={handleChange}
               labelId="user-country-select-label"
               label="Country"
             >

@@ -12,11 +12,12 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { PhoneCodesByCountry } from '../../constants.types';
-import { PHONE_CODES_BY_COUNTRY } from '../../constants';
+import { DEFAULT_COUNTRY, PHONE_CODES_BY_COUNTRY } from '../../constants';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { phoneNumLengthRegEx } from '../../../../utils';
 import { useAppSelector } from '../../../../hooks/redux-hooks';
 import useEditAccountMutation from '../../../../api/mutations/account/useEditAccountMutation';
+import { getProfile } from '../../../../stores/slices/authSlice';
 
 const PhoneNumber = ({ collapsePanel }: { collapsePanel: () => void }) => {
   const {
@@ -25,12 +26,10 @@ const PhoneNumber = ({ collapsePanel }: { collapsePanel: () => void }) => {
     formState: { errors },
   } = useForm<{ phoneNumber: string }>();
 
-  const profileId = useAppSelector((state) => state.auth.user?.Profile?.id) ?? '';
+  const profileId = useAppSelector(getProfile)?.id ?? '';
   const { mutate } = useEditAccountMutation(profileId);
 
-  const [selectedCountry, setSelectedCountry] = useState<PhoneCodesByCountry>(
-    PHONE_CODES_BY_COUNTRY[0]
-  );
+  const [selectedCountry, setSelectedCountry] = useState<PhoneCodesByCountry>(DEFAULT_COUNTRY);
 
   const handleCountryChange = (e: SelectChangeEvent<string>) => {
     const selectedCountryName = e.target.value;

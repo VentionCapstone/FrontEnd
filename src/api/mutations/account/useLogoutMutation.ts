@@ -5,6 +5,7 @@ import { useAppDispatch } from '../../../hooks/redux-hooks';
 import { logout } from '../../../stores/slices/authSlice';
 import { EndpointsConfig } from '../../../config/endpoints.config';
 import { RoutesConfig } from '../../../config/routes.config';
+import { QUERY_KEYS } from '../../../config/react-query.config';
 
 function useLogoutMutation() {
   const dispatch = useAppDispatch();
@@ -12,7 +13,7 @@ function useLogoutMutation() {
   const navigate = useNavigate();
 
   return useMutation({
-    mutationKey: ['logout'],
+    mutationKey: [QUERY_KEYS.mutation.logout],
     mutationFn: async () => {
       await httpClient.post(EndpointsConfig.Auth.SignOut);
     },

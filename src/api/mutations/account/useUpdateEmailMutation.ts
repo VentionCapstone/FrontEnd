@@ -4,6 +4,8 @@ import httpClient from '../../httpClient';
 import { useAppDispatch } from '../../../hooks/redux-hooks';
 import { logout } from '../../../stores/slices/authSlice';
 import toast from 'react-hot-toast';
+import { EndpointsConfig } from '../../../config/endpoints.config';
+import { RoutesConfig } from '../../../config/routes.config';
 
 function useUpdateEmailMutation(email: string) {
   const dispatch = useAppDispatch();
@@ -11,14 +13,17 @@ function useUpdateEmailMutation(email: string) {
 
   return useMutation({
     mutationFn: async () => {
-      const { data } = await httpClient.put<{ success: boolean; message: string }>('/auth/email', {
-        email,
-      });
+      const { data } = await httpClient.put<{ success: boolean; message: string }>(
+        EndpointsConfig.Auth.UpdateEmail,
+        {
+          email,
+        }
+      );
       toast.success(data.message);
     },
     onSuccess: () => {
       dispatch(logout());
-      navigate('/auth/signin');
+      navigate(RoutesConfig.Auth.SignIn);
     },
   });
 }

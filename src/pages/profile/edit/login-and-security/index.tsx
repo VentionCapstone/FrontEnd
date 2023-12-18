@@ -3,9 +3,20 @@ import { Box, Typography } from '@mui/material';
 import { UpdateEmail } from './UpdateEmail';
 import { UpdatePassword } from './UpdatePassword';
 import { useAppSelector } from '../../../../hooks/redux-hooks';
+import { useCallback } from 'react';
 
 function LoginAndSecurity() {
   const userEmail = useAppSelector((state) => state.auth.user?.email) ?? '';
+
+  const emailRenderProps = useCallback(
+    (data: () => void) => <UpdateEmail collapsePanel={data} userEmail={userEmail} />,
+    [userEmail]
+  );
+
+  const passwordRenderProps = useCallback(
+    (data: () => void) => <UpdatePassword collapsePanel={data} />,
+    []
+  );
 
   return (
     <>
@@ -26,7 +37,7 @@ function LoginAndSecurity() {
               {userEmail}
             </Typography>
           }
-          editable={(data) => <UpdateEmail collapsePanel={data} userEmail={userEmail} />}
+          editable={emailRenderProps}
         />
 
         <EditablePanel
@@ -36,7 +47,7 @@ function LoginAndSecurity() {
               Change you password
             </Typography>
           }
-          editable={(data) => <UpdatePassword collapsePanel={data} />}
+          editable={passwordRenderProps}
         />
       </Box>
     </>
