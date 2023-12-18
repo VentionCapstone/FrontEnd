@@ -3,13 +3,15 @@ import React from 'react';
 import PrivateRoute from './PrivateRoute';
 import UserRoute from './UserRoute';
 import CreateAccommodation from '../pages/accommodation/CreateAccommodation';
+import Signup from '../pages/signup/Signup';
 
 const MainLayout = React.lazy(() => import('../layouts/MainLayout'));
 const UserLayout = React.lazy(() => import('../layouts/UserLayout'));
 const AuthLayout = React.lazy(() => import('../layouts/AuthLayout'));
 const Main = React.lazy(() => import('../pages/main'));
-const SignIn = React.lazy(() => import('../pages/sign-in'));
+const SignIn = React.lazy(() => import('../pages/signin'));
 const Profile = React.lazy(() => import('../pages/profile'));
+const VerifyEmail = React.lazy(() => import('../pages/auth/VerifyEmail'));
 
 const routes = createBrowserRouter([
   {
@@ -43,7 +45,11 @@ const routes = createBrowserRouter([
         <AuthLayout />
       </UserRoute>
     ),
-    children: [{ path: 'signin', element: <SignIn /> }],
+    children: [
+      { path: 'signin', element: <SignIn /> },
+      { path: 'signup', element: <Signup /> },
+      { path: 'verify', element: <VerifyEmail /> },
+    ],
   },
 ]);
 
