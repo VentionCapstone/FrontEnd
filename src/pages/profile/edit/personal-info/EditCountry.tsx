@@ -8,7 +8,7 @@ import {
   SelectChangeEvent,
   Typography,
 } from '@mui/material';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Profile } from '../../../../types/profile.types';
 import { useAppSelector } from '../../../../hooks/redux-hooks';
 import useEditAccountMutation from '../../../../api/mutations/account/useEditAccountMutation';
@@ -26,9 +26,9 @@ const Country = ({
   const { mutate } = useEditAccountMutation(profileId);
   const [country, setCountry] = useState(initialCountry ?? '');
 
-  const handleChange = (e: SelectChangeEvent<string>) => {
+  const handleChange = useCallback((e: SelectChangeEvent<string>) => {
     setCountry(e.target.value);
-  };
+  }, []);
 
   const handleSubmit = () => {
     if (country && country !== initialCountry) {

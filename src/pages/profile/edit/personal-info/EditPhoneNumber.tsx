@@ -10,7 +10,7 @@ import {
   SelectChangeEvent,
   Grid,
 } from '@mui/material';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { PhoneCodesByCountry } from '../../constants.types';
 import { DEFAULT_COUNTRY, PHONE_CODES_BY_COUNTRY } from '../../constants';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -31,12 +31,12 @@ const PhoneNumber = ({ collapsePanel }: { collapsePanel: () => void }) => {
 
   const [selectedCountry, setSelectedCountry] = useState<PhoneCodesByCountry>(DEFAULT_COUNTRY);
 
-  const handleCountryChange = (e: SelectChangeEvent<string>) => {
+  const handleCountryChange = useCallback((e: SelectChangeEvent<string>) => {
     const selectedCountryName = e.target.value;
     const country = PHONE_CODES_BY_COUNTRY.find((country) => country.name === selectedCountryName);
 
     if (country) setSelectedCountry(country);
-  };
+  }, []);
 
   const onSubmit: SubmitHandler<{ phoneNumber: string }> = (data) => {
     const phoneNumber = selectedCountry.code + data.phoneNumber;

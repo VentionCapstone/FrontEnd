@@ -7,7 +7,7 @@ import {
   SelectChangeEvent,
   Typography,
 } from '@mui/material';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export const ProfileLang = ({
   collapsePanel,
@@ -16,11 +16,12 @@ export const ProfileLang = ({
   collapsePanel: () => void;
   userLang: string;
 }) => {
-  const [currency, setCurrency] = useState<string>(userLang);
+  const [lang, setLang] = useState<string>(userLang);
 
-  const handleChange = (e: SelectChangeEvent<string>) => {
-    setCurrency(e.target.value);
-  };
+  const handleChange = useCallback((e: SelectChangeEvent<string>) => {
+    setLang(e.target.value);
+  }, []);
+
   return (
     <>
       <Typography variant={'sm'} color={'secondary2.main'} mt={1}>
@@ -33,7 +34,7 @@ export const ProfileLang = ({
       >
         <InputLabel id="profile-lang-select-label">Language</InputLabel>
         <Select
-          value={currency}
+          value={lang}
           onChange={handleChange}
           fullWidth
           size="small"

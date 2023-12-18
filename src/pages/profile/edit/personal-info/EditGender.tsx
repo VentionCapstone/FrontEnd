@@ -8,7 +8,7 @@ import {
   SelectChangeEvent,
   Typography,
 } from '@mui/material';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Profile, Gender as GenderEnum } from '../../../../types/profile.types';
 import { useAppSelector } from '../../../../hooks/redux-hooks';
 import useEditAccountMutation from '../../../../api/mutations/account/useEditAccountMutation';
@@ -25,9 +25,9 @@ const Gender = ({
   const { mutate } = useEditAccountMutation(profileId);
   const [gender, setGender] = useState(initialGender ?? GenderEnum.male);
 
-  const handleChange = (e: SelectChangeEvent<GenderEnum>) => {
+  const handleChange = useCallback((e: SelectChangeEvent<GenderEnum>) => {
     setGender(e.target.value as GenderEnum);
-  };
+  }, []);
 
   const handleSubmit = () => {
     if (gender && gender !== initialGender) {

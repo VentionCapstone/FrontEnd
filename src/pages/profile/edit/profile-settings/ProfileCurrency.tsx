@@ -1,5 +1,13 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
-import { useState } from 'react';
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  Typography,
+} from '@mui/material';
+import { useCallback, useState } from 'react';
 
 export const ProfileCurrency = ({
   collapsePanel,
@@ -9,6 +17,11 @@ export const ProfileCurrency = ({
   userCurrency: string;
 }) => {
   const [currency, setCurrency] = useState<string>(userCurrency);
+
+  const handleChange = useCallback((e: SelectChangeEvent<string>) => {
+    setCurrency(e.target.value);
+  }, []);
+
   return (
     <>
       <Typography variant={'sm'} color={'secondary2.main'} mt={1}>
@@ -22,9 +35,7 @@ export const ProfileCurrency = ({
         <InputLabel id="profile-lang-select-label">Currency</InputLabel>
         <Select
           value={currency}
-          onChange={(e) => {
-            setCurrency(e.target.value);
-          }}
+          onChange={handleChange}
           fullWidth
           size="small"
           labelId="profile-lang-select-label"
