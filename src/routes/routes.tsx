@@ -2,6 +2,7 @@ import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import React from 'react';
 import PrivateRoute from './PrivateRoute';
 import UserRoute from './UserRoute';
+import CreateAccommodation from '../pages/accommodation/CreateAccommodation';
 
 const MainLayout = React.lazy(() => import('../layouts/MainLayout'));
 const UserLayout = React.lazy(() => import('../layouts/UserLayout'));
@@ -32,6 +33,7 @@ const routes = createBrowserRouter([
         element: <Navigate to="settings" />,
       },
       { path: 'settings', element: <Profile /> },
+      { path: 'accommodation/create', element: <CreateAccommodation /> },
     ],
   },
   {
