@@ -8,6 +8,7 @@ import { setToken } from '../../stores/slices/authSlice';
 import { AuthData, LoginResponse } from '../../types/auth.types';
 import PasswordInput from '../../components/PasswordInput';
 import httpClient from '../../api/httpClient';
+import { useMutation } from '@tanstack/react-query';
 
 const SignIn = () => {
   const dispatch = useAppDispatch();
@@ -20,24 +21,40 @@ const SignIn = () => {
   });
 
   const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const onSubmit: SubmitHandler<AuthData> = async (data: AuthData) => {
+  const { mutateAsync, isPending } = useMutation<LoginResponse, unknown, AuthData>({
+    mutationFn: async (data: AuthData) => {
+      const response = await httpClient.post<LoginResponse>('/auth/signin', data);
+      return response.data;
+    },
+    onSuccess: (data: LoginResponse) => {
+      localStorage.setItem('sub', data.id);
+      dispatch(setToken(data.tokens.access_token));
+    },
+  });
+
+  const onSubmit: SubmitHandler<AuthData> = async (Inputdata: AuthData) => {
     try {
       if (isPasswordValid) {
-        setIsLoading(true);
-        const response = await httpClient.post<LoginResponse>('/auth/signin', data);
-        localStorage.setItem('sub', response.data.id);
-        setIsLoading(false);
-        dispatch(setToken(response.data.tokens.access_token));
+        const data = await mutateAsync(Inputdata);
+        localStorage.setItem('sub', data.id);
+        dispatch(setToken(data.tokens.access_token));
       }
     } catch (error) {
       console.log(error);
-      setIsLoading(false);
     }
   };
+
   return (
-    <Box sx={{ mx: 'auto', mt: '100px', border: '1px solid #b0b0b0', borderRadius: 2 }}>
+    <Box
+      sx={{
+        mx: 'auto',
+        mt: '10%',
+        border: '1px solid #b0b0b0',
+        borderRadius: 2,
+        maxWidth: '600px',
+      }}
+    >
       <Typography variant="subtitle1" align="center" margin={5} fontWeight="bold">
         Sign In
       </Typography>
@@ -67,7 +84,7 @@ const SignIn = () => {
               setIsPasswordValid={setIsPasswordValid}
             />
           </Stack>
-          <ButtonPrimary loading={isLoading} disbabled={isPasswordValid}>
+          <ButtonPrimary loading={isPending} disabled={isPasswordValid}>
             Sign in
           </ButtonPrimary>
         </form>

@@ -28,8 +28,8 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
   }, []);
 
   const handleGoToAccount = useCallback(() => navigate('/account'), [navigate]);
-  const handleSignIn = useCallback(() => navigate('auth/signin'), [navigate]);
-  const handleSignUp = useCallback(() => navigate('auth/signup'), [navigate]);
+  const handleSignIn = useCallback(() => navigate('/auth/signin'), [navigate]);
+  const handleSignUp = useCallback(() => navigate('/auth/signup'), [navigate]);
   const handleLogout = useCallback(() => mutate(), [mutate]);
 
   return (

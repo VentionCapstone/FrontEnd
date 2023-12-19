@@ -3,7 +3,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 type ButtonPrimaryProps = {
   children: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
-  disbabled?: boolean;
+  disabled?: boolean;
   loading?: boolean;
 };
 

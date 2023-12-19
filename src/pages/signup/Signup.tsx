@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 import { AuthData } from '../../types/auth.types';
 import ButtonPrimary from '../../components/ButtonPrimary';
 import InputForm from '../../components/InputForm';
+import { useMutation } from '@tanstack/react-query';
 
 const Signup = () => {
   const { handleSubmit, control, watch } = useForm({
@@ -19,22 +20,37 @@ const Signup = () => {
     },
   });
   const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const onSubmit: SubmitHandler<AuthData> = async (data: AuthData) => {
-    if (isPasswordValid) {
-      setIsLoading(true);
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: async (data: AuthData) => {
       const response = await httpClient.post<{ success: boolean; message: string }>(
         '/auth/signup',
         data
       );
-      toast.success(response.data.message);
-      setIsLoading(false);
+      return response.data;
+    },
+    onSuccess: (data) => {
+      toast.success(data.message);
+    },
+  });
+  const onSubmit: SubmitHandler<AuthData> = async (Inputdata: AuthData) => {
+    try {
+      if (isPasswordValid) {
+        await mutateAsync(Inputdata);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
-
   return (
-    <Box sx={{ mx: 'auto', mt: '100px', border: '1px solid #b0b0b0', borderRadius: 2 }}>
+    <Box
+      sx={{
+        mx: 'auto',
+        mt: '5%',
+        border: '1px solid #b0b0b0',
+        borderRadius: 2,
+        maxWidth: '600px',
+      }}
+    >
       <Typography variant="subtitle1" align="center" margin={2} fontWeight="bold">
         Sign up
       </Typography>
@@ -66,7 +82,7 @@ const Signup = () => {
               setIsPasswordValid={setIsPasswordValid}
             />
           </Box>
-          <ButtonPrimary loading={isLoading} disbabled={isPasswordValid}>
+          <ButtonPrimary loading={isPending} disabled={isPasswordValid}>
             Sign up
           </ButtonPrimary>
         </form>
