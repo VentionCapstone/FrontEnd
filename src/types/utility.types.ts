@@ -1,6 +1,3 @@
-import { SxProps } from '@mui/material';
-import { createTheme } from '@mui/material/styles';
-import { themeTokens } from '../theme/themeTokens';
+import { SxProps, Theme } from '@mui/material';
 
-const theme = createTheme(themeTokens);
-export type MuiStylesObject = Record<string, SxProps<typeof theme>>;
+export type MuiStylesObject = Record<string, SxProps<Theme>>;

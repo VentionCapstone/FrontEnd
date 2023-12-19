@@ -15,3 +15,15 @@ export const convertImageToBase64 = (file: File): Promise<string> => {
 export const phoneNumLengthRegEx = (length: number) => {
   return new RegExp(`^\\d{${length}}$`);
 };
+
+export const getValueFromLocalStorage = <T>(key: string): T | null => {
+  try {
+    const value = localStorage.getItem(key);
+
+    return value as T;
+  } catch (error) {
+    console.error('Error retrieving value from local storage:', error);
+
+    return null;
+  }
+};
