@@ -1,16 +1,14 @@
 import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
-import Loading from '../../assets/loader.png';
 import Error from '../../assets/no-image.png';
 
-const defaultImage: Record<'Loading' | 'Error' | 'Loaded', string> = {
-  Loading,
+const defaultImage: Record<'Error' | 'Loaded', string> = {
   Error,
   Loaded: '',
 };
 
 function SingleImage({ image, name = 'image' }: { image: string; name?: string }) {
-  const [currentState, setCurrentState] = useState<keyof typeof defaultImage>('Loading');
+  const [currentState, setCurrentState] = useState<keyof typeof defaultImage>('Error');
 
   useEffect(() => {
     const imageNew = new Image();

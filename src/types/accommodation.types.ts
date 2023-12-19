@@ -23,3 +23,8 @@ export interface Accommodation {
 export interface Address {
   country: string;
 }
+
+export interface InputFilter {
+  minPrice: number;
+  maxPrice: number;
+}
