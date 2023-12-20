@@ -6,8 +6,10 @@ export interface ResponseAccommodationList {
 }
 
 export interface PriceRange {
-  minPrice: number;
-  maxPrice: number;
+  curMinPrice: number;
+  curMaxPrice: number;
+  totalMinPrice: number;
+  totalMaxPrice: number;
 }
 
 export interface Accommodation {
@@ -24,7 +26,15 @@ export interface Address {
   country: string;
 }
 
-export interface InputFilter {
-  minPrice: number;
-  maxPrice: number;
+export interface InputFilter extends PriceRange {
+  rooms?: number;
+  people?: number;
+  orderByRooms?: string;
+  orderByPeople?: string;
+  orderByPrice?: string;
 }
+
+export type ObjType = {
+  id: number | string;
+  name: string;
+};

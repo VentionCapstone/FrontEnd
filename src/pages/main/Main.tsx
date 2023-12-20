@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Box, Button } from '@mui/material';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -17,8 +17,15 @@ import {
 function Main() {
   const [open, setOpen] = useState(false);
   const [filters, setFilters] = useState<InputFilter>({
-    minPrice: 0,
-    maxPrice: 0,
+    totalMaxPrice: 0,
+    totalMinPrice: 0,
+    curMaxPrice: 0,
+    curMinPrice: 0,
+    rooms: 0,
+    people: 0,
+    orderByPrice: 'any',
+    orderByPeople: 'any',
+    orderByRooms: 'any',
   });
 
   const { data, isPending, isError, hasNextPage, fetchNextPage } = useInfiniteQuery({
@@ -28,14 +35,16 @@ function Main() {
         params: {
           page: pageParam,
           limit: amountPerPage,
-          maxPrice: filters.maxPrice > 0 ? filters.maxPrice : undefined,
-          minPrice: filters.minPrice > 0 ? filters.minPrice : undefined,
+          maxPrice: filters.curMaxPrice > 0 ? filters.curMaxPrice : undefined,
+          minPrice: filters.curMinPrice > 0 ? filters.curMinPrice : undefined,
+          minRooms: filters.rooms && filters.rooms > 0 ? filters.rooms : undefined,
+          minPeople: filters.people && filters.people > 0 ? filters.people : undefined,
+          orderByPrice: filters.orderByPrice !== 'any' ? filters.orderByPrice : undefined,
+          orderByPeople: filters.orderByPeople !== 'any' ? filters.orderByPeople : undefined,
+          orderByRooms: filters.orderByRooms !== 'any' ? filters.orderByRooms : undefined,
         },
       });
-      setFilters({
-        minPrice: data.priceRange.minPrice,
-        maxPrice: data.priceRange.maxPrice,
-      });
+
       return data;
     },
     initialPageParam: 1,
@@ -46,6 +55,19 @@ function Main() {
       return undefined;
     },
   });
+
+  useEffect(() => {
+    if (data && data?.pages.length > 0) {
+      if (data.pages[0].priceRange.curMaxPrice !== filters.curMaxPrice) {
+        setFilters({
+          curMaxPrice: data.pages[0].priceRange.curMaxPrice,
+          curMinPrice: data.pages[0].priceRange.curMinPrice,
+          totalMaxPrice: data.pages[0].priceRange.totalMaxPrice,
+          totalMinPrice: data.pages[0].priceRange.totalMinPrice,
+        });
+      }
+    }
+  }, [data, filters]);
 
   const accommodations = useMemo(
     () => data?.pages.reduce((acc, page) => [...acc, ...page.data], [] as Accommodation[]),
