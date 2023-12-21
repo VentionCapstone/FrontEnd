@@ -1,4 +1,5 @@
-// utils folder is for utility functions that can be used anywhere in the app
+import { PaletteMode } from '@mui/material';
+import { ThemeMode } from '../types/profile.types';
 
 export const convertImageToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -14,4 +15,26 @@ export const convertImageToBase64 = (file: File): Promise<string> => {
 
 export const phoneNumLengthRegEx = (length: number) => {
   return new RegExp(`^\\d{${length}}$`);
+};
+
+export const getValueFromLocalStorage = <T>(key: string): T | null => {
+  try {
+    const value = localStorage.getItem(key);
+
+    if (value !== null) {
+      return JSON.parse(value) as T;
+    }
+
+    return null;
+  } catch (error) {
+    console.error('Error retrieving value from local storage:', error);
+
+    return null;
+  }
+};
+
+export const getPalleteMode = (mode: ThemeMode | null): PaletteMode => {
+  if (mode === ThemeMode.dark) return 'dark';
+
+  return 'light';
 };
