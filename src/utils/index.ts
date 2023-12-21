@@ -1,6 +1,5 @@
 import { PaletteMode } from '@mui/material';
 import { ThemeMode } from '../types/profile.types';
-import toast from 'react-hot-toast';
 
 export const convertImageToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -29,7 +28,6 @@ export const getValueFromLocalStorage = <T>(key: string): T | null => {
     return null;
   } catch (error) {
     console.error('Error retrieving value from local storage:', error);
-    toast.error('Error retrieving value from local storage');
 
     return null;
   }
