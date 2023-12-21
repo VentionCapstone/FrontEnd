@@ -1,73 +1,51 @@
-import { useEffect, useMemo, useState } from 'react';
 import { Box, Button } from '@mui/material';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useSearchParams } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import httpClient from '../../api/httpClient';
 import Error from '../../components/shared/Error';
-import MainModal from '../../components/modal/Modal';
+import MainModal from './components/Modal';
 import LoadingPrimary from '../../components/loader/LoadingPrimary';
 import AccommodationCard from '../../components/card/AccommodationCard';
 import { amountPerPage } from '../../config/pagination.config';
-import {
-  Accommodation,
-  InputFilter,
-  ResponseAccommodationList,
-} from '../../types/accommodation.types';
+import { Accommodation } from '../../types/accommodation.types';
+import useGetAccommodationsQuery from '../../api/queries/main/useGetAccommodationsQuery';
 
 function Main() {
   const [open, setOpen] = useState(false);
-  const [filters, setFilters] = useState<InputFilter>({
-    totalMaxPrice: 0,
-    totalMinPrice: 0,
-    curMaxPrice: 0,
-    curMinPrice: 0,
-    rooms: 0,
-    people: 0,
+
+  const [searchParams, setSearchParams] = useSearchParams({
+    minPrice: '0',
+    maxPrice: '0',
+    rooms: '0',
+    people: '0',
     orderByPrice: 'any',
     orderByPeople: 'any',
     orderByRooms: 'any',
   });
 
-  const { data, isPending, isError, hasNextPage, fetchNextPage } = useInfiniteQuery({
-    queryKey: ['accommodations', filters],
-    queryFn: async ({ pageParam }) => {
-      const { data } = await httpClient.get<ResponseAccommodationList>(`/accommodations`, {
-        params: {
-          page: pageParam,
-          limit: amountPerPage,
-          maxPrice: filters.curMaxPrice > 0 ? filters.curMaxPrice : undefined,
-          minPrice: filters.curMinPrice > 0 ? filters.curMinPrice : undefined,
-          minRooms: filters.rooms && filters.rooms > 0 ? filters.rooms : undefined,
-          minPeople: filters.people && filters.people > 0 ? filters.people : undefined,
-          orderByPrice: filters.orderByPrice !== 'any' ? filters.orderByPrice : undefined,
-          orderByPeople: filters.orderByPeople !== 'any' ? filters.orderByPeople : undefined,
-          orderByRooms: filters.orderByRooms !== 'any' ? filters.orderByRooms : undefined,
-        },
-      });
+  const allValues: Record<string, string> = {};
+  for (const [key, value] of searchParams.entries()) {
+    allValues[key] = value;
+  }
 
-      return data;
-    },
-    initialPageParam: 1,
-    getNextPageParam: (lastPage, pages) => {
-      if (pages.length < lastPage.totalCount / amountPerPage) {
-        return pages.length + 1;
-      }
-      return undefined;
-    },
+  const { data, isPending, isError, hasNextPage, fetchNextPage } = useGetAccommodationsQuery({
+    allValues,
+    amountPerPage,
+  });
+
+  const [priceRange, setPriceRange] = useState({
+    totalMaxPrice: 0,
+    totalMinPrice: 0,
   });
 
   useEffect(() => {
     if (data && data?.pages.length > 0) {
-      if (data.pages[0].priceRange.curMaxPrice !== filters.curMaxPrice) {
-        setFilters({
-          curMaxPrice: data.pages[0].priceRange.curMaxPrice,
-          curMinPrice: data.pages[0].priceRange.curMinPrice,
-          totalMaxPrice: data.pages[0].priceRange.totalMaxPrice,
-          totalMinPrice: data.pages[0].priceRange.totalMinPrice,
-        });
-      }
+      setPriceRange({
+        totalMaxPrice: data.pages[0].priceRange.totalMaxPrice,
+        totalMinPrice: data.pages[0].priceRange.totalMinPrice,
+      });
     }
-  }, [data, filters]);
+  }, [data]);
 
   const accommodations = useMemo(
     () => data?.pages.reduce((acc, page) => [...acc, ...page.data], [] as Accommodation[]),
@@ -122,7 +100,13 @@ function Main() {
         </Box>
       </InfiniteScroll>
       {open && (
-        <MainModal open={open} setOpen={setOpen} filters={filters} setFilters={setFilters} />
+        <MainModal
+          open={open}
+          setOpen={setOpen}
+          filters={allValues}
+          setFilters={setSearchParams}
+          priceRange={priceRange}
+        />
       )}
     </Box>
   );

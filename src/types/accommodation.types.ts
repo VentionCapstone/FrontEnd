@@ -26,15 +26,47 @@ export interface Address {
   country: string;
 }
 
-export interface InputFilter extends PriceRange {
+export interface InputFilter {
   rooms?: number;
   people?: number;
   orderByRooms?: string;
   orderByPeople?: string;
   orderByPrice?: string;
+  curMinPrice: number;
+  curMaxPrice: number;
 }
 
 export type ObjType = {
   id: number | string;
   name: string;
+};
+
+export type MainModalProps = {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  filters: Record<string, string>;
+  setFilters: (params: URLSearchParams) => void;
+  priceRange: {
+    totalMaxPrice: number;
+    totalMinPrice: number;
+  };
+};
+
+export type FormValue = {
+  minPrice: string;
+  maxPrice: string;
+  minRooms: string;
+  minPeople: string;
+  totalMinPrice: number;
+  totalMaxPrice: number;
+  orderByPrice: string;
+  orderByPeople: string;
+  orderByRooms: string;
+};
+
+export type SortBoxProps = {
+  title: string;
+  options: ObjType[];
+  minItem: string;
+  handleSelect: (id: string | number) => void;
 };
