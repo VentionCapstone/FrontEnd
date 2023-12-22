@@ -1,27 +1,27 @@
-import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import React from 'react';
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
+
 import PrivateRoute from './PrivateRoute';
-import UserRoute from './UserRoute';
 import ProfileCreateRoute from './ProfileCreateRoute';
 import ProfileEditRoute from './ProfileEditRoute';
-import CreateProfile from '../pages/profile/create';
-import EditProfile from '../pages/profile/edit';
-import PersonalInfo from '../pages/profile/edit/personal-info';
-import LoginAndSecurity from '../pages/profile/edit/login-and-security';
-import ProfileSetting from '../pages/profile/edit/profile-settings';
-import Signup from '../pages/signup/Signup';
+import UserRoute from './UserRoute';
 
-const MainLayout = React.lazy(() => import('../layouts/MainLayout'));
-const UserLayout = React.lazy(() => import('../layouts/UserLayout'));
-const AuthLayout = React.lazy(() => import('../layouts/AuthLayout'));
-const Main = React.lazy(() => import('../pages/main'));
-const SignIn = React.lazy(() => import('../pages/signin'));
-const VerifyEmail = React.lazy(() => import('../pages/auth/VerifyEmail'));
+import Layout from '@/layouts';
+
+const Main = React.lazy(() => import('@/pages/main'));
+const SignIn = React.lazy(() => import('@/pages/signin'));
+const VerifyEmail = React.lazy(() => import('@/pages/auth/VerifyEmail'));
+const Signup = React.lazy(() => import('@/pages/signup/Signup'));
+const CreateProfile = React.lazy(() => import('@/pages/profile/create'));
+const EditProfile = React.lazy(() => import('@/pages/profile/edit'));
+const LoginAndSecurity = React.lazy(() => import('@/pages/profile/edit/login-and-security'));
+const PersonalInfo = React.lazy(() => import('@/pages/profile/edit/personal-info'));
+const ProfileSetting = React.lazy(() => import('@/pages/profile/edit/profile-settings'));
 
 const routes = createBrowserRouter([
   {
     path: '/',
-    element: <MainLayout />,
+    element: <Layout />,
     children: [
       { path: '', element: <Main /> },
       { path: '*', element: <Navigate to="/" /> },
@@ -32,7 +32,7 @@ const routes = createBrowserRouter([
     path: '/account',
     element: (
       <PrivateRoute>
-        <UserLayout />
+        <Layout maxWidth="xl" />
       </PrivateRoute>
     ),
     children: [
@@ -63,7 +63,7 @@ const routes = createBrowserRouter([
     path: '/auth',
     element: (
       <UserRoute>
-        <AuthLayout />
+        <Layout maxWidth="xl" />
       </UserRoute>
     ),
     children: [
