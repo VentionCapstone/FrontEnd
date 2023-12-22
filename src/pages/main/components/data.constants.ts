@@ -1,4 +1,4 @@
-import { ObjType } from '../../../types/accommodation.types';
+import { ObjType, PriceRangeType } from '../../../types/accommodation.types';
 
 export const roomsAndPeopleQuantity: ObjType[] = [
   {
@@ -41,3 +41,8 @@ export const sortOptions: ObjType[] = [
     name: 'High to Low',
   },
 ];
+
+export const PRICE_RANGE: PriceRangeType = {
+  min: 'min',
+  max: 'max',
+};

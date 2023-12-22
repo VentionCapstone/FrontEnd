@@ -1,21 +1,12 @@
-import { ChangeEvent, useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
-import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
-import {
-  Button,
-  Backdrop,
-  Modal,
-  Fade,
-  Typography,
-  Box,
-  Slider,
-  TextField,
-  Stack,
-} from '@mui/material';
+import { Button, Modal, Fade, Typography, Box, Stack } from '@mui/material';
 import { FormValue, MainModalProps } from '../../../types/accommodation.types';
 import SortBox from './SortBox';
 import { roomsAndPeopleQuantity, sortOptions } from './data.constants';
 import { modalStyles } from './Modal.styles';
+import PriceRangeSlider from './PriceRangeSlider';
+import PriceRangeInputs from './PriceRangeInputs';
 
 export default function MainModal({
   open,
@@ -39,61 +30,8 @@ export default function MainModal({
     orderByRooms: orderByRooms,
   });
 
-  const handleChange = (_event: Event, newValue: number | number[]) => {
-    setValue((prev) => {
-      if (Array.isArray(newValue)) {
-        return {
-          ...prev,
-          minPrice: newValue[0].toString(),
-          maxPrice: newValue[1].toString(),
-        };
-      }
-      return prev;
-    });
-  };
-  const handleClose = () => setOpen(false);
-
-  const handlePriceChange = useCallback(
-    (newValue: string, valueType: 'min' | 'max') => {
-      const regex = /^[0-9\b]+$/;
-      const inputValue = Number(newValue);
-
-      if (!regex.test(newValue)) return;
-
-      let minLimit: number, maxLimit: number;
-
-      if (valueType === 'min') {
-        minLimit = Number(filters.totalMinPrice);
-        maxLimit = value.totalMaxPrice;
-      } else {
-        minLimit = value.totalMinPrice;
-        maxLimit = Number(filters.totalMaxPrice);
-      }
-
-      if (inputValue < Number(minLimit)) {
-        setValue((prev) => ({
-          ...prev,
-          [`${valueType}Price`]: minLimit,
-        }));
-      } else if (inputValue > maxLimit) {
-        setValue((prev) => ({
-          ...prev,
-          [`${valueType}Price`]: maxLimit,
-        }));
-      } else {
-        setValue((prev) => ({
-          ...prev,
-          [`${valueType}Price`]: inputValue.toString(),
-        }));
-      }
-    },
-    [filters, value, setValue]
-  );
-
-  const handleClick = () => {
-    handleClose();
-
-    const filters = {
+  const filterValues = useMemo(
+    () => ({
       minPrice: value.minPrice,
       maxPrice: value.maxPrice,
       rooms: value.minRooms,
@@ -101,19 +39,21 @@ export default function MainModal({
       orderByPrice: value.orderByPrice,
       orderByPeople: value.orderByPeople,
       orderByRooms: value.orderByRooms,
-    };
+    }),
+    [value]
+  );
 
-    const searchParams = new URLSearchParams(filters);
+  const handleClose = useCallback(() => setOpen(false), [setOpen]);
 
+  const handleClick = useCallback(() => {
+    handleClose();
+
+    const searchParams = new URLSearchParams(filterValues);
     setFilters(searchParams);
-  };
+  }, [filterValues, handleClose, setFilters]);
 
-  const handleSelect = (id: number | string, filterName: string) => {
-    setValue((prev) => ({ ...prev, [filterName]: id }));
-  };
-
-  const handleClear = () => {
-    const filters = {
+  const handleClear = useCallback(() => {
+    const defaultFilters = {
       minPrice: '0',
       maxPrice: value.totalMaxPrice.toString(),
       rooms: '0',
@@ -123,23 +63,14 @@ export default function MainModal({
       orderByRooms: 'any',
     };
 
-    const searchParams = new URLSearchParams(filters);
+    const searchParams = new URLSearchParams(defaultFilters);
 
     setFilters(searchParams);
     handleClose();
-  };
+  }, [value, setFilters, handleClose]);
 
   return (
-    <Modal
-      open={open}
-      onClose={handleClose}
-      slots={{ backdrop: Backdrop }}
-      slotProps={{
-        backdrop: {
-          timeout: 500,
-        },
-      }}
-    >
+    <Modal open={open} onClose={handleClose}>
       <Fade in={open}>
         <Box sx={modalStyles.modalContainer}>
           <Stack
@@ -170,50 +101,23 @@ export default function MainModal({
               <Typography>Price Range</Typography>
               <Typography variant={'sm'}>Nightly prices before fees and taxes</Typography>
               <Box sx={modalStyles.sliderContainer}>
-                <Slider
-                  value={[Number(value.minPrice), Number(value.maxPrice)]}
-                  max={value.totalMaxPrice}
-                  min={value.totalMinPrice}
-                  onChange={handleChange}
-                  valueLabelDisplay="off"
-                  disableSwap
-                />
-                <Box sx={modalStyles.buttonContainer}>
-                  <TextField
-                    label="Minimum"
-                    variant="outlined"
-                    fullWidth
-                    value={value.minPrice}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                      handlePriceChange(e.target.value, 'min')
-                    }
-                  />
-                  <Box>
-                    <HorizontalRuleIcon fontSize="large" />
-                  </Box>
-                  <TextField
-                    label="Maximum"
-                    variant="outlined"
-                    fullWidth
-                    value={value.maxPrice}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                      handlePriceChange(e.target.value, 'max')
-                    }
-                  />
-                </Box>
+                <PriceRangeSlider value={value} setValue={setValue} />
+                <PriceRangeInputs value={value} setValue={setValue} filters={filters} />
               </Box>
             </Box>
             <SortBox
               title="Rooms"
               options={roomsAndPeopleQuantity}
               minItem={value.minRooms}
-              handleSelect={(id) => handleSelect(id, 'minRooms')}
+              setValue={setValue}
+              name={'minRooms'}
             />
             <SortBox
               title="People"
               options={roomsAndPeopleQuantity}
               minItem={value.minPeople}
-              handleSelect={(id) => handleSelect(id, 'minPeople')}
+              setValue={setValue}
+              name={'minPeople'}
             />
             <Box mb={'1rem'}>
               <Typography variant="lg">Sort</Typography>
@@ -221,19 +125,22 @@ export default function MainModal({
                 title="Price"
                 options={sortOptions}
                 minItem={value.orderByPrice}
-                handleSelect={(id) => handleSelect(id, 'orderByPrice')}
+                setValue={setValue}
+                name={'orderByPrice'}
               />
               <SortBox
                 title="Rooms"
                 options={sortOptions}
                 minItem={value.orderByRooms}
-                handleSelect={(id) => handleSelect(id, 'orderByRooms')}
+                setValue={setValue}
+                name={'orderByRooms'}
               />
               <SortBox
                 title="People"
                 options={sortOptions}
                 minItem={value.orderByPeople}
-                handleSelect={(id) => handleSelect(id, 'orderByPeople')}
+                setValue={setValue}
+                name={'orderByPeople'}
               />
             </Box>
           </Stack>

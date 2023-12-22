@@ -59,6 +59,9 @@ export const theme = createTheme({
       fontSize: '1.5rem',
       lineHeight: '2rem',
     },
+    button: {
+      textTransform: 'none',
+    },
   },
   palette: {
     primary: {
