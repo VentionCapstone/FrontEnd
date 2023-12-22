@@ -17,6 +17,8 @@ const EditProfile = React.lazy(() => import('@/pages/profile/edit'));
 const LoginAndSecurity = React.lazy(() => import('@/pages/profile/edit/login-and-security'));
 const PersonalInfo = React.lazy(() => import('@/pages/profile/edit/personal-info'));
 const ProfileSetting = React.lazy(() => import('@/pages/profile/edit/profile-settings'));
+const Accommodations = React.lazy(() => import('@/pages/accommodations'));
+const AccommodationForm = React.lazy(() => import('@/pages/accommodations/AccommodationForm'));
 
 const routes = createBrowserRouter([
   {
@@ -70,6 +72,17 @@ const routes = createBrowserRouter([
       { path: 'signin', element: <SignIn /> },
       { path: 'signup', element: <Signup /> },
       { path: 'verify', element: <VerifyEmail /> },
+    ],
+  },
+
+  {
+    path: '/accommodations',
+    element: <Layout maxWidth="xl" />,
+    children: [
+      { path: '', element: <Accommodations /> },
+      { path: 'create', element: <AccommodationForm /> },
+      { path: 'edit/:id', element: <AccommodationForm /> },
+      { path: '*', element: <Navigate to="/accommodations" /> },
     ],
   },
 ]);

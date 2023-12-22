@@ -72,6 +72,11 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
                       Account
                     </Link>
                   </MenuItem>,
+                  <MenuItem key="listings" onClick={handleClose}>
+                    <Link style={{ width: '100%' }} to={ROUTES.accommodations.root}>
+                      Manage Listings
+                    </Link>
+                  </MenuItem>,
                   <MenuItem key="logout" onClick={handleLogout}>
                     Logout
                   </MenuItem>,
