@@ -50,6 +50,7 @@ export type MainModalProps = {
     totalMaxPrice: number;
     totalMinPrice: number;
   };
+  setInvisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type FormValue = {
@@ -61,7 +62,7 @@ export type FormValue = {
   totalMaxPrice: number;
   orderByPrice: string;
   orderByPeople: string;
-  orderByRooms: string;
+  orderByRoom: string;
 };
 
 export type SortBoxProps = {
@@ -75,14 +76,9 @@ export type SortBoxProps = {
 export type DefaultSearchParamsType = {
   minPrice: string;
   maxPrice: string;
-  rooms: string;
-  people: string;
+  minRooms: string;
+  minPeople: string;
   orderByPrice: string;
   orderByPeople: string;
-  orderByRooms: string;
-};
-
-export type PriceRangeType = {
-  min: 'min';
-  max: 'max';
+  orderByRoom: string;
 };

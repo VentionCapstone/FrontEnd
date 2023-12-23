@@ -14,33 +14,31 @@ export default function MainModal({
   filters,
   setFilters,
   priceRange,
+  setInvisible,
 }: MainModalProps) {
   const { totalMinPrice, totalMaxPrice } = priceRange;
-  const { people, rooms, minPrice, maxPrice, orderByPrice, orderByRooms, orderByPeople } = filters;
+  const { minPeople, minRooms, minPrice, maxPrice, orderByPrice, orderByRoom, orderByPeople } =
+    filters;
 
   const [value, setValue] = useState<FormValue>({
-    minPrice: minPrice !== '0' ? minPrice : totalMinPrice.toString(),
-    maxPrice: maxPrice !== '0' ? maxPrice : totalMaxPrice.toString(),
     totalMinPrice: totalMinPrice,
     totalMaxPrice: totalMaxPrice,
-    minRooms: rooms && rooms !== '0' ? rooms : '0',
-    minPeople: people && people !== '0' ? people : '0',
+    minRooms: minRooms,
+    minPeople: minPeople,
+    maxPrice: maxPrice == '0' ? totalMaxPrice.toString() : maxPrice,
+    minPrice: minPrice == '0' ? totalMinPrice.toString() : minPrice,
     orderByPrice: orderByPrice,
     orderByPeople: orderByPeople,
-    orderByRooms: orderByRooms,
+    orderByRoom: orderByRoom,
   });
+
+  const { totalMinPrice: totalMinPriceValue, totalMaxPrice: totalMaxPriceValue, ...rest } = value;
 
   const filterValues = useMemo(
     () => ({
-      minPrice: value.minPrice,
-      maxPrice: value.maxPrice,
-      rooms: value.minRooms,
-      people: value.minPeople,
-      orderByPrice: value.orderByPrice,
-      orderByPeople: value.orderByPeople,
-      orderByRooms: value.orderByRooms,
+      ...rest,
     }),
-    [value]
+    [rest]
   );
 
   const handleClose = useCallback(() => setOpen(false), [setOpen]);
@@ -50,24 +48,26 @@ export default function MainModal({
 
     const searchParams = new URLSearchParams(filterValues);
     setFilters(searchParams);
-  }, [filterValues, handleClose, setFilters]);
+    setInvisible(true);
+  }, [filterValues, handleClose, setFilters, setInvisible]);
 
   const handleClear = useCallback(() => {
     const defaultFilters = {
-      minPrice: '0',
-      maxPrice: value.totalMaxPrice.toString(),
-      rooms: '0',
-      people: '0',
+      minPrice: totalMinPriceValue.toString(),
+      maxPrice: totalMaxPriceValue.toString(),
+      minRooms: '0',
+      minPeople: '0',
       orderByPrice: 'any',
       orderByPeople: 'any',
-      orderByRooms: 'any',
+      orderByRoom: 'any',
     };
 
     const searchParams = new URLSearchParams(defaultFilters);
 
     setFilters(searchParams);
+    setInvisible(false);
     handleClose();
-  }, [value, setFilters, handleClose]);
+  }, [handleClose, setFilters, totalMaxPriceValue, totalMinPriceValue, setInvisible]);
 
   return (
     <Modal open={open} onClose={handleClose}>
@@ -102,7 +102,7 @@ export default function MainModal({
               <Typography variant={'sm'}>Nightly prices before fees and taxes</Typography>
               <Box sx={modalStyles.sliderContainer}>
                 <PriceRangeSlider value={value} setValue={setValue} />
-                <PriceRangeInputs value={value} setValue={setValue} filters={filters} />
+                <PriceRangeInputs value={value} setValue={setValue} />
               </Box>
             </Box>
             <SortBox
@@ -131,9 +131,9 @@ export default function MainModal({
               <SortBox
                 title="Rooms"
                 options={sortOptions}
-                minItem={value.orderByRooms}
+                minItem={value.orderByRoom}
                 setValue={setValue}
-                name={'orderByRooms'}
+                name={'orderByRoom'}
               />
               <SortBox
                 title="People"

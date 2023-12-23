@@ -2,32 +2,32 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import httpClient from '../../httpClient';
 import { ResponseAccommodationList } from '../../../types/accommodation.types';
 import { EndpointsConfig } from '../../../config/endpoints.config';
+import { AMOUNT_PER_PAGE } from '../../../config/pagination.config';
 
-interface Props {
-  allValues: Record<string, string | null>;
-  amountPerPage: number;
+interface AccommodationsQueryProps {
+  searchParamsAsObject: Record<string, string | null>;
 }
 
-function useGetAccommodationsQuery({ allValues, amountPerPage }: Props) {
+function useGetAccommodationsQuery({ searchParamsAsObject }: AccommodationsQueryProps) {
   return useInfiniteQuery({
-    queryKey: ['accommodations', allValues],
+    queryKey: ['accommodations', searchParamsAsObject],
     queryFn: async ({ pageParam }) => {
-      const { minPrice, maxPrice, rooms, people, orderByPrice, orderByPeople, orderByRooms } =
-        allValues;
+      const { minPrice, maxPrice, rooms, people, orderByPrice, orderByPeople, orderByRoom } =
+        searchParamsAsObject;
 
       const { data } = await httpClient.get<ResponseAccommodationList>(
         EndpointsConfig.Accommodations.Root,
         {
           params: {
             page: pageParam,
-            limit: amountPerPage,
-            maxPrice: maxPrice !== '0' ? maxPrice : undefined,
-            minPrice: minPrice !== '0' ? minPrice : undefined,
-            minRooms: rooms !== '0' ? rooms : undefined,
-            minPeople: people !== '0' ? people : undefined,
-            orderByPrice: orderByPrice !== 'any' ? orderByPrice : undefined,
-            orderByPeople: orderByPeople !== 'any' ? orderByPeople : undefined,
-            orderByRooms: orderByRooms !== 'any' ? orderByRooms : undefined,
+            limit: AMOUNT_PER_PAGE,
+            maxPrice: Number(maxPrice) || null,
+            minPrice: Number(minPrice) || null,
+            minRooms: Number(rooms) || null,
+            minPeople: Number(people) || null,
+            orderByPrice: orderByPrice == 'any' ? null : orderByPrice,
+            orderByPeople: orderByPeople == 'any' ? null : orderByPeople,
+            orderByRoom: orderByRoom == 'any' ? null : orderByRoom,
           },
         }
       );
@@ -36,10 +36,10 @@ function useGetAccommodationsQuery({ allValues, amountPerPage }: Props) {
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage, pages) => {
-      if (pages.length < lastPage.totalCount / amountPerPage) {
+      if (pages.length < lastPage.totalCount / AMOUNT_PER_PAGE) {
         return pages.length + 1;
       }
-      return undefined;
+      return;
     },
   });
 }

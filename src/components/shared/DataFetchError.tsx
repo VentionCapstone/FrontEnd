@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 
-function Error({
+function DataFetchError({
   error = 'Something went wrong',
   position = 'center',
 }: {
@@ -20,4 +20,4 @@ function Error({
   );
 }
 
-export default Error;
+export default DataFetchError;

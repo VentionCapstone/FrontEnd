@@ -18,7 +18,3 @@ button,
 select {
   font: inherit;
 }
-
-.main__scrollable {
-  overflow: hidden !important;
-}
