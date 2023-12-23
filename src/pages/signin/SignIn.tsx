@@ -3,16 +3,11 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import ButtonPrimary from '../../components/ButtonPrimary';
 import InputForm from '../../components/InputForm';
-import { useAppDispatch } from '../../hooks/redux-hooks';
-import { setToken } from '../../stores/slices/authSlice';
-import { AuthData, LoginResponse } from '../../types/auth.types';
+import { AuthData } from '../../types/auth.types';
 import PasswordInput from '../../components/PasswordInput';
-import httpClient from '../../api/httpClient';
-import { useMutation } from '@tanstack/react-query';
+import useSignInMutation from '../../api/mutations/auth/useSignInMutation';
 
 const SignIn = () => {
-  const dispatch = useAppDispatch();
-
   const { handleSubmit, control } = useForm({
     defaultValues: {
       email: '',
@@ -22,23 +17,12 @@ const SignIn = () => {
 
   const [isPasswordValid, setIsPasswordValid] = useState(true);
 
-  const { mutateAsync, isPending } = useMutation<LoginResponse, unknown, AuthData>({
-    mutationFn: async (data: AuthData) => {
-      const response = await httpClient.post<LoginResponse>('/auth/signin', data);
-      return response.data;
-    },
-    onSuccess: (data: LoginResponse) => {
-      localStorage.setItem('sub', data.id);
-      dispatch(setToken(data.tokens.access_token));
-    },
-  });
+  const { mutateAsync, isPending } = useSignInMutation();
 
   const onSubmit: SubmitHandler<AuthData> = async (Inputdata: AuthData) => {
     try {
       if (isPasswordValid) {
-        const data = await mutateAsync(Inputdata);
-        localStorage.setItem('sub', data.id);
-        dispatch(setToken(data.tokens.access_token));
+        await mutateAsync(Inputdata);
       }
     } catch (error) {
       console.log(error);

@@ -4,12 +4,10 @@ import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
 import PasswordInput from '../../components/PasswordInput';
-import httpClient from '../../api/httpClient';
-import toast from 'react-hot-toast';
 import { AuthData } from '../../types/auth.types';
 import ButtonPrimary from '../../components/ButtonPrimary';
 import InputForm from '../../components/InputForm';
-import { useMutation } from '@tanstack/react-query';
+import useSignupMutation from '../../api/mutations/auth/useSignupMutation';
 
 const Signup = () => {
   const { handleSubmit, control, watch } = useForm({
@@ -20,18 +18,8 @@ const Signup = () => {
     },
   });
   const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const { mutateAsync, isPending } = useMutation({
-    mutationFn: async (data: AuthData) => {
-      const response = await httpClient.post<{ success: boolean; message: string }>(
-        '/auth/signup',
-        data
-      );
-      return response.data;
-    },
-    onSuccess: (data) => {
-      toast.success(data.message);
-    },
-  });
+  const { mutateAsync, isPending } = useSignupMutation();
+
   const onSubmit: SubmitHandler<AuthData> = async (Inputdata: AuthData) => {
     try {
       if (isPasswordValid) {
