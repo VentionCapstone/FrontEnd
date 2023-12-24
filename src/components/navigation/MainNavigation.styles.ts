@@ -1,50 +1,49 @@
 import { MuiStylesObject } from '../../types/utility.types';
 
-export const mainNavigationStyles: MuiStylesObject = {
-  container: {
-    padding: '1rem',
-  },
-  headerBox: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  logoBox: {
-    'display': 'flex',
-    'alignItems': 'center',
-    '& img': {
-      width: '2.5rem',
-      height: '2.5rem',
+export const mainNavigationStyles = {
+  navigation: {
+    display: {
+      xs: 'none',
+      md: 'block',
     },
-    '& a': {
-      textDecoration: 'none',
+    position: 'sticky',
+    top: 0,
+    left: 0,
+    bgcolor: 'background.default',
+    borderBottom: '1px solid',
+    borderColor: 'secondary2.light',
+    color: 'primary.main',
+  },
+
+  bottomNav: {
+    'display': {
+      xs: 'flex',
+      md: 'none',
     },
+    '.MuiBottomNavigationAction-root': { color: 'secondary2.main', gap: '0.25rem' },
+    '& .Mui-selected, .Mui-selected svg': { color: 'secondary.main', fontWeight: 600 },
   },
-  logoText: {
-    marginLeft: '1rem',
-    color: 'secondary.main',
-    fontWeight: 'bold',
-    marginX: '0.5rem',
-  },
+
   button: {
     'display': 'flex',
     'alignItems': 'center',
-    'justifyContent': 'space-between',
+    'padding': 1,
     'textTransform': 'none',
     'borderRadius': '2rem',
-    'borderColor': 'secondary2.main',
-    'color': 'secondary2.main',
-    'borderWidth': '1px',
-    'borderStyle': 'solid',
-    '& svg': {
-      marginLeft: '0.5rem',
+    'border': '1px solid',
+    'borderColor': 'secondary2.light',
+    '&:hover': {
+      bgcolor: 'background.default',
+      boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.12)',
     },
   },
+
   menu: {
-    'mt': '0.4rem',
+    'mt': 2,
     '& a': {
       color: 'primary.main',
       textDecoration: 'none',
+      width: '100%',
     },
   },
-};
+} satisfies MuiStylesObject;
