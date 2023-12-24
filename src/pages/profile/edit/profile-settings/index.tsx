@@ -1,16 +1,34 @@
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import EditablePanel from '../EditablePanel';
-import { ProfileLang } from './ProfileLang';
-import { ProfileCurrency } from './ProfileCurrency';
+
 import { useCallback, useState } from 'react';
 
+import EditablePanel from '../EditablePanel';
+import useEditAccountMutation from '../../../../api/mutations/account/useEditAccountMutation';
+import { ProfileLang } from './ProfileLang';
+import { ProfileCurrency } from './ProfileCurrency';
+import { useAppSelector } from '../../../../hooks/redux-hooks';
+import { getValueFromLocalStorage } from '../../../../utils';
+import { getProfile } from '../../../../stores/slices/authSlice';
+import { ThemeMode } from '../../../../types/profile.types';
+import { LOCAL_STORAGE_KEYS } from '../../../../config/local-storage.config';
+
 function ProfileSettings() {
-  const [theme, setTheme] = useState<'LIGHT' | 'DARK'>('LIGHT');
+  const profileId = useAppSelector(getProfile)?.id ?? '';
+  const { mutate } = useEditAccountMutation(profileId);
+  const uiTheme = getValueFromLocalStorage<ThemeMode>(LOCAL_STORAGE_KEYS.uiTheme);
+
+  const [theme, setTheme] = useState<ThemeMode>(uiTheme ?? ThemeMode.light);
+
+  const handleThemeChange = (e: SelectChangeEvent<ThemeMode>) => {
+    const mode = e.target.value as ThemeMode;
+    setTheme(mode);
+    mutate({ uiTheme: mode });
+  };
 
   const languageRenderProps = useCallback(
     (data: () => void) => <ProfileLang collapsePanel={data} userLang="English" />,
@@ -47,7 +65,7 @@ function ProfileSettings() {
           <FormControl>
             <Select
               value={theme}
-              onChange={(e) => setTheme(e.target.value as typeof theme)}
+              onChange={handleThemeChange}
               size="small"
               labelId="profile-theme-select-label"
               id="profile-theme-select-label"
