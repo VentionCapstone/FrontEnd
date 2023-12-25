@@ -28,7 +28,7 @@ export default function AccommodationForm() {
   } = useForm<AccommodationReq>({
     resolver: zodResolver(accommodationSchema),
     defaultValues: {
-      name: '',
+      title: '',
       description: '',
       allowedNumberOfPeople: 1,
       availableFrom: String(new Date()),
@@ -86,14 +86,14 @@ export default function AccommodationForm() {
       <form onSubmit={(e) => void handleSubmit(onSubmit)(e)}>
         <Box display={'grid'} gridTemplateColumns={'1fr 1fr'} gap={4} py={4}>
           <Controller
-            name="name"
+            name="title"
             control={control}
             render={({ field }) => (
               <TextField
                 {...field}
-                label="Name"
-                error={!!errors.name}
-                helperText={errors.name?.message}
+                label="Title"
+                error={!!errors.title}
+                helperText={errors.title?.message}
               />
             )}
           />

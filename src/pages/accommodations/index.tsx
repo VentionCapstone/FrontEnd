@@ -55,7 +55,7 @@ export default function Accommodations() {
                     />
                   </Box>
                   <Typography variant="body1" sx={lineClampStyle(1)}>
-                    {accommodation.name}
+                    {accommodation.title}
                   </Typography>
                 </Box>
               </Link>

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const accommodationSchema = z.object({
-  name: z.string().min(10).max(100),
+  title: z.string().min(10).max(100),
   thumbnailUrl: z.string().url({ message: 'Thumbnail url must be a valid url' }),
   squareMeters: z.number(),
   numberOfRooms: z.number(),
@@ -23,14 +23,14 @@ export const accommodationSchema = z.object({
 
 export type AccommodationReq = z.infer<typeof accommodationSchema>;
 
-export interface AccommodationRes {
+export type AccommodationRes = {
   status: boolean;
   data: AccommodationType[];
-}
+};
 
-export interface AccommodationType {
+export type AccommodationType = {
   id: string;
-  name: string;
+  title: string;
   addressId: string;
   thumbnailUrl: string;
   ownerId: string;
@@ -43,9 +43,9 @@ export interface AccommodationType {
   description: string;
   previewImgUrl: string;
   address: AddressType;
-}
+};
 
-export interface AddressType {
+export type AddressType = {
   id: string;
   street: string;
   city: string;
@@ -53,4 +53,4 @@ export interface AddressType {
   zipCode: string;
   latitude: number;
   longitude: number;
-}
+};
