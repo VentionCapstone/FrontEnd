@@ -10,9 +10,9 @@ const imageStates = {
 };
 
 type ImageState = keyof typeof imageStates;
-type SingleImageProps = { image: string; name?: string };
+type SingleImageProps = { image: string; name: string };
 
-function CustomImage({ image, name = 'image' }: SingleImageProps) {
+function CustomImage({ image, name }: SingleImageProps) {
   const [currentState, setCurrentState] = useState<ImageState>('Loading');
 
   useEffect(() => {
@@ -35,7 +35,7 @@ function CustomImage({ image, name = 'image' }: SingleImageProps) {
           width: imageStates[currentState] ? '80%' : '100%',
           objectFit: imageStates[currentState] ? 'contain' : 'cover',
           objectPosition: 'center',
-          marginX: 'auto',
+          mx: 'auto',
           height: {
             sm: 260,
             md: 250,

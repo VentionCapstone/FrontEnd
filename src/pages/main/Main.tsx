@@ -1,8 +1,8 @@
-import { Badge, Box, Button, Stack, Typography } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
-import { useCallback, useEffect, useMemo, useState } from 'react';
 import TuneIcon from '@mui/icons-material/Tune';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { Badge, Box, Button, Stack, Typography } from '@mui/material';
 import MainModal from './components/Modal';
 import { mainStyles } from './index.styles';
 import DataFetchError from '../../components/shared/DataFetchError';
@@ -33,12 +33,13 @@ function Main() {
 
   const searchParamsAsObject = useMemo(() => {
     const values: Record<string, string> = {};
-    return values;
-  }, []);
 
-  for (const [key, value] of searchParams.entries()) {
-    searchParamsAsObject[key] = value;
-  }
+    for (const [key, value] of searchParams.entries()) {
+      values[key] = value;
+    }
+
+    return values;
+  }, [searchParams]);
 
   const { data, isPending, isError, hasNextPage, fetchNextPage } = useGetAccommodationsQuery({
     searchParamsAsObject,
@@ -47,7 +48,7 @@ function Main() {
   useEffect(() => {
     if (!data) return;
 
-    if (data.pages.length > 0) {
+    if (data?.pages?.length > 0) {
       const totalMaxPrice = data.pages[0].priceRange.totalMaxPrice || 0;
       const totalMinPrice = data.pages[0].priceRange.totalMinPrice || 0;
 
@@ -82,11 +83,14 @@ function Main() {
           Filters
         </Button>
       </Badge>
-      {accommodations?.length === 0 ? (
+
+      {accommodations?.length === 0 && (
         <Stack justifyContent={'center'} alignItems={'center'} height="20vh">
           <Typography variant={'lg'}>No accommodations found</Typography>
         </Stack>
-      ) : (
+      )}
+
+      {accommodations?.length !== 0 && (
         <InfiniteScroll
           dataLength={accommodations?.length || 0}
           next={handleNextPage}
@@ -100,6 +104,7 @@ function Main() {
           </Box>
         </InfiniteScroll>
       )}
+
       {open && (
         <MainModal
           open={open}

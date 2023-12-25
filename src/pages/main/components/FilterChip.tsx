@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { Chip } from '@mui/material';
 import { ObjType } from '../../../types/accommodation.types';
 import { MuiStylesObject } from '../../../types/utility.types';
@@ -11,9 +12,9 @@ interface FilterChipProps {
 function FilterChip({ minItem, item, onSelect }: FilterChipProps) {
   const { name, id } = item;
 
-  const handleChipClick = () => {
+  const handleChipClick = useCallback(() => {
     onSelect(id);
-  };
+  }, [onSelect, id]);
 
   const chipStyles = {
     root: {

@@ -1,4 +1,5 @@
 import { Slider } from '@mui/material';
+import { useCallback, useMemo } from 'react';
 import { FormValue } from '../../../types/accommodation.types';
 
 type PriceRangeProps = {
@@ -8,23 +9,30 @@ type PriceRangeProps = {
 
 function PriceRangeSlider({ value, setValue }: PriceRangeProps) {
   const { minPrice, maxPrice, totalMaxPrice, totalMinPrice } = value;
+  const minMaxPriceValues = useMemo(
+    () => [Number(minPrice), Number(maxPrice)],
+    [maxPrice, minPrice]
+  );
 
-  const handleChange = (_event: Event, newValue: number | number[]) => {
-    setValue((prev) => {
-      if (Array.isArray(newValue)) {
-        return {
-          ...prev,
-          minPrice: newValue[0].toString(),
-          maxPrice: newValue[1].toString(),
-        };
-      }
-      return prev;
-    });
-  };
+  const handleChange = useCallback(
+    (_event: Event, newValue: number | number[]) => {
+      setValue((prev) => {
+        if (Array.isArray(newValue)) {
+          return {
+            ...prev,
+            minPrice: newValue[0].toString(),
+            maxPrice: newValue[1].toString(),
+          };
+        }
+        return prev;
+      });
+    },
+    [setValue]
+  );
 
   return (
     <Slider
-      value={[Number(minPrice), Number(maxPrice)]}
+      value={minMaxPriceValues}
       max={totalMaxPrice}
       min={totalMinPrice}
       onChange={handleChange}

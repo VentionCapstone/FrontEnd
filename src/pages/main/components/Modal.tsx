@@ -25,8 +25,8 @@ export default function MainModal({
     totalMaxPrice: totalMaxPrice,
     minRooms: minRooms,
     minPeople: minPeople,
-    maxPrice: maxPrice == '0' ? totalMaxPrice.toString() : maxPrice,
-    minPrice: minPrice == '0' ? totalMinPrice.toString() : minPrice,
+    maxPrice: maxPrice === '0' ? totalMaxPrice.toString() : maxPrice,
+    minPrice: minPrice === '0' ? totalMinPrice.toString() : minPrice,
     orderByPrice: orderByPrice,
     orderByPeople: orderByPeople,
     orderByRoom: orderByRoom,
@@ -43,7 +43,7 @@ export default function MainModal({
 
   const handleClose = useCallback(() => setOpen(false), [setOpen]);
 
-  const handleClick = useCallback(() => {
+  const handleFilterClick = useCallback(() => {
     handleClose();
 
     const searchParams = new URLSearchParams(filterValues);
@@ -51,7 +51,7 @@ export default function MainModal({
     setInvisible(true);
   }, [filterValues, handleClose, setFilters, setInvisible]);
 
-  const handleClear = useCallback(() => {
+  const handleFilterClear = useCallback(() => {
     const defaultFilters = {
       minPrice: totalMinPriceValue.toString(),
       maxPrice: totalMaxPriceValue.toString(),
@@ -151,10 +151,10 @@ export default function MainModal({
             marginTop={'2rem'}
             flexGrow={'0'}
           >
-            <Button variant="contained" onClick={handleClear}>
+            <Button variant="contained" onClick={handleFilterClear}>
               Clear
             </Button>
-            <Button variant="contained" onClick={handleClick}>
+            <Button variant="contained" onClick={handleFilterClick}>
               Filter
             </Button>
           </Stack>

@@ -65,14 +65,6 @@ export type FormValue = {
   orderByRoom: string;
 };
 
-export type SortBoxProps = {
-  title: string;
-  options: ObjType[];
-  minItem: string;
-  setValue: React.Dispatch<React.SetStateAction<FormValue>>;
-  name: string;
-};
-
 export type DefaultSearchParamsType = {
   minPrice: string;
   maxPrice: string;

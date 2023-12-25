@@ -1,7 +1,16 @@
+import { useCallback } from 'react';
 import { Box, Typography } from '@mui/material';
 import FilterChip from './FilterChip';
-import { SortBoxProps } from '../../../types/accommodation.types';
 import { MuiStylesObject } from '../../../types/utility.types';
+import { FormValue, ObjType } from '../../../types/accommodation.types';
+
+type SortBoxProps = {
+  title: string;
+  options: ObjType[];
+  minItem: string;
+  setValue: React.Dispatch<React.SetStateAction<FormValue>>;
+  name: string;
+};
 
 const sortStyles = {
   root: {
@@ -18,9 +27,12 @@ const sortStyles = {
 } satisfies MuiStylesObject;
 
 const SortBox = ({ title, options, minItem, setValue, name }: SortBoxProps) => {
-  const handleSelect = (id: number | string) => {
-    setValue((prev) => ({ ...prev, [name]: id }));
-  };
+  const handleSelect = useCallback(
+    (id: number | string) => {
+      setValue((prev) => ({ ...prev, [name]: id }));
+    },
+    [setValue, name]
+  );
 
   return (
     <Box>
