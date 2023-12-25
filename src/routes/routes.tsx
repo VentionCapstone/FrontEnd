@@ -4,6 +4,7 @@ import PrivateRoute from './PrivateRoute';
 import UserRoute from './UserRoute';
 import CreateAccommodation from '../pages/accommodation/CreateAccommodation';
 import Signup from '../pages/signup/Signup';
+import AccommodationList from '../pages/accommodation/AccommodationList';
 
 const MainLayout = React.lazy(() => import('../layouts/MainLayout'));
 const UserLayout = React.lazy(() => import('../layouts/UserLayout'));
@@ -36,6 +37,7 @@ const routes = createBrowserRouter([
       },
       { path: 'settings', element: <Profile /> },
       { path: 'accommodation/create', element: <CreateAccommodation /> },
+      { path: 'accommodation/list', element: <AccommodationList /> },
     ],
   },
   {
