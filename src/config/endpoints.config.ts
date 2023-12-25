@@ -22,4 +22,7 @@ export const ENDPOINTS = {
     root: (accommodationId: string) => `/amenities/${accommodationId}`,
     getAmenityList: '/amenities/list',
   },
+  Accommodations: {
+    Root: '/accommodations',
+  },
 } as const;
