@@ -9,7 +9,6 @@ export const mainNavigationStyles = {
     position: 'sticky',
     top: 0,
     left: 0,
-    bgcolor: 'background.default',
     borderBottom: '1px solid',
     borderColor: 'secondary2.light',
     color: 'primary.main',

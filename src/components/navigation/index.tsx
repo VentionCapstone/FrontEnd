@@ -14,11 +14,14 @@ import { mainNavigationStyles as styles } from './mainNavigation.styles';
 import { RoutesConfig } from '../../config/routes.config';
 import { TopNavMenu } from './TopNavMenu';
 import { BottomNav } from './BottomNavigation';
+import { useTheme } from '@mui/material';
 import logo from '../../assets/logo.png';
+import { PRIMARY_LIGHT_THEME } from '../../theme/themeTokens';
 
 function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) {
   const myRef = useRef<Element | null>(null);
   const { entry } = useIntersectionObserver(myRef);
+  const mode = useTheme().palette.mode;
 
   const dinamicShadow = entry?.isIntersecting ? 'none' : '0px 6px 16px rgba(0, 0, 0, 0.12)';
 
@@ -27,7 +30,11 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
       {/* Scroll watcher element */}
       <Box ref={myRef}></Box>
 
-      <Box sx={styles.navigation} boxShadow={dinamicShadow}>
+      <Box
+        sx={styles.navigation}
+        boxShadow={dinamicShadow}
+        bgcolor={mode === 'light' ? 'background.default' : PRIMARY_LIGHT_THEME}
+      >
         <Container maxWidth={maxWidth} disableGutters sx={{ px: '1.5rem', py: '1rem' }}>
           <Stack direction={'row'} alignItems={'center'}>
             <Link

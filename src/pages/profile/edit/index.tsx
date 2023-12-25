@@ -4,16 +4,24 @@ import {
   SettingsOutlined,
   GppGoodOutlined,
 } from '@mui/icons-material';
-import { Box, Button, Link, Stack, Typography } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import Button from '@mui/material/Button';
+
 import { Link as RouterLink } from 'react-router-dom';
 import { useAppSelector } from '../../../hooks/redux-hooks';
 import useLogoutMutation from '../../../api/mutations/account/useLogoutMutation';
 import LoadingPrimary from '../../../components/loader/LoadingPrimary';
 import { editPageStyles } from './index.styles';
 import { getUser } from '../../../stores/slices/authSlice';
+import useTheme from '@mui/material/styles/useTheme';
+import { PRIMARY_LIGHT_THEME } from '../../../theme/themeTokens';
 
 function EditProfile() {
   const { mutate } = useLogoutMutation();
+  const mode = useTheme().palette.mode;
   const user = useAppSelector(getUser);
 
   const imageUrl = user?.profile?.imageUrl ?? '';
@@ -35,12 +43,8 @@ function EditProfile() {
 
         <Box
           sx={{
-            display: {
-              md: 'none',
-            },
-            padding: 6,
-            borderRadius: 3,
-            boxShadow: '0px 6px 16px rgba(0, 0, 0, 0.12)',
+            ...editPageStyles.card,
+            bgcolor: mode === 'light' ? 'background.default' : PRIMARY_LIGHT_THEME,
           }}
         >
           <Stack direction={'row'} gap={'1rem'} justifyContent={'space-between'}>
@@ -67,7 +71,13 @@ function EditProfile() {
           width={'100%'}
           sx={{ textDecoration: 'none' }}
         >
-          <Stack sx={editPageStyles.customCard} borderTop={{ xs: '1px solid #EBEBEB' }}>
+          <Stack
+            sx={editPageStyles.customCard}
+            borderTop={{ xs: '1px solid #EBEBEB' }}
+            bgcolor={{
+              md: mode === 'light' ? 'background.default' : PRIMARY_LIGHT_THEME,
+            }}
+          >
             <AccountCircleOutlined
               sx={{
                 fontSize: {
@@ -104,7 +114,12 @@ function EditProfile() {
           width={'100%'}
           sx={{ textDecoration: 'none' }}
         >
-          <Stack sx={editPageStyles.customCard}>
+          <Stack
+            sx={editPageStyles.customCard}
+            bgcolor={{
+              md: mode === 'light' ? 'background.default' : PRIMARY_LIGHT_THEME,
+            }}
+          >
             <GppGoodOutlined
               sx={{
                 fontSize: {
@@ -136,7 +151,12 @@ function EditProfile() {
         </Link>
 
         <Link component={RouterLink} to={'settings'} width={'100%'} sx={{ textDecoration: 'none' }}>
-          <Stack sx={editPageStyles.customCard}>
+          <Stack
+            sx={editPageStyles.customCard}
+            bgcolor={{
+              md: mode === 'light' ? 'background.default' : PRIMARY_LIGHT_THEME,
+            }}
+          >
             <SettingsOutlined
               sx={{
                 fontSize: {

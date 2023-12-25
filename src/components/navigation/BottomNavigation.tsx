@@ -8,14 +8,17 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useTheme } from '@mui/material';
 
 import { RoutesConfig } from '../../config/routes.config';
 import { useAppSelector } from '../../hooks/redux-hooks';
 import { mainNavigationStyles } from './mainNavigation.styles';
+import { PRIMARY_LIGHT_THEME } from '../../theme/themeTokens';
 
 export const BottomNav = () => {
   const route = useLocation();
   const navigate = useNavigate();
+  const mode = useTheme().palette.mode;
   const isLoggedIn = useAppSelector((state) => state.auth.token) !== null;
   const [selectedRoute, setSelectedRoute] = useState<string>(route.pathname);
 
@@ -23,7 +26,6 @@ export const BottomNav = () => {
     setSelectedRoute(route);
     navigate(route);
   };
-
   return (
     <Paper
       sx={{
@@ -38,7 +40,10 @@ export const BottomNav = () => {
       <BottomNavigation
         showLabels
         value={selectedRoute}
-        sx={mainNavigationStyles.bottomNav}
+        sx={{
+          ...mainNavigationStyles.bottomNav,
+          bgcolor: mode === 'light' ? 'background.default' : PRIMARY_LIGHT_THEME,
+        }}
         onChange={handleChange}
       >
         <BottomNavigationAction value={RoutesConfig.Root} label="Explore" icon={<SearchIcon />} />

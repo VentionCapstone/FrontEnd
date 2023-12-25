@@ -2,11 +2,15 @@ import Box from '@mui/material/Box';
 import Container, { ContainerProps } from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+
 import { footerStyles } from './footerStyles';
+import { useTheme } from '@mui/material';
+import { PRIMARY_LIGHT_THEME } from '../../theme/themeTokens';
 
 export const Footer = ({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) => {
+  const mode = useTheme().palette.mode;
   return (
-    <Box sx={footerStyles.footer}>
+    <Box sx={footerStyles.footer} bgcolor={mode === 'light' ? '#F7F7F7' : PRIMARY_LIGHT_THEME}>
       <Container
         maxWidth={maxWidth}
         disableGutters
