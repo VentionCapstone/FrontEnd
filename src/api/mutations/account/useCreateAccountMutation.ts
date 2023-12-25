@@ -1,11 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
-import httpClient from '../../httpClient';
-import { Profile } from '../../../types/profile.types';
 import toast from 'react-hot-toast';
-import { EndpointsConfig } from '../../../config/endpoints.config';
-import { RoutesConfig } from '../../../config/routes.config';
-import { QUERY_KEYS } from '../../../config/react-query.config';
+import { useNavigate } from 'react-router-dom';
+
+import httpClient from '@/api/httpClient';
+import { ENDPOINTS } from '@/config/endpoints.config';
+import { QUERY_KEYS } from '@/config/react-query.config';
+import { ROUTES } from '@/config/routes.config';
+import { Profile } from '@/types/profile.types';
 
 function useCreateAccountMutation() {
   const navigate = useNavigate();
@@ -14,11 +15,11 @@ function useCreateAccountMutation() {
   return useMutation({
     mutationKey: [QUERY_KEYS.mutation.createAccount],
     mutationFn: async (profileToSave: Profile) => {
-      await httpClient.post(EndpointsConfig.Account.CreateUserProfile, profileToSave);
+      await httpClient.post(ENDPOINTS.account.createUserProfile, profileToSave);
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.query.user] });
-      navigate(RoutesConfig.Account.Root);
+      navigate(ROUTES.account.root);
       toast.success('Profile created!');
     },
   });
