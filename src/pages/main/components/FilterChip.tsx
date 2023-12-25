@@ -5,11 +5,15 @@ import { MuiStylesObject } from '../../../types/utility.types';
 interface FilterChipProps {
   minItem: number | string;
   item: ObjType;
-  onSelect: () => void;
+  onSelect: (id: string | number) => void;
 }
 
 function FilterChip({ minItem, item, onSelect }: FilterChipProps) {
   const { name, id } = item;
+
+  const handleChipClick = () => {
+    onSelect(id);
+  };
 
   const chipStyles = {
     root: {
@@ -31,7 +35,13 @@ function FilterChip({ minItem, item, onSelect }: FilterChipProps) {
   } satisfies MuiStylesObject;
 
   return (
-    <Chip sx={chipStyles.root} label={name} variant="filled" onClick={onSelect} color="secondary" />
+    <Chip
+      sx={chipStyles.root}
+      label={name}
+      variant="filled"
+      onClick={handleChipClick}
+      color="secondary"
+    />
   );
 }
 

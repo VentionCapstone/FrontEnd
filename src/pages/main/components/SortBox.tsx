@@ -27,12 +27,7 @@ const SortBox = ({ title, options, minItem, setValue, name }: SortBoxProps) => {
       <Typography>{title}</Typography>
       <Box sx={sortStyles.root}>
         {options.map((item) => (
-          <FilterChip
-            key={item.id}
-            item={item}
-            minItem={minItem}
-            onSelect={() => handleSelect(item.id)}
-          />
+          <FilterChip key={item.id} item={item} minItem={minItem} onSelect={handleSelect} />
         ))}
       </Box>
     </Box>
