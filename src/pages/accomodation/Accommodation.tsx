@@ -2,37 +2,36 @@ import { Box } from '@mui/system';
 import { useParams } from 'react-router';
 import { Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import httpClient from '../../api/httpClient';
 import { AmenitySetting } from '../../types/amenity.types';
+import { Amenity } from '../../types/accommodations.types';
 import { buildAmenityList } from './utils/amenityListBuilder';
 import LoadingPrimary from '../../components/loader/LoadingPrimary';
-import { AccommodationResponse } from '../../types/accommodations.types';
+import useGetSingleAccommodationQuery from '../../api/queries/accommodation/useGetSingleAccommodationQuery';
+
+function selectOnlyTrueAmenities(amenities: Amenity) {
+  const trueAmenities = Object.entries(amenities)
+    .filter(([, value]) => value === true)
+    .map(([key]) => key);
+
+  return trueAmenities;
+}
+
+const handleErrorInImage = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+  e.currentTarget.src = 'https://via.placeholder.com/500';
+};
 
 function Accommodation() {
   const accommodationId = useParams().id;
   const [amenities, setAmenities] = useState<AmenitySetting[]>([]);
 
-  const { isPending, data, isError } = useQuery({
-    queryKey: ['accommodation', accommodationId],
-    queryFn: async () => {
-      const { data } = await httpClient.get<AccommodationResponse>(
-        `/accommodations/${accommodationId}`
-      );
-      return data.data;
-    },
-  });
+  const { isPending, data, isError } = useGetSingleAccommodationQuery(accommodationId as string);
 
   useEffect(() => {
-    function selectOnlyTrueAmenities() {
-      if (data?.amenities) {
-        const trueAmenities = Object.entries(data.amenities[0])
-          .filter(([, value]) => value === true)
-          .map(([key]) => key);
-        setAmenities(buildAmenityList(trueAmenities));
-      }
+    if (data?.amenities) {
+      const listOfTrueAmenities = selectOnlyTrueAmenities(data?.amenities[0]);
+
+      setAmenities(buildAmenityList(listOfTrueAmenities));
     }
-    selectOnlyTrueAmenities();
   }, [data]);
 
   if (isPending) {
@@ -85,7 +84,7 @@ function Accommodation() {
             },
           }}
         >
-          <img src={image_1.imageUrl} alt={image_1.accommodationId} />
+          <img src={image_1.imageUrl} alt={image_1.accommodationId} onError={handleErrorInImage} />
         </Grid>
         <Grid
           item
@@ -110,7 +109,11 @@ function Accommodation() {
           }}
         >
           <Grid item md={6}>
-            <img src={image_2.imageUrl} alt={image_2.accommodationId} />
+            <img
+              src={image_2.imageUrl}
+              alt={image_2.accommodationId}
+              onError={handleErrorInImage}
+            />
           </Grid>
           <Grid
             item
@@ -121,10 +124,18 @@ function Accommodation() {
               },
             }}
           >
-            <img src={image_3.imageUrl} alt={image_3.accommodationId} />
+            <img
+              src={image_3.imageUrl}
+              alt={image_3.accommodationId}
+              onError={handleErrorInImage}
+            />
           </Grid>
           <Grid item md={6}>
-            <img src={image_4.imageUrl} alt={image_4.accommodationId} />
+            <img
+              src={image_4.imageUrl}
+              alt={image_4.accommodationId}
+              onError={handleErrorInImage}
+            />
           </Grid>
           <Grid
             item
@@ -135,7 +146,11 @@ function Accommodation() {
               },
             }}
           >
-            <img src={image_5.imageUrl} alt={image_5.accommodationId} />
+            <img
+              src={image_5.imageUrl}
+              alt={image_5.accommodationId}
+              onError={handleErrorInImage}
+            />
           </Grid>
         </Grid>
       </Grid>
