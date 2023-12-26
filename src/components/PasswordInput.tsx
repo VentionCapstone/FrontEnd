@@ -10,6 +10,7 @@ import {
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Controller, ControllerRenderProps, FieldValues, Path } from 'react-hook-form';
 import { PasswordInputProps } from '../types/auth.types';
+import { STRONG_PASSWORD_REGEX } from '../config/regexp.config';
 
 const PasswordInput = <TFieldValues extends FieldValues>({
   name,
@@ -29,9 +30,7 @@ const PasswordInput = <TFieldValues extends FieldValues>({
   };
 
   const validatePassword = (value: string) => {
-    const strongPasswordRegex = /((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
-
-    if (!strongPasswordRegex.test(value)) {
+    if (!STRONG_PASSWORD_REGEX.test(value)) {
       setPasswordError(
         'Password must be at least 8  long and include at least one uppercase letter, one lowercase letter, one number, and one special character.'
       );
