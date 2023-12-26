@@ -1,13 +1,6 @@
-import LoadingButton from '@mui/lab/LoadingButton';
+import LoadingButton, { LoadingButtonProps } from '@mui/lab/LoadingButton';
 
-type ButtonPrimaryProps = {
-  children: React.ReactNode;
-  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
-  disabled?: boolean;
-  loading?: boolean;
-};
-
-function ButtonPrimary({ children, loading }: ButtonPrimaryProps) {
+function ButtonPrimary({ children, loading }: LoadingButtonProps) {
   return (
     <LoadingButton
       loading={loading}

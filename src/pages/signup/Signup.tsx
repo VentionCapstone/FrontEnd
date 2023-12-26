@@ -8,6 +8,7 @@ import { AuthData } from '../../types/auth.types';
 import ButtonPrimary from '../../components/ButtonPrimary';
 import InputForm from '../../components/InputForm';
 import useSignupMutation from '../../api/mutations/auth/useSignupMutation';
+import { EndpointsConfig } from '../../config/endpoints.config';
 
 const Signup = () => {
   const { handleSubmit, control, watch } = useForm({
@@ -76,7 +77,7 @@ const Signup = () => {
         </form>
         <Typography variant="subtitle2" align="center" color="gray">
           if you already have an account, please{' '}
-          <Link to="/auth/signin" style={{ fontWeight: 'bold' }}>
+          <Link to={EndpointsConfig.Auth.SignIn} style={{ fontWeight: 'bold' }}>
             login
           </Link>
         </Typography>

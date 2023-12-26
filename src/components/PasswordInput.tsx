@@ -29,8 +29,7 @@ const PasswordInput = <TFieldValues extends FieldValues>({
   };
 
   const validatePassword = (value: string) => {
-    const strongPasswordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const strongPasswordRegex = /((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
 
     if (!strongPasswordRegex.test(value)) {
       setPasswordError(
@@ -39,7 +38,6 @@ const PasswordInput = <TFieldValues extends FieldValues>({
       setIsPasswordValid(false);
     } else {
       setPasswordError(null);
-
       setIsPasswordValid(true);
     }
   };

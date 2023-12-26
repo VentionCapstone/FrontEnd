@@ -1,11 +1,23 @@
-import { Box, Divider, Stack, Typography } from '@mui/material';
+import {
+  Box,
+  Divider,
+  Stack,
+  Typography,
+  IconButton,
+  InputAdornment,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+} from '@mui/material';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { useState } from 'react';
 import ButtonPrimary from '../../components/ButtonPrimary';
 import InputForm from '../../components/InputForm';
 import { AuthData } from '../../types/auth.types';
-import PasswordInput from '../../components/PasswordInput';
+import { Link } from 'react-router-dom';
+import { EndpointsConfig } from '../../config/endpoints.config';
 import useSignInMutation from '../../api/mutations/auth/useSignInMutation';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { useState } from 'react';
 
 const SignIn = () => {
   const { handleSubmit, control } = useForm({
@@ -15,25 +27,27 @@ const SignIn = () => {
     },
   });
 
-  const [isPasswordValid, setIsPasswordValid] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
 
   const { mutateAsync, isPending } = useSignInMutation();
 
   const onSubmit: SubmitHandler<AuthData> = async (Inputdata: AuthData) => {
     try {
-      if (isPasswordValid) {
-        await mutateAsync(Inputdata);
-      }
+      await mutateAsync(Inputdata);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
   return (
     <Box
       sx={{
         mx: 'auto',
-        mt: '10%',
+        mt: '5%',
         border: '1px solid #b0b0b0',
         borderRadius: 2,
         maxWidth: '600px',
@@ -60,18 +74,45 @@ const SignIn = () => {
                 />
               )}
             />
-            <PasswordInput
+            <Controller
               name="password"
-              label="Password"
-              placeholder="Password"
               control={control}
-              setIsPasswordValid={setIsPasswordValid}
+              render={({ field }) => (
+                <FormControl fullWidth variant="outlined">
+                  <InputLabel htmlFor={`outlined-adornment-password`}>Password</InputLabel>
+                  <OutlinedInput
+                    {...field}
+                    required
+                    label="Password"
+                    placeholder="Password"
+                    id={`outlined-adornment-password`}
+                    type={showPassword ? 'text' : 'password'}
+                    onChange={field.onChange}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleTogglePasswordVisibility}
+                          onMouseDown={handleTogglePasswordVisibility}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl>
+              )}
             />
           </Stack>
-          <ButtonPrimary loading={isPending} disabled={isPasswordValid}>
-            Sign in
-          </ButtonPrimary>
+          <ButtonPrimary loading={isPending}>Sign in</ButtonPrimary>
         </form>
+        <Typography variant="subtitle2" align="center" color="gray">
+          If you do not have an account, please{' '}
+          <Link to={EndpointsConfig.Auth.SignUp} style={{ fontWeight: 'bold' }}>
+            Sign up
+          </Link>
+        </Typography>
       </Stack>
     </Box>
   );
