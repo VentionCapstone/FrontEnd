@@ -4,8 +4,8 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   overflow: hidden;
-  margin: 16px;
-  width: 300px;
+  margin: 0 auto 10px auto;
+  width: 90%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './AccommodationList.css';
+import { Grid } from '@mui/material';
 interface Accommodation {
   thumbnailUrl: string;
   description: string;
@@ -22,30 +23,32 @@ const AccommodationList: React.FC = () => {
   return (
     <div className="">
       <h1>Accommodation List</h1>
-      {accommodations.map((accommodation, index) => (
-        <div
-          key={index}
-          // style={{ border: '1px solid #ccc', padding: '10px', margin: '10px', width: '300px' }}
-          className="house-card"
-        >
-          <img
-            src={accommodation.thumbnailUrl}
-            alt="Accommodation Thumbnail"
-            // style={{ maxWidth: '100px' }}
-            className="house-image"
-          />
-          <p>
-            <strong>Description:</strong> {accommodation.description}
-          </p>
-          <p>
-            <strong>Price:</strong> ${accommodation.price}
-          </p>
-          <p>
-            <strong>Availability:</strong>{' '}
-            {accommodation.availability ? 'Available' : 'Not Available'}
-          </p>
-        </div>
-      ))}
+      <Grid spacing={2} container>
+        {accommodations.map((accommodation, index) => (
+          <Grid key={index} lg={3} md={4} sm={12}>
+            <div className="house-card">
+              <img
+                src={
+                  accommodation.thumbnailUrl ||
+                  'https://www28.cs.kobe-u.ac.jp/wp-content/uploads/2021/04/noimage.png'
+                }
+                alt="Accommodation Thumbnail"
+                className="house-image"
+              />
+              <p>
+                <strong>Description:</strong> {accommodation.description}
+              </p>
+              <p>
+                <strong>Price:</strong> ${accommodation.price}
+              </p>
+              <p>
+                <strong>Availability:</strong>{' '}
+                {accommodation.availability ? 'Available' : 'Not Available'}
+              </p>
+            </div>
+          </Grid>
+        ))}
+      </Grid>
     </div>
   );
 };
