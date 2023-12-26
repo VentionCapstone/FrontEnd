@@ -3,12 +3,12 @@ import { useParams } from 'react-router';
 import { Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { AmenitySetting } from '../../types/amenity.types';
-import ErrorImage from '../../assets/no-image.png';
 import { Amenity } from '../../types/accommodation.types';
 import { buildAmenityList } from './utils/amenityListBuilder';
 import LoadingPrimary from '../../components/loader/LoadingPrimary';
 import useGetSingleAccommodationQuery from '../../api/queries/accommodation/useGetSingleAccommodationQuery';
 import DataFetchError from '../../components/shared/DataFetchError';
+import ErrorImage from '../../assets/no-image.png';
 
 function selectOnlyTrueAmenities(amenities: Amenity) {
   const trueAmenities = Object.entries(amenities)
@@ -52,6 +52,8 @@ function Accommodation() {
     return <DataFetchError />;
   }
 
+  const [image_1, image_2, image_3, image_4, image_5] = data.media;
+
   return (
     <Box>
       <Grid
@@ -91,11 +93,7 @@ function Accommodation() {
             },
           }}
         >
-          <img
-            src={data.media[0]?.imageUrl}
-            alt={data.media[0].accommodationId}
-            onError={handleErrorInImage}
-          />
+          <img src={image_1.imageUrl} alt={image_1.accommodationId} onError={handleErrorInImage} />
         </Grid>
         <Grid
           item
@@ -121,8 +119,8 @@ function Accommodation() {
         >
           <Grid item md={6}>
             <img
-              src={data.media[1]?.imageUrl}
-              alt={data.media[1].accommodationId}
+              src={image_2.imageUrl}
+              alt={image_2.accommodationId}
               onError={handleErrorInImage}
             />
           </Grid>
@@ -136,15 +134,15 @@ function Accommodation() {
             }}
           >
             <img
-              src={data.media[2]?.imageUrl}
-              alt={data.media[2].accommodationId}
+              src={image_3.imageUrl}
+              alt={image_3.accommodationId}
               onError={handleErrorInImage}
             />
           </Grid>
           <Grid item md={6}>
             <img
-              src={data.media[3]?.imageUrl}
-              alt={data.media[3].accommodationId}
+              src={image_4.imageUrl}
+              alt={image_4.accommodationId}
               onError={handleErrorInImage}
             />
           </Grid>
@@ -158,8 +156,8 @@ function Accommodation() {
             }}
           >
             <img
-              src={data.media[4]?.imageUrl}
-              alt={data.media[4]?.accommodationId}
+              src={image_5.imageUrl}
+              alt={image_5.accommodationId}
               onError={handleErrorInImage}
             />
           </Grid>
