@@ -10,7 +10,7 @@ function useGetReviewsQuery(accommodationId: string) {
 
     queryFn: async () => {
       const { data } = await httpClient.get<ReviewResponse>(
-        EndpointsConfig.accommodation.getAccommodationReviws(accommodationId)
+        EndpointsConfig.Accommodations.GetAccommodationReviws(accommodationId)
       );
       return data;
     },

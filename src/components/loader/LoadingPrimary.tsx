@@ -1,13 +1,13 @@
 import { CircularProgress, Box } from '@mui/material';
 
-function LoadingPrimary() {
+function LoadingPrimary({ height = '100vh' }: { height?: string }) {
   return (
     <Box
       sx={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '100vh',
+        height: height,
       }}
     >
       <CircularProgress color="error" variant="indeterminate" />
