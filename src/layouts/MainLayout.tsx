@@ -7,7 +7,7 @@ function MainLayout() {
   return (
     <>
       <MainNavigation maxWidth={'2xl'} />
-      <Container maxWidth={'2xl'} disableGutters sx={{ p: 6, pb: { xs: 20, md: 6 } }}>
+      <Container maxWidth={'2xl'} disableGutters sx={{ p: 6, pb: { xs: 20, md: 17 } }}>
         <Outlet />
       </Container>
       <StickyFooter maxWidth={'2xl'} />

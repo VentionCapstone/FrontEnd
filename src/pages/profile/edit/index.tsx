@@ -18,6 +18,7 @@ import { editPageStyles } from './index.styles';
 import { getUser } from '../../../stores/slices/authSlice';
 import useTheme from '@mui/material/styles/useTheme';
 import { PRIMARY_LIGHT_THEME } from '../../../theme/themeTokens';
+import houseIcon from '../../../assets/house.png';
 
 function EditProfile() {
   const { mutate } = useLogoutMutation();
@@ -58,7 +59,14 @@ function EditProfile() {
             </Stack>
 
             <Box
-              sx={{ width: '6rem', height: '5.5rem', bgcolor: 'secondary.main', flexShrink: 0 }}
+              component={'img'}
+              src={houseIcon}
+              sx={{
+                width: '6rem',
+                height: '5.5rem',
+                flexShrink: 0,
+                objectFit: 'contain',
+              }}
             ></Box>
           </Stack>
         </Box>

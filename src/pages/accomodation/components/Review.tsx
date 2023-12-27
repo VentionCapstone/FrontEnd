@@ -1,66 +1,83 @@
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
+import Skeleton from '@mui/material/Skeleton';
+
+import moment from 'moment';
+
 import { MoreLessText } from '../../../components/more-less-text/MoreLessText';
+import { Review as ReviewType } from '../../../types/reviews.types';
 
-interface Review {
-  username: string;
-  country: string;
-  comment: string;
-}
+export const Review = ({ review }: { review: ReviewType }) => {
+  const {
+    feedback,
+    rating,
+    createdAt,
+    user: { firstName, lastName, profile },
+  } = review;
 
-export const Review = ({ review }: { review: Review }) => {
-  const { username, country, comment } = review;
+  const formattedTime = moment(createdAt).fromNow();
 
   return (
-    <>
+    <Box>
       <Box
         display={'grid'}
         gridTemplateColumns={'min-content auto'}
         alignItems={'center'}
-        columnGap={4}
-        rowGap={3}
-        mb={3}
+        columnGap={{ xs: 3, md: 4 }}
+        rowGap={{ xs: 2, md: 3 }}
+        mb={{ xs: 2, md: 3 }}
       >
-        <Box
-          sx={{
-            width: '4rem',
-            height: '4rem',
-            bgcolor: 'secondary2.light',
-            borderRadius: '50%',
-          }}
-        ></Box>
+        {profile.imageUrl ? (
+          <Box
+            component={'img'}
+            src={profile.imageUrl}
+            sx={{
+              width: '4rem',
+              height: '4rem',
+              bgcolor: 'secondary2.light',
+              borderRadius: '50%',
+              objectFit: 'cover',
+            }}
+          />
+        ) : (
+          <Skeleton
+            variant={'rounded'}
+            sx={{
+              width: '4rem',
+              height: '4rem',
+              bgcolor: 'secondary2.light',
+              borderRadius: '50%',
+            }}
+          />
+        )}
 
         <Box>
           <Typography fontWeight={600} lineHeight={'1.2rem'}>
-            {username}
+            {firstName + ' ' + lastName}
           </Typography>
           <Typography variant="sm" component={'p'}>
-            {country}
+            {profile.country}
           </Typography>
         </Box>
 
         <Rating
-          value={5}
-          size={'small'}
+          value={rating}
           readOnly
           sx={{
             '& .MuiRating-iconFilled': {
               color: 'primary.main',
-            },
-            '& .MuiRating-iconHover': {
-              color: 'secondary.main',
             },
             'fontSize': '0.75rem',
           }}
         />
 
         <Typography variant={'sm'} fontWeight={600} color={'secondary2.main'}>
-          2 weeks ago
+          {formattedTime}
         </Typography>
       </Box>
 
-      <MoreLessText text={comment} maxChars={200} />
-    </>
+      <MoreLessText text={feedback} maxChars={200} />
+    </Box>
   );
 };

@@ -12,6 +12,7 @@ export const mainNavigationStyles = {
     borderBottom: '1px solid',
     borderColor: 'secondary2.light',
     color: 'primary.main',
+    zIndex: 100,
   },
 
   bottomNav: {

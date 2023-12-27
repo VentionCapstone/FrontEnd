@@ -70,8 +70,8 @@ function ProfileSettings() {
               labelId="profile-theme-select-label"
               id="profile-theme-select-label"
             >
-              <MenuItem value={'LIGHT'}>Light</MenuItem>
-              <MenuItem value={'DARK'}>Dark</MenuItem>
+              <MenuItem value={ThemeMode.light}>Light</MenuItem>
+              <MenuItem value={ThemeMode.dark}>Dark</MenuItem>
             </Select>
           </FormControl>
         </Stack>

@@ -30,6 +30,7 @@ export const MoreLessText = ({ text, maxChars }: { text: string; maxChars: numbe
           disableRipple
           size="small"
           sx={{
+            'mr': 'auto',
             'minWidth': 0,
             'padding': 0,
             'fontSize': '0.875rem',
