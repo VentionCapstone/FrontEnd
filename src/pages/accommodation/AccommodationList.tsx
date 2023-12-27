@@ -8,6 +8,8 @@ interface Accommodation {
   availability: boolean;
 }
 
+('https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg');
+
 const AccommodationList: React.FC = () => {
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
 
@@ -24,6 +26,11 @@ const AccommodationList: React.FC = () => {
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
+  const handleErrorInImage = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src =
+      'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
+    e.currentTarget.style.objectFit = 'contain';
+  };
   return (
     <>
       <Typography variant="h3" p={2}>
@@ -31,33 +38,17 @@ const AccommodationList: React.FC = () => {
       </Typography>
       <Grid spacing={2} container>
         {accommodations.map((accommodation, index) => (
-          <Grid key={index} lg={3} md={4} sm={12}>
-            <Box className="house-card">
+          <Grid item key={index} lg={3} md={4} sm={12}>
+            <Box className="house-card" p={2}>
               <img
-                src={
-                  accommodation.thumbnailUrl ||
-                  'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
-                }
+                src={accommodation.thumbnailUrl}
+                onError={handleErrorInImage}
                 alt="Accommodation Thumbnail"
                 className="house-image"
               />
-              <Typography>
-                <Typography component="div" fontWeight="bold">
-                  Description:
-                </Typography>
-                {accommodation.description}
-              </Typography>
-              <Typography>
-                <Typography component="div" fontWeight="bold">
-                  Price:
-                </Typography>
-                ${accommodation.price}
-              </Typography>
-              <Typography>
-                <Typography component="span" fontWeight="bold">
-                  Description:
-                </Typography>
-                {accommodation.availability ? 'Available' : 'Not Available'}
+              <Typography fontWeight={600}>Price:</Typography>${accommodation.price}
+              <Typography fontWeight={600}>
+                Description: {accommodation.availability ? 'Available' : 'Not Available'}
               </Typography>
             </Box>
           </Grid>
