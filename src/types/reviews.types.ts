@@ -3,7 +3,7 @@ export type ReviewResponse = {
   data: Review[];
   countByRating: CountByRating;
   averageRate: number;
-  totalNumber: number;
+  totalCount: number;
 };
 
 export type Review = {

@@ -7,8 +7,8 @@ export const EndpointsConfig = {
   Account: {
     GetUser: (userId: string) => `/users/${userId}`,
     GetUserProfile: (profileId: string) => `/users/profile/${profileId}`,
-    UpdateUserProfile: (profileId: string) => `/users/profile/${profileId}`,
-    DeleteUserProfile: (profileId: string) => `/users/profile/${profileId}`,
+    UpdateUserProfile: (profileId: string) => `/users/${profileId}`,
+    DeleteUserProfile: (profileId: string) => `/users/${profileId}`,
     CreateUserProfile: '/users/profile',
   },
   Amenity: {

@@ -7,9 +7,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
+// import FormControl from '@mui/material/FormControl';
+// import Select, { SelectChangeEvent } from '@mui/material/Select';
+// import MenuItem from '@mui/material/MenuItem';
 import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
 
@@ -24,7 +24,7 @@ import LoadingPrimary from '../../../components/loader/LoadingPrimary';
 export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
   const { data: reviews, isError, isLoading } = useGetReviewsQuery(accommodationId);
   const [open, setOpen] = useState(false);
-  const [selectedSort, setSelectedSort] = useState('recent');
+  // const [selectedSort, setSelectedSort] = useState('recent');
 
   const theme = useTheme();
   const mobileScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -33,9 +33,9 @@ export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
     setOpen((prev) => !prev);
   }, []);
 
-  const handleChange = useCallback((e: SelectChangeEvent) => {
-    setSelectedSort(e.target.value);
-  }, []);
+  // const handleChange = useCallback((e: SelectChangeEvent) => {
+  //   setSelectedSort(e.target.value);
+  // }, []);
 
   if (isLoading || isError) return <LoadingPrimary />;
 
@@ -50,12 +50,12 @@ export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
       >
         <Typography fontSize={'2rem'}>Rating</Typography>
         <Typography fontSize={'3.5rem'} fontWeight={600}>
-          {reviews.averageRate}
+          {reviews.averageRate.toFixed(1)}
         </Typography>
         <Rating
           readOnly
           value={reviews.averageRate}
-          precision={0.5}
+          precision={0.1}
           sx={{
             '& .MuiRating-iconFilled': {
               color: 'secondary.main',
@@ -85,7 +85,7 @@ export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
           textTransform: 'none',
         }}
       >
-        {`Show all ${reviews.totalNumber} reviews`}
+        Show all {reviews?.totalCount} reviews
       </Button>
 
       {/* Modal */}
@@ -108,7 +108,7 @@ export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
         </Stack>
 
         <DialogContent sx={{ p: 0 }}>
-          <Stack
+          {/* <Stack
             sx={{
               px: 8,
               py: 4,
@@ -142,7 +142,7 @@ export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
                 </MenuItem>
               </Select>
             </FormControl>
-          </Stack>
+          </Stack> */}
           <Stack gap={8} px={8} py={4}>
             {reviews.data.map((review) => (
               <Review key={review.id} review={review} />

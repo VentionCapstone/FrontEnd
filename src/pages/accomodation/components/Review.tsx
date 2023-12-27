@@ -1,7 +1,6 @@
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
-import Skeleton from '@mui/material/Skeleton';
 
 import moment from 'moment';
 
@@ -16,6 +15,7 @@ export const Review = ({ review }: { review: ReviewType }) => {
     user: { firstName, lastName, profile },
   } = review;
 
+  const userImage = profile.imageUrl ?? '';
   const formattedTime = moment(createdAt).fromNow();
 
   return (
@@ -28,29 +28,17 @@ export const Review = ({ review }: { review: ReviewType }) => {
         rowGap={{ xs: 2, md: 3 }}
         mb={{ xs: 2, md: 3 }}
       >
-        {profile.imageUrl ? (
-          <Box
-            component={'img'}
-            src={profile.imageUrl}
-            sx={{
-              width: '4rem',
-              height: '4rem',
-              bgcolor: 'secondary2.light',
-              borderRadius: '50%',
-              objectFit: 'cover',
-            }}
-          />
-        ) : (
-          <Skeleton
-            variant={'rounded'}
-            sx={{
-              width: '4rem',
-              height: '4rem',
-              bgcolor: 'secondary2.light',
-              borderRadius: '50%',
-            }}
-          />
-        )}
+        <Box
+          component={'img'}
+          src={userImage}
+          sx={{
+            width: '4rem',
+            height: '4rem',
+            bgcolor: 'secondary2.light',
+            borderRadius: '50%',
+            objectFit: 'cover',
+          }}
+        />
 
         <Box>
           <Typography fontWeight={600} lineHeight={'1.2rem'}>
