@@ -80,6 +80,11 @@ export const TopNavMenu = () => {
                   Account
                 </Link>
               </MenuItem>,
+              <MenuItem key="listing">
+                <Link component={RouterLink} to={RoutesConfig.Hosting}>
+                  Manage listing
+                </Link>
+              </MenuItem>,
               <MenuItem key="logout" onClick={handleLogout}>
                 Logout
               </MenuItem>,
