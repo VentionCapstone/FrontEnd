@@ -20,6 +20,7 @@ import { useCallback, useState } from 'react';
 import { Review } from './Review';
 import useGetReviewsQuery from '../../../api/queries/reviews/useGetReviewsQuery';
 import LoadingPrimary from '../../../components/loader/LoadingPrimary';
+import { Review as ReviewType } from '../../../types/reviews.types';
 
 export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
   const { data: reviews, isError, isLoading } = useGetReviewsQuery(accommodationId);
@@ -50,7 +51,7 @@ export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
       >
         <Typography fontSize={'2rem'}>Rating</Typography>
         <Typography fontSize={'3.5rem'} fontWeight={600}>
-          {reviews.averageRate}
+          {reviews.averageRate.toFixed(1)}
         </Typography>
         <Rating
           readOnly
@@ -67,7 +68,7 @@ export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
       </Stack>
 
       <Grid container spacing={{ xs: 8, lg: 16 }}>
-        {reviews.data.map((review) => (
+        {reviews.data.map((review: ReviewType) => (
           <Grid key={review.id} item xs={12} lg={6}>
             <Review review={review} />
           </Grid>
@@ -144,7 +145,7 @@ export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
             </FormControl>
           </Stack>
           <Stack gap={8} px={8} py={4}>
-            {reviews.data.map((review) => (
+            {reviews.data.map((review: ReviewType) => (
               <Review key={review.id} review={review} />
             ))}
           </Stack>
