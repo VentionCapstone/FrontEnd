@@ -22,7 +22,7 @@ export const BottomNav = () => {
   const isLoggedIn = useAppSelector((state) => state.auth.token) !== null;
   const [selectedRoute, setSelectedRoute] = useState<string>(route.pathname);
 
-  const handleChange = (e: React.SyntheticEvent<Element, Event>, route: string) => {
+  const handleChange = (_e: React.SyntheticEvent<Element, Event>, route: string) => {
     setSelectedRoute(route);
     navigate(route);
   };
