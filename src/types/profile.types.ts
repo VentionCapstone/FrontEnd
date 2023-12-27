@@ -1,26 +1,26 @@
-export interface UserResponse {
+export type ProfileState = {
+  profile: Profile | null;
+};
+
+export interface Profile {
   id: string;
   firstName: string | null;
   lastName: string | null;
-  email: string;
-  password: string;
-  role: string;
-  isEmailVerified: boolean;
-  isVerified: boolean;
-  isDeleted: boolean;
-  hashedRefreshToken: string;
-  activationLink: string | null;
-  profile: Profile | null;
-}
-
-export interface Profile {
-  firstName: string;
-  lastName: string;
   phoneNumber: string;
   imageUrl: string;
-  gender: string;
+  gender: Gender;
   country: string;
   language: string;
-  uiTheme: string;
+  uiTheme: ThemeMode;
   description: string;
+}
+
+export enum ThemeMode {
+  light = 'LIGHT',
+  dark = 'DARK',
+}
+
+export enum Gender {
+  male = 'MALE',
+  female = 'FEMALE',
 }

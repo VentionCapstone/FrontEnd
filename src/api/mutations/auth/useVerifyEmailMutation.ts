@@ -4,12 +4,13 @@ import toast from 'react-hot-toast';
 import httpClient from '../../httpClient';
 import { RoutesConfig } from '../../../config/routes.config';
 import { EndpointsConfig } from '../../../config/endpoints.config';
+import { QUERY_KEYS } from '../../../config/react-query.config';
 
 function useVerifyEmailMutation(token: string) {
   const navigate = useNavigate();
 
   return useMutation({
-    mutationKey: ['verify-email'],
+    mutationKey: [QUERY_KEYS.mutation.verifyEmail],
     mutationFn: async () => {
       await httpClient.post<string>(EndpointsConfig.Auth.VerifyEmail, { token });
     },

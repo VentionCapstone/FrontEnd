@@ -6,5 +6,7 @@ export const RoutesConfig = {
   },
   Account: {
     Root: '/account',
+    Create: '/account/create',
+    Edit: '/account/edit',
   },
 } as const;
