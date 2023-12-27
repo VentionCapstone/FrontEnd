@@ -1,14 +1,14 @@
-import { Box, Divider, Stack, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
-import PasswordInput from '../../components/input/PasswordInput';
-import httpClient from '../../api/httpClient';
-import toast from 'react-hot-toast';
+import { Box, Divider, Stack, Typography } from '@mui/material';
 import { AuthData } from '../../types/auth.types';
-import ButtonPrimary from '../../components/button/ButtonPrimary';
 import InputForm from '../../components/input/InputForm';
+import { EndpointsConfig } from '../../config/endpoints.config';
+import PasswordInput from '../../components/input/PasswordInput';
+import ButtonPrimary from '../../components/button/ButtonPrimary';
+import useSignupMutation from '../../api/mutations/auth/useSignupMutation';
 
 const Signup = () => {
   const { handleSubmit, control, watch } = useForm({
@@ -19,22 +19,27 @@ const Signup = () => {
     },
   });
   const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
+  const { mutateAsync, isPending } = useSignupMutation();
 
-  const onSubmit: SubmitHandler<AuthData> = async (data: AuthData) => {
-    if (isPasswordValid) {
-      setIsLoading(true);
-      const response = await httpClient.post<{ success: boolean; message: string }>(
-        '/auth/signup',
-        data
-      );
-      toast.success(response.data.message);
-      setIsLoading(false);
+  const onSubmit: SubmitHandler<AuthData> = async (Inputdata: AuthData) => {
+    try {
+      if (isPasswordValid) {
+        await mutateAsync(Inputdata);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
-
   return (
-    <Box sx={{ mx: 'auto', mt: '100px', border: '1px solid #b0b0b0', borderRadius: 2 }}>
+    <Box
+      sx={{
+        mx: 'auto',
+        mt: '5%',
+        border: '1px solid #b0b0b0',
+        borderRadius: 2,
+        maxWidth: '600px',
+      }}
+    >
       <Typography variant="subtitle1" align="center" margin={2} fontWeight="bold">
         Sign up
       </Typography>
@@ -66,14 +71,14 @@ const Signup = () => {
               setIsPasswordValid={setIsPasswordValid}
             />
           </Box>
-          <ButtonPrimary loading={isLoading} disbabled={isPasswordValid}>
+          <ButtonPrimary loading={isPending} disabled={isPasswordValid}>
             Sign up
           </ButtonPrimary>
         </form>
         <Typography variant="subtitle2" align="center" color="gray">
           if you already have an account, please{' '}
-          <Link to="/auth/signin" style={{ fontWeight: 'bold' }}>
-            login
+          <Link to={EndpointsConfig.Auth.SignIn} style={{ fontWeight: 'bold' }}>
+            sign in
           </Link>
         </Typography>
       </Stack>

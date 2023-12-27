@@ -1,5 +1,7 @@
 export const EndpointsConfig = {
   Auth: {
+    SignIn: '/auth/signin',
+    SignUp: '/auth/signup',
     VerifyEmail: '/auth/verify',
     UpdateEmail: '/auth/email',
     SignOut: '/auth/signout',
