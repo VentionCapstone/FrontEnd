@@ -10,6 +10,7 @@ import PersonalInfo from '../pages/profile/edit/personal-info';
 import LoginAndSecurity from '../pages/profile/edit/login-and-security';
 import ProfileSetting from '../pages/profile/edit/profile-settings';
 import Signup from '../pages/signup/Signup';
+import BookingRoom from '../pages/booking/BookingRoom';
 
 const MainLayout = React.lazy(() => import('../layouts/MainLayout'));
 const UserLayout = React.lazy(() => import('../layouts/UserLayout'));
@@ -72,6 +73,7 @@ const routes = createBrowserRouter([
       { path: 'verify', element: <VerifyEmail /> },
     ],
   },
+  { path: '/rooms', element: <BookingRoom /> },
 ]);
 
 export default function AppRoutes() {
