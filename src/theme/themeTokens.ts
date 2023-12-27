@@ -20,6 +20,9 @@ const lightTheme: ThemeOptions = {
   },
   typography: {
     fontFamily: 'Nunito, sans-serif',
+    button: {
+      textTransform: 'none',
+    },
     xs: {
       fontSize: '0.75rem',
       lineHeight: '1rem',
@@ -84,6 +87,9 @@ const darkTheme: ThemeOptions = {
   },
   typography: {
     fontFamily: 'Nunito, sans-serif',
+    button: {
+      textTransform: 'none',
+    },
     xs: {
       fontSize: '0.75rem',
       lineHeight: '1rem',
