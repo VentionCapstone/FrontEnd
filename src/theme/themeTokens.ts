@@ -1,7 +1,7 @@
 import { PaletteMode, ThemeOptions } from '@mui/material';
 
-const PRIMARY_LIGHT_THEME = '#222222';
-const PRIMARY_DARK_THEME = '#ffffff';
+export const PRIMARY_LIGHT_THEME = '#222222';
+export const PRIMARY_DARK_THEME = '#ffffff';
 
 const lightTheme: ThemeOptions = {
   spacing: 4,
