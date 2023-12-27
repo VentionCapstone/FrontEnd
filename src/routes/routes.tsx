@@ -11,6 +11,7 @@ import LoginAndSecurity from '../pages/profile/edit/login-and-security';
 import ProfileSetting from '../pages/profile/edit/profile-settings';
 import Signup from '../pages/signup/Signup';
 import Accommodation from '../pages/accomodation/Accommodation';
+import AccommodationList from '../pages/accommodation/AccommodationList';
 
 const MainLayout = React.lazy(() => import('../layouts/MainLayout'));
 const UserLayout = React.lazy(() => import('../layouts/UserLayout'));
@@ -32,6 +33,16 @@ const routes = createBrowserRouter([
     path: 'rooms/:id',
     element: <UserLayout />,
     children: [{ index: true, element: <Accommodation /> }],
+  },
+
+  {
+    path: '/hosting',
+    element: (
+      <PrivateRoute>
+        <UserLayout />
+      </PrivateRoute>
+    ),
+    children: [{ path: '', element: <AccommodationList /> }],
   },
 
   {
