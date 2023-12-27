@@ -6,20 +6,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import ButtonPrimary from '../../components/button/ButtonPrimary';
-
-interface dataType {
-  availableDates: string[][];
-  accommodationId: string;
-}
-
-interface BookingFormProps {
-  onSubmit: (reservationData: {
-    startDate: string;
-    endDate: string;
-    accommodationId: string;
-  }) => void;
-  data: dataType | undefined;
-}
+import { BookingFormProps } from '../../types/booking.types';
 
 const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, data }) => {
   const [selectedDates, setSelectedDates] = useState<[Dayjs | null, Dayjs | null]>([null, null]);

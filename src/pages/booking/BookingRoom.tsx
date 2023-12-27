@@ -4,10 +4,7 @@ import BookingForm from '../../components/booking/BookingForm';
 import { useGetAvailabeDates } from '../../api/queries/booking/useGetAvailableDates';
 import httpClient from '../../api/httpClient';
 import { EndpointsConfig } from '../../config/endpoints.config';
-
-interface BookingRoomProps {
-  accommodationId: string;
-}
+import { BookingRoomProps } from '../../types/booking.types';
 
 const BookingRoom: React.FC<BookingRoomProps> = () => {
   const handleReservationSubmit = async (reservationData: {
@@ -21,7 +18,6 @@ const BookingRoom: React.FC<BookingRoomProps> = () => {
   };
 
   const { data } = useGetAvailabeDates('01786e74-320c-47ad-8a84-100e7211cb4a');
-  // console.log(data);
 
   return <BookingForm onSubmit={(e) => void handleReservationSubmit(e)} data={data} />;
 };
