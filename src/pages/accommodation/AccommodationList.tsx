@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './AccommodationList.css';
-import { Grid } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 interface Accommodation {
   thumbnailUrl: string;
   description: string;
@@ -12,8 +12,12 @@ const AccommodationList: React.FC = () => {
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
 
   useEffect(() => {
-    // another: https://booking-api.ddns.net/api/accommodations?limit=12&page=1&minPrice=0&maxPrice=2147483647&minRooms=0&maxRooms=100&minPeople=0&maxPeople=500
-    fetch('https://booking-api.ddns.net/api/accommodations')
+    // another old: https://booking-api.ddns.net/api/accommodations?limit=12&page=1&minPrice=0&maxPrice=2147483647&minRooms=0&maxRooms=100&minPeople=0&maxPeople=500
+    // other old2 :https://booking-api.ddns.net/api/accommodations
+
+    fetch(
+      'https://booking-vention.ddns.net/api/accommodations?limit=12&page=1&minPrice=0&maxPrice=2147483647&minRooms=0&maxRooms=100&minPeople=0&maxPeople=500'
+    )
       .then((response) => response.json())
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
       .then((data) => setAccommodations(data.data))
@@ -21,35 +25,45 @@ const AccommodationList: React.FC = () => {
   }, []);
 
   return (
-    <div className="">
-      <h1>Accommodation List</h1>
+    <>
+      <Typography variant="h3" p={2}>
+        Accommodation List
+      </Typography>
       <Grid spacing={2} container>
         {accommodations.map((accommodation, index) => (
           <Grid key={index} lg={3} md={4} sm={12}>
-            <div className="house-card">
+            <Box className="house-card">
               <img
                 src={
                   accommodation.thumbnailUrl ||
-                  'https://www28.cs.kobe-u.ac.jp/wp-content/uploads/2021/04/noimage.png'
+                  'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
                 }
                 alt="Accommodation Thumbnail"
                 className="house-image"
               />
-              <p>
-                <strong>Description:</strong> {accommodation.description}
-              </p>
-              <p>
-                <strong>Price:</strong> ${accommodation.price}
-              </p>
-              <p>
-                <strong>Availability:</strong>{' '}
+              <Typography>
+                <Typography component="div" fontWeight="bold">
+                  Description:
+                </Typography>
+                {accommodation.description}
+              </Typography>
+              <Typography>
+                <Typography component="div" fontWeight="bold">
+                  Price:
+                </Typography>
+                ${accommodation.price}
+              </Typography>
+              <Typography>
+                <Typography component="span" fontWeight="bold">
+                  Description:
+                </Typography>
                 {accommodation.availability ? 'Available' : 'Not Available'}
-              </p>
-            </div>
+              </Typography>
+            </Box>
           </Grid>
         ))}
       </Grid>
-    </div>
+    </>
   );
 };
 
