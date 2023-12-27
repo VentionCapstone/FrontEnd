@@ -24,9 +24,14 @@ const routes = createBrowserRouter([
     element: <MainLayout />,
     children: [
       { path: '', element: <Main /> },
-      { path: 'rooms/:id', element: <Accommodation /> },
       { path: '*', element: <Navigate to="/" /> },
     ],
+  },
+
+  {
+    path: 'rooms/:id',
+    element: <UserLayout />,
+    children: [{ index: true, element: <Accommodation /> }],
   },
 
   {
