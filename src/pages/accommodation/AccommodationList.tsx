@@ -1,44 +1,46 @@
-import React, { useState, useEffect } from 'react';
 import './AccommodationList.css';
 import { Box, Grid, Typography } from '@mui/material';
-interface Accommodation {
-  thumbnailUrl: string;
-  description: string;
-  price: number;
-  availability: boolean;
-}
-
-('https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg');
+import { useQuery } from '@tanstack/react-query';
+import httpClient from '../../api/httpClient';
+import ErrorImage from '../../assets/no-image.png';
+import { AccommodationHostingResponse } from '../../types/accommodation.types';
+import LoadingPrimary from '../../components/loader/LoadingPrimary';
+import DataFetchError from '../../components/shared/DataFetchError';
 
 const AccommodationList: React.FC = () => {
-  const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
-
-  useEffect(() => {
-    // another old: https://booking-api.ddns.net/api/accommodations?limit=12&page=1&minPrice=0&maxPrice=2147483647&minRooms=0&maxRooms=100&minPeople=0&maxPeople=500
-    // other old2 :https://booking-api.ddns.net/api/accommodations
-
-    fetch(
-      'https://booking-vention.ddns.net/api/accommodations?limit=12&page=1&minPrice=0&maxPrice=2147483647&minRooms=0&maxRooms=100&minPeople=0&maxPeople=500'
-    )
-      .then((response) => response.json())
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
-      .then((data) => setAccommodations(data.data))
-      .catch((error) => console.error('Error fetching data:', error));
-  }, []);
+  const {
+    isPending,
+    data: accommodations,
+    isError,
+  } = useQuery({
+    queryKey: ['accommodations-hosting'],
+    queryFn: async () => {
+      const { data } = await httpClient.get<AccommodationHostingResponse>('accommodations/getAll');
+      return data;
+    },
+  });
 
   const handleErrorInImage = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    e.currentTarget.src =
-      'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
+    e.currentTarget.src = ErrorImage;
     e.currentTarget.style.objectFit = 'contain';
   };
+
+  if (isPending) {
+    return (
+      <Box>
+        <LoadingPrimary />
+      </Box>
+    );
+  }
+  if (isError) {
+    return <DataFetchError error="Failed to get accommodation list" />;
+  }
+
   return (
     <>
-      <Typography variant="h3" p={2}>
-        Accommodation List
-      </Typography>
       <Grid spacing={2} container>
-        {accommodations.map((accommodation, index) => (
-          <Grid item key={index} lg={3} md={4} sm={12}>
+        {accommodations.data.map((accommodation) => (
+          <Grid item key={accommodation.id} lg={3} md={4} sm={12}>
             <Box className="house-card" p={2}>
               <img
                 src={accommodation.thumbnailUrl}
@@ -46,9 +48,11 @@ const AccommodationList: React.FC = () => {
                 alt="Accommodation Thumbnail"
                 className="house-image"
               />
-              <Typography fontWeight={600}>Price:</Typography>${accommodation.price}
-              <Typography fontWeight={600}>
-                Description: {accommodation.availability ? 'Available' : 'Not Available'}
+              <Typography fontWeight={600} mt={2}>
+                {accommodation.address?.city}, {accommodation.address?.country}
+              </Typography>
+              <Typography fontWeight={600} mt={2}>
+                ${accommodation.price}
               </Typography>
             </Box>
           </Grid>

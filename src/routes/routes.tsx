@@ -10,6 +10,7 @@ import PersonalInfo from '../pages/profile/edit/personal-info';
 import LoginAndSecurity from '../pages/profile/edit/login-and-security';
 import ProfileSetting from '../pages/profile/edit/profile-settings';
 import Signup from '../pages/signup/Signup';
+import AccommodationList from '../pages/accommodation/AccommodationList';
 
 const MainLayout = React.lazy(() => import('../layouts/MainLayout'));
 const UserLayout = React.lazy(() => import('../layouts/UserLayout'));
@@ -26,6 +27,16 @@ const routes = createBrowserRouter([
       { path: '', element: <Main /> },
       { path: '*', element: <Navigate to="/" /> },
     ],
+  },
+
+  {
+    path: '/hosting',
+    element: (
+      <PrivateRoute>
+        <UserLayout />
+      </PrivateRoute>
+    ),
+    children: [{ path: '', element: <AccommodationList /> }],
   },
 
   {

@@ -74,3 +74,36 @@ export type DefaultSearchParamsType = {
   orderByPeople: string;
   orderByRoom: string;
 };
+
+export interface AccommodationHostingResponse {
+  success: boolean;
+  data: Data[];
+}
+export interface Data {
+  id: string;
+  title: string;
+  addressId: string;
+  thumbnailUrl: string;
+  ownerId: string;
+  squareMeters: number;
+  numberOfRooms: number;
+  price: number;
+  allowedNumberOfPeople: number;
+  availableFrom: string;
+  availableTo: string;
+  timezoneOffset: number;
+  description: string;
+  previewImgUrl: string;
+  isDeleted: boolean;
+  address: AddressHosting;
+}
+
+export interface AddressHosting {
+  id: string;
+  street: string;
+  city: string;
+  country: string;
+  zipCode: string;
+  latitude: number;
+  longitude: number;
+}
