@@ -8,7 +8,7 @@ import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftR
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
@@ -24,12 +24,17 @@ import LoadingPrimary from '../../../components/loader/LoadingPrimary';
 export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
   const { data: reviews, isError, isLoading } = useGetReviewsQuery(accommodationId);
   const [open, setOpen] = useState(false);
+  const [selectedSort, setSelectedSort] = useState('recent');
 
   const theme = useTheme();
   const mobileScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   const toggleModal = useCallback(() => {
     setOpen((prev) => !prev);
+  }, []);
+
+  const handleChange = useCallback((e: SelectChangeEvent) => {
+    setSelectedSort(e.target.value);
   }, []);
 
   if (isLoading || isError) return <LoadingPrimary />;
@@ -118,7 +123,8 @@ export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
 
             <FormControl>
               <Select
-                value={'time'}
+                value={selectedSort}
+                onChange={handleChange}
                 sx={{
                   '& .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select':
                     {
@@ -128,7 +134,7 @@ export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
                   'borderRadius': '2rem',
                 }}
               >
-                <MenuItem value={'time'}>
+                <MenuItem value={'recent'}>
                   <Typography variant={mobileScreen ? 'xs' : 'sm'}>Most Recent</Typography>
                 </MenuItem>
                 <MenuItem value={'rate'}>
