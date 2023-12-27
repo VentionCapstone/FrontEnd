@@ -78,7 +78,7 @@ const Signup = () => {
         <Typography variant="subtitle2" align="center" color="gray">
           if you already have an account, please{' '}
           <Link to={EndpointsConfig.Auth.SignIn} style={{ fontWeight: 'bold' }}>
-            login
+            sign in
           </Link>
         </Typography>
       </Stack>
