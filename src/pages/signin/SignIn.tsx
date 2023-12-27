@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Box,
   Divider,
@@ -9,15 +10,14 @@ import {
   InputLabel,
   OutlinedInput,
 } from '@mui/material';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import ButtonPrimary from '../../components/ButtonPrimary';
-import InputForm from '../../components/InputForm';
-import { AuthData } from '../../types/auth.types';
 import { Link } from 'react-router-dom';
-import { EndpointsConfig } from '../../config/endpoints.config';
-import useSignInMutation from '../../api/mutations/auth/useSignInMutation';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { useState } from 'react';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import useSignInMutation from '../../api/mutations/auth/useSignInMutation';
+import { AuthData } from '../../types/auth.types';
+import InputForm from '../../components/input/InputForm';
+import ButtonPrimary from '../../components/button/ButtonPrimary';
+import { EndpointsConfig } from '../../config/endpoints.config';
 
 const SignIn = () => {
   const { handleSubmit, control } = useForm({

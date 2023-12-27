@@ -3,7 +3,7 @@ import { Button, Typography, Box, List, ListItem, TextField } from '@mui/materia
 import { Check } from '@mui/icons-material';
 import toast from 'react-hot-toast';
 import { AxiosError } from 'axios';
-import LoadingPrimary from '../../../components/LoadingPrimary';
+import LoadingPrimary from '../../../components/loader/LoadingPrimary';
 import CustomChip from './CustomChip';
 import { Amenities, AmenitySetting, EditAmenitiesProps } from '../../../types/amenity.types';
 import { useGetAmenityListQuery } from '../../../api/queries/amenity/useGetAmenityListQuery';

@@ -9,8 +9,8 @@ import {
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Controller, ControllerRenderProps, FieldValues, Path } from 'react-hook-form';
-import { PasswordInputProps } from '../types/auth.types';
-import { STRONG_PASSWORD_REGEX } from '../config/regexp.config';
+import { PasswordInputProps } from '../../types/auth.types';
+import { STRONG_PASSWORD_REGEX } from '../../config/regexp.config';
 
 const PasswordInput = <TFieldValues extends FieldValues>({
   name,

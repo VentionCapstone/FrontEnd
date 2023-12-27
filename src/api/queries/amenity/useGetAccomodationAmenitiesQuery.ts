@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import httpClient from '../../httpClient';
+import { EndpointsConfig } from '../../../config/endpoints.config';
 import { AccommodationAmenitiesResponse } from '../../../types/amenity.types';
-import { AMENITIES_ROUTE } from '../../routes';
+import { QUERY_KEYS } from '../../../config/react-query.config';
 
 const fetchAccomodationAmenities = async (accomodationId: string) => {
   const { data } = await httpClient.get<AccommodationAmenitiesResponse>(
-    `${AMENITIES_ROUTE}/${accomodationId}`
+    EndpointsConfig.Amenity.Root(accomodationId)
   );
   return data;
 };
@@ -17,7 +18,7 @@ type Params = {
 
 export const useGetAccomodationAmenitiesQuery = ({ accomodationId, isNewAccomodation }: Params) => {
   return useQuery({
-    queryKey: ['accomodation_amenities', accomodationId, isNewAccomodation],
+    queryKey: [QUERY_KEYS.query.accomodationAmenities, accomodationId, isNewAccomodation],
     queryFn: async () => {
       if (isNewAccomodation) return {};
 

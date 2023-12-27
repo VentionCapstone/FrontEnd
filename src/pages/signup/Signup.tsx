@@ -1,14 +1,14 @@
-import { Box, Divider, Stack, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
-import PasswordInput from '../../components/PasswordInput';
+import { Box, Divider, Stack, Typography } from '@mui/material';
 import { AuthData } from '../../types/auth.types';
-import ButtonPrimary from '../../components/ButtonPrimary';
-import InputForm from '../../components/InputForm';
-import useSignupMutation from '../../api/mutations/auth/useSignupMutation';
+import InputForm from '../../components/input/InputForm';
 import { EndpointsConfig } from '../../config/endpoints.config';
+import PasswordInput from '../../components/input/PasswordInput';
+import ButtonPrimary from '../../components/button/ButtonPrimary';
+import useSignupMutation from '../../api/mutations/auth/useSignupMutation';
 
 const Signup = () => {
   const { handleSubmit, control, watch } = useForm({
