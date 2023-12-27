@@ -9,6 +9,7 @@ import { buildAmenityList } from './utils/amenityListBuilder';
 import LoadingPrimary from '../../components/loader/LoadingPrimary';
 import useGetSingleAccommodationQuery from '../../api/queries/accommodation/useGetSingleAccommodationQuery';
 import { Reviews } from './components/Reviews';
+import DataFetchError from '../../components/shared/DataFetchError';
 
 function selectOnlyTrueAmenities(amenities: Amenity) {
   const trueAmenities = Object.entries(amenities)
@@ -30,6 +31,10 @@ function Accommodation() {
   const { isPending, data, isError } = useGetSingleAccommodationQuery(accommodationId as string);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0 });
+  }, [accommodationId]);
+
+  useEffect(() => {
     if (data?.amenities) {
       const listOfTrueAmenities = selectOnlyTrueAmenities(data?.amenities[0]);
 
@@ -45,10 +50,8 @@ function Accommodation() {
     );
   }
   if (isError) {
-    return <div>Something went wrong</div>;
+    return <DataFetchError />;
   }
-
-  const [image_1, image_2, image_3, image_4, image_5] = data.media;
 
   return (
     <Box>
@@ -79,6 +82,8 @@ function Accommodation() {
                 md: '0',
               },
               height: {
+                'xs': '310px',
+                'sm': '360px',
                 'md': '408px',
                 'lg': '458px',
                 'xl': '558px',
@@ -87,7 +92,11 @@ function Accommodation() {
             },
           }}
         >
-          <img src={image_1.imageUrl} alt={image_1.accommodationId} onError={handleErrorInImage} />
+          <img
+            src={data.media[0]?.imageUrl}
+            alt={data.media[0].accommodationId}
+            onError={handleErrorInImage}
+          />
         </Grid>
         <Grid
           item
@@ -113,8 +122,8 @@ function Accommodation() {
         >
           <Grid item md={6}>
             <img
-              src={image_2.imageUrl}
-              alt={image_2.accommodationId}
+              src={data.media[1]?.imageUrl}
+              alt={data.media[1].accommodationId}
               onError={handleErrorInImage}
             />
           </Grid>
@@ -128,15 +137,15 @@ function Accommodation() {
             }}
           >
             <img
-              src={image_3.imageUrl}
-              alt={image_3.accommodationId}
+              src={data.media[2]?.imageUrl}
+              alt={data.media[2].accommodationId}
               onError={handleErrorInImage}
             />
           </Grid>
           <Grid item md={6}>
             <img
-              src={image_4.imageUrl}
-              alt={image_4.accommodationId}
+              src={data.media[3]?.imageUrl}
+              alt={data.media[3].accommodationId}
               onError={handleErrorInImage}
             />
           </Grid>
@@ -150,8 +159,8 @@ function Accommodation() {
             }}
           >
             <img
-              src={image_5.imageUrl}
-              alt={image_5.accommodationId}
+              src={data.media[4]?.imageUrl}
+              alt={data.media[4]?.accommodationId}
               onError={handleErrorInImage}
             />
           </Grid>
@@ -174,7 +183,10 @@ function Accommodation() {
             <Typography
               sx={{
                 fontWeight: 'bold',
-                fontSize: '1.3rem',
+                fontSize: {
+                  xs: '1.1rem',
+                  md: '1.3rem',
+                },
                 marginBottom: '1rem',
               }}
             >
@@ -190,7 +202,10 @@ function Accommodation() {
             <Typography
               sx={{
                 fontWeight: 'bold',
-                fontSize: '1.3rem',
+                fontSize: {
+                  xs: '1.1rem',
+                  md: '1.3rem',
+                },
                 marginBottom: '1rem',
               }}
             >

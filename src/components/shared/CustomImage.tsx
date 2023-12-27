@@ -37,7 +37,8 @@ function CustomImage({ image, name }: SingleImageProps) {
           objectPosition: 'center',
           mx: 'auto',
           height: {
-            sm: 260,
+            xs: 270,
+            sm: 320,
             md: 250,
             xl: 270,
           },
