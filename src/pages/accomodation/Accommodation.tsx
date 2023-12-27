@@ -231,9 +231,7 @@ function Accommodation() {
             </Box>
           </Box>
         </Box>
-        <Box flex={0.4}>
-          <Typography>Hi</Typography>
-        </Box>
+        <Box flex={0.4}></Box>
       </Box>
       <Reviews accommodationId={accommodationId as string} />
     </Box>
