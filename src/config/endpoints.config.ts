@@ -1,23 +1,27 @@
-export const EndpointsConfig = {
-  Auth: {
-    SignIn: '/auth/signin',
-    SignUp: '/auth/signup',
-    VerifyEmail: '/auth/verify',
-    UpdateEmail: '/auth/email',
-    SignOut: '/auth/signout',
+export const ENDPOINTS = {
+  auth: {
+    signIn: '/auth/signin',
+    signUp: '/auth/signup',
+    verifyEmail: '/auth/verify',
+    updateEmail: '/auth/email',
+    signOut: '/auth/signout',
   },
-  Account: {
-    GetUser: (userId: string) => `/users/${userId}`,
-    GetUserProfile: (profileId: string) => `/users/profile/${profileId}`,
-    UpdateUserProfile: (profileId: string) => `/users/profile/${profileId}`,
-    DeleteUserProfile: (profileId: string) => `/users/profile/${profileId}`,
-    CreateUserProfile: '/users/profile',
+  account: {
+    getUser: (userId: string) => `/users/${userId}`,
+    getUserProfile: (profileId: string) => `/users/profile/${profileId}`,
+    updateUserProfile: (profileId: string) => `/users/profile/${profileId}`,
+    deleteUserProfile: (profileId: string) => `/users/profile/${profileId}`,
+    createUserProfile: '/users/profile',
   },
-  Amenity: {
-    Root: (accommodationId: string) => `/amenities/${accommodationId}`,
-    GetAmenityList: '/amenities/list',
+  accommodation: {
+    root: '/accommodations',
+    getAccommodations: '/accommodations/getAll',
+    getAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}`,
+    updateAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}`,
+    deleteAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}`,
   },
-  Accommodations: {
-    Root: '/accommodations',
+  amenity: {
+    root: (accommodationId: string) => `/amenities/${accommodationId}`,
+    getAmenityList: '/amenities/list',
   },
 } as const;

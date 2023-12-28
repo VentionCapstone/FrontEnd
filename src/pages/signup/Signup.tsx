@@ -1,14 +1,15 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Controller, useForm } from 'react-hook-form';
-import type { SubmitHandler } from 'react-hook-form';
 import { Box, Divider, Stack, Typography } from '@mui/material';
-import { AuthData } from '../../types/auth.types';
-import InputForm from '../../components/input/InputForm';
-import { EndpointsConfig } from '../../config/endpoints.config';
-import PasswordInput from '../../components/input/PasswordInput';
-import ButtonPrimary from '../../components/button/ButtonPrimary';
-import useSignupMutation from '../../api/mutations/auth/useSignupMutation';
+import { useState } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+
+import useSignupMutation from '@/api/mutations/auth/useSignupMutation';
+import ButtonPrimary from '@/components/button/ButtonPrimary';
+import InputForm from '@/components/input/InputForm';
+import PasswordInput from '@/components/input/PasswordInput';
+import { ENDPOINTS } from '@/config/endpoints.config';
+import { AuthData } from '@/types/auth.types';
 
 const Signup = () => {
   const { handleSubmit, control, watch } = useForm({
@@ -77,7 +78,7 @@ const Signup = () => {
         </form>
         <Typography variant="subtitle2" align="center" color="gray">
           if you already have an account, please{' '}
-          <Link to={EndpointsConfig.Auth.SignIn} style={{ fontWeight: 'bold' }}>
+          <Link to={ENDPOINTS.auth.signIn} style={{ fontWeight: 'bold' }}>
             sign in
           </Link>
         </Typography>

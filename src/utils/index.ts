@@ -38,3 +38,12 @@ export const getPalleteMode = (mode: ThemeMode | null): PaletteMode => {
 
   return 'light';
 };
+
+export const lineClampStyle = (line: number) => {
+  return {
+    display: '-webkit-box',
+    WebkitBoxOrient: 'vertical',
+    WebkitLineClamp: line,
+    overflow: 'hidden',
+  };
+};

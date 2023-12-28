@@ -1,12 +1,17 @@
-export const RoutesConfig = {
-  Root: '/',
-  Auth: {
-    SignIn: '/auth/signin',
-    SignUp: '/auth/signup',
+export const ROUTES = {
+  root: '/',
+  auth: {
+    signIn: '/auth/signin',
+    signUp: '/auth/signup',
   },
-  Account: {
-    Root: '/account',
-    Create: '/account/create',
-    Edit: '/account/edit',
+  account: {
+    root: '/account',
+    create: '/account/create',
+    edit: '/account/edit',
+  },
+  accommodations: {
+    root: '/accommodations',
+    create: '/accommodations/create',
+    edit: (id: string) => `/accommodations/edit/${id}`,
   },
 } as const;

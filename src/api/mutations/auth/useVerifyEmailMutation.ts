@@ -1,10 +1,11 @@
 import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import httpClient from '../../httpClient';
-import { RoutesConfig } from '../../../config/routes.config';
-import { EndpointsConfig } from '../../../config/endpoints.config';
-import { QUERY_KEYS } from '../../../config/react-query.config';
+import { useNavigate } from 'react-router-dom';
+
+import httpClient from '@/api/httpClient';
+import { ENDPOINTS } from '@/config/endpoints.config';
+import { QUERY_KEYS } from '@/config/react-query.config';
+import { ROUTES } from '@/config/routes.config';
 
 function useVerifyEmailMutation(token: string) {
   const navigate = useNavigate();
@@ -12,11 +13,11 @@ function useVerifyEmailMutation(token: string) {
   return useMutation({
     mutationKey: [QUERY_KEYS.mutation.verifyEmail],
     mutationFn: async () => {
-      await httpClient.post<string>(EndpointsConfig.Auth.VerifyEmail, { token });
+      await httpClient.post<string>(ENDPOINTS.auth.verifyEmail, { token });
     },
     onSuccess: () => {
       toast.success('Email verified');
-      navigate(RoutesConfig.Auth.SignIn);
+      navigate(ROUTES.auth.signIn);
     },
   });
 }
