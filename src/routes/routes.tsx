@@ -6,7 +6,9 @@ import ProfileCreateRoute from './ProfileCreateRoute';
 import ProfileEditRoute from './ProfileEditRoute';
 import UserRoute from './UserRoute';
 
-import Layout from '@/layouts';
+import AuthLayout from '@/layouts/AuthLayout';
+import MainLayout from '@/layouts/MainLayout';
+import UserLayout from '@/layouts/UserLayout';
 
 const Main = React.lazy(() => import('@/pages/main'));
 const SignIn = React.lazy(() => import('@/pages/signin'));
@@ -23,7 +25,7 @@ const AccommodationForm = React.lazy(() => import('@/pages/accommodations/Accomm
 const routes = createBrowserRouter([
   {
     path: '/',
-    element: <Layout />,
+    element: <MainLayout />,
     children: [
       { path: '', element: <Main /> },
       { path: '*', element: <Navigate to="/" /> },
@@ -34,7 +36,7 @@ const routes = createBrowserRouter([
     path: '/account',
     element: (
       <PrivateRoute>
-        <Layout maxWidth="xl" />
+        <UserLayout />
       </PrivateRoute>
     ),
     children: [
@@ -65,7 +67,7 @@ const routes = createBrowserRouter([
     path: '/auth',
     element: (
       <UserRoute>
-        <Layout maxWidth="xl" />
+        <AuthLayout />
       </UserRoute>
     ),
     children: [
@@ -77,7 +79,7 @@ const routes = createBrowserRouter([
 
   {
     path: '/accommodations',
-    element: <Layout maxWidth="xl" />,
+    element: <MainLayout />,
     children: [
       { path: '', element: <Accommodations /> },
       { path: 'create', element: <AccommodationForm /> },
