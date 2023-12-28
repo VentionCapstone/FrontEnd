@@ -2,7 +2,8 @@ import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 
-import { formatDistanceToNow } from 'date-fns';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 
 import { MoreLessText } from '../../../components/more-less-text/MoreLessText';
 import { Review as ReviewType } from '../../../types/reviews.types';
@@ -16,7 +17,8 @@ export const Review = ({ review }: { review: ReviewType }) => {
   } = review;
 
   const userImage = profile.imageUrl ?? '';
-  const formattedTime = formatDistanceToNow(new Date(createdAt), { addSuffix: true });
+  dayjs.extend(relativeTime);
+  const formattedTime = dayjs(createdAt).fromNow();
 
   return (
     <Box>
