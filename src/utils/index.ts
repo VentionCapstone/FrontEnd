@@ -1,5 +1,6 @@
 import { PaletteMode } from '@mui/material';
 import { ThemeMode } from '../types/profile.types';
+import { Amenity } from '../types/accommodations.types';
 
 export const convertImageToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -38,3 +39,11 @@ export const getPalleteMode = (mode: ThemeMode | null): PaletteMode => {
 
   return 'light';
 };
+
+export function selectOnlyTrueAmenities(amenities: Amenity) {
+  const trueAmenities = Object.entries(amenities)
+    .filter(([, value]) => value === true)
+    .map(([key]) => key);
+
+  return trueAmenities;
+}

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { AccommodationResponse } from '../../../types/accommodation.types';
+import { AccommodationResponse } from '../../../types/accommodations.types';
 import httpClient from '../../httpClient';
 
 function useGetSingleAccommodationQuery(accommodationId: string) {
