@@ -22,4 +22,8 @@ export const EndpointsConfig = {
     GetAccommodationReviws: (accommodationId: string) =>
       `/accommodations/${accommodationId}/reviews`,
   },
+  Booking: {
+    GetAvailableDates: (accommodationId: string) => `/booking/available-dates/${accommodationId}`,
+    book: '/booking/book',
+  },
 } as const;
