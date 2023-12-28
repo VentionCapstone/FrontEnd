@@ -12,17 +12,14 @@ export const ENDPOINTS = {
     createUserProfile: '/users/profile',
   },
   accommodation: {
+    root: '/accommodations',
     getAccommodations: '/accommodations/getAll',
     getAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}`,
-    createAccommodation: '/accommodations',
     updateAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}`,
     deleteAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}`,
   },
   amenity: {
     root: (accommodationId: string) => `/amenities/${accommodationId}`,
     getAmenityList: '/amenities/list',
-  },
-  Accommodations: {
-    Root: '/accommodations',
   },
 } as const;

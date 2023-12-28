@@ -10,6 +10,7 @@ import { useCreateAccommodation } from '@/api/mutations/accommodations/useCreate
 import { useDeleteAccommodation } from '@/api/mutations/accommodations/useDeleteAccommodation';
 import { useUpdateAccommodation } from '@/api/mutations/accommodations/useUpdateAccommodation';
 import { useGetAccommodation } from '@/api/queries/accommodations/useGetAccommodation';
+import YandexMap from '@/components/YandexMap';
 import { ROUTES } from '@/config/routes.config';
 import { AccommodationReq, accommodationSchema } from '@/types/accommodation.types';
 
@@ -22,7 +23,9 @@ export default function AccommodationForm() {
   const { mutate: deleteAccommodation } = useDeleteAccommodation();
 
   const {
+    watch,
     control,
+    setValue,
     handleSubmit,
     formState: { errors, dirtyFields },
   } = useForm<AccommodationReq>({
@@ -50,32 +53,43 @@ export default function AccommodationForm() {
     values: accommodation?.data,
   });
 
+  const latitudeWatch = watch('address.latitude');
+  const longitudeWatch = watch('address.longitude');
+
   const onSubmit = (data: AccommodationReq) => {
     if (id) {
       if (!Object.keys(dirtyFields).length) {
         navigate(ROUTES.accommodations.root);
         return;
-      } else {
-        updateAccommodation({
-          ...data,
-          id,
-          availableFrom: dayjs(data.availableFrom).toISOString(),
-          availableTo: dayjs(data.availableTo).toISOString(),
-        });
       }
-    } else {
-      createAccommodation({
+      updateAccommodation({
         ...data,
+        id,
         availableFrom: dayjs(data.availableFrom).toISOString(),
         availableTo: dayjs(data.availableTo).toISOString(),
       });
+      return;
     }
+    createAccommodation({
+      ...data,
+      availableFrom: dayjs(data.availableFrom).toISOString(),
+      availableTo: dayjs(data.availableTo).toISOString(),
+    });
   };
 
   const handleDelete = () => {
     if (id) {
       deleteAccommodation(id);
     }
+  };
+
+  const handleCoordsChange = (coords: [number, number]) => {
+    setValue('address.latitude', coords[0], {
+      shouldDirty: true,
+    });
+    setValue('address.longitude', coords[1], {
+      shouldDirty: true,
+    });
   };
 
   return (
@@ -264,6 +278,13 @@ export default function AccommodationForm() {
               />
             )}
           />
+          <Box sx={{ gridColumn: '1 / 3' }}>
+            <YandexMap
+              latitude={latitudeWatch}
+              longitude={longitudeWatch}
+              setCoords={handleCoordsChange}
+            />
+          </Box>
         </Box>
         <Box display="flex" justifyContent={id ? 'space-between' : 'flex-end'}>
           {id && (

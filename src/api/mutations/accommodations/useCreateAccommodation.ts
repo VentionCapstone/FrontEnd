@@ -9,7 +9,7 @@ export const useCreateAccommodation = () => {
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: async (data: AccommodationReq) => {
-      await httpClient.post(ENDPOINTS.accommodation.createAccommodation, data);
+      await httpClient.post(ENDPOINTS.accommodation.root, data);
     },
 
     onSuccess: async () => {
