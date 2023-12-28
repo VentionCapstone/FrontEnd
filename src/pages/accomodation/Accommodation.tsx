@@ -3,12 +3,10 @@ import { useParams } from 'react-router';
 import { Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { AmenitySetting } from '../../types/amenity.types';
-import { Amenity } from '../../types/accommodation.types';
+import { Amenity } from '../../types/accommodations.types';
 import { buildAmenityList } from './utils/amenityListBuilder';
 import LoadingPrimary from '../../components/loader/LoadingPrimary';
 import useGetSingleAccommodationQuery from '../../api/queries/accommodation/useGetSingleAccommodationQuery';
-import DataFetchError from '../../components/shared/DataFetchError';
-import ErrorImage from '../../assets/no-image.png';
 
 function selectOnlyTrueAmenities(amenities: Amenity) {
   const trueAmenities = Object.entries(amenities)
@@ -19,8 +17,7 @@ function selectOnlyTrueAmenities(amenities: Amenity) {
 }
 
 const handleErrorInImage = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-  e.currentTarget.src = ErrorImage;
-  e.currentTarget.style.objectFit = 'contain';
+  e.currentTarget.src = 'https://via.placeholder.com/500';
 };
 
 function Accommodation() {
@@ -28,10 +25,6 @@ function Accommodation() {
   const [amenities, setAmenities] = useState<AmenitySetting[]>([]);
 
   const { isPending, data, isError } = useGetSingleAccommodationQuery(accommodationId as string);
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0 });
-  }, [accommodationId]);
 
   useEffect(() => {
     if (data?.amenities) {
@@ -49,7 +42,7 @@ function Accommodation() {
     );
   }
   if (isError) {
-    return <DataFetchError />;
+    return <div>Something went wrong</div>;
   }
 
   const [image_1, image_2, image_3, image_4, image_5] = data.media;
@@ -83,8 +76,6 @@ function Accommodation() {
                 md: '0',
               },
               height: {
-                'xs': '310px',
-                'sm': '360px',
                 'md': '408px',
                 'lg': '458px',
                 'xl': '558px',
@@ -180,10 +171,7 @@ function Accommodation() {
             <Typography
               sx={{
                 fontWeight: 'bold',
-                fontSize: {
-                  xs: '1.1rem',
-                  md: '1.3rem',
-                },
+                fontSize: '1.3rem',
                 marginBottom: '1rem',
               }}
             >
@@ -199,10 +187,7 @@ function Accommodation() {
             <Typography
               sx={{
                 fontWeight: 'bold',
-                fontSize: {
-                  xs: '1.1rem',
-                  md: '1.3rem',
-                },
+                fontSize: '1.3rem',
                 marginBottom: '1rem',
               }}
             >
@@ -228,7 +213,9 @@ function Accommodation() {
             </Box>
           </Box>
         </Box>
-        <Box flex={0.4}></Box>
+        <Box flex={0.4}>
+          <Typography>Hi</Typography>
+        </Box>
       </Box>
     </Box>
   );
