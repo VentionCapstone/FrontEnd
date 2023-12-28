@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 
-import moment from 'moment';
+import { formatDistanceToNow } from 'date-fns';
 
 import { MoreLessText } from '../../../components/more-less-text/MoreLessText';
 import { Review as ReviewType } from '../../../types/reviews.types';
@@ -16,7 +16,7 @@ export const Review = ({ review }: { review: ReviewType }) => {
   } = review;
 
   const userImage = profile.imageUrl ?? '';
-  const formattedTime = moment(createdAt).fromNow();
+  const formattedTime = formatDistanceToNow(new Date(createdAt), { addSuffix: true });
 
   return (
     <Box>
