@@ -55,21 +55,20 @@ export default function AccommodationForm() {
       if (!Object.keys(dirtyFields).length) {
         navigate(ROUTES.accommodations.root);
         return;
-      } else {
-        updateAccommodation({
-          ...data,
-          id,
-          availableFrom: dayjs(data.availableFrom).toISOString(),
-          availableTo: dayjs(data.availableTo).toISOString(),
-        });
       }
-    } else {
-      createAccommodation({
+      updateAccommodation({
         ...data,
+        id,
         availableFrom: dayjs(data.availableFrom).toISOString(),
         availableTo: dayjs(data.availableTo).toISOString(),
       });
+      return;
     }
+    createAccommodation({
+      ...data,
+      availableFrom: dayjs(data.availableFrom).toISOString(),
+      availableTo: dayjs(data.availableTo).toISOString(),
+    });
   };
 
   const handleDelete = () => {
