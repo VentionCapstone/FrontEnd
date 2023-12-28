@@ -1,8 +1,8 @@
+import httpClient from '@/api/httpClient';
+import { ENDPOINTS } from '@/config/endpoints.config';
+import { AMOUNT_PER_PAGE } from '@/config/pagination.config';
+import { ResponseAccommodationList } from '@/types/accommodation.types';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import httpClient from '../../httpClient';
-import { ResponseAccommodationList } from '../../../types/accommodation.types';
-import { EndpointsConfig } from '../../../config/endpoints.config';
-import { AMOUNT_PER_PAGE } from '../../../config/pagination.config';
 
 interface AccommodationsQueryProps {
   searchParamsAsObject: Record<string, string | null>;
@@ -16,7 +16,7 @@ function useGetAccommodationsQuery({ searchParamsAsObject }: AccommodationsQuery
         searchParamsAsObject;
 
       const { data } = await httpClient.get<ResponseAccommodationList>(
-        EndpointsConfig.Accommodations.Root,
+        ENDPOINTS.accommodation.root,
         {
           params: {
             page: pageParam,
