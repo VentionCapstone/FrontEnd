@@ -8,21 +8,19 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useTheme } from '@mui/material';
 
 import { RoutesConfig } from '../../config/routes.config';
 import { useAppSelector } from '../../hooks/redux-hooks';
 import { mainNavigationStyles } from './mainNavigation.styles';
-import { PRIMARY_LIGHT_THEME } from '../../theme/themeTokens';
+import { hasToken } from '../../stores/slices/authSlice';
 
 export const BottomNav = () => {
   const route = useLocation();
   const navigate = useNavigate();
-  const mode = useTheme().palette.mode;
-  const isLoggedIn = useAppSelector((state) => state.auth.token) !== null;
+  const isLoggedIn = useAppSelector(hasToken);
   const [selectedRoute, setSelectedRoute] = useState<string>(route.pathname);
 
-  const handleChange = (_e: React.SyntheticEvent<Element, Event>, route: string) => {
+  const handleRouteChange = (_e: React.SyntheticEvent<Element, Event>, route: string) => {
     setSelectedRoute(route);
     navigate(route);
   };
@@ -40,29 +38,27 @@ export const BottomNav = () => {
       <BottomNavigation
         showLabels
         value={selectedRoute}
-        sx={{
-          ...mainNavigationStyles.bottomNav,
-          bgcolor: mode === 'light' ? 'background.default' : PRIMARY_LIGHT_THEME,
-        }}
-        onChange={handleChange}
+        sx={mainNavigationStyles.bottomNav}
+        onChange={handleRouteChange}
       >
         <BottomNavigationAction value={RoutesConfig.Root} label="Explore" icon={<SearchIcon />} />
         <BottomNavigationAction label="Wishlist" icon={<FavoriteBorderRoundedIcon />} />
-        {isLoggedIn ? (
-          [
-            <BottomNavigationAction
-              key={'Trips'}
-              label="Trips"
-              icon={<ChatBubbleOutlineRoundedIcon />}
-            />,
-            <BottomNavigationAction
-              value={RoutesConfig.Account.Edit}
-              key={RoutesConfig.Account.Edit}
-              label="Profile"
-              icon={<AccountCircleOutlinedIcon />}
-            />,
-          ]
-        ) : (
+
+        {isLoggedIn && [
+          <BottomNavigationAction
+            key={'Trips'}
+            label="Trips"
+            icon={<ChatBubbleOutlineRoundedIcon />}
+          />,
+          <BottomNavigationAction
+            value={RoutesConfig.Account.Edit}
+            key={RoutesConfig.Account.Edit}
+            label="Profile"
+            icon={<AccountCircleOutlinedIcon />}
+          />,
+        ]}
+
+        {!isLoggedIn && (
           <BottomNavigationAction
             value={RoutesConfig.Auth.SignIn}
             label="Login"

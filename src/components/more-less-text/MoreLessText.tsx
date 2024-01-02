@@ -1,23 +1,15 @@
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
+import { truncateReview } from '../../utils';
 
 export const MoreLessText = ({ text, maxChars }: { text: string; maxChars: number }) => {
   const [expanded, setExpanded] = useState(false);
+  const reviewToDisplay = expanded ? text : truncateReview(text, maxChars);
   const shouldTruncate = text.length > maxChars;
-  const reviewToDisplay = expanded ? text : truncateReview(text);
-
-  function truncateReview(text: string) {
-    if (shouldTruncate) {
-      const truncatedText = text.slice(0, maxChars) + '...';
-      return truncatedText;
-    }
-
-    return text;
-  }
 
   const toggleText = () => {
-    setExpanded(!expanded);
+    setExpanded((expanded) => !expanded);
   };
 
   return (

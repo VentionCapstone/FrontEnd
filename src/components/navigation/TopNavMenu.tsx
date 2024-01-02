@@ -14,10 +14,13 @@ import useGetUserQuery from '../../api/queries/account/useGetUserQuery';
 import { mainNavigationStyles as styles } from './mainNavigation.styles';
 import { useAppSelector } from '../../hooks/redux-hooks';
 import { RoutesConfig } from '../../config/routes.config';
+import { hasToken } from '../../stores/slices/authSlice';
+import { LOCAL_STORAGE_KEYS } from '../../config/local-storage.config';
+import { getValueFromLocalStorage } from '../../utils';
 
 export const TopNavMenu = () => {
-  const isLoggedIn = useAppSelector((state) => state.auth.token) !== null;
-  const userId = localStorage.getItem('sub');
+  const isLoggedIn = useAppSelector(hasToken);
+  const userId = getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.sub);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -36,7 +39,6 @@ export const TopNavMenu = () => {
   return (
     <Box>
       <Button
-        id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}

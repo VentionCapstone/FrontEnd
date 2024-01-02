@@ -1,5 +1,6 @@
 import { PaletteMode } from '@mui/material';
 import { ThemeMode } from '../types/profile.types';
+import toast from 'react-hot-toast';
 
 export const convertImageToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -35,6 +36,7 @@ export const getValueFromLocalStorage = <T>(key: string): T | null => {
     }
   } catch (error) {
     console.error('Error retrieving value from local storage:', error);
+    toast.error('Error retrieving value');
 
     return null;
   }
@@ -50,4 +52,13 @@ export const setValueToLocalStorage = (key: string, value: object | string): voi
   } catch (error) {
     console.error('Error setting data to local storage:', error);
   }
+};
+
+export const truncateReview = (text: string, maxChars: number) => {
+  if (text.length > maxChars) {
+    const truncatedText = text.slice(0, maxChars) + '...';
+    return truncatedText;
+  }
+
+  return text;
 };

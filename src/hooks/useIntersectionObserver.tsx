@@ -17,7 +17,8 @@ const useIntersectionObserver = (
     }
 
     const observer = new IntersectionObserver((entries) => {
-      setEntry(entries[0]);
+      const firstEntry = entries[0];
+      setEntry(firstEntry);
     });
 
     observer.observe(target);

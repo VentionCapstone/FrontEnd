@@ -12,6 +12,7 @@ export const mainNavigationStyles = {
     borderBottom: '1px solid',
     borderColor: 'secondary2.light',
     color: 'primary.main',
+    bgcolor: 'backgroundSecondary.main',
     zIndex: 100,
   },
 
@@ -20,6 +21,7 @@ export const mainNavigationStyles = {
       xs: 'flex',
       md: 'none',
     },
+    'bgcolor': 'backgroundSecondary.main',
     '.MuiBottomNavigationAction-root': { color: 'secondary2.main', gap: '0.25rem' },
     '& .Mui-selected, .Mui-selected svg': { color: 'secondary.main', fontWeight: 600 },
   },

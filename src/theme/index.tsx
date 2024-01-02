@@ -1,7 +1,7 @@
 import { CssBaseline, createTheme } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { useAppSelector } from '../hooks/redux-hooks';
-import { getProfile } from '../stores/slices/authSlice';
+import { getTheme } from '../stores/slices/authSlice';
 import { getPalleteMode, getValueFromLocalStorage, setValueToLocalStorage } from '../utils';
 import { LOCAL_STORAGE_KEYS } from '../config/local-storage.config';
 import { ThemeMode } from '../types/profile.types';
@@ -9,7 +9,7 @@ import { themeOptions } from './themeTokens';
 import { useEffect, useState } from 'react';
 
 const ThemeWrapper = ({ children }: { children: React.ReactNode }) => {
-  const profileThemeMode = useAppSelector(getProfile)?.uiTheme;
+  const profileThemeMode = useAppSelector(getTheme);
   const localThemeMode = getValueFromLocalStorage<ThemeMode>(LOCAL_STORAGE_KEYS.uiTheme);
   const [mode, setMode] = useState<ThemeMode>(localThemeMode ?? ThemeMode.light);
   const theme = createTheme(themeOptions[getPalleteMode(mode)]);

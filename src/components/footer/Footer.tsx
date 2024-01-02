@@ -5,12 +5,19 @@ import Typography from '@mui/material/Typography';
 
 import { footerStyles } from './footerStyles';
 import { useTheme } from '@mui/material';
-import { PRIMARY_LIGHT_THEME } from '../../theme/themeTokens';
+import { FOOTER_BG_LIGHT, PRIMARY_LIGHT_THEME } from '../../theme/themeTokens';
+import { MuiThemeMode } from '../../types/theme.types';
 
 export const Footer = ({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) => {
-  const mode = useTheme().palette.mode;
+  const {
+    palette: { mode },
+  } = useTheme();
+
   return (
-    <Box sx={footerStyles.footer} bgcolor={mode === 'light' ? '#F7F7F7' : PRIMARY_LIGHT_THEME}>
+    <Box
+      sx={footerStyles.footer}
+      bgcolor={mode === MuiThemeMode.light ? FOOTER_BG_LIGHT : PRIMARY_LIGHT_THEME}
+    >
       <Container
         maxWidth={maxWidth}
         disableGutters

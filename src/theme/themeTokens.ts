@@ -2,6 +2,26 @@ import { PaletteMode, ThemeOptions } from '@mui/material';
 
 export const PRIMARY_LIGHT_THEME = '#222222';
 export const PRIMARY_DARK_THEME = '#ffffff';
+export const FOOTER_BG_LIGHT = '#f7f7f7';
+
+export const FONT_SIZES = {
+  xs: {
+    fontSize: '0.75rem',
+    lineHeight: '1rem',
+  },
+  sm: {
+    fontSize: '0.875rem',
+    lineHeight: '1.25rem',
+  },
+  lg: {
+    fontSize: '1.375rem',
+    lineHeight: '1.75rem',
+  },
+  xl: {
+    fontSize: '1.5rem',
+    lineHeight: '2rem',
+  },
+};
 
 const lightTheme: ThemeOptions = {
   spacing: 4,
@@ -17,25 +37,16 @@ const lightTheme: ThemeOptions = {
       light: '#DDDDDD',
       main: '#717171',
     },
+    backgroundSecondary: {
+      main: '#FFFFFF',
+    },
   },
   typography: {
     fontFamily: 'Nunito, sans-serif',
-    xs: {
-      fontSize: '0.75rem',
-      lineHeight: '1rem',
-    },
-    sm: {
-      fontSize: '0.875rem',
-      lineHeight: '1.25rem',
-    },
-    lg: {
-      fontSize: '1.375rem',
-      lineHeight: '1.75rem',
-    },
-    xl: {
-      fontSize: '1.5rem',
-      lineHeight: '2rem',
-    },
+    xs: FONT_SIZES.xs,
+    sm: FONT_SIZES.sm,
+    lg: FONT_SIZES.lg,
+    xl: FONT_SIZES.xl,
   },
   breakpoints: {
     values: {
@@ -81,25 +92,16 @@ const darkTheme: ThemeOptions = {
       light: '#DDDDDD',
       main: '#717171',
     },
+    backgroundSecondary: {
+      main: PRIMARY_LIGHT_THEME,
+    },
   },
   typography: {
     fontFamily: 'Nunito, sans-serif',
-    xs: {
-      fontSize: '0.75rem',
-      lineHeight: '1rem',
-    },
-    sm: {
-      fontSize: '0.875rem',
-      lineHeight: '1.25rem',
-    },
-    lg: {
-      fontSize: '1.375rem',
-      lineHeight: '1.75rem',
-    },
-    xl: {
-      fontSize: '1.5rem',
-      lineHeight: '2rem',
-    },
+    xs: FONT_SIZES.xs,
+    sm: FONT_SIZES.sm,
+    lg: FONT_SIZES.lg,
+    xl: FONT_SIZES.xl,
   },
   breakpoints: {
     values: {

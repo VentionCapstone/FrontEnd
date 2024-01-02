@@ -5,7 +5,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import EditablePanel from '../EditablePanel';
 import useEditAccountMutation from '../../../../api/mutations/account/useEditAccountMutation';
@@ -18,9 +18,12 @@ import { ThemeMode } from '../../../../types/profile.types';
 import { LOCAL_STORAGE_KEYS } from '../../../../config/local-storage.config';
 
 function ProfileSettings() {
-  const profileId = useAppSelector(getProfile)?.id ?? '';
+  const profileId = useAppSelector(getProfile)?.id;
   const { mutate } = useEditAccountMutation(profileId);
-  const uiTheme = getValueFromLocalStorage<ThemeMode>(LOCAL_STORAGE_KEYS.uiTheme);
+  const uiTheme = useMemo(
+    () => getValueFromLocalStorage<ThemeMode>(LOCAL_STORAGE_KEYS.uiTheme),
+    []
+  );
 
   const [theme, setTheme] = useState<ThemeMode>(uiTheme ?? ThemeMode.light);
 

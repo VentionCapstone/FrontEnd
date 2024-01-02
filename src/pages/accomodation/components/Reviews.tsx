@@ -19,7 +19,7 @@ import useGetReviewsQuery from '../../../api/queries/reviews/useGetReviewsQuery'
 import LoadingPrimary from '../../../components/loader/LoadingPrimary';
 
 export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
-  const { data: reviews, isError, isLoading } = useGetReviewsQuery(accommodationId);
+  const { data: reviews, isLoading } = useGetReviewsQuery(accommodationId);
   const [open, setOpen] = useState(false);
 
   const theme = useTheme();
@@ -29,7 +29,7 @@ export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
     setOpen((prev) => !prev);
   }, []);
 
-  if (isLoading || isError) return <LoadingPrimary />;
+  if (isLoading) return <LoadingPrimary />;
 
   return reviews?.data?.length ? (
     <Box>
@@ -77,7 +77,7 @@ export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
           textTransform: 'none',
         }}
       >
-        Show all {reviews?.totalCount} reviews
+        Show all {reviews.totalCount} reviews
       </Button>
 
       {/* Modal */}

@@ -7,6 +7,9 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 
 import { MoreLessText } from '../../../components/more-less-text/MoreLessText';
 import { Review as ReviewType } from '../../../types/reviews.types';
+import { FONT_SIZES } from '../../../theme/themeTokens';
+
+dayjs.extend(relativeTime);
 
 export const Review = ({ review }: { review: ReviewType }) => {
   const {
@@ -17,7 +20,6 @@ export const Review = ({ review }: { review: ReviewType }) => {
   } = review;
 
   const userImage = profile.imageUrl ?? '';
-  dayjs.extend(relativeTime);
   const formattedTime = dayjs(createdAt).fromNow();
 
   return (
@@ -33,6 +35,7 @@ export const Review = ({ review }: { review: ReviewType }) => {
         <Box
           component={'img'}
           src={userImage}
+          alt="user-image"
           sx={{
             width: '4rem',
             height: '4rem',
@@ -58,7 +61,7 @@ export const Review = ({ review }: { review: ReviewType }) => {
             '& .MuiRating-iconFilled': {
               color: 'primary.main',
             },
-            'fontSize': '0.75rem',
+            'fontSize': FONT_SIZES.xs.fontSize,
           }}
         />
 

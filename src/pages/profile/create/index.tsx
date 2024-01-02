@@ -26,17 +26,17 @@ function CreateProfile() {
     reset,
     control,
   } = useForm<Profile>();
+  const defaultMaleImage =
+    'https://i.pinimg.com/564x/48/6c/a0/486ca00640b169300b48e9ceacd8e401.jpg';
+  const defaultFemaleImage =
+    'https://i.pinimg.com/564x/39/42/01/39420149269ede36847932935b26f0b8.jpg';
 
   const [imageUrl, setImageUrl] = useState('');
   const [selectedCountry, setSelectedCountry] = useState<PhoneCodesByCountry>(DEFAULT_COUNTRY);
-
   const { mutate, isPending } = useCreateAccountMutation();
 
   const onSubmit: SubmitHandler<Profile> = (data) => {
-    const defaultImage =
-      data.gender === Gender.male
-        ? 'https://i.pinimg.com/564x/48/6c/a0/486ca00640b169300b48e9ceacd8e401.jpg'
-        : 'https://i.pinimg.com/564x/39/42/01/39420149269ede36847932935b26f0b8.jpg';
+    const defaultImage = data.gender === Gender.male ? defaultMaleImage : defaultFemaleImage;
 
     const userProfile: Profile = {
       ...data,
