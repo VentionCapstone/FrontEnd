@@ -19,5 +19,6 @@ export const EndpointsConfig = {
   },
   Accommodations: {
     Root: '/accommodations',
+    GetSingleAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}`,
   },
 } as const;
