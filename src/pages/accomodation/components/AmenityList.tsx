@@ -30,10 +30,10 @@ function AmenityList({ amenities }: { amenities: AmenitySetting[] }) {
     <Box marginY={4}>
       <Typography sx={styles.heading}>What this place offers</Typography>
       <Box sx={styles.container}>
-        {amenities.map((amenity) => (
-          <Box key={amenity.id} sx={styles.box}>
-            <Box>{amenity.icon}</Box>
-            <Typography>{amenity.name}</Typography>
+        {amenities.map(({ id, name, icon }) => (
+          <Box key={id} sx={styles.box}>
+            <Box>{icon}</Box>
+            <Typography>{name}</Typography>
           </Box>
         ))}
       </Box>
