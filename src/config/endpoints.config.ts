@@ -20,4 +20,8 @@ export const EndpointsConfig = {
   Accommodations: {
     Root: '/accommodations',
   },
+  Booking: {
+    GetAvailableDates: (accommodationId: string) => `/booking/available-dates/${accommodationId}`,
+    book: '/booking/book',
+  },
 } as const;
