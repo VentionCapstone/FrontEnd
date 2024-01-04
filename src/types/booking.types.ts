@@ -3,8 +3,9 @@ export interface BookingFormProps {
     startDate: string;
     endDate: string;
     accommodationId: string;
-  }) => void;
+  }) => Promise<void>;
   data: dataType | undefined;
+  disabled?: boolean | undefined;
 }
 export interface dataType {
   availableDates: string[][];

@@ -1,4 +1,4 @@
-// BookingForm.tsx
+// // BookingForm.tsx
 import React, { useState } from 'react';
 import { Box, Stack } from '@mui/material';
 import { Dayjs } from 'dayjs';
@@ -7,15 +7,17 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import ButtonPrimary from '../../components/button/ButtonPrimary';
 import { BookingFormProps } from '../../types/booking.types';
+import DataFetchError from '../shared/DataFetchError';
+import { ReservationData, createReservationData } from './time';
 
-const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, data }) => {
+const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, data, disabled }) => {
   const [selectedDates, setSelectedDates] = useState<[Dayjs | null, Dayjs | null]>([null, null]);
-
+  const [startDate, endDate] = selectedDates;
   const { availableDates, accommodationId } = data || {};
 
   const shouldDisableDate = (date: Dayjs) => {
     const dateString = date.format('YYYY-MM-DD');
-    return !availableDates?.some((range) => dateString >= range[0] && dateString <= range[1]);
+    return !availableDates?.some(([start, end]) => dateString >= start && dateString <= end);
   };
 
   const handleDateChange = (index: number) => (newValue: Dayjs | null) => {
@@ -26,19 +28,21 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, data }) => {
     });
   };
 
-  const handleReserveButtonClick = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleReserveButtonClick = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
 
-    if (selectedDates[0] && selectedDates[1]) {
-      const reservationData = {
-        startDate: selectedDates[0]?.format('YYYY-MM-DD') || '',
-        endDate: selectedDates[1]?.format('YYYY-MM-DD') || '',
-        accommodationId: accommodationId || '',
-      };
+    if (startDate && endDate && accommodationId) {
+      const reservationData: ReservationData = createReservationData(
+        startDate,
+        endDate,
+        accommodationId
+      );
 
-      onSubmit(reservationData);
-    } else {
-      console.error('Please select both check-in and check-out dates');
+      try {
+        await onSubmit(reservationData);
+      } catch (error) {
+        <DataFetchError />;
+      }
     }
   };
 
@@ -52,9 +56,10 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, data }) => {
         p: '2%',
       }}
     >
+      {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
       <form onSubmit={handleReserveButtonClick}>
-        <Stack direction="row" spacing={4}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <Stack direction="row" spacing={4}>
             <DatePicker
               label="Check In"
               value={selectedDates[0]}
@@ -67,9 +72,9 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, data }) => {
               onChange={handleDateChange(1)}
               shouldDisableDate={shouldDisableDate}
             />
-          </LocalizationProvider>
-        </Stack>
-        <ButtonPrimary disabled={!selectedDates[0] || !selectedDates[1]}>Reserve</ButtonPrimary>
+          </Stack>
+        </LocalizationProvider>
+        <ButtonPrimary disabled={disabled}>Reserve</ButtonPrimary>
       </form>
     </Box>
   );
