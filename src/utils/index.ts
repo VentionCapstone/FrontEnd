@@ -50,7 +50,7 @@ export const setValueToLocalStorage = (key: string, value: object | string): voi
       localStorage.setItem(key, value);
     }
   } catch (error) {
-    console.error('Error setting data to local storage:', error);
+    throw new Error('Error setting data to local storage');
   }
 };
 

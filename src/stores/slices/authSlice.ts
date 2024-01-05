@@ -17,7 +17,12 @@ export const authSlice = createSlice({
   reducers: {
     setToken: (state, action: PayloadAction<string>) => {
       state.token = action.payload;
-      setValueToLocalStorage(LOCAL_STORAGE_KEYS.accessToken, action.payload);
+
+      try {
+        setValueToLocalStorage(LOCAL_STORAGE_KEYS.accessToken, action.payload);
+      } catch (error) {
+        console.error(error);
+      }
     },
     removeToken: (state) => {
       state.token = null;

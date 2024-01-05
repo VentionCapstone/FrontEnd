@@ -7,6 +7,7 @@ import { LOCAL_STORAGE_KEYS } from '../config/local-storage.config';
 import { ThemeMode } from '../types/profile.types';
 import { themeOptions } from './themeTokens';
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 const ThemeWrapper = ({ children }: { children: React.ReactNode }) => {
   const profileThemeMode = useAppSelector(getTheme);
@@ -16,8 +17,13 @@ const ThemeWrapper = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (profileThemeMode && profileThemeMode !== localThemeMode) {
-      setMode(profileThemeMode);
-      setValueToLocalStorage(LOCAL_STORAGE_KEYS.uiTheme, profileThemeMode);
+      try {
+        setMode(profileThemeMode);
+        setValueToLocalStorage(LOCAL_STORAGE_KEYS.uiTheme, profileThemeMode);
+      } catch (error) {
+        console.error(error);
+        toast.error('Error changing theme!');
+      }
     }
   }, [profileThemeMode, localThemeMode]);
 
