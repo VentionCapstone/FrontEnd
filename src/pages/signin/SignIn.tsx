@@ -1,17 +1,25 @@
-import { Box, Divider, Stack, Typography } from '@mui/material';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useState } from 'react';
-import ButtonPrimary from '../../components/button/ButtonPrimary';
+import {
+  Box,
+  Divider,
+  Stack,
+  Typography,
+  IconButton,
+  InputAdornment,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+} from '@mui/material';
+import { Link } from 'react-router-dom';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import useSignInMutation from '../../api/mutations/auth/useSignInMutation';
+import { AuthData } from '../../types/auth.types';
 import InputForm from '../../components/input/InputForm';
-import { useAppDispatch } from '../../hooks/redux-hooks';
-import { setToken } from '../../stores/slices/authSlice';
-import { AuthData, LoginResponse } from '../../types/auth.types';
-import PasswordInput from '../../components/input/PasswordInput';
-import httpClient from '../../api/httpClient';
+import ButtonPrimary from '../../components/button/ButtonPrimary';
+import { EndpointsConfig } from '../../config/endpoints.config';
 
 const SignIn = () => {
-  const dispatch = useAppDispatch();
-
   const { handleSubmit, control } = useForm({
     defaultValues: {
       email: '',
@@ -19,25 +27,32 @@ const SignIn = () => {
     },
   });
 
-  const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-  const onSubmit: SubmitHandler<AuthData> = async (data: AuthData) => {
+  const { mutateAsync, isPending } = useSignInMutation();
+
+  const onSubmit: SubmitHandler<AuthData> = async (Inputdata: AuthData) => {
     try {
-      if (isPasswordValid) {
-        setIsLoading(true);
-        const response = await httpClient.post<LoginResponse>('/auth/signin', data);
-        localStorage.setItem('sub', response.data.id);
-        setIsLoading(false);
-        dispatch(setToken(response.data.tokens.access_token));
-      }
+      await mutateAsync(Inputdata);
     } catch (error) {
       console.log(error);
-      setIsLoading(false);
     }
   };
+
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
   return (
-    <Box sx={{ mx: 'auto', mt: '100px', border: '1px solid #b0b0b0', borderRadius: 2 }}>
+    <Box
+      sx={{
+        mx: 'auto',
+        mt: '5%',
+        border: '1px solid #b0b0b0',
+        borderRadius: 2,
+        maxWidth: '600px',
+      }}
+    >
       <Typography variant="subtitle1" align="center" margin={5} fontWeight="bold">
         Sign In
       </Typography>
@@ -59,18 +74,45 @@ const SignIn = () => {
                 />
               )}
             />
-            <PasswordInput
+            <Controller
               name="password"
-              label="Password"
-              placeholder="Password"
               control={control}
-              setIsPasswordValid={setIsPasswordValid}
+              render={({ field }) => (
+                <FormControl fullWidth variant="outlined">
+                  <InputLabel htmlFor={`outlined-adornment-password`}>Password</InputLabel>
+                  <OutlinedInput
+                    {...field}
+                    required
+                    label="Password"
+                    placeholder="Password"
+                    id={`outlined-adornment-password`}
+                    type={showPassword ? 'text' : 'password'}
+                    onChange={field.onChange}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleTogglePasswordVisibility}
+                          onMouseDown={handleTogglePasswordVisibility}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl>
+              )}
             />
           </Stack>
-          <ButtonPrimary loading={isLoading} disbabled={isPasswordValid}>
-            Sign in
-          </ButtonPrimary>
+          <ButtonPrimary loading={isPending}>Sign in</ButtonPrimary>
         </form>
+        <Typography variant="subtitle2" align="center" color="gray">
+          If you do not have an account, please{' '}
+          <Link to={EndpointsConfig.Auth.SignUp} style={{ fontWeight: 'bold' }}>
+            sign up
+          </Link>
+        </Typography>
       </Stack>
     </Box>
   );
