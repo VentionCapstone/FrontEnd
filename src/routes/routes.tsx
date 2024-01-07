@@ -17,6 +17,7 @@ const AuthLayout = React.lazy(() => import('../layouts/AuthLayout'));
 const Main = React.lazy(() => import('../pages/main'));
 const SignIn = React.lazy(() => import('../pages/signin'));
 const VerifyEmail = React.lazy(() => import('../pages/auth/VerifyEmail'));
+const Payment = React.lazy(() => import('../pages/payment/Payment'));
 
 const routes = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const routes = createBrowserRouter([
     element: <MainLayout />,
     children: [
       { path: '', element: <Main /> },
+      { path: 'book/:id', element: <Payment /> },
       { path: '*', element: <Navigate to="/" /> },
     ],
   },
