@@ -17,15 +17,15 @@ import { BottomNav } from './BottomNavigation';
 import logo from '../../assets/logo.png';
 
 function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) {
-  const myRef = useRef<Element | null>(null);
-  const { entry } = useIntersectionObserver(myRef);
+  const scrollWatcherRef = useRef<Element | null>(null);
+  const { entry } = useIntersectionObserver(scrollWatcherRef);
 
   const dinamicShadow = entry?.isIntersecting ? 'none' : '0px 6px 16px rgba(0, 0, 0, 0.12)';
 
   return (
     <>
       {/* Scroll watcher element */}
-      <Box ref={myRef}></Box>
+      <Box ref={scrollWatcherRef}></Box>
 
       <Box sx={styles.navigation} boxShadow={dinamicShadow}>
         <Container maxWidth={maxWidth} disableGutters sx={{ px: '1.5rem', py: '1rem' }}>
