@@ -67,4 +67,13 @@ export const editPageStyles = {
     textTransform: 'none',
     borderRadius: 3,
   },
+
+  card: {
+    display: {
+      md: 'none',
+    },
+    padding: 6,
+    borderRadius: 3,
+    boxShadow: '0px 6px 16px rgba(0, 0, 0, 0.12)',
+  },
 } satisfies MuiStylesObject;

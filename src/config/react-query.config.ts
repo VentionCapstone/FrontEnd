@@ -14,6 +14,7 @@ export const QUERY_KEYS = {
     user: 'user',
     amenitiesList: 'amenities_list',
     accomodationAmenities: 'accomodation_amenities',
+    accomodationReviews: 'accomodation_reviews',
   },
   mutation: {
     createAccount: 'create_account',
