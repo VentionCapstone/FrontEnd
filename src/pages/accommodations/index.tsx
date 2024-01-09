@@ -6,10 +6,13 @@ import { Link } from 'react-router-dom';
 
 import { useGetAccommodations } from '@/api/queries/accommodations/useGetAccommodations';
 import { ROUTES } from '@/config/routes.config';
+import { useAppSelector } from '@/hooks/redux-hooks';
+import { getUser } from '@/stores/slices/authSlice';
 import { lineClampStyle } from '@/utils';
 
 export default function Accommodations() {
-  const { data: accommodations, isLoading } = useGetAccommodations();
+  const profileId = useAppSelector(getUser)?.id ?? '';
+  const { data: accommodations, isLoading } = useGetAccommodations(profileId);
 
   const onError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = 'https://via.placeholder.com/300';
@@ -44,7 +47,13 @@ export default function Accommodations() {
                 }}
               >
                 <Box display="flex" flexDirection="column" gap={2}>
-                  <Box width="100%" height={280} borderRadius={2} overflow="hidden">
+                  <Box
+                    width="100%"
+                    height={280}
+                    position="relative"
+                    borderRadius={2}
+                    overflow="hidden"
+                  >
                     <img
                       width="100%"
                       height="100%"
@@ -53,6 +62,27 @@ export default function Accommodations() {
                       alt={`${accommodation.id} thumbnail`}
                       src={accommodation.thumbnailUrl || accommodation.previewImgUrl}
                     />
+                    {accommodation.isDeleted && (
+                      <Box
+                        component="div"
+                        position="absolute"
+                        top={0}
+                        right={0}
+                        padding={1.5}
+                        style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)' }}
+                        borderRadius="0 0 0 8px"
+                        boxShadow="0 2px 4px rgba(0, 0, 0, 0.1)"
+                      >
+                        <Typography
+                          variant="caption"
+                          color="error"
+                          fontSize="1.2em"
+                          fontWeight="600"
+                        >
+                          Deleted
+                        </Typography>
+                      </Box>
+                    )}
                   </Box>
                   <Typography variant="body1" sx={lineClampStyle(1)}>
                     {accommodation.title}

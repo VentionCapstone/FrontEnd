@@ -1,3 +1,4 @@
+import { MouseEventHandler } from 'react';
 import { z } from 'zod';
 
 export const accommodationSchema = z.object({
@@ -29,6 +30,7 @@ export type AccommodationRes = {
 };
 
 export type AccommodationType = {
+  isDeleted: boolean;
   id: string;
   title: string;
   addressId: string;
@@ -107,6 +109,12 @@ export type MainModalProps = {
     totalMinPrice: number;
   };
   setInvisible: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export type ConfirmationModalProps = {
+  open: boolean;
+  onClose: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+  onConfirm: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
 };
 
 export type FormValue = {

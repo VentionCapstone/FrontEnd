@@ -8,11 +8,16 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { useCreateAccommodation } from '@/api/mutations/accommodations/useCreateAccommodation';
 import { useDeleteAccommodation } from '@/api/mutations/accommodations/useDeleteAccommodation';
+import { useRestoreAccommodation } from '@/api/mutations/accommodations/useRestoreAccommodation';
 import { useUpdateAccommodation } from '@/api/mutations/accommodations/useUpdateAccommodation';
 import { useGetAccommodation } from '@/api/queries/accommodations/useGetAccommodation';
 import YandexMap from '@/components/YandexMap';
 import { ROUTES } from '@/config/routes.config';
 import { AccommodationReq, accommodationSchema } from '@/types/accommodation.types';
+
+import LoadingButton from '@mui/lab/LoadingButton';
+import { useCallback, useState } from 'react';
+import ConfirmationModal from './components/Modal';
 
 export default function AccommodationForm() {
   const { id } = useParams();
@@ -20,7 +25,8 @@ export default function AccommodationForm() {
   const { data: accommodation } = useGetAccommodation({ id });
   const { mutate: createAccommodation } = useCreateAccommodation();
   const { mutate: updateAccommodation } = useUpdateAccommodation();
-  const { mutate: deleteAccommodation } = useDeleteAccommodation();
+  const { mutate: deleteAccommodation, isPending: isDeletePending } = useDeleteAccommodation();
+  const { mutate: restoreAccommodation, isPending: isRestorePending } = useRestoreAccommodation();
 
   const {
     watch,
@@ -53,6 +59,8 @@ export default function AccommodationForm() {
     values: accommodation?.data,
   });
 
+  const isDeleted: boolean | undefined = accommodation?.data.isDeleted;
+
   const latitudeWatch = watch('address.latitude');
   const longitudeWatch = watch('address.longitude');
 
@@ -77,11 +85,28 @@ export default function AccommodationForm() {
     });
   };
 
-  const handleDelete = () => {
+  const handleDelete = useCallback(() => {
     if (id) {
       deleteAccommodation(id);
     }
-  };
+  }, [id, deleteAccommodation]);
+
+  const handleRestore = useCallback(() => {
+    if (id) {
+      restoreAccommodation(id);
+    }
+  }, [id, restoreAccommodation]);
+
+  const [open, setOpen] = useState(false);
+
+  const handleClose = useCallback(() => setOpen(false), []);
+
+  const handleConfirm = useCallback(() => {
+    handleDelete();
+    handleClose();
+  }, [handleDelete, handleClose]);
+
+  const handleClickOpen = useCallback(() => setOpen(true), []);
 
   const handleCoordsChange = (coords: [number, number]) => {
     setValue('address.latitude', coords[0], {
@@ -288,9 +313,16 @@ export default function AccommodationForm() {
         </Box>
         <Box display="flex" justifyContent={id ? 'space-between' : 'flex-end'}>
           {id && (
-            <Button variant="contained" color="error" onClick={handleDelete}>
-              Delete
-            </Button>
+            <>
+              <LoadingButton
+                variant="contained"
+                color={isDeleted ? 'primary' : 'secondary'}
+                onClick={isDeleted ? handleRestore : handleClickOpen}
+                loading={isDeleted ? isRestorePending : isDeletePending}
+              >
+                {isDeleted ? 'Restore' : 'Delete'}
+              </LoadingButton>
+            </>
           )}
           <Stack direction="row" spacing={2}>
             <Button variant="outlined" onClick={() => navigate(ROUTES.accommodations.root)}>
@@ -302,6 +334,7 @@ export default function AccommodationForm() {
           </Stack>
         </Box>
       </form>
+      <ConfirmationModal open={open} onClose={handleClose} onConfirm={handleConfirm} />
     </Box>
   );
 }
