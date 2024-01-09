@@ -1,6 +1,8 @@
 // time.ts
 import { Dayjs } from 'dayjs';
 
+export const DateFormat = 'YYYY-MM-DD';
+
 export interface ReservationData {
   startDate: string;
   endDate: string;
@@ -13,8 +15,8 @@ export const createReservationData = (
   accommodationId: string
 ): ReservationData => {
   return {
-    startDate: startDate?.format('YYYY-MM-DD') || '',
-    endDate: endDate?.format('YYYY-MM-DD') || '',
+    startDate: startDate?.format(DateFormat) || '',
+    endDate: endDate?.format(DateFormat) || '',
     accommodationId: accommodationId || '',
   };
 };

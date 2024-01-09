@@ -4,7 +4,7 @@ import { EndpointsConfig } from '../../../config/endpoints.config';
 import httpClient from '../../httpClient';
 import { AvailableDatesResponse } from '../../../types/booking.types';
 
-export const useGetAvailabeDates = (id: string) => {
+export const useGetAvailableDates = (id: string) => {
   return useQuery({
     queryKey: [QUERY_KEYS.query.availableDates],
     queryFn: async () => {
