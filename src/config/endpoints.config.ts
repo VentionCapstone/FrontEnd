@@ -20,4 +20,8 @@ export const EndpointsConfig = {
   Accommodations: {
     Root: '/accommodations',
   },
+  Payment: {
+    Root: '/payment',
+    PostConfirmPayment: '/payment/confirm',
+  },
 } as const;

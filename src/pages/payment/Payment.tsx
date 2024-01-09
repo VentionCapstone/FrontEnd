@@ -1,54 +1,35 @@
-import toast from 'react-hot-toast';
-import { loadStripe } from '@stripe/stripe-js';
-import { useMutation } from '@tanstack/react-query';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Elements } from '@stripe/react-stripe-js';
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useCallback, useEffect, useState } from 'react';
 import { Box, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
+import { PAYMENT_OPTION } from './components/contants';
 import { PaymentForm } from './components/PaymentForm';
-import httpClient from '../../api/httpClient';
-import { ResponsePayment } from '../../types/payment.types';
+import { stripePromise } from '../../config/stripe.config';
 import ButtonPrimary from '../../components/button/ButtonPrimary';
 import LoadingPrimary from '../../components/loader/LoadingPrimary';
-
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY as string);
+import usePostPaymentOptionMutation from '../../api/mutations/payment/usePostPaymentOptionMutation';
 
 const Payment = () => {
-  const [paymentOption, setPaymentOption] = useState<string>('card');
-  const navigate = useNavigate();
-
-  const handlePaymentChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPaymentOption((event.target as HTMLInputElement).value);
-  };
-
   const bookingId = useParams().id;
-  const { mutate, isPending } = useMutation({
-    mutationFn: async () => {
-      const { data } = await httpClient.post<string | ResponsePayment>('/payment', {
-        bookingId,
-        paymentOption,
-      });
-      return data;
-    },
-    onSuccess: (data) => {
-      if (typeof data === 'string') {
-        localStorage.setItem('clientSecret', data);
-      } else {
-        toast.success(data.message);
-        localStorage.removeItem('clientSecret');
-        navigate('/');
-      }
-    },
-  });
+  const [paymentOption, setPaymentOption] = useState<string>(PAYMENT_OPTION.card);
+
+  const { mutate, isPending } = usePostPaymentOptionMutation(bookingId || '', paymentOption);
 
   useEffect(() => {
     mutate();
   }, [mutate]);
 
-  const handlePaymentClick = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    mutate();
-  };
+  const handlePaymentChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    setPaymentOption((e.target as HTMLInputElement).value);
+  }, []);
+
+  const handlePaymentClick = useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      mutate();
+    },
+    [mutate]
+  );
 
   return (
     <Box
@@ -63,20 +44,15 @@ const Payment = () => {
       }}
     >
       <FormControl>
-        <FormLabel id="demo-controlled-radio-buttons-group">Payment Option</FormLabel>
-        <RadioGroup
-          aria-labelledby="demo-controlled-radio-buttons-group"
-          name="controlled-radio-buttons-group"
-          value={paymentOption}
-          onChange={handlePaymentChange}
-        >
-          <FormControlLabel value="card" control={<Radio />} label="Card" />
-          <FormControlLabel value="cash" control={<Radio />} label="Cash" />
+        <FormLabel>Payment Option</FormLabel>
+        <RadioGroup row value={paymentOption} onChange={handlePaymentChange}>
+          <FormControlLabel value={PAYMENT_OPTION.card} control={<Radio />} label="Card" />
+          <FormControlLabel value={PAYMENT_OPTION.cash} control={<Radio />} label="Cash" />
         </RadioGroup>
       </FormControl>
       {isPending ? (
         <LoadingPrimary height="10vh" />
-      ) : paymentOption === 'card' ? (
+      ) : paymentOption === PAYMENT_OPTION.card ? (
         <Elements stripe={stripePromise}>
           <PaymentForm bookingId={bookingId || ''} />
         </Elements>
