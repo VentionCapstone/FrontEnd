@@ -1,10 +1,11 @@
-import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { User } from '../../types/user.types';
-import { AuthState } from '../../types/auth.types';
+
+import { LOCAL_STORAGE_KEYS } from '@/config/local-storage.config';
+import { AuthState } from '@/types/auth.types';
+import { User } from '@/types/user.types';
+import { getValueFromLocalStorage, setValueToLocalStorage } from '@/utils';
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { LOCAL_STORAGE_KEYS } from '../../config/local-storage.config';
-import { setValueToLocalStorage, getValueFromLocalStorage } from '../../utils';
 
 const initialState: AuthState = {
   token: getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.accessToken),

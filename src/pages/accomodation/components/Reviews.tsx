@@ -1,22 +1,21 @@
-import Grid from '@mui/material/Grid';
+import CloseIcon from '@mui/icons-material/Close';
+import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
+import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
-import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
-import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
 import Rating from '@mui/material/Rating';
-import Box from '@mui/material/Box';
-
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import useTheme from '@mui/material/styles/useTheme';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useCallback, useState } from 'react';
 
+import useGetReviewsQuery from '@/api/queries/reviews/useGetReviewsQuery';
+import LoadingPrimary from '@/components/loader/LoadingPrimary';
 import { Review } from './Review';
-import useGetReviewsQuery from '../../../api/queries/reviews/useGetReviewsQuery';
-import LoadingPrimary from '../../../components/loader/LoadingPrimary';
 
 export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
   const { data: reviews, isLoading } = useGetReviewsQuery(accommodationId);

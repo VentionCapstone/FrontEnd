@@ -1,13 +1,14 @@
 import { CssBaseline, createTheme } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
-import { useAppSelector } from '../hooks/redux-hooks';
-import { getTheme } from '../stores/slices/authSlice';
-import { getPalleteMode, getValueFromLocalStorage, setValueToLocalStorage } from '../utils';
-import { LOCAL_STORAGE_KEYS } from '../config/local-storage.config';
-import { ThemeMode } from '../types/profile.types';
-import { themeOptions } from './themeTokens';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+
+import { LOCAL_STORAGE_KEYS } from '@/config/local-storage.config';
+import { useAppSelector } from '@/hooks/redux-hooks';
+import { getTheme } from '@/stores/slices/authSlice';
+import { ThemeMode } from '@/types/profile.types';
+import { getPalleteMode, getValueFromLocalStorage, setValueToLocalStorage } from '@/utils';
+import { themeOptions } from './themeTokens';
 
 const ThemeWrapper = ({ children }: { children: React.ReactNode }) => {
   const profileThemeMode = useAppSelector(getTheme);

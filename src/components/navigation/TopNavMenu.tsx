@@ -10,16 +10,11 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import useLogoutMutation from '@/api/mutations/account/useLogoutMutation';
 import useGetUserQuery from '@/api/queries/account/useGetUserQuery';
-import { LOCAL_STORAGE_KEYS } from '@/config/local-storage.config';
 import { ROUTES } from '@/config/routes.config';
-import { useAppSelector } from '@/hooks/redux-hooks';
-import { hasToken } from '@/stores/slices/authSlice';
-import { getValueFromLocalStorage } from '@/utils';
 import { mainNavigationStyles as styles } from './mainNavigation.styles';
 
 export const TopNavMenu = () => {
-  const isLoggedIn = useAppSelector(hasToken);
-  const userId = getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.sub);
+  const { data: user } = useGetUserQuery();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -27,7 +22,6 @@ export const TopNavMenu = () => {
     setAnchorEl(event.currentTarget);
   };
 
-  const { isError } = useGetUserQuery(userId, isLoggedIn);
   const { mutate: logOut } = useLogoutMutation();
 
   const handleClose = useCallback(() => {
@@ -78,10 +72,10 @@ export const TopNavMenu = () => {
           },
         }}
       >
-        {isLoggedIn && !isError
+        {user?.id
           ? [
               <Link
-                key="account"
+                key={ROUTES.account.root}
                 component={RouterLink}
                 to={ROUTES.account.root}
                 onClick={handleClose}
@@ -89,7 +83,7 @@ export const TopNavMenu = () => {
                 <MenuItem>Account</MenuItem>
               </Link>,
               <Link
-                key="listing"
+                key={ROUTES.accommodations.root}
                 component={RouterLink}
                 to={ROUTES.accommodations.root}
                 onClick={handleClose}
@@ -102,7 +96,7 @@ export const TopNavMenu = () => {
             ]
           : [
               <Link
-                key="signIn"
+                key={ROUTES.auth.signIn}
                 component={RouterLink}
                 to={ROUTES.auth.signIn}
                 onClick={handleClose}
@@ -110,7 +104,7 @@ export const TopNavMenu = () => {
                 <MenuItem>Sign In</MenuItem>
               </Link>,
               <Link
-                key="signIn"
+                key={ROUTES.auth.signUp}
                 component={RouterLink}
                 to={ROUTES.auth.signUp}
                 onClick={handleClose}

@@ -4,7 +4,6 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-
 import { useCallback, useMemo, useState } from 'react';
 
 import useEditAccountMutation from '@/api/mutations/account/useEditAccountMutation';

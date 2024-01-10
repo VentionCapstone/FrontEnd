@@ -1,8 +1,9 @@
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import { Outlet } from 'react-router-dom';
-import MainNavigation from '../components/navigation';
-import { Footer } from '../components/footer/Footer';
+
+import { Footer } from '@/components/footer/Footer';
+import MainNavigation from '@/components/navigation';
 
 function UserLayout() {
   return (

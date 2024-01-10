@@ -7,7 +7,7 @@ export const ENDPOINTS = {
     signOut: '/auth/signout',
   },
   account: {
-    getUser: (userId: string) => `/users/${userId}`,
+    getUser: (userId: string | null) => `/users/${userId}`,
     getUserProfile: (profileId: string) => `/users/profile/${profileId}`,
     updateUserProfile: (profileId: string) => `/users/profile/${profileId}`,
     deleteUserProfile: (profileId: string) => `/users/profile/${profileId}`,
@@ -16,7 +16,7 @@ export const ENDPOINTS = {
   accommodation: {
     root: '/accommodations',
     getAccommodations: '/accommodations/getAll',
-    getAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}`,
+    getAccommodation: (accommodationId: string | undefined) => `/accommodations/${accommodationId}`,
     updateAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}`,
     deleteAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}`,
     getAccommodationReviews: (accommodationId: string) =>

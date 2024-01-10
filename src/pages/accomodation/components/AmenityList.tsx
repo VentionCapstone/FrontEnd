@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material';
-import { AmenitySetting } from '../../../types/amenity.types';
+
+import { AmenitySetting } from '@/types/amenity.types';
 import { styles } from './AmenityList.styles';
 
 function AmenityList({ amenities }: { amenities: AmenitySetting[] }) {
