@@ -16,8 +16,8 @@ export interface Profile {
 }
 
 export enum ThemeMode {
-  light = 'LIGHT',
-  dark = 'DARK',
+  light = 'light',
+  dark = 'dark',
 }
 
 export enum Gender {

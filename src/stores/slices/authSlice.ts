@@ -3,9 +3,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import { User } from '../../types/user.types';
 import { AuthState } from '../../types/auth.types';
 import { RootState } from '../store';
+import { LOCAL_STORAGE_KEYS } from '../../config/local-storage.config';
+import { setValueToLocalStorage, getValueFromLocalStorage } from '../../utils';
 
 const initialState: AuthState = {
-  token: localStorage.getItem('access_token'),
+  token: getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.accessToken),
   user: null,
 };
 
@@ -15,11 +17,16 @@ export const authSlice = createSlice({
   reducers: {
     setToken: (state, action: PayloadAction<string>) => {
       state.token = action.payload;
-      localStorage.setItem('access_token', action.payload);
+
+      try {
+        setValueToLocalStorage(LOCAL_STORAGE_KEYS.accessToken, action.payload);
+      } catch (error) {
+        console.error(error);
+      }
     },
     removeToken: (state) => {
       state.token = null;
-      localStorage.removeItem('access_token');
+      localStorage.removeItem(LOCAL_STORAGE_KEYS.accessToken);
     },
     setUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
@@ -30,8 +37,8 @@ export const authSlice = createSlice({
     logout: (state) => {
       state.token = null;
       state.user = null;
-      localStorage.removeItem('access_token');
-      localStorage.removeItem('sub');
+      localStorage.removeItem(LOCAL_STORAGE_KEYS.accessToken);
+      localStorage.removeItem(LOCAL_STORAGE_KEYS.sub);
     },
   },
 });
@@ -42,3 +49,5 @@ export default authSlice.reducer;
 
 export const getUser = (state: RootState) => state.auth.user;
 export const getProfile = (state: RootState) => state.auth.user?.profile;
+export const hasToken = (state: RootState) => state.auth.token !== null;
+export const getTheme = (state: RootState) => state.auth.user?.profile?.uiTheme;

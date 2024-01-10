@@ -1,5 +1,7 @@
-import { PaletteMode } from '@mui/material';
 import { ThemeMode } from '../types/profile.types';
+import { Amenity } from '../types/accommodation.types';
+import ErrorImage from '../assets/no-image.png';
+import toast from 'react-hot-toast';
 
 export const convertImageToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -17,24 +19,68 @@ export const phoneNumLengthRegEx = (length: number) => {
   return new RegExp(`^\\d{${length}}$`);
 };
 
+export const getPalleteMode = (mode: ThemeMode | null): ThemeMode => {
+  if (mode === ThemeMode.dark) return mode;
+
+  return ThemeMode.light;
+};
+
 export const getValueFromLocalStorage = <T>(key: string): T | null => {
   try {
-    const value = localStorage.getItem(key);
+    const serializedData = localStorage.getItem(key);
+    if (serializedData === null) return null;
 
-    if (value !== null) {
-      return JSON.parse(value) as T;
+    try {
+      return JSON.parse(serializedData) as T;
+    } catch {
+      return serializedData as T;
     }
-
-    return null;
   } catch (error) {
     console.error('Error retrieving value from local storage:', error);
+    toast.error('Error retrieving value');
 
     return null;
   }
 };
 
-export const getPalleteMode = (mode: ThemeMode | null): PaletteMode => {
-  if (mode === ThemeMode.dark) return 'dark';
+export const setValueToLocalStorage = (key: string, value: object | string): void => {
+  try {
+    if (typeof value === 'object') {
+      localStorage.setItem(key, JSON.stringify(value));
+    } else {
+      localStorage.setItem(key, value);
+    }
+  } catch (error) {
+    throw new Error('Error setting data to local storage');
+  }
+};
 
-  return 'light';
+export const removeFromLocalStorage = (key: string): void => {
+  try {
+    localStorage.removeItem(key);
+  } catch (error) {
+    throw new Error('Error removing data from local storage');
+  }
+};
+
+export const truncateReview = (text: string, maxChars: number) => {
+  if (text.length > maxChars) {
+    const truncatedText = text.slice(0, maxChars) + '...';
+    return truncatedText;
+  }
+
+  return text;
+};
+
+export const selectOnlyTrueAmenities = (amenities: Amenity) => {
+  const trueAmenities = Object.entries(amenities)
+    .filter(([, value]) => value === true)
+    .map(([key]) => key);
+
+  return trueAmenities;
+};
+
+export const handleErrorInImage = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+  e.currentTarget.src = ErrorImage;
+  e.currentTarget.style.objectFit = 'contain';
 };
