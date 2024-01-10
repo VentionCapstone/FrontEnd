@@ -16,13 +16,10 @@ import useLogoutMutation from '../../../api/mutations/account/useLogoutMutation'
 import LoadingPrimary from '../../../components/loader/LoadingPrimary';
 import { editPageStyles } from './index.styles';
 import { getUser } from '../../../stores/slices/authSlice';
-import useTheme from '@mui/material/styles/useTheme';
-import { PRIMARY_LIGHT_THEME } from '../../../theme/themeTokens';
 import houseIcon from '../../../assets/house.png';
 
 function EditProfile() {
   const { mutate } = useLogoutMutation();
-  const mode = useTheme().palette.mode;
   const user = useAppSelector(getUser);
 
   const imageUrl = user?.profile?.imageUrl ?? '';
@@ -42,12 +39,7 @@ function EditProfile() {
           </Typography>
         </Stack>
 
-        <Box
-          sx={{
-            ...editPageStyles.card,
-            bgcolor: mode === 'light' ? 'background.default' : PRIMARY_LIGHT_THEME,
-          }}
-        >
+        <Box sx={editPageStyles.card}>
           <Stack direction={'row'} gap={'1rem'} justifyContent={'space-between'}>
             <Stack gap={'0.25rem'}>
               <Typography fontSize={'1.125rem'} fontWeight={600}>
@@ -83,7 +75,7 @@ function EditProfile() {
             sx={editPageStyles.customCard}
             borderTop={{ xs: '1px solid #EBEBEB' }}
             bgcolor={{
-              md: mode === 'light' ? 'background.default' : PRIMARY_LIGHT_THEME,
+              md: 'backgroundSecondary.main',
             }}
           >
             <AccountCircleOutlined
@@ -125,7 +117,7 @@ function EditProfile() {
           <Stack
             sx={editPageStyles.customCard}
             bgcolor={{
-              md: mode === 'light' ? 'background.default' : PRIMARY_LIGHT_THEME,
+              md: 'backgroundSecondary.main',
             }}
           >
             <GppGoodOutlined
@@ -162,7 +154,7 @@ function EditProfile() {
           <Stack
             sx={editPageStyles.customCard}
             bgcolor={{
-              md: mode === 'light' ? 'background.default' : PRIMARY_LIGHT_THEME,
+              md: 'backgroundSecondary.main',
             }}
           >
             <SettingsOutlined

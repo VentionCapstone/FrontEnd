@@ -75,5 +75,6 @@ export const editPageStyles = {
     padding: 6,
     borderRadius: 3,
     boxShadow: '0px 6px 16px rgba(0, 0, 0, 0.12)',
+    bgcolor: 'backgroundSecondary.main',
   },
 } satisfies MuiStylesObject;

@@ -1,4 +1,5 @@
-import { PaletteMode, ThemeOptions } from '@mui/material';
+import { ThemeOptions } from '@mui/material';
+import { MuiThemeMode } from '../types/theme.types';
 
 export const PRIMARY_LIGHT_THEME = '#222222';
 export const PRIMARY_DARK_THEME = '#ffffff';
@@ -39,6 +40,9 @@ const lightTheme: ThemeOptions = {
     },
     backgroundSecondary: {
       main: '#FFFFFF',
+    },
+    backgroundFooter: {
+      main: FOOTER_BG_LIGHT,
     },
   },
   typography: {
@@ -98,6 +102,9 @@ const darkTheme: ThemeOptions = {
     backgroundSecondary: {
       main: PRIMARY_LIGHT_THEME,
     },
+    backgroundFooter: {
+      main: PRIMARY_LIGHT_THEME,
+    },
   },
   typography: {
     fontFamily: 'Nunito, sans-serif',
@@ -139,7 +146,7 @@ const darkTheme: ThemeOptions = {
   },
 } as const;
 
-export const themeOptions: Record<PaletteMode, ThemeOptions> = {
+export const themeOptions: Record<MuiThemeMode, ThemeOptions> = {
   light: lightTheme,
   dark: darkTheme,
 };

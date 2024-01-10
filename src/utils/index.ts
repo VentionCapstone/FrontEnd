@@ -1,6 +1,6 @@
-import { PaletteMode } from '@mui/material';
 import { ThemeMode } from '../types/profile.types';
 import toast from 'react-hot-toast';
+import { MuiThemeMode } from '../types/theme.types';
 
 export const convertImageToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -18,10 +18,10 @@ export const phoneNumLengthRegEx = (length: number) => {
   return new RegExp(`^\\d{${length}}$`);
 };
 
-export const getPalleteMode = (mode: ThemeMode | null): PaletteMode => {
-  if (mode === ThemeMode.dark) return 'dark';
+export const getPalleteMode = (mode: ThemeMode | null): MuiThemeMode => {
+  if (mode === ThemeMode.dark) return MuiThemeMode.dark;
 
-  return 'light';
+  return MuiThemeMode.light;
 };
 
 export const getValueFromLocalStorage = <T>(key: string): T | null => {

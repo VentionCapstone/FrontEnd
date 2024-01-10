@@ -9,11 +9,13 @@ declare module '@mui/material/styles' {
   interface Palette {
     secondary2: Palette['primary'];
     backgroundSecondary: Palette['primary'];
+    backgroundFooter: Palette['primary'];
   }
 
   interface PaletteOptions {
     secondary2?: PaletteOptions['primary'];
     backgroundSecondary?: PaletteOptions['primary'];
+    backgroundFooter?: PaletteOptions['primary'];
   }
 
   interface BreakpointOverrides {

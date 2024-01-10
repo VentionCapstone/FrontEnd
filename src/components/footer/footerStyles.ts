@@ -20,5 +20,6 @@ export const footerStyles = {
     borderTop: '1px solid',
     borderColor: 'secondary2.light',
     color: 'primary.main',
+    bgcolor: 'backgroundFooter.main',
   },
 } satisfies MuiStylesObject;

@@ -7,9 +7,7 @@ import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import { ChangeEventHandler } from 'react';
 import { convertImageToBase64 } from '../../utils';
 import { Profile } from '../../types/profile.types';
-import { PRIMARY_LIGHT_THEME } from '../../theme/themeTokens';
 import toast from 'react-hot-toast';
-import useTheme from '@mui/material/styles/useTheme';
 
 function AddImage({
   imageUrl,
@@ -18,8 +16,6 @@ function AddImage({
   imageUrl: Profile['imageUrl'];
   setImageUrl: React.Dispatch<React.SetStateAction<string>>;
 }) {
-  const mode = useTheme().palette.mode;
-
   const handleChangeInput: ChangeEventHandler<HTMLInputElement> = (e) => {
     const file = e.target.files?.[0];
 
@@ -53,7 +49,7 @@ function AddImage({
           left: '50%',
           px: '1rem',
           py: '0.5rem',
-          bgcolor: mode === 'light' ? 'background.default' : PRIMARY_LIGHT_THEME,
+          bgcolor: 'backgroundSecondary.main',
           borderRadius: '1rem',
           boxShadow: '0px 6px 16px rgba(0, 0, 0, 0.12)',
           transform: 'translate(-50%, 50%)',
