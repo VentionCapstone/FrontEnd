@@ -1,5 +1,4 @@
-import { ThemeOptions } from '@mui/material';
-import { MuiThemeMode } from '../types/theme.types';
+import { ThemeOptions, PaletteMode } from '@mui/material';
 
 export const PRIMARY_LIGHT_THEME = '#222222';
 export const PRIMARY_DARK_THEME = '#ffffff';
@@ -146,7 +145,7 @@ const darkTheme: ThemeOptions = {
   },
 } as const;
 
-export const themeOptions: Record<MuiThemeMode, ThemeOptions> = {
+export const themeOptions: Record<PaletteMode, ThemeOptions> = {
   light: lightTheme,
   dark: darkTheme,
 };

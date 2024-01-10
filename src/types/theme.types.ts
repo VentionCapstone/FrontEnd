@@ -1,10 +1,5 @@
 import '@mui/material/styles';
 
-export enum MuiThemeMode {
-  light = 'light',
-  dark = 'dark',
-}
-
 declare module '@mui/material/styles' {
   interface Palette {
     secondary2: Palette['primary'];
