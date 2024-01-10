@@ -1,7 +1,8 @@
 import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
-import LoadingImage from '../../assets/loader.png';
-import ErrorImage from '../../assets/no-image.png';
+
+import LoadingImage from '@/assets/loader.png';
+import ErrorImage from '@/assets/no-image.png';
 
 const imageStates = {
   Loading: LoadingImage,
@@ -37,7 +38,8 @@ function CustomImage({ image, name }: SingleImageProps) {
           objectPosition: 'center',
           mx: 'auto',
           height: {
-            sm: 260,
+            xs: 270,
+            sm: 300,
             md: 250,
             xl: 270,
           },

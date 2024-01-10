@@ -1,5 +1,8 @@
-import { ThemeMode } from '../types/profile.types';
 import toast from 'react-hot-toast';
+
+import ErrorImage from '@/assets/no-image.png';
+import { Amenity } from '@/types/accommodation.types';
+import { ThemeMode } from '@/types/profile.types';
 
 export const convertImageToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -53,6 +56,14 @@ export const setValueToLocalStorage = (key: string, value: object | string): voi
   }
 };
 
+export const removeFromLocalStorage = (key: string): void => {
+  try {
+    localStorage.removeItem(key);
+  } catch (error) {
+    throw new Error('Error removing data from local storage');
+  }
+};
+
 export const truncateReview = (text: string, maxChars: number) => {
   if (text.length > maxChars) {
     const truncatedText = text.slice(0, maxChars) + '...';
@@ -69,4 +80,18 @@ export const lineClampStyle = (line: number) => {
     WebkitLineClamp: line,
     overflow: 'hidden',
   };
+};
+
+export const selectOnlyTrueAmenities = (amenities: Amenity) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  const trueAmenities = Object.entries(amenities)
+    .filter(([, value]) => value === true)
+    .map(([key]) => key);
+
+  return trueAmenities;
+};
+
+export const handleErrorInImage = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+  e.currentTarget.src = ErrorImage;
+  e.currentTarget.style.objectFit = 'contain';
 };
