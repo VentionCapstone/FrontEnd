@@ -5,6 +5,8 @@ import httpClient from '../../httpClient';
 import { RoutesConfig } from '../../../config/routes.config';
 import { ResponsePayment } from '../../../types/payment.types';
 import { EndpointsConfig } from '../../../config/endpoints.config';
+import { LOCAL_STORAGE_KEYS } from '../../../config/local-storage.config';
+import { removeFromLocalStorage, setValueToLocalStorage } from '../../../utils';
 
 function usePostPaymentOptionMutation(bookingId: string, paymentOption: string) {
   const navigate = useNavigate();
@@ -22,9 +24,9 @@ function usePostPaymentOptionMutation(bookingId: string, paymentOption: string) 
     },
     onSuccess: (data) => {
       if (typeof data === 'string') {
-        localStorage.setItem('clientSecret', data);
+        setValueToLocalStorage(LOCAL_STORAGE_KEYS.clientSecret, data);
       } else {
-        localStorage.removeItem('clientSecret');
+        removeFromLocalStorage(LOCAL_STORAGE_KEYS.clientSecret);
         toast.success(data.message);
         navigate(RoutesConfig.Root);
       }

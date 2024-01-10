@@ -6,6 +6,8 @@ import httpClient from '../../httpClient';
 import { RoutesConfig } from '../../../config/routes.config';
 import { ResponsePayment } from '../../../types/payment.types';
 import { EndpointsConfig } from '../../../config/endpoints.config';
+import { LOCAL_STORAGE_KEYS } from '../../../config/local-storage.config';
+import { getValueFromLocalStorage, removeFromLocalStorage } from '../../../utils';
 
 function usePostPaymentToStripeMutation(bookingId: string) {
   const elements = useElements();
@@ -24,7 +26,7 @@ function usePostPaymentToStripeMutation(bookingId: string) {
       return data;
     },
     onSuccess: (data) => {
-      localStorage.removeItem('clientSecret');
+      removeFromLocalStorage(LOCAL_STORAGE_KEYS.clientSecret);
       toast.success(data.message);
       navigate(RoutesConfig.Root);
     },
@@ -36,7 +38,7 @@ function usePostPaymentToStripeMutation(bookingId: string) {
 
       const cardEl = elements.getElement(CardElement);
 
-      const clientSecret = localStorage.getItem('clientSecret') || '';
+      const clientSecret = getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.clientSecret) || '';
 
       const { paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
