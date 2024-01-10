@@ -1,31 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import { AmenitySetting } from '../../../types/amenity.types';
-import { MuiStylesObject } from '../../../types/utility.types';
+import { styles } from './AmenityList.styles';
 
 function AmenityList({ amenities }: { amenities: AmenitySetting[] }) {
-  const styles = {
-    heading: {
-      fontWeight: 'bold',
-      fontSize: {
-        xs: '1rem',
-        md: '1.3rem',
-      },
-      marginBottom: '1rem',
-    },
-    container: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      flexWrap: 'wrap',
-      gap: 2,
-    },
-    box: {
-      display: 'flex',
-      gap: 4,
-      width: '48%',
-      alignItems: 'center',
-    },
-  } satisfies MuiStylesObject;
-
   return (
     <Box marginY={4}>
       <Typography sx={styles.heading}>What this place offers</Typography>
