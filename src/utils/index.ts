@@ -55,6 +55,14 @@ export const setValueToLocalStorage = (key: string, value: object | string): voi
   }
 };
 
+export const removeFromLocalStorage = (key: string): void => {
+  try {
+    localStorage.removeItem(key);
+  } catch (error) {
+    throw new Error('Error removing data from local storage');
+  }
+};
+
 export const truncateReview = (text: string, maxChars: number) => {
   if (text.length > maxChars) {
     const truncatedText = text.slice(0, maxChars) + '...';

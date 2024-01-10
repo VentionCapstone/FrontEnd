@@ -2,6 +2,7 @@ import { Box } from '@mui/system';
 import { useParams } from 'react-router';
 import { Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { Reviews } from './components/Reviews';
 import { styles } from './Accommodation.styles';
 import AmenityList from './components/AmenityList';
 import { AmenitySetting } from '../../types/amenity.types';
@@ -90,6 +91,7 @@ function Accommodation() {
         </Box>
         <Box flex={0.4}></Box>
       </Box>
+      <Reviews accommodationId={accommodationId || ''} />
     </Box>
   );
 }
