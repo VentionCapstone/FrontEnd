@@ -6,7 +6,7 @@ import { ReviewResponse } from '../../../types/reviews.types';
 
 function useGetReviewsQuery(accommodationId: string) {
   return useQuery({
-    queryKey: [QUERY_KEYS.query.accomodationReviews],
+    queryKey: [QUERY_KEYS.query.accomodationReviews, accommodationId],
 
     queryFn: async () => {
       const { data } = await httpClient.get<ReviewResponse>(

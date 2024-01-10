@@ -1,4 +1,6 @@
 import { ThemeMode } from '../types/profile.types';
+import { Amenity } from '../types/accommodation.types';
+import ErrorImage from '../assets/no-image.png';
 import toast from 'react-hot-toast';
 
 export const convertImageToBase64 = (file: File): Promise<string> => {
@@ -53,6 +55,14 @@ export const setValueToLocalStorage = (key: string, value: object | string): voi
   }
 };
 
+export const removeFromLocalStorage = (key: string): void => {
+  try {
+    localStorage.removeItem(key);
+  } catch (error) {
+    throw new Error('Error removing data from local storage');
+  }
+};
+
 export const truncateReview = (text: string, maxChars: number) => {
   if (text.length > maxChars) {
     const truncatedText = text.slice(0, maxChars) + '...';
@@ -60,4 +70,17 @@ export const truncateReview = (text: string, maxChars: number) => {
   }
 
   return text;
+};
+
+export const selectOnlyTrueAmenities = (amenities: Amenity) => {
+  const trueAmenities = Object.entries(amenities)
+    .filter(([, value]) => value === true)
+    .map(([key]) => key);
+
+  return trueAmenities;
+};
+
+export const handleErrorInImage = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+  e.currentTarget.src = ErrorImage;
+  e.currentTarget.style.objectFit = 'contain';
 };

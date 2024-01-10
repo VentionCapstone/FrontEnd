@@ -13,6 +13,7 @@ export const QUERY_KEYS = {
   query: {
     user: 'user',
     amenitiesList: 'amenities_list',
+    accommodation: 'accommodation',
     accomodationAmenities: 'accomodation_amenities',
     accomodationReviews: 'accomodation_reviews',
   },

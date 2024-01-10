@@ -16,6 +16,7 @@ const UserLayout = React.lazy(() => import('../layouts/UserLayout'));
 const Main = React.lazy(() => import('../pages/main'));
 const SignIn = React.lazy(() => import('../pages/signin'));
 const VerifyEmail = React.lazy(() => import('../pages/auth/VerifyEmail'));
+const Accommodation = React.lazy(() => import('../pages/accomodation/Accommodation'));
 
 const routes = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const routes = createBrowserRouter([
     element: <MainLayout />,
     children: [
       { path: '', element: <Main /> },
+      { path: 'rooms/:id', element: <Accommodation /> },
       { path: '*', element: <Navigate to="/" /> },
     ],
   },
