@@ -1,5 +1,3 @@
-// type Props = {};
-
 import { Add } from '@mui/icons-material';
 import { Box, IconButton, Skeleton, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -34,32 +32,34 @@ export default function Accommodations() {
                 <Skeleton variant="text" width="100%" />
               </Box>
             ))
-          : accommodations?.data.data.slice(0, 10).map((accommodation) => (
-              <Link
-                to={ROUTES.accommodations.edit(accommodation.id)}
-                key={accommodation.id}
-                style={{
-                  textDecoration: 'none',
-                  color: 'inherit',
-                }}
-              >
-                <Box display="flex" flexDirection="column" gap={2}>
-                  <Box width="100%" height={280} borderRadius={2} overflow="hidden">
-                    <img
-                      width="100%"
-                      height="100%"
-                      onError={onError}
-                      style={{ objectFit: 'cover' }}
-                      alt={`${accommodation.id} thumbnail`}
-                      src={accommodation.thumbnailUrl || accommodation.previewImgUrl}
-                    />
+          : accommodations?.data.data
+              .slice(0, 10)
+              .map(({ id, title, thumbnailUrl, previewImgUrl }) => (
+                <Link
+                  to={ROUTES.accommodations.edit(id)}
+                  key={id}
+                  style={{
+                    textDecoration: 'none',
+                    color: 'inherit',
+                  }}
+                >
+                  <Box display="flex" flexDirection="column" gap={2}>
+                    <Box width="100%" height={280} borderRadius={2} overflow="hidden">
+                      <img
+                        width="100%"
+                        height="100%"
+                        onError={onError}
+                        style={{ objectFit: 'cover' }}
+                        alt={`${id} thumbnail`}
+                        src={thumbnailUrl || previewImgUrl}
+                      />
+                    </Box>
+                    <Typography variant="body1" sx={lineClampStyle(1)}>
+                      {title}
+                    </Typography>
                   </Box>
-                  <Typography variant="body1" sx={lineClampStyle(1)}>
-                    {accommodation.title}
-                  </Typography>
-                </Box>
-              </Link>
-            ))}
+                </Link>
+              ))}
       </Box>
     </Box>
   );

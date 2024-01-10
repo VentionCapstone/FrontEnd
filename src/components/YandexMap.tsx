@@ -3,7 +3,7 @@ import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
 type Props = {
   latitude: number;
   longitude: number;
-  setCoords?: (coords: [number, number]) => void;
+  setCoords?: ([latitude, longitude]: number[]) => void;
 };
 
 export default function YandexMap({ latitude, longitude, setCoords }: Props) {

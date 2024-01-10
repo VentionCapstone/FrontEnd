@@ -1,5 +1,21 @@
 import { z } from 'zod';
 
+export type AccommodationFields =
+  | 'title'
+  | 'thumbnailUrl'
+  | 'squareMeters'
+  | 'numberOfRooms'
+  | 'price'
+  | 'allowedNumberOfPeople'
+  | 'availableFrom'
+  | 'availableTo'
+  | 'description'
+  | 'previewImgUrl'
+  | 'address.street'
+  | 'address.city'
+  | 'address.country'
+  | 'address.zipCode';
+
 export const accommodationSchema = z.object({
   title: z.string().min(10).max(100),
   thumbnailUrl: z.string().url({ message: 'Thumbnail url must be a valid url' }),
