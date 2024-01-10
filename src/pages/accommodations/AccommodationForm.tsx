@@ -11,6 +11,7 @@ import { useGetAccommodation } from '@/api/queries/accommodations/useGetAccommod
 import YandexMap from '@/components/YandexMap';
 import { ROUTES } from '@/config/routes.config';
 import { AccommodationReq, accommodationSchema } from '@/types/accommodation.types';
+import { Coordinates } from '@/types/global.types';
 import { FormDateField } from './FormDateField';
 import { FormField } from './FormField';
 
@@ -87,7 +88,7 @@ export default function AccommodationForm() {
     }
   };
 
-  const handleCoordsChange = ([latitude, longitude]: number[]) => {
+  const handleCoordsChange = ([latitude, longitude]: Coordinates) => {
     setValue('address.latitude', latitude, {
       shouldDirty: true,
     });
