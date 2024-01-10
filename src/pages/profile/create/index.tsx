@@ -26,17 +26,22 @@ function CreateProfile() {
     reset,
     control,
   } = useForm<Profile>();
+  const defaultMaleImage =
+    'https://i.pinimg.com/564x/48/6c/a0/486ca00640b169300b48e9ceacd8e401.jpg';
+  const defaultFemaleImage =
+    'https://i.pinimg.com/564x/39/42/01/39420149269ede36847932935b26f0b8.jpg';
 
   const [imageUrl, setImageUrl] = useState('');
   const [selectedCountry, setSelectedCountry] = useState<PhoneCodesByCountry>(DEFAULT_COUNTRY);
-
   const { mutate, isPending } = useCreateAccountMutation();
 
   const onSubmit: SubmitHandler<Profile> = (data) => {
+    const defaultImage = data.gender === Gender.male ? defaultMaleImage : defaultFemaleImage;
+
     const userProfile: Profile = {
       ...data,
       phoneNumber: selectedCountry.code + data.phoneNumber,
-      imageUrl,
+      imageUrl: defaultImage,
       language: 'en',
       uiTheme: ThemeMode.light,
     };
@@ -96,8 +101,8 @@ function CreateProfile() {
                     defaultValue={Gender.male}
                     render={({ field }) => (
                       <Select {...field} labelId="user-gender-select-label" label="Gender">
-                        <MenuItem value={'MALE'}>Male</MenuItem>
-                        <MenuItem value={'FEMALE'}>Female</MenuItem>
+                        <MenuItem value={Gender.male}>Male</MenuItem>
+                        <MenuItem value={Gender.female}>Female</MenuItem>
                       </Select>
                     )}
                   />
