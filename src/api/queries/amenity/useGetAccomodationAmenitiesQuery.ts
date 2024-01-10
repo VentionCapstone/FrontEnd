@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import httpClient from '../../httpClient';
-import { EndpointsConfig } from '../../../config/endpoints.config';
-import { AccommodationAmenitiesResponse } from '../../../types/amenity.types';
-import { QUERY_KEYS } from '../../../config/react-query.config';
+
+import httpClient from '@/api/httpClient';
+import { ENDPOINTS } from '@/config/endpoints.config';
+import { QUERY_KEYS } from '@/config/react-query.config';
+import { AccommodationAmenitiesResponse } from '@/types/amenity.types';
 
 const fetchAccomodationAmenities = async (accomodationId: string) => {
   const { data } = await httpClient.get<AccommodationAmenitiesResponse>(
-    EndpointsConfig.Amenity.Root(accomodationId)
+    ENDPOINTS.amenity.root(accomodationId)
   );
   return data;
 };

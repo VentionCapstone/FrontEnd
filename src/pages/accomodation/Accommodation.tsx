@@ -1,16 +1,17 @@
-import { Box } from '@mui/system';
-import { useParams } from 'react-router';
 import { Grid, Typography } from '@mui/material';
+import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
-import { Reviews } from './components/Reviews';
+import { useParams } from 'react-router';
+
+import useGetSingleAccommodationQuery from '@/api/queries/accommodation/useGetSingleAccommodationQuery';
+import LoadingPrimary from '@/components/loader/LoadingPrimary';
+import DataFetchError from '@/components/shared/DataFetchError';
+import { AmenitySetting } from '@/types/amenity.types';
+import { handleErrorInImage, selectOnlyTrueAmenities } from '@/utils';
 import { styles } from './Accommodation.styles';
 import AmenityList from './components/AmenityList';
-import { AmenitySetting } from '../../types/amenity.types';
+import { Reviews } from './components/Reviews';
 import { buildAmenityList } from './utils/amenityListBuilder';
-import LoadingPrimary from '../../components/loader/LoadingPrimary';
-import DataFetchError from '../../components/shared/DataFetchError';
-import { handleErrorInImage, selectOnlyTrueAmenities } from '../../utils';
-import useGetSingleAccommodationQuery from '../../api/queries/accommodation/useGetSingleAccommodationQuery';
 
 function Accommodation() {
   const accommodationId = useParams().id;

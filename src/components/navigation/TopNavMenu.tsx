@@ -1,26 +1,20 @@
-import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import Link from '@mui/material/Link';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import Box from '@mui/material/Box';
-
+import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import { useCallback, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
-import useLogoutMutation from '../../api/mutations/account/useLogoutMutation';
-import useGetUserQuery from '../../api/queries/account/useGetUserQuery';
+import useLogoutMutation from '@/api/mutations/account/useLogoutMutation';
+import useGetUserQuery from '@/api/queries/account/useGetUserQuery';
+import { ROUTES } from '@/config/routes.config';
 import { mainNavigationStyles as styles } from './mainNavigation.styles';
-import { useAppSelector } from '../../hooks/redux-hooks';
-import { RoutesConfig } from '../../config/routes.config';
-import { hasToken } from '../../stores/slices/authSlice';
-import { LOCAL_STORAGE_KEYS } from '../../config/local-storage.config';
-import { getValueFromLocalStorage } from '../../utils';
 
 export const TopNavMenu = () => {
-  const isLoggedIn = useAppSelector(hasToken);
-  const userId = getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.sub);
+  const { data: user } = useGetUserQuery();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -28,13 +22,16 @@ export const TopNavMenu = () => {
     setAnchorEl(event.currentTarget);
   };
 
-  const { isError } = useGetUserQuery(userId, isLoggedIn);
-  const { mutate } = useLogoutMutation();
+  const { mutate: logOut } = useLogoutMutation();
 
   const handleClose = useCallback(() => {
     setAnchorEl(null);
   }, []);
-  const handleLogout = () => mutate();
+
+  const handleLogout = () => {
+    logOut();
+    handleClose();
+  };
 
   return (
     <Box>
@@ -75,23 +72,45 @@ export const TopNavMenu = () => {
           },
         }}
       >
-        {isLoggedIn && !isError
+        {user?.id
           ? [
-              <MenuItem key="account">
-                <Link component={RouterLink} to={RoutesConfig.Account.Root}>
-                  Account
-                </Link>
-              </MenuItem>,
+              <Link
+                key={ROUTES.account.root}
+                component={RouterLink}
+                to={ROUTES.account.root}
+                onClick={handleClose}
+              >
+                <MenuItem>Account</MenuItem>
+              </Link>,
+              <Link
+                key={ROUTES.accommodations.root}
+                component={RouterLink}
+                to={ROUTES.accommodations.root}
+                onClick={handleClose}
+              >
+                <MenuItem>My Listings</MenuItem>
+              </Link>,
               <MenuItem key="logout" onClick={handleLogout}>
                 Logout
               </MenuItem>,
             ]
           : [
-              <MenuItem key="signIn">
-                <Link component={RouterLink} to={RoutesConfig.Auth.SignIn}>
-                  Sign In
-                </Link>
-              </MenuItem>,
+              <Link
+                key={ROUTES.auth.signIn}
+                component={RouterLink}
+                to={ROUTES.auth.signIn}
+                onClick={handleClose}
+              >
+                <MenuItem>Sign In</MenuItem>
+              </Link>,
+              <Link
+                key={ROUTES.auth.signUp}
+                component={RouterLink}
+                to={ROUTES.auth.signUp}
+                onClick={handleClose}
+              >
+                <MenuItem>Sign Up</MenuItem>
+              </Link>,
             ]}
       </Menu>
     </Box>

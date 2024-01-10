@@ -1,20 +1,19 @@
+import LanguageIcon from '@mui/icons-material/Language';
 import Box from '@mui/material/Box';
 import Container, { ContainerProps } from '@mui/material/Container';
-import Stack from '@mui/material/Stack';
-import Link from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
-import LanguageIcon from '@mui/icons-material/Language';
 import IconButton from '@mui/material/IconButton';
-
-import { Link as RouterLink } from 'react-router-dom';
+import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import { useRef } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
-import useIntersectionObserver from '../../hooks/useIntersectionObserver';
-import { mainNavigationStyles as styles } from './mainNavigation.styles';
-import { RoutesConfig } from '../../config/routes.config';
-import { TopNavMenu } from './TopNavMenu';
+import logo from '@/assets/logo.png';
+import { ROUTES } from '@/config/routes.config';
+import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 import { BottomNav } from './BottomNavigation';
-import logo from '../../assets/logo.png';
+import { TopNavMenu } from './TopNavMenu';
+import { mainNavigationStyles as styles } from './mainNavigation.styles';
 
 function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) {
   const scrollWatcherRef = useRef<Element | null>(null);
@@ -32,7 +31,7 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
           <Stack direction={'row'} alignItems={'center'}>
             <Link
               component={RouterLink}
-              to={RoutesConfig.Root}
+              to={ROUTES.root}
               sx={{ textDecoration: 'none' }}
               mr={'auto'}
             >

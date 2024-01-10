@@ -1,15 +1,16 @@
-import { useSearchParams } from 'react-router-dom';
 import TuneIcon from '@mui/icons-material/Tune';
+import { Badge, Box, Button, Stack, Typography } from '@mui/material';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Badge, Box, Button, Stack, Typography } from '@mui/material';
+import { useSearchParams } from 'react-router-dom';
+
+import useGetAccommodationsQuery from '@/api/queries/main/useGetAccommodationsQuery';
+import AccommodationCard from '@/components/card/AccommodationCard';
+import LoadingPrimary from '@/components/loader/LoadingPrimary';
+import DataFetchError from '@/components/shared/DataFetchError';
+import { Accommodation, DefaultSearchParamsType } from '@/types/accommodation.types';
 import MainModal from './components/Modal';
 import { mainStyles } from './index.styles';
-import DataFetchError from '../../components/shared/DataFetchError';
-import LoadingPrimary from '../../components/loader/LoadingPrimary';
-import AccommodationCard from '../../components/card/AccommodationCard';
-import { Accommodation, DefaultSearchParamsType } from '../../types/accommodation.types';
-import useGetAccommodationsQuery from '../../api/queries/main/useGetAccommodationsQuery';
 
 const defaultSearchParams: DefaultSearchParamsType = {
   minPrice: '0',
