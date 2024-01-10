@@ -6,7 +6,6 @@ import ProfileCreateRoute from './ProfileCreateRoute';
 import ProfileEditRoute from './ProfileEditRoute';
 import UserRoute from './UserRoute';
 
-import AuthLayout from '@/layouts/AuthLayout';
 import MainLayout from '@/layouts/MainLayout';
 import UserLayout from '@/layouts/UserLayout';
 
@@ -67,7 +66,7 @@ const routes = createBrowserRouter([
     path: '/auth',
     element: (
       <UserRoute>
-        <AuthLayout />
+        <UserLayout />
       </UserRoute>
     ),
     children: [

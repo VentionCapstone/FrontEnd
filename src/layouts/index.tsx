@@ -1,7 +1,6 @@
+import MainNavigation from '@/components/navigation';
 import { Container } from '@mui/material';
 import { Outlet } from 'react-router-dom';
-
-import MainNavigation from '../components/navigation/MainNavigation';
 
 type Props = {
   maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';

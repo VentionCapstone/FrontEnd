@@ -19,6 +19,8 @@ export const ENDPOINTS = {
     getAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}`,
     updateAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}`,
     deleteAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}`,
+    getAccommodationReviews: (accommodationId: string) =>
+      `/accommodations/${accommodationId}/reviews`,
   },
   amenity: {
     root: (accommodationId: string) => `/amenities/${accommodationId}`,
