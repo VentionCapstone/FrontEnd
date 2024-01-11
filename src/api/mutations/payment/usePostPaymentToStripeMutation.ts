@@ -35,8 +35,7 @@ function usePostPaymentToStripeMutation(bookingId: string) {
   return useMutation({
     mutationFn: async () => {
       if (!stripe || !elements) {
-        toast.error('Unvailable, try again later.');
-        return;
+        throw new Error('Unvailable, try again later.');
       }
 
       const cardEl = elements.getElement(CardElement);
@@ -56,6 +55,9 @@ function usePostPaymentToStripeMutation(bookingId: string) {
       } else {
         toast.error('An unexpected error occurred.');
       }
+    },
+    onError: (error) => {
+      toast.error(error.message);
     },
   });
 }
