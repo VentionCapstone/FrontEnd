@@ -5,9 +5,8 @@ import httpClient from '@/api/httpClient';
 import { ENDPOINTS } from '@/config/endpoints.config';
 import { QUERY_KEYS } from '@/config/react-query.config';
 import { Profile } from '@/types/profile.types';
-import { User } from '@/types/user.types';
 
-function useEditAccountMutation(userId: User['id']) {
+function useEditAccountMutation(userId: string) {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: [QUERY_KEYS.mutation.editAccount],

@@ -1,14 +1,12 @@
-// type Props = {};
-
-import { Add } from '@mui/icons-material';
-import { Box, IconButton, Skeleton, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
-
 import { useGetAccommodations } from '@/api/queries/accommodations/useGetAccommodations';
 import { ROUTES } from '@/config/routes.config';
 import { useAppSelector } from '@/hooks/redux-hooks';
 import { getUser } from '@/stores/slices/authSlice';
 import { lineClampStyle } from '@/utils';
+import { Add } from '@mui/icons-material';
+import { Box, IconButton, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
+import AccommodationSkeleton from './AccommodationSkeleton';
 
 export default function Accommodations() {
   const profileId = useAppSelector(getUser)?.id ?? '';
@@ -30,39 +28,37 @@ export default function Accommodations() {
       </Box>
       {/* List */}
       <Box display="grid" gap={8} gridTemplateColumns={'repeat(auto-fill, minmax(280px, 1fr))'}>
-        {isLoading
-          ? Array.from({ length: 10 }).map((_, i) => (
-              <Box key={i} display="flex" flexDirection="column" gap={2}>
-                <Skeleton variant="rounded" width="100%" height={280} />
-                <Skeleton variant="text" width="100%" />
-              </Box>
-            ))
-          : accommodations?.data.data.slice(0, 10).map((accommodation) => (
+        {isLoading ? (
+          <AccommodationSkeleton />
+        ) : (
+          accommodations
+            ?.slice(0, 10)
+            .map(({ id, title, thumbnailUrl, previewImgUrl, isDeleted }) => (
               <Link
-                to={ROUTES.accommodations.edit(accommodation.id)}
-                key={accommodation.id}
+                to={ROUTES.accommodations.edit(id)}
+                key={id}
                 style={{
-                  textDecoration: 'none',
                   color: 'inherit',
+                  textDecoration: 'none',
                 }}
               >
                 <Box display="flex" flexDirection="column" gap={2}>
                   <Box
                     width="100%"
                     height={280}
-                    position="relative"
                     borderRadius={2}
                     overflow="hidden"
+                    position="relative"
                   >
                     <img
                       width="100%"
                       height="100%"
                       onError={onError}
                       style={{ objectFit: 'cover' }}
-                      alt={`${accommodation.id} thumbnail`}
-                      src={accommodation.thumbnailUrl || accommodation.previewImgUrl}
+                      alt={`${id} thumbnail`}
+                      src={thumbnailUrl || previewImgUrl}
                     />
-                    {accommodation.isDeleted && (
+                    {isDeleted && (
                       <Box
                         component="div"
                         position="absolute"
@@ -84,12 +80,14 @@ export default function Accommodations() {
                       </Box>
                     )}
                   </Box>
+
                   <Typography variant="body1" sx={lineClampStyle(1)}>
-                    {accommodation.title}
+                    {title}
                   </Typography>
                 </Box>
               </Link>
-            ))}
+            ))
+        )}
       </Box>
     </Box>
   );

@@ -6,7 +6,6 @@ import ProfileCreateRoute from './ProfileCreateRoute';
 import ProfileEditRoute from './ProfileEditRoute';
 import UserRoute from './UserRoute';
 
-import AuthLayout from '@/layouts/AuthLayout';
 import MainLayout from '@/layouts/MainLayout';
 import UserLayout from '@/layouts/UserLayout';
 
@@ -22,12 +21,15 @@ const ProfileSetting = React.lazy(() => import('@/pages/profile/edit/profile-set
 const Accommodations = React.lazy(() => import('@/pages/accommodations'));
 const AccommodationForm = React.lazy(() => import('@/pages/accommodations/AccommodationForm'));
 
+const Accommodation = React.lazy(() => import('@/pages/accomodation/Accommodation'));
+
 const routes = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,
     children: [
       { path: '', element: <Main /> },
+      { path: 'rooms/:id', element: <Accommodation /> },
       { path: '*', element: <Navigate to="/" /> },
     ],
   },
@@ -67,7 +69,7 @@ const routes = createBrowserRouter([
     path: '/auth',
     element: (
       <UserRoute>
-        <AuthLayout />
+        <UserLayout />
       </UserRoute>
     ),
     children: [

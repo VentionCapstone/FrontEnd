@@ -8,8 +8,12 @@ import { AccommodationRes } from '@/types/accommodation.types';
 export const useGetAccommodations = (id: string) => {
   return useQuery({
     queryKey: [QUERY_KEYS.query.accommodations],
-    queryFn: () =>
-      httpClient.get<AccommodationRes>(ENDPOINTS.accommodation.getUserAccommodations(id || '')),
+    queryFn: async () => {
+      const response = await httpClient.get<AccommodationRes>(
+        ENDPOINTS.accommodation.getUserAccommodations(id)
+      );
+      return response.data?.data || [];
+    },
     enabled: !!id,
   });
 };

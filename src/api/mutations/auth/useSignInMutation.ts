@@ -1,9 +1,9 @@
+import httpClient from '@/api/httpClient';
+import { ENDPOINTS } from '@/config/endpoints.config';
+import { useAppDispatch } from '@/hooks/redux-hooks';
+import { setToken } from '@/stores/slices/authSlice';
+import { AuthData, LoginResponse } from '@/types/auth.types';
 import { useMutation } from '@tanstack/react-query';
-import httpClient from '../../httpClient';
-import { AuthData, LoginResponse } from '../../../types/auth.types';
-import { useAppDispatch } from '../../../hooks/redux-hooks';
-import { setToken } from '../../../stores/slices/authSlice';
-import { ENDPOINTS } from '../../../config/endpoints.config';
 
 const useSignInMutation = () => {
   const dispatch = useAppDispatch();

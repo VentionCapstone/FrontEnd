@@ -1,6 +1,22 @@
 import { MouseEventHandler } from 'react';
 import { z } from 'zod';
 
+export type AccommodationFields =
+  | 'title'
+  | 'thumbnailUrl'
+  | 'squareMeters'
+  | 'numberOfRooms'
+  | 'price'
+  | 'allowedNumberOfPeople'
+  | 'availableFrom'
+  | 'availableTo'
+  | 'description'
+  | 'previewImgUrl'
+  | 'address.street'
+  | 'address.city'
+  | 'address.country'
+  | 'address.zipCode';
+
 export const accommodationSchema = z.object({
   title: z.string().min(10).max(100),
   thumbnailUrl: z.string().url({ message: 'Thumbnail url must be a valid url' }),
@@ -79,11 +95,6 @@ export interface Accommodation {
   price: number;
   address: Address;
 }
-
-export interface Address {
-  country: string;
-}
-
 export interface InputFilter {
   rooms?: number;
   people?: number;
@@ -138,3 +149,65 @@ export type DefaultSearchParamsType = {
   orderByPeople: string;
   orderByRoom: string;
 };
+
+export interface AccommodationSingleResponse {
+  success: boolean;
+  data: AccommodationSingle;
+}
+
+export interface AccommodationSingle {
+  id: string;
+  addressId: string;
+  thumbnailUrl: string;
+  ownerId: string;
+  squareMeters: number;
+  numberOfRooms: number;
+  price: number;
+  allowedNumberOfPeople: number;
+  availableFrom: string;
+  availableTo: string;
+  description: string;
+  previewImgUrl: string;
+  isDeleted: boolean;
+  address: Address;
+  media: Media[];
+  amenities: Amenity[];
+}
+
+export interface Address {
+  id: string;
+  street: string;
+  city: string;
+  country: string;
+  zipCode: string;
+  latitude: number;
+  longitude: number;
+}
+
+export interface Media {
+  id: string;
+  imageUrl: string;
+  thumbnailUrl: string;
+  accommodationId: string;
+}
+
+export interface Amenity {
+  id: string;
+  hasWifi: boolean;
+  hasParking: boolean;
+  hasSwimmingPool: boolean;
+  hasPetAllowance: boolean;
+  isQuiteArea: boolean;
+  hasBackyard: boolean;
+  hasSmokingAllowance: boolean;
+  isChildFriendly: boolean;
+  hasHospitalNearby: boolean;
+  isCloseToCenter: boolean;
+  hasLaundryService: boolean;
+  hasKitchen: boolean;
+  hasAirConditioning: boolean;
+  hasTv: boolean;
+  hasAirportTransfer: boolean;
+  accommodationId: string;
+  otherAmenities: string | null;
+}

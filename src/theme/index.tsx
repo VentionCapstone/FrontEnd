@@ -1,19 +1,32 @@
-import { CssBaseline, createTheme, PaletteMode } from '@mui/material';
+import { CssBaseline, createTheme } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
-import { useAppSelector } from '../hooks/redux-hooks';
-import { getProfile } from '../stores/slices/authSlice';
-import { getPalleteMode, getValueFromLocalStorage } from '../utils';
-import { LOCAL_STORAGE_KEYS } from '../config/local-storage.config';
-import { ThemeMode } from '../types/profile.types';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+
+import { LOCAL_STORAGE_KEYS } from '@/config/local-storage.config';
+import { useAppSelector } from '@/hooks/redux-hooks';
+import { getTheme } from '@/stores/slices/authSlice';
+import { ThemeMode } from '@/types/profile.types';
+import { getPalleteMode, getValueFromLocalStorage, setValueToLocalStorage } from '@/utils';
 import { themeOptions } from './themeTokens';
 
 const ThemeWrapper = ({ children }: { children: React.ReactNode }) => {
-  const uiTheme =
-    useAppSelector(getProfile)?.uiTheme ||
-    getValueFromLocalStorage<ThemeMode>(LOCAL_STORAGE_KEYS.uiTheme);
+  const profileThemeMode = useAppSelector(getTheme);
+  const localThemeMode = getValueFromLocalStorage<ThemeMode>(LOCAL_STORAGE_KEYS.uiTheme);
+  const [mode, setMode] = useState<ThemeMode>(localThemeMode ?? ThemeMode.light);
+  const theme = createTheme(themeOptions[getPalleteMode(mode)]);
 
-  const mode: PaletteMode = getPalleteMode(uiTheme);
-  const theme = createTheme(themeOptions[mode]);
+  useEffect(() => {
+    if (profileThemeMode && profileThemeMode !== localThemeMode) {
+      try {
+        setMode(profileThemeMode);
+        setValueToLocalStorage(LOCAL_STORAGE_KEYS.uiTheme, profileThemeMode);
+      } catch (error) {
+        console.error(error);
+        toast.error('Error changing theme!');
+      }
+    }
+  }, [profileThemeMode, localThemeMode]);
 
   return (
     <ThemeProvider theme={theme}>

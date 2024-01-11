@@ -9,11 +9,12 @@ import {
   Typography,
 } from '@mui/material';
 import { useCallback, useState } from 'react';
-import { Profile } from '../../../../types/profile.types';
-import { useAppSelector } from '../../../../hooks/redux-hooks';
-import useEditAccountMutation from '../../../../api/mutations/account/useEditAccountMutation';
+
+import useEditAccountMutation from '@/api/mutations/account/useEditAccountMutation';
+import { useAppSelector } from '@/hooks/redux-hooks';
+import { getProfile } from '@/stores/slices/authSlice';
+import { Profile } from '@/types/profile.types';
 import { PHONE_CODES_BY_COUNTRY } from '../../constants';
-import { getProfile } from '../../../../stores/slices/authSlice';
 
 const Country = ({
   collapsePanel,
