@@ -60,19 +60,22 @@ export default function Accommodations() {
                     />
                     {isDeleted && (
                       <Box
-                        component="div"
                         position="absolute"
                         top={0}
                         right={0}
-                        padding={1.5}
-                        style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)' }}
+                        width="100%"
+                        height="100%"
+                        display="flex"
+                        justifyContent="center"
+                        alignItems="center"
+                        style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }}
                         borderRadius="0 0 0 8px"
                         boxShadow="0 2px 4px rgba(0, 0, 0, 0.1)"
                       >
                         <Typography
                           variant="caption"
                           color="error"
-                          fontSize="1.2em"
+                          fontSize="large"
                           fontWeight="600"
                         >
                           Deleted
