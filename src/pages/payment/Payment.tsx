@@ -8,12 +8,16 @@ import { stripePromise } from '../../config/stripe.config';
 import ButtonPrimary from '../../components/button/ButtonPrimary';
 import LoadingPrimary from '../../components/loader/LoadingPrimary';
 import usePostPaymentOptionMutation from '../../api/mutations/payment/usePostPaymentOptionMutation';
+import DataFetchError from '../../components/shared/DataFetchError';
 
 const Payment = () => {
   const bookingId = useParams().id;
   const [paymentOption, setPaymentOption] = useState<string>(PAYMENT_OPTION.card);
 
-  const { mutate, isPending } = usePostPaymentOptionMutation(bookingId || '', paymentOption);
+  const { mutate, isPending, isError } = usePostPaymentOptionMutation(
+    bookingId || '',
+    paymentOption
+  );
 
   useEffect(() => {
     mutate();
@@ -30,6 +34,23 @@ const Payment = () => {
     },
     [mutate]
   );
+
+  const paymentMethods: Record<string, JSX.Element> = {
+    [PAYMENT_OPTION.card]: (
+      <Elements stripe={stripePromise}>
+        <PaymentForm bookingId={bookingId || ''} />
+      </Elements>
+    ),
+    [PAYMENT_OPTION.cash]: (
+      <Box component={'form'} onSubmit={handlePaymentClick}>
+        <ButtonPrimary loading={isPending}>Pay with cash</ButtonPrimary>
+      </Box>
+    ),
+  };
+
+  if (isError) {
+    return <DataFetchError />;
+  }
 
   return (
     <Box
@@ -50,17 +71,7 @@ const Payment = () => {
           <FormControlLabel value={PAYMENT_OPTION.cash} control={<Radio />} label="Cash" />
         </RadioGroup>
       </FormControl>
-      {isPending ? (
-        <LoadingPrimary height="10vh" />
-      ) : paymentOption === PAYMENT_OPTION.card ? (
-        <Elements stripe={stripePromise}>
-          <PaymentForm bookingId={bookingId || ''} />
-        </Elements>
-      ) : (
-        <Box component={'form'} onSubmit={handlePaymentClick}>
-          <ButtonPrimary loading={isPending}>Pay with cash</ButtonPrimary>
-        </Box>
-      )}
+      {isPending ? <LoadingPrimary height="10vh" /> : paymentMethods[paymentOption]}
     </Box>
   );
 };

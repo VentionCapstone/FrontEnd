@@ -16,14 +16,7 @@ export function PaymentForm({ bookingId }: { bookingId: string }) {
   );
 
   return (
-    <Box
-      component={'form'}
-      id="payment-form"
-      onSubmit={handleSubmit}
-      sx={{
-        marginTop: '1rem',
-      }}
-    >
+    <Box component={'form'} id="payment-form" onSubmit={handleSubmit} mt={'1rem'}>
       <CardElement id="card-element" />
       <ButtonPrimary loading={isPending}>Pay with card</ButtonPrimary>
     </Box>

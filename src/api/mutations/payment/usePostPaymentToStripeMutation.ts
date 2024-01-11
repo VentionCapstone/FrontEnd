@@ -34,13 +34,16 @@ function usePostPaymentToStripeMutation(bookingId: string) {
 
   return useMutation({
     mutationFn: async () => {
-      if (!stripe || !elements) return;
+      if (!stripe || !elements) {
+        toast.error('Unvailable, try again later.');
+        return;
+      }
 
       const cardEl = elements.getElement(CardElement);
 
       const clientSecret = getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.clientSecret) || '';
 
-      const { paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+      const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: cardEl!,
         },
@@ -48,6 +51,10 @@ function usePostPaymentToStripeMutation(bookingId: string) {
 
       if (paymentIntent) {
         mutatePaymentConfirm(paymentIntent.status);
+      } else if (error.type === 'card_error' || error.type === 'validation_error') {
+        error.message && toast.error(error.message);
+      } else {
+        toast.error('An unexpected error occurred.');
       }
     },
   });
