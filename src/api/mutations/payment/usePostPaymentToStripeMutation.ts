@@ -1,13 +1,13 @@
+import httpClient from '@/api/httpClient';
+import { ENDPOINTS } from '@/config/endpoints.config';
+import { LOCAL_STORAGE_KEYS } from '@/config/local-storage.config';
+import { ROUTES } from '@/config/routes.config';
+import { ResponsePayment } from '@/types/payment.types';
+import { getValueFromLocalStorage, removeFromLocalStorage } from '@/utils';
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import { useMutation } from '@tanstack/react-query';
-import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import httpClient from '../../httpClient';
-import { RoutesConfig } from '../../../config/routes.config';
-import { ResponsePayment } from '../../../types/payment.types';
-import { EndpointsConfig } from '../../../config/endpoints.config';
-import { LOCAL_STORAGE_KEYS } from '../../../config/local-storage.config';
-import { getValueFromLocalStorage, removeFromLocalStorage } from '../../../utils';
 
 function usePostPaymentToStripeMutation(bookingId: string) {
   const elements = useElements();
@@ -17,7 +17,7 @@ function usePostPaymentToStripeMutation(bookingId: string) {
   const { mutate: mutatePaymentConfirm } = useMutation({
     mutationFn: async (status: string) => {
       const { data } = await httpClient.post<ResponsePayment>(
-        EndpointsConfig.Payment.PostConfirmPayment,
+        ENDPOINTS.payment.postConfirmPayment,
         {
           bookingId,
           status,
@@ -28,7 +28,7 @@ function usePostPaymentToStripeMutation(bookingId: string) {
     onSuccess: (data) => {
       removeFromLocalStorage(LOCAL_STORAGE_KEYS.clientSecret);
       toast.success(data.message);
-      navigate(RoutesConfig.Root);
+      navigate(ROUTES.root);
     },
   });
 
@@ -51,9 +51,9 @@ function usePostPaymentToStripeMutation(bookingId: string) {
       if (paymentIntent) {
         mutatePaymentConfirm(paymentIntent.status);
       } else if (error.type === 'card_error' || error.type === 'validation_error') {
-        error.message && toast.error(error.message);
+        throw new Error(error.message);
       } else {
-        toast.error('An unexpected error occurred.');
+        throw new Error('An unexpected error occurred.');
       }
     },
     onError: (error) => {
