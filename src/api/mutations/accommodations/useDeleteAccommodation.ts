@@ -23,7 +23,6 @@ export const useDeleteAccommodation = () => {
       });
       toast.success('Accommodation deleted successfully');
       navigate(ROUTES.accommodations.root);
-      // window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     },
   });
   return { mutate, isPending };

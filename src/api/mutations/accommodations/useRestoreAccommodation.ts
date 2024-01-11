@@ -25,7 +25,6 @@ export const useRestoreAccommodation = () => {
         queryKey: [QUERY_KEYS.query.accommodation, res.data?.data.id],
       });
       toast.success('Accommodation restored successfully');
-      // window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
       navigate(ROUTES.accommodations.root);
     },
   });
