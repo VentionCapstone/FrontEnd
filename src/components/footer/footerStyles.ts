@@ -1,4 +1,4 @@
-import { MuiStylesObject } from '../../types/utility.types';
+import { MuiStylesObject } from '@/types/utility.types';
 
 export const footerStyles = {
   stickyFooter: {

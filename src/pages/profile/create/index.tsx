@@ -1,5 +1,5 @@
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -7,16 +7,16 @@ import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-
 import { useState } from 'react';
-import { SubmitHandler, useForm, Controller } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+
+import useCreateAccountMutation from '@/api/mutations/account/useCreateAccountMutation';
+import { Gender, Profile, ThemeMode } from '@/types/profile.types';
 import AddImage from '../AddImage';
-import UserFullName from './UserFullName';
-import UserPhoneNumber from './UserPhoneNumber';
-import { Gender, Profile, ThemeMode } from '../../../types/profile.types';
 import { DEFAULT_COUNTRY, PHONE_CODES_BY_COUNTRY } from '../constants';
 import { PhoneCodesByCountry } from '../constants.types';
-import useCreateAccountMutation from '../../../api/mutations/account/useCreateAccountMutation';
+import UserFullName from './UserFullName';
+import UserPhoneNumber from './UserPhoneNumber';
 
 function CreateProfile() {
   const {

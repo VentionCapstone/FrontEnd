@@ -4,22 +4,21 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-
 import { useCallback, useMemo, useState } from 'react';
 
+import useEditAccountMutation from '@/api/mutations/account/useEditAccountMutation';
+import { LOCAL_STORAGE_KEYS } from '@/config/local-storage.config';
+import { useAppSelector } from '@/hooks/redux-hooks';
+import { getProfile } from '@/stores/slices/authSlice';
+import { ThemeMode } from '@/types/profile.types';
+import { getValueFromLocalStorage } from '@/utils';
 import EditablePanel from '../EditablePanel';
-import useEditAccountMutation from '../../../../api/mutations/account/useEditAccountMutation';
-import { ProfileLang } from './ProfileLang';
 import { ProfileCurrency } from './ProfileCurrency';
-import { useAppSelector } from '../../../../hooks/redux-hooks';
-import { getValueFromLocalStorage } from '../../../../utils';
-import { getProfile } from '../../../../stores/slices/authSlice';
-import { ThemeMode } from '../../../../types/profile.types';
-import { LOCAL_STORAGE_KEYS } from '../../../../config/local-storage.config';
+import { ProfileLang } from './ProfileLang';
 
 function ProfileSettings() {
   const profileId = useAppSelector(getProfile)?.id;
-  const { mutate } = useEditAccountMutation(profileId);
+  const { mutate } = useEditAccountMutation(profileId ?? '');
   const uiTheme = useMemo(
     () => getValueFromLocalStorage<ThemeMode>(LOCAL_STORAGE_KEYS.uiTheme),
     []

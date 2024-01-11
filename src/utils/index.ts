@@ -1,7 +1,8 @@
-import { ThemeMode } from '../types/profile.types';
-import { Amenity } from '../types/accommodation.types';
-import ErrorImage from '../assets/no-image.png';
 import toast from 'react-hot-toast';
+
+import ErrorImage from '@/assets/no-image.png';
+import { Amenity } from '@/types/accommodation.types';
+import { ThemeMode } from '@/types/profile.types';
 
 export const convertImageToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -72,7 +73,17 @@ export const truncateReview = (text: string, maxChars: number) => {
   return text;
 };
 
+export const lineClampStyle = (line: number) => {
+  return {
+    display: '-webkit-box',
+    WebkitBoxOrient: 'vertical',
+    WebkitLineClamp: line,
+    overflow: 'hidden',
+  };
+};
+
 export const selectOnlyTrueAmenities = (amenities: Amenity) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const trueAmenities = Object.entries(amenities)
     .filter(([, value]) => value === true)
     .map(([key]) => key);

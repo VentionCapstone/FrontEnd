@@ -1,14 +1,15 @@
-import { FormEvent, useCallback, useEffect, useState } from 'react';
-import { Button, Typography, Box, List, ListItem, TextField } from '@mui/material';
 import { Check } from '@mui/icons-material';
-import toast from 'react-hot-toast';
+import { Box, Button, List, ListItem, TextField, Typography } from '@mui/material';
 import { AxiosError } from 'axios';
-import LoadingPrimary from '../../../components/loader/LoadingPrimary';
+import { FormEvent, useCallback, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+
+import { useSaveAmenitiesMutation } from '@/api/mutations/amenity/useSaveAmenitiesMutation';
+import { useGetAccomodationAmenitiesQuery } from '@/api/queries/amenity/useGetAccomodationAmenitiesQuery';
+import { useGetAmenityListQuery } from '@/api/queries/amenity/useGetAmenityListQuery';
+import LoadingPrimary from '@/components/loader/LoadingPrimary';
+import { Amenities, AmenitySetting, EditAmenitiesProps } from '@/types/amenity.types';
 import CustomChip from './CustomChip';
-import { Amenities, AmenitySetting, EditAmenitiesProps } from '../../../types/amenity.types';
-import { useGetAmenityListQuery } from '../../../api/queries/amenity/useGetAmenityListQuery';
-import { useGetAccomodationAmenitiesQuery } from '../../../api/queries/amenity/useGetAccomodationAmenitiesQuery';
-import { useSaveAmenitiesMutation } from '../../../api/mutations/amenity/useSaveAmenitiesMutation';
 
 export default function EditAmenities({ accomodationId, isNew }: EditAmenitiesProps) {
   const [isNewAccomodation, setIsNewAccomodation] = useState<boolean>(isNew);

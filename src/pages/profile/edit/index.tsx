@@ -1,22 +1,22 @@
 import {
-  ChevronRight,
   AccountCircleOutlined,
-  SettingsOutlined,
+  ChevronRight,
   GppGoodOutlined,
+  SettingsOutlined,
 } from '@mui/icons-material';
-import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
-
+import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import { Link as RouterLink } from 'react-router-dom';
-import { useAppSelector } from '../../../hooks/redux-hooks';
-import useLogoutMutation from '../../../api/mutations/account/useLogoutMutation';
-import LoadingPrimary from '../../../components/loader/LoadingPrimary';
+
+import useLogoutMutation from '@/api/mutations/account/useLogoutMutation';
+import houseIcon from '@/assets/house.png';
+import LoadingPrimary from '@/components/loader/LoadingPrimary';
+import { useAppSelector } from '@/hooks/redux-hooks';
+import { getUser } from '@/stores/slices/authSlice';
 import { editPageStyles } from './index.styles';
-import { getUser } from '../../../stores/slices/authSlice';
-import houseIcon from '../../../assets/house.png';
 
 function EditProfile() {
   const { mutate } = useLogoutMutation();

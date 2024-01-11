@@ -1,18 +1,17 @@
-import Paper from '@mui/material/Paper';
-import SearchIcon from '@mui/icons-material/Search';
-import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
-import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
+import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
+import SearchIcon from '@mui/icons-material/Search';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-
+import Paper from '@mui/material/Paper';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { RoutesConfig } from '../../config/routes.config';
-import { useAppSelector } from '../../hooks/redux-hooks';
+import { ROUTES } from '@/config/routes.config';
+import { useAppSelector } from '@/hooks/redux-hooks';
+import { hasToken } from '@/stores/slices/authSlice';
 import { mainNavigationStyles } from './mainNavigation.styles';
-import { hasToken } from '../../stores/slices/authSlice';
 
 export const BottomNav = () => {
   const route = useLocation();
@@ -41,7 +40,7 @@ export const BottomNav = () => {
         sx={mainNavigationStyles.bottomNav}
         onChange={handleRouteChange}
       >
-        <BottomNavigationAction value={RoutesConfig.Root} label="Explore" icon={<SearchIcon />} />
+        <BottomNavigationAction value={ROUTES.root} label="Explore" icon={<SearchIcon />} />
         <BottomNavigationAction label="Wishlist" icon={<FavoriteBorderRoundedIcon />} />
 
         {isLoggedIn && [
@@ -51,8 +50,8 @@ export const BottomNav = () => {
             icon={<ChatBubbleOutlineRoundedIcon />}
           />,
           <BottomNavigationAction
-            value={RoutesConfig.Account.Edit}
-            key={RoutesConfig.Account.Edit}
+            value={ROUTES.account.edit}
+            key={ROUTES.account.edit}
             label="Profile"
             icon={<AccountCircleOutlinedIcon />}
           />,
@@ -60,7 +59,7 @@ export const BottomNav = () => {
 
         {!isLoggedIn && (
           <BottomNavigationAction
-            value={RoutesConfig.Auth.SignIn}
+            value={ROUTES.auth.signIn}
             label="Login"
             icon={<AccountCircleOutlinedIcon />}
           />

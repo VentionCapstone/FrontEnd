@@ -1,30 +1,33 @@
-export const EndpointsConfig = {
-  Auth: {
-    SignIn: '/auth/signin',
-    SignUp: '/auth/signup',
-    VerifyEmail: '/auth/verify',
-    UpdateEmail: '/auth/email',
-    SignOut: '/auth/signout',
+export const ENDPOINTS = {
+  auth: {
+    signIn: '/auth/signin',
+    signUp: '/auth/signup',
+    verifyEmail: '/auth/verify',
+    updateEmail: '/auth/email',
+    signOut: '/auth/signout',
   },
-  Account: {
-    GetUser: (userId: string) => `/users/${userId}`,
-    GetUserProfile: (profileId: string) => `/users/profile/${profileId}`,
-    UpdateUserProfile: (profileId: string) => `/users/${profileId}`,
-    DeleteUserProfile: (profileId: string) => `/users/${profileId}`,
-    CreateUserProfile: '/users/profile',
+  account: {
+    getUser: (userId: string | null) => `/users/${userId}`,
+    getUserProfile: (profileId: string) => `/users/profile/${profileId}`,
+    updateUserProfile: (profileId: string) => `/users/profile/${profileId}`,
+    deleteUserProfile: (profileId: string) => `/users/profile/${profileId}`,
+    createUserProfile: '/users/profile',
   },
-  Amenity: {
-    Root: (accommodationId: string) => `/amenities/${accommodationId}`,
-    GetAmenityList: '/amenities/list',
-  },
-  Accommodations: {
-    Root: '/accommodations',
-    GetAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}`,
-    GetAccommodationReviws: (accommodationId: string) =>
+  accommodation: {
+    root: '/accommodations',
+    getAccommodations: '/accommodations/getAll',
+    getAccommodation: (accommodationId: string | undefined) => `/accommodations/${accommodationId}`,
+    updateAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}`,
+    deleteAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}`,
+    getAccommodationReviews: (accommodationId: string) =>
       `/accommodations/${accommodationId}/reviews`,
   },
   Payment: {
     Root: '/payment',
-    PostConfirmPayment: '/payment/confirm',
+    PostConfirmPayment: '/payment/confirm'
+  },
+  amenity: {
+    root: (accommodationId: string) => `/amenities/${accommodationId}`,
+    getAmenityList: '/amenities/list',
   },
 } as const;

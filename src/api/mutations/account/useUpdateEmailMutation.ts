@@ -1,11 +1,12 @@
 import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
-import httpClient from '../../httpClient';
-import { useAppDispatch } from '../../../hooks/redux-hooks';
-import { logout } from '../../../stores/slices/authSlice';
 import toast from 'react-hot-toast';
-import { EndpointsConfig } from '../../../config/endpoints.config';
-import { RoutesConfig } from '../../../config/routes.config';
+import { useNavigate } from 'react-router-dom';
+
+import httpClient from '@/api/httpClient';
+import { ENDPOINTS } from '@/config/endpoints.config';
+import { ROUTES } from '@/config/routes.config';
+import { useAppDispatch } from '@/hooks/redux-hooks';
+import { logout } from '@/stores/slices/authSlice';
 
 function useUpdateEmailMutation(email: string) {
   const dispatch = useAppDispatch();
@@ -14,16 +15,14 @@ function useUpdateEmailMutation(email: string) {
   return useMutation({
     mutationFn: async () => {
       const { data } = await httpClient.put<{ success: boolean; message: string }>(
-        EndpointsConfig.Auth.UpdateEmail,
-        {
-          email,
-        }
+        ENDPOINTS.auth.updateEmail,
+        { email }
       );
       toast.success(data.message);
     },
     onSuccess: () => {
       dispatch(logout());
-      navigate(RoutesConfig.Auth.SignIn);
+      navigate(ROUTES.auth.signIn);
     },
   });
 }
