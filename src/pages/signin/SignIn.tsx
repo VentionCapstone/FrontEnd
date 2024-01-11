@@ -1,24 +1,27 @@
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
   Box,
+  Button,
   Divider,
   FormControl,
   IconButton,
   InputAdornment,
   InputLabel,
+  Link,
   OutlinedInput,
   Stack,
   Typography,
 } from '@mui/material';
 import { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 import useSignInMutation from '@/api/mutations/auth/useSignInMutation';
 import ButtonPrimary from '@/components/button/ButtonPrimary';
 import InputForm from '@/components/input/InputForm';
 import { ENDPOINTS } from '@/config/endpoints.config';
 import { AuthData } from '@/types/auth.types';
+import ForgotPasswordModal from './components/ForgotPasswordModal';
 
 const SignIn = () => {
   const { handleSubmit, control } = useForm({
@@ -29,19 +32,20 @@ const SignIn = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { mutateAsync, isPending } = useSignInMutation();
 
   const onSubmit: SubmitHandler<AuthData> = async (Inputdata: AuthData) => {
-    try {
-      await mutateAsync(Inputdata);
-    } catch (error) {
-      console.log(error);
-    }
+    await mutateAsync(Inputdata);
   };
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
+  const handleModal = () => {
+    setIsModalOpen(true);
   };
 
   return (
@@ -108,13 +112,36 @@ const SignIn = () => {
           </Stack>
           <ButtonPrimary loading={isPending}>Sign in</ButtonPrimary>
         </form>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            textDecoration: 'underline',
+          }}
+        >
+          <Button
+            sx={{
+              'margin': '0',
+              'padding': '0',
+              '&:hover': {
+                backgroundColor: 'transparent',
+              },
+            }}
+            onClick={handleModal}
+          >
+            Forgot Password?
+          </Button>
+        </Box>
         <Typography variant="subtitle2" align="center" color="gray">
           If you do not have an account, please{' '}
-          <Link to={ENDPOINTS.auth.signUp} style={{ fontWeight: 'bold' }}>
+          <Link component={RouterLink} to={ENDPOINTS.auth.signUp} sx={{ color: 'primary.main' }}>
             sign up
           </Link>
         </Typography>
       </Stack>
+      {isModalOpen && (
+        <ForgotPasswordModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      )}
     </Box>
   );
 };

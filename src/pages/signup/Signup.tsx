@@ -1,8 +1,8 @@
-import { Box, Divider, Stack, Typography } from '@mui/material';
+import { Box, Divider, Link, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 import useSignupMutation from '@/api/mutations/auth/useSignupMutation';
 import ButtonPrimary from '@/components/button/ButtonPrimary';
@@ -78,7 +78,7 @@ const Signup = () => {
         </form>
         <Typography variant="subtitle2" align="center" color="gray">
           if you already have an account, please{' '}
-          <Link to={ENDPOINTS.auth.signIn} style={{ fontWeight: 'bold' }}>
+          <Link component={RouterLink} to={ENDPOINTS.auth.signIn} sx={{ color: 'primary.main' }}>
             sign in
           </Link>
         </Typography>
