@@ -60,7 +60,7 @@ export default function AccommodationForm() {
     values: accommodation?.data,
   });
 
-  const isDeleted: boolean | undefined = accommodation?.data.isDeleted;
+  const isDeleted: boolean = !!accommodation?.data.isDeleted;
 
   const latitudeWatch = watch('address.latitude');
   const longitudeWatch = watch('address.longitude');
@@ -104,14 +104,12 @@ export default function AccommodationForm() {
 
   const [open, setOpen] = useState(false);
 
-  const handleClose = useCallback(() => setOpen(false), []);
+  const toggleOpen = useCallback(() => setOpen((prevOpen) => !prevOpen), []);
 
   const handleConfirm = useCallback(() => {
     handleDelete();
-    handleClose();
-  }, [handleDelete, handleClose]);
-
-  const handleClickOpen = useCallback(() => setOpen(true), []);
+    toggleOpen();
+  }, [handleDelete, toggleOpen]);
 
   const handleCoordsChange = ([latitude, longitude]: Coordinates) => {
     setValue('address.latitude', latitude, {
@@ -243,7 +241,7 @@ export default function AccommodationForm() {
               <LoadingButton
                 variant="contained"
                 color={isDeleted ? 'primary' : 'secondary'}
-                onClick={isDeleted ? handleRestore : handleClickOpen}
+                onClick={isDeleted ? handleRestore : toggleOpen}
                 loading={isDeleted ? isRestorePending : isDeletePending}
               >
                 {isDeleted ? 'Restore' : 'Delete'}
@@ -260,7 +258,7 @@ export default function AccommodationForm() {
           </Stack>
         </Box>
       </form>
-      <ConfirmationModal open={open} onClose={handleClose} onConfirm={handleConfirm} />
+      <ConfirmationModal open={open} onClose={toggleOpen} onConfirm={handleConfirm} />
     </Box>
   );
 }
