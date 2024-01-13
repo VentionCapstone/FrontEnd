@@ -4,8 +4,8 @@ import dayjs from 'dayjs';
 import { memo } from 'react';
 import { Control, Controller } from 'react-hook-form';
 
-import { DATE_FORMAT } from '@/constants';
-import { AccommodationFields, AccommodationReq } from '@/types/accommodation.types';
+import { DATE_FORMAT } from '@src/constants';
+import { AccommodationFields, AccommodationReq } from '@src/types/accommodation.types';
 
 type FormFieldProps = {
   label: string;

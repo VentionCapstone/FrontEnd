@@ -2,7 +2,7 @@ import { TextField } from '@mui/material';
 import { memo } from 'react';
 import { Control, Controller } from 'react-hook-form';
 
-import { AccommodationFields, AccommodationReq } from '@/types/accommodation.types';
+import { AccommodationFields, AccommodationReq } from '@src/types/accommodation.types';
 
 type FormFieldProps = {
   label: string;

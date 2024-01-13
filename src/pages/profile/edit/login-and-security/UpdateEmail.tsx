@@ -1,7 +1,7 @@
 import { Button, TextField, Typography } from '@mui/material';
 import { ChangeEvent, useCallback, useState } from 'react';
 
-import useUpdateEmailMutation from '@/api/mutations/account/useUpdateEmailMutation';
+import useUpdateEmailMutation from '@src/api/mutations/account/useUpdateEmailMutation';
 
 export const UpdateEmail = ({
   collapsePanel,

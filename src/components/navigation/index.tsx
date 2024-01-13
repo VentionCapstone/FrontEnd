@@ -8,9 +8,9 @@ import Typography from '@mui/material/Typography';
 import { useRef } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
-import logo from '@/assets/logo.png';
-import { ROUTES } from '@/config/routes.config';
-import useIntersectionObserver from '@/hooks/useIntersectionObserver';
+import logo from '@src/assets/logo.png';
+import { ROUTES } from '@src/config/routes.config';
+import useIntersectionObserver from '@src/hooks/useIntersectionObserver';
 import { BottomNav } from './BottomNavigation';
 import { TopNavMenu } from './TopNavMenu';
 import { mainNavigationStyles as styles } from './mainNavigation.styles';

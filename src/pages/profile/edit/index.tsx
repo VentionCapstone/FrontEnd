@@ -11,11 +11,11 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { Link as RouterLink } from 'react-router-dom';
 
-import useLogoutMutation from '@/api/mutations/account/useLogoutMutation';
-import houseIcon from '@/assets/house.png';
-import LoadingPrimary from '@/components/loader/LoadingPrimary';
-import { useAppSelector } from '@/hooks/redux-hooks';
-import { getUser } from '@/stores/slices/authSlice';
+import useLogoutMutation from '@src/api/mutations/account/useLogoutMutation';
+import houseIcon from '@src/assets/house.png';
+import LoadingPrimary from '@src/components/loader/LoadingPrimary';
+import { useAppSelector } from '@src/hooks/redux-hooks';
+import { getUser } from '@src/stores/slices/authSlice';
 import { editPageStyles } from './index.styles';
 
 function EditProfile() {

@@ -2,8 +2,8 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import { Outlet } from 'react-router-dom';
 
-import { StickyFooter } from '@/components/footer/StickyFooter';
-import MainNavigation from '@/components/navigation';
+import { StickyFooter } from '@src/components/footer/StickyFooter';
+import MainNavigation from '@src/components/navigation';
 
 function MainLayout() {
   return (

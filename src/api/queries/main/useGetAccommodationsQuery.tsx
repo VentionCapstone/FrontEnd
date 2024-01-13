@@ -1,9 +1,9 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import httpClient from '@/api/httpClient';
-import { ENDPOINTS } from '@/config/endpoints.config';
-import { AMOUNT_PER_PAGE } from '@/config/pagination.config';
-import { ResponseAccommodationList } from '@/types/accommodation.types';
+import httpClient from '@src/api/httpClient';
+import { ENDPOINTS } from '@src/config/endpoints.config';
+import { AMOUNT_PER_PAGE } from '@src/config/pagination.config';
+import { ResponseAccommodationList } from '@src/types/accommodation.types';
 
 interface AccommodationsQueryProps {
   searchParamsAsObject: Record<string, string | null>;

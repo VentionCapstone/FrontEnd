@@ -10,8 +10,8 @@ import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-import useCreateAccountMutation from '@/api/mutations/account/useCreateAccountMutation';
-import { Gender, Profile, ThemeMode } from '@/types/profile.types';
+import useCreateAccountMutation from '@src/api/mutations/account/useCreateAccountMutation';
+import { Gender, Profile, ThemeMode } from '@src/types/profile.types';
 import AddImage from '../AddImage';
 import { DEFAULT_COUNTRY, PHONE_CODES_BY_COUNTRY } from '../constants';
 import { PhoneCodesByCountry } from '../constants.types';

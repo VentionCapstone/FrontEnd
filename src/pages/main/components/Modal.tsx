@@ -2,7 +2,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Box, Button, Fade, Modal, Stack, Typography } from '@mui/material';
 import { useCallback, useMemo, useState } from 'react';
 
-import { FormValue, MainModalProps } from '@/types/accommodation.types';
+import { FormValue, MainModalProps } from '@src/types/accommodation.types';
 import { modalStyles } from './Modal.styles';
 import PriceRangeInputs from './PriceRangeInputs';
 import PriceRangeSlider from './PriceRangeSlider';

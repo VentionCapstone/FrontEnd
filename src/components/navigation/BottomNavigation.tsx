@@ -8,9 +8,9 @@ import Paper from '@mui/material/Paper';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { ROUTES } from '@/config/routes.config';
-import { useAppSelector } from '@/hooks/redux-hooks';
-import { hasToken } from '@/stores/slices/authSlice';
+import { ROUTES } from '@src/config/routes.config';
+import { useAppSelector } from '@src/hooks/redux-hooks';
+import { hasToken } from '@src/stores/slices/authSlice';
 import { mainNavigationStyles } from './mainNavigation.styles';
 
 export const BottomNav = () => {

@@ -1,12 +1,12 @@
+import httpClient from '@src/api/httpClient';
+import { ENDPOINTS } from '@src/config/endpoints.config';
+import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
+import { ROUTES } from '@src/config/routes.config';
+import { ResponsePayment } from '@src/types/payment.types';
+import { removeFromLocalStorage, setValueToLocalStorage } from '@src/utils';
+import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import { useMutation } from '@tanstack/react-query';
-import httpClient from '@/api/httpClient';
-import { ENDPOINTS } from '@/config/endpoints.config';
-import { LOCAL_STORAGE_KEYS } from '@/config/local-storage.config';
-import { ROUTES } from '@/config/routes.config';
-import { ResponsePayment } from '@/types/payment.types';
-import { removeFromLocalStorage, setValueToLocalStorage } from '@/utils';
 
 function usePostPaymentOptionMutation(bookingId: string, paymentOption: string) {
   const navigate = useNavigate();
