@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 import httpClient from '@src/api/httpClient';
+import { ENDPOINTS } from '@src/config/endpoints.config';
 import { ROUTES } from '@src/config/routes.config';
 import { CommonResponse } from '@src/types/auth.types';
 
@@ -11,7 +12,7 @@ function usePostForgotPasswordEmailMutation() {
 
   return useMutation({
     mutationFn: async (email: string) => {
-      const { data } = await httpClient.post<CommonResponse>('/auth/forgot-password-email', {
+      const { data } = await httpClient.post<CommonResponse>(ENDPOINTS.auth.forgotPasswordEmail, {
         email,
       });
       return data;

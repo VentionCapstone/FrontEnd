@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 import httpClient from '@src/api/httpClient';
+import { ENDPOINTS } from '@src/config/endpoints.config';
 import { ROUTES } from '@src/config/routes.config';
 import { CommonResponse, ResetPasswordReq } from '@src/types/auth.types';
 
@@ -11,7 +12,7 @@ function useResetPasswordMutation(token = '' as string) {
 
   return useMutation({
     mutationFn: async (values: ResetPasswordReq) => {
-      const { data } = await httpClient.patch<CommonResponse>('/auth/forgot-password-reset', {
+      const { data } = await httpClient.patch<CommonResponse>(ENDPOINTS.auth.resetPassword, {
         ...values,
         token,
       });
