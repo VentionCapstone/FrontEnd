@@ -1,42 +1,45 @@
 import { Box, Divider, Link, Stack, Typography } from '@mui/material';
-import { useState } from 'react';
-import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 import { Link as RouterLink } from 'react-router-dom';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import useSignupMutation from '@src/api/mutations/auth/useSignupMutation';
 import ButtonPrimary from '@src/components/button/ButtonPrimary';
 import InputForm from '@src/components/input/InputForm';
 import PasswordInput from '@src/components/input/PasswordInput';
 import { ENDPOINTS } from '@src/config/endpoints.config';
-import { AuthData } from '@src/types/auth.types';
+import { SignUpReq, signUpSchema } from '@src/types/auth.types';
+import { useCallback } from 'react';
 
 const Signup = () => {
-  const { handleSubmit, control, watch } = useForm({
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<SignUpReq>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
       email: '',
       password: '',
       confirm_password: '',
     },
   });
-  const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const { mutateAsync, isPending } = useSignupMutation();
+  const { mutate, isPending } = useSignupMutation();
 
-  const onSubmit: SubmitHandler<AuthData> = async (Inputdata: AuthData) => {
-    try {
-      if (isPasswordValid) {
-        await mutateAsync(Inputdata);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const onSubmit = useCallback(
+    (inputdata: SignUpReq) => {
+      mutate(inputdata);
+    },
+    [mutate]
+  );
+
   return (
     <Box
       sx={{
         mx: 'auto',
         mt: '5%',
-        border: '1px solid #b0b0b0',
+        border: '1px solid',
+        borderColor: 'secondary2.light',
         borderRadius: 2,
         maxWidth: '600px',
       }}
@@ -47,36 +50,42 @@ const Signup = () => {
       <Divider />
       <Stack p={4} spacing={3}>
         <Typography variant="h5">Welcome to Airbnb</Typography>
-        <form onSubmit={(e) => void handleSubmit(onSubmit)(e)}>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Stack gap={3}>
             <Controller
               name="email"
               control={control}
               render={({ field }) => (
-                <InputForm {...field} type="email" placeholder="Email" label="Email" required />
+                <InputForm
+                  {...field}
+                  type="email"
+                  placeholder="Email"
+                  label="Email"
+                  error={!!errors.email}
+                  helperText={errors.email?.message}
+                />
               )}
-            />{' '}
+            />
             <PasswordInput
               name="password"
               label="Password"
               placeholder="Password"
               control={control}
-              setIsPasswordValid={setIsPasswordValid}
+              errors={errors}
             />
             <PasswordInput
               name="confirm_password"
               label="Confirm password"
               placeholder="Confirm password"
               control={control}
-              confirmPassword={watch('password')}
-              setIsPasswordValid={setIsPasswordValid}
+              errors={errors}
             />
-          </Box>
-          <ButtonPrimary loading={isPending} disabled={isPasswordValid}>
-            Sign up
-          </ButtonPrimary>
+          </Stack>
+          <ButtonPrimary loading={isPending}>Sign up</ButtonPrimary>
         </form>
-        <Typography variant="subtitle2" align="center" color="gray">
+
+        <Typography variant="subtitle2" align="center" color="secondary2.main">
           if you already have an account, please{' '}
           <Link component={RouterLink} to={ENDPOINTS.auth.signIn} sx={{ color: 'primary.main' }}>
             sign in

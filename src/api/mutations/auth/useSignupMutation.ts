@@ -3,16 +3,16 @@ import toast from 'react-hot-toast';
 
 import httpClient from '@src/api/httpClient';
 import { ENDPOINTS } from '@src/config/endpoints.config';
-import { AuthData } from '@src/types/auth.types';
+import { SignUpReq } from '@src/types/auth.types';
 
 const useSignupMutation = () => {
   return useMutation({
-    mutationFn: async (data: AuthData) => {
-      const response = await httpClient.post<{ success: boolean; message: string }>(
+    mutationFn: async (values: SignUpReq) => {
+      const { data } = await httpClient.post<{ success: boolean; message: string }>(
         ENDPOINTS.auth.signUp,
-        data
+        values
       );
-      return response.data;
+      return data;
     },
     onSuccess: (data) => {
       toast.success(data.message);

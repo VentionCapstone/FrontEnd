@@ -1,59 +1,52 @@
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import {
-  Box,
-  Button,
-  Divider,
-  FormControl,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  Link,
-  OutlinedInput,
-  Stack,
-  Typography,
-} from '@mui/material';
-import { useState } from 'react';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Box, Button, Divider, Link, Stack, Typography } from '@mui/material';
+import { useCallback, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import { Link as RouterLink } from 'react-router-dom';
 
 import useSignInMutation from '@src/api/mutations/auth/useSignInMutation';
 import ButtonPrimary from '@src/components/button/ButtonPrimary';
 import InputForm from '@src/components/input/InputForm';
+import PasswordInput from '@src/components/input/PasswordInput';
 import { ENDPOINTS } from '@src/config/endpoints.config';
-import { AuthData } from '@src/types/auth.types';
+import { SignInReq, signInSchema } from '@src/types/auth.types';
 import ForgotPasswordModal from './components/ForgotPasswordModal';
 
 const SignIn = () => {
-  const { handleSubmit, control } = useForm({
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<SignInReq>({
+    resolver: zodResolver(signInSchema),
     defaultValues: {
       email: '',
       password: '',
     },
   });
 
-  const [showPassword, setShowPassword] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { mutate, isPending } = useSignInMutation();
 
-  const { mutateAsync, isPending } = useSignInMutation();
+  const onSubmit = useCallback(
+    (inputData: SignInReq) => {
+      mutate(inputData);
+    },
+    [mutate]
+  );
 
-  const onSubmit: SubmitHandler<AuthData> = async (Inputdata: AuthData) => {
-    await mutateAsync(Inputdata);
-  };
-
-  const handleTogglePasswordVisibility = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
-  };
-
-  const handleModal = () => {
-    setIsModalOpen(true);
-  };
+  const handleModal = useCallback(() => {
+    setIsModalOpen((prev) => !prev);
+  }, []);
 
   return (
     <Box
       sx={{
         mx: 'auto',
         mt: '5%',
-        border: '1px solid #b0b0b0',
+        border: '1px solid ',
+        borderColor: 'secondary2.light',
         borderRadius: 2,
         maxWidth: '600px',
       }}
@@ -64,8 +57,9 @@ const SignIn = () => {
       <Divider />
       <Stack p={4} spacing={2}>
         <Typography variant="h5">Please login</Typography>
-        <form onSubmit={(e) => void handleSubmit(onSubmit)(e)}>
-          <Stack direction="column" spacing={3}>
+
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Stack gap={3}>
             <Controller
               name="email"
               control={control}
@@ -75,43 +69,24 @@ const SignIn = () => {
                   type="email"
                   placeholder="Email"
                   label="Email"
-                  required={true}
+                  error={!!errors.email}
+                  helperText={errors.email?.message}
                 />
               )}
             />
-            <Controller
+            <PasswordInput
               name="password"
+              label="Password"
+              placeholder="Password"
               control={control}
-              render={({ field }) => (
-                <FormControl fullWidth variant="outlined">
-                  <InputLabel htmlFor={`outlined-adornment-password`}>Password</InputLabel>
-                  <OutlinedInput
-                    {...field}
-                    required
-                    label="Password"
-                    placeholder="Password"
-                    id={`outlined-adornment-password`}
-                    type={showPassword ? 'text' : 'password'}
-                    onChange={field.onChange}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleTogglePasswordVisibility}
-                          onMouseDown={handleTogglePasswordVisibility}
-                          edge="end"
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                  />
-                </FormControl>
-              )}
+              errors={errors}
             />
           </Stack>
-          <ButtonPrimary loading={isPending}>Sign in</ButtonPrimary>
+          <ButtonPrimary type="submit" loading={isPending}>
+            Sign in
+          </ButtonPrimary>
         </form>
+
         <Box
           sx={{
             display: 'flex',
@@ -139,6 +114,8 @@ const SignIn = () => {
           </Link>
         </Typography>
       </Stack>
+
+      {/* Forgot Password Modal */}
       {isModalOpen && (
         <ForgotPasswordModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       )}

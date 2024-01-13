@@ -2,10 +2,8 @@ import { TextField, TextFieldProps } from '@mui/material';
 import React from 'react';
 import { UseFormRegister } from 'react-hook-form';
 
-import type { AuthData } from '@src/types/auth.types';
-
 type InputProps = TextFieldProps & {
-  register?: UseFormRegister<AuthData>;
+  register?: UseFormRegister<SignInReq>;
 };
 
 const InputForm = React.forwardRef<HTMLInputElement, InputProps>((props: InputProps, ref) => {

@@ -1,3 +1,4 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import CloseIcon from '@mui/icons-material/Close';
 import {
   Box,
@@ -8,51 +9,42 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
-import { useMutation } from '@tanstack/react-query';
+import { useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 
-import httpClient from '@/api/httpClient';
-import ButtonPrimary from '@/components/button/ButtonPrimary';
-import InputForm from '@/components/input/InputForm';
-import { ROUTES } from '@/config/routes.config';
-import { useNavigate } from 'react-router-dom';
+import usePostForgotPasswordEmail from '@src/api/mutations/auth/usePostForgotPasswordEmail';
+import ButtonPrimary from '@src/components/button/ButtonPrimary';
+import InputForm from '@src/components/input/InputForm';
+import { ForgotPasswordReq, forgotPasswordSchema } from '@src/types/auth.types';
 
 interface ForgotPasswordModalProps {
   isModalOpen: boolean;
-  setIsModalOpen: (value: boolean) => void;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function ForgotPasswordModal({ isModalOpen, setIsModalOpen }: ForgotPasswordModalProps) {
-  const { handleSubmit, control } = useForm({
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<ForgotPasswordReq>({
+    resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
       email: '',
     },
   });
 
-  const navigate = useNavigate();
+  const handleClose = useCallback(() => {
+    setIsModalOpen((prev) => !prev);
+  }, [setIsModalOpen]);
 
-  const handleClose = () => {
-    setIsModalOpen(false);
-  };
-
-  const onSubmit = ({ email }: { email: string }) => {
-    mutate(email);
-  };
-
-  const { mutate, isPending } = useMutation({
-    mutationFn: async (email: string) => {
-      const { data } = await httpClient.post<{ success: boolean; message: 'string' }>(
-        '/auth/forgot-password-email',
-        { email }
-      );
-      return data;
+  const { mutate, isPending } = usePostForgotPasswordEmail();
+  const onSubmit = useCallback(
+    ({ email }: { email: string }) => {
+      mutate(email);
     },
-    onSuccess: (data) => {
-      toast.success(data.message);
-      navigate(ROUTES.root);
-    },
-  });
+    [mutate]
+  );
 
   return (
     <Dialog open={isModalOpen} onClose={handleClose}>
@@ -85,7 +77,8 @@ function ForgotPasswordModal({ isModalOpen, setIsModalOpen }: ForgotPasswordModa
                 type="email"
                 placeholder="Email"
                 label="Email"
-                required={true}
+                error={!!errors.email}
+                helperText={errors.email?.message}
               />
             )}
           />
