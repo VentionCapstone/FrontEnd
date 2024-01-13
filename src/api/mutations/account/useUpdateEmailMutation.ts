@@ -7,6 +7,7 @@ import { ENDPOINTS } from '@src/config/endpoints.config';
 import { ROUTES } from '@src/config/routes.config';
 import { useAppDispatch } from '@src/hooks/redux-hooks';
 import { logout } from '@src/stores/slices/authSlice';
+import { CommonResponse } from '@src/types/auth.types';
 
 function useUpdateEmailMutation(email: string) {
   const dispatch = useAppDispatch();
@@ -14,10 +15,7 @@ function useUpdateEmailMutation(email: string) {
 
   return useMutation({
     mutationFn: async () => {
-      const { data } = await httpClient.put<{ success: boolean; message: string }>(
-        ENDPOINTS.auth.updateEmail,
-        { email }
-      );
+      const { data } = await httpClient.put<CommonResponse>(ENDPOINTS.auth.updateEmail, { email });
       toast.success(data.message);
     },
     onSuccess: () => {

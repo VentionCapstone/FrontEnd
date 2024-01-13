@@ -9,10 +9,11 @@ import UserRoute from './UserRoute';
 import MainLayout from '@src/layouts/MainLayout';
 import UserLayout from '@src/layouts/UserLayout';
 
+import SignIn from '@src/pages/auth/SignIn';
+import Signup from '@src/pages/auth/Signup';
+
 const Main = React.lazy(() => import('@src/pages/main'));
-const SignIn = React.lazy(() => import('@src/pages/signin'));
-const VerifyEmail = React.lazy(() => import('@src/pages/auth/VerifyEmail'));
-const Signup = React.lazy(() => import('@src/pages/signup/Signup'));
+const VerifyEmail = React.lazy(() => import('@src/pages/auth/components/VerifyEmail'));
 const CreateProfile = React.lazy(() => import('@src/pages/profile/create'));
 const EditProfile = React.lazy(() => import('@src/pages/profile/edit'));
 const LoginAndSecurity = React.lazy(() => import('@src/pages/profile/edit/login-and-security'));

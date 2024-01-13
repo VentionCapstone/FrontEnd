@@ -11,6 +11,7 @@ import PasswordInput from '@src/components/input/PasswordInput';
 import { ENDPOINTS } from '@src/config/endpoints.config';
 import { SignInReq, signInSchema } from '@src/types/auth.types';
 import ForgotPasswordModal from './components/ForgotPasswordModal';
+import { styles } from './styles';
 
 const SignIn = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -41,16 +42,7 @@ const SignIn = () => {
   }, []);
 
   return (
-    <Box
-      sx={{
-        mx: 'auto',
-        mt: '5%',
-        border: '1px solid ',
-        borderColor: 'secondary2.light',
-        borderRadius: 2,
-        maxWidth: '600px',
-      }}
-    >
+    <Box sx={styles.formContainer}>
       <Typography variant="subtitle1" align="center" margin={5} fontWeight="bold">
         Sign In
       </Typography>
@@ -87,29 +79,14 @@ const SignIn = () => {
           </ButtonPrimary>
         </form>
 
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            textDecoration: 'underline',
-          }}
-        >
-          <Button
-            sx={{
-              'margin': '0',
-              'padding': '0',
-              '&:hover': {
-                backgroundColor: 'transparent',
-              },
-            }}
-            onClick={handleModal}
-          >
+        <Box sx={styles.formForgotPasswordContainer}>
+          <Button sx={styles.formForgotPasswordButton} onClick={handleModal}>
             Forgot Password?
           </Button>
         </Box>
-        <Typography variant="subtitle2" align="center" color="gray">
+        <Typography variant="subtitle2" align="center" color="secondary2.main">
           If you do not have an account, please{' '}
-          <Link component={RouterLink} to={ENDPOINTS.auth.signUp} sx={{ color: 'primary.main' }}>
+          <Link component={RouterLink} to={ENDPOINTS.auth.signUp} sx={styles.formLink}>
             sign up
           </Link>
         </Typography>

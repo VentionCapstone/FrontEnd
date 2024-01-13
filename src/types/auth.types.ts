@@ -71,3 +71,8 @@ export interface PasswordInputProps<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>;
   errors: FieldErrors<TFieldValues>;
 }
+
+export interface CommonResponse {
+  success: boolean;
+  message: 'string';
+}

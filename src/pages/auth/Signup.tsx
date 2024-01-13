@@ -1,15 +1,16 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Box, Divider, Link, Stack, Typography } from '@mui/material';
+import { useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Link as RouterLink } from 'react-router-dom';
 
-import { zodResolver } from '@hookform/resolvers/zod';
 import useSignupMutation from '@src/api/mutations/auth/useSignupMutation';
 import ButtonPrimary from '@src/components/button/ButtonPrimary';
 import InputForm from '@src/components/input/InputForm';
 import PasswordInput from '@src/components/input/PasswordInput';
 import { ENDPOINTS } from '@src/config/endpoints.config';
 import { SignUpReq, signUpSchema } from '@src/types/auth.types';
-import { useCallback } from 'react';
+import { styles } from './styles';
 
 const Signup = () => {
   const {
@@ -34,16 +35,7 @@ const Signup = () => {
   );
 
   return (
-    <Box
-      sx={{
-        mx: 'auto',
-        mt: '5%',
-        border: '1px solid',
-        borderColor: 'secondary2.light',
-        borderRadius: 2,
-        maxWidth: '600px',
-      }}
-    >
+    <Box sx={styles.formContainer}>
       <Typography variant="subtitle1" align="center" margin={2} fontWeight="bold">
         Sign up
       </Typography>
@@ -87,7 +79,7 @@ const Signup = () => {
 
         <Typography variant="subtitle2" align="center" color="secondary2.main">
           if you already have an account, please{' '}
-          <Link component={RouterLink} to={ENDPOINTS.auth.signIn} sx={{ color: 'primary.main' }}>
+          <Link component={RouterLink} to={ENDPOINTS.auth.signIn} sx={styles.formLink}>
             sign in
           </Link>
         </Typography>
