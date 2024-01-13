@@ -1,8 +1,9 @@
 import { Box } from '@mui/material';
-import { FormEvent, useCallback } from 'react';
 import { CardElement } from '@stripe/react-stripe-js';
-import ButtonPrimary from '../../../components/button/ButtonPrimary';
-import usePostPaymentToStripeMutation from '../../../api/mutations/payment/usePostPaymentToStripeMutation';
+import { FormEvent, useCallback } from 'react';
+
+import usePostPaymentToStripeMutation from '@src/api/mutations/payment/usePostPaymentToStripeMutation';
+import ButtonPrimary from '@src/components/button/ButtonPrimary';
 
 export function PaymentForm({ bookingId }: { bookingId: string }) {
   const { mutate, isPending } = usePostPaymentToStripeMutation(bookingId || '');

@@ -1,18 +1,21 @@
-import { useParams } from 'react-router-dom';
+import { Box, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
 import { Elements } from '@stripe/react-stripe-js';
 import { ChangeEvent, FormEvent, useCallback, useEffect, useState } from 'react';
-import { Box, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
-import { PAYMENT_OPTION } from './components/contants';
+import { useParams } from 'react-router-dom';
+
+import usePostPaymentOptionMutation from '@src/api/mutations/payment/usePostPaymentOptionMutation';
+import ButtonPrimary from '@src/components/button/ButtonPrimary';
+import LoadingPrimary from '@src/components/loader/LoadingPrimary';
+import DataFetchError from '@src/components/shared/DataFetchError';
+import { stripePromise } from '@src/config/stripe.config';
 import { PaymentForm } from './components/PaymentForm';
-import { stripePromise } from '../../config/stripe.config';
-import ButtonPrimary from '../../components/button/ButtonPrimary';
-import LoadingPrimary from '../../components/loader/LoadingPrimary';
-import usePostPaymentOptionMutation from '../../api/mutations/payment/usePostPaymentOptionMutation';
-import DataFetchError from '../../components/shared/DataFetchError';
+import { PAYMENT_OPTION } from './components/contants';
+
+export type PaymentOption = (typeof PAYMENT_OPTION)[keyof typeof PAYMENT_OPTION];
 
 const Payment = () => {
-  const bookingId = useParams().id;
-  const [paymentOption, setPaymentOption] = useState<string>(PAYMENT_OPTION.card);
+  const { id: bookingId = '' } = useParams();
+  const [paymentOption, setPaymentOption] = useState<PaymentOption>(PAYMENT_OPTION.card);
 
   const { mutate, isPending, isError } = usePostPaymentOptionMutation(
     bookingId || '',
@@ -24,7 +27,8 @@ const Payment = () => {
   }, [mutate]);
 
   const handlePaymentChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setPaymentOption((e.target as HTMLInputElement).value);
+    const selectedPaymentOption = e.target.value as PaymentOption;
+    setPaymentOption(selectedPaymentOption);
   }, []);
 
   const handlePaymentClick = useCallback(
@@ -38,7 +42,7 @@ const Payment = () => {
   const paymentMethods: Record<string, JSX.Element> = {
     [PAYMENT_OPTION.card]: (
       <Elements stripe={stripePromise}>
-        <PaymentForm bookingId={bookingId || ''} />
+        <PaymentForm bookingId={bookingId} />
       </Elements>
     ),
     [PAYMENT_OPTION.cash]: (

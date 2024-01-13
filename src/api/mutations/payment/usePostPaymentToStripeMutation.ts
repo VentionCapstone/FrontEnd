@@ -1,13 +1,14 @@
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { useMutation } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+
 import httpClient from '@src/api/httpClient';
 import { ENDPOINTS } from '@src/config/endpoints.config';
 import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
 import { ROUTES } from '@src/config/routes.config';
 import { ResponsePayment } from '@src/types/payment.types';
 import { getValueFromLocalStorage, removeFromLocalStorage } from '@src/utils';
-import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import { useMutation } from '@tanstack/react-query';
-import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
 
 function usePostPaymentToStripeMutation(bookingId: string) {
   const elements = useElements();
@@ -40,11 +41,15 @@ function usePostPaymentToStripeMutation(bookingId: string) {
 
       const cardEl = elements.getElement(CardElement);
 
+      if (!cardEl) {
+        throw new Error('Unvailable, try again later.');
+      }
+
       const clientSecret = getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.clientSecret) || '';
 
       const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
-          card: cardEl!,
+          card: cardEl,
         },
       });
 
