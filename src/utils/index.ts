@@ -1,8 +1,8 @@
 import toast from 'react-hot-toast';
 
-import ErrorImage from '@/assets/no-image.png';
-import { Amenity } from '@/types/accommodation.types';
-import { ThemeMode } from '@/types/profile.types';
+import ErrorImage from '@src/assets/no-image.png';
+import { Amenity } from '@src/types/accommodation.types';
+import { ThemeMode } from '@src/types/profile.types';
 
 export const convertImageToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {

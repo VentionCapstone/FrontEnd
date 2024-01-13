@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 
-import httpClient from '@/api/httpClient';
-import { ENDPOINTS } from '@/config/endpoints.config';
-import { QUERY_KEYS } from '@/config/react-query.config';
-import { AccommodationSingleResponse } from '@/types/accommodation.types';
+import httpClient from '@src/api/httpClient';
+import { ENDPOINTS } from '@src/config/endpoints.config';
+import { QUERY_KEYS } from '@src/config/react-query.config';
+import { AccommodationSingleResponse } from '@src/types/accommodation.types';
 
 function useGetSingleAccommodationQuery(accommodationId: string) {
   return useQuery({

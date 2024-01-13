@@ -10,8 +10,8 @@ import {
 import React, { useState } from 'react';
 import { Controller, ControllerRenderProps, FieldValues, Path } from 'react-hook-form';
 
-import { STRONG_PASSWORD_REGEX } from '@/config/regexp.config';
-import { PasswordInputProps } from '@/types/auth.types';
+import { STRONG_PASSWORD_REGEX } from '@src/config/regexp.config';
+import { PasswordInputProps } from '@src/types/auth.types';
 
 const PasswordInput = <TFieldValues extends FieldValues>({
   name,

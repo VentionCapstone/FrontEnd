@@ -3,10 +3,10 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { useCallback, useEffect, useState } from 'react';
 
-import useEditAccountMutation from '@/api/mutations/account/useEditAccountMutation';
-import LoadingPrimary from '@/components/loader/LoadingPrimary';
-import { useAppSelector } from '@/hooks/redux-hooks';
-import { getProfile, getUser } from '@/stores/slices/authSlice';
+import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
+import LoadingPrimary from '@src/components/loader/LoadingPrimary';
+import { useAppSelector } from '@src/hooks/redux-hooks';
+import { getProfile, getUser } from '@src/stores/slices/authSlice';
 import AddImage from '../../AddImage';
 import EditablePanel from '../EditablePanel';
 import Country from './EditCountry';

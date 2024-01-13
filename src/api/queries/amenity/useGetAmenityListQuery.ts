@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 
-import httpClient from '@/api/httpClient';
-import { ENDPOINTS } from '@/config/endpoints.config';
-import { QUERY_KEYS } from '@/config/react-query.config';
-import { buildAmenityList } from '@/pages/accomodation/utils/amenityListBuilder';
-import { AmenityListResponse } from '@/types/amenity.types';
+import httpClient from '@src/api/httpClient';
+import { ENDPOINTS } from '@src/config/endpoints.config';
+import { QUERY_KEYS } from '@src/config/react-query.config';
+import { buildAmenityList } from '@src/pages/accomodation/utils/amenityListBuilder';
+import { AmenityListResponse } from '@src/types/amenity.types';
 
 const fetchAmenityList = async () => {
   const { data } = await httpClient.get<AmenityListResponse>(ENDPOINTS.amenity.getAmenityList);

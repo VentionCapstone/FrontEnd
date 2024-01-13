@@ -1,5 +1,5 @@
-import MainNavigation from '@/components/navigation';
 import { Container } from '@mui/material';
+import MainNavigation from '@src/components/navigation';
 import { Outlet } from 'react-router-dom';
 
 type Props = {

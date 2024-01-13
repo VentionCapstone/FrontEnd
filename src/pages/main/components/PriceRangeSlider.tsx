@@ -1,7 +1,7 @@
 import { Slider } from '@mui/material';
 import { useCallback, useMemo } from 'react';
 
-import { FormValue } from '@/types/accommodation.types';
+import { FormValue } from '@src/types/accommodation.types';
 
 type PriceRangeProps = {
   value: FormValue;

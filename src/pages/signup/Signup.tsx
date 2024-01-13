@@ -4,12 +4,12 @@ import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 import { Link as RouterLink } from 'react-router-dom';
 
-import useSignupMutation from '@/api/mutations/auth/useSignupMutation';
-import ButtonPrimary from '@/components/button/ButtonPrimary';
-import InputForm from '@/components/input/InputForm';
-import PasswordInput from '@/components/input/PasswordInput';
-import { ENDPOINTS } from '@/config/endpoints.config';
-import { AuthData } from '@/types/auth.types';
+import useSignupMutation from '@src/api/mutations/auth/useSignupMutation';
+import ButtonPrimary from '@src/components/button/ButtonPrimary';
+import InputForm from '@src/components/input/InputForm';
+import PasswordInput from '@src/components/input/PasswordInput';
+import { ENDPOINTS } from '@src/config/endpoints.config';
+import { AuthData } from '@src/types/auth.types';
 
 const Signup = () => {
   const { handleSubmit, control, watch } = useForm({

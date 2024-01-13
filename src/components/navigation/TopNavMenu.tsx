@@ -8,9 +8,9 @@ import MenuItem from '@mui/material/MenuItem';
 import { useCallback, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
-import useLogoutMutation from '@/api/mutations/account/useLogoutMutation';
-import useGetUserQuery from '@/api/queries/account/useGetUserQuery';
-import { ROUTES } from '@/config/routes.config';
+import useLogoutMutation from '@src/api/mutations/account/useLogoutMutation';
+import useGetUserQuery from '@src/api/queries/account/useGetUserQuery';
+import { ROUTES } from '@src/config/routes.config';
 import { mainNavigationStyles as styles } from './mainNavigation.styles';
 
 export const TopNavMenu = () => {
