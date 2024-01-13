@@ -6,7 +6,7 @@ import httpClient from '@src/api/httpClient';
 import { ROUTES } from '@src/config/routes.config';
 import { CommonResponse } from '@src/types/auth.types';
 
-function usePostForgotPasswordEmail() {
+function usePostForgotPasswordEmailMutation() {
   const navigate = useNavigate();
 
   return useMutation({
@@ -23,4 +23,4 @@ function usePostForgotPasswordEmail() {
   });
 }
 
-export default usePostForgotPasswordEmail;
+export default usePostForgotPasswordEmailMutation;

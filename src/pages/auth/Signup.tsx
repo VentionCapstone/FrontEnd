@@ -36,7 +36,7 @@ const Signup = () => {
 
   return (
     <Box sx={styles.formContainer}>
-      <Typography variant="subtitle1" align="center" margin={2} fontWeight="bold">
+      <Typography variant="subtitle1" align="center" margin={5} fontWeight="bold">
         Sign up
       </Typography>
       <Divider />

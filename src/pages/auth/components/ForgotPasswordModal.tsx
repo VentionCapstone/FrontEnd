@@ -12,7 +12,7 @@ import {
 import { useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
-import usePostForgotPasswordEmail from '@src/api/mutations/auth/usePostForgotPasswordEmail';
+import usePostForgotPasswordEmailMutation from '@src/api/mutations/auth/usePostForgotPasswordEmailMutation';
 import ButtonPrimary from '@src/components/button/ButtonPrimary';
 import InputForm from '@src/components/input/InputForm';
 import { ForgotPasswordReq, forgotPasswordSchema } from '@src/types/auth.types';
@@ -38,7 +38,7 @@ function ForgotPasswordModal({ isModalOpen, setIsModalOpen }: ForgotPasswordModa
     setIsModalOpen((prev) => !prev);
   }, [setIsModalOpen]);
 
-  const { mutate, isPending } = usePostForgotPasswordEmail();
+  const { mutate, isPending } = usePostForgotPasswordEmailMutation();
   const onSubmit = useCallback(
     ({ email }: { email: string }) => {
       mutate(email);
