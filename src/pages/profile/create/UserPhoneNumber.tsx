@@ -9,8 +9,8 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
-import { Profile } from '@/types/profile.types';
-import { phoneNumLengthRegEx } from '@/utils';
+import { Profile } from '@src/types/profile.types';
+import { phoneNumLengthRegEx } from '@src/utils';
 import { PHONE_CODES_BY_COUNTRY } from '../constants';
 import { PhoneCodesByCountry } from '../constants.types';
 

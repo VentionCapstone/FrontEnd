@@ -2,7 +2,7 @@ import { TextField, TextFieldProps } from '@mui/material';
 import React from 'react';
 import { UseFormRegister } from 'react-hook-form';
 
-import type { AuthData } from '@/types/auth.types';
+import type { AuthData } from '@src/types/auth.types';
 
 type InputProps = TextFieldProps & {
   register?: UseFormRegister<AuthData>;

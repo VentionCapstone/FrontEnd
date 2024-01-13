@@ -1,8 +1,8 @@
 import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
 
-import LoadingImage from '@/assets/loader.png';
-import ErrorImage from '@/assets/no-image.png';
+import LoadingImage from '@src/assets/loader.png';
+import ErrorImage from '@src/assets/no-image.png';
 
 const imageStates = {
   Loading: LoadingImage,

@@ -22,6 +22,10 @@ export const ENDPOINTS = {
     getAccommodationReviews: (accommodationId: string) =>
       `/accommodations/${accommodationId}/reviews`,
   },
+  payment: {
+    root: '/payment',
+    postConfirmPayment: '/payment/confirm',
+  },
   amenity: {
     root: (accommodationId: string) => `/amenities/${accommodationId}`,
     getAmenityList: '/amenities/list',

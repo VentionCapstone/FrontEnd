@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 
-import { useAppSelector } from '@/hooks/redux-hooks';
-import { hasToken } from '@/stores/slices/authSlice';
+import { useAppSelector } from '@src/hooks/redux-hooks';
+import { hasToken } from '@src/stores/slices/authSlice';
 
 function UserRoute({ children }: { children: React.ReactNode }) {
   const isLoggedIn = useAppSelector(hasToken);

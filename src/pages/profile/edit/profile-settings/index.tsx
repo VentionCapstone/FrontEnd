@@ -6,12 +6,12 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { useCallback, useMemo, useState } from 'react';
 
-import useEditAccountMutation from '@/api/mutations/account/useEditAccountMutation';
-import { LOCAL_STORAGE_KEYS } from '@/config/local-storage.config';
-import { useAppSelector } from '@/hooks/redux-hooks';
-import { getProfile } from '@/stores/slices/authSlice';
-import { ThemeMode } from '@/types/profile.types';
-import { getValueFromLocalStorage } from '@/utils';
+import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
+import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
+import { useAppSelector } from '@src/hooks/redux-hooks';
+import { getProfile } from '@src/stores/slices/authSlice';
+import { ThemeMode } from '@src/types/profile.types';
+import { getValueFromLocalStorage } from '@src/utils';
 import EditablePanel from '../EditablePanel';
 import { ProfileCurrency } from './ProfileCurrency';
 import { ProfileLang } from './ProfileLang';
