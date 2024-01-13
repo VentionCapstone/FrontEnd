@@ -1,11 +1,13 @@
 import { Navigate } from 'react-router-dom';
-import { useAppSelector } from '../hooks/redux-hooks';
-import { RoutesConfig } from '../config/routes.config';
+
+import { ROUTES } from '@src/config/routes.config';
+import { useAppSelector } from '@src/hooks/redux-hooks';
+import { hasToken } from '@src/stores/slices/authSlice';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
-  const isLoggedIn = useAppSelector((state) => state.auth.token) !== null;
+  const isLoggedIn = useAppSelector(hasToken);
 
-  return isLoggedIn ? children : <Navigate to={RoutesConfig.Auth.SignIn} />;
+  return isLoggedIn ? children : <Navigate to={ROUTES.auth.signIn} />;
 }
 
 export default PrivateRoute;

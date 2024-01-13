@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
   FormControl,
   IconButton,
@@ -7,10 +7,11 @@ import {
   OutlinedInput,
   Typography,
 } from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import React, { useState } from 'react';
 import { Controller, ControllerRenderProps, FieldValues, Path } from 'react-hook-form';
-import { PasswordInputProps } from '../../types/auth.types';
-import { STRONG_PASSWORD_REGEX } from '../../config/regexp.config';
+
+import { STRONG_PASSWORD_REGEX } from '@src/config/regexp.config';
+import { PasswordInputProps } from '@src/types/auth.types';
 
 const PasswordInput = <TFieldValues extends FieldValues>({
   name,

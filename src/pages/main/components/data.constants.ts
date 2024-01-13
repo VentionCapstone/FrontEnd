@@ -1,4 +1,4 @@
-import { ObjType } from '../../../types/accommodation.types';
+import { ObjType } from '@src/types/accommodation.types';
 
 export const roomsAndPeopleQuantity: ObjType[] = [
   {

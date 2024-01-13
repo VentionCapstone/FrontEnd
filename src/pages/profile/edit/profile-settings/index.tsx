@@ -1,16 +1,36 @@
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { useCallback, useMemo, useState } from 'react';
+
+import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
+import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
+import { useAppSelector } from '@src/hooks/redux-hooks';
+import { getProfile } from '@src/stores/slices/authSlice';
+import { ThemeMode } from '@src/types/profile.types';
+import { getValueFromLocalStorage } from '@src/utils';
 import EditablePanel from '../EditablePanel';
-import { ProfileLang } from './ProfileLang';
 import { ProfileCurrency } from './ProfileCurrency';
-import { useCallback, useState } from 'react';
+import { ProfileLang } from './ProfileLang';
 
 function ProfileSettings() {
-  const [theme, setTheme] = useState<'LIGHT' | 'DARK'>('LIGHT');
+  const profileId = useAppSelector(getProfile)?.id;
+  const { mutate } = useEditAccountMutation(profileId ?? '');
+  const uiTheme = useMemo(
+    () => getValueFromLocalStorage<ThemeMode>(LOCAL_STORAGE_KEYS.uiTheme),
+    []
+  );
+
+  const [theme, setTheme] = useState<ThemeMode>(uiTheme ?? ThemeMode.light);
+
+  const handleThemeChange = (e: SelectChangeEvent<ThemeMode>) => {
+    const mode = e.target.value as ThemeMode;
+    setTheme(mode);
+    mutate({ uiTheme: mode });
+  };
 
   const languageRenderProps = useCallback(
     (data: () => void) => <ProfileLang collapsePanel={data} userLang="English" />,
@@ -47,13 +67,13 @@ function ProfileSettings() {
           <FormControl>
             <Select
               value={theme}
-              onChange={(e) => setTheme(e.target.value as typeof theme)}
+              onChange={handleThemeChange}
               size="small"
               labelId="profile-theme-select-label"
               id="profile-theme-select-label"
             >
-              <MenuItem value={'LIGHT'}>Light</MenuItem>
-              <MenuItem value={'DARK'}>Dark</MenuItem>
+              <MenuItem value={ThemeMode.light}>Light</MenuItem>
+              <MenuItem value={ThemeMode.dark}>Dark</MenuItem>
             </Select>
           </FormControl>
         </Stack>

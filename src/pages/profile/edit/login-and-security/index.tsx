@@ -1,9 +1,10 @@
-import EditablePanel from '../EditablePanel';
 import { Box, Typography } from '@mui/material';
+import { useCallback } from 'react';
+
+import { useAppSelector } from '@src/hooks/redux-hooks';
+import EditablePanel from '../EditablePanel';
 import { UpdateEmail } from './UpdateEmail';
 import { UpdatePassword } from './UpdatePassword';
-import { useAppSelector } from '../../../../hooks/redux-hooks';
-import { useCallback } from 'react';
 
 function LoginAndSecurity() {
   const userEmail = useAppSelector((state) => state.auth.user?.email) ?? '';

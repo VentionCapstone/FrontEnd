@@ -3,7 +3,8 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { Profile } from '../../../types/profile.types';
+
+import { Profile } from '@src/types/profile.types';
 
 function UserFullName({
   register,

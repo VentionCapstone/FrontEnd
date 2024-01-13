@@ -1,12 +1,13 @@
+import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import { ChangeEventHandler } from 'react';
-import { convertImageToBase64 } from '../../utils';
 import toast from 'react-hot-toast';
-import { Profile } from '../../types/profile.types';
+
+import { Profile } from '@src/types/profile.types';
+import { convertImageToBase64 } from '@src/utils';
 
 function AddImage({
   imageUrl,
@@ -48,7 +49,7 @@ function AddImage({
           left: '50%',
           px: '1rem',
           py: '0.5rem',
-          bgcolor: 'white',
+          bgcolor: 'backgroundSecondary.main',
           borderRadius: '1rem',
           boxShadow: '0px 6px 16px rgba(0, 0, 0, 0.12)',
           transform: 'translate(-50%, 50%)',
@@ -57,7 +58,7 @@ function AddImage({
         htmlFor="post-user-image"
       >
         <Stack direction={'row'} sx={{ gap: '0.25rem', alignItems: 'center' }}>
-          <PhotoCameraIcon sx={{ fontSize: '1rem', color: 'primary.main' }} />
+          <PhotoCameraIcon sx={{ fontSize: '1rem' }} />
           <Typography variant={'sm'} fontWeight={700}>
             {imageUrl ? 'Edit' : 'Add'}
           </Typography>

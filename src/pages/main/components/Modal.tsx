@@ -1,12 +1,13 @@
-import { useCallback, useMemo, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
-import { Button, Modal, Fade, Typography, Box, Stack } from '@mui/material';
-import { FormValue, MainModalProps } from '../../../types/accommodation.types';
+import { Box, Button, Fade, Modal, Stack, Typography } from '@mui/material';
+import { useCallback, useMemo, useState } from 'react';
+
+import { FormValue, MainModalProps } from '@src/types/accommodation.types';
+import { modalStyles } from './Modal.styles';
+import PriceRangeInputs from './PriceRangeInputs';
+import PriceRangeSlider from './PriceRangeSlider';
 import SortBox from './SortBox';
 import { roomsAndPeopleQuantity, sortOptions } from './data.constants';
-import { modalStyles } from './Modal.styles';
-import PriceRangeSlider from './PriceRangeSlider';
-import PriceRangeInputs from './PriceRangeInputs';
 
 export default function MainModal({
   open,

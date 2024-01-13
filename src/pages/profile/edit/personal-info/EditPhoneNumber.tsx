@@ -1,23 +1,24 @@
 import {
   Button,
-  InputLabel,
-  Typography,
-  Select,
-  MenuItem,
   FormControl,
-  TextField,
-  InputAdornment,
-  SelectChangeEvent,
   Grid,
+  InputAdornment,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  TextField,
+  Typography,
 } from '@mui/material';
 import { useCallback, useState } from 'react';
-import { PhoneCodesByCountry } from '../../constants.types';
-import { DEFAULT_COUNTRY, PHONE_CODES_BY_COUNTRY } from '../../constants';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { phoneNumLengthRegEx } from '../../../../utils';
-import { useAppSelector } from '../../../../hooks/redux-hooks';
-import useEditAccountMutation from '../../../../api/mutations/account/useEditAccountMutation';
-import { getProfile } from '../../../../stores/slices/authSlice';
+
+import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
+import { useAppSelector } from '@src/hooks/redux-hooks';
+import { getProfile } from '@src/stores/slices/authSlice';
+import { phoneNumLengthRegEx } from '@src/utils';
+import { DEFAULT_COUNTRY, PHONE_CODES_BY_COUNTRY } from '../../constants';
+import { PhoneCodesByCountry } from '../../constants.types';
 
 const PhoneNumber = ({ collapsePanel }: { collapsePanel: () => void }) => {
   const {

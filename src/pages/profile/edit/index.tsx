@@ -1,16 +1,22 @@
 import {
-  ChevronRight,
   AccountCircleOutlined,
-  SettingsOutlined,
+  ChevronRight,
   GppGoodOutlined,
+  SettingsOutlined,
 } from '@mui/icons-material';
-import { Box, Button, Link, Stack, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import { Link as RouterLink } from 'react-router-dom';
-import { useAppSelector } from '../../../hooks/redux-hooks';
-import useLogoutMutation from '../../../api/mutations/account/useLogoutMutation';
-import LoadingPrimary from '../../../components/loader/LoadingPrimary';
+
+import useLogoutMutation from '@src/api/mutations/account/useLogoutMutation';
+import houseIcon from '@src/assets/house.png';
+import LoadingPrimary from '@src/components/loader/LoadingPrimary';
+import { useAppSelector } from '@src/hooks/redux-hooks';
+import { getUser } from '@src/stores/slices/authSlice';
 import { editPageStyles } from './index.styles';
-import { getUser } from '../../../stores/slices/authSlice';
 
 function EditProfile() {
   const { mutate } = useLogoutMutation();
@@ -33,16 +39,7 @@ function EditProfile() {
           </Typography>
         </Stack>
 
-        <Box
-          sx={{
-            display: {
-              md: 'none',
-            },
-            padding: 6,
-            borderRadius: 3,
-            boxShadow: '0px 6px 16px rgba(0, 0, 0, 0.12)',
-          }}
-        >
+        <Box sx={editPageStyles.card}>
           <Stack direction={'row'} gap={'1rem'} justifyContent={'space-between'}>
             <Stack gap={'0.25rem'}>
               <Typography fontSize={'1.125rem'} fontWeight={600}>
@@ -54,7 +51,14 @@ function EditProfile() {
             </Stack>
 
             <Box
-              sx={{ width: '6rem', height: '5.5rem', bgcolor: 'secondary.main', flexShrink: 0 }}
+              component={'img'}
+              src={houseIcon}
+              sx={{
+                width: '6rem',
+                height: '5.5rem',
+                flexShrink: 0,
+                objectFit: 'contain',
+              }}
             ></Box>
           </Stack>
         </Box>
@@ -67,7 +71,13 @@ function EditProfile() {
           width={'100%'}
           sx={{ textDecoration: 'none' }}
         >
-          <Stack sx={editPageStyles.customCard} borderTop={{ xs: '1px solid #EBEBEB' }}>
+          <Stack
+            sx={editPageStyles.customCard}
+            borderTop={{ xs: '1px solid #EBEBEB' }}
+            bgcolor={{
+              md: 'backgroundSecondary.main',
+            }}
+          >
             <AccountCircleOutlined
               sx={{
                 fontSize: {
@@ -104,7 +114,12 @@ function EditProfile() {
           width={'100%'}
           sx={{ textDecoration: 'none' }}
         >
-          <Stack sx={editPageStyles.customCard}>
+          <Stack
+            sx={editPageStyles.customCard}
+            bgcolor={{
+              md: 'backgroundSecondary.main',
+            }}
+          >
             <GppGoodOutlined
               sx={{
                 fontSize: {
@@ -136,7 +151,12 @@ function EditProfile() {
         </Link>
 
         <Link component={RouterLink} to={'settings'} width={'100%'} sx={{ textDecoration: 'none' }}>
-          <Stack sx={editPageStyles.customCard}>
+          <Stack
+            sx={editPageStyles.customCard}
+            bgcolor={{
+              md: 'backgroundSecondary.main',
+            }}
+          >
             <SettingsOutlined
               sx={{
                 fontSize: {

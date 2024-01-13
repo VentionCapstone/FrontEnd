@@ -1,23 +1,29 @@
-import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import React from 'react';
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
+
 import PrivateRoute from './PrivateRoute';
-import UserRoute from './UserRoute';
 import ProfileCreateRoute from './ProfileCreateRoute';
 import ProfileEditRoute from './ProfileEditRoute';
-import CreateProfile from '../pages/profile/create';
-import EditProfile from '../pages/profile/edit';
-import PersonalInfo from '../pages/profile/edit/personal-info';
-import LoginAndSecurity from '../pages/profile/edit/login-and-security';
-import ProfileSetting from '../pages/profile/edit/profile-settings';
-import Signup from '../pages/signup/Signup';
-import BookingRoom from '../pages/booking/BookingRoom';
 
-const MainLayout = React.lazy(() => import('../layouts/MainLayout'));
-const UserLayout = React.lazy(() => import('../layouts/UserLayout'));
-const AuthLayout = React.lazy(() => import('../layouts/AuthLayout'));
-const Main = React.lazy(() => import('../pages/main'));
-const SignIn = React.lazy(() => import('../pages/signin'));
-const VerifyEmail = React.lazy(() => import('../pages/auth/VerifyEmail'));
+import UserRoute from './UserRoute';
+
+import MainLayout from '@src/layouts/MainLayout';
+import UserLayout from '@src/layouts/UserLayout';
+
+
+const Main = React.lazy(() => import('@src/pages/main'));
+const SignIn = React.lazy(() => import('@src/pages/signin'));
+const VerifyEmail = React.lazy(() => import('@src/pages/auth/VerifyEmail'));
+const Signup = React.lazy(() => import('@src/pages/signup/Signup'));
+const CreateProfile = React.lazy(() => import('@src/pages/profile/create'));
+const EditProfile = React.lazy(() => import('@src/pages/profile/edit'));
+const LoginAndSecurity = React.lazy(() => import('@src/pages/profile/edit/login-and-security'));
+const PersonalInfo = React.lazy(() => import('@src/pages/profile/edit/personal-info'));
+const ProfileSetting = React.lazy(() => import('@src/pages/profile/edit/profile-settings'));
+const Accommodations = React.lazy(() => import('@src/pages/accommodations'));
+const AccommodationForm = React.lazy(() => import('@src/pages/accommodations/AccommodationForm'));
+const Payment = React.lazy(() => import('../pages/payment/Payment'));
+const Accommodation = React.lazy(() => import('../pages/accomodation/Accommodation'));
 
 const routes = createBrowserRouter([
   {
@@ -25,6 +31,8 @@ const routes = createBrowserRouter([
     element: <MainLayout />,
     children: [
       { path: '', element: <Main /> },
+      { path: 'book/:id', element: <Payment /> },
+      { path: 'rooms/:id', element: <Accommodation /> },
       { path: '*', element: <Navigate to="/" /> },
     ],
   },
@@ -64,7 +72,7 @@ const routes = createBrowserRouter([
     path: '/auth',
     element: (
       <UserRoute>
-        <AuthLayout />
+        <UserLayout />
       </UserRoute>
     ),
     children: [
@@ -73,7 +81,21 @@ const routes = createBrowserRouter([
       { path: 'verify', element: <VerifyEmail /> },
     ],
   },
+
   { path: '/rooms', element: <BookingRoom /> },
+
+
+  {
+    path: '/accommodations',
+    element: <MainLayout />,
+    children: [
+      { path: '', element: <Accommodations /> },
+      { path: 'create', element: <AccommodationForm /> },
+      { path: 'edit/:id', element: <AccommodationForm /> },
+      { path: '*', element: <Navigate to="/accommodations" /> },
+    ],
+  },
+
 ]);
 
 export default function AppRoutes() {

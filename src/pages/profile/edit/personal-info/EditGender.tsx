@@ -9,10 +9,11 @@ import {
   Typography,
 } from '@mui/material';
 import { useCallback, useState } from 'react';
-import { Profile, Gender as GenderEnum } from '../../../../types/profile.types';
-import { useAppSelector } from '../../../../hooks/redux-hooks';
-import useEditAccountMutation from '../../../../api/mutations/account/useEditAccountMutation';
-import { getProfile } from '../../../../stores/slices/authSlice';
+
+import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
+import { useAppSelector } from '@src/hooks/redux-hooks';
+import { getProfile } from '@src/stores/slices/authSlice';
+import { Gender as GenderEnum, Profile } from '@src/types/profile.types';
 
 const Gender = ({
   collapsePanel,

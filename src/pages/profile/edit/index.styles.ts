@@ -1,4 +1,4 @@
-import { MuiStylesObject } from '../../../types/utility.types';
+import { MuiStylesObject } from '@src/types/utility.types';
 
 export const editPageStyles = {
   userImage: {
@@ -66,5 +66,15 @@ export const editPageStyles = {
     fontWeight: 600,
     textTransform: 'none',
     borderRadius: 3,
+  },
+
+  card: {
+    display: {
+      md: 'none',
+    },
+    padding: 6,
+    borderRadius: 3,
+    boxShadow: '0px 6px 16px rgba(0, 0, 0, 0.12)',
+    bgcolor: 'backgroundSecondary.main',
   },
 } satisfies MuiStylesObject;

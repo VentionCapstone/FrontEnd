@@ -1,9 +1,10 @@
+import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
 import { Box, TextField } from '@mui/material';
 import { ChangeEvent, useCallback } from 'react';
-import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
+
+import { ONLY_NUMBERS } from '@src/config/regexp.config';
+import { FormValue } from '@src/types/accommodation.types';
 import { modalStyles } from './Modal.styles';
-import { FormValue } from '../../../types/accommodation.types';
-import { ONLY_NUMBERS } from '../../../config/regexp.config';
 
 type PriceRangeInputsProps = {
   value: FormValue;

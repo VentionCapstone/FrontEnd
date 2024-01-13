@@ -1,9 +1,10 @@
 import { Button, Grid, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
-import { User } from '../../../../types/user.types';
-import { useAppSelector } from '../../../../hooks/redux-hooks';
-import useEditAccountMutation from '../../../../api/mutations/account/useEditAccountMutation';
-import { getProfile } from '../../../../stores/slices/authSlice';
+
+import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
+import { useAppSelector } from '@src/hooks/redux-hooks';
+import { getProfile } from '@src/stores/slices/authSlice';
+import { User } from '@src/types/user.types';
 
 type FullNameProps = {
   collapsePanel: () => void;

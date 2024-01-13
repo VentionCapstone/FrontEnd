@@ -5,10 +5,11 @@ import axios, {
   InternalAxiosRequestConfig,
 } from 'axios';
 import toast from 'react-hot-toast';
-import { store } from '../stores/store';
-import { ErrorResponse } from '../types/error.types';
-import { removeToken, setToken } from '../stores/slices/authSlice';
-import { RefreshResponse, RefreshingPromise, isRefreshingType } from '../types/auth.types';
+
+import { removeToken, setToken } from '@src/stores/slices/authSlice';
+import { store } from '@src/stores/store';
+import { RefreshResponse, RefreshingPromise, isRefreshingType } from '@src/types/auth.types';
+import { ErrorResponse } from '@src/types/error.types';
 
 let isRefreshing: isRefreshingType = false;
 

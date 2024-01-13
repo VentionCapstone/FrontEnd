@@ -7,11 +7,12 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { Profile } from '../../../types/profile.types';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
+
+import { Profile } from '@src/types/profile.types';
+import { phoneNumLengthRegEx } from '@src/utils';
 import { PHONE_CODES_BY_COUNTRY } from '../constants';
 import { PhoneCodesByCountry } from '../constants.types';
-import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { phoneNumLengthRegEx } from '../../../utils';
 
 function UserPhoneNumber({
   register,

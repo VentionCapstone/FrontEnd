@@ -1,9 +1,10 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
-import { Profile } from '../../../../types/profile.types';
-import { useAppSelector } from '../../../../hooks/redux-hooks';
-import useEditAccountMutation from '../../../../api/mutations/account/useEditAccountMutation';
-import { getProfile } from '../../../../stores/slices/authSlice';
+
+import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
+import { useAppSelector } from '@src/hooks/redux-hooks';
+import { getProfile } from '@src/stores/slices/authSlice';
+import { Profile } from '@src/types/profile.types';
 
 const Description = ({
   collapsePanel,
