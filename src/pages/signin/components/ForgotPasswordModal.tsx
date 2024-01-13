@@ -15,6 +15,8 @@ import toast from 'react-hot-toast';
 import httpClient from '@/api/httpClient';
 import ButtonPrimary from '@/components/button/ButtonPrimary';
 import InputForm from '@/components/input/InputForm';
+import { ROUTES } from '@/config/routes.config';
+import { useNavigate } from 'react-router-dom';
 
 interface ForgotPasswordModalProps {
   isModalOpen: boolean;
@@ -27,6 +29,8 @@ function ForgotPasswordModal({ isModalOpen, setIsModalOpen }: ForgotPasswordModa
       email: '',
     },
   });
+
+  const navigate = useNavigate();
 
   const handleClose = () => {
     setIsModalOpen(false);
@@ -46,6 +50,7 @@ function ForgotPasswordModal({ isModalOpen, setIsModalOpen }: ForgotPasswordModa
     },
     onSuccess: (data) => {
       toast.success(data.message);
+      navigate(ROUTES.root);
     },
   });
 
