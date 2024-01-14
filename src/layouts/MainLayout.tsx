@@ -8,11 +8,11 @@ import MainNavigation from '@src/components/navigation';
 function MainLayout() {
   return (
     <Stack minHeight={'100svh'}>
-      <MainNavigation maxWidth={'2xl'} />
-      <Container maxWidth={'2xl'} disableGutters sx={{ p: 6, pb: { xs: 20, md: 17 }, flexGrow: 1 }}>
+      <MainNavigation maxWidth={'xl'} />
+      <Container maxWidth={'xl'} disableGutters sx={{ p: 6, pb: { xs: 20, md: 17 }, flexGrow: 1 }}>
         <Outlet />
       </Container>
-      <StickyFooter maxWidth={'2xl'} />
+      <StickyFooter maxWidth={'xl'} />
     </Stack>
   );
 }

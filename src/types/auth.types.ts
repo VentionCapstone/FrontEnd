@@ -47,27 +47,27 @@ export const forgotPasswordSchema = z.object({
 
 export type ForgotPasswordReq = z.infer<typeof forgotPasswordSchema>;
 
-export const resetPasswordSchema = z
-  .object({
-    newPassword: z
-      .string()
-      .regex(
-        STRONG_PASSWORD_REGEX,
-        'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character'
-      )
-      .min(8, 'Password must be at least 8 characters')
-      .max(50),
-    confirmPassword: z.string().min(1, 'Confirm password should not empty').max(50),
-  })
-  .refine(
-    (values) => {
-      return values.newPassword === values.confirmPassword;
-    },
-    {
-      message: 'Passwords must match!',
-      path: ['confirmPassword'],
-    }
-  );
+export const resetPasswordSchemaObject = z.object({
+  newPassword: z
+    .string()
+    .regex(
+      STRONG_PASSWORD_REGEX,
+      'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character'
+    )
+    .min(8, 'Password must be at least 8 characters')
+    .max(50),
+  confirmPassword: z.string().min(1, 'Confirm password should not empty').max(50),
+});
+
+export const resetPasswordSchema = resetPasswordSchemaObject.refine(
+  (values) => {
+    return values.newPassword === values.confirmPassword;
+  },
+  {
+    message: 'Passwords must match!',
+    path: ['confirmPassword'],
+  }
+);
 
 export type ResetPasswordReq = z.infer<typeof resetPasswordSchema>;
 
@@ -98,5 +98,5 @@ export interface PasswordInputProps<TFieldValues extends FieldValues> {
 
 export interface CommonResponse {
   success: boolean;
-  message: 'string';
+  message: string;
 }

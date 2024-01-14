@@ -1,3 +1,6 @@
+import { z } from 'zod';
+import { resetPasswordSchemaObject } from './auth.types';
+
 export type ProfileState = {
   profile: Profile | null;
 };
@@ -24,3 +27,24 @@ export enum Gender {
   male = 'MALE',
   female = 'FEMALE',
 }
+
+export interface UpdatePasswordReq {
+  oldPassword: string;
+  newPassword: string;
+}
+
+export const updatePasswordSchema = resetPasswordSchemaObject
+  .extend({
+    currentPassword: z.string().min(1, 'This field is required').max(50),
+  })
+  .refine(
+    (values) => {
+      return values.newPassword === values.confirmPassword;
+    },
+    {
+      message: 'Passwords must match!',
+      path: ['confirmPassword'],
+    }
+  );
+
+export type UpdatePasswordData = z.infer<typeof updatePasswordSchema>;
