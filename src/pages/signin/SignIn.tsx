@@ -14,11 +14,11 @@ import { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-import useSignInMutation from '@/api/mutations/auth/useSignInMutation';
-import ButtonPrimary from '@/components/button/ButtonPrimary';
-import InputForm from '@/components/input/InputForm';
-import { ENDPOINTS } from '@/config/endpoints.config';
-import { AuthData } from '@/types/auth.types';
+import useSignInMutation from '@src/api/mutations/auth/useSignInMutation';
+import ButtonPrimary from '@src/components/button/ButtonPrimary';
+import InputForm from '@src/components/input/InputForm';
+import { ENDPOINTS } from '@src/config/endpoints.config';
+import { AuthData } from '@src/types/auth.types';
 
 const SignIn = () => {
   const { handleSubmit, control } = useForm({

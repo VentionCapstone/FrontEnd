@@ -1,8 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import { useCallback } from 'react';
 
-import { FormValue, ObjType } from '@/types/accommodation.types';
-import { MuiStylesObject } from '@/types/utility.types';
+import { FormValue, ObjType } from '@src/types/accommodation.types';
+import { MuiStylesObject } from '@src/types/utility.types';
 import FilterChip from './FilterChip';
 
 type SortBoxProps = {

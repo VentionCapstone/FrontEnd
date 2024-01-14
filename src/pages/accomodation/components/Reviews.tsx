@@ -13,8 +13,8 @@ import useTheme from '@mui/material/styles/useTheme';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useCallback, useState } from 'react';
 
-import useGetReviewsQuery from '@/api/queries/reviews/useGetReviewsQuery';
-import LoadingPrimary from '@/components/loader/LoadingPrimary';
+import useGetReviewsQuery from '@src/api/queries/reviews/useGetReviewsQuery';
+import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import { Review } from './Review';
 
 export const Reviews = ({ accommodationId }: { accommodationId: string }) => {

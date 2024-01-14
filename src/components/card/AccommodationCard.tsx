@@ -3,8 +3,8 @@ import { Box, IconButton, Stack, Typography } from '@mui/material';
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Accommodation } from '@/types/accommodation.types';
-import { MuiStylesObject } from '@/types/utility.types';
+import { Accommodation } from '@src/types/accommodation.types';
+import { MuiStylesObject } from '@src/types/utility.types';
 import CustomImage from '../shared/CustomImage';
 
 const accommodationCardStyles = {

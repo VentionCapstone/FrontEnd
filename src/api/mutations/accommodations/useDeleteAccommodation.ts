@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import httpClient from '@/api/httpClient';
-import { ENDPOINTS } from '@/config/endpoints.config';
-import { QUERY_KEYS } from '@/config/react-query.config';
-import { ROUTES } from '@/config/routes.config';
+import httpClient from '@src/api/httpClient';
+import { ENDPOINTS } from '@src/config/endpoints.config';
+import { QUERY_KEYS } from '@src/config/react-query.config';
+import { ROUTES } from '@src/config/routes.config';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 

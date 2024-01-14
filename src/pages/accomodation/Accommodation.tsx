@@ -3,11 +3,12 @@ import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
-import useGetSingleAccommodationQuery from '@/api/queries/accommodation/useGetSingleAccommodationQuery';
-import LoadingPrimary from '@/components/loader/LoadingPrimary';
-import DataFetchError from '@/components/shared/DataFetchError';
-import { AmenitySetting } from '@/types/amenity.types';
-import { handleErrorInImage, selectOnlyTrueAmenities } from '@/utils';
+import useGetSingleAccommodationQuery from '@src/api/queries/accommodation/useGetSingleAccommodationQuery';
+import LoadingPrimary from '@src/components/loader/LoadingPrimary';
+import DataFetchError from '@src/components/shared/DataFetchError';
+import { AmenitySetting } from '@src/types/amenity.types';
+import { handleErrorInImage, selectOnlyTrueAmenities } from '@src/utils';
+import YandexMap from '../../components/YandexMap';
 import { styles } from './Accommodation.styles';
 import AmenityList from './components/AmenityList';
 import { Reviews } from './components/Reviews';
@@ -93,6 +94,9 @@ function Accommodation() {
         <Box flex={0.4}></Box>
       </Box>
       <Reviews accommodationId={accommodationId || ''} />
+      <Box mt={'2rem'}>
+        <YandexMap latitude={data.address.latitude} longitude={data.address.longitude} />
+      </Box>
     </Box>
   );
 }

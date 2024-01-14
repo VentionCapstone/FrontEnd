@@ -2,8 +2,8 @@ import { Box, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import useVerifyEmailMutation from '@/api/mutations/auth/useVerifyEmailMutation';
-import LoadingPrimary from '@/components/loader/LoadingPrimary';
+import useVerifyEmailMutation from '@src/api/mutations/auth/useVerifyEmailMutation';
+import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 
 function VerifyEmail() {
   const [searchParams] = useSearchParams();

@@ -5,9 +5,9 @@ import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
-import { MoreLessText } from '@/components/more-less-text/MoreLessText';
-import { FONT_SIZES } from '@/theme/themeTokens';
-import { Review as ReviewType } from '@/types/reviews.types';
+import { MoreLessText } from '@src/components/more-less-text/MoreLessText';
+import { FONT_SIZES } from '@src/theme/themeTokens';
+import { Review as ReviewType } from '@src/types/reviews.types';
 
 dayjs.extend(relativeTime);
 
