@@ -1,6 +1,6 @@
 import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
 
-import { Coordinates } from '@/types/global.types';
+import { Coordinates } from '@src/types/global.types';
 
 type Props = {
   latitude: number;

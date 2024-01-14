@@ -1,12 +1,13 @@
-import { useGetAccommodations } from '@/api/queries/accommodations/useGetAccommodations';
-import CustomImage from '@/components/shared/CustomImage';
-import { ROUTES } from '@/config/routes.config';
-import { useAppSelector } from '@/hooks/redux-hooks';
-import { getUser } from '@/stores/slices/authSlice';
-import { lineClampStyle } from '@/utils';
 import { Add } from '@mui/icons-material';
 import { Box, IconButton, Typography } from '@mui/material';
+import { useGetAccommodations } from '@src/api/queries/accommodations/useGetAccommodations';
+import CustomImage from '@src/components/shared/CustomImage';
+import { ROUTES } from '@src/config/routes.config';
+import { useAppSelector } from '@src/hooks/redux-hooks';
+import { getUser } from '@src/stores/slices/authSlice';
+import { lineClampStyle } from '@src/utils';
 import { Link } from 'react-router-dom';
+
 import AccommodationSkeleton from './AccommodationSkeleton';
 
 export default function Accommodations() {

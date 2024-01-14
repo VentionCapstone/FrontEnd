@@ -16,7 +16,7 @@ import {
   Wifi,
 } from '@mui/icons-material';
 
-import { AmenitySetting } from '@/types/amenity.types';
+import { AmenitySetting } from '@src/types/amenity.types';
 
 const amenitiesSettings: {
   [key: string]: AmenitySetting;

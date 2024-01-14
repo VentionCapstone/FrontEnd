@@ -2,11 +2,11 @@ import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
-import httpClient from '@/api/httpClient';
-import { ENDPOINTS } from '@/config/endpoints.config';
-import { ROUTES } from '@/config/routes.config';
-import { useAppDispatch } from '@/hooks/redux-hooks';
-import { logout } from '@/stores/slices/authSlice';
+import httpClient from '@src/api/httpClient';
+import { ENDPOINTS } from '@src/config/endpoints.config';
+import { ROUTES } from '@src/config/routes.config';
+import { useAppDispatch } from '@src/hooks/redux-hooks';
+import { logout } from '@src/stores/slices/authSlice';
 
 function useUpdateEmailMutation(email: string) {
   const dispatch = useAppDispatch();

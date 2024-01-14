@@ -30,6 +30,8 @@
     "@mui/x-date-pickers": "^6.18.5",
     "@pbe/react-yandex-maps": "^1.2.5",
     "@reduxjs/toolkit": "^1.9.7",
+    "@stripe/react-stripe-js": "^2.4.0",
+    "@stripe/stripe-js": "^2.2.2",
     "@tanstack/react-query": "^5.10.0",
     "@tanstack/react-query-devtools": "^5.15.5",
     "axios": "^1.6.2",
