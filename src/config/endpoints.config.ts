@@ -18,10 +18,13 @@ export const ENDPOINTS = {
   },
   accommodation: {
     root: '/accommodations',
-    getAccommodations: '/accommodations/getAll',
+    getUserAccommodations: (userId: string) => {
+      return `/accommodations/${userId}/accommodations`;
+    },
     getAccommodation: (accommodationId: string | undefined) => `/accommodations/${accommodationId}`,
     updateAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}`,
     deleteAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}`,
+    restoreAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}/restore`,
     getAccommodationReviews: (accommodationId: string) =>
       `/accommodations/${accommodationId}/reviews`,
   },

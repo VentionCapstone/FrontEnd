@@ -1,9 +1,8 @@
-import { useMutation } from '@tanstack/react-query';
-import toast from 'react-hot-toast';
-
 import httpClient from '@src/api/httpClient';
 import { ENDPOINTS } from '@src/config/endpoints.config';
 import { CommonResponse, SignUpReq } from '@src/types/auth.types';
+import { useMutation } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 const useSignupMutation = () => {
   return useMutation({
