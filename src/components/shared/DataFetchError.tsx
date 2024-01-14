@@ -1,12 +1,17 @@
+import ErrorTypes from '@/errors/errors.enum';
 import { Box, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 function DataFetchError({
-  error = 'Something went wrong',
+  errorKey = ErrorTypes.DEFAULT,
   position = 'center',
 }: {
-  error?: string;
+  errorKey?: string;
   position?: 'start' | 'center' | 'end';
 }) {
+  const { t } = useTranslation();
+  const error = t(errorKey);
+
   return (
     <Box
       sx={{

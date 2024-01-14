@@ -8,6 +8,7 @@ import useGetAccommodationsQuery from '@/api/queries/main/useGetAccommodationsQu
 import AccommodationCard from '@/components/card/AccommodationCard';
 import LoadingPrimary from '@/components/loader/LoadingPrimary';
 import DataFetchError from '@/components/shared/DataFetchError';
+import ErrorTypes from '@/errors/errors.enum';
 import { Accommodation, DefaultSearchParamsType } from '@/types/accommodation.types';
 import MainModal from './components/Modal';
 import { mainStyles } from './index.styles';
@@ -73,7 +74,7 @@ function Main() {
     );
   }
   if (isError) {
-    return <DataFetchError error="Failed to get accommodation list" />;
+    return <DataFetchError errorKey={ErrorTypes.ACCOMMODATION_FAILED_TO_GET_LIST} />;
   }
 
   return (

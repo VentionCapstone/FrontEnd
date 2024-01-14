@@ -6,6 +6,8 @@ import axios, {
 } from 'axios';
 import toast from 'react-hot-toast';
 
+import ErrorTypes from '@/errors/errors.enum';
+import i18n from '@/i18n/i18n';
 import { removeToken, setToken } from '@/stores/slices/authSlice';
 import { store } from '@/stores/store';
 import { RefreshResponse, RefreshingPromise, isRefreshingType } from '@/types/auth.types';
@@ -82,7 +84,8 @@ async function resErrInterceptor(error: AxiosError<ErrorResponse>) {
     } else {
       info = error.response?.data?.error.message;
     }
-    const message = info || error.message || 'Something went wrong';
+    const defaultMessage: string = i18n.t(ErrorTypes.DEFAULT);
+    const message = info || error.message || defaultMessage;
     toast.error(message);
   }
 

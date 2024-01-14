@@ -1,4 +1,5 @@
 import { useGetAccommodations } from '@/api/queries/accommodations/useGetAccommodations';
+import CustomImage from '@/components/shared/CustomImage';
 import { ROUTES } from '@/config/routes.config';
 import { useAppSelector } from '@/hooks/redux-hooks';
 import { getUser } from '@/stores/slices/authSlice';
@@ -11,10 +12,6 @@ import AccommodationSkeleton from './AccommodationSkeleton';
 export default function Accommodations() {
   const profileId = useAppSelector(getUser)?.id ?? '';
   const { data: accommodations, isLoading } = useGetAccommodations(profileId);
-
-  const onError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    e.currentTarget.src = 'https://via.placeholder.com/300';
-  };
 
   return (
     <Box>
@@ -50,14 +47,7 @@ export default function Accommodations() {
                     overflow="hidden"
                     position="relative"
                   >
-                    <img
-                      width="100%"
-                      height="100%"
-                      onError={onError}
-                      style={{ objectFit: 'cover' }}
-                      alt={`${id} thumbnail`}
-                      src={thumbnailUrl || previewImgUrl}
-                    />
+                    <CustomImage image={thumbnailUrl || previewImgUrl} name={`${id} thumbnail`} />
                     {isDeleted && (
                       <Box
                         position="absolute"

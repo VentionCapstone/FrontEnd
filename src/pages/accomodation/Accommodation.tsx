@@ -6,6 +6,7 @@ import { useParams } from 'react-router';
 import useGetSingleAccommodationQuery from '@/api/queries/accommodation/useGetSingleAccommodationQuery';
 import LoadingPrimary from '@/components/loader/LoadingPrimary';
 import DataFetchError from '@/components/shared/DataFetchError';
+import ErrorTypes from '@/errors/errors.enum';
 import { AmenitySetting } from '@/types/amenity.types';
 import { handleErrorInImage, selectOnlyTrueAmenities } from '@/utils';
 import { styles } from './Accommodation.styles';
@@ -36,7 +37,9 @@ function Accommodation() {
   }
 
   if (isError) {
-    return <DataFetchError error="Failed to get single accommodation" position="center" />;
+    return (
+      <DataFetchError errorKey={ErrorTypes.ACCOMMODATION_FAILED_TO_GET_SINGLE} position="center" />
+    );
   }
 
   const [image_1, image_2, image_3, image_4, image_5] = data.media;
