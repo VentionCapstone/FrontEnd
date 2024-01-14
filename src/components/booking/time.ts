@@ -3,6 +3,7 @@ import { Dayjs } from 'dayjs';
 
 export const DateFormat = 'YYYY-MM-DD';
 
+export type selectDatesType = [Dayjs | null, Dayjs | null];
 export interface ReservationData {
   startDate: string;
   endDate: string;

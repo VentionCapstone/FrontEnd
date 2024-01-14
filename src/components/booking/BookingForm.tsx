@@ -7,7 +7,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import ButtonPrimary from '../../components/button/ButtonPrimary';
 import { DataType } from '../../types/booking.types';
 import DataFetchError from '../shared/DataFetchError';
-import { DateFormat, ReservationData, createReservationData } from './time';
+import { DateFormat, ReservationData, createReservationData, selectDatesType } from './time';
 
 interface BookingFormProps {
   onSubmit: (reservationData: {
@@ -20,7 +20,7 @@ interface BookingFormProps {
 }
 
 const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, data, disabled }) => {
-  const [selectedDates, setSelectedDates] = useState<[Dayjs | null, Dayjs | null]>([null, null]);
+  const [selectedDates, setSelectedDates] = useState<selectDatesType>([null, null]);
   const [startDate, endDate] = selectedDates;
   const { availableDates, accommodationId } = data || {};
 
@@ -34,7 +34,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, data, disabled }) =
       const newSelectedDates = [...prevSelectedDates];
       newSelectedDates[index] = newValue;
 
-      return newSelectedDates as [Dayjs | null, Dayjs | null];
+      return newSelectedDates as selectDatesType;
     });
   };
 
