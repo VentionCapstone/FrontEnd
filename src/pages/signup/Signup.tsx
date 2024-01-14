@@ -72,7 +72,7 @@ const Signup = () => {
               setIsPasswordValid={setIsPasswordValid}
             />
           </Box>
-          <ButtonPrimary loading={isPending} disabled={isPasswordValid}>
+          <ButtonPrimary loading={isPending} disabled={!isPasswordValid}>
             Sign up
           </ButtonPrimary>
         </form>

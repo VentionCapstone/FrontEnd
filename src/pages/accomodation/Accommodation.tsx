@@ -3,11 +3,14 @@ import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
+import { useBookingRoom } from '@src/api/mutations/booking/useBookingRoom';
 import useGetSingleAccommodationQuery from '@src/api/queries/accommodation/useGetSingleAccommodationQuery';
+import BookingForm from '@src/components/booking/BookingForm';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import DataFetchError from '@src/components/shared/DataFetchError';
 import { AmenitySetting } from '@src/types/amenity.types';
 import { handleErrorInImage, selectOnlyTrueAmenities } from '@src/utils';
+import toast from 'react-hot-toast';
 import YandexMap from '../../components/YandexMap';
 import { styles } from './Accommodation.styles';
 import AmenityList from './components/AmenityList';
@@ -20,6 +23,20 @@ function Accommodation() {
 
   const { isPending, data, isError } = useGetSingleAccommodationQuery(accommodationId as string);
 
+  const { mutateAsync } = useBookingRoom();
+
+  const submitReservation = async (reservationData: {
+    startDate: string;
+    endDate: string;
+    accommodationId: string;
+  }): Promise<void> => {
+    try {
+      await mutateAsync(reservationData);
+    } catch (error) {
+      toast.error('Reservation failed');
+    }
+  };
+
   useEffect(() => {
     if (data?.amenities) {
       const listOfTrueAmenities = selectOnlyTrueAmenities(data?.amenities[0]);
@@ -27,7 +44,6 @@ function Accommodation() {
       setAmenities(buildAmenityList(listOfTrueAmenities));
     }
   }, [data]);
-
   if (isPending) {
     return (
       <Box>
@@ -91,7 +107,13 @@ function Accommodation() {
           </Box>
           <AmenityList amenities={amenities} />
         </Box>
-        <Box flex={0.4}></Box>
+        <Box flex={0.4}>
+          <BookingForm
+            onSubmit={submitReservation}
+            accomodationId={accommodationId}
+            price={data.price}
+          />
+        </Box>
       </Box>
       <Reviews accommodationId={accommodationId || ''} />
       <Box mt={'2rem'}>

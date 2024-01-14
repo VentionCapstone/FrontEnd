@@ -1,15 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
+import { ENDPOINTS } from '../../../config/endpoints.config';
 import { QUERY_KEYS } from '../../../config/react-query.config';
-import { EndpointsConfig } from '../../../config/endpoints.config';
-import httpClient from '../../httpClient';
 import { AvailableDatesResponse } from '../../../types/booking.types';
+import httpClient from '../../httpClient';
 
 export const useGetAvailableDates = (id: string) => {
   return useQuery({
     queryKey: [QUERY_KEYS.query.availableDates],
     queryFn: async () => {
       const { data } = await httpClient.get<AvailableDatesResponse>(
-        EndpointsConfig.Booking.GetAvailableDates(id)
+        ENDPOINTS.Booking.GetAvailableDates(id)
       );
       return data.data;
     },

@@ -1,45 +1,79 @@
 // // BookingForm.tsx
-import React, { useCallback, useState } from 'react';
-import { Box, Stack } from '@mui/material';
+import { Box, Divider, Stack, Typography } from '@mui/material';
 import { Dayjs } from 'dayjs';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { useGetAvailableDates } from '@src/api/queries/booking/useGetAvailableDates';
+import { styles } from '@src/pages/accomodation/Accommodation.styles';
 import ButtonPrimary from '../../components/button/ButtonPrimary';
-import { DataType } from '../../types/booking.types';
-import DataFetchError from '../shared/DataFetchError';
-import { DateFormat, ReservationData, createReservationData, selectDatesType } from './time';
+import {
+  DateFormat,
+  ReservationData,
+  createReservationData,
+  selectDatesType,
+  selectedDateType,
+} from './time';
 
 interface BookingFormProps {
   onSubmit: (reservationData: {
     startDate: string;
     endDate: string;
     accommodationId: string;
-  }) => Promise<void>;
-  data: DataType | undefined;
-  disabled?: boolean | undefined;
+  }) => void;
+  accomodationId: unknown;
+  price: number;
 }
 
-const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, data, disabled }) => {
+const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, price }) => {
+  const { data, isPending, isError } = useGetAvailableDates(accomodationId as string);
+
   const [selectedDates, setSelectedDates] = useState<selectDatesType>([null, null]);
   const [startDate, endDate] = selectedDates;
   const { availableDates, accommodationId } = data || {};
+  const [errorMessage, setErrorMessage] = useState('');
+  const [totalPrice, setTotalPrice] = useState<number>();
 
   const shouldDisableDate = (date: Dayjs) => {
     const dateString = date.format(DateFormat);
+    // Disable dates that are not within the available range
     return !availableDates?.some(([start, end]) => dateString >= start && dateString <= end);
   };
 
-  const handleDateChange = (index: number) => (newValue: Dayjs | null) => {
+  const handleDateChange = (index: number) => (newValue: selectedDateType) => {
     setSelectedDates((prevSelectedDates) => {
       const newSelectedDates = [...prevSelectedDates];
       newSelectedDates[index] = newValue;
+      const [startDate, endDate] = newSelectedDates;
+      if (
+        (startDate && endDate && startDate?.isSame(endDate)) ||
+        (startDate && endDate && startDate.isAfter(endDate))
+      ) {
+        setErrorMessage('Check-in date must be before the check-out date and must not be same');
+      } else {
+        setErrorMessage('');
+      }
 
       return newSelectedDates as selectDatesType;
     });
   };
 
+  const calculateTotalPrice = useCallback(() => {
+    if (startDate && endDate) {
+      const nights = endDate.diff(startDate, 'days');
+      const total = nights * price;
+      setTotalPrice(total);
+    }
+  }, [startDate, endDate, price]);
+
+  useEffect(() => {
+    if (!errorMessage) {
+      calculateTotalPrice();
+    }
+  }, [calculateTotalPrice, startDate, endDate, errorMessage]);
+
   const handleReserveButtonClick = useCallback(
-    async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
       if (startDate && endDate && accommodationId) {
@@ -50,9 +84,9 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, data, disabled }) =
         );
 
         try {
-          await onSubmit(reservationData);
+          onSubmit(reservationData);
         } catch (error) {
-          <DataFetchError />;
+          setErrorMessage('There was an error submitting your reservation. Please try again.');
         }
       }
     },
@@ -62,14 +96,18 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, data, disabled }) =
   return (
     <Box
       sx={{
-        m: '10% auto',
-        maxWidth: '450px',
+        m: '5% auto',
+        maxWidth: '400px',
         borderRadius: 3,
         border: '1px solid #b0b0b0 ',
-        p: '2%',
+        p: '1.5em',
+        boxShadow: 5,
       }}
     >
-      {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+      {errorMessage && <Typography color={'red'}>{errorMessage}</Typography>}
+      <Typography mb={7}>
+        <b style={{ fontSize: '1.2em' }}>${price} </b> night
+      </Typography>
       <form onSubmit={handleReserveButtonClick}>
         <Stack direction="row" spacing={4}>
           <DatePicker
@@ -85,8 +123,18 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, data, disabled }) =
             shouldDisableDate={shouldDisableDate}
           />
         </Stack>
-        <ButtonPrimary disabled={disabled}>Reserve</ButtonPrimary>
+
+        <ButtonPrimary disabled={isPending || isError}>Reserve</ButtonPrimary>
       </form>
+      <Typography variant="body2" m={3} textAlign={'center'}>
+        you won&apos;t charged yet
+      </Typography>
+      <Divider />
+      {totalPrice && (
+        <Typography sx={styles.content} variant="lg" my={4}>
+          Total <b>${totalPrice}</b>
+        </Typography>
+      )}
     </Box>
   );
 };

@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
-import httpClient from '../../httpClient';
-import { EndpointsConfig } from '../../../config/endpoints.config';
 import toast from 'react-hot-toast';
+import { ENDPOINTS } from '../../../config/endpoints.config';
+import httpClient from '../../httpClient';
 
 export const useBookingRoom = () => {
   return useMutation({
@@ -9,7 +9,7 @@ export const useBookingRoom = () => {
       startDate: string;
       endDate: string;
       accommodationId: string;
-    }) => httpClient.post(EndpointsConfig.Booking.book, reservationData),
+    }) => httpClient.post(ENDPOINTS.Booking.book, reservationData),
     onSuccess: () => {
       toast.success('Reservation successful');
     },
