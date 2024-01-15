@@ -4,15 +4,10 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useGetAvailableDates } from '@src/api/queries/booking/useGetAvailableDates';
+import { DATE_FORMAT_MONTH_FIRST } from '@src/constants';
 import { styles } from '@src/pages/accomodation/Accommodation.styles';
 import ButtonPrimary from '../../components/button/ButtonPrimary';
-import {
-  DateFormat,
-  ReservationData,
-  createReservationData,
-  selectDatesType,
-  selectedDateType,
-} from './time';
+import { ReservationData, createReservationData, selectDatesType, selectedDateType } from './time';
 
 interface BookingFormProps {
   onSubmit: (reservationData: {
@@ -34,7 +29,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, pri
   const [totalPrice, setTotalPrice] = useState<number>();
 
   const shouldDisableDate = (date: Dayjs) => {
-    const dateString = date.format(DateFormat);
+    const dateString = date.format(DATE_FORMAT_MONTH_FIRST);
 
     return !availableDates?.some(([start, end]) => dateString >= start && dateString <= end);
   };

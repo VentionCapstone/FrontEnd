@@ -1,7 +1,6 @@
 // time.ts
+import { DATE_FORMAT_MONTH_FIRST } from '@src/constants';
 import { Dayjs } from 'dayjs';
-
-export const DateFormat = 'YYYY-MM-DD';
 
 export type selectDatesType = [Dayjs | null, Dayjs | null];
 export type selectedDateType = Dayjs | null;
@@ -17,8 +16,8 @@ export const createReservationData = (
   accommodationId: string
 ): ReservationData => {
   return {
-    startDate: startDate?.format(DateFormat) || '',
-    endDate: endDate?.format(DateFormat) || '',
+    startDate: startDate?.format(DATE_FORMAT_MONTH_FIRST) || '',
+    endDate: endDate?.format(DATE_FORMAT_MONTH_FIRST) || '',
     accommodationId: accommodationId || '',
   };
 };
