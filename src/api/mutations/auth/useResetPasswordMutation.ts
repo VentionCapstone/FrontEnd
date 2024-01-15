@@ -5,25 +5,24 @@ import { useNavigate } from 'react-router-dom';
 import httpClient from '@src/api/httpClient';
 import { ENDPOINTS } from '@src/config/endpoints.config';
 import { ROUTES } from '@src/config/routes.config';
-import { useAppDispatch } from '@src/hooks/redux-hooks';
-import { logout } from '@src/stores/slices/authSlice';
-import { CommonResponse } from '@src/types/auth.types';
+import { CommonResponse, ResetPasswordReq } from '@src/types/auth.types';
 
-function useUpdateEmailMutation(email: string) {
-  const dispatch = useAppDispatch();
+function useResetPasswordMutation(token = '' as string) {
   const navigate = useNavigate();
 
   return useMutation({
-    mutationFn: async () => {
-      const { data } = await httpClient.put<CommonResponse>(ENDPOINTS.auth.updateEmail, { email });
+    mutationFn: async (values: ResetPasswordReq) => {
+      const { data } = await httpClient.patch<CommonResponse>(ENDPOINTS.auth.resetPassword, {
+        ...values,
+        token,
+      });
       return data;
     },
     onSuccess: (data) => {
-      dispatch(logout());
       toast.success(data.message);
       navigate(ROUTES.auth.signIn);
     },
   });
 }
 
-export default useUpdateEmailMutation;
+export default useResetPasswordMutation;
