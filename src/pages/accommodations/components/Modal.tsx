@@ -1,4 +1,4 @@
-import { ConfirmationModalProps } from '@/types/accommodation.types';
+import { ConfirmationModalProps } from '@src/types/accommodation.types';
 import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
 import React from 'react';
 

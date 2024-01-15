@@ -6,10 +6,12 @@ import axios, {
 } from 'axios';
 import toast from 'react-hot-toast';
 
+import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
 import { removeToken, setToken } from '@src/stores/slices/authSlice';
 import { store } from '@src/stores/store';
 import { RefreshResponse, RefreshingPromise, isRefreshingType } from '@src/types/auth.types';
 import { ErrorResponse } from '@src/types/error.types';
+import { getValueFromLocalStorage } from '@src/utils';
 
 let isRefreshing: isRefreshingType = false;
 
@@ -20,9 +22,19 @@ const httpClient = axios.create({
 
 // REQUEST INTERCEPTORS
 function reqInterceptor(config: InternalAxiosRequestConfig) {
-  const token = store.getState().auth.token || localStorage.getItem('access_token');
+  const token =
+    store.getState().auth.token || getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.accessToken);
 
   if (token) config.headers['Authorization'] = `Bearer ${token}`;
+
+  const lang =
+    getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.language) || navigator.language || 'en';
+  if (lang) {
+    config.params = {
+      ...(config.params as Record<string, unknown>),
+      lang,
+    };
+  }
 
   return config;
 }
@@ -91,7 +103,7 @@ async function resErrInterceptor(error: AxiosError<ErrorResponse>) {
 }
 
 const refreshAccessToken = async (): Promise<RefreshingPromise> => {
-  const userId = localStorage.getItem('sub');
+  const userId = getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.sub);
   try {
     const response = await axios.get<RefreshResponse>(
       `${import.meta.env.VITE_API_URL}/auth/${userId}/refresh`,
