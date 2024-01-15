@@ -1,4 +1,3 @@
-// // BookingForm.tsx
 import { Box, Divider, Stack, Typography } from '@mui/material';
 import { Dayjs } from 'dayjs';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -31,12 +30,12 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, pri
   const [selectedDates, setSelectedDates] = useState<selectDatesType>([null, null]);
   const [startDate, endDate] = selectedDates;
   const { availableDates, accommodationId } = data || {};
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState(false);
   const [totalPrice, setTotalPrice] = useState<number>();
 
   const shouldDisableDate = (date: Dayjs) => {
     const dateString = date.format(DateFormat);
-    // Disable dates that are not within the available range
+
     return !availableDates?.some(([start, end]) => dateString >= start && dateString <= end);
   };
 
@@ -49,9 +48,9 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, pri
         (startDate && endDate && startDate?.isSame(endDate)) ||
         (startDate && endDate && startDate.isAfter(endDate))
       ) {
-        setErrorMessage('Check-in date must be before the check-out date and must not be same');
+        setErrorMessage(true);
       } else {
-        setErrorMessage('');
+        setErrorMessage(false);
       }
 
       return newSelectedDates as selectDatesType;
@@ -83,11 +82,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, pri
           accommodationId
         );
 
-        try {
-          onSubmit(reservationData);
-        } catch (error) {
-          setErrorMessage('There was an error submitting your reservation. Please try again.');
-        }
+        onSubmit(reservationData);
       }
     },
     [startDate, endDate, accommodationId, onSubmit]
@@ -104,7 +99,11 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, pri
         boxShadow: 5,
       }}
     >
-      {errorMessage && <Typography color={'red'}>{errorMessage}</Typography>}
+      {errorMessage && (
+        <Typography color={'red'}>
+          Check-in date must be before the check-out date and must not be same
+        </Typography>
+      )}
       <Typography mb={7}>
         <b style={{ fontSize: '1.2em' }}>${price} </b> night
       </Typography>
@@ -124,7 +123,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, pri
           />
         </Stack>
 
-        <ButtonPrimary disabled={isPending || isError}>Reserve</ButtonPrimary>
+        <ButtonPrimary disabled={isPending || isError || errorMessage}>Reserve</ButtonPrimary>
       </form>
       <Typography variant="body2" m={3} textAlign={'center'}>
         you won&apos;t charged yet

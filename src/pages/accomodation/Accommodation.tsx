@@ -10,7 +10,6 @@ import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import DataFetchError from '@src/components/shared/DataFetchError';
 import { AmenitySetting } from '@src/types/amenity.types';
 import { handleErrorInImage, selectOnlyTrueAmenities } from '@src/utils';
-import toast from 'react-hot-toast';
 import YandexMap from '../../components/YandexMap';
 import { styles } from './Accommodation.styles';
 import AmenityList from './components/AmenityList';
@@ -30,11 +29,7 @@ function Accommodation() {
     endDate: string;
     accommodationId: string;
   }): Promise<void> => {
-    try {
-      await mutateAsync(reservationData);
-    } catch (error) {
-      toast.error('Reservation failed');
-    }
+    await mutateAsync(reservationData);
   };
 
   useEffect(() => {

@@ -6,7 +6,7 @@ import httpClient from '../../httpClient';
 
 export const useGetAvailableDates = (id: string) => {
   return useQuery({
-    queryKey: [QUERY_KEYS.query.availableDates],
+    queryKey: [QUERY_KEYS.query.availableDates, id],
     queryFn: async () => {
       const { data } = await httpClient.get<AvailableDatesResponse>(
         ENDPOINTS.Booking.GetAvailableDates(id)

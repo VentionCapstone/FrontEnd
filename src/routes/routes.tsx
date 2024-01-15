@@ -10,7 +10,6 @@ import UserRoute from './UserRoute';
 import MainLayout from '@src/layouts/MainLayout';
 import UserLayout from '@src/layouts/UserLayout';
 
-
 const Main = React.lazy(() => import('@src/pages/main'));
 const SignIn = React.lazy(() => import('@src/pages/signin'));
 const VerifyEmail = React.lazy(() => import('@src/pages/auth/VerifyEmail'));
@@ -82,9 +81,6 @@ const routes = createBrowserRouter([
     ],
   },
 
-  { path: '/rooms', element: <BookingRoom /> },
-
-
   {
     path: '/accommodations',
     element: <MainLayout />,
@@ -95,7 +91,6 @@ const routes = createBrowserRouter([
       { path: '*', element: <Navigate to="/accommodations" /> },
     ],
   },
-
 ]);
 
 export default function AppRoutes() {
