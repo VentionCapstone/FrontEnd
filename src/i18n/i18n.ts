@@ -1,11 +1,11 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-import deTranslations from '../locale/de/error.json';
-import enTranslations from '../locale/en/error.json';
-import kzTranslations from '../locale/kz/error.json';
-import ruTranslations from '../locale/ru/error.json';
-import uzTranslations from '../locale/uz/error.json';
+import deTranslations from '../locale/de/translations.json';
+import enTranslations from '../locale/en/translations.json';
+import kzTranslations from '../locale/kz/translations.json';
+import ruTranslations from '../locale/ru/translations.json';
+import uzTranslations from '../locale/uz/translations.json';
 
 i18n
   .use(initReactI18next)

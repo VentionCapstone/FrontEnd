@@ -1,8 +1,0 @@
-{
-  "translation": {
-    "DEFAULT": "Etwas ist schiefgegangen, versuchen Sie es erneut",
-
-    "ACCOMMODATION_FAILED_TO_GET_SINGLE": "Fehler beim Abrufen einer einzelnen Unterkunft",
-    "ACCOMMODATION_FAILED_TO_GET_LIST": "Fehler beim Abrufen der Liste von Unterkünften"
-  }
-}

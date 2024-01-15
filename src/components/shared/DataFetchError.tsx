@@ -3,7 +3,7 @@ import ErrorTypes from '@src/errors/errors.enum';
 import { useTranslation } from 'react-i18next';
 
 function DataFetchError({
-  errorKey = ErrorTypes.DEFAULT,
+  errorKey = ErrorTypes.default,
   position = 'center',
 }: {
   errorKey?: string;

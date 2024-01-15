@@ -1,8 +1,0 @@
-{
-  "translation": {
-    "DEFAULT": "Something went wrong, try again",
-
-    "ACCOMMODATION_FAILED_TO_GET_SINGLE": "Failed to get single accommodation",
-    "ACCOMMODATION_FAILED_TO_GET_LIST": "Failed to get accommodation list"
-  }
-}

@@ -39,7 +39,7 @@ function Accommodation() {
 
   if (isError) {
     return (
-      <DataFetchError errorKey={ErrorTypes.ACCOMMODATION_FAILED_TO_GET_SINGLE} position="center" />
+      <DataFetchError errorKey={ErrorTypes.accommodation_failed_to_get_single} position="center" />
     );
   }
 

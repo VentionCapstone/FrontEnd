@@ -1,8 +1,0 @@
-{
-  "translation": {
-    "DEFAULT": "Сәтсіз аяқталды, қайталап көріңіз",
-
-    "ACCOMMODATION_FAILED_TO_GET_SINGLE": "Бір байланысты қонақты алу сәтсіз аяқталды",
-    "ACCOMMODATION_FAILED_TO_GET_LIST": "Жаттығу тізімін алу сәтсіз аяқталды"
-  }
-}

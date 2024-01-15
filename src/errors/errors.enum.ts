@@ -1,9 +1,9 @@
 enum ErrorTypes {
-  DEFAULT = 'DEFAULT',
+  default = 'errors.default',
 
   //accommodation
-  ACCOMMODATION_FAILED_TO_GET_SINGLE = 'ACCOMMODATION_FAILED_TO_GET_SINGLE',
-  ACCOMMODATION_FAILED_TO_GET_LIST = 'ACCOMMODATION_FAILED_TO_GET_LIST',
+  accommodation_failed_to_get_single = 'errors.accommodation_failed_to_get_single',
+  accommodation_failed_to_get_list = 'errors.accommodation_failed_to_get_list',
 }
 
 export default ErrorTypes;

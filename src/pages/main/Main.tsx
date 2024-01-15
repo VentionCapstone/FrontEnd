@@ -74,7 +74,7 @@ function Main() {
     );
   }
   if (isError) {
-    return <DataFetchError errorKey={ErrorTypes.ACCOMMODATION_FAILED_TO_GET_LIST} />;
+    return <DataFetchError errorKey={ErrorTypes.accommodation_failed_to_get_list} />;
   }
 
   return (
@@ -85,7 +85,6 @@ function Main() {
           Filters
         </Button>
       </Badge>
-
       {accommodations?.length === 0 && (
         <Stack justifyContent={'center'} alignItems={'center'} height="20vh">
           <Typography variant={'lg'}>No accommodations found</Typography>

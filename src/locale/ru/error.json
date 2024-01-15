@@ -1,8 +1,0 @@
-{
-  "translation": {
-    "DEFAULT": "Что-то пошло не так, попробуйте ещё раз",
-
-    "ACCOMMODATION_FAILED_TO_GET_SINGLE": "Не удалось получить информацию об одном жилье",
-    "ACCOMMODATION_FAILED_TO_GET_LIST": "Не удалось получить список жилья"
-  }
-}
