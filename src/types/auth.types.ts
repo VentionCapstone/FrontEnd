@@ -98,5 +98,5 @@ export interface PasswordInputProps<TFieldValues extends FieldValues> {
 
 export interface CommonResponse {
   success: boolean;
-  message: 'string';
+  message: string;
 }
