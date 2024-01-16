@@ -39,6 +39,11 @@ function Accommodation() {
       setAmenities(buildAmenityList(listOfTrueAmenities));
     }
   }, [data]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [accommodationId]);
+
   if (isPending) {
     return (
       <Box>
