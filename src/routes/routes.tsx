@@ -4,6 +4,7 @@ import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import PrivateRoute from './PrivateRoute';
 import ProfileCreateRoute from './ProfileCreateRoute';
 import ProfileEditRoute from './ProfileEditRoute';
+
 import UserRoute from './UserRoute';
 
 import MainLayout from '@src/layouts/MainLayout';

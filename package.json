@@ -26,9 +26,12 @@
     "@hookform/resolvers": "^3.3.2",
     "@mui/icons-material": "^5.14.19",
     "@mui/lab": "^5.0.0-alpha.155",
+
     "@mui/material": "^5.15.4",
+
     "@mui/x-date-pickers": "^6.18.5",
     "@pbe/react-yandex-maps": "^1.2.5",
+
     "@reduxjs/toolkit": "^1.9.7",
     "@stripe/react-stripe-js": "^2.4.0",
     "@stripe/stripe-js": "^2.2.2",

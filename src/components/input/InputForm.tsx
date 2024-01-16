@@ -1,6 +1,8 @@
-import { TextField, TextFieldProps } from '@mui/material';
 import React from 'react';
 import { UseFormRegister } from 'react-hook-form';
+
+import { TextField, TextFieldProps } from '@mui/material';
+import { SignInReq } from '@src/types/auth.types';
 
 type InputProps = TextFieldProps & {
   register?: UseFormRegister<SignInReq>;

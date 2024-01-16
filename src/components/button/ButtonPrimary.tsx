@@ -1,6 +1,6 @@
 import LoadingButton, { LoadingButtonProps } from '@mui/lab/LoadingButton';
 
-function ButtonPrimary({ children, loading }: LoadingButtonProps) {
+function ButtonPrimary({ children, loading, disabled }: LoadingButtonProps) {
   return (
     <LoadingButton
       loading={loading}
@@ -10,6 +10,7 @@ function ButtonPrimary({ children, loading }: LoadingButtonProps) {
       color="error"
       sx={{ mt: 4 }}
       fullWidth
+      disabled={disabled}
     >
       {children}
     </LoadingButton>

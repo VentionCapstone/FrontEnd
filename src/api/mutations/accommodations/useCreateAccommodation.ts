@@ -13,7 +13,10 @@ export const useCreateAccommodation = () => {
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: async (data: AccommodationReq) => {
-      await httpClient.post(ENDPOINTS.accommodation.root, data);
+      await httpClient.post(ENDPOINTS.accommodation.root, {
+        ...data,
+        timezoneOffset: new Date().getTimezoneOffset(),
+      });
     },
 
     onSuccess: async () => {
