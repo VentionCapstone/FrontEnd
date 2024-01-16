@@ -1,11 +1,15 @@
-import { Box, Divider, Stack, Typography } from '@mui/material';
+import { Box, Divider, Link, Stack, Typography } from '@mui/material';
 import { Dayjs } from 'dayjs';
 import React, { useCallback, useEffect, useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useGetAvailableDates } from '@src/api/queries/booking/useGetAvailableDates';
+import { ROUTES } from '@src/config/routes.config';
 import { DATE_FORMAT_MONTH_FIRST } from '@src/constants';
+import { useAppSelector } from '@src/hooks/redux-hooks';
 import { styles } from '@src/pages/accomodation/Accommodation.styles';
+import { hasToken } from '@src/stores/slices/authSlice';
 import ButtonPrimary from '../../components/button/ButtonPrimary';
 import { ReservationData, createReservationData, selectDatesType, selectedDateType } from './time';
 
@@ -20,7 +24,12 @@ interface BookingFormProps {
 }
 
 const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, price }) => {
-  const { data, isPending, isError } = useGetAvailableDates(accomodationId as string);
+  const isUserLoggedIn = useAppSelector(hasToken);
+
+  const { data, isPending, isError } = useGetAvailableDates(
+    accomodationId as string,
+    isUserLoggedIn
+  );
 
   const [selectedDates, setSelectedDates] = useState<selectDatesType>([null, null]);
   const [startDate, endDate] = selectedDates;
@@ -102,31 +111,43 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, pri
       <Typography mb={7}>
         <b style={{ fontSize: '1.2em' }}>${price} </b> night
       </Typography>
-      <form onSubmit={handleReserveButtonClick}>
-        <Stack direction="row" spacing={4}>
-          <DatePicker
-            label="Check In"
-            value={selectedDates[0]}
-            onChange={handleDateChange(0)}
-            shouldDisableDate={shouldDisableDate}
-          />
-          <DatePicker
-            label="Check Out"
-            value={selectedDates[1]}
-            onChange={handleDateChange(1)}
-            shouldDisableDate={shouldDisableDate}
-          />
-        </Stack>
 
-        <ButtonPrimary disabled={isPending || isError || errorMessage}>Reserve</ButtonPrimary>
-      </form>
-      <Typography variant="body2" m={3} textAlign={'center'}>
-        you won&apos;t charged yet
-      </Typography>
-      <Divider />
-      {totalPrice && (
-        <Typography sx={styles.content} variant="lg" my={4}>
-          Total <b>${totalPrice}</b>
+      {isUserLoggedIn ? (
+        <>
+          <form onSubmit={handleReserveButtonClick}>
+            <Stack direction="row" spacing={4}>
+              <DatePicker
+                label="Check In"
+                value={selectedDates[0]}
+                onChange={handleDateChange(0)}
+                shouldDisableDate={shouldDisableDate}
+              />
+              <DatePicker
+                label="Check Out"
+                value={selectedDates[1]}
+                onChange={handleDateChange(1)}
+                shouldDisableDate={shouldDisableDate}
+              />
+            </Stack>
+
+            <ButtonPrimary disabled={isPending || isError || errorMessage}>Reserve</ButtonPrimary>
+          </form>
+          <Typography variant="body2" m={3} textAlign={'center'}>
+            you won&apos;t charged yet
+          </Typography>
+          <Divider />
+          {totalPrice && (
+            <Typography sx={styles.content} variant="lg" my={4}>
+              Total <b>${totalPrice}</b>
+            </Typography>
+          )}
+        </>
+      ) : (
+        <Typography>
+          <Link component={RouterLink} to={ROUTES.auth.signIn} fontWeight={600}>
+            Login
+          </Link>{' '}
+          is required to make a reservation
         </Typography>
       )}
     </Box>

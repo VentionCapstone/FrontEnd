@@ -16,7 +16,7 @@ export const useBookingRoom = () => {
       endDate: string;
       accommodationId: string;
     }) => {
-      const { data } = await httpClient.post<BookResponse>(ENDPOINTS.Booking.book, reservationData);
+      const { data } = await httpClient.post<BookResponse>(ENDPOINTS.booking.book, reservationData);
       return data;
     },
     onSuccess: (data) => {

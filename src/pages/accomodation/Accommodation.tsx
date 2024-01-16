@@ -17,7 +17,8 @@ import { Reviews } from './components/Reviews';
 import { buildAmenityList } from './utils/amenityListBuilder';
 
 function Accommodation() {
-  const accommodationId = useParams().id;
+  const { id: accommodationId } = useParams();
+
   const [amenities, setAmenities] = useState<AmenitySetting[]>([]);
 
   const { isPending, data, isError } = useGetSingleAccommodationQuery(accommodationId as string);
@@ -39,10 +40,6 @@ function Accommodation() {
       setAmenities(buildAmenityList(listOfTrueAmenities));
     }
   }, [data]);
-
-  useEffect(() => {
-    window.scrollTo({ top: 0 });
-  }, [accommodationId]);
 
   if (isPending) {
     return (
