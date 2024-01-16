@@ -21,7 +21,6 @@ export const UpdatePassword = ({ collapsePanel }: { collapsePanel: () => void })
 
   const onSubmit = (inputData: UpdatePasswordData) => {
     mutate({ oldPassword: inputData.currentPassword, newPassword: inputData.newPassword });
-    console.log({ oldPassword: inputData.currentPassword, newPassword: inputData.newPassword });
 
     reset();
     collapsePanel();
