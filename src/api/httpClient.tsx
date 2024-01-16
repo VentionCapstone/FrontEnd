@@ -29,12 +29,10 @@ function reqInterceptor(config: InternalAxiosRequestConfig) {
 
   const lang =
     getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.language) || navigator.language || 'en';
-  if (lang) {
-    config.params = {
-      ...(config.params as Record<string, unknown>),
-      lang,
-    };
-  }
+  config.params = {
+    ...(config.params as Record<string, unknown>),
+    lang,
+  };
 
   return config;
 }
