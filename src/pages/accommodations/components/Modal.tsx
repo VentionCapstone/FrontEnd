@@ -1,5 +1,6 @@
-import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
 import { ConfirmationModalProps } from '@src/types/accommodation.types';
+import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
+
 import React from 'react';
 
 export default function ConfirmationModal({ open, onClose, onConfirm }: ConfirmationModalProps) {

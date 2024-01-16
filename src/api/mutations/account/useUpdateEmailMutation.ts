@@ -16,10 +16,11 @@ function useUpdateEmailMutation(email: string) {
   return useMutation({
     mutationFn: async () => {
       const { data } = await httpClient.put<CommonResponse>(ENDPOINTS.auth.updateEmail, { email });
-      toast.success(data.message);
+      return data;
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       dispatch(logout());
+      toast.success(data.message);
       navigate(ROUTES.auth.signIn);
     },
   });
