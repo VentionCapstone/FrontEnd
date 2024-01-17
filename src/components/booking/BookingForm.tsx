@@ -99,7 +99,10 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, pri
         maxWidth: '400px',
         borderRadius: 3,
         border: '1px solid #b0b0b0 ',
-        p: '1.5em',
+        p: {
+          xs: '1em',
+          md: '1.5em',
+        },
         boxShadow: 5,
       }}
     >
@@ -137,7 +140,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, pri
           </Typography>
           <Divider />
           {totalPrice && (
-            <Typography sx={styles.content} variant="lg" my={4}>
+            <Typography sx={styles.content_price} variant="lg" my={4}>
               Total <b>${totalPrice}</b>
             </Typography>
           )}

@@ -24,7 +24,7 @@ export const useBookingRoom = () => {
       navigate(
         ROUTES.payment.root(
           data.id,
-          '02fb8e13-bbef-408f-8bbe-e8e8e483d7e4',
+          '03669826-0741-442f-81f0-7c1a5c5d710c',
           data.startDate,
           data.endDate
         )

@@ -7,8 +7,11 @@ import {
   RadioGroup,
   Stack,
   Typography,
+  useMediaQuery,
 } from '@mui/material';
+import useTheme from '@mui/material/styles/useTheme';
 import { Elements } from '@stripe/react-stripe-js';
+import dayjs from 'dayjs';
 import { ChangeEvent, FormEvent, useCallback, useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 
@@ -20,7 +23,6 @@ import DataFetchError from '@src/components/shared/DataFetchError';
 import { stripePromise } from '@src/config/stripe.config';
 import { DATE_MONTH_DAY } from '@src/constants';
 import { handleErrorInImage, truncateReview } from '@src/utils';
-import dayjs from 'dayjs';
 import { PaymentForm } from './components/PaymentForm';
 import { PAYMENT_OPTION } from './components/contants';
 
@@ -34,6 +36,9 @@ const Payment = () => {
   const accommodationId = searchParams.get('accommodationId') || '';
   const startDate = dayjs(searchParams.get('startDate'));
   const endDate = dayjs(searchParams.get('endDate'));
+
+  const theme = useTheme();
+  const mobileScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const {
     data: accommodation,
@@ -99,15 +104,30 @@ const Payment = () => {
     <>
       <Typography variant="lg">Payment</Typography>
       <Stack
-        direction={'row'}
-        width={'70%'}
-        gap={6}
-        marginX={'auto'}
-        mt={10}
-        alignItems={'center'}
-        justifyContent={'space-between'}
+        sx={{
+          flexDirection: { xs: 'column', lg: 'row' },
+          width: { xs: '100%', sm: '90%', lg: '87%', xl: '80%' },
+          gap: 6,
+          marginX: 'auto',
+          marginTop: 10,
+          alignItems: 'center',
+          justifyContent: { xs: 'center', md: 'space-between' },
+        }}
       >
-        <Box sx={{ flex: '0.35' }}>
+        <Box
+          sx={{
+            flex: '0.5',
+            width: {
+              xs: '100%',
+              md: '70%',
+              lg: '100%',
+            },
+            border: '1px solid',
+            borderColor: 'secondary2.light',
+            borderRadius: '1rem',
+            padding: '1rem',
+          }}
+        >
           <FormControl>
             <FormLabel>Payment Option</FormLabel>
             <RadioGroup row value={paymentOption} onChange={handlePaymentChange}>
@@ -120,25 +140,39 @@ const Payment = () => {
 
         <Box
           sx={{
-            flex: '0.55',
+            flex: '0.5',
             border: '1px solid',
             borderColor: 'secondary2.light',
             borderRadius: '1rem',
             padding: '1rem',
+            width: {
+              xs: '100%',
+              md: '70%',
+              lg: '100%',
+            },
           }}
         >
           <Box
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
-              gap: '1rem',
+              columnGap: '1rem',
             }}
           >
             <Box
               sx={{
-                'width': '80%',
-                'height': '80%',
+                'flex': {
+                  xs: '0.5',
+                  md: '0.45',
+                },
+                'maxWidth': '180px',
+                'maxHeight': '170px',
                 '& img': {
+                  width: '100%',
+                  height: {
+                    xs: '90%',
+                    sm: '100%',
+                  },
                   objectFit: 'cover',
                   borderRadius: '0.5rem',
                 },
@@ -150,11 +184,19 @@ const Payment = () => {
                 onError={handleErrorInImage}
               />
             </Box>
-            <Stack justifyContent={'inherit'}>
-              <Typography fontWeight={600} variant="lg">
-                {accommodation.title}
+            <Stack
+              justifyContent={'inherit'}
+              sx={{
+                flex: {
+                  xs: '0.5',
+                  md: '0.55',
+                },
+              }}
+            >
+              <Typography fontWeight={600}>{accommodation.title}</Typography>
+              <Typography variant="sm">
+                {truncateReview(accommodation.description, mobileScreen ? 30 : 100)}
               </Typography>
-              <Typography variant="sm">{truncateReview(accommodation.description, 150)}</Typography>
               <Typography variant="sm">
                 Dates: {startDate.format(DATE_MONTH_DAY)} - {endDate.format(DATE_MONTH_DAY)}
               </Typography>
