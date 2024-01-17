@@ -13,8 +13,18 @@ function useGetAccommodationsQuery({ searchParamsAsObject }: AccommodationsQuery
   return useInfiniteQuery({
     queryKey: ['accommodations', searchParamsAsObject],
     queryFn: async ({ pageParam }) => {
-      const { minPrice, maxPrice, minRooms, minPeople, orderByPrice, orderByPeople, orderByRoom } =
-        searchParamsAsObject;
+      const {
+        minPrice,
+        maxPrice,
+        minRooms,
+        minPeople,
+        orderByPrice,
+        orderByPeople,
+        orderByRoom,
+        location,
+        checkInDate,
+        checkOutDate,
+      } = searchParamsAsObject;
 
       const { data } = await httpClient.get<ResponseAccommodationList>(
         ENDPOINTS.accommodation.root,
@@ -29,6 +39,9 @@ function useGetAccommodationsQuery({ searchParamsAsObject }: AccommodationsQuery
             orderByPrice: orderByPrice == 'any' ? null : orderByPrice,
             orderByPeople: orderByPeople == 'any' ? null : orderByPeople,
             orderByRoom: orderByRoom == 'any' ? null : orderByRoom,
+            location: location || null,
+            checkInDate: checkInDate || null,
+            checkOutDate: checkOutDate || null,
           },
         }
       );
