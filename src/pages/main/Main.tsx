@@ -9,6 +9,7 @@ import AccommodationCard from '@src/components/card/AccommodationCard';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import DataFetchError from '@src/components/shared/DataFetchError';
 import { Accommodation, DefaultSearchParamsType } from '@src/types/accommodation.types';
+import { ErrorTypes } from '@src/types/i18n.types';
 import MainModal from './components/Modal';
 import { mainStyles } from './index.styles';
 
@@ -73,7 +74,7 @@ function Main() {
     );
   }
   if (isError) {
-    return <DataFetchError error="Failed to get accommodation list" />;
+    return <DataFetchError errorKey={ErrorTypes.accommodation_failed_to_get_list} />;
   }
 
   return (
@@ -81,10 +82,11 @@ function Main() {
       <Badge invisible={!invisible} color="primary" badgeContent=" " sx={mainStyles.badgeNumber}>
         <Button variant="outlined" sx={mainStyles.filterButton} onClick={handleOpen}>
           <TuneIcon fontSize="small" />
-          Filters
+          <Typography variant={'sm'} fontWeight={800} color={'secondary2.main'}>
+            Filters
+          </Typography>
         </Button>
       </Badge>
-
       {accommodations?.length === 0 && (
         <Stack justifyContent={'center'} alignItems={'center'} height="20vh">
           <Typography variant={'lg'}>No accommodations found</Typography>

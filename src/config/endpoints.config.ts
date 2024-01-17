@@ -7,12 +7,13 @@ export const ENDPOINTS = {
     signOut: '/auth/signout',
     resetPassword: '/auth/forgot-password-reset',
     forgotPasswordEmail: '/auth/forgot-password-email',
+    updatePassword: '/auth/password',
   },
   account: {
     getUser: (userId: string | null) => `/users/${userId}`,
     getUserProfile: (profileId: string) => `/users/profile/${profileId}`,
     updateUserProfile: (profileId: string) => `/users/${profileId}`,
-    deleteUserProfile: (profileId: string) => `/users/profile/${profileId}`,
+    deleteUserProfile: (profileId: string) => `/users/${profileId}`,
     createUserProfile: '/users/profile',
   },
   accommodation: {

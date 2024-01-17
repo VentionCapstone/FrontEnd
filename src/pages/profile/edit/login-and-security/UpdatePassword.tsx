@@ -1,59 +1,71 @@
-import { Button, Stack, TextField } from '@mui/material';
-import { ChangeEvent, useState } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import { useForm } from 'react-hook-form';
+
+import useUpdatePasswordMutation from '@src/api/mutations/account/useUpdatePasswordMutation';
+import { UpdatePasswordData, updatePasswordSchema } from '@src/types/profile.types';
 
 export const UpdatePassword = ({ collapsePanel }: { collapsePanel: () => void }) => {
-  const [passwords, setPasswords] = useState({
-    currentPass: '',
-    newPass: '',
-    confirmPass: '',
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<UpdatePasswordData>({
+    resolver: zodResolver(updatePasswordSchema),
   });
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    const name = e.target.name;
-    setPasswords({ ...passwords, [name]: value });
+  const { mutate } = useUpdatePasswordMutation();
+
+  const onSubmit = (inputData: UpdatePasswordData) => {
+    mutate({ oldPassword: inputData.currentPassword, newPassword: inputData.newPassword });
+
+    reset();
+    collapsePanel();
   };
 
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Stack gap={4} mt={3} mb={6} maxWidth={'40rem'}>
         <TextField
-          value={passwords.currentPass}
-          onChange={handleChange}
+          {...register('currentPassword')}
           fullWidth
           required
           label={'Current password'}
           type={'password'}
           size="small"
-          name="currentPass"
+          error={!!errors.currentPassword}
+          helperText={errors.currentPassword?.message}
         />
 
         <TextField
-          value={passwords.newPass}
-          onChange={handleChange}
+          {...register('newPassword')}
           fullWidth
           required
           label={'New password'}
           type={'password'}
           size="small"
-          name="newPass"
+          error={!!errors.newPassword}
+          helperText={errors.newPassword?.message}
         />
 
         <TextField
-          value={passwords.confirmPass}
-          onChange={handleChange}
+          {...register('confirmPassword')}
           fullWidth
           required
           label={'Confirm password'}
           type={'password'}
           size="small"
-          name="confirmPass"
+          error={!!errors.confirmPassword}
+          helperText={errors.confirmPassword?.message}
         />
       </Stack>
 
-      <Button onClick={collapsePanel} variant={'contained'} size="small" sx={{ fontWeight: 600 }}>
+      <Button type="submit" variant={'contained'} size="small" sx={{ fontWeight: 600 }}>
         Change
       </Button>
-    </>
+    </form>
   );
 };

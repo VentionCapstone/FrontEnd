@@ -9,6 +9,7 @@ import BookingForm from '@src/components/booking/BookingForm';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import DataFetchError from '@src/components/shared/DataFetchError';
 import { AmenitySetting } from '@src/types/amenity.types';
+import { ErrorTypes } from '@src/types/i18n.types';
 import { handleErrorInImage, selectOnlyTrueAmenities } from '@src/utils';
 import YandexMap from '../../components/YandexMap';
 import { styles } from './Accommodation.styles';
@@ -50,7 +51,9 @@ function Accommodation() {
   }
 
   if (isError) {
-    return <DataFetchError error="Failed to get single accommodation" position="center" />;
+    return (
+      <DataFetchError errorKey={ErrorTypes.accommodation_failed_to_get_single} position="center" />
+    );
   }
 
   const [image_1, image_2, image_3, image_4, image_5] = data.media;
