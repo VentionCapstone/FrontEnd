@@ -10,6 +10,7 @@ import LoadingPrimary from '@/components/loader/LoadingPrimary';
 import DataFetchError from '@/components/shared/DataFetchError';
 import { Accommodation, DefaultSearchParamsType } from '@/types/accommodation.types';
 import MainModal from './components/Modal';
+import SearchBar from './components/SearchBar';
 import { mainStyles } from './index.styles';
 
 const defaultSearchParams: DefaultSearchParamsType = {
@@ -20,6 +21,9 @@ const defaultSearchParams: DefaultSearchParamsType = {
   orderByPrice: 'any',
   orderByPeople: 'any',
   orderByRoom: 'any',
+  location: '',
+  checkInDate: '',
+  checkOutDate: '',
 };
 
 function Main() {
@@ -78,12 +82,22 @@ function Main() {
 
   return (
     <Box>
-      <Badge invisible={!invisible} color="primary" badgeContent=" " sx={mainStyles.badgeNumber}>
-        <Button variant="outlined" sx={mainStyles.filterButton} onClick={handleOpen}>
-          <TuneIcon fontSize="small" />
-          Filters
-        </Button>
-      </Badge>
+      <Box sx={mainStyles.searchBarBox}>
+        <SearchBar
+          defaultSearchParams={defaultSearchParams}
+          setSearchParams={setSearchParams}
+          searchParamsAsObject={searchParamsAsObject}
+        />
+        <Badge invisible={!invisible} color="primary" badgeContent=" " sx={mainStyles.badgeNumber}>
+          <Button variant="outlined" sx={mainStyles.filterButtonDesktop} onClick={handleOpen}>
+            <TuneIcon fontSize="small" />
+            Filters
+          </Button>
+          <Button variant="outlined" sx={mainStyles.filterButtonMobile} onClick={handleOpen}>
+            <TuneIcon fontSize="small" />
+          </Button>
+        </Badge>
+      </Box>
 
       {accommodations?.length === 0 && (
         <Stack justifyContent={'center'} alignItems={'center'} height="20vh">
@@ -114,6 +128,9 @@ function Main() {
           setFilters={setSearchParams}
           priceRange={priceRange}
           setInvisible={setInvisible}
+          location={searchParamsAsObject['location']}
+          checkInDate={searchParamsAsObject['checkInDate']}
+          checkOutDate={searchParamsAsObject['checkOutDate']}
         />
       )}
     </Box>

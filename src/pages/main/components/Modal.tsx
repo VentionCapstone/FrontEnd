@@ -16,6 +16,9 @@ export default function MainModal({
   setFilters,
   priceRange,
   setInvisible,
+  location,
+  checkInDate,
+  checkOutDate,
 }: MainModalProps) {
   const { totalMinPrice, totalMaxPrice } = priceRange;
   const { minPeople, minRooms, minPrice, maxPrice, orderByPrice, orderByRoom, orderByPeople } =
@@ -31,6 +34,9 @@ export default function MainModal({
     orderByPrice: orderByPrice,
     orderByPeople: orderByPeople,
     orderByRoom: orderByRoom,
+    location: location,
+    checkInDate: checkInDate,
+    checkOutDate: checkOutDate,
   });
 
   const { totalMinPrice: totalMinPriceValue, totalMaxPrice: totalMaxPriceValue, ...rest } = value;
@@ -61,6 +67,9 @@ export default function MainModal({
       orderByPrice: 'any',
       orderByPeople: 'any',
       orderByRoom: 'any',
+      location: location,
+      checkInDate: checkInDate,
+      checkOutDate: checkOutDate,
     };
 
     const searchParams = new URLSearchParams(defaultFilters);
