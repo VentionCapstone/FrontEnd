@@ -1,0 +1,10 @@
+{
+  "translation": {
+    "errors": {
+      "default": "Etwas ist schiefgegangen, versuchen Sie es erneut",
+
+      "accommodation_failed_to_get_single": "Fehler beim Abrufen einer einzelnen Unterkunft",
+      "accommodation_failed_to_get_list": "Fehler beim Abrufen der Liste von Unterkünften"
+    }
+  }
+}

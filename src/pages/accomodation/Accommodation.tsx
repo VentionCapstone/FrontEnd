@@ -8,6 +8,7 @@ import useGetSingleAccommodationQuery from '@src/api/queries/accommodation/useGe
 import BookingForm from '@src/components/booking/BookingForm';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import DataFetchError from '@src/components/shared/DataFetchError';
+import ErrorTypes from '@src/errors/errors.enum';
 import { AmenitySetting } from '@src/types/amenity.types';
 import { handleErrorInImage, selectOnlyTrueAmenities } from '@src/utils';
 import YandexMap from '../../components/YandexMap';
@@ -50,7 +51,9 @@ function Accommodation() {
   }
 
   if (isError) {
-    return <DataFetchError error="Failed to get single accommodation" position="center" />;
+    return (
+      <DataFetchError errorKey={ErrorTypes.accommodation_failed_to_get_single} position="center" />
+    );
   }
 
   const [image_1, image_2, image_3, image_4, image_5] = data.media;

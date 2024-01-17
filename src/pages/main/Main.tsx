@@ -8,6 +8,7 @@ import useGetAccommodationsQuery from '@src/api/queries/main/useGetAccommodation
 import AccommodationCard from '@src/components/card/AccommodationCard';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import DataFetchError from '@src/components/shared/DataFetchError';
+import ErrorTypes from '@src/errors/errors.enum';
 import { Accommodation, DefaultSearchParamsType } from '@src/types/accommodation.types';
 import MainModal from './components/Modal';
 import { mainStyles } from './index.styles';
@@ -73,7 +74,7 @@ function Main() {
     );
   }
   if (isError) {
-    return <DataFetchError error="Failed to get accommodation list" />;
+    return <DataFetchError errorKey={ErrorTypes.accommodation_failed_to_get_list} />;
   }
 
   return (
@@ -84,7 +85,6 @@ function Main() {
           Filters
         </Button>
       </Badge>
-
       {accommodations?.length === 0 && (
         <Stack justifyContent={'center'} alignItems={'center'} height="20vh">
           <Typography variant={'lg'}>No accommodations found</Typography>

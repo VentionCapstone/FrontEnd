@@ -1,0 +1,10 @@
+{
+  "translation": {
+    "errors": {
+      "default": "Сәтсіз аяқталды, қайталап көріңіз",
+
+      "accommodation_failed_to_get_single": "Бір байланысты қонақты алу сәтсіз аяқталды",
+      "accommodation_failed_to_get_list": "Жаттығу тізімін алу сәтсіз аяқталды"
+    }
+  }
+}
