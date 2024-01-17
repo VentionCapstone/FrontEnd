@@ -172,6 +172,8 @@ export interface AccommodationSingle {
   address: Address;
   media: Media[];
   amenities: Amenity[];
+  timezoneOffset: number;
+  title: string;
 }
 
 export interface Address {

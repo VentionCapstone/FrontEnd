@@ -19,7 +19,7 @@ export default function YandexMap({ latitude, longitude, setCoords }: Props) {
     <YMaps
       preload
       query={{
-        apikey: import.meta.env.YANDEX_API_KEY as string,
+        apikey: import.meta.env.VITE_YANDEX_API_KEY as string,
         lang: 'ru_RU',
         load: 'package.full',
       }}

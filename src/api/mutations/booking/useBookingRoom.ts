@@ -17,11 +17,18 @@ export const useBookingRoom = () => {
       accommodationId: string;
     }) => {
       const { data } = await httpClient.post<BookResponse>(ENDPOINTS.booking.book, reservationData);
-      return data;
+      return data.data;
     },
     onSuccess: (data) => {
       toast.success('Reservation successful');
-      navigate(ROUTES.payment.root(data.data.id));
+      navigate(
+        ROUTES.payment.root(
+          data.id,
+          '02fb8e13-bbef-408f-8bbe-e8e8e483d7e4',
+          data.startDate,
+          data.endDate
+        )
+      );
     },
   });
 };
