@@ -7,8 +7,13 @@ function ButtonPrimary({ children, loading, disabled }: LoadingButtonProps) {
       type="submit"
       size="large"
       variant="contained"
-      color="error"
-      sx={{ mt: 4 }}
+      sx={{
+        'mt': 4,
+        'bgcolor': 'secondary.main',
+        ':hover': {
+          bgcolor: 'secondary.dark',
+        },
+      }}
       fullWidth
       disabled={disabled}
     >
