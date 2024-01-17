@@ -1,3 +1,4 @@
+import dayjs, { Dayjs } from 'dayjs';
 import { z } from 'zod';
 
 export type AccommodationFields =
@@ -118,6 +119,52 @@ export type MainModalProps = {
     totalMinPrice: number;
   };
   setInvisible: React.Dispatch<React.SetStateAction<boolean>>;
+  location: string;
+  checkInDate: string;
+  checkOutDate: string;
+};
+
+export type SearchInputLocationProps = {
+  location: string;
+  setLocation: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export type SearchBarProps = {
+  defaultSearchParams: DefaultSearchParamsType;
+  setSearchParams: (params: URLSearchParams) => void;
+  searchParamsAsObject: Record<string, string>;
+};
+
+export type SearchProps = {
+  setLocation: React.Dispatch<React.SetStateAction<string>>;
+  setCheckInDate: React.Dispatch<React.SetStateAction<string>>;
+  setCheckOutDate: React.Dispatch<React.SetStateAction<string>>;
+  searchParamsAsObject: Record<string, string>;
+  handleSearchClick: () => void;
+  localTimeToUtc: (value: Dayjs) => dayjs.Dayjs;
+  UtcTimeToLocal: (value: Dayjs) => dayjs.Dayjs;
+};
+
+export type SearchModalProps = {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setLocation: React.Dispatch<React.SetStateAction<string>>;
+  setCheckInDate: React.Dispatch<React.SetStateAction<string>>;
+  setCheckOutDate: React.Dispatch<React.SetStateAction<string>>;
+  searchParamsAsObject: Record<string, string>;
+  handleSearchClick: () => void;
+  localTimeToUtc: (value: Dayjs) => dayjs.Dayjs;
+  UtcTimeToLocal: (value: Dayjs) => dayjs.Dayjs;
+};
+
+export type SearchDatePickerProps = {
+  isMobile: boolean;
+  label: string;
+  date: string;
+  minDate: dayjs.Dayjs | undefined;
+  setDate: React.Dispatch<React.SetStateAction<string>>;
+  handleDateChange: (newValue: dayjs.Dayjs | null) => void;
+  UtcTimeToLocal: (value: Dayjs) => dayjs.Dayjs;
 };
 
 export type FormValue = {
@@ -130,6 +177,9 @@ export type FormValue = {
   orderByPrice: string;
   orderByPeople: string;
   orderByRoom: string;
+  location: string;
+  checkInDate: string;
+  checkOutDate: string;
 };
 
 export type DefaultSearchParamsType = {
@@ -140,6 +190,9 @@ export type DefaultSearchParamsType = {
   orderByPrice: string;
   orderByPeople: string;
   orderByRoom: string;
+  location: string;
+  checkInDate: string;
+  checkOutDate: string;
 };
 
 export interface AccommodationSingleResponse {
