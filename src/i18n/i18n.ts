@@ -1,6 +1,9 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
+import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
+import { DEFAULT_LANGUAGE } from '@src/constants';
+import { getValueFromLocalStorage } from '@src/utils';
 import deTranslations from '../locale/de/translations.json';
 import enTranslations from '../locale/en/translations.json';
 import kzTranslations from '../locale/kz/translations.json';
@@ -17,8 +20,11 @@ i18n
       ru: ruTranslations,
       uz: uzTranslations,
     },
-    lng: 'en',
-    fallbackLng: 'en',
+    lng:
+      getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.language) ||
+      navigator.language ||
+      DEFAULT_LANGUAGE,
+    fallbackLng: DEFAULT_LANGUAGE,
   })
   .catch((error) => {
     console.error('Failed to initialize i18n:', error);
