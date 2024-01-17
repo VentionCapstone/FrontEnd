@@ -1,7 +1,7 @@
-import { MuiStylesObject } from '@/types/utility.types';
+import { MuiStylesObject } from '@src/types/utility.types';
 import { pink } from '@mui/material/colors';
 
-export const mainStyles: MuiStylesObject = {
+export const mainStyles = {
   badgeNumber: {
     display: 'flex',
     justifyContent: 'center',
@@ -27,10 +27,23 @@ export const mainStyles: MuiStylesObject = {
     height: '40px',
     minWidth: 0,
   },
+  filterButton: {
+    'display': 'flex',
+    'marginLeft': 'auto',
+    'gap': '0.5rem',
+    'padding': '0.5rem',
+    'marginBottom': '2rem',
+    'borderRadius': '0.5rem',
+    'color': 'secondary2.main',
+    'borderColor': 'secondary2.light',
+    ':hover': {
+      borderColor: 'secondary2.light',
+    },
+  },
   accommmodationCard: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'start',
+    justifyContent: 'space-between',
     rowGap: 10,
     columnGap: 4,
   },
@@ -81,4 +94,4 @@ export const mainStyles: MuiStylesObject = {
       md: 'none',
     },
   },
-};
+} satisfies MuiStylesObject;

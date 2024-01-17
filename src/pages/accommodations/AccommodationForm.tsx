@@ -4,16 +4,21 @@ import dayjs from 'dayjs';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { useCreateAccommodation } from '@/api/mutations/accommodations/useCreateAccommodation';
-import { useDeleteAccommodation } from '@/api/mutations/accommodations/useDeleteAccommodation';
-import { useUpdateAccommodation } from '@/api/mutations/accommodations/useUpdateAccommodation';
-import { useGetAccommodation } from '@/api/queries/accommodations/useGetAccommodation';
-import YandexMap from '@/components/YandexMap';
-import { ROUTES } from '@/config/routes.config';
-import { AccommodationReq, accommodationSchema } from '@/types/accommodation.types';
-import { Coordinates } from '@/types/global.types';
+import { useCreateAccommodation } from '@src/api/mutations/accommodations/useCreateAccommodation';
+import { useDeleteAccommodation } from '@src/api/mutations/accommodations/useDeleteAccommodation';
+import { useRestoreAccommodation } from '@src/api/mutations/accommodations/useRestoreAccommodation';
+import { useUpdateAccommodation } from '@src/api/mutations/accommodations/useUpdateAccommodation';
+import { useGetAccommodation } from '@src/api/queries/accommodations/useGetAccommodation';
+import YandexMap from '@src/components/YandexMap';
+import { ROUTES } from '@src/config/routes.config';
+import { AccommodationReq, accommodationSchema } from '@src/types/accommodation.types';
+import { Coordinates } from '@src/types/global.types';
 import { FormDateField } from './FormDateField';
 import { FormField } from './FormField';
+
+import LoadingButton from '@mui/lab/LoadingButton';
+import { useCallback, useState } from 'react';
+import ConfirmationModal from './components/Modal';
 
 export default function AccommodationForm() {
   const { id } = useParams();
@@ -21,7 +26,8 @@ export default function AccommodationForm() {
   const { data: accommodation } = useGetAccommodation({ id });
   const { mutate: createAccommodation } = useCreateAccommodation();
   const { mutate: updateAccommodation } = useUpdateAccommodation();
-  const { mutate: deleteAccommodation } = useDeleteAccommodation();
+  const { mutate: deleteAccommodation, isPending: isDeletePending } = useDeleteAccommodation();
+  const { mutate: restoreAccommodation, isPending: isRestorePending } = useRestoreAccommodation();
 
   const {
     watch,
@@ -54,6 +60,8 @@ export default function AccommodationForm() {
     values: accommodation?.data,
   });
 
+  const isDeleted: boolean = !!accommodation?.data.isDeleted;
+
   const latitudeWatch = watch('address.latitude');
   const longitudeWatch = watch('address.longitude');
 
@@ -82,11 +90,26 @@ export default function AccommodationForm() {
     });
   };
 
-  const handleDelete = () => {
+  const handleDelete = useCallback(() => {
     if (id) {
       deleteAccommodation(id);
     }
-  };
+  }, [id, deleteAccommodation]);
+
+  const handleRestore = useCallback(() => {
+    if (id) {
+      restoreAccommodation(id);
+    }
+  }, [id, restoreAccommodation]);
+
+  const [open, setOpen] = useState(false);
+
+  const toggleOpen = useCallback(() => setOpen((prevOpen) => !prevOpen), []);
+
+  const handleConfirm = useCallback(() => {
+    handleDelete();
+    toggleOpen();
+  }, [handleDelete, toggleOpen]);
 
   const handleCoordsChange = ([latitude, longitude]: Coordinates) => {
     setValue('address.latitude', latitude, {
@@ -214,9 +237,16 @@ export default function AccommodationForm() {
         </Box>
         <Box display="flex" justifyContent={id ? 'space-between' : 'flex-end'}>
           {id && (
-            <Button variant="contained" color="error" onClick={handleDelete}>
-              Delete
-            </Button>
+            <>
+              <LoadingButton
+                variant="contained"
+                color={isDeleted ? 'primary' : 'secondary'}
+                onClick={isDeleted ? handleRestore : toggleOpen}
+                loading={isDeleted ? isRestorePending : isDeletePending}
+              >
+                {isDeleted ? 'Restore' : 'Delete'}
+              </LoadingButton>
+            </>
           )}
           <Stack direction="row" spacing={2}>
             <Button variant="outlined" onClick={navigateToRoot}>
@@ -228,6 +258,7 @@ export default function AccommodationForm() {
           </Stack>
         </Box>
       </form>
+      <ConfirmationModal open={open} onClose={toggleOpen} onConfirm={handleConfirm} />
     </Box>
   );
 }

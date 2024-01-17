@@ -4,11 +4,12 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSearchParams } from 'react-router-dom';
 
-import useGetAccommodationsQuery from '@/api/queries/main/useGetAccommodationsQuery';
-import AccommodationCard from '@/components/card/AccommodationCard';
-import LoadingPrimary from '@/components/loader/LoadingPrimary';
-import DataFetchError from '@/components/shared/DataFetchError';
-import { Accommodation, DefaultSearchParamsType } from '@/types/accommodation.types';
+import useGetAccommodationsQuery from '@src/api/queries/main/useGetAccommodationsQuery';
+import AccommodationCard from '@src/components/card/AccommodationCard';
+import LoadingPrimary from '@src/components/loader/LoadingPrimary';
+import DataFetchError from '@src/components/shared/DataFetchError';
+import { Accommodation, DefaultSearchParamsType } from '@src/types/accommodation.types';
+import { ErrorTypes } from '@src/types/i18n.types';
 import MainModal from './components/Modal';
 import SearchBar from './components/SearchBar';
 import { mainStyles } from './index.styles';
@@ -77,7 +78,7 @@ function Main() {
     );
   }
   if (isError) {
-    return <DataFetchError error="Failed to get accommodation list" />;
+    return <DataFetchError errorKey={ErrorTypes.accommodation_failed_to_get_list} />;
   }
 
   return (

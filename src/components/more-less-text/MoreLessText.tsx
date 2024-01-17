@@ -2,7 +2,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 
-import { truncateReview } from '@/utils';
+import { truncateReview } from '@src/utils';
 
 export const MoreLessText = ({ text, maxChars }: { text: string; maxChars: number }) => {
   const [expanded, setExpanded] = useState(false);

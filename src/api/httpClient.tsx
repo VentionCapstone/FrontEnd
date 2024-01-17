@@ -6,10 +6,15 @@ import axios, {
 } from 'axios';
 import toast from 'react-hot-toast';
 
-import { removeToken, setToken } from '@/stores/slices/authSlice';
-import { store } from '@/stores/store';
-import { RefreshResponse, RefreshingPromise, isRefreshingType } from '@/types/auth.types';
-import { ErrorResponse } from '@/types/error.types';
+import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
+import { DEFAULT_LANGUAGE } from '@src/constants';
+import i18n from '@src/i18n/i18n';
+import { removeToken, setToken } from '@src/stores/slices/authSlice';
+import { store } from '@src/stores/store';
+import { RefreshResponse, RefreshingPromise, isRefreshingType } from '@src/types/auth.types';
+import { ErrorResponse } from '@src/types/error.types';
+import { ErrorTypes } from '@src/types/i18n.types';
+import { getValueFromLocalStorage } from '@src/utils';
 
 let isRefreshing: isRefreshingType = false;
 
@@ -20,9 +25,20 @@ const httpClient = axios.create({
 
 // REQUEST INTERCEPTORS
 function reqInterceptor(config: InternalAxiosRequestConfig) {
-  const token = store.getState().auth.token || localStorage.getItem('access_token');
+  const token =
+    store.getState().auth.token || getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.accessToken);
 
   if (token) config.headers['Authorization'] = `Bearer ${token}`;
+
+  const lang =
+    getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.language) ||
+    navigator.language ||
+    DEFAULT_LANGUAGE;
+
+  config.params = {
+    ...(config.params as Record<string, unknown>),
+    lang,
+  };
 
   return config;
 }
@@ -82,7 +98,8 @@ async function resErrInterceptor(error: AxiosError<ErrorResponse>) {
     } else {
       info = error.response?.data?.error.message;
     }
-    const message = info || error.message || 'Something went wrong';
+    const defaultMessage: string = i18n.t(ErrorTypes.default);
+    const message = info || error.message || defaultMessage;
     toast.error(message);
   }
 
@@ -91,7 +108,7 @@ async function resErrInterceptor(error: AxiosError<ErrorResponse>) {
 }
 
 const refreshAccessToken = async (): Promise<RefreshingPromise> => {
-  const userId = localStorage.getItem('sub');
+  const userId = getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.sub);
   try {
     const response = await axios.get<RefreshResponse>(
       `${import.meta.env.VITE_API_URL}/auth/${userId}/refresh`,

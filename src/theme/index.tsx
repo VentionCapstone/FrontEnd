@@ -3,11 +3,11 @@ import { ThemeProvider } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
-import { LOCAL_STORAGE_KEYS } from '@/config/local-storage.config';
-import { useAppSelector } from '@/hooks/redux-hooks';
-import { getTheme } from '@/stores/slices/authSlice';
-import { ThemeMode } from '@/types/profile.types';
-import { getPalleteMode, getValueFromLocalStorage, setValueToLocalStorage } from '@/utils';
+import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
+import { useAppSelector } from '@src/hooks/redux-hooks';
+import { getTheme } from '@src/stores/slices/authSlice';
+import { ThemeMode } from '@src/types/profile.types';
+import { getPalleteMode, getValueFromLocalStorage, setValueToLocalStorage } from '@src/utils';
 import { themeOptions } from './themeTokens';
 
 const ThemeWrapper = ({ children }: { children: React.ReactNode }) => {

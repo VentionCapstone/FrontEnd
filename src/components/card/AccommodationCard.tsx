@@ -3,18 +3,17 @@ import { Box, IconButton, Stack, Typography } from '@mui/material';
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Accommodation } from '@/types/accommodation.types';
-import { MuiStylesObject } from '@/types/utility.types';
+import { Accommodation } from '@src/types/accommodation.types';
+import { MuiStylesObject } from '@src/types/utility.types';
 import CustomImage from '../shared/CustomImage';
 
 const accommodationCardStyles = {
   root: {
     flex: {
-      'xs': '1 1 100%',
-      'sm': '1 1 48.5%',
-      'md': '0 1 31.5%',
-      'lg': '0 1 23.5%',
-      '2xl': '0 1 18.7%',
+      xs: '1 1 100%',
+      sm: '1 1 48.5%',
+      md: '0 1 31.5%',
+      lg: '0 1 23.5%',
     },
     cursor: 'pointer',
     a: {
@@ -47,7 +46,12 @@ function AccommodationCard({ accommodation }: { accommodation: Accommodation }) 
           <Stack>
             <Typography mt={2}>{accommodation.address.city}</Typography>
             <Typography>{accommodation.address.country}</Typography>
-            <Typography>${accommodation.price} night</Typography>
+            <Typography>
+              <Box component={'span'} fontWeight={800}>
+                ${accommodation.price}{' '}
+              </Box>
+              night
+            </Typography>
           </Stack>
         </Stack>
       </Link>

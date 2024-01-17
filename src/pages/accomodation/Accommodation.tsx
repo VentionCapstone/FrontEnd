@@ -3,21 +3,36 @@ import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
-import useGetSingleAccommodationQuery from '@/api/queries/accommodation/useGetSingleAccommodationQuery';
-import LoadingPrimary from '@/components/loader/LoadingPrimary';
-import DataFetchError from '@/components/shared/DataFetchError';
-import { AmenitySetting } from '@/types/amenity.types';
-import { handleErrorInImage, selectOnlyTrueAmenities } from '@/utils';
+import { useBookingRoom } from '@src/api/mutations/booking/useBookingRoom';
+import useGetSingleAccommodationQuery from '@src/api/queries/accommodation/useGetSingleAccommodationQuery';
+import BookingForm from '@src/components/booking/BookingForm';
+import LoadingPrimary from '@src/components/loader/LoadingPrimary';
+import DataFetchError from '@src/components/shared/DataFetchError';
+import { AmenitySetting } from '@src/types/amenity.types';
+import { ErrorTypes } from '@src/types/i18n.types';
+import { handleErrorInImage, selectOnlyTrueAmenities } from '@src/utils';
+import YandexMap from '../../components/YandexMap';
 import { styles } from './Accommodation.styles';
 import AmenityList from './components/AmenityList';
 import { Reviews } from './components/Reviews';
 import { buildAmenityList } from './utils/amenityListBuilder';
 
 function Accommodation() {
-  const accommodationId = useParams().id;
+  const { id: accommodationId } = useParams();
+
   const [amenities, setAmenities] = useState<AmenitySetting[]>([]);
 
   const { isPending, data, isError } = useGetSingleAccommodationQuery(accommodationId as string);
+
+  const { mutateAsync } = useBookingRoom();
+
+  const submitReservation = async (reservationData: {
+    startDate: string;
+    endDate: string;
+    accommodationId: string;
+  }): Promise<void> => {
+    await mutateAsync(reservationData);
+  };
 
   useEffect(() => {
     if (data?.amenities) {
@@ -36,7 +51,9 @@ function Accommodation() {
   }
 
   if (isError) {
-    return <DataFetchError error="Failed to get single accommodation" position="center" />;
+    return (
+      <DataFetchError errorKey={ErrorTypes.accommodation_failed_to_get_single} position="center" />
+    );
   }
 
   const [image_1, image_2, image_3, image_4, image_5] = data.media;
@@ -90,9 +107,18 @@ function Accommodation() {
           </Box>
           <AmenityList amenities={amenities} />
         </Box>
-        <Box flex={0.4}></Box>
+        <Box flex={0.4}>
+          <BookingForm
+            onSubmit={submitReservation}
+            accomodationId={accommodationId}
+            price={data.price}
+          />
+        </Box>
       </Box>
       <Reviews accommodationId={accommodationId || ''} />
+      <Box mt={'2rem'}>
+        <YandexMap latitude={data.address.latitude} longitude={data.address.longitude} />
+      </Box>
     </Box>
   );
 }

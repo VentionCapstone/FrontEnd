@@ -13,10 +13,10 @@ import {
 import { useCallback, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import useEditAccountMutation from '@/api/mutations/account/useEditAccountMutation';
-import { useAppSelector } from '@/hooks/redux-hooks';
-import { getProfile } from '@/stores/slices/authSlice';
-import { phoneNumLengthRegEx } from '@/utils';
+import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
+import { useAppSelector } from '@src/hooks/redux-hooks';
+import { getProfile } from '@src/stores/slices/authSlice';
+import { phoneNumLengthRegEx } from '@src/utils';
 import { DEFAULT_COUNTRY, PHONE_CODES_BY_COUNTRY } from '../../constants';
 import { PhoneCodesByCountry } from '../../constants.types';
 

@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
-import httpClient from '@/api/httpClient';
-import { ENDPOINTS } from '@/config/endpoints.config';
-import { Amenities, EditAmenitiesResponse } from '@/types/amenity.types';
+import httpClient from '@src/api/httpClient';
+import { ENDPOINTS } from '@src/config/endpoints.config';
+import { Amenities, EditAmenitiesResponse } from '@src/types/amenity.types';
 
 type Params = {
   amenitiesToSave: Amenities;

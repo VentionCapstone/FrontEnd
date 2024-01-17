@@ -1,4 +1,4 @@
-import { ThemeOptions, PaletteMode } from '@mui/material';
+import { PaletteMode, ThemeOptions } from '@mui/material';
 
 export const PRIMARY_LIGHT_THEME = '#222222';
 export const PRIMARY_DARK_THEME = '#ffffff';
@@ -32,6 +32,7 @@ const lightTheme: ThemeOptions = {
     },
     secondary: {
       main: '#FF385C',
+      dark: '#FF2B52',
     },
     secondary2: {
       light: '#DDDDDD',
@@ -93,6 +94,7 @@ const darkTheme: ThemeOptions = {
     },
     secondary: {
       main: '#FF385C',
+      dark: '#FF2B52',
     },
     secondary2: {
       light: '#DDDDDD',

@@ -1,13 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 
-import httpClient from '@/api/httpClient';
-import { ENDPOINTS } from '@/config/endpoints.config';
-import { LOCAL_STORAGE_KEYS } from '@/config/local-storage.config';
-import { QUERY_KEYS } from '@/config/react-query.config';
-import { useAppDispatch } from '@/hooks/redux-hooks';
-import { setUser } from '@/stores/slices/authSlice';
-import { UserResponse } from '@/types/user.types';
-import { getValueFromLocalStorage } from '@/utils';
+import httpClient from '@src/api/httpClient';
+import { ENDPOINTS } from '@src/config/endpoints.config';
+import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
+import { QUERY_KEYS } from '@src/config/react-query.config';
+import { useAppDispatch } from '@src/hooks/redux-hooks';
+import { setUser } from '@src/stores/slices/authSlice';
+import { UserResponse } from '@src/types/user.types';
+import { getValueFromLocalStorage } from '@src/utils';
 
 function useGetUserQuery() {
   const dispatch = useAppDispatch();

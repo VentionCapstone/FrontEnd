@@ -1,8 +1,8 @@
 import { Chip } from '@mui/material';
 import { useCallback } from 'react';
 
-import { ObjType } from '@/types/accommodation.types';
-import { MuiStylesObject } from '@/types/utility.types';
+import { ObjType } from '@src/types/accommodation.types';
+import { MuiStylesObject } from '@src/types/utility.types';
 
 interface FilterChipProps {
   minItem: number | string;

@@ -6,8 +6,8 @@ import Typography from '@mui/material/Typography';
 import { ChangeEventHandler } from 'react';
 import toast from 'react-hot-toast';
 
-import { Profile } from '@/types/profile.types';
-import { convertImageToBase64 } from '@/utils';
+import { Profile } from '@src/types/profile.types';
+import { convertImageToBase64 } from '@src/utils';
 
 function AddImage({
   imageUrl,

@@ -1,10 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { LOCAL_STORAGE_KEYS } from '@/config/local-storage.config';
-import { AuthState } from '@/types/auth.types';
-import { User } from '@/types/user.types';
-import { getValueFromLocalStorage, setValueToLocalStorage } from '@/utils';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
+import { AuthState } from '@src/types/auth.types';
+import { User } from '@src/types/user.types';
+import {
+  getValueFromLocalStorage,
+  removeFromLocalStorage,
+  setValueToLocalStorage,
+} from '@src/utils';
 import { RootState } from '../store';
 
 const initialState: AuthState = {
@@ -27,7 +31,7 @@ export const authSlice = createSlice({
     },
     removeToken: (state) => {
       state.token = null;
-      localStorage.removeItem(LOCAL_STORAGE_KEYS.accessToken);
+      removeFromLocalStorage(LOCAL_STORAGE_KEYS.accessToken);
     },
     setUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
@@ -38,8 +42,8 @@ export const authSlice = createSlice({
     logout: (state) => {
       state.token = null;
       state.user = null;
-      localStorage.removeItem(LOCAL_STORAGE_KEYS.accessToken);
-      localStorage.removeItem(LOCAL_STORAGE_KEYS.sub);
+      removeFromLocalStorage(LOCAL_STORAGE_KEYS.accessToken);
+      removeFromLocalStorage(LOCAL_STORAGE_KEYS.sub);
     },
   },
 });

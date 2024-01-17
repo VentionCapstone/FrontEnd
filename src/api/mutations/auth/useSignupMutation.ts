@@ -1,18 +1,15 @@
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
-import httpClient from '@/api/httpClient';
-import { ENDPOINTS } from '@/config/endpoints.config';
-import { AuthData } from '@/types/auth.types';
+import httpClient from '@src/api/httpClient';
+import { ENDPOINTS } from '@src/config/endpoints.config';
+import { CommonResponse, SignUpReq } from '@src/types/auth.types';
 
 const useSignupMutation = () => {
   return useMutation({
-    mutationFn: async (data: AuthData) => {
-      const response = await httpClient.post<{ success: boolean; message: string }>(
-        ENDPOINTS.auth.signUp,
-        data
-      );
-      return response.data;
+    mutationFn: async (values: SignUpReq) => {
+      const { data } = await httpClient.post<CommonResponse>(ENDPOINTS.auth.signUp, values);
+      return data;
     },
     onSuccess: (data) => {
       toast.success(data.message);

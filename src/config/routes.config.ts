@@ -14,4 +14,7 @@ export const ROUTES = {
     create: '/accommodations/create',
     edit: (id: string) => `/accommodations/edit/${id}`,
   },
+  payment: {
+    root: (id: string) => `/book/${id}`,
+  },
 } as const;
