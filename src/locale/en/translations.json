@@ -12,6 +12,44 @@
       "password_must_contain": "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character",
       "password_invalid_length": "Password must be at least 8 characters",
       "password_not_matching": "Passwords are not matching!"
+    },
+
+    "home_ui": {
+      "user_home_btn": {
+        "account": "account",
+        "MyListings": "My Listings",
+        "Logout": "Logout"
+      },
+      "filters_button": {
+        "filter": "filter",
+        "price": {
+          "price_range": "price_range",
+          "price_description": "Nightly prices before fees and taxes"
+        },
+        "rooms": {
+          "any": "any"
+        },
+        "people": {
+          "any": "any"
+        },
+        "sort": {
+          "price": ["any", "Low to High", "High to Low"],
+          "room": ["any", "Low to High", "High to Low"],
+          "people": ["any", "Low to High", "High to Low"]
+        },
+        "clear_btn": "clear",
+        "filter_btn": "filter"
+      },
+      "card": {
+        "night": "night"
+      },
+      "footer_info": {
+        "Terms": "Terms",
+        "Sitemap": "Sitemap",
+        "Privacy": "Privacy",
+        "Your Privacy Choices": "Your Privacy Choices",
+        "Copyright": "© 2023 Airbnb, Inc."
+      }
     }
   }
 }

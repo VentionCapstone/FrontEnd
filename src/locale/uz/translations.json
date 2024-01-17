@@ -12,6 +12,43 @@
       "password_must_contain": "Parol kamida bitta katta harf, bitta kichik harf, bitta raqam va bitta maxsus belgidan iborat bo'lishi kerak",
       "password_invalid_length": "Parol kamida 8 ta belgidan iborat bo'lishi kerak",
       "password_not_matching": "Parollar mos emas!"
+    },
+    "home_ui": {
+      "user_home_btn": {
+        "account": "Kirish",
+        "MyListings": "Mening ro'yhatlarim",
+        "Logout": "Tizimdan chiqish"
+      },
+      "filters_button": {
+        "filter": "Filtr",
+        "price": {
+          "price_range": "Narx diapazoni",
+          "price_description": "To'lovlar va soliqlar oldidan tungi narxlar"
+        },
+        "rooms": {
+          "any": "Har qanday"
+        },
+        "people": {
+          "any": "Har qanday"
+        },
+        "sort": {
+          "price": ["Har qanday", "Pastdan yuqoriga", "Yuqoridan pastga"],
+          "room": ["Har qanday", "Pastdan yuqoriga", "Yuqoridan pastga"],
+          "people": ["Har qanday", "Pastdan yuqoriga", "Yuqoridan pastga"]
+        },
+        "clear_btn": "o'chirish",
+        "filter_btn": "filtr"
+      },
+      "card": {
+        "night": "kechasi"
+      },
+      "footer_info": {
+        "Terms": "Shartlar",
+        "Sitemap": "Sayt Haritasi",
+        "Privacy": "Maxfiylik",
+        "Your Privacy Choices": "Maxfiylik tanlovlaringiz",
+        "Copyright": "© 2023 Airbnb, Inc."
+      }
     }
   }
 }
