@@ -8,8 +8,8 @@ import useGetAccommodationsQuery from '@src/api/queries/main/useGetAccommodation
 import AccommodationCard from '@src/components/card/AccommodationCard';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import DataFetchError from '@src/components/shared/DataFetchError';
-import ErrorTypes from '@src/errors/errors.enum';
 import { Accommodation, DefaultSearchParamsType } from '@src/types/accommodation.types';
+import { ErrorTypes } from '@src/types/i18n.types';
 import MainModal from './components/Modal';
 import { mainStyles } from './index.styles';
 

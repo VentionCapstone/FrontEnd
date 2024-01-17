@@ -8,12 +8,12 @@ import toast from 'react-hot-toast';
 
 import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
 import { DEFAULT_LANGUAGE } from '@src/constants';
-import ErrorTypes from '@src/errors/errors.enum';
 import i18n from '@src/i18n/i18n';
 import { removeToken, setToken } from '@src/stores/slices/authSlice';
 import { store } from '@src/stores/store';
 import { RefreshResponse, RefreshingPromise, isRefreshingType } from '@src/types/auth.types';
 import { ErrorResponse } from '@src/types/error.types';
+import { ErrorTypes } from '@src/types/i18n.types';
 import { getValueFromLocalStorage } from '@src/utils';
 
 let isRefreshing: isRefreshingType = false;

@@ -8,8 +8,8 @@ import useGetSingleAccommodationQuery from '@src/api/queries/accommodation/useGe
 import BookingForm from '@src/components/booking/BookingForm';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import DataFetchError from '@src/components/shared/DataFetchError';
-import ErrorTypes from '@src/errors/errors.enum';
 import { AmenitySetting } from '@src/types/amenity.types';
+import { ErrorTypes } from '@src/types/i18n.types';
 import { handleErrorInImage, selectOnlyTrueAmenities } from '@src/utils';
 import YandexMap from '../../components/YandexMap';
 import { styles } from './Accommodation.styles';

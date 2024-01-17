@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material';
-import ErrorTypes from '@src/errors/errors.enum';
 import { useTranslation } from 'react-i18next';
+
+import { ErrorTypes } from '@src/types/i18n.types';
 
 function DataFetchError({
   errorKey = ErrorTypes.default,

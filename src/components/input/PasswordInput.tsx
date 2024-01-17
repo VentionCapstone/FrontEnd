@@ -29,7 +29,6 @@ const PasswordInput = <TFieldValues extends FieldValues>({
             label={label}
             placeholder={placeholder}
             error={!!errors[name]}
-            id={`outlined-adornment-password`}
             type={showPassword ? 'text' : 'password'}
             onChange={field.onChange}
             helperText={errors[name]?.message as ReactNode}
