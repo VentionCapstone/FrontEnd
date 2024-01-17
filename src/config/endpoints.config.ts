@@ -5,6 +5,8 @@ export const ENDPOINTS = {
     verifyEmail: '/auth/verify',
     updateEmail: '/auth/email',
     signOut: '/auth/signout',
+    resetPassword: '/auth/forgot-password-reset',
+    forgotPasswordEmail: '/auth/forgot-password-email',
   },
   account: {
     getUser: (userId: string | null) => `/users/${userId}`,
@@ -32,5 +34,9 @@ export const ENDPOINTS = {
   amenity: {
     root: (accommodationId: string) => `/amenities/${accommodationId}`,
     getAmenityList: '/amenities/list',
+  },
+  booking: {
+    getAvailableDates: (accommodationId: string) => `/booking/available-dates/${accommodationId}`,
+    book: '/booking/book',
   },
 } as const;

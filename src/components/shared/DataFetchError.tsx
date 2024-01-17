@@ -18,9 +18,10 @@ function DataFetchError({
         display: 'flex',
         justifyContent: position,
         alignItems: 'center',
+        height: '50vh',
       }}
     >
-      <Typography>{error}</Typography>
+      <Typography color="error">{error}</Typography>
     </Box>
   );
 }
