@@ -1,0 +1,10 @@
+{
+  "translation": {
+    "errors": {
+      "default": "Nimadir noto'g'ri ketdi, yana urinib ko'ring",
+
+      "accommodation_failed_to_get_single": "Biror bir joy haqida ma'lumot olishda muammo yuz berdi",
+      "accommodation_failed_to_get_list": "Mehmonxona ro'yxatini olishda xatolik yuz berdi"
+    }
+  }
+}

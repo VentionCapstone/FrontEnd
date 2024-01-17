@@ -1,0 +1,10 @@
+{
+  "translation": {
+    "errors": {
+      "default": "Что-то пошло не так, попробуйте ещё раз",
+
+      "accommodation_failed_to_get_single": "Не удалось получить информацию об одном жилье",
+      "accommodation_failed_to_get_list": "Не удалось получить список жилья"
+    }
+  }
+}

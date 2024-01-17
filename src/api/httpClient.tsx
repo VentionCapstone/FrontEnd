@@ -7,6 +7,9 @@ import axios, {
 import toast from 'react-hot-toast';
 
 import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
+import { DEFAULT_LANGUAGE } from '@src/constants';
+import ErrorTypes from '@src/errors/errors.enum';
+import i18n from '@src/i18n/i18n';
 import { removeToken, setToken } from '@src/stores/slices/authSlice';
 import { store } from '@src/stores/store';
 import { RefreshResponse, RefreshingPromise, isRefreshingType } from '@src/types/auth.types';
@@ -28,7 +31,10 @@ function reqInterceptor(config: InternalAxiosRequestConfig) {
   if (token) config.headers['Authorization'] = `Bearer ${token}`;
 
   const lang =
-    getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.language) || navigator.language || 'en';
+    getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.language) ||
+    navigator.language ||
+    DEFAULT_LANGUAGE;
+
   config.params = {
     ...(config.params as Record<string, unknown>),
     lang,
@@ -92,7 +98,8 @@ async function resErrInterceptor(error: AxiosError<ErrorResponse>) {
     } else {
       info = error.response?.data?.error.message;
     }
-    const message = info || error.message || 'Something went wrong';
+    const defaultMessage: string = i18n.t(ErrorTypes.default);
+    const message = info || error.message || defaultMessage;
     toast.error(message);
   }
 

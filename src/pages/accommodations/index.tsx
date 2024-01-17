@@ -1,21 +1,18 @@
 import { Add } from '@mui/icons-material';
 import { Box, IconButton, Typography } from '@mui/material';
+import { useGetAccommodations } from '@src/api/queries/accommodations/useGetAccommodations';
+import CustomImage from '@src/components/shared/CustomImage';
+import { ROUTES } from '@src/config/routes.config';
 import { useAppSelector } from '@src/hooks/redux-hooks';
 import { getUser } from '@src/stores/slices/authSlice';
+import { lineClampStyle } from '@src/utils';
 import { Link } from 'react-router-dom';
 
-import { useGetAccommodations } from '@src/api/queries/accommodations/useGetAccommodations';
-import { ROUTES } from '@src/config/routes.config';
-import { lineClampStyle } from '@src/utils';
 import AccommodationSkeleton from './AccommodationSkeleton';
 
 export default function Accommodations() {
   const profileId = useAppSelector(getUser)?.id ?? '';
   const { data: accommodations, isLoading } = useGetAccommodations(profileId);
-
-  const onError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    e.currentTarget.src = 'https://via.placeholder.com/300';
-  };
 
   return (
     <Box>
@@ -44,21 +41,8 @@ export default function Accommodations() {
                 }}
               >
                 <Box display="flex" flexDirection="column" gap={2}>
-                  <Box
-                    width="100%"
-                    height={280}
-                    borderRadius={2}
-                    overflow="hidden"
-                    position="relative"
-                  >
-                    <img
-                      width="100%"
-                      height="100%"
-                      onError={onError}
-                      style={{ objectFit: 'cover' }}
-                      alt={`${id} thumbnail`}
-                      src={thumbnailUrl || previewImgUrl}
-                    />
+                  <Box width="100%" borderRadius={2} overflow="hidden" position="relative">
+                    <CustomImage image={thumbnailUrl || previewImgUrl} name={`${id} thumbnail`} />
                     {isDeleted && (
                       <Box
                         position="absolute"

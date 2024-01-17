@@ -1,0 +1,10 @@
+{
+  "translation": {
+    "errors": {
+      "default": "Something went wrong, try again",
+
+      "accommodation_failed_to_get_single": "Failed to get single accommodation",
+      "accommodation_failed_to_get_list": "Failed to get accommodation list"
+    }
+  }
+}
