@@ -25,6 +25,7 @@ import { DATE_MONTH_DAY } from '@src/constants';
 import { handleErrorInImage, truncateReview } from '@src/utils';
 import { PaymentForm } from './components/PaymentForm';
 import { PAYMENT_OPTION } from './components/contants';
+import { styles } from './index.styles';
 
 export type PaymentOption = (typeof PAYMENT_OPTION)[keyof typeof PAYMENT_OPTION];
 
@@ -103,31 +104,8 @@ const Payment = () => {
   return (
     <>
       <Typography variant="lg">Payment</Typography>
-      <Stack
-        sx={{
-          flexDirection: { xs: 'column', lg: 'row' },
-          width: { xs: '100%', sm: '90%', lg: '87%', xl: '80%' },
-          gap: 6,
-          marginX: 'auto',
-          marginTop: 10,
-          alignItems: 'center',
-          justifyContent: { xs: 'center', md: 'space-between' },
-        }}
-      >
-        <Box
-          sx={{
-            flex: '0.5',
-            width: {
-              xs: '100%',
-              md: '70%',
-              lg: '100%',
-            },
-            border: '1px solid',
-            borderColor: 'secondary2.light',
-            borderRadius: '1rem',
-            padding: '1rem',
-          }}
-        >
+      <Stack sx={styles.payment_container}>
+        <Box sx={styles.payment_form}>
           <FormControl>
             <FormLabel>Payment Option</FormLabel>
             <RadioGroup row value={paymentOption} onChange={handlePaymentChange}>
@@ -138,73 +116,35 @@ const Payment = () => {
           {isPending ? <LoadingPrimary height="10vh" /> : paymentMethods[paymentOption]}
         </Box>
 
-        <Box
-          sx={{
-            flex: '0.5',
-            border: '1px solid',
-            borderColor: 'secondary2.light',
-            borderRadius: '1rem',
-            padding: '1rem',
-            width: {
-              xs: '100%',
-              md: '70%',
-              lg: '100%',
-            },
-          }}
-        >
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              columnGap: '1rem',
-            }}
-          >
-            <Box
-              sx={{
-                'flex': {
-                  xs: '0.5',
-                  md: '0.45',
-                },
-                'maxWidth': '180px',
-                'maxHeight': '170px',
-                '& img': {
-                  width: '100%',
-                  height: {
-                    xs: '90%',
-                    sm: '100%',
-                  },
-                  objectFit: 'cover',
-                  borderRadius: '0.5rem',
-                },
-              }}
-            >
+        <Box sx={styles.payment_accommodation_container}>
+          <Box sx={styles.payment_accommodation}>
+            <Box sx={styles.paymanet_accommodation_image}>
               <img
                 src={accommodation.previewImgUrl}
                 alt={accommodation.title}
                 onError={handleErrorInImage}
               />
             </Box>
-            <Stack
-              justifyContent={'inherit'}
-              sx={{
-                flex: {
-                  xs: '0.5',
-                  md: '0.55',
-                },
-              }}
-            >
-              <Typography fontWeight={600}>{accommodation.title}</Typography>
-              <Typography variant="sm">
-                {truncateReview(accommodation.description, mobileScreen ? 30 : 100)}
+            <Stack justifyContent={'inherit'} sx={styles.payment_accommodation_details}>
+              <Typography fontWeight={600} variant={mobileScreen ? 'sm' : 'subtitle1'}>
+                {accommodation.title}
               </Typography>
               <Typography variant="sm">
-                Dates: {startDate.format(DATE_MONTH_DAY)} - {endDate.format(DATE_MONTH_DAY)}
+                {truncateReview(accommodation.description, mobileScreen ? 20 : 80)}
               </Typography>
-              <Typography variant="sm">Price per night: ${accommodation.price}</Typography>
+              <Typography variant="sm">
+                Dates:{' '}
+                <b>
+                  {startDate.format(DATE_MONTH_DAY)} - {endDate.format(DATE_MONTH_DAY)}
+                </b>
+              </Typography>
+              <Typography variant="sm">
+                Price per night: <b>${accommodation.price}</b>
+              </Typography>
             </Stack>
           </Box>
           <Typography marginTop={'1rem'}>
-            Total price: ${calculateTotalPrice(+accommodation.price)}
+            Total price: <b>${calculateTotalPrice(accommodation.price)}</b>
           </Typography>
         </Box>
       </Stack>

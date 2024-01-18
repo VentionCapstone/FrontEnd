@@ -98,13 +98,15 @@ function Accommodation() {
       <Box sx={styles.content}>
         <Box flex={0.6}>
           <Box>
-            <Typography sx={styles.heading}>{data.description}</Typography>
+            <Typography sx={styles.heading}>{data.title}</Typography>
             <Box display={'flex'} gap={1} flexWrap={'wrap'}>
               <Typography>{data.allowedNumberOfPeople} Guests -</Typography>
               <Typography> {data.numberOfRooms} Rooms -</Typography>
               <Typography>{data.squareMeters} Square meters</Typography>
             </Box>
+            <Typography mt={2}>{data.description}</Typography>
           </Box>
+
           <AmenityList amenities={amenities} />
         </Box>
         <Box flex={0.4}>

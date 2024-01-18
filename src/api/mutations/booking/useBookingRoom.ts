@@ -21,14 +21,7 @@ export const useBookingRoom = () => {
     },
     onSuccess: (data) => {
       toast.success('Reservation successful');
-      navigate(
-        ROUTES.payment.root(
-          data.id,
-          '03669826-0741-442f-81f0-7c1a5c5d710c',
-          data.startDate,
-          data.endDate
-        )
-      );
+      navigate(ROUTES.payment.root(data.id, data.accommodationId, data.startDate, data.endDate));
     },
   });
 };
