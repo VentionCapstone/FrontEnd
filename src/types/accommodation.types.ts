@@ -160,6 +160,11 @@ export type SearchModalProps = {
   handleSearchClick: () => void;
   localTimeToUtc: (value: Dayjs) => dayjs.Dayjs;
   UtcTimeToLocal: (value: Dayjs) => dayjs.Dayjs;
+  priceRange: {
+    totalMaxPrice: number;
+    totalMinPrice: number;
+  };
+  setSearchParams: (params: URLSearchParams) => void;
 };
 
 export type SearchDatePickerProps = {

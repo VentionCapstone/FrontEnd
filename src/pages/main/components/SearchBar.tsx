@@ -1,14 +1,16 @@
-import { Box, Button } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import { Box, Button, Fade, Modal } from '@mui/material';
+import { pink } from '@mui/material/colors';
 import { DefaultSearchParamsType, SearchBarProps } from '@src/types/accommodation.types';
 import dayjs, { Dayjs } from 'dayjs';
-import 'dayjs/plugin/isSameOrBefore';
 import 'dayjs/plugin/isSameOrAfter';
+import 'dayjs/plugin/isSameOrBefore';
 import { useCallback, useState } from 'react';
 import { IoSearchSharp } from 'react-icons/io5';
 import { mainStyles } from '../index.styles';
+import { modalStyles } from './Modal.styles';
 import SearchInputDatePicker from './SearchInputDatePicker';
 import SearchInputLocation from './SearchInputLocation';
-import { SearchMobileModal } from './SearchMobileModal';
 
 export default function SearchBar({
   priceRange,
@@ -24,6 +26,7 @@ export default function SearchBar({
 
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const handleOpen = useCallback(() => setIsSearchModalOpen(true), []);
+  const handleClose = useCallback(() => setIsSearchModalOpen(false), []);
 
   const timezoneOffset = dayjs().utcOffset();
   const localTimeToUtc = (value: Dayjs) => {
@@ -52,15 +55,20 @@ export default function SearchBar({
     setSearchParams(newSearchParams);
   }, [location, checkInDate, checkOutDate]);
 
+  const handleSearchModalClick = useCallback(() => {
+    handleSearchClick();
+    handleClose();
+  }, [handleClose, handleSearchClick]);
+
   const handleCheckInChange = useCallback(
     (newValue: dayjs.Dayjs | null) => {
       if (!newValue) {
         setCheckInDate('');
+        setCheckOutDate('');
         return;
       }
       const localizedcheckinTime = localTimeToUtc(dayjs(newValue));
       setCheckInDate(localizedcheckinTime.toISOString());
-      console.log('!checkOutDate', !checkOutDate);
       if (!checkOutDate || checkInDate === checkOutDate) {
         setCheckOutDate(localizedcheckinTime.add(1, 'day').toISOString());
       }
@@ -71,6 +79,7 @@ export default function SearchBar({
   const handleCheckOutChange = useCallback(
     (newValue: dayjs.Dayjs | null) => {
       if (!newValue) {
+        setCheckInDate('');
         setCheckOutDate('');
         return;
       }
@@ -136,17 +145,44 @@ export default function SearchBar({
       </Button>
 
       {isSearchModalOpen && (
-        <SearchMobileModal
-          open={isSearchModalOpen}
-          setOpen={setIsSearchModalOpen}
-          setLocation={setLocation}
-          setCheckInDate={setCheckInDate}
-          setCheckOutDate={setCheckOutDate}
-          searchParamsAsObject={searchParamsAsObject}
-          handleSearchClick={handleSearchClick}
-          localTimeToUtc={localTimeToUtc}
-          UtcTimeToLocal={UtcTimeToLocal}
-        />
+        <Modal open={isSearchModalOpen} onClose={handleClose}>
+          <Fade in={isSearchModalOpen}>
+            <Box sx={modalStyles.searchModalContainer}>
+              <Button sx={modalStyles.searchCloseButton} onClick={handleClose}>
+                <CloseIcon />
+              </Button>
+              <SearchInputLocation
+                location={searchParamsAsObject['location']}
+                setLocation={setLocation}
+              />
+              <SearchInputDatePicker
+                isMobile={true}
+                label={'Check-in'}
+                date={checkInDate}
+                minDate={dayjs()}
+                maxDate={getCheckInMaxDate()}
+                handleDateChange={handleCheckInChange}
+                UtcTimeToLocal={UtcTimeToLocal}
+              />
+              <SearchInputDatePicker
+                isMobile={true}
+                label={'Check-out'}
+                date={checkOutDate}
+                minDate={getCheckOutMinDate()}
+                maxDate={undefined}
+                handleDateChange={handleCheckOutChange}
+                UtcTimeToLocal={UtcTimeToLocal}
+              />
+              <Button
+                variant="contained"
+                onClick={handleSearchModalClick}
+                sx={{ backgroundColor: pink[500] }}
+              >
+                Search
+              </Button>
+            </Box>
+          </Fade>
+        </Modal>
       )}
     </>
   );
