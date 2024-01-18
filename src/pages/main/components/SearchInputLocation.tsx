@@ -1,4 +1,4 @@
-import { SearchInputLocationProps } from '@/types/accommodation.types';
+import { SearchInputLocationProps } from '@src/types/accommodation.types';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
@@ -131,7 +131,6 @@ export default function SearchInputLocation({ location, setLocation }: SearchInp
   return (
     <Autocomplete
       id="google-map-search"
-      defaultValue="Anywhere"
       sx={mainStyles.searchInput}
       getOptionLabel={(option) => (typeof option === 'string' ? option : option.description)}
       filterOptions={(x) => x}
@@ -142,7 +141,13 @@ export default function SearchInputLocation({ location, setLocation }: SearchInp
       noOptionsText="Enter location"
       onChange={handleValueChange}
       onInputChange={handleInputValueChange}
-      renderInput={(params) => <TextField {...params} label="Where" fullWidth />}
+      renderInput={(params) => {
+        return (
+          <>
+            <TextField {...params} label={location ? 'Destination' : 'Anywhere'} fullWidth />
+          </>
+        );
+      }}
       renderOption={(props, option) => {
         if (typeof option === 'string') return;
         const matches = option.structured_formatting.main_text_matched_substrings || [];

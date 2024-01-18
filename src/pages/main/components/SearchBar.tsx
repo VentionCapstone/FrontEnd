@@ -1,4 +1,4 @@
-import { DefaultSearchParamsType, SearchBarProps } from '@/types/accommodation.types';
+import { DefaultSearchParamsType, SearchBarProps } from '@src/types/accommodation.types';
 import { Box, Button } from '@mui/material';
 import dayjs, { Dayjs } from 'dayjs';
 import { useCallback, useState } from 'react';
@@ -19,6 +19,16 @@ export default function SearchBar({
 
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const handleOpen = useCallback(() => setIsSearchModalOpen(true), []);
+
+  const timezoneoffset = dayjs().utcOffset();
+  const localTimeToUtc = (value: Dayjs) => {
+    const utcTime = dayjs(value).add(timezoneoffset, 'minute');
+    return utcTime;
+  };
+  const UtcTimeToLocal = (value: Dayjs) => {
+    const localTime = dayjs(value).subtract(timezoneoffset, 'minute');
+    return localTime;
+  };
 
   const handleSearchClick = useCallback(() => {
     const newSearchParamsAsObject: DefaultSearchParamsType = {
@@ -46,38 +56,56 @@ export default function SearchBar({
     setSearchParams(newSearchParams);
   }, [location, checkInDate, checkOutDate]);
 
-  const handleCheckInChange = useCallback((newValue: dayjs.Dayjs | null) => {
-    const localizedTime = localTimeToUtc(dayjs(newValue));
-    setCheckInDate(newValue ? localizedTime.toISOString() : '');
-    setCheckOutDate(newValue ? localTimeToUtc(newValue.add(1, 'day')).toISOString() : '');
-  }, []);
+  const handleCheckInChange = useCallback(
+    (newValue: dayjs.Dayjs | null) => {
+      if (!newValue) return;
+      const localizedcheckinTime = localTimeToUtc(dayjs(newValue));
+      setCheckInDate(localizedcheckinTime.toISOString());
 
-  const handleCheckOutChange = useCallback((newValue: dayjs.Dayjs | null) => {
-    setCheckOutDate(newValue ? newValue.toISOString() : '');
-  }, []);
+      const prevCheckoutDate: Dayjs = dayjs(searchParamsAsObject['checkOutDate']);
+      console.log('prevCheckoutDate', prevCheckoutDate);
+      if (prevCheckoutDate?.isAfter(localizedcheckinTime)) {
+        console.log('checkoutdate is okay');
+        return;
+      }
+      setCheckOutDate(localizedcheckinTime.add(1, 'day').toISOString());
+    },
+    [localTimeToUtc, searchParamsAsObject, setCheckInDate, setCheckOutDate]
+  );
 
-  const timezoneoffset = dayjs().utcOffset();
-  const localTimeToUtc = (value: Dayjs) => {
-    const utcTime = dayjs(value).add(timezoneoffset, 'minute');
-    return utcTime;
-  };
-  const UtcTimeToLocal = (value: Dayjs) => {
-    const localTime = dayjs(value).subtract(timezoneoffset, 'minute');
-    return localTime;
-  };
+  const handleCheckOutChange = useCallback(
+    (newValue: dayjs.Dayjs | null) => {
+      if (!newValue) return;
+      const localizedcheckoutTime = localTimeToUtc(dayjs(newValue));
+      setCheckOutDate(localizedcheckoutTime.toISOString());
+    },
+    [localTimeToUtc, setCheckOutDate]
+  );
+
+  const getCheckOutMinDate = useCallback(() => {
+    return searchParamsAsObject['checkInDate']
+      ? dayjs(searchParamsAsObject['checkInDate']).add(1, 'day')
+      : dayjs();
+  }, [searchParamsAsObject]);
+
+  const getCheckInMinDate = useCallback(() => {
+    const today: Dayjs = dayjs();
+    const prevCheckIn: Dayjs = dayjs(searchParamsAsObject['checkInDate']);
+    if (today.isAfter(prevCheckIn, 'day')) {
+      return today;
+    }
+    return today;
+  }, [searchParamsAsObject]);
 
   return (
     <>
       <Box sx={mainStyles.searchDesktopContainer}>
-        <SearchInputLocation
-          location={searchParamsAsObject['location']}
-          setLocation={setLocation}
-        />
+        <SearchInputLocation location={location} setLocation={setLocation} />
         <SearchInputDatePicker
           isMobile={false}
           label={'Check-in'}
           date={searchParamsAsObject['checkInDate']}
-          minDate={dayjs()}
+          minDate={getCheckInMinDate()}
           setDate={setCheckInDate}
           handleDateChange={handleCheckInChange}
           UtcTimeToLocal={UtcTimeToLocal}
@@ -86,11 +114,7 @@ export default function SearchBar({
           isMobile={false}
           label={'Check-out'}
           date={searchParamsAsObject['checkOutDate']}
-          minDate={
-            searchParamsAsObject['checkInDate']
-              ? dayjs(searchParamsAsObject['checkInDate']).add(1, 'day')
-              : dayjs()
-          }
+          minDate={getCheckOutMinDate()}
           setDate={setCheckOutDate}
           handleDateChange={handleCheckOutChange}
           UtcTimeToLocal={UtcTimeToLocal}

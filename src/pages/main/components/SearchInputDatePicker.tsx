@@ -1,7 +1,7 @@
 import { DatePicker, MobileDatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import { mainStyles } from '../index.styles';
-import { SearchDatePickerProps } from '@/types/accommodation.types';
+import { SearchDatePickerProps } from '@src/types/accommodation.types';
 
 const SearchInputDatePicker = ({
   isMobile,
@@ -30,6 +30,7 @@ const SearchInputDatePicker = ({
         value={date !== '' ? UtcTimeToLocal(dayjs(date)) : null}
         minDate={minDate}
         onChange={handleDateChange}
+        disableHighlightToday
       />
     );
   }

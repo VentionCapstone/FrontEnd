@@ -1,10 +1,9 @@
-import { SearchModalProps } from '@/types/accommodation.types';
+import { SearchModalProps } from '@src/types/accommodation.types';
 import { Box, Button, Fade, Modal } from '@mui/material';
 import { pink } from '@mui/material/colors';
 import dayjs from 'dayjs';
 import { useCallback } from 'react';
 import SearchInputLocation from './SearchInputLocation';
-import { searchModalStyles } from './searchModal.styles';
 import CloseIcon from '@mui/icons-material/Close';
 import { modalStyles } from './Modal.styles';
 import SearchInputDatePicker from './SearchInputDatePicker';
@@ -25,23 +24,29 @@ export const SearchMobileModal = ({
   const handleSearchModalClick = useCallback(() => {
     handleSearchClick();
     handleClose();
-  }, []);
+  }, [handleClose, handleSearchClick]);
 
-  const handleCheckInChange = useCallback((newValue: dayjs.Dayjs | null) => {
-    const localizedTime = localTimeToUtc(dayjs(newValue));
-    setCheckInDate(newValue ? localizedTime.toISOString() : '');
-    setCheckOutDate(newValue ? localTimeToUtc(newValue.add(1, 'day')).toISOString() : '');
-  }, []);
+  const handleCheckInChange = useCallback(
+    (newValue: dayjs.Dayjs | null) => {
+      const localizedTime = localTimeToUtc(dayjs(newValue));
+      setCheckInDate(newValue ? localizedTime.toISOString() : '');
+      setCheckOutDate(newValue ? localTimeToUtc(newValue.add(1, 'day')).toISOString() : '');
+    },
+    [localTimeToUtc, setCheckInDate, setCheckOutDate]
+  );
 
-  const handleCheckOutChange = useCallback((newValue: dayjs.Dayjs | null) => {
-    setCheckOutDate(newValue ? newValue.toISOString() : '');
-  }, []);
+  const handleCheckOutChange = useCallback(
+    (newValue: dayjs.Dayjs | null) => {
+      setCheckOutDate(newValue ? newValue.toISOString() : '');
+    },
+    [setCheckOutDate]
+  );
 
   return (
     <Modal open={open} onClose={handleClose}>
       <Fade in={open}>
-        <Box sx={searchModalStyles.modalContainer}>
-          <Button sx={modalStyles.closeButton} onClick={handleClose}>
+        <Box sx={modalStyles.searchModalContainer}>
+          <Button sx={modalStyles.searchCloseButton} onClick={handleClose}>
             <CloseIcon />
           </Button>
           <SearchInputLocation
