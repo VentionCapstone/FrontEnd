@@ -43,6 +43,7 @@ export type AccommodationReq = z.infer<typeof accommodationSchema>;
 export type AccommodationRes = {
   status: boolean;
   data: AccommodationType[];
+  totalCount: number;
 };
 
 export type AccommodationType = {

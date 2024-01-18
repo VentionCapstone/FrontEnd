@@ -1,37 +1,76 @@
 import { Add } from '@mui/icons-material';
 import { Box, IconButton, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
+
 import { useGetAccommodations } from '@src/api/queries/accommodations/useGetAccommodations';
 import CustomImage from '@src/components/shared/CustomImage';
 import { ROUTES } from '@src/config/routes.config';
 import { useAppSelector } from '@src/hooks/redux-hooks';
 import { getUser } from '@src/stores/slices/authSlice';
 import { lineClampStyle } from '@src/utils';
-import { Link } from 'react-router-dom';
 
+import DataFetchError from '@src/components/shared/DataFetchError';
+import { AccommodationType } from '@src/types/accommodation.types';
+import { ErrorTypes } from '@src/types/i18n.types';
+import { useCallback, useMemo } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import AccommodationSkeleton from './AccommodationSkeleton';
 
 export default function Accommodations() {
   const profileId = useAppSelector(getUser)?.id ?? '';
-  const { data: accommodations, isLoading } = useGetAccommodations(profileId);
+
+  const { data, isPending, isError, hasNextPage, fetchNextPage } = useGetAccommodations(profileId);
+
+  const accommodations = useMemo(
+    () => data?.pages.reduce((acc, page) => [...acc, ...page.data], [] as AccommodationType[]),
+    [data]
+  );
+  console.log(accommodations);
+
+  const handleNextPage = useCallback(() => fetchNextPage(), [fetchNextPage]);
+
+  const renderAccommodationSkeleton = useCallback(
+    () => (
+      <Box display="grid" gap={8} gridTemplateColumns={'repeat(auto-fill, minmax(280px, 1fr))'}>
+        <AccommodationSkeleton />;
+      </Box>
+    ),
+    []
+  );
+
+  if (isPending) {
+    renderAccommodationSkeleton();
+  }
+  if (isError) {
+    return <DataFetchError errorKey={ErrorTypes.accommodation_failed_to_get_list} />;
+  }
 
   return (
     <Box>
       <Box display="flex" alignItems="center" justifyContent="space-between" my={8}>
-        <h1>Your Accommodations</h1>
+        <Typography variant={'lg'} fontWeight={600}>
+          Your Accommodations
+        </Typography>
         <Link to={ROUTES.accommodations.create}>
           <IconButton>
             <Add />
           </IconButton>
         </Link>
       </Box>
-      {/* List */}
-      <Box display="grid" gap={8} gridTemplateColumns={'repeat(auto-fill, minmax(280px, 1fr))'}>
-        {isLoading ? (
-          <AccommodationSkeleton />
-        ) : (
-          accommodations
-            ?.slice(0, 10)
-            .map(({ id, title, thumbnailUrl, previewImgUrl, isDeleted }) => (
+
+      {accommodations?.length === 0 ? (
+        <Typography textAlign={'center'} variant={'h6'}>
+          You haven&apos;t created any accommodations yet
+        </Typography>
+      ) : (
+        <InfiniteScroll
+          dataLength={accommodations?.length || 0}
+          next={handleNextPage}
+          hasMore={hasNextPage}
+          loader={renderAccommodationSkeleton()}
+        >
+          <Box display="grid" gap={8} gridTemplateColumns={'repeat(auto-fill, minmax(280px, 1fr))'}>
+            {accommodations?.map(({ id, title, thumbnailUrl, previewImgUrl, isDeleted, price }) => (
               <Link
                 to={ROUTES.accommodations.edit(id)}
                 key={id}
@@ -72,11 +111,15 @@ export default function Accommodations() {
                   <Typography variant="body1" sx={lineClampStyle(1)}>
                     {title}
                   </Typography>
+                  <Typography variant="body1" color="secondary2.main">
+                    ${price}
+                  </Typography>
                 </Box>
               </Link>
-            ))
-        )}
-      </Box>
+            ))}
+          </Box>
+        </InfiniteScroll>
+      )}
     </Box>
   );
 }

@@ -53,10 +53,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, pri
         (startDate && endDate && startDate.isAfter(endDate))
       ) {
         setErrorMessage(true);
-      } else {
-        setErrorMessage(false);
       }
-
       return newSelectedDates as selectDatesType;
     });
   };
@@ -107,7 +104,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, pri
       }}
     >
       {errorMessage && (
-        <Typography color={'red'}>
+        <Typography color={'secondary.main'}>
           Check-in date must be before the check-out date and must not be same
         </Typography>
       )}
