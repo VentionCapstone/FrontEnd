@@ -36,14 +36,41 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, pri
   const { availableDates, accommodationId } = data || {};
   const [errorMessage, setErrorMessage] = useState(false);
   const [totalPrice, setTotalPrice] = useState<number>();
+  const [disablesCheckOutDate, setDisablesCheckOutDate] = useState(true);
 
-  const shouldDisableDate = (date: Dayjs) => {
-    const dateString = date.format(DATE_FORMAT_MONTH_FIRST);
+  const shouldDisableDate = useCallback(
+    (date: Dayjs) => {
+      const dateString = date.format(DATE_FORMAT_MONTH_FIRST);
 
-    return !availableDates?.some(([start, end]) => dateString >= start && dateString <= end);
-  };
+      return !availableDates?.some(([start, end]) => dateString >= start && dateString <= end);
+    },
+    [availableDates]
+  );
+
+  const availableMaxBookDate = useCallback(
+    (date: Dayjs) => {
+      const dateString = date.format(DATE_FORMAT_MONTH_FIRST);
+      const startDate = selectedDates[0]?.format(DATE_FORMAT_MONTH_FIRST);
+
+      if (startDate) {
+        const array = availableDates?.find(
+          ([start, end]) => start >= startDate || startDate <= end
+        ) as string[];
+
+        const shouldDisableDate = dateString < array?.[0] || dateString > array?.[1];
+
+        return shouldDisableDate;
+      }
+
+      return false;
+    },
+    [availableDates, selectedDates]
+  );
 
   const handleDateChange = (index: number) => (newValue: selectedDateType) => {
+    if (index === 0) {
+      setDisablesCheckOutDate(false);
+    }
     setSelectedDates((prevSelectedDates) => {
       const newSelectedDates = [...prevSelectedDates];
       newSelectedDates[index] = newValue;
@@ -53,6 +80,8 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, pri
         (startDate && endDate && startDate.isAfter(endDate))
       ) {
         setErrorMessage(true);
+      } else {
+        setErrorMessage(false);
       }
       return newSelectedDates as selectDatesType;
     });
@@ -125,8 +154,9 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, pri
               <DatePicker
                 label="Check Out"
                 value={selectedDates[1]}
+                disabled={disablesCheckOutDate}
                 onChange={handleDateChange(1)}
-                shouldDisableDate={shouldDisableDate}
+                shouldDisableDate={availableMaxBookDate}
               />
             </Stack>
 

@@ -68,7 +68,7 @@ function Main() {
 
   const renderAccommodationSkeleton = useCallback(
     () => (
-      <Box display="grid" gap={8} gridTemplateColumns={'repeat(auto-fill, minmax(280px, 1fr))'}>
+      <Box sx={mainStyles.accommmodationCard}>
         <AccommodationSkeleton />;
       </Box>
     ),
