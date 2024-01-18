@@ -85,16 +85,12 @@ function Main() {
     <Box>
       <Box sx={mainStyles.searchBarBox}>
         <SearchBar
-          defaultSearchParams={defaultSearchParams}
+          priceRange={priceRange}
           setSearchParams={setSearchParams}
           searchParamsAsObject={searchParamsAsObject}
         />
         <Badge invisible={!invisible} color="primary" badgeContent=" " sx={mainStyles.badgeNumber}>
-          <Button variant="outlined" sx={mainStyles.filterButtonDesktop} onClick={handleOpen}>
-            <TuneIcon fontSize="small" />
-            Filters
-          </Button>
-          <Button variant="outlined" sx={mainStyles.filterButtonMobile} onClick={handleOpen}>
+          <Button variant="outlined" sx={mainStyles.filterButton} onClick={handleOpen}>
             <TuneIcon fontSize="small" />
           </Button>
         </Badge>

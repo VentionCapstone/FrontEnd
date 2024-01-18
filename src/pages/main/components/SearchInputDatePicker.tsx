@@ -9,6 +9,7 @@ const SearchInputDatePicker = ({
   label,
   date,
   minDate,
+  maxDate,
   handleDateChange,
   UtcTimeToLocal,
 }: SearchDatePickerProps) => {
@@ -28,6 +29,7 @@ const SearchInputDatePicker = ({
         }}
         value={date !== '' ? UtcTimeToLocal(dayjs(date)) : null}
         minDate={minDate}
+        maxDate={maxDate}
         onChange={handleDateChange}
         disableHighlightToday
       />
@@ -49,6 +51,7 @@ const SearchInputDatePicker = ({
       }}
       value={date !== '' ? UtcTimeToLocal(dayjs(date)) : null}
       minDate={minDate}
+      maxDate={maxDate}
       onChange={handleDateChange}
       disableHighlightToday
     />

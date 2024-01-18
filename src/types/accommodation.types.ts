@@ -132,7 +132,10 @@ export type SearchInputLocationProps = {
 };
 
 export type SearchBarProps = {
-  defaultSearchParams: DefaultSearchParamsType;
+  priceRange: {
+    totalMaxPrice: number;
+    totalMinPrice: number;
+  };
   setSearchParams: (params: URLSearchParams) => void;
   searchParamsAsObject: Record<string, string>;
 };
@@ -164,6 +167,7 @@ export type SearchDatePickerProps = {
   label: string;
   date: string;
   minDate: dayjs.Dayjs | undefined;
+  maxDate: dayjs.Dayjs | undefined;
   handleDateChange: (newValue: dayjs.Dayjs | null) => void;
   UtcTimeToLocal: (value: Dayjs) => dayjs.Dayjs;
 };
