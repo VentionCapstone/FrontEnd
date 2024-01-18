@@ -2,13 +2,13 @@ import { DatePicker, MobileDatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import { mainStyles } from '../index.styles';
 import { SearchDatePickerProps } from '@src/types/accommodation.types';
+import 'dayjs/plugin/isSameOrBefore';
 
 const SearchInputDatePicker = ({
   isMobile,
   label,
   date,
   minDate,
-  setDate,
   handleDateChange,
   UtcTimeToLocal,
 }: SearchDatePickerProps) => {
@@ -41,7 +41,6 @@ const SearchInputDatePicker = ({
       slotProps={{
         field: {
           clearable: true,
-          onClear: () => setDate(''),
           readOnly: true,
         },
         actionBar: {
@@ -51,6 +50,7 @@ const SearchInputDatePicker = ({
       value={date !== '' ? UtcTimeToLocal(dayjs(date)) : null}
       minDate={minDate}
       onChange={handleDateChange}
+      disableHighlightToday
     />
   );
 };

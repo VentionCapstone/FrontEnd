@@ -58,7 +58,6 @@ export const SearchMobileModal = ({
             label={'Check-in'}
             date={searchParamsAsObject['checkInDate']}
             minDate={dayjs()}
-            setDate={setCheckInDate}
             handleDateChange={handleCheckInChange}
             UtcTimeToLocal={UtcTimeToLocal}
           />
@@ -71,7 +70,6 @@ export const SearchMobileModal = ({
                 ? dayjs(searchParamsAsObject['checkInDate']).add(1, 'day')
                 : dayjs()
             }
-            setDate={setCheckOutDate}
             handleDateChange={handleCheckOutChange}
             UtcTimeToLocal={UtcTimeToLocal}
           />

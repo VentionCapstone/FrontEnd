@@ -164,7 +164,6 @@ export type SearchDatePickerProps = {
   label: string;
   date: string;
   minDate: dayjs.Dayjs | undefined;
-  setDate: React.Dispatch<React.SetStateAction<string>>;
   handleDateChange: (newValue: dayjs.Dayjs | null) => void;
   UtcTimeToLocal: (value: Dayjs) => dayjs.Dayjs;
 };
