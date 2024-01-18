@@ -1,7 +1,7 @@
 import { DefaultSearchParamsType, SearchBarProps } from '@src/types/accommodation.types';
 import { Box, Button } from '@mui/material';
 import dayjs, { Dayjs } from 'dayjs';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { IoSearchSharp } from 'react-icons/io5';
 import { mainStyles } from '../index.styles';
 import SearchInputDatePicker from './SearchInputDatePicker';
@@ -16,6 +16,12 @@ export default function SearchBar({
   const [location, setLocation] = useState(searchParamsAsObject['location']);
   const [checkInDate, setCheckInDate] = useState(searchParamsAsObject['checkInDate']);
   const [checkOutDate, setCheckOutDate] = useState(searchParamsAsObject['checkOutDate']);
+
+  useEffect(() => {
+    console.log('location', location);
+    console.log('checkInDate', checkInDate);
+    console.log('checkOutDate', checkOutDate);
+  }, [location, checkInDate, checkOutDate]);
 
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const handleOpen = useCallback(() => setIsSearchModalOpen(true), []);
@@ -41,8 +47,12 @@ export default function SearchBar({
       alert('Search cannot be performed with only one date specified');
       return;
     }
-    if (dayjs(checkInDate).isAfter(dayjs(checkOutDate), 'day')) {
-      alert('Check-in date cannot be after check-out date');
+    if (dayjs(checkOutDate).isBefore(dayjs(checkInDate), 'day')) {
+      alert('Check-out date cannot be after the check-in date');
+      return;
+    }
+    if (dayjs(checkOutDate).isSame(dayjs(checkInDate), 'day')) {
+      alert('Check-out date cannot be same as the check-in date');
       return;
     }
     if (
@@ -58,8 +68,13 @@ export default function SearchBar({
 
   const handleCheckInChange = useCallback(
     (newValue: dayjs.Dayjs | null) => {
-      if (!newValue) return;
+      if (!newValue) {
+        setCheckInDate('');
+        return;
+      }
+      console.log('checkINdateBeforechange', newValue.toISOString());
       const localizedcheckinTime = localTimeToUtc(dayjs(newValue));
+      console.log('checkINdateAfterchange', localizedcheckinTime.toISOString());
       setCheckInDate(localizedcheckinTime.toISOString());
 
       const prevCheckoutDate: Dayjs = dayjs(searchParamsAsObject['checkOutDate']);
@@ -75,8 +90,13 @@ export default function SearchBar({
 
   const handleCheckOutChange = useCallback(
     (newValue: dayjs.Dayjs | null) => {
-      if (!newValue) return;
+      if (!newValue) {
+        setCheckOutDate('');
+        return;
+      }
+      console.log('checkOUTdateBeforechange', newValue.toISOString());
       const localizedcheckoutTime = localTimeToUtc(dayjs(newValue));
+      console.log('checkOUTdateAfterchange', localizedcheckoutTime.toISOString());
       setCheckOutDate(localizedcheckoutTime.toISOString());
     },
     [localTimeToUtc, setCheckOutDate]
@@ -104,7 +124,7 @@ export default function SearchBar({
         <SearchInputDatePicker
           isMobile={false}
           label={'Check-in'}
-          date={searchParamsAsObject['checkInDate']}
+          date={checkInDate}
           minDate={getCheckInMinDate()}
           setDate={setCheckInDate}
           handleDateChange={handleCheckInChange}
@@ -113,7 +133,7 @@ export default function SearchBar({
         <SearchInputDatePicker
           isMobile={false}
           label={'Check-out'}
-          date={searchParamsAsObject['checkOutDate']}
+          date={checkOutDate}
           minDate={getCheckOutMinDate()}
           setDate={setCheckOutDate}
           handleDateChange={handleCheckOutChange}

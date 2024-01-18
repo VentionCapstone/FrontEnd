@@ -20,7 +20,6 @@ const SearchInputDatePicker = ({
         slotProps={{
           field: {
             clearable: true,
-            onClear: () => setDate(''),
             readOnly: true,
           },
           actionBar: {
