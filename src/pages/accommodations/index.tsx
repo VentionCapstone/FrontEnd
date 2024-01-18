@@ -25,7 +25,6 @@ export default function Accommodations() {
     () => data?.pages.reduce((acc, page) => [...acc, ...page.data], [] as AccommodationType[]),
     [data]
   );
-  console.log(accommodations);
 
   const handleNextPage = useCallback(() => fetchNextPage(), [fetchNextPage]);
 

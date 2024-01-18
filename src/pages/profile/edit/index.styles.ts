@@ -55,6 +55,20 @@ export const editPageStyles = {
       md: '0.75rem',
     },
   },
+  extraCard: {
+    height: '100%',
+    gap: '1rem',
+    flexDirection: {
+      xs: 'row',
+    },
+    alignItems: {
+      xs: 'center',
+    },
+    borderBottom: {
+      xs: '1px solid #EBEBEB',
+    },
+    padding: '1rem 0',
+  },
 
   logoutButton: {
     display: {

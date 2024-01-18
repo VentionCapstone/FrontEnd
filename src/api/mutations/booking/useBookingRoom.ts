@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query';
-import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 import httpClient from '@src/api/httpClient';
@@ -20,7 +19,6 @@ export const useBookingRoom = () => {
       return data.data;
     },
     onSuccess: (data) => {
-      toast.success('Reservation successful');
       navigate(ROUTES.payment.root(data.id, data.accommodationId, data.startDate, data.endDate));
     },
   });

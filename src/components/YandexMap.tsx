@@ -31,7 +31,6 @@ export default function YandexMap({ latitude, longitude, setCoords }: Props) {
         state={{
           zoom: 15,
           center: [latitude || 41.2971, longitude || 69.2815],
-          controls: ['zoomControl', 'fullscreenControl', 'geolocationControl'],
         }}
       >
         <Placemark
