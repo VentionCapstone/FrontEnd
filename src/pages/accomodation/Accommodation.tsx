@@ -104,7 +104,7 @@ function Accommodation() {
               <Typography> {data.numberOfRooms} Rooms -</Typography>
               <Typography>{data.squareMeters} Square meters</Typography>
             </Box>
-            <Typography mt={2}>{data.description}</Typography>
+            <Typography mt={2}>{data?.description}</Typography>
           </Box>
 
           <AmenityList amenities={amenities} />
