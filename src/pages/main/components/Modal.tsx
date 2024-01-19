@@ -77,7 +77,16 @@ export default function MainModal({
     setFilters(searchParams);
     setInvisible(false);
     handleClose();
-  }, [handleClose, setFilters, totalMaxPriceValue, totalMinPriceValue, setInvisible]);
+  }, [
+    totalMinPriceValue,
+    totalMaxPriceValue,
+    location,
+    checkInDate,
+    checkOutDate,
+    setFilters,
+    setInvisible,
+    handleClose,
+  ]);
 
   return (
     <Modal open={open} onClose={handleClose}>

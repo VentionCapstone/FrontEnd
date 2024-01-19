@@ -1,4 +1,3 @@
-import { SearchInputLocationProps } from '@src/types/accommodation.types';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
@@ -6,6 +5,7 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { debounce } from '@mui/material/utils';
+import { SearchInputLocationProps } from '@src/types/accommodation.types';
 import parse from 'autosuggest-highlight/parse';
 import * as React from 'react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -59,11 +59,22 @@ export default function SearchInputLocation({ location, setLocation }: SearchInp
       if (typeof newValue === 'string') return;
       setOptions(newValue ? [newValue, ...options] : options);
       setValue(newValue);
-      const newLocation = newValue?.description;
+      const newLocation = formatLocationString(newValue?.description);
       setLocation(newLocation ? newLocation : '');
     },
     [options, setLocation]
   );
+
+  const formatLocationString = (locationString: string | undefined) => {
+    if (!locationString) return;
+    const parts: Array<string> = locationString.split(',').map((part) => part.trim());
+    const city = parts[0];
+    const country = parts[parts.length - 1];
+
+    const formattedLocationString = `${city}, ${country}`;
+    console.log(formattedLocationString);
+    return formattedLocationString;
+  };
 
   const handleInputValueChange = useCallback(
     (_event: React.SyntheticEvent<Element, Event>, newInputValue: string) => {
@@ -105,7 +116,7 @@ export default function SearchInputLocation({ location, setLocation }: SearchInp
     }
 
     fetch(
-      { input: inputValue, types: ['geocode'] },
+      { input: inputValue, types: ['(cities)'] },
       (results?: readonly google.maps.places.AutocompletePrediction[] | null) => {
         if (active) {
           let newOptions: readonly google.maps.places.AutocompletePrediction[] = [];

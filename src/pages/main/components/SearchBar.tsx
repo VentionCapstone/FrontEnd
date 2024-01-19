@@ -29,14 +29,20 @@ export default function SearchBar({
   const handleClose = useCallback(() => setIsSearchModalOpen(false), []);
 
   const timezoneOffset = dayjs().utcOffset();
-  const localTimeToUtc = (value: Dayjs) => {
-    const utcTime = dayjs(value).add(timezoneOffset, 'minute');
-    return utcTime;
-  };
-  const UtcTimeToLocal = (value: Dayjs) => {
-    const localTime = dayjs(value).subtract(timezoneOffset, 'minute');
-    return localTime;
-  };
+  const localTimeToUtc = useCallback(
+    (value: Dayjs) => {
+      const utcTime = dayjs(value).add(timezoneOffset, 'minute');
+      return utcTime;
+    },
+    [timezoneOffset]
+  );
+  const UtcTimeToLocal = useCallback(
+    (value: Dayjs) => {
+      const localTime = dayjs(value).subtract(timezoneOffset, 'minute');
+      return localTime;
+    },
+    [timezoneOffset]
+  );
 
   const handleSearchClick = useCallback(() => {
     const newSearchParamsAsObject: DefaultSearchParamsType = {
@@ -53,7 +59,21 @@ export default function SearchBar({
     };
     const newSearchParams = new URLSearchParams(newSearchParamsAsObject);
     setSearchParams(newSearchParams);
-  }, [location, checkInDate, checkOutDate]);
+  }, [
+    minPrice,
+    totalMinPrice,
+    maxPrice,
+    totalMaxPrice,
+    minRooms,
+    minPeople,
+    orderByPrice,
+    orderByPeople,
+    orderByRoom,
+    location,
+    checkInDate,
+    checkOutDate,
+    setSearchParams,
+  ]);
 
   const handleSearchModalClick = useCallback(() => {
     handleSearchClick();
@@ -73,7 +93,7 @@ export default function SearchBar({
         setCheckOutDate(localizedcheckinTime.add(1, 'day').toISOString());
       }
     },
-    [localTimeToUtc, searchParamsAsObject, setCheckInDate, setCheckOutDate]
+    [checkInDate, checkOutDate, localTimeToUtc]
   );
 
   const handleCheckOutChange = useCallback(
@@ -89,7 +109,7 @@ export default function SearchBar({
         setCheckInDate(localizedcheckoutTime.subtract(1, 'day').toISOString());
       }
     },
-    [localTimeToUtc, setCheckOutDate]
+    [checkInDate, checkOutDate, localTimeToUtc]
   );
 
   const getCheckOutMinDate = useCallback(() => {
