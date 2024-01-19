@@ -11,6 +11,7 @@ import { Accommodation, DefaultSearchParamsType } from '@src/types/accommodation
 import { ErrorTypes } from '@src/types/i18n.types';
 import AccommodationSkeleton from '../accommodations/AccommodationSkeleton';
 import MainModal from './components/Modal';
+import SearchBar from './components/SearchBar';
 import { mainStyles } from './index.styles';
 
 const defaultSearchParams: DefaultSearchParamsType = {
@@ -21,6 +22,9 @@ const defaultSearchParams: DefaultSearchParamsType = {
   orderByPrice: 'any',
   orderByPeople: 'any',
   orderByRoom: 'any',
+  location: '',
+  checkInDate: '',
+  checkOutDate: '',
 };
 
 function Main() {
@@ -84,14 +88,19 @@ function Main() {
 
   return (
     <Box>
-      <Badge invisible={!invisible} color="primary" badgeContent=" " sx={mainStyles.badgeNumber}>
-        <Button variant="outlined" sx={mainStyles.filterButton} onClick={handleOpen}>
-          <TuneIcon fontSize="small" />
-          <Typography variant={'sm'} fontWeight={800} color={'secondary2.main'}>
-            Filters
-          </Typography>
-        </Button>
-      </Badge>
+      <Box sx={mainStyles.searchBarBox}>
+        <SearchBar
+          priceRange={priceRange}
+          setSearchParams={setSearchParams}
+          searchParamsAsObject={searchParamsAsObject}
+        />
+        <Badge invisible={!invisible} color="primary" badgeContent=" " sx={mainStyles.badgeNumber}>
+          <Button variant="outlined" sx={mainStyles.filterButton} onClick={handleOpen}>
+            <TuneIcon fontSize="small" />
+          </Button>
+        </Badge>
+      </Box>
+
       {accommodations?.length === 0 && (
         <Stack justifyContent={'center'} alignItems={'center'} height="20vh">
           <Typography variant={'lg'}>No accommodations found</Typography>
@@ -121,6 +130,9 @@ function Main() {
           setFilters={setSearchParams}
           priceRange={priceRange}
           setInvisible={setInvisible}
+          location={searchParamsAsObject['location']}
+          checkInDate={searchParamsAsObject['checkInDate']}
+          checkOutDate={searchParamsAsObject['checkOutDate']}
         />
       )}
     </Box>
