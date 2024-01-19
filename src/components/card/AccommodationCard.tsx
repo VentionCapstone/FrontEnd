@@ -58,4 +58,5 @@ function AccommodationCard({ accommodation }: { accommodation: Accommodation }) 
   );
 }
 
-export default memo(AccommodationCard);
+const MemoizedAccommodationCard = memo(AccommodationCard);
+export default MemoizedAccommodationCard;

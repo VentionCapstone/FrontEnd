@@ -14,6 +14,7 @@ import { handleErrorInImage, selectOnlyTrueAmenities } from '@src/utils';
 import YandexMap from '../../components/YandexMap';
 import { styles } from './Accommodation.styles';
 import AmenityList from './components/AmenityList';
+import OwnerCard from './components/OwnerCard';
 import { Reviews } from './components/Reviews';
 import { buildAmenityList } from './utils/amenityListBuilder';
 
@@ -113,6 +114,7 @@ function Accommodation() {
             accomodationId={accommodationId}
             price={data.price}
           />
+          <OwnerCard owner={data.owner} />
         </Box>
       </Box>
       <Reviews accommodationId={accommodationId || ''} />
