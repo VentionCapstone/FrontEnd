@@ -34,7 +34,7 @@ export const ENDPOINTS = {
   },
   amenity: {
     root: (accommodationId: string) => `/amenities/${accommodationId}`,
-    getAmenityList: '/amenities/list',
+    getAmenityList: '/amenities',
   },
   booking: {
     getAvailableDates: (accommodationId: string) => `/booking/available-dates/${accommodationId}`,

@@ -30,13 +30,22 @@ const accommodationCardStyles = {
   favoriteIcon: { position: 'absolute', top: 3, right: 3 },
 } satisfies MuiStylesObject;
 
-function AccommodationCard({ accommodation }: { accommodation: Accommodation }) {
+function AccommodationCard({
+  accommodation: {
+    thumbnailUrl,
+    id,
+    price,
+    address: { country, city },
+  },
+}: {
+  accommodation: Accommodation;
+}) {
   return (
     <Box sx={accommodationCardStyles.root}>
-      <Link to={`/rooms/${accommodation.id}`}>
+      <Link to={`/rooms/${id}`}>
         <Stack gap={3} width="100%">
           <Box sx={accommodationCardStyles.imageBox}>
-            <CustomImage image={accommodation.thumbnailUrl} name={accommodation.address.country} />
+            <CustomImage image={thumbnailUrl} name={country} />
             <Box sx={accommodationCardStyles.favoriteIcon}>
               <IconButton>
                 <FavoriteIcon />
@@ -44,11 +53,12 @@ function AccommodationCard({ accommodation }: { accommodation: Accommodation }) 
             </Box>
           </Box>
           <Stack>
-            <Typography mt={2}>{accommodation.address.city}</Typography>
-            <Typography>{accommodation.address.country}</Typography>
+            <Typography mt={2}>
+              {city}, {country}
+            </Typography>
             <Typography>
               <Box component={'span'} fontWeight={800}>
-                ${accommodation.price}{' '}
+                ${price}{' '}
               </Box>
               night
             </Typography>

@@ -1,5 +1,20 @@
 {
   "translation": {
+    "payment": {
+      "title": "Оплата",
+      "option_name": "Вариант оплаты",
+      "option_type": {
+        "card": "Карта",
+        "cash": "Наличные"
+      },
+      "dates": "Даты",
+      "price_per_night": "Цена за ночь",
+      "total_price": "Итоговая цена",
+      "button_type": {
+        "card": "Оплатить картой",
+        "cash": "Оплатить наличными"
+      }
+    },
     "errors": {
       "default": "Что-то пошло не так, попробуйте ещё раз",
 

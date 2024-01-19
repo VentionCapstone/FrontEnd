@@ -1,5 +1,20 @@
 {
   "translation": {
+    "payment": {
+      "title": "Payment",
+      "option_name": "Payment option",
+      "option_type": {
+        "card": "Card",
+        "cash": "Cash"
+      },
+      "dates": "Dates",
+      "price_per_night": "Price per night",
+      "total_price": "Total price",
+      "button_type": {
+        "card": "Pay with card",
+        "cash": "Pay with cash"
+      }
+    },
     "errors": {
       "default": "Something went wrong, try again",
 

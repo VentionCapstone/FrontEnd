@@ -31,8 +31,20 @@ const routes = createBrowserRouter([
     element: <MainLayout />,
     children: [
       { path: '', element: <Main /> },
-      { path: 'book/:id', element: <Payment /> },
       { path: 'rooms/:id', element: <Accommodation /> },
+      { path: '*', element: <Navigate to="/" /> },
+    ],
+  },
+
+  {
+    path: '/',
+    element: (
+      <PrivateRoute>
+        <MainLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      { path: 'book/:id', element: <Payment /> },
       { path: '*', element: <Navigate to="/" /> },
     ],
   },

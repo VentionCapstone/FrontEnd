@@ -2,6 +2,7 @@ import {
   AccountCircleOutlined,
   ChevronRight,
   GppGoodOutlined,
+  HomeOutlined,
   SettingsOutlined,
 } from '@mui/icons-material';
 import Box from '@mui/material/Box';
@@ -14,6 +15,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import useLogoutMutation from '@src/api/mutations/account/useLogoutMutation';
 import houseIcon from '@src/assets/house.png';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
+import { ROUTES } from '@src/config/routes.config';
 import { useAppSelector } from '@src/hooks/redux-hooks';
 import { getUser } from '@src/stores/slices/authSlice';
 import { editPageStyles } from './index.styles';
@@ -182,6 +184,43 @@ function EditProfile() {
             />
           </Stack>
         </Link>
+
+        <Box display={{ xs: 'flex', md: 'none' }}>
+          <Link
+            component={RouterLink}
+            to={ROUTES.accommodations.root}
+            width={'100%'}
+            sx={{ textDecoration: 'none' }}
+          >
+            <Stack
+              sx={editPageStyles.extraCard}
+              bgcolor={{
+                md: 'backgroundSecondary.main',
+              }}
+            >
+              <HomeOutlined
+                sx={{
+                  fontSize: {
+                    xs: '1.5rem',
+                    md: '2.5rem',
+                  },
+                }}
+              />
+              <Box mr={'auto'}>
+                <Typography mb={{ md: '0.5rem' }} fontWeight={{ md: 600 }}>
+                  My Listings
+                </Typography>
+              </Box>
+              <ChevronRight
+                sx={{
+                  display: {
+                    md: 'none',
+                  },
+                }}
+              />
+            </Stack>
+          </Link>
+        </Box>
       </Stack>
 
       <Button

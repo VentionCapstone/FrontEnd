@@ -6,10 +6,10 @@ import { useSearchParams } from 'react-router-dom';
 
 import useGetAccommodationsQuery from '@src/api/queries/main/useGetAccommodationsQuery';
 import AccommodationCard from '@src/components/card/AccommodationCard';
-import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import DataFetchError from '@src/components/shared/DataFetchError';
 import { Accommodation, DefaultSearchParamsType } from '@src/types/accommodation.types';
 import { ErrorTypes } from '@src/types/i18n.types';
+import AccommodationSkeleton from '../accommodations/AccommodationSkeleton';
 import MainModal from './components/Modal';
 import SearchBar from './components/SearchBar';
 import { mainStyles } from './index.styles';
@@ -70,12 +70,17 @@ function Main() {
   const handleOpen = useCallback(() => setOpen(true), []);
   const handleNextPage = useCallback(() => fetchNextPage(), [fetchNextPage]);
 
-  if (isPending) {
-    return (
-      <Box>
-        <LoadingPrimary />
+  const renderAccommodationSkeleton = useCallback(
+    () => (
+      <Box sx={mainStyles.accommmodationCard}>
+        <AccommodationSkeleton />;
       </Box>
-    );
+    ),
+    []
+  );
+
+  if (isPending) {
+    renderAccommodationSkeleton();
   }
   if (isError) {
     return <DataFetchError errorKey={ErrorTypes.accommodation_failed_to_get_list} />;
@@ -107,7 +112,7 @@ function Main() {
           dataLength={accommodations?.length || 0}
           next={handleNextPage}
           hasMore={hasNextPage}
-          loader={<LoadingPrimary height="30vh" />}
+          loader={renderAccommodationSkeleton()}
         >
           <Box sx={mainStyles.accommmodationCard}>
             {accommodations?.map((accommodation) => (

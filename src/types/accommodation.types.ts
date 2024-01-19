@@ -44,6 +44,7 @@ export type AccommodationReq = z.infer<typeof accommodationSchema>;
 export type AccommodationRes = {
   status: boolean;
   data: AccommodationType[];
+  totalCount: number;
 };
 
 export type AccommodationType = {
@@ -223,6 +224,8 @@ export interface AccommodationSingle {
   address: Address;
   media: Media[];
   amenities: Amenity[];
+  timezoneOffset: number;
+  title: string;
 }
 
 export interface Address {

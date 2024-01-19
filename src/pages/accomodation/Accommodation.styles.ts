@@ -65,8 +65,12 @@ export const styles = {
     gap: 3,
     flexDirection: {
       xs: 'column',
-      md: 'row',
+      lg: 'row',
     },
     mt: 7,
+  },
+  content_price: {
+    display: 'flex',
+    justifyContent: 'space-between',
   },
 } satisfies MuiStylesObject;

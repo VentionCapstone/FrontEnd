@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query';
-import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 import httpClient from '@src/api/httpClient';
@@ -16,12 +15,13 @@ export const useBookingRoom = () => {
       endDate: string;
       accommodationId: string;
     }) => {
-      const { data } = await httpClient.post<BookResponse>(ENDPOINTS.booking.book, reservationData);
+      const {
+        data: { data },
+      } = await httpClient.post<BookResponse>(ENDPOINTS.booking.book, reservationData);
       return data;
     },
     onSuccess: (data) => {
-      toast.success('Reservation successful');
-      navigate(ROUTES.payment.root(data.data.id));
+      navigate(ROUTES.payment.root(data.id, data.accommodationId, data.startDate, data.endDate));
     },
   });
 };

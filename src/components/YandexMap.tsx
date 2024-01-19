@@ -19,7 +19,7 @@ export default function YandexMap({ latitude, longitude, setCoords }: Props) {
     <YMaps
       preload
       query={{
-        apikey: import.meta.env.YANDEX_API_KEY as string,
+        apikey: import.meta.env.VITE_YANDEX_API_KEY as string,
         lang: 'ru_RU',
         load: 'package.full',
       }}
@@ -31,7 +31,6 @@ export default function YandexMap({ latitude, longitude, setCoords }: Props) {
         state={{
           zoom: 15,
           center: [latitude || 41.2971, longitude || 69.2815],
-          controls: ['zoomControl', 'fullscreenControl', 'geolocationControl'],
         }}
       >
         <Placemark
