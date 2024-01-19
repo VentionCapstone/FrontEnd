@@ -15,8 +15,10 @@ export const useBookingRoom = () => {
       endDate: string;
       accommodationId: string;
     }) => {
-      const { data } = await httpClient.post<BookResponse>(ENDPOINTS.booking.book, reservationData);
-      return data.data;
+      const {
+        data: { data },
+      } = await httpClient.post<BookResponse>(ENDPOINTS.booking.book, reservationData);
+      return data;
     },
     onSuccess: (data) => {
       navigate(ROUTES.payment.root(data.id, data.accommodationId, data.startDate, data.endDate));

@@ -12,7 +12,7 @@ import {
 import useTheme from '@mui/material/styles/useTheme';
 import { Elements } from '@stripe/react-stripe-js';
 import dayjs from 'dayjs';
-import { ChangeEvent, FormEvent, useCallback, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import usePostPaymentOptionMutation from '@src/api/mutations/payment/usePostPaymentOptionMutation';
@@ -23,6 +23,7 @@ import DataFetchError from '@src/components/shared/DataFetchError';
 import { stripePromise } from '@src/config/stripe.config';
 import { DATE_MONTH_DAY } from '@src/constants';
 import { handleErrorInImage, truncateReview } from '@src/utils';
+
 import { PaymentForm } from './components/PaymentForm';
 import { PAYMENT_OPTION } from './components/contants';
 import { styles } from './index.styles';
@@ -69,14 +70,15 @@ const Payment = () => {
     [mutate]
   );
 
-  const calculateTotalPrice = useCallback(
-    (price: number): number => {
-      if (!startDate || !endDate) return 0;
+  const calculateTotalPrice = useMemo(
+    () =>
+      (price: number): number => {
+        if (!startDate || !endDate) return 0;
 
-      const nights = endDate.diff(startDate, 'days');
-      const total = nights * price;
-      return total;
-    },
+        const nights = endDate.diff(startDate, 'days');
+        const total = nights * price;
+        return total;
+      },
     [startDate, endDate]
   );
 
@@ -101,6 +103,8 @@ const Payment = () => {
     return <LoadingPrimary height="10vh" />;
   }
 
+  const { title, previewImgUrl, price, description } = accommodation;
+
   return (
     <>
       <Typography variant="lg">Payment</Typography>
@@ -119,18 +123,14 @@ const Payment = () => {
         <Box sx={styles.payment_accommodation_container}>
           <Box sx={styles.payment_accommodation}>
             <Box sx={styles.paymanet_accommodation_image}>
-              <img
-                src={accommodation.previewImgUrl}
-                alt={accommodation.title}
-                onError={handleErrorInImage}
-              />
+              <img src={previewImgUrl} alt={title} onError={handleErrorInImage} />
             </Box>
             <Stack justifyContent={'inherit'} sx={styles.payment_accommodation_details}>
               <Typography fontWeight={600} variant={mobileScreen ? 'sm' : 'subtitle1'}>
-                {accommodation.title}
+                {title}
               </Typography>
               <Typography variant="sm">
-                {truncateReview(accommodation.description, mobileScreen ? 20 : 80)}
+                {truncateReview(description, mobileScreen ? 20 : 80)}
               </Typography>
               <Typography variant="sm">
                 Dates:{' '}
@@ -139,12 +139,12 @@ const Payment = () => {
                 </b>
               </Typography>
               <Typography variant="sm">
-                Price per night: <b>${accommodation.price}</b>
+                Price per night: <b>${price}</b>
               </Typography>
             </Stack>
           </Box>
           <Typography marginTop={'1rem'}>
-            Total price: <b>${calculateTotalPrice(accommodation.price)}</b>
+            Total price: <b>${calculateTotalPrice(price)}</b>
           </Typography>
         </Box>
       </Stack>
