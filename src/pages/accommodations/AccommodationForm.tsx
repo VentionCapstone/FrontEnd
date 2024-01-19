@@ -9,15 +9,13 @@ import { useDeleteAccommodation } from '@src/api/mutations/accommodations/useDel
 import { useRestoreAccommodation } from '@src/api/mutations/accommodations/useRestoreAccommodation';
 import { useUpdateAccommodation } from '@src/api/mutations/accommodations/useUpdateAccommodation';
 import { useGetAccommodation } from '@src/api/queries/accommodations/useGetAccommodation';
-import YandexMap from '@src/components/YandexMap';
 import { ROUTES } from '@src/config/routes.config';
 import { AccommodationReq, accommodationSchema } from '@src/types/accommodation.types';
 import { Coordinates } from '@src/types/global.types';
-import { FormDateField } from './FormDateField';
-import { FormField } from './FormField';
 
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useCallback, useState } from 'react';
+import FormFields from './components/FormFields';
 import ConfirmationModal from './components/Modal';
 
 export default function AccommodationForm() {
@@ -43,9 +41,8 @@ export default function AccommodationForm() {
       allowedNumberOfPeople: 1,
       availableFrom: String(new Date()),
       availableTo: String(new Date(dayjs().add(1, 'week').toDate())),
-      thumbnailUrl: '',
       numberOfRooms: 1,
-      previewImgUrl: '',
+      available: true,
       price: 0,
       squareMeters: 0,
       address: {
@@ -126,115 +123,13 @@ export default function AccommodationForm() {
         {id ? 'Edit' : 'Create'} Accommodation
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Box display={'grid'} gridTemplateColumns={'1fr 1fr'} gap={4} py={4}>
-          <FormField
-            name="title"
-            label="Title"
-            control={control}
-            error={!!errors.title}
-            helperText={errors.title?.message}
-          />
-          <FormField
-            name="description"
-            label="Description"
-            control={control}
-            error={!!errors.description}
-            helperText={errors.description?.message}
-          />
-          <FormDateField
-            name="availableFrom"
-            label="Available From"
-            control={control}
-            helperText={errors.availableFrom?.message}
-          />
-          <FormDateField
-            name="availableTo"
-            label="Available To"
-            control={control}
-            helperText={errors.availableTo?.message}
-          />
-          <FormField
-            name="thumbnailUrl"
-            label="Thumbnail Url"
-            control={control}
-            error={!!errors.thumbnailUrl}
-            helperText={errors.thumbnailUrl?.message}
-          />
-          <FormField
-            name="previewImgUrl"
-            label="Preview Image Url"
-            control={control}
-            error={!!errors.previewImgUrl}
-            helperText={errors.previewImgUrl?.message}
-          />
-          <FormField
-            type="number"
-            control={control}
-            name="allowedNumberOfPeople"
-            label="Allowed Number Of People"
-            error={!!errors.allowedNumberOfPeople}
-            helperText={errors.allowedNumberOfPeople?.message}
-          />
-          <FormField
-            type="number"
-            control={control}
-            name="numberOfRooms"
-            label="Number Of Rooms"
-            error={!!errors.numberOfRooms}
-            helperText={errors.numberOfRooms?.message}
-          />
-          <FormField
-            type="number"
-            control={control}
-            name="price"
-            label="Price"
-            error={!!errors.price}
-            helperText={errors.price?.message}
-          />
-          <FormField
-            type="number"
-            control={control}
-            name="squareMeters"
-            label="Square Meters"
-            error={!!errors.squareMeters}
-            helperText={errors.squareMeters?.message}
-          />
-          <FormField
-            name="address.street"
-            label="Street"
-            control={control}
-            error={!!errors.address?.street}
-            helperText={errors.address?.street?.message}
-          />
-          <FormField
-            name="address.city"
-            label="City"
-            control={control}
-            error={!!errors.address?.city}
-            helperText={errors.address?.city?.message}
-          />
-          <FormField
-            name="address.country"
-            label="Country"
-            control={control}
-            error={!!errors.address?.country}
-            helperText={errors.address?.country?.message}
-          />
-          <FormField
-            name="address.zipCode"
-            label="Zip Code"
-            control={control}
-            error={!!errors.address?.zipCode}
-            helperText={errors.address?.zipCode?.message}
-          />
-          <Box sx={{ gridColumn: '1 / 3' }}>
-            <YandexMap
-              latitude={latitudeWatch}
-              longitude={longitudeWatch}
-              setCoords={handleCoordsChange}
-            />
-          </Box>
-        </Box>
+        <FormFields
+          control={control}
+          errors={errors}
+          latitudeWatch={latitudeWatch}
+          longitudeWatch={longitudeWatch}
+          handleCoordsChange={handleCoordsChange}
+        />
         <Box display="flex" justifyContent={id ? 'space-between' : 'flex-end'}>
           {id && (
             <>

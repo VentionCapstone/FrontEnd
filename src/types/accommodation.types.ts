@@ -4,31 +4,29 @@ import { z } from 'zod';
 
 export type AccommodationFields =
   | 'title'
-  | 'thumbnailUrl'
   | 'squareMeters'
   | 'numberOfRooms'
   | 'price'
   | 'allowedNumberOfPeople'
   | 'availableFrom'
+  | 'available'
   | 'availableTo'
   | 'description'
-  | 'previewImgUrl'
   | 'address.street'
   | 'address.city'
   | 'address.country'
   | 'address.zipCode';
 
 export const accommodationSchema = z.object({
-  title: z.string().min(10).max(100),
-  thumbnailUrl: z.string().url({ message: 'Thumbnail url must be a valid url' }),
+  title: z.string().min(5).max(100),
   squareMeters: z.number(),
   numberOfRooms: z.number(),
   price: z.number(),
   allowedNumberOfPeople: z.number(),
   availableFrom: z.string(),
   availableTo: z.string(),
+  available: z.boolean(),
   description: z.string().min(10).max(256),
-  previewImgUrl: z.string(),
   address: z.object({
     street: z.string().min(3, 'Street name must be at least 3 characters'),
     city: z.string().min(3, 'City name must be at least 3 characters'),
@@ -59,6 +57,7 @@ export type AccommodationType = {
   price: number;
   allowedNumberOfPeople: number;
   availableFrom: string;
+  available: boolean;
   availableTo: string;
   description: string;
   previewImgUrl: string;
