@@ -1,5 +1,20 @@
 {
   "translation": {
+    "payment": {
+      "title": "To'lov",
+      "option_name": "To'lov turi",
+      "option_type": {
+        "card": "Karta",
+        "cash": "Naqd pul"
+      },
+      "dates": "Sana",
+      "price_per_night": "Kunlik narx",
+      "total_price": "Umumiy narx",
+      "button_type": {
+        "card": "Karta bilan to'lash",
+        "cash": "Naqd pul bilan to'lash"
+      }
+    },
     "errors": {
       "default": "Nimadir noto'g'ri ketdi, yana urinib ko'ring",
 

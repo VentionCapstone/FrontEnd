@@ -13,6 +13,7 @@ import useTheme from '@mui/material/styles/useTheme';
 import { Elements } from '@stripe/react-stripe-js';
 import dayjs from 'dayjs';
 import { ChangeEvent, FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import usePostPaymentOptionMutation from '@src/api/mutations/payment/usePostPaymentOptionMutation';
@@ -22,6 +23,7 @@ import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import DataFetchError from '@src/components/shared/DataFetchError';
 import { stripePromise } from '@src/config/stripe.config';
 import { DATE_MONTH_DAY } from '@src/constants';
+import { PaymentInfo } from '@src/types/i18n.types';
 import { handleErrorInImage, truncateReview } from '@src/utils';
 
 import { PaymentForm } from './components/PaymentForm';
@@ -41,6 +43,7 @@ const Payment = () => {
 
   const theme = useTheme();
   const mobileScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const { t } = useTranslation();
 
   const {
     data: accommodation,
@@ -90,7 +93,7 @@ const Payment = () => {
     ),
     [PAYMENT_OPTION.cash]: (
       <Box component={'form'} onSubmit={handlePaymentClick}>
-        <ButtonPrimary loading={isPending}>Pay with cash</ButtonPrimary>
+        <ButtonPrimary loading={isPending}>{t(PaymentInfo.button_type_cash)}</ButtonPrimary>
       </Box>
     ),
   };
@@ -107,14 +110,22 @@ const Payment = () => {
 
   return (
     <>
-      <Typography variant="lg">Payment</Typography>
+      <Typography variant="lg">{t(PaymentInfo.title)}</Typography>
       <Stack sx={styles.payment_container}>
         <Box sx={styles.payment_form}>
           <FormControl>
-            <FormLabel>Payment Option</FormLabel>
+            <FormLabel>{t(PaymentInfo.option_name)}</FormLabel>
             <RadioGroup row value={paymentOption} onChange={handlePaymentChange}>
-              <FormControlLabel value={PAYMENT_OPTION.card} control={<Radio />} label="Card" />
-              <FormControlLabel value={PAYMENT_OPTION.cash} control={<Radio />} label="Cash" />
+              <FormControlLabel
+                value={PAYMENT_OPTION.card}
+                control={<Radio />}
+                label={t(PaymentInfo.option_type_card)}
+              />
+              <FormControlLabel
+                value={PAYMENT_OPTION.cash}
+                control={<Radio />}
+                label={t(PaymentInfo.option_type_cash)}
+              />
             </RadioGroup>
           </FormControl>
           {isPending ? <LoadingPrimary height="10vh" /> : paymentMethods[paymentOption]}
@@ -133,18 +144,18 @@ const Payment = () => {
                 {truncateReview(description, mobileScreen ? 20 : 80)}
               </Typography>
               <Typography variant="sm">
-                Dates:{' '}
+                {t(PaymentInfo.dates)}:{' '}
                 <b>
                   {startDate.format(DATE_MONTH_DAY)} - {endDate.format(DATE_MONTH_DAY)}
                 </b>
               </Typography>
               <Typography variant="sm">
-                Price per night: <b>${price}</b>
+                {t(PaymentInfo.price_per_night)}: <b>${price}</b>
               </Typography>
             </Stack>
           </Box>
           <Typography marginTop={'1rem'}>
-            Total price: <b>${calculateTotalPrice(price)}</b>
+            {t(PaymentInfo.total_price)}: <b>${calculateTotalPrice(price)}</b>
           </Typography>
         </Box>
       </Stack>
