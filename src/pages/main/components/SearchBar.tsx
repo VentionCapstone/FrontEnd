@@ -9,8 +9,8 @@ import { useCallback, useState } from 'react';
 import { IoSearchSharp } from 'react-icons/io5';
 import { mainStyles } from '../index.styles';
 import { modalStyles } from './Modal.styles';
-import SearchInputDatePicker from './SearchInputDatePicker';
-import SearchInputLocation from './SearchInputLocation';
+import SearchByCityInput from './SearchByCityInput';
+import SearchByDateInput from './SearchByDateInput';
 
 export default function SearchBar({
   priceRange,
@@ -135,8 +135,8 @@ export default function SearchBar({
   return (
     <>
       <Box sx={mainStyles.searchDesktopContainer}>
-        <SearchInputLocation location={location} setLocation={setLocation} />
-        <SearchInputDatePicker
+        <SearchByCityInput location={location} setLocation={setLocation} />
+        <SearchByDateInput
           isMobile={false}
           label={'Check-in'}
           date={checkInDate}
@@ -145,7 +145,7 @@ export default function SearchBar({
           handleDateChange={handleCheckInChange}
           UtcTimeToLocal={UtcTimeToLocal}
         />
-        <SearchInputDatePicker
+        <SearchByDateInput
           isMobile={false}
           label={'Check-out'}
           date={checkOutDate}
@@ -171,11 +171,11 @@ export default function SearchBar({
               <Button sx={modalStyles.searchCloseButton} onClick={handleClose}>
                 <CloseIcon />
               </Button>
-              <SearchInputLocation
+              <SearchByCityInput
                 location={searchParamsAsObject['location']}
                 setLocation={setLocation}
               />
-              <SearchInputDatePicker
+              <SearchByDateInput
                 isMobile={true}
                 label={'Check-in'}
                 date={checkInDate}
@@ -184,7 +184,7 @@ export default function SearchBar({
                 handleDateChange={handleCheckInChange}
                 UtcTimeToLocal={UtcTimeToLocal}
               />
-              <SearchInputDatePicker
+              <SearchByDateInput
                 isMobile={true}
                 label={'Check-out'}
                 date={checkOutDate}

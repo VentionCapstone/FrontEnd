@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { debounce } from '@mui/material/utils';
-import { SearchInputLocationProps } from '@src/types/accommodation.types';
+import { SearchByCityInputProps } from '@src/types/accommodation.types';
 import parse from 'autosuggest-highlight/parse';
 import * as React from 'react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -32,7 +32,7 @@ interface MainTextMatchedSubstrings {
   length: number;
 }
 
-export default function SearchInputLocation({ location, setLocation }: SearchInputLocationProps) {
+const SearchByCityInput = ({ location, setLocation }: SearchByCityInputProps) => {
   const [value, setValue] = useState<google.maps.places.AutocompletePrediction | null>(null);
   const [inputValue, setInputValue] = React.useState('');
   const [options, setOptions] = React.useState<
@@ -197,4 +197,6 @@ export default function SearchInputLocation({ location, setLocation }: SearchInp
       }}
     />
   );
-}
+};
+
+export default SearchByCityInput;

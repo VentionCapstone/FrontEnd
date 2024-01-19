@@ -1,10 +1,10 @@
 import { DatePicker, MobileDatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import { mainStyles } from '../index.styles';
-import { SearchDatePickerProps } from '@src/types/accommodation.types';
+import { SearchByDateInputProps } from '@src/types/accommodation.types';
 import 'dayjs/plugin/isSameOrBefore';
 
-const SearchInputDatePicker = ({
+const SearchByDateInput = ({
   isMobile,
   label,
   date,
@@ -12,7 +12,7 @@ const SearchInputDatePicker = ({
   maxDate,
   handleDateChange,
   UtcTimeToLocal,
-}: SearchDatePickerProps) => {
+}: SearchByDateInputProps) => {
   if (!isMobile) {
     return (
       <DatePicker
@@ -58,4 +58,4 @@ const SearchInputDatePicker = ({
   );
 };
 
-export default SearchInputDatePicker;
+export default SearchByDateInput;

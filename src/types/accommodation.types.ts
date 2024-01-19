@@ -126,11 +126,6 @@ export type MainModalProps = {
   checkOutDate: string;
 };
 
-export type SearchInputLocationProps = {
-  location: string;
-  setLocation: React.Dispatch<React.SetStateAction<string>>;
-};
-
 export type SearchBarProps = {
   priceRange: {
     totalMaxPrice: number;
@@ -140,13 +135,18 @@ export type SearchBarProps = {
   searchParamsAsObject: Record<string, string>;
 };
 
-export type SearchProps = {
+export type SearchByCityInputProps = {
+  location: string;
   setLocation: React.Dispatch<React.SetStateAction<string>>;
-  setCheckInDate: React.Dispatch<React.SetStateAction<string>>;
-  setCheckOutDate: React.Dispatch<React.SetStateAction<string>>;
-  searchParamsAsObject: Record<string, string>;
-  handleSearchClick: () => void;
-  localTimeToUtc: (value: Dayjs) => dayjs.Dayjs;
+};
+
+export type SearchByDateInputProps = {
+  isMobile: boolean;
+  label: string;
+  date: string;
+  minDate: dayjs.Dayjs | undefined;
+  maxDate: dayjs.Dayjs | undefined;
+  handleDateChange: (newValue: dayjs.Dayjs | null) => void;
   UtcTimeToLocal: (value: Dayjs) => dayjs.Dayjs;
 };
 
@@ -165,16 +165,6 @@ export type SearchModalProps = {
     totalMinPrice: number;
   };
   setSearchParams: (params: URLSearchParams) => void;
-};
-
-export type SearchDatePickerProps = {
-  isMobile: boolean;
-  label: string;
-  date: string;
-  minDate: dayjs.Dayjs | undefined;
-  maxDate: dayjs.Dayjs | undefined;
-  handleDateChange: (newValue: dayjs.Dayjs | null) => void;
-  UtcTimeToLocal: (value: Dayjs) => dayjs.Dayjs;
 };
 
 export type ConfirmationModalProps = {
