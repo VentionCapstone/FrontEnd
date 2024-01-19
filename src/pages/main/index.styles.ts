@@ -7,26 +7,6 @@ export const mainStyles = {
     justifyContent: 'center',
     alignContent: 'center',
   },
-  filterButtonDesktop: {
-    display: {
-      xs: 'none',
-      md: 'flex',
-    },
-  },
-  filterButtonMobile: {
-    display: {
-      xs: 'flex',
-      md: 'none',
-    },
-    gap: '0.5rem',
-    padding: '0',
-    margin: '0',
-    borderRadius: '50%',
-    borderColor: 'black',
-    width: '40px',
-    height: '40px',
-    minWidth: 0,
-  },
   filterButton: {
     display: 'flex',
     gap: '0.5rem',
@@ -41,7 +21,10 @@ export const mainStyles = {
       xs: '40px',
       md: '50px',
     },
-    minWidth: '50px',
+    minWidth: {
+      xs: '40px',
+      md: '50px',
+    },
     color: 'secondary2.main',
   },
   accommmodationCard: {
