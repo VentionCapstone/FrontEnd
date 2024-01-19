@@ -1,3 +1,4 @@
+import dayjs, { Dayjs } from 'dayjs';
 import { MouseEventHandler } from 'react';
 import { z } from 'zod';
 
@@ -120,6 +121,50 @@ export type MainModalProps = {
     totalMinPrice: number;
   };
   setInvisible: React.Dispatch<React.SetStateAction<boolean>>;
+  location: string;
+  checkInDate: string;
+  checkOutDate: string;
+};
+
+export type SearchBarProps = {
+  priceRange: {
+    totalMaxPrice: number;
+    totalMinPrice: number;
+  };
+  setSearchParams: (params: URLSearchParams) => void;
+  searchParamsAsObject: Record<string, string>;
+};
+
+export type SearchByCityInputProps = {
+  location: string;
+  setLocation: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export type SearchByDateInputProps = {
+  isMobile: boolean;
+  label: string;
+  date: string;
+  minDate: dayjs.Dayjs | undefined;
+  maxDate: dayjs.Dayjs | undefined;
+  handleDateChange: (newValue: dayjs.Dayjs | null) => void;
+  UtcTimeToLocal: (value: Dayjs) => dayjs.Dayjs;
+};
+
+export type SearchModalProps = {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setLocation: React.Dispatch<React.SetStateAction<string>>;
+  setCheckInDate: React.Dispatch<React.SetStateAction<string>>;
+  setCheckOutDate: React.Dispatch<React.SetStateAction<string>>;
+  searchParamsAsObject: Record<string, string>;
+  handleSearchClick: () => void;
+  localTimeToUtc: (value: Dayjs) => dayjs.Dayjs;
+  UtcTimeToLocal: (value: Dayjs) => dayjs.Dayjs;
+  priceRange: {
+    totalMaxPrice: number;
+    totalMinPrice: number;
+  };
+  setSearchParams: (params: URLSearchParams) => void;
 };
 
 export type ConfirmationModalProps = {
@@ -138,6 +183,9 @@ export type FormValue = {
   orderByPrice: string;
   orderByPeople: string;
   orderByRoom: string;
+  location: string;
+  checkInDate: string;
+  checkOutDate: string;
 };
 
 export type DefaultSearchParamsType = {
@@ -148,6 +196,9 @@ export type DefaultSearchParamsType = {
   orderByPrice: string;
   orderByPeople: string;
   orderByRoom: string;
+  location: string;
+  checkInDate: string;
+  checkOutDate: string;
 };
 
 export interface AccommodationSingleResponse {

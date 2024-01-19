@@ -44,7 +44,8 @@ function AccommodationCard({ accommodation }: { accommodation: Accommodation }) 
             </Box>
           </Box>
           <Stack>
-            <Typography mt={2}>{accommodation.address.country}</Typography>
+            <Typography mt={2}>{accommodation.address.city}</Typography>
+            <Typography>{accommodation.address.country}</Typography>
             <Typography>
               <Box component={'span'} fontWeight={800}>
                 ${accommodation.price}{' '}
