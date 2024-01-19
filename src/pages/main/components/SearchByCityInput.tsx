@@ -72,7 +72,6 @@ const SearchByCityInput = ({ location, setLocation }: SearchByCityInputProps) =>
     const country = parts[parts.length - 1];
 
     const formattedLocationString = `${city}, ${country}`;
-    console.log(formattedLocationString);
     return formattedLocationString;
   };
 
