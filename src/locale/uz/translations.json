@@ -12,6 +12,14 @@
       "password_must_contain": "Parol kamida bitta katta harf, bitta kichik harf, bitta raqam va bitta maxsus belgidan iborat bo'lishi kerak",
       "password_invalid_length": "Parol kamida 8 ta belgidan iborat bo'lishi kerak",
       "password_not_matching": "Parollar mos emas!"
+    },
+    "searchTexts": {
+      "input_date_label_checkin": "Kirish kuni",
+      "input_date_label_checkout": "Chiqish kuni",
+      "input_location_label_default": "Manzil",
+      "input_location_label_anywhere": "Har qayer",
+      "search_button": "Izlash",
+      "input_location_no_options": "Joylashuvni kiriting"
     }
   }
 }
