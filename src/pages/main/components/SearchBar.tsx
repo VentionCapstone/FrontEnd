@@ -11,12 +11,15 @@ import { mainStyles } from '../index.styles';
 import { modalStyles } from './Modal.styles';
 import SearchByCityInput from './SearchByCityInput';
 import SearchByDateInput from './SearchByDateInput';
+import { SearchTexts } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 
 export default function SearchBar({
   priceRange,
   setSearchParams,
   searchParamsAsObject,
 }: SearchBarProps) {
+  const { t } = useTranslation();
   const [location, setLocation] = useState(searchParamsAsObject['location']);
   const [checkInDate, setCheckInDate] = useState(searchParamsAsObject['checkInDate']);
   const [checkOutDate, setCheckOutDate] = useState(searchParamsAsObject['checkOutDate']);
@@ -138,7 +141,7 @@ export default function SearchBar({
         <SearchByCityInput location={location} setLocation={setLocation} />
         <SearchByDateInput
           isMobile={false}
-          label={'Check-in'}
+          label={t(SearchTexts.input_date_label_checkin)}
           date={checkInDate}
           minDate={getCheckInMinDate()}
           maxDate={getCheckInMaxDate()}
@@ -147,7 +150,7 @@ export default function SearchBar({
         />
         <SearchByDateInput
           isMobile={false}
-          label={'Check-out'}
+          label={t(SearchTexts.input_date_label_checkout)}
           date={checkOutDate}
           minDate={getCheckOutMinDate()}
           maxDate={undefined}
@@ -161,7 +164,7 @@ export default function SearchBar({
       </Box>
 
       <Button variant="text" onClick={handleOpen} sx={mainStyles.mobileSearchBarButton}>
-        Search
+        {t(SearchTexts.search_button)}
       </Button>
 
       {isSearchModalOpen && (
@@ -171,13 +174,10 @@ export default function SearchBar({
               <Button sx={modalStyles.searchCloseButton} onClick={handleClose}>
                 <CloseIcon />
               </Button>
-              <SearchByCityInput
-                location={searchParamsAsObject['location']}
-                setLocation={setLocation}
-              />
+              <SearchByCityInput location={location} setLocation={setLocation} />
               <SearchByDateInput
                 isMobile={true}
-                label={'Check-in'}
+                label={t(SearchTexts.input_date_label_checkin)}
                 date={checkInDate}
                 minDate={dayjs()}
                 maxDate={getCheckInMaxDate()}
@@ -186,7 +186,7 @@ export default function SearchBar({
               />
               <SearchByDateInput
                 isMobile={true}
-                label={'Check-out'}
+                label={t(SearchTexts.input_date_label_checkout)}
                 date={checkOutDate}
                 minDate={getCheckOutMinDate()}
                 maxDate={undefined}
@@ -198,7 +198,7 @@ export default function SearchBar({
                 onClick={handleSearchModalClick}
                 sx={{ backgroundColor: pink[500] }}
               >
-                Search
+                {t(SearchTexts.search_button)}
               </Button>
             </Box>
           </Fade>
