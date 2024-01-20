@@ -6,11 +6,12 @@ import { useSearchParams } from 'react-router-dom';
 
 import useGetAccommodationsQuery from '@src/api/queries/main/useGetAccommodationsQuery';
 import AccommodationCard from '@src/components/card/AccommodationCard';
-import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import DataFetchError from '@src/components/shared/DataFetchError';
 import { Accommodation, DefaultSearchParamsType } from '@src/types/accommodation.types';
 import { ErrorTypes } from '@src/types/i18n.types';
+import AccommodationSkeleton from '../accommodations/AccommodationSkeleton';
 import MainModal from './components/Modal';
+import SearchBar from './components/SearchBar';
 import { mainStyles } from './index.styles';
 
 const defaultSearchParams: DefaultSearchParamsType = {
@@ -21,6 +22,9 @@ const defaultSearchParams: DefaultSearchParamsType = {
   orderByPrice: 'any',
   orderByPeople: 'any',
   orderByRoom: 'any',
+  location: '',
+  checkInDate: '',
+  checkOutDate: '',
 };
 
 function Main() {
@@ -66,12 +70,17 @@ function Main() {
   const handleOpen = useCallback(() => setOpen(true), []);
   const handleNextPage = useCallback(() => fetchNextPage(), [fetchNextPage]);
 
-  if (isPending) {
-    return (
-      <Box>
-        <LoadingPrimary />
+  const renderAccommodationSkeleton = useCallback(
+    () => (
+      <Box sx={mainStyles.accommmodationCard}>
+        <AccommodationSkeleton />;
       </Box>
-    );
+    ),
+    []
+  );
+
+  if (isPending) {
+    renderAccommodationSkeleton();
   }
   if (isError) {
     return <DataFetchError errorKey={ErrorTypes.accommodation_failed_to_get_list} />;
@@ -79,14 +88,19 @@ function Main() {
 
   return (
     <Box>
-      <Badge invisible={!invisible} color="primary" badgeContent=" " sx={mainStyles.badgeNumber}>
-        <Button variant="outlined" sx={mainStyles.filterButton} onClick={handleOpen}>
-          <TuneIcon fontSize="small" />
-          <Typography variant={'sm'} fontWeight={800} color={'secondary2.main'}>
-            Filters
-          </Typography>
-        </Button>
-      </Badge>
+      <Box sx={mainStyles.searchBarBox}>
+        <SearchBar
+          priceRange={priceRange}
+          setSearchParams={setSearchParams}
+          searchParamsAsObject={searchParamsAsObject}
+        />
+        <Badge invisible={!invisible} color="primary" badgeContent=" " sx={mainStyles.badgeNumber}>
+          <Button variant="outlined" sx={mainStyles.filterButton} onClick={handleOpen}>
+            <TuneIcon fontSize="small" />
+          </Button>
+        </Badge>
+      </Box>
+
       {accommodations?.length === 0 && (
         <Stack justifyContent={'center'} alignItems={'center'} height="20vh">
           <Typography variant={'lg'}>No accommodations found</Typography>
@@ -98,7 +112,7 @@ function Main() {
           dataLength={accommodations?.length || 0}
           next={handleNextPage}
           hasMore={hasNextPage}
-          loader={<LoadingPrimary height="30vh" />}
+          loader={renderAccommodationSkeleton()}
         >
           <Box sx={mainStyles.accommmodationCard}>
             {accommodations?.map((accommodation) => (
@@ -116,6 +130,9 @@ function Main() {
           setFilters={setSearchParams}
           priceRange={priceRange}
           setInvisible={setInvisible}
+          location={searchParamsAsObject['location']}
+          checkInDate={searchParamsAsObject['checkInDate']}
+          checkOutDate={searchParamsAsObject['checkOutDate']}
         />
       )}
     </Box>

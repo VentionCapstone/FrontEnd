@@ -10,5 +10,13 @@ export interface AvailableDatesResponse {
 
 export interface BookResponse {
   success: boolean;
-  data: { id: string; startDate: string; endDate: string; status: string };
+  data: Book;
+}
+
+interface Book {
+  id: string;
+  startDate: string;
+  endDate: string;
+  status: string;
+  accommodationId: string;
 }

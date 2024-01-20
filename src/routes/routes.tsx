@@ -32,9 +32,21 @@ const routes = createBrowserRouter([
     element: <MainLayout />,
     children: [
       { path: '', element: <Main /> },
-      { path: 'book/:id', element: <Payment /> },
       { path: 'rooms/:id', element: <Accommodation /> },
       { path: 'host/:id', element: <Host /> },
+      { path: '*', element: <Navigate to="/" /> },
+    ],
+  },
+
+  {
+    path: '/',
+    element: (
+      <PrivateRoute>
+        <MainLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      { path: 'book/:id', element: <Payment /> },
       { path: '*', element: <Navigate to="/" /> },
     ],
   },

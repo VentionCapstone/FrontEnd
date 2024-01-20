@@ -1,5 +1,20 @@
 {
   "translation": {
+    "payment": {
+      "title": "Оплата",
+      "option_name": "Вариант оплаты",
+      "option_type": {
+        "card": "Карта",
+        "cash": "Наличные"
+      },
+      "dates": "Даты",
+      "price_per_night": "Цена за ночь",
+      "total_price": "Итоговая цена",
+      "button_type": {
+        "card": "Оплатить картой",
+        "cash": "Оплатить наличными"
+      }
+    },
     "errors": {
       "default": "Что-то пошло не так, попробуйте ещё раз",
 
@@ -12,6 +27,14 @@
       "password_must_contain": "Пароль должен содержать хотя бы одну заглавную букву, одну строчную букву, одну цифру и один специальный символ.",
       "password_invalid_length": "Пароль должен быть не менее 8 символов",
       "password_not_matching": "Пароли не совпадают!"
+    },
+    "searchTexts": {
+      "input_date_label_checkin": "Заезд",
+      "input_date_label_checkout": "Выезд",
+      "input_location_label_default": "Пункт назначения",
+      "input_location_label_anywhere": "Везде",
+      "search_button": "Поиск",
+      "input_location_no_options": "Введите местоположение"
     }
   }
 }

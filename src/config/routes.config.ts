@@ -15,6 +15,7 @@ export const ROUTES = {
     edit: (id: string) => `/accommodations/edit/${id}`,
   },
   payment: {
-    root: (id: string) => `/book/${id}`,
+    root: (id: string, accommodationId: string, startDate: string, endDate: string) =>
+      `/book/${id}?accommodationId=${accommodationId}&startDate=${startDate}&endDate=${endDate}`,
   },
 } as const;

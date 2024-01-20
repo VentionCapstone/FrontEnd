@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
 import { DEFAULT_LANGUAGE } from '@src/constants';
 import i18n from '@src/i18n/i18n';
-import { removeToken, setToken } from '@src/stores/slices/authSlice';
+import { logout, setToken } from '@src/stores/slices/authSlice';
 import { store } from '@src/stores/store';
 import { RefreshResponse, RefreshingPromise, isRefreshingType } from '@src/types/auth.types';
 import { ErrorResponse } from '@src/types/error.types';
@@ -61,7 +61,7 @@ async function resErrInterceptor(error: AxiosError<ErrorResponse>) {
       // If not already refreshing, initiate token refresh
       isRefreshing = refreshAccessToken().then((res) => {
         if ('error' in res) {
-          store.dispatch(removeToken());
+          store.dispatch(logout());
           httpClient.defaults.headers.common['Authorization'] = '';
           toast.error(
             error.response?.data?.error.message || 'Your session has expired, please sign in again'

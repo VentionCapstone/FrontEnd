@@ -1,5 +1,20 @@
 {
   "translation": {
+    "payment": {
+      "title": "Payment",
+      "option_name": "Payment option",
+      "option_type": {
+        "card": "Card",
+        "cash": "Cash"
+      },
+      "dates": "Dates",
+      "price_per_night": "Price per night",
+      "total_price": "Total price",
+      "button_type": {
+        "card": "Pay with card",
+        "cash": "Pay with cash"
+      }
+    },
     "errors": {
       "default": "Something went wrong, try again",
 
@@ -12,6 +27,14 @@
       "password_must_contain": "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character",
       "password_invalid_length": "Password must be at least 8 characters",
       "password_not_matching": "Passwords are not matching!"
+    },
+    "searchTexts": {
+      "input_date_label_checkin": "Check-in",
+      "input_date_label_checkout": "Check-out",
+      "input_location_label_default": "Destination",
+      "input_location_label_anywhere": "Anywhere",
+      "search_button": "Search",
+      "input_location_no_options": "Enter location"
     }
   }
 }
