@@ -31,32 +31,46 @@
 
     "home_ui": {
       "user_home_btn": {
-        "account": "hisob",
+        "account": "Hisob",
         "mylistings": "Mening ro'yhatlarim",
         "logout": "Chiqish"
       },
+      "register": {
+        "sign_in": {
+          "sing_in_btn": "Kirish",
+          "sing_title": "Kirish",
+          "title": "Iltimos, kirishni tanlang",
+          "forgot_password": "Parolingizni unutdingizmi?",
+          "forgot_password_desc": "Agar akkauntngiz yo'q bo'lsa, ro'yxatdan o'ting"
+        },
+        "sing_out": {
+          "sing_up_btn": "Ro'yxatdan o'tish",
+          "sing_title": "Xush kelibsiz Airbnb",
+          "desc": "Agar allaqachon akkauntingiz bo'lsa, Iltimos, kirishni tanlang"
+        }
+      },
       "filters_button": {
-        "filter": "filtr",
+        "filter": "Filtr",
         "price": {
           "price_range": "narx oraliqi",
           "price_description": "To'lovlardan va soliqlardan oldin tungi narxlar"
         },
         "rooms": {
-          "any": "har qanday"
+          "any": "Har qanday"
         },
         "people": {
-          "any": "har qanday"
+          "any": "Har qanday"
         },
         "sort": {
-          "price": ["har qanday", "Pastdan yuqoriga", "yuqoridan pastga"],
-          "room": ["har qanday", "Pastdan yuqoriga", "yuqoridan pastga"],
-          "people": ["har qanday", "Pastdan yuqoriga", "yuqoridan pastga"]
+          "price": ["Har qanday", "Pastdan yuqoriga", "yuqoridan pastga"],
+          "room": ["Har qanday", "Pastdan yuqoriga", "yuqoridan pastga"],
+          "people": ["Har qanday", "Pastdan yuqoriga", "yuqoridan pastga"]
         },
-        "clear_btn": "tozalash",
-        "filter_btn": "filtr"
+        "clear_btn": "Tozalash",
+        "filter_btn": "Filtr"
       },
       "card": {
-        "night": "kecha"
+        "night": "Kecha"
       },
       "footer_info": {
         "terms": "Shartlar",

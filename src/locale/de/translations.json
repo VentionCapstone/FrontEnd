@@ -35,6 +35,20 @@
         "mylistings": "Meine Einträge",
         "logout": "Ausloggen"
       },
+      "register": {
+        "sign_in": {
+          "sing_in_btn": "Anmelden",
+          "sing_title": "Anmelden",
+          "title": "Bitte einloggen",
+          "forgot_password": "Passwort vergessen",
+          "forgot_password_desc": "Wenn Sie noch kein Konto haben, melden Sie sich bitte an"
+        },
+        "sing_out": {
+          "sing_up_btn": "Registrieren",
+          "sing_title": "Willkommen bei Airbnb",
+          "desc": "Wenn Sie bereits ein Konto haben, melden Sie sich bitte an"
+        }
+      },
       "filters_button": {
         "filter": "Filter",
         "price": {

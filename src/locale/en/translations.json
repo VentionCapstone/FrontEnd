@@ -31,14 +31,28 @@
 
     "home_ui": {
       "user_home_btn": {
-        "account": "account",
+        "account": "Account",
         "mylistings": "My Listings",
         "logout": "Logout"
       },
+      "register": {
+        "sign_in": {
+          "sing_in_btn": "Sing In",
+          "sing_title": "Sing In",
+          "title": "Please Login",
+          "forgot_password": "Forgot Password",
+          "forgot_password_desc": "If you do not have an account, please sign up"
+        },
+        "sing_out": {
+          "sing_up_btn": "Sing Up",
+          "sing_title": "Welcome Airbnb",
+          "desc": "if you already have an account, please sign in"
+        }
+      },
       "filters_button": {
-        "filter": "filter",
+        "filter": "Filter",
         "price": {
-          "price_range": "price_range",
+          "price_range": "Price range",
           "price_description": "Nightly prices before fees and taxes"
         },
         "rooms": {
@@ -52,8 +66,8 @@
           "room": ["any", "Low to High", "High to Low"],
           "people": ["any", "Low to High", "High to Low"]
         },
-        "clear_btn": "clear",
-        "filter_btn": "filter"
+        "clear_btn": "Clear",
+        "filter_btn": "Filter"
       },
       "card": {
         "night": "night"

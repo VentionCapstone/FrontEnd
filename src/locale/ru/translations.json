@@ -35,6 +35,20 @@
         "mylistings": "мои объявления",
         "logout": "Выход из системы"
       },
+      "register": {
+        "sign_in": {
+          "sing_in_btn": "Войти",
+          "sing_title": "Войти",
+          "title": "Пожалуйста, войдите",
+          "forgot_password": "Забыли пароль",
+          "forgot_password_desc": "Если у вас нет учетной записи, зарегистрируйтесь"
+        },
+        "sing_out": {
+          "sing_up_btn": "Зарегистрироваться",
+          "sing_title": "Добро пожаловать в Airbnb",
+          "desc": "Если у вас уже есть учетная запись, войдите"
+        }
+      },
       "filters_button": {
         "filter": "фильтр",
         "price": {
