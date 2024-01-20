@@ -3,8 +3,10 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { Box, IconButton, Rating, Typography, useMediaQuery, useTheme } from '@mui/material';
 import CustomImage from '@src/components/shared/CustomImage';
 import Slider from '@src/components/shared/Slider';
+import { ROUTES } from '@src/config/routes.config';
 import { HostProfile } from '@src/types/hostProfile.types';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function HostListings({ host }: { host: HostProfile }) {
   const theme = useTheme();
@@ -51,58 +53,63 @@ function HostListings({ host }: { host: HostProfile }) {
           maxSteps={maxSteps}
         >
           {sliderAccommodations.map((accommodation) => (
-            <Box
+            <Link
               key={accommodation.id}
-              sx={{
-                flex: '1',
-                height: '20rem',
-                display: 'flex',
-                flexDirection: 'column',
-                p: 3,
-              }}
+              to={ROUTES.accommodations.details(accommodation.id)}
+              style={{ textDecoration: 'none' }}
             >
               <Box
                 sx={{
-                  overflow: 'hidden',
-                  pointerEvents: 'none',
-                  height: '14rem',
-                  borderRadius: 3,
-                  border: '1px solid #e0e0e0',
-                }}
-              >
-                <CustomImage
-                  image={accommodation.previewImgUrl}
-                  name="accommodation preview image"
-                />
-              </Box>
-              <Box
-                sx={{
+                  flex: '1',
+                  height: '22rem',
                   display: 'flex',
                   flexDirection: 'column',
-                  flex: 1,
-                  mt: 2,
+                  p: 3,
                 }}
               >
-                <Typography
-                  variant="subtitle1"
-                  fontSize="1rem"
-                  fontWeight="500"
-                  height={'3.2rem'}
-                  sx={{ mb: 1 }}
-                  // hidden
-                  overflow={'hidden'}
+                <Box
+                  sx={{
+                    overflow: 'hidden',
+                    pointerEvents: 'none',
+                    height: '15rem',
+                    borderRadius: 3,
+                    border: '1px solid #e0e0e0',
+                  }}
                 >
-                  {accommodation.title}
-                </Typography>
-                <Rating
-                  name="read-only"
-                  value={accommodation.rating}
-                  precision={0.5}
-                  readOnly
-                  sx={{ mt: 1 }}
-                />
+                  <CustomImage
+                    image={accommodation.previewImgUrl}
+                    name="accommodation preview image"
+                  />
+                </Box>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    flex: 1,
+                    mt: 2,
+                  }}
+                >
+                  <Typography
+                    variant="subtitle1"
+                    fontSize="1rem"
+                    fontWeight="500"
+                    height={'3.2rem'}
+                    sx={{ mb: 1 }}
+                    // hidden
+                    overflow={'hidden'}
+                  >
+                    {accommodation.title}
+                  </Typography>
+                  <Rating
+                    name="read-only"
+                    value={accommodation.rating}
+                    precision={0.5}
+                    readOnly
+                    sx={{ mt: 1 }}
+                  />
+                </Box>
               </Box>
-            </Box>
+            </Link>
           ))}
         </Slider>
       </Box>
