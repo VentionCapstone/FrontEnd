@@ -25,6 +25,7 @@ export const FormField = memo(
           label={label}
           error={error}
           helperText={helperText}
+          InputLabelProps={{ shrink: true }}
           onChange={(e) =>
             field.onChange(type === 'number' ? Number(e.target.value) : e.target.value)
           }

@@ -18,12 +18,13 @@ const LoginAndSecurity = React.lazy(() => import('@src/pages/profile/edit/login-
 const PersonalInfo = React.lazy(() => import('@src/pages/profile/edit/personal-info'));
 const ProfileSetting = React.lazy(() => import('@src/pages/profile/edit/profile-settings'));
 const Accommodations = React.lazy(() => import('@src/pages/accommodations'));
-const AccommodationForm = React.lazy(() => import('@src/pages/accommodations/AccommodationForm'));
 const Payment = React.lazy(() => import('../pages/payment/Payment'));
 const Accommodation = React.lazy(() => import('../pages/accomodation/Accommodation'));
 const SignIn = React.lazy(() => import('../pages/auth/SignIn'));
 const Signup = React.lazy(() => import('../pages/auth/Signup'));
 const ResetPassword = React.lazy(() => import('../pages/auth/ResetPassword'));
+const CreateAccommodation = React.lazy(() => import('../pages/accommodations/CreateAccommodation'));
+const UpdateAccommodation = React.lazy(() => import('../pages/accommodations/UpdateAccommodation'));
 
 const routes = createBrowserRouter([
   {
@@ -40,7 +41,7 @@ const routes = createBrowserRouter([
     path: '/',
     element: (
       <PrivateRoute>
-        <MainLayout />
+        <UserLayout />
       </PrivateRoute>
     ),
     children: [
@@ -100,8 +101,8 @@ const routes = createBrowserRouter([
     element: <MainLayout />,
     children: [
       { path: '', element: <Accommodations /> },
-      { path: 'create', element: <AccommodationForm /> },
-      { path: 'edit/:id', element: <AccommodationForm /> },
+      { path: 'create', element: <CreateAccommodation /> },
+      { path: 'edit/:id', element: <UpdateAccommodation /> },
       { path: '*', element: <Navigate to="/accommodations" /> },
     ],
   },

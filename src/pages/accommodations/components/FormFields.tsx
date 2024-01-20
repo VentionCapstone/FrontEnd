@@ -116,8 +116,7 @@ function FormFields({
           control={control}
           render={({ field }) => (
             <Checkbox
-              {...field}
-              defaultChecked
+              checked={field.value}
               disableRipple
               onChange={(e) => field.onChange(e.target.checked)}
             />

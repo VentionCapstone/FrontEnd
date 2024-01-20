@@ -3,13 +3,9 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import httpClient from '@src/api/httpClient';
 import { ENDPOINTS } from '@src/config/endpoints.config';
 import { QUERY_KEYS } from '@src/config/react-query.config';
-import { ROUTES } from '@src/config/routes.config';
-import { AccommodationReq } from '@src/types/accommodation.types';
-import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { AccommodationReq, AccommodationStepType } from '@src/types/accommodation.types';
 
-export const useCreateAccommodation = () => {
-  const navigate = useNavigate();
+export const useCreateAccommodation = ({ setCurrentStep }: AccommodationStepType) => {
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: async (data: AccommodationReq) => {
@@ -21,8 +17,7 @@ export const useCreateAccommodation = () => {
 
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.query.accommodations] });
-      toast.success('Accommodation created successfully');
-      navigate(ROUTES.accommodations.root);
+      setCurrentStep(2);
     },
   });
 
