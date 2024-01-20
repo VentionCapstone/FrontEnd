@@ -5,26 +5,27 @@ import CustomImage from '@src/components/shared/CustomImage';
 import Slider from '@src/components/shared/Slider';
 import { ROUTES } from '@src/config/routes.config';
 import { HostProfile } from '@src/types/hostProfile.types';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function HostListings({ host }: { host: HostProfile }) {
+  const { firstName, accommodations } = host;
   const theme = useTheme();
   const isLargeMd = useMediaQuery(theme.breakpoints.up('md'));
   const isLargeSm = useMediaQuery(theme.breakpoints.up('sm'));
   const itemsPerView = isLargeMd ? 3 : isLargeSm ? 2 : 1;
 
-  const [sliderAccommodations] = useState(host.accommodations.slice(0, 12));
+  const [sliderAccommodations] = useState(accommodations?.slice(0, 12));
   const [activeStep, setActiveStep] = useState<number>(0);
-  const maxSteps = Math.ceil(sliderAccommodations.length / itemsPerView);
+  const maxSteps = sliderAccommodations ? Math.ceil(sliderAccommodations.length / itemsPerView) : 1;
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
+  }, []);
 
-  const handleBack = () => {
+  const handleBack = useCallback(() => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
+  }, []);
 
   return (
     <Box
@@ -34,7 +35,7 @@ function HostListings({ host }: { host: HostProfile }) {
     >
       <Box display={'flex'}>
         <Typography variant="h3" fontSize="1.6rem" fontWeight="800" mb={4} flex={1}>
-          {host.firstName}&apos;s latest reviews
+          {firstName}&apos;s latest reviews
         </Typography>
         <Box>
           <IconButton onClick={handleBack} disabled={activeStep === 0} color="primary">
@@ -51,8 +52,13 @@ function HostListings({ host }: { host: HostProfile }) {
           activeStep={activeStep}
           onStepChange={setActiveStep}
           maxSteps={maxSteps}
+          onEmpty={
+            <Typography key="error" textAlign="center">
+              This host has no active accommodations.
+            </Typography>
+          }
         >
-          {sliderAccommodations.map((accommodation) => (
+          {sliderAccommodations?.map((accommodation) => (
             <Link
               key={accommodation.id}
               to={ROUTES.accommodations.details(accommodation.id)}

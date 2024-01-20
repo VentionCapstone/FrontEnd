@@ -6,6 +6,8 @@ import { List, Typography } from '@mui/material';
 import { HostProfile } from '@src/types/hostProfile.types';
 
 function HostProfileCard({ host }: { host: HostProfile }) {
+  const { firstName, imageUrl, isVerified, reviews, rating, accommodations } = host;
+
   return (
     <Box
       sx={{
@@ -31,7 +33,7 @@ function HostProfileCard({ host }: { host: HostProfile }) {
         <Box sx={{ position: 'relative' }}>
           <Box
             component="img"
-            src={host.imageUrl}
+            src={imageUrl}
             alt="profile picture"
             sx={{
               width: '6.5rem',
@@ -41,7 +43,7 @@ function HostProfileCard({ host }: { host: HostProfile }) {
               mb: '0.7rem',
             }}
           />
-          {host.isVerified && (
+          {isVerified && (
             <Box
               component={VerifiedIcon}
               sx={{
@@ -57,7 +59,7 @@ function HostProfileCard({ host }: { host: HostProfile }) {
           )}
         </Box>
         <Typography variant="h2" fontSize="2.2rem" fontWeight="700">
-          {host.firstName}
+          {firstName}
         </Typography>
         <Typography fontWeight="600">Host</Typography>
       </Box>
@@ -82,7 +84,7 @@ function HostProfileCard({ host }: { host: HostProfile }) {
             lineHeight="1"
             pb="0.2rem"
           >
-            {host.reviews.count}
+            {reviews.count}
           </Typography>
           <Typography fontWeight="700" fontSize="0.8rem">
             Reviews
@@ -96,12 +98,12 @@ function HostProfileCard({ host }: { host: HostProfile }) {
             lineHeight="1"
             pb="0.2rem"
           >
-            {parseFloat(host.rating).toFixed(1)}
+            {parseFloat(rating || '0.0').toFixed(1)}
             <StarIcon
               fontSize="small"
               sx={{
-                verticalAlign: 'top',
                 ml: '0.1rem',
+                pt: '0.2rem',
               }}
             />
           </Typography>
@@ -117,7 +119,7 @@ function HostProfileCard({ host }: { host: HostProfile }) {
             lineHeight="1"
             pb="0.2rem"
           >
-            {host.accommodations.length}
+            {accommodations?.length || 0}
           </Typography>
           <Typography fontWeight="700" fontSize="0.8rem">
             Listings

@@ -2,24 +2,26 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { Box, IconButton, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Slider from '@src/components/shared/Slider';
+import { DATE_MONTH_YEAR_FORMAT } from '@src/constants';
 import { HostProfile } from '@src/types/hostProfile.types';
 import * as dayjs from 'dayjs';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 function HostReviews({ host }: { host: HostProfile }) {
+  const { firstName, joinedAt, reviews } = host;
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.up('md'));
   const itemsPerView = match ? 2 : 1;
-  const maxSteps = Math.ceil(host.reviews.list.length / itemsPerView);
+  const maxSteps = reviews.list ? Math.ceil(reviews.list.length / itemsPerView) : 1;
   const [activeStep, setActiveStep] = useState<number>(0);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
+  }, []);
 
-  const handleBack = () => {
+  const handleBack = useCallback(() => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
+  }, []);
 
   return (
     <Box
@@ -29,7 +31,7 @@ function HostReviews({ host }: { host: HostProfile }) {
     >
       <Box display={'flex'}>
         <Typography variant="h3" fontSize="1.6rem" fontWeight="800" mb={4} flex={1}>
-          {host.firstName}&apos;s latest reviews
+          {firstName}&apos;s latest reviews
         </Typography>
         <Box>
           <IconButton onClick={handleBack} disabled={activeStep === 0} color="primary">
@@ -46,8 +48,13 @@ function HostReviews({ host }: { host: HostProfile }) {
           activeStep={activeStep}
           onStepChange={setActiveStep}
           maxSteps={maxSteps}
+          onEmpty={
+            <Typography key="error" textAlign="center">
+              This host has no reviews yet.
+            </Typography>
+          }
         >
-          {host.reviews.list.map((review) => (
+          {reviews.list?.map((review) => (
             <Box
               key={review.id}
               sx={{
@@ -79,7 +86,7 @@ function HostReviews({ host }: { host: HostProfile }) {
                     {review.user.firstName} {review.user.lastName}
                   </Typography>
                   <Typography variant="body2" fontSize="1rem" fontWeight="400">
-                    {dayjs(host.joinedAt).format('MMMM YYYY')}
+                    {dayjs(joinedAt).format(DATE_MONTH_YEAR_FORMAT)}
                   </Typography>
                 </Box>
               </Box>

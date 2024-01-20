@@ -8,8 +8,10 @@ function useGetHostProfileQuery(hostId: string) {
   return useQuery({
     queryKey: [hostId],
     queryFn: async () => {
-      const data = await httpClient.get<HostProfileResponse>(ENDPOINTS.host.getHostProfile(hostId));
-      return data.data.data;
+      const { data } = await httpClient.get<HostProfileResponse>(
+        ENDPOINTS.host.getHostProfile(hostId)
+      );
+      return data;
     },
   });
 }

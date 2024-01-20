@@ -10,12 +10,12 @@ export interface HostProfile {
   description: string;
   imageUrl: string;
   joinedAt: string;
-  rating: string;
-  accommodations: HostAccommodation[];
+  rating: string | null;
+  accommodations: HostAccommodation[] | null;
   reviews: {
     count: number;
     page: number;
-    list: HostReviews[];
+    list: HostReviews[] | null;
   };
 }
 

@@ -6,6 +6,8 @@ import { List, ListItem, ListItemIcon, Typography } from '@mui/material';
 import { HostProfile } from '@src/types/hostProfile.types';
 
 function HostVerifiedInfo({ host }: { host: HostProfile }) {
+  const { firstName, isVerified, isEmailVerified } = host;
+
   return (
     <Box
       sx={{
@@ -19,15 +21,15 @@ function HostVerifiedInfo({ host }: { host: HostProfile }) {
       }}
     >
       <Typography variant="h3" fontWeight="700" fontSize="1.4rem">
-        {host.firstName}&apos;s confirmed information
+        {firstName}&apos;s confirmed information
       </Typography>
       <List disablePadding>
         <ListItem>
-          <ListItemIcon>{host.isVerified ? <CheckIcon /> : <CloseIcon />}</ListItemIcon>
+          <ListItemIcon>{isVerified ? <CheckIcon /> : <CloseIcon />}</ListItemIcon>
           <Typography fontSize="1.2rem">Identity</Typography>
         </ListItem>
         <ListItem>
-          <ListItemIcon>{host.isEmailVerified ? <CheckIcon /> : <CloseIcon />}</ListItemIcon>
+          <ListItemIcon>{isEmailVerified ? <CheckIcon /> : <CloseIcon />}</ListItemIcon>
           <Typography fontSize="1.2rem">Email address</Typography>
         </ListItem>
         <ListItem>

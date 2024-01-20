@@ -3,11 +3,12 @@ import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 
 interface SliderProps {
-  children: JSX.Element[];
+  children: JSX.Element[] | undefined;
   itemsPerView: number;
   onStepChange: React.Dispatch<React.SetStateAction<number>>;
   activeStep: number;
   maxSteps: number;
+  onEmpty?: JSX.Element;
   showIndicators?: boolean;
 }
 
@@ -17,6 +18,7 @@ function Slider({
   onStepChange,
   activeStep,
   maxSteps,
+  onEmpty,
   showIndicators = false,
 }: SliderProps) {
   const handleStepChange = (now?: number) => {
@@ -43,15 +45,20 @@ function Slider({
                 justifyContent: 'space-evenly',
               }}
             >
-              {children
-                .slice(index * itemsPerView, index * itemsPerView + itemsPerView)
-                .map((child, childIndex) => {
-                  return (
-                    <Box sx={{ mx: 1, flex: 1 }} key={`step-${index}-${childIndex}`}>
-                      {React.cloneElement(child, {})}
-                    </Box>
-                  );
-                })}
+              {children?.length
+                ? children
+                    .slice(index * itemsPerView, index * itemsPerView + itemsPerView)
+                    .map((child, childIndex) => {
+                      return (
+                        <Box
+                          sx={{ mx: 1, flex: 1, maxWidth: `${100 / itemsPerView}%` }}
+                          key={`step-${index}-${childIndex}`}
+                        >
+                          {React.cloneElement(child, {})}
+                        </Box>
+                      );
+                    })
+                : onEmpty}
             </Box>
           );
         })}

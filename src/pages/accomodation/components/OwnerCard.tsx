@@ -1,10 +1,13 @@
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { Box, Typography } from '@mui/material';
+import { DATE_MONTH_YEAR_FORMAT } from '@src/constants';
 import { Owner } from '@src/types/accommodation.types';
 import * as dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 
 function OwnerCard({ owner }: { owner: Owner }) {
+  const { id, firstName, lastName, createdAt, profile, isVerified } = owner;
+
   return (
     <Box
       sx={{
@@ -17,13 +20,13 @@ function OwnerCard({ owner }: { owner: Owner }) {
       }}
     >
       <Typography variant="h6">Hosted by</Typography>
-      <Link to={`/host/${owner.id}`} style={{ textDecoration: 'none' }}>
+      <Link to={`/host/${id}`} style={{ textDecoration: 'none' }}>
         <Box display="flex" alignItems="center" mt={3} gap={2}>
           <Box sx={{ position: 'relative' }}>
             <Box
               component={'img'}
-              src={owner.profile.imageUrl}
-              alt={owner.firstName}
+              src={profile.imageUrl}
+              alt={firstName}
               sx={{
                 width: '4rem',
                 height: '4rem',
@@ -32,7 +35,7 @@ function OwnerCard({ owner }: { owner: Owner }) {
                 objectFit: 'cover',
               }}
             />
-            {owner.isVerified && (
+            {isVerified && (
               <Box
                 component={VerifiedIcon}
                 sx={{
@@ -48,12 +51,9 @@ function OwnerCard({ owner }: { owner: Owner }) {
             )}
           </Box>
           <Box ml={2}>
-            <Typography
-              fontWeight={600}
-              variant="h6"
-            >{`${owner.firstName} ${owner.lastName}`}</Typography>
+            <Typography fontWeight={600} variant="h6">{`${firstName} ${lastName}`}</Typography>
             <Typography variant="body2" color="text.secondary">
-              Joined in {dayjs(owner.createdAt).format('MMMM YYYY')} · {owner.profile.country}
+              Joined in {dayjs(createdAt).format(DATE_MONTH_YEAR_FORMAT)} · {profile.country}
             </Typography>
           </Box>
         </Box>

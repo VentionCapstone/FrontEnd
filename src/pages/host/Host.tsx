@@ -14,7 +14,7 @@ import HostVerifiedInfo from './components/HostVerifiedInfo';
 function Host() {
   const { id: hostId } = useParams();
 
-  const { isPending, data: host, isError } = useGetHostProfileQuery(hostId as string);
+  const { isPending, data, isError } = useGetHostProfileQuery(hostId as string);
 
   if (isPending) {
     return (
@@ -25,6 +25,8 @@ function Host() {
   }
 
   if (isError) return <DataFetchError position="center" />;
+
+  const host = data.data;
 
   return (
     <Grid
