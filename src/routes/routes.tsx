@@ -26,6 +26,7 @@ const Signup = React.lazy(() => import('../pages/auth/Signup'));
 const ResetPassword = React.lazy(() => import('../pages/auth/ResetPassword'));
 
 const routes = createBrowserRouter([
+  //unprotected
   {
     path: '/',
     element: <MainLayout />,
@@ -36,50 +37,7 @@ const routes = createBrowserRouter([
     ],
   },
 
-  {
-    path: '/',
-    element: (
-      <PrivateRoute>
-        <MainLayout />
-      </PrivateRoute>
-    ),
-    children: [
-      { path: 'book/:id', element: <Payment /> },
-      { path: '*', element: <Navigate to="/" /> },
-    ],
-  },
-
-  {
-    path: '/account',
-    element: (
-      <PrivateRoute>
-        <UserLayout />
-      </PrivateRoute>
-    ),
-    children: [
-      { index: true, element: <Navigate to={'edit'} /> },
-      {
-        path: 'create',
-        element: (
-          <ProfileCreateRoute>
-            <CreateProfile />
-          </ProfileCreateRoute>
-        ),
-      },
-      {
-        path: 'edit',
-        element: <ProfileEditRoute />,
-        children: [
-          { index: true, element: <EditProfile /> },
-          { path: 'personal-info', element: <PersonalInfo /> },
-          { path: 'login-and-security', element: <LoginAndSecurity /> },
-          { path: 'settings', element: <ProfileSetting /> },
-        ],
-      },
-      { path: '*', element: <Navigate to="/account" /> },
-    ],
-  },
-
+  //UserRoute
   {
     path: '/auth',
     element: (
@@ -95,14 +53,54 @@ const routes = createBrowserRouter([
     ],
   },
 
+  //PrivateRoute
   {
-    path: '/accommodations',
-    element: <MainLayout />,
+    path: '/',
+    element: (
+      <PrivateRoute>
+        <UserLayout />
+      </PrivateRoute>
+    ),
     children: [
-      { path: '', element: <Accommodations /> },
-      { path: 'create', element: <AccommodationForm /> },
-      { path: 'edit/:id', element: <AccommodationForm /> },
-      { path: '*', element: <Navigate to="/accommodations" /> },
+      { path: 'book/:id', element: <Payment /> },
+
+      {
+        path: '/account',
+        children: [
+          { index: true, element: <Navigate to={'edit'} /> },
+          {
+            path: 'create',
+            element: (
+              <ProfileCreateRoute>
+                <CreateProfile />
+              </ProfileCreateRoute>
+            ),
+          },
+          {
+            path: 'edit',
+            element: <ProfileEditRoute />,
+            children: [
+              { index: true, element: <EditProfile /> },
+              { path: 'personal-info', element: <PersonalInfo /> },
+              { path: 'login-and-security', element: <LoginAndSecurity /> },
+              { path: 'settings', element: <ProfileSetting /> },
+            ],
+          },
+          { path: '*', element: <Navigate to="/account" /> },
+        ],
+      },
+
+      {
+        path: '/accommodations',
+        children: [
+          { index: true, element: <Accommodations /> },
+          { path: 'create', element: <AccommodationForm /> },
+          { path: 'edit/:id', element: <AccommodationForm /> },
+          { path: '*', element: <Navigate to="/accommodations" /> },
+        ],
+      },
+
+      { path: '*', element: <Navigate to="/" /> },
     ],
   },
 ]);

@@ -40,4 +40,9 @@ export const ENDPOINTS = {
     getAvailableDates: (accommodationId: string) => `/booking/available-dates/${accommodationId}`,
     book: '/booking/book',
   },
+  wishlist: {
+    root: '/wishlist',
+    addToWishlist: (accommodationId: string) => `/wishlist/${accommodationId}`,
+    deleteFromWishlist: (wishlistId: string) => `/wishlist/${wishlistId}`,
+  },
 } as const;

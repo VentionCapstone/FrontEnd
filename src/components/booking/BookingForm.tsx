@@ -172,7 +172,12 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, pri
         </>
       ) : (
         <Typography>
-          <Link component={RouterLink} to={ROUTES.auth.signIn} fontWeight={600}>
+          <Link
+            component={RouterLink}
+            to={ROUTES.auth.signIn}
+            fontWeight={600}
+            state={{ from: window.location.pathname }}
+          >
             Login
           </Link>{' '}
           is required to make a reservation

@@ -7,7 +7,11 @@ import { hasToken } from '@src/stores/slices/authSlice';
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const isLoggedIn = useAppSelector(hasToken);
 
-  return isLoggedIn ? children : <Navigate to={ROUTES.auth.signIn} />;
+  return isLoggedIn ? (
+    children
+  ) : (
+    <Navigate to={ROUTES.auth.signIn} state={{ from: window.location.pathname }} />
+  );
 }
 
 export default PrivateRoute;

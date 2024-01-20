@@ -21,11 +21,19 @@ export const QUERY_KEYS = {
     accommodation: 'accommodation',
     accommodations: 'accommodations',
     accomodationReviews: 'accomodation_reviews',
+
+    wishlist: 'wishlist',
   },
+
   mutation: {
     createAccount: 'create_account',
     editAccount: 'edit_account',
+
     verifyEmail: 'verify_email',
+
     logout: 'logout',
+
+    addToWishlist: 'add_to_wishlist',
+    deleteFromWishlist: 'delete_from_wishlist',
   },
 } as const;
