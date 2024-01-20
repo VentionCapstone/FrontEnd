@@ -104,7 +104,7 @@ export const TopNavMenu = () => {
                 to={ROUTES.auth.signIn}
                 onClick={handleClose}
               >
-                <MenuItem>Sign In</MenuItem>
+                <MenuItem>{t(HomeUIInfo.sign_in_sing_in_btn)}</MenuItem>
               </Link>,
               <Link
                 key={ROUTES.auth.signUp}
@@ -112,7 +112,7 @@ export const TopNavMenu = () => {
                 to={ROUTES.auth.signUp}
                 onClick={handleClose}
               >
-                <MenuItem>Sign Up</MenuItem>
+                <MenuItem>{t(HomeUIInfo.sing_out_sing_up_btn)}</MenuItem>
               </Link>,
             ]}
       </Menu>

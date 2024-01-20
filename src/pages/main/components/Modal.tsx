@@ -2,7 +2,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Box, Button, Fade, Modal, Stack, Typography } from '@mui/material';
 import { useCallback, useMemo, useState } from 'react';
 
+import i18n from '@src/i18n/i18n';
 import { FormValue, MainModalProps } from '@src/types/accommodation.types';
+import { HomeUIInfo } from '@src/types/i18n.types';
 import { modalStyles } from './Modal.styles';
 import PriceRangeInputs from './PriceRangeInputs';
 import PriceRangeSlider from './PriceRangeSlider';
@@ -98,7 +100,7 @@ export default function MainModal({
             alignItems={'center'}
             flexGrow={'0'}
           >
-            <Typography variant="lg">Filter</Typography>
+            <Typography variant="lg">{i18n.t(HomeUIInfo.filters_button_filter)}</Typography>
             <Button
               disableRipple
               disableFocusRipple
@@ -117,8 +119,10 @@ export default function MainModal({
             }}
           >
             <Box>
-              <Typography>Price Range</Typography>
-              <Typography variant={'sm'}>Nightly prices before fees and taxes</Typography>
+              <Typography> {i18n.t(HomeUIInfo.filters_button_price_price_range)}</Typography>
+              <Typography variant={'sm'}>
+                {i18n.t(HomeUIInfo.filters_button_price_price_description)}
+              </Typography>
               <Box sx={modalStyles.sliderContainer}>
                 <PriceRangeSlider value={value} setValue={setValue} />
                 <PriceRangeInputs value={value} setValue={setValue} />

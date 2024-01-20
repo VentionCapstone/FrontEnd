@@ -30,6 +30,16 @@ export enum HomeUIInfo {
   user_home_btn_account = 'home_ui.user_home_btn.account',
   user_home_btn_mylistings = 'home_ui.user_home_btn.mylistings',
   user_home_btn_logout = 'home_ui.user_home_btn.logout',
+
+  sign_in_sing_in_btn = 'home_ui.register.sign_in.sing_in_btn',
+  sign_in_sing_title = 'home_ui.register.sign_in.sing_title',
+  sign_in_title = 'home_ui.register.sign_in.title',
+  sign_in_forgot_password = 'home_ui.register.sign_in.forgot_password',
+  sign_in_forgot_password_desc = 'home_ui.register.sign_in.forgot_password_desc',
+  sing_out_sing_up_btn = 'home_ui.register.sing_out.sing_up_btn',
+  sing_out_sing_title = 'home_ui.register.sing_out.sing_title',
+  sing_out_desc = 'home_ui.register.sing_out.desc',
+
   filters_button_filter = 'home_ui.filters_button.filter',
   filters_button_price_price_range = 'home_ui.filters_button.price.price_range',
   filters_button_price_price_description = 'home_ui.filters_button.price.price_description',
@@ -46,17 +56,6 @@ export enum HomeUIInfo {
   footer_info_privacy = 'home_ui.footer_info.privacy',
   footer_info_your_privacy_choices = 'home_ui.footer_info.your_privacy_choices',
   footer_info_copyright = 'home_ui.footer_info.copyright',
-}
-
-export enum RegisterInfo {
-  sign_in_sing_in_btn = 'register.sign_in.sing_in_btn',
-  sign_in_sing_title = 'register.sign_in.sing_title',
-  sign_in_title = 'register.sign_in.title',
-  sign_in_forgot_password = 'register.sign_in.forgot_password',
-  sign_in_forgot_password_desc = 'register.sign_in.forgot_password_desc',
-  sing_out_sing_up_btn = 'register.sing_out.sing_up_btn',
-  sing_out_sing_title = 'register.sing_out.sing_title',
-  sing_out_desc = 'register.sing_out.desc',
 }
 
 export enum AccountEditPageInfo {

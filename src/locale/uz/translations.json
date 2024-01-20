@@ -52,7 +52,7 @@
       "filters_button": {
         "filter": "Filtr",
         "price": {
-          "price_range": "narx oraliqi",
+          "price_range": "Narx Oraliqi",
           "price_description": "To'lovlardan va soliqlardan oldin tungi narxlar"
         },
         "rooms": {
@@ -70,7 +70,7 @@
         "filter_btn": "Filtr"
       },
       "card": {
-        "night": "Kecha"
+        "night": "Kunlik"
       },
       "footer_info": {
         "terms": "Shartlar",
