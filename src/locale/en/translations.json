@@ -7,7 +7,7 @@
       "accommodation_failed_to_get_list": "Failed to get accommodation list",
 
       "field_is_required": "This field is required",
-      "enter_valid_email": "Please, enter valid email address",
+      "enter_valid_email": "Please, enter a valid email address",
       "enter_valid_phone_number": "Please enter a valid phone number",
       "password_must_contain": "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character",
       "password_invalid_length": "Password must be at least 8 characters",
@@ -17,8 +17,8 @@
     "home_ui": {
       "user_home_btn": {
         "account": "account",
-        "MyListings": "My Listings",
-        "Logout": "Logout"
+        "mylistings": "My Listings",
+        "logout": "Logout"
       },
       "filters_button": {
         "filter": "filter",
@@ -44,56 +44,56 @@
         "night": "night"
       },
       "footer_info": {
-        "Terms": "Terms",
-        "Sitemap": "Sitemap",
-        "Privacy": "Privacy",
-        "Your Privacy Choices": "Your Privacy Choices",
-        "Copyright": "© 2023 Airbnb, Inc."
+        "terms": "Terms",
+        "sitemap": "Sitemap",
+        "privacy": "Privacy",
+        "your_privacy_choices": "Your Privacy Choices",
+        "copyright": "© 2023 Airbnb, Inc."
       }
     },
     "account_edit_page": {
-      "Personal_info": "Personal Info",
-      "Personal_desc": "Update personal password and secure your account",
-      "Login_Secure": "Login & Secure",
-      "Login_Secure_desc": "Provide secure details and how we can reach you",
-      "Setting": "Setting",
-      "Setting_desc": "Set your default language, and currency"
+      "personal_info": "Personal Info",
+      "personal_desc": "Update personal password and secure your account",
+      "login_secure": "Login & Secure",
+      "login_secure_desc": "Provide secure details and how we can reach you",
+      "setting": "Setting",
+      "setting_desc": "Set your default language, and currency"
     },
 
     "account_edit_personal-info": {
-      "Name": {
-        "Legal_name": "Legal name",
-        "Legal_name_desc": "This is the name on your travel document, which could be a license or a passport.",
+      "name": {
+        "legal_name": "Legal name",
+        "legal_name_desc": "This is the name on your travel document, which could be a license or a passport.",
         "edit": "edit",
         "save": "save",
         "first_name": "First name",
         "last_name": "Last name"
       },
-      "Genger": {
-        "Your_gender": "Your Gender",
+      "genger": {
+        "your_gender": "Your Gender",
         "male": "male",
         "famele": "famele",
         "edit": "edit",
         "save": "save",
         "select": "Select Your Gender"
       },
-      "Location": {
-        "Where_do_live": "Where you live",
+      "location": {
+        "where_do_live": "Where you live",
         "edit": "edit",
         "save": "save",
         "select": "Select Your Country",
-        "Uzbekistan": "Uzbekistan",
-        "Kazakistan": "Kazakistan",
-        "Russian": "Russia"
+        "uzbekistan": "Uzbekistan",
+        "kazakistan": "Kazakhstan",
+        "russian": "Russia"
       },
-      "Number": {
-        "Phone_Number": "Phone Number",
-        "Phone_Number_desc": "Add a number so confirmed guests and Airbnb can get in touch. You can add other numbers and choose how they’re used.",
+      "number": {
+        "phone_number": "Phone Number",
+        "phone_number_desc": "Add a number so confirmed guests and Airbnb can get in touch. You can add other numbers and choose how they’re used.",
         "edit": "edit",
         "save": "save"
       },
-      "About": {
-        "About": "About you",
+      "about": {
+        "about": "About you",
         "about_desc": "Write something fun and punchy",
         "about_textarea": "Tell us a little bit about yourself, so your future hosts or guests can get to know you.",
         "edit": "edit",

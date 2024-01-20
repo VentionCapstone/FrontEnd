@@ -1,53 +1,103 @@
 {
   "translation": {
     "errors": {
-      "default": "Nimadir noto'g'ri ketdi, yana urinib ko'ring",
+      "default": "Nimadir noto'g'ri ketdi, qaytadan urinib ko'ring",
 
-      "accommodation_failed_to_get_single": "Biror bir joy haqida ma'lumot olishda muammo yuz berdi",
+      "accommodation_failed_to_get_single": "Bitta joy ma'lumotini olishda xatolik yuz berdi",
       "accommodation_failed_to_get_list": "Mehmonxona ro'yxatini olishda xatolik yuz berdi",
 
-      "field_is_required": "Parollar mos emas",
-      "enter_valid_email": "Iltimos, yaroqli elektron pochta manzilini kiriting",
-      "enter_valid_phone_number": "Iltimos, yaroqli telefon raqamini kiriting",
-      "password_must_contain": "Parol kamida bitta katta harf, bitta kichik harf, bitta raqam va bitta maxsus belgidan iborat bo'lishi kerak",
+      "field_is_required": "Ushbu maydonni to'ldirish shart",
+      "enter_valid_email": "Iltimos, haqiqiy elektron pochta manzilingizni kiriting",
+      "enter_valid_phone_number": "Iltimos, haqiqiy telefon raqamingizni kiriting",
+      "password_must_contain": "Parol kamida bir katta harf, bir kichik harf, bir raqam va bir maxsus belgidan iborat bo'lishi kerak",
       "password_invalid_length": "Parol kamida 8 ta belgidan iborat bo'lishi kerak",
       "password_not_matching": "Parollar mos emas!"
     },
+
     "home_ui": {
       "user_home_btn": {
-        "account": "Kirish",
-        "MyListings": "Mening ro'yhatlarim",
-        "Logout": "Tizimdan chiqish"
+        "account": "hisob",
+        "mylistings": "Mening ro'yhatlarim",
+        "logout": "Chiqish"
       },
       "filters_button": {
-        "filter": "Filtr",
+        "filter": "filtr",
         "price": {
-          "price_range": "Narx diapazoni",
-          "price_description": "To'lovlar va soliqlar oldidan tungi narxlar"
+          "price_range": "narx oraliqi",
+          "price_description": "To'lovlardan va soliqlardan oldin tungi narxlar"
         },
         "rooms": {
-          "any": "Har qanday"
+          "any": "har qanday"
         },
         "people": {
-          "any": "Har qanday"
+          "any": "har qanday"
         },
         "sort": {
-          "price": ["Har qanday", "Pastdan yuqoriga", "Yuqoridan pastga"],
-          "room": ["Har qanday", "Pastdan yuqoriga", "Yuqoridan pastga"],
-          "people": ["Har qanday", "Pastdan yuqoriga", "Yuqoridan pastga"]
+          "price": ["har qanday", "Pastdan yuqoriga", "yuqoridan pastga"],
+          "room": ["har qanday", "Pastdan yuqoriga", "yuqoridan pastga"],
+          "people": ["har qanday", "Pastdan yuqoriga", "yuqoridan pastga"]
         },
-        "clear_btn": "o'chirish",
+        "clear_btn": "tozalash",
         "filter_btn": "filtr"
       },
       "card": {
-        "night": "kechasi"
+        "night": "kecha"
       },
       "footer_info": {
-        "Terms": "Shartlar",
-        "Sitemap": "Sayt Haritasi",
-        "Privacy": "Maxfiylik",
-        "Your Privacy Choices": "Maxfiylik tanlovlaringiz",
-        "Copyright": "© 2023 Airbnb, Inc."
+        "terms": "Shartlar",
+        "sitemap": "Sayt xaritasi",
+        "privacy": "Maxfiylik",
+        "your_privacy_choices": "Sizning maxfiylik tanlovlaringiz",
+        "copyright": "© 2023 Airbnb, Inc."
+      }
+    },
+    "account_edit_page": {
+      "personal_info": "Shaxsiy ma'lumot",
+      "personal_desc": "Shaxsiy parolingizni yangilang va hisobingizni himoyalang",
+      "login_secure": "Kirish va Himoya",
+      "login_secure_desc": "Xavfsiz ma'lumotlarni taqdim eting va biz siz bilan qanday aloqaga chiqishimizni tanlang",
+      "setting": "Sozlamalar",
+      "setting_desc": "O'z taqdimot tilini va valyutangizni belgilang"
+    },
+
+    "account_edit_personal-info": {
+      "name": {
+        "legal_name": "Yasalgan ism",
+        "legal_name_desc": "Bu sayohat hujjatingizdagi ism, unda yuridik ko'rik yoki passport bo'lishi mumkin.",
+        "edit": "tahrirlash",
+        "save": "saqlash",
+        "first_name": "Ism",
+        "last_name": "Familiya"
+      },
+      "gender": {
+        "your_gender": "Sizning jinsingiz",
+        "male": "erkak",
+        "female": "ayol",
+        "edit": "tahrirlash",
+        "save": "saqlash",
+        "select": "Jinsingizni tanlang"
+      },
+      "location": {
+        "where_do_live": "Qayerda yashaysiz",
+        "edit": "tahrirlash",
+        "save": "saqlash",
+        "select": "Mamlakatingizni tanlang",
+        "uzbekistan": "O'zbekiston",
+        "kazakhstan": "Qozog'iston",
+        "russia": "Rossiya"
+      },
+      "number": {
+        "phone_number": "Telefon raqam",
+        "phone_number_desc": "Tasdiqlangan mehmonlar va Airbnb siz bilan bog'lanish uchun raqam qo'shing. Siz boshqa raqamlarni qo'shishingiz va ularni qanday foydalanilishini tanlashingiz mumkin.",
+        "edit": "tahrirlash",
+        "save": "saqlash"
+      },
+      "about": {
+        "about": "Siz haqingizda",
+        "about_desc": "Qiziq va jozibali narsa yozing",
+        "about_textarea": "O'zingiz haqida qisqa nima deyishni ayt, huddi kelgan yoki keluvchi tashrif buyuruvchilaringiz bilan tanishishlari uchun.",
+        "edit": "tahrirlash",
+        "save": "saqlash"
       }
     }
   }
