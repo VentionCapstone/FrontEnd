@@ -41,6 +41,8 @@
           "sing_title": "Kirish",
           "title": "Iltimos, kirishni tanlang",
           "forgot_password": "Parolingizni unutdingizmi?",
+          "forgot_password_modal": "Akkauntingizga bog'liq elektron pochta manzilini kiriting, va biz sizga parolingizni qayta tiklash uchun havola yuboramiz.",
+          "send_resend_link": "Qayta tiklash havolasini yuborish",
           "forgot_password_desc": "Agar akkauntngiz yo'q bo'lsa, ro'yxatdan o'ting"
         },
         "sing_out": {

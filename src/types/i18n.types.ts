@@ -35,6 +35,8 @@ export enum HomeUIInfo {
   sign_in_sing_title = 'home_ui.register.sign_in.sing_title',
   sign_in_title = 'home_ui.register.sign_in.title',
   sign_in_forgot_password = 'home_ui.register.sign_in.forgot_password',
+  forgot_password_modal = 'home_ui.register.sign_in.forgot_password_modal',
+  send_resend_link = 'home_ui.register.sign_in.send_resend_link',
   sign_in_forgot_password_desc = 'home_ui.register.sign_in.forgot_password_desc',
   sing_out_sing_up_btn = 'home_ui.register.sing_out.sing_up_btn',
   sing_out_sing_title = 'home_ui.register.sing_out.sing_title',

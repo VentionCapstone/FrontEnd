@@ -41,6 +41,8 @@
           "sing_title": "Anmelden",
           "title": "Bitte einloggen",
           "forgot_password": "Passwort vergessen",
+          "forgot_password_modal": "Geben Sie die mit Ihrem Konto verknüpfte E-Mail-Adresse ein, und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts per E-Mail.",
+          "send_resend_link": "Link zum Zurücksetzen senden",
           "forgot_password_desc": "Wenn Sie noch kein Konto haben, melden Sie sich bitte an"
         },
         "sing_out": {

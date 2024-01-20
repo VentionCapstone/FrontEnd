@@ -9,7 +9,9 @@ import ButtonPrimary from '@src/components/button/ButtonPrimary';
 import InputForm from '@src/components/input/InputForm';
 import PasswordInput from '@src/components/input/PasswordInput';
 import { ENDPOINTS } from '@src/config/endpoints.config';
+import i18n from '@src/i18n/i18n';
 import { SignUpReq, signUpSchema } from '@src/types/auth.types';
+import { HomeUIInfo, LoginAndSecurityInfo } from '@src/types/i18n.types';
 import { styles } from './styles';
 
 const Signup = () => {
@@ -37,11 +39,11 @@ const Signup = () => {
   return (
     <Box sx={styles.formContainer}>
       <Typography variant="subtitle1" align="center" margin={5} fontWeight="bold">
-        Sign up
+        {i18n.t(HomeUIInfo.sing_out_sing_up_btn)}
       </Typography>
       <Divider />
       <Stack p={4} spacing={3}>
-        <Typography variant="h5">Welcome to Airbnb</Typography>
+        <Typography variant="h5"> {i18n.t(HomeUIInfo.sing_out_sing_title)}</Typography>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack gap={3}>
@@ -61,26 +63,30 @@ const Signup = () => {
             />
             <PasswordInput
               name="password"
-              label="Password"
-              placeholder="Password"
+              label={i18n.t(LoginAndSecurityInfo.password_new_password)}
+              placeholder={i18n.t(LoginAndSecurityInfo.password_new_password)}
               control={control}
               errors={errors}
             />
             <PasswordInput
               name="confirm_password"
-              label="Confirm password"
-              placeholder="Confirm password"
+              label={i18n.t(LoginAndSecurityInfo.password_confirm)}
+              placeholder={i18n.t(LoginAndSecurityInfo.password_confirm)}
               control={control}
               errors={errors}
             />
           </Stack>
-          <ButtonPrimary loading={isPending}>Sign up</ButtonPrimary>
+          <ButtonPrimary loading={isPending}>
+            {' '}
+            {i18n.t(HomeUIInfo.sing_out_sing_up_btn)}
+          </ButtonPrimary>
         </form>
 
         <Typography variant="subtitle2" align="center" color="secondary2.main">
-          if you already have an account, please{' '}
+          {i18n.t(HomeUIInfo.sing_out_desc)}
           <Link component={RouterLink} to={ENDPOINTS.auth.signIn} sx={styles.formLink}>
-            sign in
+            {' '}
+            {i18n.t(HomeUIInfo.sign_in_sing_in_btn)}
           </Link>
         </Typography>
       </Stack>

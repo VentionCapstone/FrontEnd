@@ -41,6 +41,8 @@
           "sing_title": "Sing In",
           "title": "Please Login",
           "forgot_password": "Forgot Password",
+          "forgot_password_modal": "Enter the email address associated with your account, and we’ll email you a link to reset your password.",
+          "send_resend_link": "Send reset link",
           "forgot_password_desc": "If you do not have an account, please sign up"
         },
         "sing_out": {

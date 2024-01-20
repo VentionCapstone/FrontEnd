@@ -89,7 +89,7 @@ const SignIn = () => {
         <Typography variant="subtitle2" align="center" color="secondary2.main">
           {i18n.t(HomeUIInfo.sing_out_sing_title)}{' '}
           <Link component={RouterLink} to={ENDPOINTS.auth.signUp} sx={styles.formLink}>
-            sign up
+            {i18n.t(HomeUIInfo.sing_out_sing_up_btn)}
           </Link>
         </Typography>
       </Stack>
