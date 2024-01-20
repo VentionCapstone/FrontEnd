@@ -2,6 +2,8 @@ import { Button, TextField, Typography } from '@mui/material';
 import { ChangeEvent, useCallback, useState } from 'react';
 
 import useUpdateEmailMutation from '@src/api/mutations/account/useUpdateEmailMutation';
+import i18n from '@src/i18n/i18n';
+import { LoginAndSecurityInfo } from '@src/types/i18n.types';
 
 export const UpdateEmail = ({
   collapsePanel,
@@ -26,7 +28,7 @@ export const UpdateEmail = ({
   return (
     <>
       <Typography variant={'sm'} color={'secondary2.main'} mt={1}>
-        Type your new email address
+        {i18n.t(LoginAndSecurityInfo.email_desc)}
       </Typography>
 
       <TextField
@@ -40,7 +42,7 @@ export const UpdateEmail = ({
       />
 
       <Button onClick={handleSubmit} variant={'contained'} size="small" sx={{ fontWeight: 600 }}>
-        Change
+        {i18n.t(LoginAndSecurityInfo.email_change_btn)}
       </Button>
     </>
   );

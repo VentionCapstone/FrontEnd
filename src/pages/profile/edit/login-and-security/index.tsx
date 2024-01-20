@@ -2,6 +2,8 @@ import { Box, Typography } from '@mui/material';
 import { useCallback } from 'react';
 
 import { useAppSelector } from '@src/hooks/redux-hooks';
+import i18n from '@src/i18n/i18n';
+import { LoginAndSecurityInfo } from '@src/types/i18n.types';
 import EditablePanel from '../EditablePanel';
 import { UpdateEmail } from './UpdateEmail';
 import { UpdatePassword } from './UpdatePassword';
@@ -27,7 +29,7 @@ function LoginAndSecurity() {
         fontWeight={600}
         component={'h1'}
       >
-        Login & security
+        {i18n.t(LoginAndSecurityInfo.login_title)}
       </Typography>
 
       <Box maxWidth={'60rem'}>
@@ -45,7 +47,7 @@ function LoginAndSecurity() {
           panelHeading={'Password'}
           initial={
             <Typography variant={'sm'} color={'secondary2.main'}>
-              Change you password
+              {i18n.t(LoginAndSecurityInfo.password_change_your_password)}
             </Typography>
           }
           editable={passwordRenderProps}

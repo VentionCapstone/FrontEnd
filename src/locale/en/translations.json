@@ -130,7 +130,7 @@
       }
     },
     "login_and_security": {
-      "login_title": "Login Title",
+      "login_title": "Login & Security",
       "email": {
         "edit": "Edit",
         "email": "Email",
@@ -147,6 +147,20 @@
         "new_password": "New Password",
         "confirm": "Confirm Password"
       }
+    },
+    "setting": {
+      "title": "Settings",
+      "theme": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "language": "Preferred language",
+      "uzbek": "Uzbek",
+      "russian": "Russian",
+      "english": "English",
+      "kazak": "Kazak",
+      "german": "German",
+      "currency": "Preferred currency",
+      "dollar": "US Dollar"
     }
   }
 }

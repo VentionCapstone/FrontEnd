@@ -107,3 +107,34 @@ export enum AccountEditPersonalInfo {
   edit_about = 'account_edit_personal-info.about.edit',
   save_about = 'account_edit_personal-info.about.save',
 }
+
+export enum LoginAndSecurityInfo {
+  login_title = 'login_and_security.login_title',
+  email_edit = 'login_and_security.email.edit',
+  email = 'login_and_security.email.email',
+  email_desc = 'login_and_security.email.email_desc',
+  email_change_btn = 'login_and_security.email.change_btn',
+  email_cancel = 'login_and_security.email.cancel',
+  password_change_your_password = 'login_and_security.password.change_your_password',
+  password_edit = 'login_and_security.password.edit',
+  password_change_btn = 'login_and_security.password.change_btn',
+  password_cancel = 'login_and_security.password.cancel',
+  password_current = 'login_and_security.password.current',
+  password_new_password = 'login_and_security.password.new_password',
+  password_confirm = 'login_and_security.password.confirm',
+}
+
+export enum SettingsInfo {
+  title = 'setting.title',
+  theme = 'setting.theme',
+  light = 'setting.light',
+  dark = 'setting.dark',
+  language = 'setting.language',
+  uzbek = 'setting.uzbek',
+  russian = 'setting.russian',
+  english = 'setting.english',
+  kazak = 'setting.kazak',
+  german = 'setting.german',
+  currency = 'setting.currency',
+  dollar = 'setting.dollar',
+}

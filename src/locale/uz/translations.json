@@ -130,7 +130,7 @@
       }
     },
     "login_and_security": {
-      "login_title": "Kirish sarlavhasi",
+      "login_title": "Kirish va Xavfsizlik",
       "email": {
         "edit": "Tahrirlash",
         "email": "Elektron pochta",
@@ -147,6 +147,20 @@
         "new_password": "Yangi Parol",
         "confirm": "Parolni tasdiqlang"
       }
+    },
+    "setting": {
+      "title": "Sozlamalar",
+      "theme": "Mavzu",
+      "light": "Yorug'",
+      "dark": "Qora",
+      "language": "Tanlangan tillar",
+      "uzbek": "O'zbekcha",
+      "russian": "Ruscha",
+      "english": "Inglizcha",
+      "kazak": "Qozog'istoncha",
+      "german": "Nemischa",
+      "currency": "Tanlangan valyuta",
+      "dollar": "AQSH dollari"
     }
   }
 }

@@ -5,6 +5,8 @@ import TextField from '@mui/material/TextField';
 import { useForm } from 'react-hook-form';
 
 import useUpdatePasswordMutation from '@src/api/mutations/account/useUpdatePasswordMutation';
+import i18n from '@src/i18n/i18n';
+import { LoginAndSecurityInfo } from '@src/types/i18n.types';
 import { UpdatePasswordData, updatePasswordSchema } from '@src/types/profile.types';
 
 export const UpdatePassword = ({ collapsePanel }: { collapsePanel: () => void }) => {
@@ -33,7 +35,7 @@ export const UpdatePassword = ({ collapsePanel }: { collapsePanel: () => void })
           {...register('currentPassword')}
           fullWidth
           required
-          label={'Current password'}
+          label={`${i18n.t(LoginAndSecurityInfo.password_current)}`}
           type={'password'}
           size="small"
           error={!!errors.currentPassword}
@@ -44,7 +46,7 @@ export const UpdatePassword = ({ collapsePanel }: { collapsePanel: () => void })
           {...register('newPassword')}
           fullWidth
           required
-          label={'New password'}
+          label={`${i18n.t(LoginAndSecurityInfo.password_new_password)}`}
           type={'password'}
           size="small"
           error={!!errors.newPassword}
@@ -55,7 +57,7 @@ export const UpdatePassword = ({ collapsePanel }: { collapsePanel: () => void })
           {...register('confirmPassword')}
           fullWidth
           required
-          label={'Confirm password'}
+          label={`${i18n.t(LoginAndSecurityInfo.password_confirm)}`}
           type={'password'}
           size="small"
           error={!!errors.confirmPassword}
@@ -64,7 +66,7 @@ export const UpdatePassword = ({ collapsePanel }: { collapsePanel: () => void })
       </Stack>
 
       <Button type="submit" variant={'contained'} size="small" sx={{ fontWeight: 600 }}>
-        Change
+        {i18n.t(LoginAndSecurityInfo.password_change_btn)}
       </Button>
     </form>
   );
