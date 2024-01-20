@@ -7,6 +7,8 @@ import {
   SelectChangeEvent,
   Typography,
 } from '@mui/material';
+import i18n from '@src/i18n/i18n';
+import { AccountEditPersonalInfo, SettingsInfo } from '@src/types/i18n.types';
 import { useCallback, useState } from 'react';
 
 export const ProfileCurrency = ({
@@ -25,7 +27,7 @@ export const ProfileCurrency = ({
   return (
     <>
       <Typography variant={'sm'} color={'secondary2.main'} mt={1}>
-        Select currency you prefer
+        {i18n.t(SettingsInfo.currency_desc)}
       </Typography>
 
       <FormControl
@@ -42,13 +44,13 @@ export const ProfileCurrency = ({
           id="profile-lang-select"
           label="Currency"
         >
-          <MenuItem value={'USD'}>US Dollars</MenuItem>
-          <MenuItem value={'CD'}>Canadian Dollars</MenuItem>
+          <MenuItem value={'USD'}> {i18n.t(SettingsInfo.dollar)}</MenuItem>
+          <MenuItem value={'CD'}> {i18n.t(SettingsInfo.can_dollar)}</MenuItem>
         </Select>
       </FormControl>
 
       <Button onClick={collapsePanel} variant={'contained'} size="small" sx={{ fontWeight: 600 }}>
-        Save
+        {i18n.t(AccountEditPersonalInfo.save_name)}
       </Button>
     </>
   );

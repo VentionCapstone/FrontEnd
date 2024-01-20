@@ -7,6 +7,8 @@ import {
   SelectChangeEvent,
   Typography,
 } from '@mui/material';
+import i18n from '@src/i18n/i18n';
+import { AccountEditPersonalInfo, SettingsInfo } from '@src/types/i18n.types';
 import { useCallback, useState } from 'react';
 
 export const ProfileLang = ({
@@ -25,7 +27,7 @@ export const ProfileLang = ({
   return (
     <>
       <Typography variant={'sm'} color={'secondary2.main'} mt={1}>
-        This updates what you read on Airbnb, and how we communicate with you.
+        {i18n.t(SettingsInfo.lang_desc)}
       </Typography>
 
       <FormControl
@@ -43,13 +45,13 @@ export const ProfileLang = ({
           label="Language"
           sx={{ maxWidth: '40rem' }}
         >
-          <MenuItem value={'English'}>English</MenuItem>
-          <MenuItem value={'Russian'}>Russian</MenuItem>
+          <MenuItem value={'English'}>{i18n.t(SettingsInfo.english)}</MenuItem>
+          <MenuItem value={'Russian'}>{i18n.t(SettingsInfo.russian)}</MenuItem>
         </Select>
       </FormControl>
 
       <Button onClick={collapsePanel} variant={'contained'} size="small" sx={{ fontWeight: 600 }}>
-        Save
+        {i18n.t(AccountEditPersonalInfo.save_name)}
       </Button>
     </>
   );

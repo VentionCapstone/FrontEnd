@@ -1,6 +1,6 @@
 import { Box, Button, Stack, Typography } from '@mui/material';
 import i18n from '@src/i18n/i18n';
-import { AccountEditPersonalInfo } from '@src/types/i18n.types';
+import { AccountEditPersonalInfo, LoginAndSecurityInfo } from '@src/types/i18n.types';
 import { useState } from 'react';
 
 type EditablePanelType = {
@@ -37,7 +37,9 @@ const EditablePanel = ({ panelHeading, editable, initial }: EditablePanelType) =
           }}
           onClick={handleToggle}
         >
-          {expanded ? 'Cancel' : `${i18n.t(AccountEditPersonalInfo.edit_name)}`}
+          {expanded
+            ? `${i18n.t(LoginAndSecurityInfo.email_cancel)}`
+            : `${i18n.t(AccountEditPersonalInfo.edit_name)}`}
         </Button>
       </Stack>
       {expanded ? editable(collapsePanel) : initial}

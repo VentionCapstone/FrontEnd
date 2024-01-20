@@ -133,8 +133,11 @@ export enum SettingsInfo {
   uzbek = 'setting.uzbek',
   russian = 'setting.russian',
   english = 'setting.english',
-  kazak = 'setting.kazak',
+  kazakh = 'setting.kazak',
   german = 'setting.german',
   currency = 'setting.currency',
   dollar = 'setting.dollar',
+  lang_desc = 'setting.lang_desc',
+  currency_desc = 'setting.currency_desc',
+  can_dollar = 'setting.can_dollar',
 }

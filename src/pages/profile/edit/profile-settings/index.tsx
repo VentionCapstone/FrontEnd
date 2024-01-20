@@ -9,7 +9,9 @@ import { useCallback, useMemo, useState } from 'react';
 import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
 import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
 import { useAppSelector } from '@src/hooks/redux-hooks';
+import i18n from '@src/i18n/i18n';
 import { getProfile } from '@src/stores/slices/authSlice';
+import { SettingsInfo } from '@src/types/i18n.types';
 import { ThemeMode } from '@src/types/profile.types';
 import { getValueFromLocalStorage } from '@src/utils';
 import EditablePanel from '../EditablePanel';
@@ -50,7 +52,7 @@ function ProfileSettings() {
         fontWeight={800}
         component={'h1'}
       >
-        Settings
+        {i18n.t(SettingsInfo.title)}
       </Typography>
 
       <Box maxWidth={'60rem'}>
@@ -63,7 +65,7 @@ function ProfileSettings() {
           borderTop={'1px solid'}
           borderColor={'secondary2.light'}
         >
-          <Typography fontWeight={600}>Theme</Typography>
+          <Typography fontWeight={600}> {i18n.t(SettingsInfo.theme)}</Typography>
           <FormControl>
             <Select
               value={theme}
@@ -72,27 +74,27 @@ function ProfileSettings() {
               labelId="profile-theme-select-label"
               id="profile-theme-select-label"
             >
-              <MenuItem value={ThemeMode.light}>Light</MenuItem>
-              <MenuItem value={ThemeMode.dark}>Dark</MenuItem>
+              <MenuItem value={ThemeMode.light}> {i18n.t(SettingsInfo.light)}</MenuItem>
+              <MenuItem value={ThemeMode.dark}> {i18n.t(SettingsInfo.dark)}</MenuItem>
             </Select>
           </FormControl>
         </Stack>
 
         <EditablePanel
-          panelHeading={'Preferred language'}
+          panelHeading={i18n.t(SettingsInfo.language)}
           initial={
             <Typography variant={'sm'} color={'secondary2.main'}>
-              English
+              {i18n.t(SettingsInfo.english)}
             </Typography>
           }
           editable={languageRenderProps}
         />
 
         <EditablePanel
-          panelHeading={'Preferred currency'}
+          panelHeading={i18n.t(SettingsInfo.currency)}
           initial={
             <Typography variant={'sm'} color={'secondary2.main'}>
-              US Dollars
+              {i18n.t(SettingsInfo.dollar)}
             </Typography>
           }
           editable={currencyRenderProps}
