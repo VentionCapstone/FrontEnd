@@ -40,4 +40,7 @@ export const ENDPOINTS = {
     getAvailableDates: (accommodationId: string) => `/booking/available-dates/${accommodationId}`,
     book: '/booking/book',
   },
+  host: {
+    getHostProfile: (hostId: string) => `/users/host/${hostId}`,
+  },
 } as const;

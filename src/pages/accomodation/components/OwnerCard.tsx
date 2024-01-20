@@ -17,7 +17,7 @@ function OwnerCard({ owner }: { owner: Owner }) {
       }}
     >
       <Typography variant="h6">Hosted by</Typography>
-      <Link to={`/users/${owner.id}`} style={{ textDecoration: 'none' }}>
+      <Link to={`/host/${owner.id}`} style={{ textDecoration: 'none' }}>
         <Box display="flex" alignItems="center" mt={3} gap={2}>
           <Box sx={{ position: 'relative' }}>
             <Box
