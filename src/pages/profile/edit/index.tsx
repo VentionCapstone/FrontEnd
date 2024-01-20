@@ -17,7 +17,9 @@ import houseIcon from '@src/assets/house.png';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import { ROUTES } from '@src/config/routes.config';
 import { useAppSelector } from '@src/hooks/redux-hooks';
+import i18n from '@src/i18n/i18n';
 import { getUser } from '@src/stores/slices/authSlice';
+import { AccountEditPageInfo } from '@src/types/i18n.types';
 import { editPageStyles } from './index.styles';
 
 function EditProfile() {
@@ -90,14 +92,14 @@ function EditProfile() {
             />
             <Box mr={'auto'}>
               <Typography mb={{ md: '0.5rem' }} fontWeight={{ md: 600 }}>
-                Personal Info
+                {i18n.t(AccountEditPageInfo.personal_info)}
               </Typography>
               <Typography
                 variant={'sm'}
                 display={{ xs: 'none', md: 'block' }}
                 color={'secondary2.main'}
               >
-                Update your password and secure your account
+                {i18n.t(AccountEditPageInfo.personal_desc)}
               </Typography>
             </Box>
             <ChevronRight
@@ -132,14 +134,14 @@ function EditProfile() {
             />
             <Box mr={'auto'}>
               <Typography mb={{ md: '0.5rem' }} fontWeight={{ md: 600 }}>
-                Login & Security
+                {i18n.t(AccountEditPageInfo.login_secure)}
               </Typography>
               <Typography
                 variant={'sm'}
                 display={{ xs: 'none', md: 'block' }}
                 color={'secondary2.main'}
               >
-                Provide personal details and how we can reach you
+                {i18n.t(AccountEditPageInfo.login_secure_desc)}
               </Typography>
             </Box>
             <ChevronRight
@@ -169,10 +171,10 @@ function EditProfile() {
             />
             <Box mr={'auto'}>
               <Typography mb={{ md: '0.5rem' }} fontWeight={{ md: 600 }}>
-                Settings
+                {i18n.t(AccountEditPageInfo.setting)}
               </Typography>
               <Typography display={{ xs: 'none', md: 'block' }} color={'secondary2.main'}>
-                Set your default language, and currency
+                {i18n.t(AccountEditPageInfo.setting_desc)}
               </Typography>
             </Box>
             <ChevronRight

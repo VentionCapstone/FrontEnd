@@ -65,6 +65,7 @@ export enum AccountEditPageInfo {
   login_secure_desc = 'account_edit_page.login_secure_desc',
   setting = 'account_edit_page.setting',
   setting_desc = 'account_edit_page.setting_desc',
+  male = 'male',
 }
 
 export enum AccountEditPersonalInfo {
@@ -76,13 +77,13 @@ export enum AccountEditPersonalInfo {
   first_name = 'account_edit_personal-info.name.first_name',
   last_name = 'account_edit_personal-info.name.last_name',
 
-  gender = 'account_edit_personal-info.genger',
-  your_gender = 'account_edit_personal-info.genger.your_gender',
-  male = 'account_edit_personal-info.genger.male',
-  female = 'account_edit_personal-info.genger.famele',
-  edit_gender = 'account_edit_personal-info.genger.edit',
-  save_gender = 'account_edit_personal-info.genger.save',
-  select_gender = 'account_edit_personal-info.genger.select',
+  gender = 'account_edit_personal-info.gender',
+  your_gender = 'account_edit_personal-info.gender.your_gender',
+  male = 'account_edit_personal-info.gender.male',
+  female = 'account_edit_personal-info.gender.female',
+  edit_gender = 'account_edit_personal-info.gender.edit',
+  save_gender = 'account_edit_personal-info.gender.save',
+  select_gender = 'account_edit_personal-info.gender.select',
 
   location = 'account_edit_personal-info.location',
   where_do_live = 'account_edit_personal-info.location.where_do_live',

@@ -91,7 +91,7 @@
 
     "account_edit_personal-info": {
       "name": {
-        "legal_name": "Yasalgan ism",
+        "legal_name": "Haqiqiy ism",
         "legal_name_desc": "Bu sayohat hujjatingizdagi ism, unda yuridik ko'rik yoki passport bo'lishi mumkin.",
         "edit": "tahrirlash",
         "save": "saqlash",
@@ -127,6 +127,25 @@
         "about_textarea": "O'zingiz haqida qisqa nima deyishni ayt, huddi kelgan yoki keluvchi tashrif buyuruvchilaringiz bilan tanishishlari uchun.",
         "edit": "tahrirlash",
         "save": "saqlash"
+      }
+    },
+    "login_and_security": {
+      "login_title": "Kirish sarlavhasi",
+      "email": {
+        "edit": "Tahrirlash",
+        "email": "Elektron pochta",
+        "email_desc": "Yangi elektron pochta manzilingizni kiriting",
+        "change_btn": "O'zgartirish",
+        "cancel": "Bekor qilish"
+      },
+      "password": {
+        "change_your_password": "Parolingizni o'zgartirish",
+        "edit": "Tahrirlash",
+        "change_btn": "O'zgartirish",
+        "cancel": "Bekor qilish",
+        "current": "Joriy parol",
+        "new_password": "Yangi Parol",
+        "confirm": "Parolni tasdiqlang"
       }
     }
   }

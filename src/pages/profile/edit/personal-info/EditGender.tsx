@@ -12,7 +12,9 @@ import { useCallback, useState } from 'react';
 
 import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
 import { useAppSelector } from '@src/hooks/redux-hooks';
+import i18n from '@src/i18n/i18n';
 import { getProfile } from '@src/stores/slices/authSlice';
+import { AccountEditPersonalInfo } from '@src/types/i18n.types';
 import { Gender as GenderEnum, Profile } from '@src/types/profile.types';
 
 const Gender = ({
@@ -40,7 +42,7 @@ const Gender = ({
   return (
     <>
       <Typography variant={'sm'} color={'secondary2.main'} mt={1}>
-        Select your gender
+        {i18n.t(AccountEditPersonalInfo.select_gender)}
       </Typography>
 
       <Grid container columnSpacing={4} mt={{ xs: 2, md: 4 }} mb={6}>
@@ -54,8 +56,8 @@ const Gender = ({
               id="user-gender-select"
               label="Gender"
             >
-              <MenuItem value={'MALE'}>Male</MenuItem>
-              <MenuItem value={'FEMALE'}>Female</MenuItem>
+              <MenuItem value={'MALE'}> {i18n.t(AccountEditPersonalInfo.male)}</MenuItem>
+              <MenuItem value={'FEMALE'}> {i18n.t(AccountEditPersonalInfo.female)}</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -67,7 +69,7 @@ const Gender = ({
         size="small"
         sx={{ display: 'block', fontWeight: 600, ml: 'auto' }}
       >
-        Save
+        {i18n.t(AccountEditPersonalInfo.save_gender)}
       </Button>
     </>
   );

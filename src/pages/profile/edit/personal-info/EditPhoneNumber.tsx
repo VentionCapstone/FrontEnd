@@ -15,7 +15,9 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
 import { useAppSelector } from '@src/hooks/redux-hooks';
+import i18n from '@src/i18n/i18n';
 import { getProfile } from '@src/stores/slices/authSlice';
+import { AccountEditPersonalInfo } from '@src/types/i18n.types';
 import { phoneNumLengthRegEx } from '@src/utils';
 import { DEFAULT_COUNTRY, PHONE_CODES_BY_COUNTRY } from '../../constants';
 import { PhoneCodesByCountry } from '../../constants.types';
@@ -49,8 +51,7 @@ const PhoneNumber = ({ collapsePanel }: { collapsePanel: () => void }) => {
   return (
     <>
       <Typography variant={'sm'} color={'secondary2.main'} mt={1}>
-        Add a number so confirmed guests and Airbnb can get in touch. You can add other numbers and
-        choose how they’re used.
+        {i18n.t(AccountEditPersonalInfo.phone_number_desc)}
       </Typography>
 
       <form onSubmit={(e) => void handleSubmit(onSubmit)(e)}>
@@ -103,7 +104,8 @@ const PhoneNumber = ({ collapsePanel }: { collapsePanel: () => void }) => {
           size="small"
           sx={{ display: 'block', fontWeight: 600, ml: 'auto' }}
         >
-          Save
+          {' '}
+          {i18n.t(AccountEditPersonalInfo.save_name)}
         </Button>
       </form>
     </>

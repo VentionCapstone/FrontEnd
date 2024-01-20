@@ -99,9 +99,9 @@
         "last_name": "Last name"
       },
       "genger": {
-        "your_gender": "Your Gender",
-        "male": "male",
-        "famele": "famele",
+        "your_gender": "Your gender",
+        "male": "Male",
+        "famele": "Famele",
         "edit": "edit",
         "save": "save",
         "select": "Select Your Gender"
@@ -127,6 +127,25 @@
         "about_textarea": "Tell us a little bit about yourself, so your future hosts or guests can get to know you.",
         "edit": "edit",
         "save": "save"
+      }
+    },
+    "login_and_security": {
+      "login_title": "Login Title",
+      "email": {
+        "edit": "Edit",
+        "email": "Email",
+        "email_desc": "Type your new email address",
+        "change_btn": "Change",
+        "cancel": "Cancel"
+      },
+      "password": {
+        "change_your_password": "Change you password",
+        "edit": "Edit",
+        "change_btn": "Change",
+        "cancel": "Cancel",
+        "current": "Current password",
+        "new_password": "New Password",
+        "confirm": "Confirm Password"
       }
     }
   }

@@ -3,7 +3,9 @@ import { useState } from 'react';
 
 import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
 import { useAppSelector } from '@src/hooks/redux-hooks';
+import i18n from '@src/i18n/i18n';
 import { getProfile } from '@src/stores/slices/authSlice';
+import { AccountEditPersonalInfo } from '@src/types/i18n.types';
 import { User } from '@src/types/user.types';
 
 type FullNameProps = {
@@ -32,7 +34,7 @@ const FullName = ({ collapsePanel, initialFirstName, initialLastName }: FullName
   return (
     <>
       <Typography variant={'sm'} color={'secondary2.main'} mt={1}>
-        This is the name on your travel document, which could be a license or a passport.
+        {i18n.t(AccountEditPersonalInfo.legal_name_desc)}
       </Typography>
 
       <form onSubmit={handleSubmit}>
@@ -69,7 +71,7 @@ const FullName = ({ collapsePanel, initialFirstName, initialLastName }: FullName
           size="small"
           sx={{ display: 'block', fontWeight: 600, ml: 'auto' }}
         >
-          Save
+          {i18n.t(AccountEditPersonalInfo.save_name)}
         </Button>
       </form>
     </>

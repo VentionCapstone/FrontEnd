@@ -128,6 +128,25 @@
         "edit": "Bearbeiten",
         "save": "Speichern"
       }
+    },
+    "login_and_security": {
+      "login_title": "Anmeldetitel",
+      "email": {
+        "edit": "Bearbeiten",
+        "email": "E-Mail",
+        "email_desc": "Geben Sie Ihre neue E-Mail-Adresse ein",
+        "change_btn": "Ändern",
+        "cancel": "Abbrechen"
+      },
+      "password": {
+        "change_your_password": "Ändern Sie Ihr Passwort",
+        "edit": "Bearbeiten",
+        "change_btn": "Ändern",
+        "cancel": "Abbrechen",
+        "current": "Aktuelles Passwort",
+        "new_password": "Neues Passwort",
+        "confirm": "Passwort bestätigen"
+      }
     }
   }
 }
