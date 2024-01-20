@@ -14,7 +14,7 @@ import { AccommodationType } from '@src/types/accommodation.types';
 import { ErrorTypes } from '@src/types/i18n.types';
 import { useCallback, useMemo } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import AccommodationSkeleton from './AccommodationSkeleton';
+import AccommodationSkeleton from './components/AccommodationSkeleton';
 
 export default function Accommodations() {
   const profileId = useAppSelector(getUser)?.id ?? '';

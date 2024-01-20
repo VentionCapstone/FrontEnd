@@ -1,11 +1,11 @@
 import { Box, Checkbox, Typography } from '@mui/material';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 
-import YandexMap from '@src/components/YandexMap';
+import YandexMap from '@src/components/shared/YandexMap';
 import { AccommodationReq } from '@src/types/accommodation.types';
 import { Coordinates } from '@src/types/global.types';
-import { FormDateField } from '../FormDateField';
-import { FormField } from '../FormField';
+import { FormDateField } from './FormDateField';
+import { FormField } from './FormField';
 
 interface FormDateFieldProps {
   control: Control<AccommodationReq>;

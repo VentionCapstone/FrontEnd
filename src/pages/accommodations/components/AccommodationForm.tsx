@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack } from '@mui/material';
 import dayjs from 'dayjs';
 import { useForm } from 'react-hook-form';
 
@@ -10,7 +10,7 @@ import {
   accommodationSchema,
 } from '@src/types/accommodation.types';
 import { Coordinates } from '@src/types/global.types';
-import FormFields from './components/FormFields';
+import FormFields from './FormFields';
 
 function AccommodationForm({ setCurrentStep }: AccommodationStepType) {
   const { mutate: createAccommodation } = useCreateAccommodation({ setCurrentStep });
@@ -66,9 +66,6 @@ function AccommodationForm({ setCurrentStep }: AccommodationStepType) {
   };
   return (
     <Box>
-      <Typography variant="h4" textAlign="center" pb={4}>
-        Create Accommodation
-      </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormFields
           control={control}

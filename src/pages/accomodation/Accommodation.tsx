@@ -11,7 +11,7 @@ import DataFetchError from '@src/components/shared/DataFetchError';
 import { AmenitySetting } from '@src/types/amenity.types';
 import { ErrorTypes } from '@src/types/i18n.types';
 import { handleErrorInImage, selectOnlyTrueAmenities } from '@src/utils';
-import YandexMap from '../../components/YandexMap';
+import YandexMap from '../../components/shared/YandexMap';
 import { styles } from './Accommodation.styles';
 import AmenityList from './components/AmenityList';
 import { Reviews } from './components/Reviews';

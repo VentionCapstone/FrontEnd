@@ -9,7 +9,7 @@ import AccommodationCard from '@src/components/card/AccommodationCard';
 import DataFetchError from '@src/components/shared/DataFetchError';
 import { Accommodation, DefaultSearchParamsType } from '@src/types/accommodation.types';
 import { ErrorTypes } from '@src/types/i18n.types';
-import AccommodationSkeleton from '../accommodations/AccommodationSkeleton';
+import AccommodationSkeleton from '../accommodations/components/AccommodationSkeleton';
 import MainModal from './components/Modal';
 import SearchBar from './components/SearchBar';
 import { mainStyles } from './index.styles';
