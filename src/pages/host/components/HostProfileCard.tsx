@@ -3,6 +3,7 @@ import { Box } from '@mui/system';
 import StarIcon from '@mui/icons-material/Star';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { List, Typography } from '@mui/material';
+import { FONT_SIZES } from '@src/theme/themeTokens';
 import { HostProfile } from '@src/types/hostProfile.types';
 
 function HostProfileCard({ host }: { host: HostProfile }) {
@@ -79,7 +80,7 @@ function HostProfileCard({ host }: { host: HostProfile }) {
         <Box component="li">
           <Typography
             variant="subtitle2"
-            fontSize="1.2rem"
+            fontSize={FONT_SIZES.md}
             fontWeight="700"
             lineHeight="1"
             pb="0.2rem"
@@ -93,7 +94,7 @@ function HostProfileCard({ host }: { host: HostProfile }) {
         <Box component="li">
           <Typography
             variant="subtitle2"
-            fontSize="1.2rem"
+            fontSize={FONT_SIZES.md}
             fontWeight="700"
             lineHeight="1"
             pb="0.2rem"
@@ -114,7 +115,7 @@ function HostProfileCard({ host }: { host: HostProfile }) {
         <Box component="li">
           <Typography
             variant="subtitle2"
-            fontSize="1.2rem"
+            fontSize={FONT_SIZES.md}
             fontWeight="700"
             lineHeight="1"
             pb="0.2rem"

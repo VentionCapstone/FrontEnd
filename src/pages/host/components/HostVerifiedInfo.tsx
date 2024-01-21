@@ -3,6 +3,7 @@ import { Box } from '@mui/system';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import { List, ListItem, ListItemIcon, Typography } from '@mui/material';
+import { FONT_SIZES } from '@src/theme/themeTokens';
 import { HostProfile } from '@src/types/hostProfile.types';
 
 function HostVerifiedInfo({ host }: { host: HostProfile }) {
@@ -26,17 +27,17 @@ function HostVerifiedInfo({ host }: { host: HostProfile }) {
       <List disablePadding>
         <ListItem>
           <ListItemIcon>{isVerified ? <CheckIcon /> : <CloseIcon />}</ListItemIcon>
-          <Typography fontSize="1.2rem">Identity</Typography>
+          <Typography fontSize={FONT_SIZES.md}>Identity</Typography>
         </ListItem>
         <ListItem>
           <ListItemIcon>{isEmailVerified ? <CheckIcon /> : <CloseIcon />}</ListItemIcon>
-          <Typography fontSize="1.2rem">Email address</Typography>
+          <Typography fontSize={FONT_SIZES.md}>Email address</Typography>
         </ListItem>
         <ListItem>
           <ListItemIcon>
             <CloseIcon />
           </ListItemIcon>
-          <Typography fontSize="1.2rem">Phone number</Typography>
+          <Typography fontSize={FONT_SIZES.md}>Phone number</Typography>
         </ListItem>
       </List>
     </Box>

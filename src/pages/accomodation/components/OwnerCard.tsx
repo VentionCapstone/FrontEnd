@@ -1,5 +1,6 @@
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { Box, Typography } from '@mui/material';
+import { ROUTES } from '@src/config/routes.config';
 import { DATE_MONTH_YEAR_FORMAT } from '@src/constants';
 import { Owner } from '@src/types/accommodation.types';
 import * as dayjs from 'dayjs';
@@ -20,7 +21,7 @@ function OwnerCard({ owner }: { owner: Owner }) {
       }}
     >
       <Typography variant="h6">Hosted by</Typography>
-      <Link to={`/host/${id}`} style={{ textDecoration: 'none' }}>
+      <Link to={ROUTES.host.details(id)} style={{ textDecoration: 'none' }}>
         <Box display="flex" alignItems="center" mt={3} gap={2}>
           <Box sx={{ position: 'relative' }}>
             <Box

@@ -3,7 +3,6 @@ import { Box, IconButton, Stack, Typography } from '@mui/material';
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
 
-import { ROUTES } from '@src/config/routes.config';
 import { Accommodation } from '@src/types/accommodation.types';
 import { MuiStylesObject } from '@src/types/utility.types';
 import CustomImage from '../shared/CustomImage';
@@ -43,7 +42,7 @@ function AccommodationCard({
 }) {
   return (
     <Box sx={accommodationCardStyles.root}>
-      <Link to={ROUTES.accommodations.details(id)}>
+      <Link to={`/rooms/${id}`}>
         <Stack gap={3} width="100%">
           <Box sx={accommodationCardStyles.imageBox}>
             <CustomImage image={thumbnailUrl} name={country} />
@@ -70,5 +69,4 @@ function AccommodationCard({
   );
 }
 
-const MemoizedAccommodationCard = memo(AccommodationCard);
-export default MemoizedAccommodationCard;
+export default memo(AccommodationCard);

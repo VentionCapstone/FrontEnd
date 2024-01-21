@@ -19,4 +19,7 @@ export const ROUTES = {
     root: (id: string, accommodationId: string, startDate: string, endDate: string) =>
       `/book/${id}?accommodationId=${accommodationId}&startDate=${startDate}&endDate=${endDate}`,
   },
+  host: {
+    details: (id: string) => `/host/${id}`,
+  },
 } as const;

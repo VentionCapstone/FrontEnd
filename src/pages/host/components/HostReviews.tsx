@@ -3,6 +3,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { Box, IconButton, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Slider from '@src/components/shared/Slider';
 import { DATE_MONTH_YEAR_FORMAT } from '@src/constants';
+import { FONT_SIZES } from '@src/theme/themeTokens';
 import { HostProfile } from '@src/types/hostProfile.types';
 import * as dayjs from 'dayjs';
 import { useCallback, useState } from 'react';
@@ -82,7 +83,7 @@ function HostReviews({ host }: { host: HostProfile }) {
                   sx={{ width: 50, height: 50, borderRadius: '50%' }}
                 />
                 <Box sx={{ ml: 2 }}>
-                  <Typography variant="body1" fontSize="1.2rem" fontWeight="400">
+                  <Typography variant="body1" fontSize={FONT_SIZES.md} fontWeight="400">
                     {review.user.firstName} {review.user.lastName}
                   </Typography>
                   <Typography variant="body2" fontSize="1rem" fontWeight="400">
