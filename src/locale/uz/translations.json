@@ -55,15 +55,23 @@
         "filter": "Filtr",
         "price": {
           "price_range": "Narx Oraliqi",
-          "price_description": "To'lovlardan va soliqlardan oldin tungi narxlar"
+          "price_description": "To'lovlardan va soliqlardan oldin tungi narxlar",
+          "min": "Minimum",
+          "max": "Maksimum"
         },
         "rooms": {
+          "title": "Xonalar",
           "any": "Har qanday"
         },
         "people": {
+          "title": "Odamlar",
           "any": "Har qanday"
         },
         "sort": {
+          "title": "Saralash",
+          "price-title": "Narx",
+          "room-title": "Xonalar",
+          "people-title": "Odamlar",
           "price": ["Har qanday", "Pastdan yuqoriga", "yuqoridan pastga"],
           "room": ["Har qanday", "Pastdan yuqoriga", "yuqoridan pastga"],
           "people": ["Har qanday", "Pastdan yuqoriga", "yuqoridan pastga"]

@@ -55,8 +55,8 @@ const Signup = () => {
                 <InputForm
                   {...field}
                   type="email"
-                  placeholder="Email"
-                  label="Email"
+                  placeholder={t(LoginAndSecurityInfo.email)}
+                  label={t(LoginAndSecurityInfo.email)}
                   error={!!errors.email}
                   helperText={errors.email?.message}
                 />

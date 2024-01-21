@@ -10,7 +10,7 @@ import InputForm from '@src/components/input/InputForm';
 import PasswordInput from '@src/components/input/PasswordInput';
 import { ENDPOINTS } from '@src/config/endpoints.config';
 import { SignInReq, signInSchema } from '@src/types/auth.types';
-import { HomeUIInfo } from '@src/types/i18n.types';
+import { HomeUIInfo, LoginAndSecurityInfo } from '@src/types/i18n.types';
 import { useTranslation } from 'react-i18next';
 import ForgotPasswordModal from './components/ForgotPasswordModal';
 import { styles } from './styles';
@@ -62,8 +62,8 @@ const SignIn = () => {
                 <InputForm
                   {...field}
                   type="email"
-                  placeholder="Email"
-                  label="Email"
+                  placeholder={t(LoginAndSecurityInfo.email)}
+                  label={t(LoginAndSecurityInfo.email)}
                   error={!!errors.email}
                   helperText={errors.email?.message}
                 />
@@ -71,8 +71,8 @@ const SignIn = () => {
             />
             <PasswordInput
               name="password"
-              label="Password"
-              placeholder="Password"
+              label={t(LoginAndSecurityInfo.password)}
+              placeholder={t(LoginAndSecurityInfo.password)}
               control={control}
               errors={errors}
             />

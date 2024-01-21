@@ -55,15 +55,23 @@
         "filter": "Filter",
         "price": {
           "price_range": "Preisklasse",
-          "price_description": "Preise pro Nacht vor Gebühren und Steuern"
+          "price_description": "Preise pro Nacht vor Gebühren und Steuern",
+          "min": "Minimum",
+          "max": "Maximum"
         },
         "rooms": {
-          "any": "beliebig"
+          "title": "Zimmer",
+          "any": "Beliebig"
         },
         "people": {
-          "any": "beliebig"
+          "title": "Leute",
+          "any": "Beliebig"
         },
         "sort": {
+          "title": "Sortieren",
+          "price-title": "Preis",
+          "room-title": "Zimmer",
+          "people-title": "Leute",
           "price": ["beliebig", "Niedrig bis Hoch", "Hoch bis Niedrig"],
           "room": ["beliebig", "Niedrig bis Hoch", "Hoch bis Niedrig"],
           "people": ["beliebig", "Niedrig bis Hoch", "Hoch bis Niedrig"]
