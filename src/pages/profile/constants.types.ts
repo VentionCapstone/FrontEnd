@@ -3,3 +3,8 @@ export type PhoneCodesByCountry = {
   code: number;
   numLength: number;
 };
+
+export type LanguageList = {
+  name: string;
+  code: string;
+};

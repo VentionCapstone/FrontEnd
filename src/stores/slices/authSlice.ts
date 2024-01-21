@@ -35,6 +35,9 @@ export const authSlice = createSlice({
     },
     setUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
+      if (action.payload.profile) {
+        setValueToLocalStorage(LOCAL_STORAGE_KEYS.language, action.payload.profile?.language);
+      }
     },
     removeUser: (state) => {
       state.user = null;

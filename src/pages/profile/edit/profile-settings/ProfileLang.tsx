@@ -8,6 +8,14 @@ import {
   Typography,
 } from '@mui/material';
 import { useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
+import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
+import { useAppSelector } from '@src/hooks/redux-hooks';
+import { getProfile } from '@src/stores/slices/authSlice';
+import { setValueToLocalStorage } from '@src/utils';
+import { LANGUAGE_LIST } from '../../constants';
 
 export const ProfileLang = ({
   collapsePanel,
@@ -16,11 +24,25 @@ export const ProfileLang = ({
   collapsePanel: () => void;
   userLang: string;
 }) => {
-  const [lang, setLang] = useState<string>(userLang);
+  const profileId = useAppSelector(getProfile)?.id ?? '';
+
+  const [language, setLanguage] = useState<string>(userLang);
+  const { mutate } = useEditAccountMutation(profileId);
+  const { i18n } = useTranslation();
 
   const handleChange = useCallback((e: SelectChangeEvent<string>) => {
-    setLang(e.target.value);
+    setLanguage(e.target.value);
   }, []);
+
+  const handleSubmit = async () => {
+    if (language && language !== userLang) {
+      mutate({ language });
+      await i18n.changeLanguage(language);
+      setValueToLocalStorage(LOCAL_STORAGE_KEYS.language, language);
+
+      collapsePanel();
+    }
+  };
 
   return (
     <>
@@ -34,7 +56,7 @@ export const ProfileLang = ({
       >
         <InputLabel id="profile-lang-select-label">Language</InputLabel>
         <Select
-          value={lang}
+          value={language}
           onChange={handleChange}
           fullWidth
           size="small"
@@ -43,12 +65,15 @@ export const ProfileLang = ({
           label="Language"
           sx={{ maxWidth: '40rem' }}
         >
-          <MenuItem value={'English'}>English</MenuItem>
-          <MenuItem value={'Russian'}>Russian</MenuItem>
+          {LANGUAGE_LIST.map((language, index) => (
+            <MenuItem key={index} value={language.code}>
+              {language.name}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
 
-      <Button onClick={collapsePanel} variant={'contained'} size="small" sx={{ fontWeight: 600 }}>
+      <Button onClick={handleSubmit} variant={'contained'} size="small" sx={{ fontWeight: 600 }}>
         Save
       </Button>
     </>
