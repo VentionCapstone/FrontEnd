@@ -5,9 +5,12 @@ import { Box, List, ListItem, Typography } from '@mui/material';
 import { DATE_MONTH_YEAR_FORMAT } from '@src/constants';
 import { FONT_SIZES } from '@src/theme/themeTokens';
 import { HostProfile } from '@src/types/hostProfile.types';
+import { HostInfo } from '@src/types/i18n.types';
 import * as dayjs from 'dayjs';
+import { useTranslation } from 'react-i18next';
 
 function HostAbout({ host }: { host: HostProfile }) {
+  const { t } = useTranslation();
   const { firstName, joinedAt, language, country, description } = host;
 
   return (
@@ -20,7 +23,7 @@ function HostAbout({ host }: { host: HostProfile }) {
       }}
     >
       <Typography variant="h3" fontSize="2rem" fontWeight="800">
-        About {firstName}
+        {t(HostInfo.host_about_title, { firstName })}
       </Typography>
       <List
         sx={{
@@ -35,19 +38,21 @@ function HostAbout({ host }: { host: HostProfile }) {
         <ListItem>
           <PersonAddIcon />
           <Typography variant="subtitle1" fontSize={FONT_SIZES.md} fontWeight="500" ml={3}>
-            Joined in {dayjs(joinedAt).format(DATE_MONTH_YEAR_FORMAT)}
+            {t(HostInfo.host_about_joined, {
+              joinedAt: dayjs(joinedAt).format(DATE_MONTH_YEAR_FORMAT),
+            })}
           </Typography>
         </ListItem>
         <ListItem>
           <LanguageIcon />
           <Typography variant="subtitle1" fontSize={FONT_SIZES.md} fontWeight="500" ml={3}>
-            Speaks in {language}
+            {t(HostInfo.host_about_language, { language })}
           </Typography>
         </ListItem>
         <ListItem>
           <FmdGoodIcon />
           <Typography variant="subtitle1" fontSize={FONT_SIZES.md} fontWeight="500" ml={3}>
-            Lives in {country}
+            {t(HostInfo.host_about_lives_in, { country })}
           </Typography>
         </ListItem>
       </List>

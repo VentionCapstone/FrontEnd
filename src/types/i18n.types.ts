@@ -34,3 +34,22 @@ export enum PaymentInfo {
   button_type_card = 'payment.button_type.card',
   button_type_cash = 'payment.button_type.cash',
 }
+
+export enum HostInfo {
+  host_card_subtitle = 'host.profile.subtitle',
+  host_card_reviews = 'host.profile.reviews',
+  host_card_rating = 'host.profile.rating',
+  host_card_listings = 'host.profile.listings',
+  host_verified_title = 'host.verified.title',
+  host_verified_identity = 'host.verified.identity',
+  host_verified_email = 'host.verified.email',
+  host_verified_phone = 'host.verified.phone',
+  host_about_title = 'host.about.title',
+  host_about_joined = 'host.about.joined',
+  host_about_language = 'host.about.language',
+  host_about_lives_in = 'host.about.lives_in',
+  host_reviews_title = 'host.reviews.title',
+  host_reviews_empty = 'host.reviews.empty',
+  host_listings_title = 'host.listings.title',
+  host_listings_empty = 'host.listings.empty',
+}

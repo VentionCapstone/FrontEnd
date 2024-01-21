@@ -5,8 +5,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import { List, ListItem, ListItemIcon, Typography } from '@mui/material';
 import { FONT_SIZES } from '@src/theme/themeTokens';
 import { HostProfile } from '@src/types/hostProfile.types';
+import { HostInfo } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 
 function HostVerifiedInfo({ host }: { host: HostProfile }) {
+  const { t } = useTranslation();
   const { firstName, isVerified, isEmailVerified } = host;
 
   return (
@@ -22,22 +25,22 @@ function HostVerifiedInfo({ host }: { host: HostProfile }) {
       }}
     >
       <Typography variant="h3" fontWeight="700" fontSize="1.4rem">
-        {firstName}&apos;s confirmed information
+        {t(HostInfo.host_verified_title, { firstName })}
       </Typography>
       <List disablePadding>
         <ListItem>
           <ListItemIcon>{isVerified ? <CheckIcon /> : <CloseIcon />}</ListItemIcon>
-          <Typography fontSize={FONT_SIZES.md}>Identity</Typography>
+          <Typography fontSize={FONT_SIZES.md}>{t(HostInfo.host_verified_identity)}</Typography>
         </ListItem>
         <ListItem>
           <ListItemIcon>{isEmailVerified ? <CheckIcon /> : <CloseIcon />}</ListItemIcon>
-          <Typography fontSize={FONT_SIZES.md}>Email address</Typography>
+          <Typography fontSize={FONT_SIZES.md}>{t(HostInfo.host_verified_email)}</Typography>
         </ListItem>
         <ListItem>
           <ListItemIcon>
             <CloseIcon />
           </ListItemIcon>
-          <Typography fontSize={FONT_SIZES.md}>Phone number</Typography>
+          <Typography fontSize={FONT_SIZES.md}>{t(HostInfo.host_verified_phone)}</Typography>
         </ListItem>
       </List>
     </Box>

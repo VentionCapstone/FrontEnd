@@ -5,10 +5,13 @@ import CustomImage from '@src/components/shared/CustomImage';
 import Slider from '@src/components/shared/Slider';
 import { ROUTES } from '@src/config/routes.config';
 import { HostProfile } from '@src/types/hostProfile.types';
+import { HostInfo } from '@src/types/i18n.types';
 import { useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 function HostListings({ host }: { host: HostProfile }) {
+  const { t } = useTranslation();
   const { firstName, accommodations } = host;
   const theme = useTheme();
   const isLargeMd = useMediaQuery(theme.breakpoints.up('md'));
@@ -35,7 +38,7 @@ function HostListings({ host }: { host: HostProfile }) {
     >
       <Box display={'flex'}>
         <Typography variant="h3" fontSize="1.6rem" fontWeight="800" mb={4} flex={1}>
-          {firstName}&apos;s latest reviews
+          {t(HostInfo.host_listings_title, { firstName })}
         </Typography>
         <Box>
           <IconButton onClick={handleBack} disabled={activeStep === 0} color="primary">
@@ -54,7 +57,7 @@ function HostListings({ host }: { host: HostProfile }) {
           maxSteps={maxSteps}
           onEmpty={
             <Typography key="error" textAlign="center">
-              This host has no active accommodations.
+              {t(HostInfo.host_listings_empty)}
             </Typography>
           }
         >

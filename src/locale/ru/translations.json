@@ -35,6 +35,34 @@
       "input_location_label_anywhere": "Везде",
       "search_button": "Поиск",
       "input_location_no_options": "Введите местоположение"
+    },
+    "host": {
+      "profile": {
+        "subtitle": "Хозяин",
+        "rating": "Рейтинг",
+        "reviews": "Отзывы",
+        "listings": "Объявления"
+      },
+      "verified": {
+        "title": "Подтвержденная информация о {{firstName}}",
+        "identity": "Личность",
+        "email": "Адрес электронной почты",
+        "phone": "Номер телефона"
+      },
+      "about": {
+        "title": "О {{firstName}}",
+        "joined": "Присоединился в {{joinedAt}}",
+        "language": "Говорит на {{language}}",
+        "lives_in": "Живет в {{country}}"
+      },
+      "reviews": {
+        "title": "Последние отзывы о {{firstName}}",
+        "empty": "У этого хозяина пока нет отзывов"
+      },
+      "listings": {
+        "title": "Объявления {{firstName}}",
+        "empty": "У этого хозяина нет активных размещений"
+      }
     }
   }
 }

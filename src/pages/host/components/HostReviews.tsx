@@ -5,10 +5,13 @@ import Slider from '@src/components/shared/Slider';
 import { DATE_MONTH_YEAR_FORMAT } from '@src/constants';
 import { FONT_SIZES } from '@src/theme/themeTokens';
 import { HostProfile } from '@src/types/hostProfile.types';
+import { HostInfo } from '@src/types/i18n.types';
 import * as dayjs from 'dayjs';
 import { useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 function HostReviews({ host }: { host: HostProfile }) {
+  const { t } = useTranslation();
   const { firstName, joinedAt, reviews } = host;
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.up('md'));
@@ -32,7 +35,7 @@ function HostReviews({ host }: { host: HostProfile }) {
     >
       <Box display={'flex'}>
         <Typography variant="h3" fontSize="1.6rem" fontWeight="800" mb={4} flex={1}>
-          {firstName}&apos;s latest reviews
+          {t('host.reviews.title', { firstName })}
         </Typography>
         <Box>
           <IconButton onClick={handleBack} disabled={activeStep === 0} color="primary">
@@ -51,7 +54,7 @@ function HostReviews({ host }: { host: HostProfile }) {
           maxSteps={maxSteps}
           onEmpty={
             <Typography key="error" textAlign="center">
-              This host has no reviews yet.
+              {t(HostInfo.host_reviews_empty)}
             </Typography>
           }
         >

@@ -5,8 +5,12 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import { List, Typography } from '@mui/material';
 import { FONT_SIZES } from '@src/theme/themeTokens';
 import { HostProfile } from '@src/types/hostProfile.types';
+import { HostInfo } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 
 function HostProfileCard({ host }: { host: HostProfile }) {
+  const { t } = useTranslation();
+
   const { firstName, imageUrl, isVerified, reviews, rating, accommodations } = host;
 
   return (
@@ -62,7 +66,7 @@ function HostProfileCard({ host }: { host: HostProfile }) {
         <Typography variant="h2" fontSize="2.2rem" fontWeight="700">
           {firstName}
         </Typography>
-        <Typography fontWeight="600">Host</Typography>
+        <Typography fontWeight="600">{t(HostInfo.host_card_subtitle)}</Typography>
       </Box>
       <List
         sx={{
@@ -88,7 +92,7 @@ function HostProfileCard({ host }: { host: HostProfile }) {
             {reviews.count}
           </Typography>
           <Typography fontWeight="700" fontSize="0.8rem">
-            Reviews
+            {t(HostInfo.host_card_reviews)}
           </Typography>
         </Box>
         <Box component="li">
@@ -109,7 +113,7 @@ function HostProfileCard({ host }: { host: HostProfile }) {
             />
           </Typography>
           <Typography fontWeight="700" fontSize="0.8rem">
-            Rating
+            {t(HostInfo.host_card_rating)}
           </Typography>
         </Box>
         <Box component="li">
@@ -123,7 +127,7 @@ function HostProfileCard({ host }: { host: HostProfile }) {
             {accommodations?.length || 0}
           </Typography>
           <Typography fontWeight="700" fontSize="0.8rem">
-            Listings
+            {t(HostInfo.host_card_listings)}
           </Typography>
         </Box>
       </List>
