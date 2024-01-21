@@ -88,7 +88,9 @@
       "login_secure": "Login & Secure",
       "login_secure_desc": "Provide secure details and how we can reach you",
       "setting": "Setting",
-      "setting_desc": "Set your default language, and currency"
+      "setting_desc": "Set your default language, and currency",
+      "airbnb_your_place": "Airbnb your place",
+      "airbnb_your_place_desc": "It`s simple to get set up and start earning."
     },
 
     "account_edit_personal-info": {
@@ -106,7 +108,8 @@
         "famele": "Famele",
         "edit": "edit",
         "save": "save",
-        "select": "Select Your Gender"
+        "select": "Select Your Gender",
+        "gender": "Gender"
       },
       "location": {
         "where_do_live": "Where you live",
@@ -115,7 +118,8 @@
         "select": "Select Your Country",
         "uzbekistan": "Uzbekistan",
         "kazakistan": "Kazakhstan",
-        "russian": "Russia"
+        "russian": "Russia",
+        "country": "Country"
       },
       "number": {
         "phone_number": "Phone Number",

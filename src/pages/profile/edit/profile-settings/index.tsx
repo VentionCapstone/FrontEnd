@@ -14,11 +14,13 @@ import { getProfile } from '@src/stores/slices/authSlice';
 import { SettingsInfo } from '@src/types/i18n.types';
 import { ThemeMode } from '@src/types/profile.types';
 import { getValueFromLocalStorage } from '@src/utils';
+import { useTranslation } from 'react-i18next';
 import EditablePanel from '../EditablePanel';
 import { ProfileCurrency } from './ProfileCurrency';
 import { ProfileLang } from './ProfileLang';
 
 function ProfileSettings() {
+  const { t } = useTranslation();
   const profileId = useAppSelector(getProfile)?.id;
   const { mutate } = useEditAccountMutation(profileId ?? '');
   const uiTheme = useMemo(
@@ -52,7 +54,7 @@ function ProfileSettings() {
         fontWeight={800}
         component={'h1'}
       >
-        {i18n.t(SettingsInfo.title)}
+        {t(SettingsInfo.title)}
       </Typography>
 
       <Box maxWidth={'60rem'}>
@@ -65,7 +67,7 @@ function ProfileSettings() {
           borderTop={'1px solid'}
           borderColor={'secondary2.light'}
         >
-          <Typography fontWeight={600}> {i18n.t(SettingsInfo.theme)}</Typography>
+          <Typography fontWeight={600}> {t(SettingsInfo.theme)}</Typography>
           <FormControl>
             <Select
               value={theme}
@@ -81,10 +83,10 @@ function ProfileSettings() {
         </Stack>
 
         <EditablePanel
-          panelHeading={i18n.t(SettingsInfo.language)}
+          panelHeading={t(SettingsInfo.language)}
           initial={
             <Typography variant={'sm'} color={'secondary2.main'}>
-              {i18n.t(SettingsInfo.english)}
+              {t(SettingsInfo.english)}
             </Typography>
           }
           editable={languageRenderProps}
@@ -94,7 +96,7 @@ function ProfileSettings() {
           panelHeading={i18n.t(SettingsInfo.currency)}
           initial={
             <Typography variant={'sm'} color={'secondary2.main'}>
-              {i18n.t(SettingsInfo.dollar)}
+              {t(SettingsInfo.dollar)}
             </Typography>
           }
           editable={currencyRenderProps}

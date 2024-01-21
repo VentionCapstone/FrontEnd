@@ -88,7 +88,9 @@
       "login_secure": "Anmeldung & Sicherheit",
       "login_secure_desc": "Geben Sie sichere Details an und wie wir Sie erreichen können",
       "setting": "Einstellungen",
-      "setting_desc": "Legen Sie Ihre Standardsprache und Währung fest"
+      "setting_desc": "Legen Sie Ihre Standardsprache und Währung fest",
+      "airbnb_your_place": "Verleihe deine Unterkunft auf Airbnb",
+      "airbnb_your_place_desc": "Es ist einfach einzurichten und mit dem Verdienen zu beginnen."
     },
 
     "account_edit_personal-info": {
@@ -106,7 +108,8 @@
         "female": "weiblich",
         "edit": "Bearbeiten",
         "save": "Speichern",
-        "select": "Wählen Sie Ihr Geschlecht"
+        "select": "Wählen Sie Ihr Geschlecht",
+        "gender": "Geschlecht"
       },
       "location": {
         "where_do_live": "Wo leben Sie",
@@ -115,7 +118,8 @@
         "select": "Wählen Sie Ihr Land",
         "uzbekistan": "Usbekistan",
         "kazakhstan": "Kasachstan",
-        "russia": "Russland"
+        "russia": "Russland",
+        "country": "Land"
       },
       "number": {
         "phone_number": "Telefonnummer",
@@ -147,7 +151,8 @@
         "cancel": "Abbrechen",
         "current": "Aktuelles Passwort",
         "new_password": "Neues Passwort",
-        "confirm": "Passwort bestätigen"
+        "confirm": "Passwort bestätigen",
+        "password": "Passwort"
       }
     },
     "setting": {

@@ -88,7 +88,9 @@
       "login_secure": "Kirish va Himoya",
       "login_secure_desc": "Xavfsiz ma'lumotlarni taqdim eting va biz siz bilan qanday aloqaga chiqishimizni tanlang",
       "setting": "Sozlamalar",
-      "setting_desc": "O'z taqdimot tilini va valyutangizni belgilang"
+      "setting_desc": "O'z taqdimot tilini va valyutangizni belgilang",
+      "airbnb_your_place": "Airbnb joyingizni ijaraga bering",
+      "airbnb_your_place_desc": "O'rnatish va daromad olish juda oson."
     },
 
     "account_edit_personal-info": {
@@ -106,7 +108,8 @@
         "female": "ayol",
         "edit": "tahrirlash",
         "save": "saqlash",
-        "select": "Jinsingizni tanlang"
+        "select": "Jinsingizni tanlang",
+        "gender": "Jins"
       },
       "location": {
         "where_do_live": "Qayerda yashaysiz",
@@ -115,7 +118,8 @@
         "select": "Mamlakatingizni tanlang",
         "uzbekistan": "O'zbekiston",
         "kazakhstan": "Qozog'iston",
-        "russia": "Rossiya"
+        "russia": "Rossiya",
+        "country": "Mamlakat"
       },
       "number": {
         "phone_number": "Telefon raqam",
@@ -147,7 +151,8 @@
         "cancel": "Bekor qilish",
         "current": "Joriy parol",
         "new_password": "Yangi Parol",
-        "confirm": "Parolni tasdiqlang"
+        "confirm": "Parolni tasdiqlang",
+        "password": "Parol"
       }
     },
     "setting": {

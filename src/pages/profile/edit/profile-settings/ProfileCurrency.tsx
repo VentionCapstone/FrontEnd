@@ -7,9 +7,9 @@ import {
   SelectChangeEvent,
   Typography,
 } from '@mui/material';
-import i18n from '@src/i18n/i18n';
 import { AccountEditPersonalInfo, SettingsInfo } from '@src/types/i18n.types';
 import { useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const ProfileCurrency = ({
   collapsePanel,
@@ -18,6 +18,7 @@ export const ProfileCurrency = ({
   collapsePanel: () => void;
   userCurrency: string;
 }) => {
+  const { t } = useTranslation();
   const [currency, setCurrency] = useState<string>(userCurrency);
 
   const handleChange = useCallback((e: SelectChangeEvent<string>) => {
@@ -27,14 +28,14 @@ export const ProfileCurrency = ({
   return (
     <>
       <Typography variant={'sm'} color={'secondary2.main'} mt={1}>
-        {i18n.t(SettingsInfo.currency_desc)}
+        {t(SettingsInfo.currency_desc)}
       </Typography>
 
       <FormControl
         size="small"
         sx={{ display: 'block', maxWidth: '40rem', mt: { xs: 2, md: 4 }, mb: 6 }}
       >
-        <InputLabel id="profile-lang-select-label">Currency</InputLabel>
+        <InputLabel id="profile-lang-select-label">{t(SettingsInfo.currency)}</InputLabel>
         <Select
           value={currency}
           onChange={handleChange}
@@ -42,15 +43,15 @@ export const ProfileCurrency = ({
           size="small"
           labelId="profile-lang-select-label"
           id="profile-lang-select"
-          label="Currency"
+          label={t(SettingsInfo.currency_desc)}
         >
-          <MenuItem value={'USD'}> {i18n.t(SettingsInfo.dollar)}</MenuItem>
-          <MenuItem value={'CD'}> {i18n.t(SettingsInfo.can_dollar)}</MenuItem>
+          <MenuItem value={'USD'}> {t(SettingsInfo.dollar)}</MenuItem>
+          <MenuItem value={'CD'}> {t(SettingsInfo.can_dollar)}</MenuItem>
         </Select>
       </FormControl>
 
       <Button onClick={collapsePanel} variant={'contained'} size="small" sx={{ fontWeight: 600 }}>
-        {i18n.t(AccountEditPersonalInfo.save_name)}
+        {t(AccountEditPersonalInfo.save_name)}
       </Button>
     </>
   );

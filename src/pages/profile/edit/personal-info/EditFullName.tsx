@@ -3,10 +3,10 @@ import { useState } from 'react';
 
 import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
 import { useAppSelector } from '@src/hooks/redux-hooks';
-import i18n from '@src/i18n/i18n';
 import { getProfile } from '@src/stores/slices/authSlice';
 import { AccountEditPersonalInfo } from '@src/types/i18n.types';
 import { User } from '@src/types/user.types';
+import { useTranslation } from 'react-i18next';
 
 type FullNameProps = {
   collapsePanel: () => void;
@@ -15,6 +15,7 @@ type FullNameProps = {
 };
 
 const FullName = ({ collapsePanel, initialFirstName, initialLastName }: FullNameProps) => {
+  const { t } = useTranslation();
   const profileId = useAppSelector(getProfile)?.id ?? '';
   const { mutate } = useEditAccountMutation(profileId);
 
@@ -34,7 +35,7 @@ const FullName = ({ collapsePanel, initialFirstName, initialLastName }: FullName
   return (
     <>
       <Typography variant={'sm'} color={'secondary2.main'} mt={1}>
-        {i18n.t(AccountEditPersonalInfo.legal_name_desc)}
+        {t(AccountEditPersonalInfo.legal_name_desc)}
       </Typography>
 
       <form onSubmit={handleSubmit}>
@@ -48,7 +49,7 @@ const FullName = ({ collapsePanel, initialFirstName, initialLastName }: FullName
               required
               fullWidth
               size="small"
-              label="First name"
+              label={t(AccountEditPersonalInfo.first_name)}
             />
           </Grid>
           <Grid item xs={12} lg={6}>
@@ -60,7 +61,7 @@ const FullName = ({ collapsePanel, initialFirstName, initialLastName }: FullName
               required
               fullWidth
               size="small"
-              label="Last name"
+              label={t(AccountEditPersonalInfo.last_name)}
             />
           </Grid>
         </Grid>
@@ -71,7 +72,7 @@ const FullName = ({ collapsePanel, initialFirstName, initialLastName }: FullName
           size="small"
           sx={{ display: 'block', fontWeight: 600, ml: 'auto' }}
         >
-          {i18n.t(AccountEditPersonalInfo.save_name)}
+          {t(AccountEditPersonalInfo.save_name)}
         </Button>
       </form>
     </>

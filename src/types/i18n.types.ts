@@ -68,6 +68,8 @@ export enum AccountEditPageInfo {
   setting = 'account_edit_page.setting',
   setting_desc = 'account_edit_page.setting_desc',
   male = 'male',
+  airbnb_your_place = 'account_edit_page.airbnb_your_place',
+  airbnb_your_place_desc = 'account_edit_page.airbnb_your_place_desc',
 }
 
 export enum AccountEditPersonalInfo {
@@ -79,7 +81,7 @@ export enum AccountEditPersonalInfo {
   first_name = 'account_edit_personal-info.name.first_name',
   last_name = 'account_edit_personal-info.name.last_name',
 
-  gender = 'account_edit_personal-info.gender',
+  gender = 'account_edit_personal-info.gender.gender',
   your_gender = 'account_edit_personal-info.gender.your_gender',
   male = 'account_edit_personal-info.gender.male',
   female = 'account_edit_personal-info.gender.female',
@@ -95,6 +97,7 @@ export enum AccountEditPersonalInfo {
   uzbekistan = 'account_edit_personal-info.location.uzbekistan',
   kazakhstan = 'account_edit_personal-info.location.kazakhstan',
   russia = 'account_edit_personal-info.location.russian',
+  country = 'account_edit_personal-info.location.country',
 
   number = 'account_edit_personal-info.number',
   phone_number = 'account_edit_personal-info.number.phone_number',
@@ -124,6 +127,7 @@ export enum LoginAndSecurityInfo {
   password_current = 'login_and_security.password.current',
   password_new_password = 'login_and_security.password.new_password',
   password_confirm = 'login_and_security.password.confirm',
+  password = 'login_and_security.password.password',
 }
 
 export enum SettingsInfo {

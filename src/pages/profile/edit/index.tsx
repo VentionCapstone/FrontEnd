@@ -17,12 +17,13 @@ import houseIcon from '@src/assets/house.png';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import { ROUTES } from '@src/config/routes.config';
 import { useAppSelector } from '@src/hooks/redux-hooks';
-import i18n from '@src/i18n/i18n';
 import { getUser } from '@src/stores/slices/authSlice';
-import { AccountEditPageInfo } from '@src/types/i18n.types';
+import { AccountEditPageInfo, HomeUIInfo } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 import { editPageStyles } from './index.styles';
 
 function EditProfile() {
+  const { t } = useTranslation();
   const { mutate } = useLogoutMutation();
   const user = useAppSelector(getUser);
 
@@ -47,10 +48,10 @@ function EditProfile() {
           <Stack direction={'row'} gap={'1rem'} justifyContent={'space-between'}>
             <Stack gap={'0.25rem'}>
               <Typography fontSize={'1.125rem'} fontWeight={600}>
-                Airbnb your place
+                {t(AccountEditPageInfo.airbnb_your_place)}
               </Typography>
               <Typography variant={'sm'} color={'secondary2.main'}>
-                It`s simple to get set up and start earning.
+                {t(AccountEditPageInfo.airbnb_your_place_desc)}
               </Typography>
             </Stack>
 
@@ -92,14 +93,14 @@ function EditProfile() {
             />
             <Box mr={'auto'}>
               <Typography mb={{ md: '0.5rem' }} fontWeight={{ md: 600 }}>
-                {i18n.t(AccountEditPageInfo.personal_info)}
+                {t(AccountEditPageInfo.personal_info)}
               </Typography>
               <Typography
                 variant={'sm'}
                 display={{ xs: 'none', md: 'block' }}
                 color={'secondary2.main'}
               >
-                {i18n.t(AccountEditPageInfo.personal_desc)}
+                {t(AccountEditPageInfo.personal_desc)}
               </Typography>
             </Box>
             <ChevronRight
@@ -134,14 +135,14 @@ function EditProfile() {
             />
             <Box mr={'auto'}>
               <Typography mb={{ md: '0.5rem' }} fontWeight={{ md: 600 }}>
-                {i18n.t(AccountEditPageInfo.login_secure)}
+                {t(AccountEditPageInfo.login_secure)}
               </Typography>
               <Typography
                 variant={'sm'}
                 display={{ xs: 'none', md: 'block' }}
                 color={'secondary2.main'}
               >
-                {i18n.t(AccountEditPageInfo.login_secure_desc)}
+                {t(AccountEditPageInfo.login_secure_desc)}
               </Typography>
             </Box>
             <ChevronRight
@@ -171,10 +172,10 @@ function EditProfile() {
             />
             <Box mr={'auto'}>
               <Typography mb={{ md: '0.5rem' }} fontWeight={{ md: 600 }}>
-                {i18n.t(AccountEditPageInfo.setting)}
+                {t(AccountEditPageInfo.setting)}
               </Typography>
               <Typography display={{ xs: 'none', md: 'block' }} color={'secondary2.main'}>
-                {i18n.t(AccountEditPageInfo.setting_desc)}
+                {t(AccountEditPageInfo.setting_desc)}
               </Typography>
             </Box>
             <ChevronRight
@@ -210,7 +211,7 @@ function EditProfile() {
               />
               <Box mr={'auto'}>
                 <Typography mb={{ md: '0.5rem' }} fontWeight={{ md: 600 }}>
-                  My Listings
+                  {t(HomeUIInfo.user_home_btn_mylistings)}
                 </Typography>
               </Box>
               <ChevronRight
@@ -231,7 +232,7 @@ function EditProfile() {
         variant={'outlined'}
         sx={editPageStyles.logoutButton}
       >
-        Log out
+        {t(HomeUIInfo.user_home_btn_logout)}
       </Button>
     </>
   ) : (

@@ -9,6 +9,7 @@ import { useAppSelector } from '@src/hooks/redux-hooks';
 import i18n from '@src/i18n/i18n';
 import { getProfile, getUser } from '@src/stores/slices/authSlice';
 import { AccountEditPageInfo, AccountEditPersonalInfo } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 import AddImage from '../../AddImage';
 import EditablePanel from '../EditablePanel';
 import Country from './EditCountry';
@@ -18,6 +19,7 @@ import Gender from './EditGender';
 import PhoneNumber from './EditPhoneNumber';
 
 function PersonalInfo() {
+  const { t } = useTranslation();
   const user = useAppSelector(getUser);
   const profile = useAppSelector(getProfile);
   const profileId = profile?.id ?? '';
@@ -75,7 +77,7 @@ function PersonalInfo() {
         fontWeight={600}
         component={'h1'}
       >
-        {i18n.t(AccountEditPageInfo.personal_info)}
+        {t(AccountEditPageInfo.personal_info)}
       </Typography>
 
       <Stack direction={{ md: 'row' }}>
@@ -92,7 +94,7 @@ function PersonalInfo() {
           }}
         >
           <EditablePanel
-            panelHeading={i18n.t(AccountEditPersonalInfo.legal_name)}
+            panelHeading={t(AccountEditPersonalInfo.legal_name)}
             initial={
               <Typography variant={'sm'} color={'secondary2.main'}>
                 {user.firstName + ' ' + user.lastName}
@@ -102,7 +104,7 @@ function PersonalInfo() {
           />
 
           <EditablePanel
-            panelHeading={i18n.t(AccountEditPersonalInfo.your_gender)}
+            panelHeading={t(AccountEditPersonalInfo.your_gender)}
             initial={
               <Typography variant={'sm'} color={'secondary2.main'}>
                 {profile.gender}
@@ -113,7 +115,7 @@ function PersonalInfo() {
           />
 
           <EditablePanel
-            panelHeading={i18n.t(AccountEditPersonalInfo.where_do_live)}
+            panelHeading={t(AccountEditPersonalInfo.where_do_live)}
             initial={
               <Typography variant={'sm'} color={'secondary2.main'}>
                 {profile.country}
@@ -123,7 +125,7 @@ function PersonalInfo() {
           />
 
           <EditablePanel
-            panelHeading={i18n.t(AccountEditPersonalInfo.phone_number)}
+            panelHeading={t(AccountEditPersonalInfo.phone_number)}
             initial={
               <Typography variant={'sm'} color={'secondary2.main'}>
                 {profile.phoneNumber}
@@ -133,7 +135,7 @@ function PersonalInfo() {
           />
 
           <EditablePanel
-            panelHeading={i18n.t(AccountEditPersonalInfo.about_title)}
+            panelHeading={t(AccountEditPersonalInfo.about_title)}
             initial={
               <Typography variant={'sm'} color={'secondary2.main'}>
                 {i18n.t(AccountEditPersonalInfo.about_desc)}

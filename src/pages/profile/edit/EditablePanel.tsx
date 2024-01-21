@@ -1,7 +1,7 @@
 import { Box, Button, Stack, Typography } from '@mui/material';
-import i18n from '@src/i18n/i18n';
 import { AccountEditPersonalInfo, LoginAndSecurityInfo } from '@src/types/i18n.types';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 type EditablePanelType = {
   panelHeading: string;
@@ -10,6 +10,7 @@ type EditablePanelType = {
 };
 
 const EditablePanel = ({ panelHeading, editable, initial }: EditablePanelType) => {
+  const { t } = useTranslation();
   const [expanded, setExpanded] = useState(false);
 
   const collapsePanel = () => {
@@ -38,8 +39,8 @@ const EditablePanel = ({ panelHeading, editable, initial }: EditablePanelType) =
           onClick={handleToggle}
         >
           {expanded
-            ? `${i18n.t(LoginAndSecurityInfo.email_cancel)}`
-            : `${i18n.t(AccountEditPersonalInfo.edit_name)}`}
+            ? `${t(LoginAndSecurityInfo.email_cancel)}`
+            : `${t(AccountEditPersonalInfo.edit_name)}`}
         </Button>
       </Stack>
       {expanded ? editable(collapsePanel) : initial}

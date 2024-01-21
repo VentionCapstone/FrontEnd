@@ -18,6 +18,7 @@ import InputForm from '@src/components/input/InputForm';
 import i18n from '@src/i18n/i18n';
 import { ForgotPasswordReq, forgotPasswordSchema } from '@src/types/auth.types';
 import { HomeUIInfo } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 
 interface ForgotPasswordModalProps {
   isModalOpen: boolean;
@@ -25,6 +26,8 @@ interface ForgotPasswordModalProps {
 }
 
 function ForgotPasswordModal({ isModalOpen, setIsModalOpen }: ForgotPasswordModalProps) {
+  const { t } = useTranslation();
+
   const {
     handleSubmit,
     control,
@@ -66,7 +69,7 @@ function ForgotPasswordModal({ isModalOpen, setIsModalOpen }: ForgotPasswordModa
       </DialogTitle>
       <DialogContent>
         <DialogContentText sx={{ paddingY: 5, color: 'primary.main' }}>
-          {i18n.t(HomeUIInfo.forgot_password_modal)}
+          {t(HomeUIInfo.forgot_password_modal)}
         </DialogContentText>
         <Box component="form" onSubmit={handleSubmit(onSubmit)}>
           <Controller
@@ -84,7 +87,7 @@ function ForgotPasswordModal({ isModalOpen, setIsModalOpen }: ForgotPasswordModa
             )}
           />
           <Box mt={10}>
-            <ButtonPrimary loading={isPending}>{i18n.t(HomeUIInfo.send_resend_link)}</ButtonPrimary>
+            <ButtonPrimary loading={isPending}>{t(HomeUIInfo.send_resend_link)}</ButtonPrimary>
           </Box>
         </Box>
       </DialogContent>

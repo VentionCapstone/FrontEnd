@@ -9,14 +9,15 @@ import ButtonPrimary from '@src/components/button/ButtonPrimary';
 import InputForm from '@src/components/input/InputForm';
 import PasswordInput from '@src/components/input/PasswordInput';
 import { ENDPOINTS } from '@src/config/endpoints.config';
-import i18n from '@src/i18n/i18n';
 import { SignInReq, signInSchema } from '@src/types/auth.types';
 import { HomeUIInfo } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 import ForgotPasswordModal from './components/ForgotPasswordModal';
 import { styles } from './styles';
 
 const SignIn = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useTranslation();
 
   const {
     handleSubmit,
@@ -46,11 +47,11 @@ const SignIn = () => {
   return (
     <Box sx={styles.formContainer}>
       <Typography variant="subtitle1" align="center" margin={5} fontWeight="bold">
-        {i18n.t(HomeUIInfo.sign_in_sing_title)}
+        {t(HomeUIInfo.sign_in_sing_title)}
       </Typography>
       <Divider />
       <Stack p={4} spacing={2}>
-        <Typography variant="h5">{i18n.t(HomeUIInfo.sign_in_title)}</Typography>
+        <Typography variant="h5">{t(HomeUIInfo.sign_in_title)}</Typography>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack gap={3}>
@@ -77,19 +78,19 @@ const SignIn = () => {
             />
           </Stack>
           <ButtonPrimary type="submit" loading={isPending}>
-            {i18n.t(HomeUIInfo.sign_in_sing_title)}
+            {t(HomeUIInfo.sign_in_sing_title)}
           </ButtonPrimary>
         </form>
 
         <Box sx={styles.formForgotPasswordContainer}>
           <Button sx={styles.formForgotPasswordButton} onClick={handleModal}>
-            {i18n.t(HomeUIInfo.sign_in_forgot_password)}
+            {t(HomeUIInfo.sign_in_forgot_password)}
           </Button>
         </Box>
         <Typography variant="subtitle2" align="center" color="secondary2.main">
-          {i18n.t(HomeUIInfo.sing_out_sing_title)}{' '}
+          {t(HomeUIInfo.sing_out_sing_title)}{' '}
           <Link component={RouterLink} to={ENDPOINTS.auth.signUp} sx={styles.formLink}>
-            {i18n.t(HomeUIInfo.sing_out_sing_up_btn)}
+            {t(HomeUIInfo.sing_out_sing_up_btn)}
           </Link>
         </Typography>
       </Stack>

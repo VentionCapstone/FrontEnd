@@ -5,11 +5,12 @@ import TextField from '@mui/material/TextField';
 import { useForm } from 'react-hook-form';
 
 import useUpdatePasswordMutation from '@src/api/mutations/account/useUpdatePasswordMutation';
-import i18n from '@src/i18n/i18n';
 import { LoginAndSecurityInfo } from '@src/types/i18n.types';
 import { UpdatePasswordData, updatePasswordSchema } from '@src/types/profile.types';
+import { useTranslation } from 'react-i18next';
 
 export const UpdatePassword = ({ collapsePanel }: { collapsePanel: () => void }) => {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -35,7 +36,7 @@ export const UpdatePassword = ({ collapsePanel }: { collapsePanel: () => void })
           {...register('currentPassword')}
           fullWidth
           required
-          label={`${i18n.t(LoginAndSecurityInfo.password_current)}`}
+          label={`${t(LoginAndSecurityInfo.password_current)}`}
           type={'password'}
           size="small"
           error={!!errors.currentPassword}
@@ -46,7 +47,7 @@ export const UpdatePassword = ({ collapsePanel }: { collapsePanel: () => void })
           {...register('newPassword')}
           fullWidth
           required
-          label={`${i18n.t(LoginAndSecurityInfo.password_new_password)}`}
+          label={`${t(LoginAndSecurityInfo.password_new_password)}`}
           type={'password'}
           size="small"
           error={!!errors.newPassword}
@@ -57,7 +58,7 @@ export const UpdatePassword = ({ collapsePanel }: { collapsePanel: () => void })
           {...register('confirmPassword')}
           fullWidth
           required
-          label={`${i18n.t(LoginAndSecurityInfo.password_confirm)}`}
+          label={`${t(LoginAndSecurityInfo.password_confirm)}`}
           type={'password'}
           size="small"
           error={!!errors.confirmPassword}
@@ -66,7 +67,7 @@ export const UpdatePassword = ({ collapsePanel }: { collapsePanel: () => void })
       </Stack>
 
       <Button type="submit" variant={'contained'} size="small" sx={{ fontWeight: 600 }}>
-        {i18n.t(LoginAndSecurityInfo.password_change_btn)}
+        {t(LoginAndSecurityInfo.password_change_btn)}
       </Button>
     </form>
   );
