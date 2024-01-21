@@ -34,3 +34,7 @@ export enum PaymentInfo {
   button_type_card = 'payment.button_type.card',
   button_type_cash = 'payment.button_type.cash',
 }
+
+export enum Wishlist {
+  title = 'wishlist.title',
+}

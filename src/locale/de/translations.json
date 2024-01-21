@@ -35,6 +35,9 @@
       "input_location_label_anywhere": "Überall",
       "search_button": "Suche",
       "input_location_no_options": "Ort eingeben"
+    },
+    "wishlist": {
+      "title": "Wunschzettel"
     }
   }
 }

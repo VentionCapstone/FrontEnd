@@ -35,6 +35,9 @@
       "input_location_label_anywhere": "Барлық жерде",
       "search_button": "Іздеу",
       "input_location_no_options": "Орынды енгізіңіз"
+    },
+    "wishlist": {
+      "title": "Қалаулар тізімі"
     }
   }
 }

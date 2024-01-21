@@ -35,6 +35,9 @@
       "input_location_label_anywhere": "Har qayer",
       "search_button": "Izlash",
       "input_location_no_options": "Joylashuvni kiriting"
+    },
+    "wishlist": {
+      "title": "Istaklar roʻyxati"
     }
   }
 }
