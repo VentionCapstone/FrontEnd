@@ -6,9 +6,11 @@ import toast from 'react-hot-toast';
 import { useSaveAmenitiesMutation } from '@src/api/mutations/amenity/useSaveAmenitiesMutation';
 import { useGetAmenityListQuery } from '@src/api/queries/amenity/useGetAmenityListQuery';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
+import { QUERY_KEYS } from '@src/config/react-query.config';
 import { ROUTES } from '@src/config/routes.config';
 import { Amenities, AmenitiesProps, AmenitySetting } from '@src/types/amenity.types';
 import { Amenities as AmenitiesTr } from '@src/types/i18n.types';
+import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import CustomChip from './CustomChip';
@@ -25,15 +27,22 @@ export default function EditAmenities({
   const [customAmenity, setCustomAmenity] = useState<string>('');
 
   const { data: amenities } = useGetAmenityListQuery();
+  const queryClient = useQueryClient();
 
   const { mutate, isSuccess } = useSaveAmenitiesMutation(accommodationId);
 
   useEffect(() => {
+    const invalidate = async () => {
+      await queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.query.accommodation, accommodationId],
+      });
+    };
     if (isSuccess) {
       toast.success(t(AmenitiesTr.save_success));
       navigate(ROUTES.accommodations.root);
+      void invalidate();
     }
-  }, [isSuccess, t, navigate]);
+  }, [isSuccess, t, navigate, accommodationId, queryClient]);
 
   useEffect(() => {
     if (amenities) {

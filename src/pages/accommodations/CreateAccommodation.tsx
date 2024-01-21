@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { Box } from '@mui/material';
+import EditAmenities from '../accomodation/components/EditAmenities';
 import AccommodationForm from './components/AccommodationForm';
 import UploadMedia from './components/UploadMedia';
 
@@ -19,7 +20,7 @@ function CreateAccommodation() {
       {currentStep == 2 && (
         <UploadMedia accommodationId={accommodationId} setCurrentStep={setCurrentStep} />
       )}
-      {currentStep == 3 && <div>Step 3</div>}
+      {currentStep == 3 && <EditAmenities accommodationId={accommodationId} isNew={true} />}
     </Box>
   );
 }

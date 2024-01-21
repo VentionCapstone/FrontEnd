@@ -13,6 +13,7 @@ import { useGetAccommodation } from '@src/api/queries/accommodations/useGetAccom
 import { ROUTES } from '@src/config/routes.config';
 import { AccommodationReq, accommodationSchema } from '@src/types/accommodation.types';
 import { Coordinates } from '@src/types/global.types';
+import EditAmenities from '../accomodation/components/EditAmenities';
 import FormFields from './components/FormFields';
 import ConfirmationModal from './components/Modal';
 
@@ -123,6 +124,14 @@ function UpdateAccommodation() {
           </Stack>
         </Box>
       </form>
+
+      {accommodation && (
+        <EditAmenities
+          accommodationId={accommodation.data.id}
+          isNew={false}
+          accommodationAmenities={accommodation.data.amenities[0]}
+        />
+      )}
       <ConfirmationModal open={open} onClose={toggleOpen} onConfirm={handleConfirm} />
     </Box>
   );
