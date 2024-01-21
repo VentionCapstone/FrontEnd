@@ -43,6 +43,6 @@ export const ENDPOINTS = {
   wishlist: {
     root: '/wishlist',
     addToWishlist: (accommodationId: string) => `/wishlist/${accommodationId}`,
-    deleteFromWishlist: (wishlistId: string) => `/wishlist/${wishlistId}`,
+    deleteFromWishlist: (accommodationId: string) => `/wishlist/${accommodationId}`,
   },
 } as const;
