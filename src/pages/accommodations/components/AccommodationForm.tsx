@@ -1,9 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Box, Button, Stack } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import dayjs from 'dayjs';
 import { useForm } from 'react-hook-form';
 
 import { useCreateAccommodation } from '@src/api/mutations/accommodations/useCreateAccommodation';
+import ButtonPrimary from '@src/components/button/ButtonPrimary';
 import {
   AccommodationReq,
   AccommodationStepType,
@@ -12,8 +13,11 @@ import {
 import { Coordinates } from '@src/types/global.types';
 import FormFields from './FormFields';
 
-function AccommodationForm({ setCurrentStep }: AccommodationStepType) {
-  const { mutate: createAccommodation } = useCreateAccommodation({ setCurrentStep });
+function AccommodationForm({ setCurrentStep, setAccommodationId }: AccommodationStepType) {
+  const { mutate: createAccommodation, isPending } = useCreateAccommodation({
+    setCurrentStep,
+    setAccommodationId,
+  });
 
   const {
     watch,
@@ -66,6 +70,9 @@ function AccommodationForm({ setCurrentStep }: AccommodationStepType) {
   };
   return (
     <Box>
+      <Typography variant="lg" textAlign="center" pb={4} fontWeight={600}>
+        Create Accommodation
+      </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormFields
           control={control}
@@ -74,12 +81,14 @@ function AccommodationForm({ setCurrentStep }: AccommodationStepType) {
           longitudeWatch={longitudeWatch}
           handleCoordsChange={handleCoordsChange}
         />
-        <Box display="flex" justifyContent={'flex-end'}>
-          <Stack direction="row" spacing={2}>
-            <Button type="submit" variant="contained">
-              Next Step
-            </Button>
-          </Stack>
+        <Box
+          sx={{
+            ml: 'auto',
+            marginTop: 2,
+            width: '10%',
+          }}
+        >
+          <ButtonPrimary loading={isPending}>Next Step</ButtonPrimary>
         </Box>
       </form>
     </Box>

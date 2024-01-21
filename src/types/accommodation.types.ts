@@ -267,4 +267,5 @@ export interface Amenity {
 
 export interface AccommodationStepType {
   setCurrentStep: (step: number) => void;
+  setAccommodationId: (id: string) => void;
 }
