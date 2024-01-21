@@ -10,6 +10,8 @@ import { DATE_FORMAT_MONTH_FIRST } from '@src/constants';
 import { useAppSelector } from '@src/hooks/redux-hooks';
 import { styles } from '@src/pages/accomodation/Accommodation.styles';
 import { hasToken } from '@src/stores/slices/authSlice';
+import { BookingForms } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 import ButtonPrimary from '../../components/button/ButtonPrimary';
 import { ReservationData, createReservationData, selectDatesType, selectedDateType } from './time';
 
@@ -24,6 +26,7 @@ interface BookingFormProps {
 }
 
 const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, price }) => {
+  const { t } = useTranslation();
   const isUserLoggedIn = useAppSelector(hasToken);
 
   const { data, isPending, isError } = useGetAvailableDates(
@@ -131,12 +134,10 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, pri
       }}
     >
       {errorMessage && (
-        <Typography color={'secondary.main'}>
-          Check-in date must be before the check-out date and must not be same
-        </Typography>
+        <Typography color={'secondary.main'}>{t(BookingForms.error_message)}</Typography>
       )}
       <Typography mb={7}>
-        <b style={{ fontSize: '1.2em' }}>${price} </b> night
+        <b style={{ fontSize: '1.2em' }}>${price} </b> {t(BookingForms.night)}
       </Typography>
 
       {isUserLoggedIn ? (
@@ -144,13 +145,13 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, pri
           <form onSubmit={handleReserveButtonClick}>
             <Stack direction="row" spacing={4}>
               <DatePicker
-                label="Check In"
+                label={t(BookingForms.check_in)}
                 value={selectedDates[0]}
                 onChange={handleDateChange(0)}
                 shouldDisableDate={disableCheckInDate}
               />
               <DatePicker
-                label="Check Out"
+                label={t(BookingForms.check_out)}
                 value={selectedDates[1]}
                 disabled={disablesCheckOutDate}
                 onChange={handleDateChange(1)}
@@ -158,24 +159,26 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, pri
               />
             </Stack>
 
-            <ButtonPrimary disabled={isPending || isError || errorMessage}>Reserve</ButtonPrimary>
+            <ButtonPrimary disabled={isPending || isError || errorMessage}>
+              {t(BookingForms.reserve)}
+            </ButtonPrimary>
           </form>
           <Typography variant="body2" m={3} textAlign={'center'}>
-            you won&apos;t charged yet
+            {t(BookingForms.you_will_not_charged_yet)}
           </Typography>
           <Divider />
           {totalPrice && (
             <Typography sx={styles.content_price} variant="lg" my={4}>
-              Total <b>${totalPrice}</b>
+              {t(BookingForms.total)} <b>${totalPrice}</b>
             </Typography>
           )}
         </>
       ) : (
         <Typography>
           <Link component={RouterLink} to={ROUTES.auth.signIn} fontWeight={600}>
-            Login
+            {t(BookingForms.login)}
           </Link>{' '}
-          is required to make a reservation
+          {t(BookingForms.login_req)}
         </Typography>
       )}
     </Box>

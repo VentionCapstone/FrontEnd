@@ -155,3 +155,37 @@ export enum SettingsInfo {
   currency_desc = 'setting.currency_desc',
   can_dollar = 'setting.can_dollar',
 }
+
+export enum AminitiesList {
+  title = 'aminities_list.title',
+}
+
+export enum ReviewList {
+  title = 'review_list.title',
+  show_all = 'review_list.show_all',
+  reviews = 'review_list.reviews',
+}
+
+export enum BookingForms {
+  error_message = 'booking_form.error_message',
+  night = 'booking_form.night',
+  you_will_not_charged_yet = 'booking_form.you_will_not_charged_yet',
+  total = 'booking_form.total',
+  login = 'booking_form.login',
+  login_req = 'booking_form.login_req',
+  reserve = 'booking_form.reserve',
+  check_in = 'booking_form.check_in',
+  check_out = 'booking_form.check_out',
+}
+
+export enum ForgotPasswordReset {
+  title = 'forgot_password_reset.title',
+  description = 'forgot_password_reset.description',
+  password = 'forgot_password_reset.password',
+  re_enter = 'forgot_password_reset.re_enter',
+  update = 'forgot_password_reset.update',
+}
+
+export enum VerifyEmails {
+  title = 'verify_email.title',
+}

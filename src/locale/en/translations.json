@@ -182,6 +182,40 @@
       "german": "German",
       "currency": "Preferred currency",
       "dollar": "US Dollar"
+    },
+
+    "aminities_list": {
+      "title": "What this place offers"
+    },
+
+    "review_list": {
+      "title": "Rating",
+      "show_all": "Show all",
+      "reviews": "reviews"
+    },
+
+    "booking_form": {
+      "error_message": "Check-in date must be before the check-out date and must not be same",
+      "night": "night",
+      "you_will_not_charged_yet": "You will not charged yet",
+      "total": "Total",
+      "login": "Login",
+      "login_required": "is required to make a reservation",
+      "reserve": "Reserve",
+      "check_in": "Check In",
+      "check_out": "Check Out"
+    },
+
+    "forgot_password_reset": {
+      "title": "Update password",
+      "description": "Enter your new password below to reset your password.",
+      "password": "Password",
+      "re_enter": "Re-enter your password",
+      "update": "Update"
+    },
+
+    "verify_email": {
+      "title": "Verifying email..."
     }
   }
 }

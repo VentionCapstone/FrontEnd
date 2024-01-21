@@ -3,12 +3,11 @@ import { Box, IconButton, Stack, Typography } from '@mui/material';
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
 
-import i18n from '@src/i18n/i18n';
 import { Accommodation } from '@src/types/accommodation.types';
 import { HomeUIInfo } from '@src/types/i18n.types';
 import { MuiStylesObject } from '@src/types/utility.types';
+import { useTranslation } from 'react-i18next';
 import CustomImage from '../shared/CustomImage';
-
 const accommodationCardStyles = {
   root: {
     flex: {
@@ -42,6 +41,7 @@ function AccommodationCard({
 }: {
   accommodation: Accommodation;
 }) {
+  const { t } = useTranslation();
   return (
     <Box sx={accommodationCardStyles.root}>
       <Link to={`/rooms/${id}`}>
@@ -62,7 +62,7 @@ function AccommodationCard({
               <Box component={'span'} fontWeight={800}>
                 ${price}{' '}
               </Box>
-              {i18n.t(HomeUIInfo.card_night)}
+              {t(HomeUIInfo.card_night)}
             </Typography>
           </Stack>
         </Stack>

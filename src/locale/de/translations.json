@@ -179,6 +179,40 @@
       "german": "Неміс тілі",
       "currency": "Таңдалған валюта",
       "dollar": "АҚШ доллары"
+    },
+
+    "aminities_list": {
+      "title": "Was dieses Hotel bietet"
+    },
+
+    "review_list": {
+      "title": "Bewertung",
+      "show_all": "Alle anzeigen",
+      "reviews": "Bewertungen"
+    },
+
+    "booking_form": {
+      "error_message": "Das Anreisedatum muss vor dem Abreisedatum liegen und darf nicht identisch sein",
+      "night": "Nacht",
+      "you_will_not_charged_yet": "Sie werden noch nicht belastet",
+      "total": "Gesamt",
+      "login": "Anmelden",
+      "login_required": "ist erforderlich, um eine Reservierung vorzunehmen",
+      "reserve": "Reservieren",
+      "check_in": "Einchecken",
+      "check_out": "Auschecken"
+    },
+
+    "forgot_password_reset": {
+      "title": "Passwort aktualisieren",
+      "description": "Geben Sie Ihr neues Passwort unten ein, um Ihr Passwort zurückzusetzen.",
+      "password": "Passwort",
+      "re_enter": "Geben Sie Ihr Passwort erneut ein",
+      "update": "Aktualisieren"
+    },
+
+    "verify_email": {
+      "title": "E-Mail-Verifizierung..."
     }
   }
 }

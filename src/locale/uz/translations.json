@@ -15,6 +15,7 @@
         "cash": "Naqd pul bilan to'lash"
       }
     },
+
     "errors": {
       "default": "Nimadir noto'g'ri ketdi, qaytadan urinib ko'ring",
 
@@ -90,6 +91,7 @@
         "copyright": "© 2023 Airbnb, Inc."
       }
     },
+
     "account_edit_page": {
       "personal_info": "Shaxsiy ma'lumot",
       "personal_desc": "Shaxsiy parolingizni yangilang va hisobingizni himoyalang",
@@ -143,6 +145,7 @@
         "save": "saqlash"
       }
     },
+
     "login_and_security": {
       "login_title": "Kirish va Xavfsizlik",
       "email": {
@@ -163,6 +166,7 @@
         "password": "Parol"
       }
     },
+
     "setting": {
       "title": "Sozlamalar",
       "theme": "Mavzu",
@@ -179,6 +183,39 @@
       "german": "Nemischa",
       "currency": "Tanlangan valyuta",
       "dollar": "AQSH dollari"
+    },
+
+    "aminities_list": {
+      "title": "Qanday qulayliklar mavjud"
+    },
+    "review_list": {
+      "title": "Reyting",
+      "show_all": "Barcha",
+      "reviews": "izohlar ko'rish"
+    },
+
+    "booking_form": {
+      "error_message": "Kirish sanasi chiqish sanasidan oldin va bir xil bo'lishi kerak",
+      "night": "kunlik",
+      "you_will_not_charged_yet": "Hali to'lanmagan ekansiz",
+      "total": "Jami",
+      "login": "Kirish",
+      "login_required": "band qilish uchun kerak",
+      "reserve": "Band qilish",
+      "check_in": "Kirish",
+      "check_out": "Chiqish"
+    },
+
+    "forgot_password_reset": {
+      "title": "Parolni yangilash",
+      "description": "Parolni qayta tiklash uchun yangi parolingizni quyidagi maydonchaga kiriting.",
+      "password": "Parol",
+      "re_enter": "Parolingizni qayta kiriting",
+      "update": "Yangilash"
+    },
+
+    "verify_email": {
+      "title": "Elektron pochta tekshirilmoqda..."
     }
   }
 }
