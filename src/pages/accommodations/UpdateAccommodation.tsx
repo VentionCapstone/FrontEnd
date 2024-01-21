@@ -16,6 +16,7 @@ import { Coordinates } from '@src/types/global.types';
 import EditAmenities from '../accomodation/components/EditAmenities';
 import FormFields from './components/FormFields';
 import ConfirmationModal from './components/Modal';
+import UploadMedia from './components/UploadMedia';
 
 function UpdateAccommodation() {
   const { id } = useParams();
@@ -126,11 +127,14 @@ function UpdateAccommodation() {
       </form>
 
       {accommodation && (
-        <EditAmenities
-          accommodationId={accommodation.data.id}
-          isNew={false}
-          accommodationAmenities={accommodation.data.amenities[0]}
-        />
+        <>
+          <EditAmenities
+            accommodationId={accommodation.data.id}
+            isNew={false}
+            accommodationAmenities={accommodation.data.amenities[0]}
+          />
+          <UploadMedia accommodationId={accommodation.data.id} setCurrentStep={() => {}} />
+        </>
       )}
       <ConfirmationModal open={open} onClose={toggleOpen} onConfirm={handleConfirm} />
     </Box>

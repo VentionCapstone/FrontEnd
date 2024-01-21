@@ -2,14 +2,19 @@ import AddIcon from '@mui/icons-material/Add';
 import PermMediaOutlinedIcon from '@mui/icons-material/PermMediaOutlined';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { Box, Button, IconButton, Typography } from '@mui/material';
-import { useMutation } from '@tanstack/react-query';
+import useTheme from '@mui/material/styles/useTheme';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { FormEvent, useState } from 'react';
 import ImageUploading, { ImageListType } from 'react-images-uploading';
 
-import httpClient from '@src/api/httpClient';
+import useUploadMediaAccommodationMutation from '@src/api/mutations/accommodations/useUploadMediaAccommodationMutation';
 import ButtonPrimary from '@src/components/button/ButtonPrimary';
-
-const maxNumber: number = 20;
+import {
+  ACCEPT_UPLOAD_FILE_TYPE,
+  MAX_UPLOAD_FILE_NUMBER,
+  MINUMUM_UPLOAD_FILE_NUMBER,
+} from '@src/constants';
+import { uploadMediaStyles } from './styles';
 
 function UploadMedia({
   accommodationId,
@@ -20,37 +25,35 @@ function UploadMedia({
 }) {
   const [images, setImages] = useState<ImageListType>([]);
 
+  const theme = useTheme();
+  const mobileScreen = useMediaQuery(theme.breakpoints.down('md'));
+
+  const { mutate, isPending } = useUploadMediaAccommodationMutation({
+    accommodationId,
+    images,
+    setCurrentStep,
+  });
+
   const onChange = (imageList: ImageListType) => {
     setImages(imageList);
   };
 
-  const { mutate, isPending } = useMutation({
-    mutationFn: async () => {
-      const formData = new FormData();
-
-      images.forEach((image) => {
-        formData.append('images', image.file as File);
-      });
-
-      await httpClient.post(`accommodations/${accommodationId}/file`, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-    },
-    onSuccess: () => {
-      setCurrentStep(3);
-    },
-  });
-
-  const isNextButtonDisabled = images.length < 5;
   const handleNextButtonClick = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     mutate();
   };
 
+  const isNextButtonDisabled = images.length < MINUMUM_UPLOAD_FILE_NUMBER;
+
   return (
     <Box>
       <Box>
-        <Typography variant="lg" textAlign="center" mt={10} fontWeight={700}>
+        <Typography
+          variant={mobileScreen ? 'h6' : 'lg'}
+          textAlign="center"
+          mt={10}
+          fontWeight={700}
+        >
           Add some photos of your house
         </Typography>
         <Typography
@@ -67,9 +70,9 @@ function UploadMedia({
         multiple
         value={images}
         onChange={onChange}
-        maxNumber={maxNumber}
         dataURLKey="dataURL"
-        acceptType={['jpg', 'gif', 'png']}
+        maxNumber={MAX_UPLOAD_FILE_NUMBER}
+        acceptType={ACCEPT_UPLOAD_FILE_TYPE}
       >
         {({ imageList, onImageUpload, onImageUpdate, onImageRemove, dragProps }) => (
           <>
@@ -89,23 +92,14 @@ function UploadMedia({
                   </IconButton>
                 </Box>
               ) : (
-                <Box
-                  sx={{
-                    width: '50%',
-                    mx: 'auto',
-                    border: '1px dashed',
-                    borderColor: 'secondary2.light',
-                    height: '400px',
-                    mt: 10,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                  {...dragProps}
-                >
-                  <PermMediaOutlinedIcon sx={{ fontSize: 50, color: 'secondary2.main' }} />
-                  <Typography variant="lg" textAlign="center" fontWeight={600} mt={3}>
+                <Box sx={uploadMediaStyles.uploadContainer} {...dragProps}>
+                  <PermMediaOutlinedIcon sx={uploadMediaStyles.uploadIcon} />
+                  <Typography
+                    variant={mobileScreen ? 'h6' : 'lg'}
+                    textAlign="center"
+                    fontWeight={600}
+                    mt={3}
+                  >
                     Drag & Drop your photos here
                   </Typography>
                   <Typography mb={5}>Choose at leat 5 images</Typography>
@@ -114,52 +108,14 @@ function UploadMedia({
               )}
             </Box>
 
-            <Box
-              sx={{
-                width: '50%',
-                mx: 'auto',
-                mt: 10,
-                display: 'flex',
-                flexWrap: 'wrap',
-                justifyContent: 'space-around',
-                gap: 2,
-              }}
-            >
+            <Box sx={uploadMediaStyles.listOfImagesContainer}>
               {imageList.map((image, index) => (
-                <Box
-                  key={index}
-                  sx={{
-                    maxWidth: '300px',
-                    maxHeight: '250px',
-                    position: 'relative',
-                  }}
-                >
-                  <Box
-                    component={'img'}
-                    src={image.dataURL}
-                    sx={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                    }}
-                  />
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      top: '3%',
-                      right: '3%',
-                    }}
-                  >
+                <Box key={index} sx={uploadMediaStyles.imageContainer}>
+                  <Box component={'img'} src={image.dataURL} sx={uploadMediaStyles.image} />
+                  <Box sx={uploadMediaStyles.imageActionContainer}>
                     <IconButton
                       onClick={() => onImageRemove(index)}
-                      sx={{
-                        'backgroundColor': 'secondary2.light',
-                        'mr': 2,
-                        '&:hover': {
-                          backgroundColor: 'secondary2.main',
-                          color: 'secondary2.light',
-                        },
-                      }}
+                      sx={uploadMediaStyles.imageAction}
                       size="small"
                     >
                       <RemoveIcon />
@@ -167,13 +123,7 @@ function UploadMedia({
                     <IconButton
                       onClick={() => onImageUpdate(index)}
                       size="small"
-                      sx={{
-                        'backgroundColor': 'secondary2.light',
-                        '&:hover': {
-                          backgroundColor: 'secondary2.main',
-                          color: 'secondary2.light',
-                        },
-                      }}
+                      sx={uploadMediaStyles.imageAction}
                     >
                       <AddIcon />
                     </IconButton>
@@ -184,16 +134,8 @@ function UploadMedia({
           </>
         )}
       </ImageUploading>
-      <Box
-        component="form"
-        onClick={handleNextButtonClick}
-        sx={{
-          ml: 'auto',
-          marginTop: 2,
-          width: '10%',
-        }}
-      >
-        <ButtonPrimary disabled={isNextButtonDisabled} loading={isPending}>
+      <Box component="form" onClick={handleNextButtonClick} sx={uploadMediaStyles.mainButton}>
+        <ButtonPrimary type="submit" disabled={isNextButtonDisabled} loading={isPending}>
           Next Step
         </ButtonPrimary>
       </Box>

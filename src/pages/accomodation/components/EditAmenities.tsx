@@ -125,7 +125,6 @@ export default function EditAmenities({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        padding: '20px',
         gap: '10px',
       }}
     >
@@ -222,7 +221,7 @@ export default function EditAmenities({
             }}
             onClick={() => void saveAmenities()}
           >
-            Save amenities
+            Save
           </Button>
         </>
       ) : (
