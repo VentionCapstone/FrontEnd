@@ -9,9 +9,9 @@ function useDeleteFromWishlistMutation() {
   return useMutation({
     mutationKey: [QUERY_KEYS.mutation.deleteFromWishlist],
 
-    mutationFn: async (wishlistId: string) => {
+    mutationFn: async (accommodationId: string) => {
       const { data } = await httpClient.post<CommonResponse>(
-        ENDPOINTS.wishlist.deleteFromWishlist(wishlistId)
+        ENDPOINTS.wishlist.deleteFromWishlist(accommodationId)
       );
       return data;
     },

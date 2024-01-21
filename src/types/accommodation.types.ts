@@ -95,6 +95,7 @@ export interface Accommodation {
   numberOfRooms: number;
   allowedNumberOfPeople: number;
   price: number;
+  isInWishlist: boolean;
   address: Address;
 }
 export interface InputFilter {

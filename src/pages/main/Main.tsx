@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSearchParams } from 'react-router-dom';
 
 import useGetAccommodationsQuery from '@src/api/queries/main/useGetAccommodationsQuery';
-import AccommodationCard from '@src/components/card/AccommodationCard';
+import AccommodationCard from '@src/components/card/acccommodationCard/AccommodationCard';
 import DataFetchError from '@src/components/shared/DataFetchError';
 import { Accommodation, DefaultSearchParamsType } from '@src/types/accommodation.types';
 import { ErrorTypes } from '@src/types/i18n.types';

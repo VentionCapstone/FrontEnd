@@ -41,7 +41,12 @@ export const BottomNav = () => {
         onChange={handleRouteChange}
       >
         <BottomNavigationAction value={ROUTES.root} label="Explore" icon={<SearchIcon />} />
-        <BottomNavigationAction label="Wishlist" icon={<FavoriteBorderRoundedIcon />} />
+        <BottomNavigationAction
+          value={ROUTES.wishlist}
+          key={ROUTES.wishlist}
+          label="Wishlist"
+          icon={<FavoriteBorderRoundedIcon />}
+        />
 
         {isLoggedIn && [
           <BottomNavigationAction

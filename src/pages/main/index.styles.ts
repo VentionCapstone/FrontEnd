@@ -30,7 +30,6 @@ export const mainStyles = {
   accommmodationCard: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
     rowGap: 10,
     columnGap: 4,
   },

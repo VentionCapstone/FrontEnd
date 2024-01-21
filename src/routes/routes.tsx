@@ -24,16 +24,27 @@ const Accommodation = React.lazy(() => import('../pages/accomodation/Accommodati
 const SignIn = React.lazy(() => import('../pages/auth/SignIn'));
 const Signup = React.lazy(() => import('../pages/auth/Signup'));
 const ResetPassword = React.lazy(() => import('../pages/auth/ResetPassword'));
+const Wishlist = React.lazy(() => import('../pages/wishlist'));
 
 const routes = createBrowserRouter([
   //unprotected
   {
     path: '/',
-    element: <MainLayout />,
     children: [
-      { path: '', element: <Main /> },
-      { path: 'rooms/:id', element: <Accommodation /> },
-      { path: '*', element: <Navigate to="/" /> },
+      {
+        path: '',
+        element: <MainLayout />,
+        children: [
+          { index: true, element: <Main /> },
+          { path: '*', element: <Navigate to="/" /> },
+        ],
+      },
+
+      {
+        path: '',
+        element: <UserLayout />,
+        children: [{ path: 'rooms/:id', element: <Accommodation /> }],
+      },
     ],
   },
 
@@ -99,6 +110,8 @@ const routes = createBrowserRouter([
           { path: '*', element: <Navigate to="/accommodations" /> },
         ],
       },
+
+      { path: '/wishlist', element: <Wishlist /> },
 
       { path: '*', element: <Navigate to="/" /> },
     ],

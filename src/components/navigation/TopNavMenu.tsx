@@ -80,7 +80,17 @@ export const TopNavMenu = () => {
                 to={ROUTES.account.root}
                 onClick={handleClose}
               >
-                <MenuItem>Account</MenuItem>
+                <MenuItem sx={{ borderBottom: '1px solid', borderColor: 'secondary2.light' }}>
+                  Account
+                </MenuItem>
+              </Link>,
+              <Link
+                key={ROUTES.wishlist}
+                component={RouterLink}
+                to={ROUTES.wishlist}
+                onClick={handleClose}
+              >
+                <MenuItem>Wishlist</MenuItem>
               </Link>,
               <Link
                 key={ROUTES.accommodations.root}
@@ -90,7 +100,11 @@ export const TopNavMenu = () => {
               >
                 <MenuItem>My Listings</MenuItem>
               </Link>,
-              <MenuItem key="logout" onClick={handleLogout}>
+              <MenuItem
+                key="logout"
+                onClick={handleLogout}
+                sx={{ borderTop: '1px solid', borderColor: 'secondary2.light' }}
+              >
                 Logout
               </MenuItem>,
             ]

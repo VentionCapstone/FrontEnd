@@ -10,7 +10,9 @@ function useGetWishlistQuery() {
     queryKey: [QUERY_KEYS.query.wishlist],
 
     queryFn: async () => {
-      const { data } = await httpClient.get<WishlistResponse>(ENDPOINTS.wishlist.root);
+      const {
+        data: { data },
+      } = await httpClient.get<WishlistResponse>(ENDPOINTS.wishlist.root);
       return data;
     },
   });
