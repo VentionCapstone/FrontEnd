@@ -35,6 +35,12 @@
       "input_location_label_anywhere": "Барлық жерде",
       "search_button": "Іздеу",
       "input_location_no_options": "Орынды енгізіңіз"
+    },
+    "amenities": {
+      "save_success": "Ыңғайлылықтар сәтті сақталды",
+      "already_exists": "Ыңғайлылықтар бұрыннан бар",
+      "cannot_contain_comma": "Ыңғайлылықтарда үтір болмауы керек",
+      "no_amenities_selected": "Сақтау үшін қолайлы жағдайлар жоқ"
     }
   }
 }

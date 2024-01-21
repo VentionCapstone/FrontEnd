@@ -35,6 +35,12 @@
       "input_location_label_anywhere": "Везде",
       "search_button": "Поиск",
       "input_location_no_options": "Введите местоположение"
+    },
+    "amenities": {
+      "save_success": "Удобства успешно сохранены",
+      "already_exists": "Удобства уже существуют",
+      "cannot_contain_comma": "Удобства не могут содержать запятые",
+      "no_amenities_selected": "Нет удобств для сохранения"
     }
   }
 }

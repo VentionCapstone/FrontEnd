@@ -1,9 +1,21 @@
 import { ReactElement } from 'react';
 
-export type EditAmenitiesProps = {
-  accomodationId: string;
+type EditAmenitiesPropsBase = {
   isNew: boolean;
+  accommodationId: string;
 };
+
+type CreateAmenitiesProps = EditAmenitiesPropsBase & {
+  isNew: true;
+  accommodationAmenities?: Amenities;
+};
+
+type EditAmenitiesProps = EditAmenitiesPropsBase & {
+  isNew: false;
+  accommodationAmenities: Amenities;
+};
+
+export type AmenitiesProps = CreateAmenitiesProps | EditAmenitiesProps;
 
 export type AmenitySetting = {
   id: string;
@@ -21,10 +33,7 @@ export type Amenities = {
   [key: string]: boolean | string;
 };
 
-export type AccommodationAmenitiesResponse = {
+export type EditAmenitiesResponse = {
   data: Amenities;
-};
-
-export type EditAmenitiesResponse = AccommodationAmenitiesResponse & {
   message: string;
 };

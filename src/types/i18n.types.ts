@@ -34,3 +34,10 @@ export enum PaymentInfo {
   button_type_card = 'payment.button_type.card',
   button_type_cash = 'payment.button_type.cash',
 }
+
+export enum Amenities {
+  save_success = 'amenities.save_success',
+  already_exists = 'amenities.already_exists',
+  cannot_contain_comma = 'amenities.cannot_contain_comma',
+  no_amenities_selected = 'amenities.no_amenities_selected',
+}

@@ -35,6 +35,12 @@
       "input_location_label_anywhere": "Har qayer",
       "search_button": "Izlash",
       "input_location_no_options": "Joylashuvni kiriting"
+    },
+    "amenities": {
+      "save_success": "Qulayliklar muvaffaqiyatli saqlandi",
+      "already_exists": "Qulayliklar allaqachon mavjud",
+      "cannot_contain_comma": "Qulayliklarda vergul bo'lishi mumkin emas",
+      "no_amenities_selected": "Saqlash uchun qulayliklar yo'q"
     }
   }
 }
