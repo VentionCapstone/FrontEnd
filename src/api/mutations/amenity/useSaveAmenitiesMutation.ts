@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query';
-import toast from 'react-hot-toast';
 
 import httpClient from '@src/api/httpClient';
 import { ENDPOINTS } from '@src/config/endpoints.config';
@@ -31,9 +30,6 @@ export const useSaveAmenitiesMutation = (accomodationId: string) => {
     mutationFn: async ({ amenitiesToSave, isNewAccomodation }: Params) => {
       if (isNewAccomodation) return await createAmenities(amenitiesToSave, accomodationId);
       else return await updateAmenities(amenitiesToSave, accomodationId);
-    },
-    onSuccess: (data) => {
-      toast.success(data.message);
     },
   });
 };

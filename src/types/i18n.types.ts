@@ -14,6 +14,15 @@ export enum ErrorTypes {
   password_not_matching = 'errors.password_not_matching',
 }
 
+export enum SearchTexts {
+  input_date_label_checkin = 'searchTexts.input_date_label_checkin',
+  input_date_label_checkout = 'searchTexts.input_date_label_checkout',
+  input_location_label_default = 'searchTexts.input_location_label_default',
+  input_location_label_anywhere = 'searchTexts.input_location_label_anywhere',
+  search_button = 'searchTexts.search_button',
+  input_location_no_options = 'searchTexts.input_location_no_options',
+}
+
 export enum PaymentInfo {
   title = 'payment.title',
   option_name = 'payment.option_name',
@@ -24,4 +33,11 @@ export enum PaymentInfo {
   total_price = 'payment.total_price',
   button_type_card = 'payment.button_type.card',
   button_type_cash = 'payment.button_type.cash',
+}
+
+export enum Amenities {
+  save_success = 'amenities.save_success',
+  already_exists = 'amenities.already_exists',
+  cannot_contain_comma = 'amenities.cannot_contain_comma',
+  no_amenities_selected = 'amenities.no_amenities_selected',
 }

@@ -1,6 +1,7 @@
 import dayjs, { Dayjs } from 'dayjs';
 import { MouseEventHandler } from 'react';
 import { z } from 'zod';
+import { Amenities } from './amenity.types';
 
 export type AccommodationFields =
   | 'title'
@@ -62,6 +63,7 @@ export type AccommodationType = {
   description: string;
   previewImgUrl: string;
   address: AddressType;
+  amenities: Amenities[];
 };
 
 export type AddressType = {

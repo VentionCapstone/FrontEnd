@@ -1,56 +1,56 @@
 import { Check } from '@mui/icons-material';
 import { Box, Button, List, ListItem, TextField, Typography } from '@mui/material';
-import { AxiosError } from 'axios';
 import { FormEvent, useCallback, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 import { useSaveAmenitiesMutation } from '@src/api/mutations/amenity/useSaveAmenitiesMutation';
-import { useGetAccomodationAmenitiesQuery } from '@src/api/queries/amenity/useGetAccomodationAmenitiesQuery';
 import { useGetAmenityListQuery } from '@src/api/queries/amenity/useGetAmenityListQuery';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
-import { Amenities, AmenitySetting, EditAmenitiesProps } from '@src/types/amenity.types';
+import { ROUTES } from '@src/config/routes.config';
+import { Amenities, AmenitiesProps, AmenitySetting } from '@src/types/amenity.types';
+import { Amenities as AmenitiesTr } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import CustomChip from './CustomChip';
 
-export default function EditAmenities({ accomodationId, isNew }: EditAmenitiesProps) {
-  const [isNewAccomodation, setIsNewAccomodation] = useState<boolean>(isNew);
+export default function EditAmenities({
+  accommodationId,
+  isNew,
+  accommodationAmenities,
+}: AmenitiesProps) {
+  const navigate = useNavigate();
+  const { t } = useTranslation();
   const [currentAmenities, setCurrentAmenities] = useState<AmenitySetting[] | undefined>(undefined);
   const [otherAmenities, setOtherAmenities] = useState<string[]>([]);
   const [customAmenity, setCustomAmenity] = useState<string>('');
 
   const { data: amenities } = useGetAmenityListQuery();
 
-  const {
-    data: accomodationAmenities,
-    isError,
-    error,
-  } = useGetAccomodationAmenitiesQuery({ accomodationId, isNewAccomodation });
-
-  const { mutate } = useSaveAmenitiesMutation(accomodationId);
+  const { mutate, isSuccess } = useSaveAmenitiesMutation(accommodationId);
 
   useEffect(() => {
-    if (isError && error) {
-      const { response } = error as AxiosError;
-      if (response?.status === 404) {
-        setIsNewAccomodation(true);
-      }
+    if (isSuccess) {
+      toast.success(t(AmenitiesTr.save_success));
+      navigate(ROUTES.accommodations.root);
     }
-  }, [isError, error]);
+  }, [isSuccess, t, navigate]);
 
   useEffect(() => {
-    if (accomodationAmenities && amenities) {
-      const otherAmenitiesStr = accomodationAmenities.otherAmenities as string;
+    if (amenities) {
+      const existingAmenities = accommodationAmenities || {};
+      const otherAmenitiesStr = existingAmenities.otherAmenities as string;
       const otherAmenities = otherAmenitiesStr?.trim() ? otherAmenitiesStr.split(',') : [];
 
       setCurrentAmenities(
         amenities.map((amenity) => ({
           ...amenity,
-          added: accomodationAmenities[amenity.id] as boolean,
+          added: existingAmenities[amenity.id] as boolean,
         }))
       );
 
       setOtherAmenities(otherAmenities);
     }
-  }, [accomodationAmenities, amenities, isNewAccomodation]);
+  }, [accommodationAmenities, amenities]);
 
   const handleSelect = useCallback(
     (id: string) => {
@@ -70,7 +70,7 @@ export default function EditAmenities({ accomodationId, isNew }: EditAmenitiesPr
 
       if (customAmenity.trim()) {
         if (customAmenity.includes(',')) {
-          toast.error('Amenity cannot contain commas');
+          toast.error(t(AmenitiesTr.cannot_contain_comma));
           return;
         }
 
@@ -80,11 +80,11 @@ export default function EditAmenities({ accomodationId, isNew }: EditAmenitiesPr
           setOtherAmenities((prev) => [...prev, customAmenity]);
           setCustomAmenity('');
         } else {
-          toast.error('Amenity already exists');
+          toast.error(t(AmenitiesTr.already_exists));
         }
       }
     },
-    [customAmenity, otherAmenities]
+    [customAmenity, otherAmenities, t]
   );
 
   const removeCustomAmenity = useCallback((amenity: string) => {
@@ -101,12 +101,12 @@ export default function EditAmenities({ accomodationId, isNew }: EditAmenitiesPr
     );
 
     if (!amenitiesToSave) {
-      toast.error('No amenities to save');
+      toast.error(t(AmenitiesTr.no_amenities_selected));
       return;
     }
 
-    mutate({ amenitiesToSave, isNewAccomodation });
-  }, [currentAmenities, mutate, isNewAccomodation, otherAmenities]);
+    mutate({ amenitiesToSave, isNewAccomodation: isNew });
+  }, [currentAmenities, mutate, isNew, otherAmenities, t]);
 
   return (
     <Box
@@ -121,17 +121,17 @@ export default function EditAmenities({ accomodationId, isNew }: EditAmenitiesPr
       }}
     >
       <Typography variant="h4" component="h2">
-        {isNewAccomodation ? 'Add amenities' : 'Edit amenities'}
+        {isNew ? 'Add amenities' : 'Edit amenities'}
       </Typography>
-      <Box
-        sx={{
-          maxWidth: '700px',
-          flexGrow: 1,
-          gap: '10px',
-        }}
-      >
-        {accomodationAmenities && currentAmenities ? (
-          <>
+      {currentAmenities ? (
+        <>
+          <Box
+            sx={{
+              maxWidth: '700px',
+              flexGrow: 1,
+              gap: '10px',
+            }}
+          >
             <List
               sx={{
                 display: 'flex',
@@ -201,24 +201,24 @@ export default function EditAmenities({ accomodationId, isNew }: EditAmenitiesPr
                 </Box>
               </form>
             </Box>
-          </>
-        ) : (
-          <LoadingPrimary />
-        )}
-      </Box>
-      <Button
-        variant="contained"
-        color="secondary"
-        sx={{
-          borderRadius: '100px',
-          padding: '10px 20px',
-          fontWeight: 'bold',
-          mt: '20px',
-        }}
-        onClick={() => void saveAmenities()}
-      >
-        Save amenities
-      </Button>
+          </Box>
+          <Button
+            variant="contained"
+            color="secondary"
+            sx={{
+              borderRadius: '100px',
+              padding: '10px 20px',
+              fontWeight: 'bold',
+              mt: '20px',
+            }}
+            onClick={() => void saveAmenities()}
+          >
+            Save amenities
+          </Button>
+        </>
+      ) : (
+        <LoadingPrimary />
+      )}
     </Box>
   );
 }
