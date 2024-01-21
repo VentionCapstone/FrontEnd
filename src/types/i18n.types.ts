@@ -14,6 +14,15 @@ export enum ErrorTypes {
   password_not_matching = 'errors.password_not_matching',
 }
 
+export enum SearchTexts {
+  input_date_label_checkin = 'searchTexts.input_date_label_checkin',
+  input_date_label_checkout = 'searchTexts.input_date_label_checkout',
+  input_location_label_default = 'searchTexts.input_location_label_default',
+  input_location_label_anywhere = 'searchTexts.input_location_label_anywhere',
+  search_button = 'searchTexts.search_button',
+  input_location_no_options = 'searchTexts.input_location_no_options',
+}
+
 export enum PaymentInfo {
   title = 'payment.title',
   option_name = 'payment.option_name',
