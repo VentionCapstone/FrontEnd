@@ -2,11 +2,14 @@ import { Box, Typography } from '@mui/material';
 import { useCallback } from 'react';
 
 import { useAppSelector } from '@src/hooks/redux-hooks';
+import { LoginAndSecurityInfo } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 import EditablePanel from '../EditablePanel';
 import { UpdateEmail } from './UpdateEmail';
 import { UpdatePassword } from './UpdatePassword';
 
 function LoginAndSecurity() {
+  const { t } = useTranslation();
   const userEmail = useAppSelector((state) => state.auth.user?.email) ?? '';
 
   const emailRenderProps = useCallback(
@@ -27,12 +30,12 @@ function LoginAndSecurity() {
         fontWeight={600}
         component={'h1'}
       >
-        Login & security
+        {t(LoginAndSecurityInfo.login_title)}
       </Typography>
 
       <Box maxWidth={'60rem'}>
         <EditablePanel
-          panelHeading={'Email'}
+          panelHeading={t(LoginAndSecurityInfo.email)}
           initial={
             <Typography variant={'sm'} color={'secondary2.main'}>
               {userEmail}
@@ -42,10 +45,10 @@ function LoginAndSecurity() {
         />
 
         <EditablePanel
-          panelHeading={'Password'}
+          panelHeading={t(LoginAndSecurityInfo.password)}
           initial={
             <Typography variant={'sm'} color={'secondary2.main'}>
-              Change you password
+              {t(LoginAndSecurityInfo.password_change_your_password)}
             </Typography>
           }
           editable={passwordRenderProps}
