@@ -85,14 +85,7 @@ function UploadMedia({
           <>
             <Box textAlign={'center'}>
               {images.length > 0 ? (
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    columnGap: 2,
-                    mt: 4,
-                  }}
-                >
+                <Box sx={uploadMediaStyles.availableImageContainer}>
                   <Typography mt={2}>Choose at least 5 images</Typography>
                   <IconButton onClick={onImageUpload}>
                     <AddIcon />

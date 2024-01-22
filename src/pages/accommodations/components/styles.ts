@@ -77,4 +77,10 @@ export const uploadMediaStyles = {
     },
     ml: 'auto',
   },
+  availableImageContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    columnGap: 2,
+    mt: 4,
+  },
 } satisfies MuiStylesObject;

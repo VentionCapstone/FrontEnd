@@ -4,6 +4,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { useGetAccommodation } from '@src/api/queries/accommodations/useGetAccommodation';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import DataFetchError from '@src/components/shared/DataFetchError';
+import { handleErrorInImage } from '@src/utils';
 import EditAmenities from '../accomodation/components/EditAmenities';
 import AccommodationForm from './components/AccommodationForm';
 import UploadMedia from './components/UploadMedia';
@@ -39,10 +40,44 @@ function UpdateAccommodation() {
         />
       )}
       {currentStep == 2 && (
-        <UploadMedia
-          accommodationId={accommodationId}
-          handleSearchParamsChange={handleSearchParamsChange}
-        />
+        <Box>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-start',
+              flexWrap: 'wrap',
+            }}
+          >
+            {accommodation.data.media.map((media) => (
+              <Box
+                key={media.id}
+                sx={{
+                  'width': 250,
+                  'height': 250,
+                  'display': 'inline-block',
+                  'my': 4,
+                  'mx': 'auto',
+                  '& img': {
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    borderRadius: 2,
+                  },
+                }}
+              >
+                <img
+                  src={media.imageUrl}
+                  alt={media.accommodationId}
+                  onError={handleErrorInImage}
+                />
+              </Box>
+            ))}
+          </Box>
+          <UploadMedia
+            accommodationId={accommodationId}
+            handleSearchParamsChange={handleSearchParamsChange}
+          />
+        </Box>
       )}
       {currentStep == 3 && (
         <EditAmenities
