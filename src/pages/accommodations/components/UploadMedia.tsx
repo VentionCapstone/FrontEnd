@@ -4,7 +4,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import { Box, Button, IconButton, Typography } from '@mui/material';
 import useTheme from '@mui/material/styles/useTheme';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import ImageUploading, { ImageListType } from 'react-images-uploading';
 
 import useUploadMediaAccommodationMutation from '@src/api/mutations/accommodations/useUploadMediaAccommodationMutation';
@@ -18,25 +18,32 @@ import { uploadMediaStyles } from './styles';
 
 function UploadMedia({
   accommodationId,
-  setCurrentStep,
+  handleSearchParamsChange,
 }: {
   accommodationId: string;
-  setCurrentStep: (step: number) => void;
+  handleSearchParamsChange: (params: URLSearchParams) => void;
 }) {
   const [images, setImages] = useState<ImageListType>([]);
 
   const theme = useTheme();
   const mobileScreen = useMediaQuery(theme.breakpoints.down('md'));
 
-  const { mutate, isPending } = useUploadMediaAccommodationMutation({
+  const { mutate, isPending, isSuccess } = useUploadMediaAccommodationMutation({
     accommodationId,
     images,
-    setCurrentStep,
   });
 
   const onChange = (imageList: ImageListType) => {
     setImages(imageList);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      handleSearchParamsChange(
+        new URLSearchParams({ currentStep: '3', accommodationId: accommodationId })
+      );
+    }
+  }, [isSuccess, accommodationId, handleSearchParamsChange]);
 
   const handleNextButtonClick = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

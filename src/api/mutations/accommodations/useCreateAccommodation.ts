@@ -5,14 +5,13 @@ import { ENDPOINTS } from '@src/config/endpoints.config';
 import { QUERY_KEYS } from '@src/config/react-query.config';
 import {
   AccommodationReq,
+  AccommodationSearchParamsType,
   AccommodationSingleResponse,
-  AccommodationStepType,
 } from '@src/types/accommodation.types';
 
 export const useCreateAccommodation = ({
-  setCurrentStep,
-  setAccommodationId,
-}: AccommodationStepType) => {
+  handleSearchParamsChange,
+}: AccommodationSearchParamsType) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -28,8 +27,8 @@ export const useCreateAccommodation = ({
 
     onSuccess: async (data) => {
       await queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.query.accommodations] });
-      setCurrentStep(2);
-      setAccommodationId(data.id);
+      const newParams = new URLSearchParams({ currentStep: '2', accommodationId: data.id });
+      handleSearchParamsChange(newParams);
     },
   });
 };

@@ -6,13 +6,11 @@ import { ImageListType } from 'react-images-uploading';
 interface UploadMediaAccommodationProps {
   accommodationId: string;
   images: ImageListType;
-  setCurrentStep: (step: number) => void;
 }
 
 function useUploadMediaAccommodationMutation({
   accommodationId,
   images,
-  setCurrentStep,
 }: UploadMediaAccommodationProps) {
   return useMutation({
     mutationFn: async () => {
@@ -29,9 +27,6 @@ function useUploadMediaAccommodationMutation({
           headers: { 'Content-Type': 'multipart/form-data' },
         }
       );
-    },
-    onSuccess: () => {
-      setCurrentStep(3);
     },
   });
 }

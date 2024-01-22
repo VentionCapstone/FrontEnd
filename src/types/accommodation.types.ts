@@ -21,9 +21,15 @@ export type AccommodationFields =
 export const accommodationSchema = z.object({
   title: z.string().min(5).max(100),
   squareMeters: z.number(),
-  numberOfRooms: z.number(),
+  numberOfRooms: z
+    .number()
+    .min(1, 'Number of rooms must be greater than 0')
+    .max(100, "Can't be more than 100 rooms"),
   price: z.number(),
-  allowedNumberOfPeople: z.number(),
+  allowedNumberOfPeople: z
+    .number()
+    .min(1, 'Allowed number of people must be greater than 0')
+    .max(100, "Can't be more than 100 people"),
   availableFrom: z.string(),
   availableTo: z.string(),
   available: z.boolean(),
@@ -219,12 +225,13 @@ export interface AccommodationSingle {
   allowedNumberOfPeople: number;
   availableFrom: string;
   availableTo: string;
+  available: boolean;
   description: string;
   previewImgUrl: string;
   isDeleted: boolean;
   address: Address;
   media: Media[];
-  amenities: Amenity[];
+  amenities: Amenities[];
   timezoneOffset: number;
   title: string;
 }
@@ -267,7 +274,22 @@ export interface Amenity {
   otherAmenities: string | null;
 }
 
-export interface AccommodationStepType {
-  setCurrentStep: (step: number) => void;
-  setAccommodationId: (id: string) => void;
+export interface AccommodationSearchParamsType {
+  handleSearchParamsChange: (params: URLSearchParams) => void;
 }
+type AcommodationPropsBase = {
+  isNew: boolean;
+  handleSearchParamsChange: (params: URLSearchParams) => void;
+};
+
+type CreateAccommodationProps = AcommodationPropsBase & {
+  isNew: true;
+  accommodation?: AccommodationSingle;
+};
+
+type UpdateAccommodationProps = AcommodationPropsBase & {
+  isNew: false;
+  accommodation: AccommodationSingle;
+};
+
+export type AccommodationFormProps = CreateAccommodationProps | UpdateAccommodationProps;
