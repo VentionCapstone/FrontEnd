@@ -207,6 +207,10 @@ export interface AccommodationSingleResponse {
   data: AccommodationSingle;
 }
 
+export interface AllMediaResponse {
+  success: boolean;
+  data: Media[];
+}
 export interface AccommodationSingle {
   id: string;
   addressId: string;

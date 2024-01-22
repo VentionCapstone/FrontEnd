@@ -6,6 +6,7 @@ import { useParams } from 'react-router';
 import { useBookingRoom } from '@src/api/mutations/booking/useBookingRoom';
 import useGetSingleAccommodationQuery from '@src/api/queries/accommodation/useGetSingleAccommodationQuery';
 import BookingForm from '@src/components/booking/BookingForm';
+import ShowPhotos from '@src/components/full-view-accommodation/full-view-accommodation';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import DataFetchError from '@src/components/shared/DataFetchError';
 import { AmenitySetting } from '@src/types/amenity.types';
@@ -21,7 +22,11 @@ function Accommodation() {
   const { id: accommodationId } = useParams();
 
   const [amenities, setAmenities] = useState<AmenitySetting[]>([]);
+  const [openDialog, setOpenDialog] = useState(false);
 
+  const handleGridItemClick = () => {
+    setOpenDialog(true);
+  };
   const { isPending, data, isError } = useGetSingleAccommodationQuery(accommodationId as string);
 
   const { mutateAsync } = useBookingRoom();
@@ -59,12 +64,19 @@ function Accommodation() {
   const [image_1, image_2, image_3, image_4, image_5] = data.media;
 
   return (
-    <Box>
+    <Box paddingX={10}>
       <Grid container columnSpacing={2}>
-        <Grid item xs={12} md={6} flex={1} sx={styles.image_left}>
+        <Grid onClick={handleGridItemClick} item xs={12} md={6} flex={1} sx={styles.image_left}>
           <img src={image_1.imageUrl} alt={image_1.accommodationId} onError={handleErrorInImage} />
         </Grid>
-        <Grid item container spacing={2} flex={1} sx={styles.image_list}>
+        <Grid
+          onClick={handleGridItemClick}
+          item
+          container
+          spacing={2}
+          flex={1}
+          sx={styles.image_list}
+        >
           <Grid item md={6}>
             <img
               src={image_2.imageUrl}
@@ -93,6 +105,11 @@ function Accommodation() {
               onError={handleErrorInImage}
             />
           </Grid>
+          <ShowPhotos
+            id={accommodationId as string}
+            open={openDialog}
+            onClose={() => setOpenDialog(false)}
+          />
         </Grid>
       </Grid>
       <Box sx={styles.content}>

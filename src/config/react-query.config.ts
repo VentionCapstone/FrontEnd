@@ -21,6 +21,7 @@ export const QUERY_KEYS = {
     accommodation: 'accommodation',
     accommodations: 'accommodations',
     accomodationReviews: 'accomodation_reviews',
+    media: 'media',
   },
   mutation: {
     createAccount: 'create_account',
