@@ -8,7 +8,7 @@ export type EditAmenitiesProps = {
 export type AmenitySetting = {
   id: string;
   name: string;
-  icon: ReactElement;
+  icon?: ReactElement;
   added?: boolean;
 };
 
