@@ -71,7 +71,7 @@ export default function Accommodations() {
           <Box display="grid" gap={8} gridTemplateColumns={'repeat(auto-fill, minmax(280px, 1fr))'}>
             {accommodations?.map(({ id, title, thumbnailUrl, previewImgUrl, isDeleted, price }) => (
               <Link
-                to={ROUTES.accommodations.edit(id)}
+                to={ROUTES.accommodations.view(id)}
                 key={id}
                 style={{
                   color: 'inherit',

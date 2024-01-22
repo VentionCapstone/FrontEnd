@@ -13,6 +13,7 @@ export const ROUTES = {
     root: '/accommodations',
     create: '/accommodations/create',
     edit: (id: string) => `/accommodations/edit/${id}`,
+    view: (id: string) => `/rooms/${id}`,
   },
   payment: {
     root: (id: string, accommodationId: string, startDate: string, endDate: string) =>

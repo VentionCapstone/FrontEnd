@@ -66,7 +66,7 @@ function AccommodationForm({
         longitude: 0,
       },
     },
-    values: accommodation && (accommodation as AccommodationReq),
+    values: accommodation as AccommodationReq,
   });
 
   const latitudeWatch = watch('address.latitude');

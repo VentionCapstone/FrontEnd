@@ -8,9 +8,12 @@ import useGetSingleAccommodationQuery from '@src/api/queries/accommodation/useGe
 import BookingForm from '@src/components/booking/BookingForm';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import DataFetchError from '@src/components/shared/DataFetchError';
+import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
+import { ROUTES } from '@src/config/routes.config';
 import { AmenitySetting } from '@src/types/amenity.types';
 import { ErrorTypes } from '@src/types/i18n.types';
-import { handleErrorInImage, selectOnlyTrueAmenities } from '@src/utils';
+import { getValueFromLocalStorage, handleErrorInImage, selectOnlyTrueAmenities } from '@src/utils';
+import { Link } from 'react-router-dom';
 import YandexMap from '../../components/shared/YandexMap';
 import { styles } from './Accommodation.styles';
 import AmenityList from './components/AmenityList';
@@ -21,6 +24,8 @@ function Accommodation() {
   const { id: accommodationId } = useParams();
 
   const [amenities, setAmenities] = useState<AmenitySetting[]>([]);
+
+  const ownerId = getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.sub);
 
   const { isPending, data, isError } = useGetSingleAccommodationQuery(accommodationId as string);
 
@@ -35,7 +40,7 @@ function Accommodation() {
   };
 
   useEffect(() => {
-    if (data?.amenities) {
+    if (data?.amenities && data?.amenities[0]) {
       const listOfTrueAmenities = selectOnlyTrueAmenities(data?.amenities[0]);
 
       setAmenities(buildAmenityList(listOfTrueAmenities));
@@ -110,11 +115,29 @@ function Accommodation() {
           <AmenityList amenities={amenities} />
         </Box>
         <Box flex={0.4}>
-          <BookingForm
-            onSubmit={submitReservation}
-            accomodationId={accommodationId}
-            price={data.price}
-          />
+          {ownerId === data.ownerId ? (
+            <Box
+              sx={{
+                'display': 'flex',
+                'justifyContent': 'center',
+                'alignItems': 'center',
+                'height': '100%',
+                '& a': {
+                  color: 'inherit',
+                  fontSize: '1.2rem',
+                  fontWeight: 600,
+                },
+              }}
+            >
+              <Link to={ROUTES.accommodations.edit(data.id)}>Edit Accommodation</Link>
+            </Box>
+          ) : (
+            <BookingForm
+              onSubmit={submitReservation}
+              accomodationId={accommodationId}
+              price={data.price}
+            />
+          )}
         </Box>
       </Box>
       <Reviews accommodationId={accommodationId || ''} />

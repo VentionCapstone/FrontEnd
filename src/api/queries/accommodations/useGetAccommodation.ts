@@ -15,5 +15,6 @@ export const useGetAccommodation = ({ id }: { id: string | undefined }) => {
       return data;
     },
     enabled: !!id,
+    staleTime: 0,
   });
 };
