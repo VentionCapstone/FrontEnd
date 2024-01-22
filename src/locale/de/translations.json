@@ -35,6 +35,34 @@
       "input_location_label_anywhere": "Überall",
       "search_button": "Suche",
       "input_location_no_options": "Ort eingeben"
+    },
+    "host": {
+      "profile": {
+        "subtitle": "Gastgeber",
+        "rating": "Bewertung",
+        "reviews": "Bewertungen",
+        "listings": "Inserate"
+      },
+      "verified": {
+        "title": "Bestätigte Informationen von {{firstName}}",
+        "identity": "Identität",
+        "email": "E-Mail-Adresse",
+        "phone": "Telefonnummer"
+      },
+      "about": {
+        "title": "Über {{firstName}}",
+        "joined": "Beigetreten im Jahr {{joinedAt}}",
+        "language": "Spricht {{language}}",
+        "lives_in": "Lebt in {{country}}"
+      },
+      "reviews": {
+        "title": "Neueste Bewertungen von {{firstName}}",
+        "empty": "Dieser Gastgeber hat noch keine Bewertungen"
+      },
+      "listings": {
+        "title": "Inserate von {{firstName}}",
+        "empty": "Dieser Gastgeber hat keine aktiven Unterkünfte"
+      }
     }
   }
 }

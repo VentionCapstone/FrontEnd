@@ -35,6 +35,34 @@
       "input_location_label_anywhere": "Har qayer",
       "search_button": "Izlash",
       "input_location_no_options": "Joylashuvni kiriting"
+    },
+    "host": {
+      "profile": {
+        "subtitle": "Mezbon",
+        "rating": "Reyting",
+        "reviews": "Fikrlar",
+        "listings": "Kvartiralar"
+      },
+      "verified": {
+        "title": "{{firstName}}'ning tasdiqlangan ma'lumoti",
+        "identity": "Shaxsiy ma'lumot",
+        "email": "Elektron manzil",
+        "phone": "Telefon raqami"
+      },
+      "about": {
+        "title": "{{firstName}} haqida",
+        "joined": "{{joinedAt}} sanada qo'shildi",
+        "language": "{{language}} tilida gapiradi",
+        "lives_in": "{{country}} da yashaydi"
+      },
+      "reviews": {
+        "title": "{{firstName}}ning so'nggi fikrlari",
+        "empty": "Ushbu mezbon haqida hech qanday fikr mavjud emas"
+      },
+      "listings": {
+        "title": "{{firstName}}ning ro'yxatlari",
+        "empty": "Ushbu mezbonning kvartiralar ro'yxati mavjud emas"
+      }
     }
   }
 }
