@@ -1,15 +1,16 @@
+import MapIcon from '@mui/icons-material/Map';
 import TuneIcon from '@mui/icons-material/Tune';
 import { Badge, Box, Button, Stack, Typography } from '@mui/material';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { useSearchParams } from 'react-router-dom';
-
 import useGetAccommodationsQuery from '@src/api/queries/main/useGetAccommodationsQuery';
 import AccommodationCard from '@src/components/card/AccommodationCard';
 import DataFetchError from '@src/components/shared/DataFetchError';
 import { Accommodation, DefaultSearchParamsType } from '@src/types/accommodation.types';
 import { ErrorTypes } from '@src/types/i18n.types';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { useSearchParams } from 'react-router-dom';
 import AccommodationSkeleton from '../accommodations/AccommodationSkeleton';
+import MapModal from './components/MapModal';
 import MainModal from './components/Modal';
 import SearchBar from './components/SearchBar';
 import { mainStyles } from './index.styles';
@@ -29,6 +30,8 @@ const defaultSearchParams: DefaultSearchParamsType = {
 
 function Main() {
   const [open, setOpen] = useState(false);
+  const [openMapModal, setOpenMapModal] = useState(false);
+
   const [invisible, setInvisible] = useState(false);
   const [priceRange, setPriceRange] = useState({
     totalMaxPrice: 0,
@@ -70,6 +73,8 @@ function Main() {
   const handleOpen = useCallback(() => setOpen(true), []);
   const handleNextPage = useCallback(() => fetchNextPage(), [fetchNextPage]);
 
+  const handleOpenMapModal = useCallback(() => setOpenMapModal(true), []);
+
   const renderAccommodationSkeleton = useCallback(
     () => (
       <Box sx={mainStyles.accommmodationCard}>
@@ -97,6 +102,11 @@ function Main() {
         <Badge invisible={!invisible} color="primary" badgeContent=" " sx={mainStyles.badgeNumber}>
           <Button variant="outlined" sx={mainStyles.filterButton} onClick={handleOpen}>
             <TuneIcon fontSize="small" />
+          </Button>
+        </Badge>
+        <Badge invisible={!invisible} color="primary" badgeContent=" " sx={mainStyles.badgeNumber}>
+          <Button variant="outlined" sx={mainStyles.filterButton} onClick={handleOpenMapModal}>
+            <MapIcon fontSize="small" />
           </Button>
         </Badge>
       </Box>
@@ -135,6 +145,11 @@ function Main() {
           checkOutDate={searchParamsAsObject['checkOutDate']}
         />
       )}
+      <MapModal
+        open={openMapModal}
+        setOpen={setOpenMapModal}
+        searchParamsAsObject={searchParamsAsObject}
+      />
     </Box>
   );
 }
