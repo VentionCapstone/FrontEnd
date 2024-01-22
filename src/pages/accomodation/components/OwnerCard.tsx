@@ -1,10 +1,11 @@
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { Box, Typography } from '@mui/material';
+import dayjs from 'dayjs';
+import { Link } from 'react-router-dom';
+
 import { ROUTES } from '@src/config/routes.config';
 import { DATE_MONTH_YEAR_FORMAT } from '@src/constants';
 import { Owner } from '@src/types/accommodation.types';
-import * as dayjs from 'dayjs';
-import { Link } from 'react-router-dom';
 
 function OwnerCard({ owner }: { owner: Owner }) {
   const { id, firstName, lastName, createdAt, profile, isVerified } = owner;

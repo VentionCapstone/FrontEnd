@@ -2,12 +2,13 @@ import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import LanguageIcon from '@mui/icons-material/Language';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { Box, List, ListItem, Typography } from '@mui/material';
+import dayjs from 'dayjs';
+import { useTranslation } from 'react-i18next';
+
 import { DATE_MONTH_YEAR_FORMAT } from '@src/constants';
 import { FONT_SIZES } from '@src/theme/themeTokens';
 import { HostProfile } from '@src/types/hostProfile.types';
 import { HostInfo } from '@src/types/i18n.types';
-import * as dayjs from 'dayjs';
-import { useTranslation } from 'react-i18next';
 
 function HostAbout({ host }: { host: HostProfile }) {
   const { t } = useTranslation();
