@@ -131,7 +131,7 @@ export type MainModalProps = {
 export type MapModalProps = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  searchParamsAsObject: DefaultSearchParamsType;
+  searchParamsAsObject: Record<string, string>;
 };
 
 export type SearchBarProps = {

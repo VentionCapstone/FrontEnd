@@ -15,7 +15,7 @@ import { MapModalProps } from '@src/types/accommodation.types';
 import { modalStyles } from './Modal.styles';
 
 const maxAccommInMap = import.meta.env.VITE_MAX_ACCOMMODATIONS_IN_MAP as string;
-console.log('maxAccommInMap:', maxAccommInMap);
+const originUrl = import.meta.env.VITE_ORIGIN_URL as string;
 
 export default function MapModal({ open, setOpen, searchParamsAsObject }: MapModalProps) {
   const handleClose = useCallback(() => setOpen(false), [setOpen]);
@@ -31,12 +31,13 @@ export default function MapModal({ open, setOpen, searchParamsAsObject }: MapMod
       <Fade in={open}>
         <Box sx={modalStyles.modalContainer}>
           <Stack
+            mb={4}
             direction={'row'}
             justifyContent={'space-between'}
             alignItems={'center'}
             flexGrow={'0'}
           >
-            <Typography variant="lg">Filter</Typography>
+            <Typography variant="lg">Map</Typography>
             <Button
               disableRipple
               disableFocusRipple
@@ -78,7 +79,7 @@ export default function MapModal({ open, setOpen, searchParamsAsObject }: MapMod
                         properties={{
                           iconCaption: accommodation.price + '$',
                           balloonContentBody: `
-                            <a href="http://localhost:5173/rooms/${accommodation.id}" style="overflow: hidden; position: relative; text-decoration: none; color: #000; width: 250px;     height: 150px;"  >
+                            <a href="${originUrl}/rooms/${accommodation.id}" style="overflow: hidden; position: relative; text-decoration: none; color: #000; width: 250px;     height: 150px;"  >
                               <div style="padding: 16px 0; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-size: 16px; max-width: 250px;">
                                 <div style="font-weight: bold; font-size: 20px; margin-bottom: 8px;">
                                   ${accommodation.title}
