@@ -31,7 +31,7 @@
     },
     "home_ui": {
       "user_home_btn": {
-        "account": "Cчет",
+        "account": "Aккаунт",
         "mylistings": "Mои объявления",
         "logout": "Выход из системы"
       },
