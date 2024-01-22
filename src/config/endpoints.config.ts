@@ -1,6 +1,7 @@
 export const ENDPOINTS = {
   auth: {
     signIn: '/auth/signin',
+    googleSignIn: '/auth/google/login',
     signUp: '/auth/signup',
     verifyEmail: '/auth/verify',
     updateEmail: '/auth/email',

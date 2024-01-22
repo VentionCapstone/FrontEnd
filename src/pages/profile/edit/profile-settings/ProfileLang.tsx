@@ -11,6 +11,13 @@ import { AccountEditPersonalInfo, SettingsInfo } from '@src/types/i18n.types';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
+import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
+import { useAppSelector } from '@src/hooks/redux-hooks';
+import { getProfile } from '@src/stores/slices/authSlice';
+import { setValueToLocalStorage } from '@src/utils';
+import { LANGUAGE_LIST } from '../../constants';
+
 export const ProfileLang = ({
   collapsePanel,
   userLang,
@@ -18,12 +25,26 @@ export const ProfileLang = ({
   collapsePanel: () => void;
   userLang: string;
 }) => {
+  const profileId = useAppSelector(getProfile)?.id ?? '';
+
   const { t } = useTranslation();
-  const [lang, setLang] = useState<string>(userLang);
+  const [language, setLanguage] = useState<string>(userLang);
+  const { mutate } = useEditAccountMutation(profileId);
+  const { i18n } = useTranslation();
 
   const handleChange = useCallback((e: SelectChangeEvent<string>) => {
-    setLang(e.target.value);
+    setLanguage(e.target.value);
   }, []);
+
+  const handleSubmit = async () => {
+    if (language && language !== userLang) {
+      mutate({ language });
+      await i18n.changeLanguage(language);
+      setValueToLocalStorage(LOCAL_STORAGE_KEYS.language, language);
+
+      collapsePanel();
+    }
+  };
 
   return (
     <>
@@ -37,7 +58,7 @@ export const ProfileLang = ({
       >
         <InputLabel id="profile-lang-select-label">{t(SettingsInfo.language)}</InputLabel>
         <Select
-          value={lang}
+          value={language}
           onChange={handleChange}
           fullWidth
           size="small"
@@ -46,13 +67,16 @@ export const ProfileLang = ({
           label={t(SettingsInfo.language)}
           sx={{ maxWidth: '40rem' }}
         >
-          <MenuItem value={'English'}>{t(SettingsInfo.english)}</MenuItem>
-          <MenuItem value={'Russian'}>{t(SettingsInfo.russian)}</MenuItem>
+          {LANGUAGE_LIST.map((language) => (
+            <MenuItem key={language.code} value={language.code}>
+              {language.name}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
 
-      <Button onClick={collapsePanel} variant={'contained'} size="small" sx={{ fontWeight: 600 }}>
-        {t(AccountEditPersonalInfo.save_name)}
+      <Button onClick={handleSubmit} variant={'contained'} size="small" sx={{ fontWeight: 600 }}>
+        {t(AccountEditPersonalInfo.save_about)}
       </Button>
     </>
   );

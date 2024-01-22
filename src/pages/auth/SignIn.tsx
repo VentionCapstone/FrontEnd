@@ -13,6 +13,7 @@ import { SignInReq, signInSchema } from '@src/types/auth.types';
 import { HomeUIInfo, LoginAndSecurityInfo } from '@src/types/i18n.types';
 import { useTranslation } from 'react-i18next';
 import ForgotPasswordModal from './components/ForgotPasswordModal';
+import GoogleLoginButton from './components/GoogleLoginButton';
 import { styles } from './styles';
 
 const SignIn = () => {
@@ -99,6 +100,8 @@ const SignIn = () => {
       {isModalOpen && (
         <ForgotPasswordModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       )}
+
+      <GoogleLoginButton />
     </Box>
   );
 };

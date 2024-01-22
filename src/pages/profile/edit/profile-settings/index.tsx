@@ -13,32 +13,36 @@ import i18n from '@src/i18n/i18n';
 import { getProfile } from '@src/stores/slices/authSlice';
 import { SettingsInfo } from '@src/types/i18n.types';
 import { ThemeMode } from '@src/types/profile.types';
-import { getValueFromLocalStorage } from '@src/utils';
+import { convertCodeToLanguage, getValueFromLocalStorage } from '@src/utils';
 import { useTranslation } from 'react-i18next';
+import { DEFAULT_LANGUAGE } from '../../constants';
 import EditablePanel from '../EditablePanel';
 import { ProfileCurrency } from './ProfileCurrency';
 import { ProfileLang } from './ProfileLang';
 
 function ProfileSettings() {
+  const profile = useAppSelector(getProfile);
   const { t } = useTranslation();
-  const profileId = useAppSelector(getProfile)?.id;
+  const { language: userLang, id: profileId } = profile ?? {};
+
   const { mutate } = useEditAccountMutation(profileId ?? '');
+
   const uiTheme = useMemo(
     () => getValueFromLocalStorage<ThemeMode>(LOCAL_STORAGE_KEYS.uiTheme),
     []
   );
 
   const [theme, setTheme] = useState<ThemeMode>(uiTheme ?? ThemeMode.light);
+  const language = useMemo(() => userLang || DEFAULT_LANGUAGE.code, [userLang]);
 
   const handleThemeChange = (e: SelectChangeEvent<ThemeMode>) => {
     const mode = e.target.value as ThemeMode;
     setTheme(mode);
     mutate({ uiTheme: mode });
   };
-
   const languageRenderProps = useCallback(
-    (data: () => void) => <ProfileLang collapsePanel={data} userLang="English" />,
-    []
+    (data: () => void) => <ProfileLang collapsePanel={data} userLang={language} />,
+    [language]
   );
 
   const currencyRenderProps = useCallback(
@@ -86,7 +90,7 @@ function ProfileSettings() {
           panelHeading={t(SettingsInfo.language)}
           initial={
             <Typography variant={'sm'} color={'secondary2.main'}>
-              {t(SettingsInfo.english)}
+              {convertCodeToLanguage(language)}
             </Typography>
           }
           editable={languageRenderProps}
