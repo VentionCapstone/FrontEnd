@@ -37,7 +37,8 @@ export const ENDPOINTS = {
     getAmenityList: '/amenities',
   },
   booking: {
-    getAvailableDates: (accommodationId: string) => `/booking/available-dates/${accommodationId}`,
     book: '/booking/book',
+    getBookingList: '/booking/my-bookings',
+    getAvailableDates: (accommodationId: string) => `/booking/available-dates/${accommodationId}`,
   },
 } as const;

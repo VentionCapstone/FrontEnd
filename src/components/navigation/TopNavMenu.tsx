@@ -90,6 +90,14 @@ export const TopNavMenu = () => {
               >
                 <MenuItem>My Listings</MenuItem>
               </Link>,
+              <Link
+                key={ROUTES.bookings.root}
+                component={RouterLink}
+                to={ROUTES.bookings.root}
+                onClick={handleClose}
+              >
+                <MenuItem>My Bookings</MenuItem>
+              </Link>,
               <MenuItem key="logout" onClick={handleLogout}>
                 Logout
               </MenuItem>,
