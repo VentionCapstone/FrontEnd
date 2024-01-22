@@ -7,6 +7,7 @@ import ProfileEditRoute from './ProfileEditRoute';
 
 import UserRoute from './UserRoute';
 
+import ErrorPage from '@src/components/shared/ErrorPage';
 import MainLayout from '@src/layouts/MainLayout';
 import UserLayout from '@src/layouts/UserLayout';
 
@@ -30,6 +31,7 @@ const routes = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
       { path: '', element: <Main /> },
       { path: 'rooms/:id', element: <Accommodation /> },
