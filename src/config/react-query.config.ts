@@ -27,5 +27,6 @@ export const QUERY_KEYS = {
     editAccount: 'edit_account',
     verifyEmail: 'verify_email',
     logout: 'logout',
+    updateUserImage: 'update_user_image',
   },
 } as const;

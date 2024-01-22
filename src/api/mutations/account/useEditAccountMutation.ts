@@ -6,12 +6,12 @@ import { ENDPOINTS } from '@src/config/endpoints.config';
 import { QUERY_KEYS } from '@src/config/react-query.config';
 import { Profile } from '@src/types/profile.types';
 
-function useEditAccountMutation(userId: string) {
+function useEditAccountMutation(profileId: string) {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: [QUERY_KEYS.mutation.editAccount],
     mutationFn: async (propertyToChange: Partial<Profile>) => {
-      await httpClient.patch(ENDPOINTS.account.updateUserProfile(userId), propertyToChange);
+      await httpClient.patch(ENDPOINTS.account.updateUserProfile(profileId), propertyToChange);
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.query.user] });

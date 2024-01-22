@@ -2,8 +2,9 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { useCallback, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
-import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
+import useUpdateAccountImageMutation from '@src/api/mutations/account/useUpdateAccountImageMutation';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import { useAppSelector } from '@src/hooks/redux-hooks';
 import { getProfile, getUser } from '@src/stores/slices/authSlice';
@@ -18,17 +19,23 @@ import PhoneNumber from './EditPhoneNumber';
 function PersonalInfo() {
   const user = useAppSelector(getUser);
   const profile = useAppSelector(getProfile);
-  const profileId = profile?.id ?? '';
-  const imageUrl = profile?.imageUrl ?? '';
+  const imageUrl = profile?.imageUrl;
+  const profileId = profile?.id;
 
-  const { mutate } = useEditAccountMutation(profileId);
-  const [newProfileImage, setNewProfileImage] = useState('');
+  const [newProfileImage, setNewProfileImage] = useState<File | null>(null);
+  const { mutate, isSuccess } = useUpdateAccountImageMutation(newProfileImage);
 
   useEffect(() => {
     if (newProfileImage) {
-      mutate({ imageUrl: newProfileImage });
+      mutate(profileId);
     }
-  }, [newProfileImage, mutate]);
+  }, [newProfileImage, mutate, profileId]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success('Profile image changed successefully');
+    }
+  }, [isSuccess]);
 
   const fullNameRenderProps = useCallback(
     (data: () => void) => (
@@ -78,7 +85,7 @@ function PersonalInfo() {
 
       <Stack direction={{ md: 'row' }}>
         <Box mr={{ md: 12, lg: 20 }} mb={{ xs: 12 }}>
-          <AddImage imageUrl={imageUrl} setImageUrl={setNewProfileImage} />
+          <AddImage imageUrl={imageUrl} setNewProfileImage={setNewProfileImage} />
         </Box>
 
         <Box

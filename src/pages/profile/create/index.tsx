@@ -7,12 +7,18 @@ import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 import useCreateAccountMutation from '@src/api/mutations/account/useCreateAccountMutation';
+import useUpdateAccountImageMutation from '@src/api/mutations/account/useUpdateAccountImageMutation';
+import LoadingPrimary from '@src/components/loader/LoadingPrimary';
+import { QUERY_KEYS, queryClient } from '@src/config/react-query.config';
+import { ROUTES } from '@src/config/routes.config';
 import { DEFAULT_LANGUAGE } from '@src/constants';
 import { Gender, Profile, ThemeMode } from '@src/types/profile.types';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import AddImage from '../AddImage';
 import { DEFAULT_COUNTRY, PHONE_CODES_BY_COUNTRY } from '../constants';
 import { PhoneCodesByCountry } from '../constants.types';
@@ -27,29 +33,70 @@ function CreateProfile() {
     reset,
     control,
   } = useForm<Profile>();
+
   const defaultMaleImage =
     'https://i.pinimg.com/564x/48/6c/a0/486ca00640b169300b48e9ceacd8e401.jpg';
   const defaultFemaleImage =
     'https://i.pinimg.com/564x/39/42/01/39420149269ede36847932935b26f0b8.jpg';
 
-  const [imageUrl, setImageUrl] = useState('');
   const [selectedCountry, setSelectedCountry] = useState<PhoneCodesByCountry>(DEFAULT_COUNTRY);
-  const { mutate, isPending } = useCreateAccountMutation();
+  const [profileImage, setProfileImage] = useState<File | null>(null);
+  const { mutate: createAccountMutation, isPending: profileCreatePending } =
+    useCreateAccountMutation();
+  const {
+    mutate: updateAccountImage,
+    isSuccess,
+    isPending: imageUpdatePending,
+  } = useUpdateAccountImageMutation(profileImage);
+  const navigate = useNavigate();
+
+  const confirmCreation = useCallback(async () => {
+    await queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.query.user] });
+    navigate(ROUTES.account.edit);
+    toast.success('Profile created!');
+  }, [navigate]);
 
   const onSubmit: SubmitHandler<Profile> = (data) => {
     const defaultImage = data.gender === Gender.male ? defaultMaleImage : defaultFemaleImage;
 
-    const userProfile: Profile = {
+    const profileData: Profile = {
       ...data,
       phoneNumber: selectedCountry.code + data.phoneNumber,
-      imageUrl: defaultImage,
       language: DEFAULT_LANGUAGE,
       uiTheme: ThemeMode.light,
     };
 
-    mutate(userProfile);
+    try {
+      if (profileImage) {
+        createAccountMutation(profileData, {
+          onSuccess: (res) => {
+            updateAccountImage(res.id);
+          },
+        });
+      } else {
+        createAccountMutation(
+          { ...profileData, imageUrl: defaultImage },
+          {
+            onSuccess: () => {
+              confirmCreation().catch((error) => console.log(error));
+            },
+          }
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
     reset();
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      confirmCreation().catch((error) => console.log(error));
+    }
+  }, [isSuccess, confirmCreation]);
+
+  if (profileCreatePending || imageUpdatePending) return <LoadingPrimary />;
 
   return (
     <>
@@ -59,7 +106,9 @@ function CreateProfile() {
 
       <form onSubmit={(e) => void handleSubmit(onSubmit)(e)}>
         <Stack gap={8}>
-          <AddImage imageUrl={imageUrl} setImageUrl={setImageUrl} />
+          <Box sx={{ marginInline: 'auto' }}>
+            <AddImage setNewProfileImage={setProfileImage} />
+          </Box>
 
           <UserFullName register={register} errors={errors} />
 
@@ -142,7 +191,7 @@ function CreateProfile() {
         <Button
           color={'secondary'}
           type="submit"
-          disabled={isPending}
+          disabled={profileCreatePending}
           variant={'contained'}
           sx={{
             width: {

@@ -14,6 +14,7 @@ export const ENDPOINTS = {
     getUserProfile: (profileId: string) => `/users/profile/${profileId}`,
     updateUserProfile: (profileId: string) => `/users/${profileId}`,
     deleteUserProfile: (profileId: string) => `/users/${profileId}`,
+    updateProfileImage: (profileId: string) => `/users/${profileId}/image`,
     createUserProfile: '/users/profile',
   },
   accommodation: {

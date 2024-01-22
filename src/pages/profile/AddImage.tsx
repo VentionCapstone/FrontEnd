@@ -3,27 +3,28 @@ import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { ChangeEventHandler } from 'react';
+import { ChangeEventHandler, useState } from 'react';
 import toast from 'react-hot-toast';
 
-import { Profile } from '@src/types/profile.types';
 import { convertImageToBase64 } from '@src/utils';
 
 function AddImage({
   imageUrl,
-  setImageUrl,
+  setNewProfileImage,
 }: {
-  imageUrl: Profile['imageUrl'];
-  setImageUrl: React.Dispatch<React.SetStateAction<string>>;
+  imageUrl?: string;
+  setNewProfileImage: React.Dispatch<React.SetStateAction<File | null>>;
 }) {
+  const [imagePreview, setImagePreview] = useState(imageUrl ?? '');
   const handleChangeInput: ChangeEventHandler<HTMLInputElement> = (e) => {
     const file = e.target.files?.[0];
 
     if (!file) return;
 
+    setNewProfileImage(file);
     convertImageToBase64(file)
       .then((imageBase64) => {
-        setImageUrl(imageBase64);
+        setImagePreview(imageBase64);
       })
       .catch(() => toast.error('Image conversion failed!'));
   };
@@ -31,7 +32,7 @@ function AddImage({
   return (
     <Box width={'12rem'} position={'relative'} mx={{ xs: 'auto', md: 0 }} mb={6}>
       <Box
-        src={imageUrl}
+        src={imagePreview}
         component={'img'}
         sx={{
           width: '12rem',

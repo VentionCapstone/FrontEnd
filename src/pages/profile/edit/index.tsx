@@ -30,7 +30,7 @@ function EditProfile() {
     <>
       <Stack mt={'2rem'} mb={'3rem'} gap={'1.5rem'} justifyContent={'space-between'}>
         <Stack alignItems={'center'}>
-          <Box component={'img'} src={imageUrl} sx={editPageStyles.userImage}></Box>
+          <Box component={'img'} src={imageUrl} sx={editPageStyles.userImage} />
 
           <Typography variant={'xl'} sx={editPageStyles.fullName}>
             {user.firstName + ' ' + user.lastName}
