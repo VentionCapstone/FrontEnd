@@ -29,7 +29,6 @@
       "password_invalid_length": "Пароль должен быть не менее 8 символов",
       "password_not_matching": "Пароли не совпадают!"
     },
-
     "home_ui": {
       "user_home_btn": {
         "account": "Cчет",
@@ -91,7 +90,6 @@
         "copyright": "© 2023 Airbnb, Inc."
       }
     },
-
     "account_edit_page": {
       "personal_info": "Личная информация",
       "personal_desc": "Обновите личный пароль и защитите свой аккаунт",
@@ -236,6 +234,42 @@
       "description_desc": "Расскажите нам немного о себе, чтобы ваши будущие хозяева или гости могли вас узнать.",
       "create_btn": "Создать",
       "country": "Страна"
+    },
+    "searchTexts": {
+      "input_date_label_checkin": "Заезд",
+      "input_date_label_checkout": "Выезд",
+      "input_location_label_default": "Пункт назначения",
+      "input_location_label_anywhere": "Везде",
+      "search_button": "Поиск",
+      "input_location_no_options": "Введите местоположение"
+    },
+    "host": {
+      "profile": {
+        "subtitle": "Хозяин",
+        "rating": "Рейтинг",
+        "reviews": "Отзывы",
+        "listings": "Объявления"
+      },
+      "verified": {
+        "title": "Подтвержденная информация о {{firstName}}",
+        "identity": "Личность",
+        "email": "Адрес электронной почты",
+        "phone": "Номер телефона"
+      },
+      "about": {
+        "title": "О {{firstName}}",
+        "joined": "Присоединился в {{joinedAt}}",
+        "language": "Говорит на {{language}}",
+        "lives_in": "Живет в {{country}}"
+      },
+      "reviews": {
+        "title": "Последние отзывы о {{firstName}}",
+        "empty": "У этого хозяина пока нет отзывов"
+      },
+      "listings": {
+        "title": "Объявления {{firstName}}",
+        "empty": "У этого хозяина нет активных размещений"
+      }
     }
   }
 }

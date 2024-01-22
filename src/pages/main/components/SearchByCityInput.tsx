@@ -10,6 +10,8 @@ import parse from 'autosuggest-highlight/parse';
 import * as React from 'react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { mainStyles } from '../index.styles';
+import { SearchTexts } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 
 const GOOGLE_MAPS_API_KEY: string = import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string;
 
@@ -32,7 +34,9 @@ interface MainTextMatchedSubstrings {
   length: number;
 }
 
-const SearchByCityInput = ({ location, setLocation }: SearchByCityInputProps) => {
+export default function SearchByCityInput({ location, setLocation }: SearchByCityInputProps) {
+  const { t } = useTranslation();
+
   const [value, setValue] = useState<google.maps.places.AutocompletePrediction | null>(null);
   const [inputValue, setInputValue] = React.useState('');
   const [options, setOptions] = React.useState<
@@ -148,13 +152,21 @@ const SearchByCityInput = ({ location, setLocation }: SearchByCityInputProps) =>
       autoComplete
       filterSelectedOptions
       value={location ? location : options.find((place) => place === value)}
-      noOptionsText="Enter location"
+      noOptionsText={t(SearchTexts.input_location_no_options)}
       onChange={handleValueChange}
       onInputChange={handleInputValueChange}
       renderInput={(params) => {
         return (
           <>
-            <TextField {...params} label={location ? 'Destination' : 'Anywhere'} fullWidth />
+            <TextField
+              {...params}
+              label={
+                location
+                  ? t(SearchTexts.input_location_label_default)
+                  : t(SearchTexts.input_location_label_anywhere)
+              }
+              fullWidth
+            />
           </>
         );
       }}
@@ -196,6 +208,4 @@ const SearchByCityInput = ({ location, setLocation }: SearchByCityInputProps) =>
       }}
     />
   );
-};
-
-export default SearchByCityInput;
+}

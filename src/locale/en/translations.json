@@ -235,6 +235,42 @@
       "description_desc": "Tell us a little bit about yourself, so your future hosts or guests can get to know you.",
       "create_btn": "Create",
       "country": "Country"
+    },
+    "searchTexts": {
+      "input_date_label_checkin": "Check-in",
+      "input_date_label_checkout": "Check-out",
+      "input_location_label_default": "Destination",
+      "input_location_label_anywhere": "Anywhere",
+      "search_button": "Search",
+      "input_location_no_options": "Enter location"
+    },
+    "host": {
+      "profile": {
+        "subtitle": "Host",
+        "rating": "Rating",
+        "reviews": "Reviews",
+        "listings": "Listings"
+      },
+      "verified": {
+        "title": "{{firstName}}'s confirmed information",
+        "identity": "Identity",
+        "email": "Email address",
+        "phone": "Phone number"
+      },
+      "about": {
+        "title": "About {{firstName}}",
+        "joined": "Joined in {{joinedAt}}",
+        "language": "Speaks in {{language}}",
+        "lives_in": "Lives in {{country}}"
+      },
+      "reviews": {
+        "title": "{{firstName}}'s latest reviews",
+        "empty": "This host has no reviews yet"
+      },
+      "listings": {
+        "title": "{{firstName}}'s listings",
+        "empty": "This host has no active accommodations"
+      }
     }
   }
 }
