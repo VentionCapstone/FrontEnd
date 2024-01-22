@@ -7,3 +7,5 @@ export const DATE_FORMAT_MONTH_FIRST = 'YYYY-MM-DD';
 export const DATE_MONTH_DAY = 'MMM DD';
 
 export const DEFAULT_LANGUAGE = 'en';
+
+export const DATE_MONTH_YEAR_FORMAT = 'MMMM YYYY';

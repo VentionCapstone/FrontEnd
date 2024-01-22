@@ -84,7 +84,6 @@ export const lineClampStyle = (line: number) => {
 };
 
 export const selectOnlyTrueAmenities = (amenities: Amenity) => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const trueAmenities = Object.entries(amenities)
     .filter(([, value]) => value === true)
     .map(([key]) => key);

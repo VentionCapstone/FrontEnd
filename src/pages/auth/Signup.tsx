@@ -10,6 +10,7 @@ import InputForm from '@src/components/input/InputForm';
 import PasswordInput from '@src/components/input/PasswordInput';
 import { ENDPOINTS } from '@src/config/endpoints.config';
 import { SignUpReq, signUpSchema } from '@src/types/auth.types';
+import GoogleLoginButton from './components/GoogleLoginButton';
 import { styles } from './styles';
 
 const Signup = () => {
@@ -84,6 +85,7 @@ const Signup = () => {
           </Link>
         </Typography>
       </Stack>
+      <GoogleLoginButton />
     </Box>
   );
 };

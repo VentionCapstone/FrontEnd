@@ -27,6 +27,42 @@
       "password_must_contain": "Құпия сөзде кем дегенде бір бас әріп, бір кіші әріп, бір сан және бір арнайы таңба болуы керек",
       "password_invalid_length": "Құпия сөз кемінде 8 таңбадан тұруы керек",
       "password_not_matching": "Құпия сөздер сәйкес келмейді!"
+    },
+    "searchTexts": {
+      "input_date_label_checkin": "Тіркелу күні",
+      "input_date_label_checkout": "Шығу күні",
+      "input_location_label_default": "Баратын жер",
+      "input_location_label_anywhere": "Барлық жерде",
+      "search_button": "Іздеу",
+      "input_location_no_options": "Орынды енгізіңіз"
+    },
+    "host": {
+      "profile": {
+        "subtitle": "Мекенжай",
+        "rating": "Рейтинг",
+        "reviews": "Пікірлер",
+        "listings": "Тізімдемелер"
+      },
+      "verified": {
+        "title": "{{firstName}}'тың растауланған ақпараты",
+        "identity": "Жеке мәлімет",
+        "email": "Электрон пошта мекенжайы",
+        "phone": "Телефон нөмірі"
+      },
+      "about": {
+        "title": "{{firstName}} туралы",
+        "joined": "{{joinedAt}} жылы қосылды",
+        "language": "{{language}} тілінде сөйлейді",
+        "lives_in": "{{country}} қаласында тұрады"
+      },
+      "reviews": {
+        "title": "{{firstName}} сондай-ақ соңғы пікірлері",
+        "empty": "Бұл мекенжайда өзіне арналған пікірлер жоқ"
+      },
+      "listings": {
+        "title": "{{firstName}}'тың тізімдемелері",
+        "empty": "Бұл хосттың белсенді тұруы жоқ"
+      }
     }
   }
 }
