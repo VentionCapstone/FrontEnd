@@ -37,7 +37,8 @@
       "input_location_no_options": "Орынды енгізіңіз"
     },
     "amenities": {
-      "save_success": "Ыңғайлылықтар сәтті сақталды",
+      "edit_success": "Жаттықтау сәтті сақталды",
+      "create_success": "Жаттықтау сәтті жасалды",
       "already_exists": "Ыңғайлылықтар бұрыннан бар",
       "cannot_contain_comma": "Ыңғайлылықтарда үтір болмауы керек",
       "no_amenities_selected": "Сақтау үшін қолайлы жағдайлар жоқ"

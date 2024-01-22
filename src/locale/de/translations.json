@@ -37,7 +37,8 @@
       "input_location_no_options": "Ort eingeben"
     },
     "amenities": {
-      "save_success": "Annehmlichkeiten erfolgreich gespeichert",
+      "edit_success": "Unterkunftsänderungen erfolgreich gespeichert",
+      "create_success": "Unterkunft erfolgreich erstellt",
       "already_exists": "Annehmlichkeiten existieren bereits",
       "cannot_contain_comma": "Annehmlichkeiten dürfen keine Kommata enthalten",
       "no_amenities_selected": "Keine Annehmlichkeiten zum Speichern ausgewählt"

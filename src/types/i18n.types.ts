@@ -36,7 +36,8 @@ export enum PaymentInfo {
 }
 
 export enum Amenities {
-  save_success = 'amenities.save_success',
+  create_success = 'amenities.create_success',
+  edit_success = 'amenities.edit_success',
   already_exists = 'amenities.already_exists',
   cannot_contain_comma = 'amenities.cannot_contain_comma',
   no_amenities_selected = 'amenities.no_amenities_selected',

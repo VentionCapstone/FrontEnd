@@ -38,11 +38,13 @@ export default function EditAmenities({
       });
     };
     if (isSuccess) {
-      toast.success(t(AmenitiesTr.save_success));
+      isNew
+        ? toast.success(t(AmenitiesTr.create_success))
+        : toast.success(t(AmenitiesTr.edit_success));
       navigate(ROUTES.accommodations.root);
       void invalidate();
     }
-  }, [isSuccess, t, navigate, accommodationId, queryClient]);
+  }, [isSuccess, t, navigate, accommodationId, queryClient, isNew]);
 
   useEffect(() => {
     if (amenities) {
