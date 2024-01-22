@@ -217,6 +217,25 @@
 
     "verify_email": {
       "title": "Проверка электронной почты..."
+    },
+
+    "create_profile": {
+      "title": "Профиль создать",
+      "legal_name": "Фамилия",
+      "first_name": "Имя",
+      "last_name": "Фамилия",
+      "select_country": "Выберите страну",
+      "uzbekistan": "Узбекистан",
+      "russian": "Россия",
+      "kazakhstan": "Казахстан",
+      "gender": "Пол",
+      "male": "Мужчина",
+      "female": "Женщина",
+      "phone_number": "Номер телефона",
+      "description": "Описание",
+      "description_desc": "Расскажите нам немного о себе, чтобы ваши будущие хозяева или гости могли вас узнать.",
+      "create_btn": "Создать",
+      "country": "Страна"
     }
   }
 }

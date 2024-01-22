@@ -216,6 +216,25 @@
 
     "verify_email": {
       "title": "Elektron pochta tekshirilmoqda..."
+    },
+
+    "create_profile": {
+      "title": "Profil yaratish",
+      "legal_name": "Yasovchi nomi",
+      "first_name": "Ism",
+      "last_name": "Familiya",
+      "select_country": "Davlatni tanlang",
+      "uzbekistan": "O'zbekiston",
+      "russian": "Rossiya",
+      "kazakhstan": "Qozog'iston",
+      "gender": "Jins",
+      "male": "Erkak",
+      "female": "Ayol",
+      "phone_number": "Telefon raqam",
+      "description": "Tavsif",
+      "description_desc": "O'zingiz haqingizda qisqa ma'lumot bering, shunday qilib, kelajakdagi mehmonlar yoki mehmonlar sizni taniyishlari mumkin bo'lsin.",
+      "create_btn": "Yaratish",
+      "country": "Mamlakat"
     }
   }
 }

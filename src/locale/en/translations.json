@@ -216,6 +216,25 @@
 
     "verify_email": {
       "title": "Verifying email..."
+    },
+
+    "create_profile": {
+      "title": "Create Profile",
+      "legal_name": "Legal name",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "select_country": "Select country",
+      "uzbekistan": "Uzbekistan",
+      "russian": "Russia",
+      "kazakistan": "Kazakhstan",
+      "gender": "Gender",
+      "male": "Male",
+      "famele": "Famele",
+      "phone_number": "Phone Number",
+      "description": "Description",
+      "description_desc": "Tell us a little bit about yourself, so your future hosts or guests can get to know you.",
+      "create_btn": "Create",
+      "country": "Country"
     }
   }
 }

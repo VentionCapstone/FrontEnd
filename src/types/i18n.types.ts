@@ -189,3 +189,22 @@ export enum ForgotPasswordReset {
 export enum VerifyEmails {
   title = 'verify_email.title',
 }
+
+export enum CreateProfileForm {
+  title = 'create_profile.title',
+  legal_name = 'create_profile.legal_name',
+  first_name = 'create_profile.first_name',
+  last_name = 'create_profile.last_name',
+  select_country = 'create_profile.select_country',
+  uzbekistan = 'create_profile.uzbekistan',
+  russian = 'create_profile.russian',
+  kazakhstan = 'create_profile.kazakhstan',
+  gender = 'create_profile.gender',
+  male = 'create_profile.male',
+  female = 'create_profile.female',
+  phone_number = 'create_profile.phone_number',
+  description = 'create_profile.description',
+  description_desc = 'create_profile.description_desc',
+  create_btn = 'create_profile.create_btn',
+  country = 'create_profile.country',
+}

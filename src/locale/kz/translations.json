@@ -211,6 +211,25 @@
 
     "verify_email": {
       "title": "Электрондық пошта тексеру..."
+    },
+
+    "create_profile": {
+      "title": "Профильді құрау",
+      "legal_name": "Қанағаттанушы атауы",
+      "first_name": "Аты",
+      "last_name": "Тегі",
+      "select_country": "Елді таңдау",
+      "uzbekistan": "Өзбекстан",
+      "russian": "Ресей",
+      "kazakhstan": "Қазақстан",
+      "gender": "Жыныс",
+      "male": "Ер",
+      "female": "Әйел",
+      "phone_number": "Телефон нөмірі",
+      "description": "Сипаттама",
+      "description_desc": "Өзіңіз туралы бір мезгіл сөйлеу, сондықтан келесі жатарсыздарыңыз не мекенжайларыңыз сізді танымас болса",
+      "create_btn": "Жасау",
+      "country": "Әулет"
     }
   }
 }

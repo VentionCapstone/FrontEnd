@@ -35,7 +35,7 @@ function LoginAndSecurity() {
 
       <Box maxWidth={'60rem'}>
         <EditablePanel
-          panelHeading={'Email'}
+          panelHeading={t(LoginAndSecurityInfo.email)}
           initial={
             <Typography variant={'sm'} color={'secondary2.main'}>
               {userEmail}

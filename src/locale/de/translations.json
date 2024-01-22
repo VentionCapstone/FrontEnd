@@ -213,6 +213,25 @@
 
     "verify_email": {
       "title": "E-Mail-Verifizierung..."
+    },
+
+    "create_profile": {
+      "title": "Profil erstellen",
+      "legal_name": "Rechtlicher Name",
+      "first_name": "Vorname",
+      "last_name": "Nachname",
+      "select_country": "Land auswählen",
+      "uzbekistan": "Usbekistan",
+      "russian": "Russland",
+      "kazakhstan": "Kasachstan",
+      "gender": "Geschlecht",
+      "male": "Männlich",
+      "female": "Weiblich",
+      "phone_number": "Telefonnummer",
+      "description": "Beschreibung",
+      "description_desc": "Erzählen Sie uns ein wenig über sich selbst, damit Ihre zukünftigen Gastgeber oder Gäste Sie kennenlernen können.",
+      "create_btn": "Erstellen",
+      "country": "Land"
     }
   }
 }
