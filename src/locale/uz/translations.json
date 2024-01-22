@@ -40,6 +40,7 @@
         "sign_in": {
           "sing_in_btn": "Kirish",
           "sing_title": "Kirish",
+          "sing_in_link": "kirish",
           "title": "Iltimos, kirishni tanlang",
           "forgot_password": "Parolingizni unutdingizmi?",
           "forgot_password_modal": "Akkauntingizga bog'liq elektron pochta manzilini kiriting, va biz sizga parolingizni qayta tiklash uchun havola yuboramiz.",
@@ -47,6 +48,7 @@
           "forgot_password_desc": "Agar akkauntngiz yo'q bo'lsa, ro'yxatdan o'ting"
         },
         "sing_out": {
+          "sing_up_link": "ro'yxatdan o'tish",
           "sing_up_btn": "Ro'yxatdan o'tish",
           "sing_title": "Xush kelibsiz Airbnb",
           "desc": "Agar allaqachon akkauntingiz bo'lsa, Iltimos, kirishni tanlang"
@@ -271,6 +273,10 @@
         "title": "{{firstName}}ning ro'yxatlari",
         "empty": "Ushbu mezbonning kvartiralar ro'yxati mavjud emas"
       }
+    },
+    "owner_card": {
+      "title": "Uy egasi",
+      "joined_in": "Qo'shilgan"
     }
   }
 }

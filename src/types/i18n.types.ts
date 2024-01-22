@@ -184,7 +184,7 @@ export enum BookingForms {
   you_will_not_charged_yet = 'booking_form.you_will_not_charged_yet',
   total = 'booking_form.total',
   login = 'booking_form.login',
-  login_req = 'booking_form.login_req',
+  login_req = 'booking_form.login_required',
   reserve = 'booking_form.reserve',
   check_in = 'booking_form.check_in',
   check_out = 'booking_form.check_out',
@@ -238,4 +238,9 @@ export enum HostInfo {
   host_reviews_empty = 'host.reviews.empty',
   host_listings_title = 'host.listings.title',
   host_listings_empty = 'host.listings.empty',
+}
+
+export enum OwnerCardInfo {
+  title = 'owner_card.title',
+  joined = 'owner_card.joined_in',
 }

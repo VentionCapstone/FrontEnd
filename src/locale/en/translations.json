@@ -202,7 +202,7 @@
       "night": "night",
       "you_will_not_charged_yet": "You will not charged yet",
       "total": "Total",
-      "login": "Login",
+      "login": "login",
       "login_required": "is required to make a reservation",
       "reserve": "Reserve",
       "check_in": "Check In",
@@ -274,6 +274,10 @@
         "title": "{{firstName}}'s listings",
         "empty": "This host has no active accommodations"
       }
+    },
+    "owner_card": {
+      "title": "Hosted by",
+      "joined_in": "Joined in"
     }
   }
 }
