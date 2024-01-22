@@ -34,22 +34,24 @@
       "user_home_btn": {
         "account": "Account",
         "mylistings": "My Listings",
-        "logout": "Logout"
+        "logout": "Log out"
       },
       "register": {
         "sign_in": {
-          "sing_in_btn": "Sing In",
-          "sing_title": "Sing In",
-          "title": "Please Login",
-          "forgot_password": "Forgot Password",
+          "sing_in_btn": "Sign in",
+          "sing_title": "Sign In",
+          "sing_in_link": "sign in",
+          "title": "Please login",
+          "forgot_password": "Forgot password",
           "forgot_password_modal": "Enter the email address associated with your account, and we’ll email you a link to reset your password.",
           "send_resend_link": "Send reset link",
-          "forgot_password_desc": "If you do not have an account, please sign up"
+          "forgot_password_desc": "If you do not have an account, please"
         },
         "sing_out": {
-          "sing_up_btn": "Sing Up",
-          "sing_title": "Welcome Airbnb",
-          "desc": "if you already have an account, please sign in"
+          "sing_up_link": "sign up",
+          "sing_up_btn": "Sign up",
+          "sing_title": "Welcome to Airbnb",
+          "desc": "if you already have an account, please "
         }
       },
       "filters_button": {
@@ -94,10 +96,10 @@
 
     "account_edit_page": {
       "personal_info": "Personal Info",
-      "personal_desc": "Update personal password and secure your account",
-      "login_secure": "Login & Secure",
-      "login_secure_desc": "Provide secure details and how we can reach you",
-      "setting": "Setting",
+      "personal_desc": "Update your password and secure your account",
+      "login_secure": "Login & Security",
+      "login_secure_desc": "Provide personal details and how we can reach you",
+      "setting": "Settings",
       "setting_desc": "Set your default language, and currency",
       "airbnb_your_place": "Airbnb your place",
       "airbnb_your_place_desc": "It`s simple to get set up and start earning."
@@ -108,31 +110,31 @@
         "legal_name": "Legal name",
         "legal_name_desc": "This is the name on your travel document, which could be a license or a passport.",
         "edit": "edit",
-        "save": "save",
+        "save": "Save",
         "first_name": "First name",
         "last_name": "Last name"
       },
-      "genger": {
+      "gender": {
         "your_gender": "Your gender",
         "male": "Male",
-        "famele": "Famele",
+        "female": "Female",
         "edit": "edit",
-        "save": "save",
+        "save": "Save",
         "select": "Select Your Gender",
         "gender": "Gender"
       },
       "location": {
         "where_do_live": "Where you live",
         "edit": "edit",
-        "save": "save",
-        "select": "Select Your Country",
+        "save": "Save",
+        "select": "Select Country",
         "uzbekistan": "Uzbekistan",
         "kazakistan": "Kazakhstan",
         "russian": "Russia",
         "country": "Country"
       },
       "number": {
-        "phone_number": "Phone Number",
+        "phone_number": "Phone number",
         "phone_number_desc": "Add a number so confirmed guests and Airbnb can get in touch. You can add other numbers and choose how they’re used.",
         "edit": "edit",
         "save": "save"
@@ -147,7 +149,7 @@
     },
 
     "login_and_security": {
-      "login_title": "Login & Security",
+      "login_title": "Login & security",
       "email": {
         "edit": "Edit",
         "email": "Email",
@@ -162,7 +164,8 @@
         "cancel": "Cancel",
         "current": "Current password",
         "new_password": "New Password",
-        "confirm": "Confirm Password"
+        "confirm": "Confirm password",
+        "passport_placeholder": "Password"
       }
     },
 
@@ -181,7 +184,7 @@
       "kazak": "Kazak",
       "german": "German",
       "currency": "Preferred currency",
-      "dollar": "US Dollar"
+      "dollar": "US Dollars"
     },
 
     "aminities_list": {
@@ -229,7 +232,7 @@
       "kazakistan": "Kazakhstan",
       "gender": "Gender",
       "male": "Male",
-      "famele": "Famele",
+      "female": "Female",
       "phone_number": "Phone Number",
       "description": "Description",
       "description_desc": "Tell us a little bit about yourself, so your future hosts or guests can get to know you.",

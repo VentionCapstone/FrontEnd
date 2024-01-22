@@ -22,7 +22,7 @@ export const Footer = ({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) =
           <Typography variant={'sm'}>{t(HomeUIInfo.footer_info_privacy)}</Typography>
           <Typography variant={'sm'}>{t(HomeUIInfo.footer_info_your_privacy_choices)}</Typography>
           <Typography variant={'sm'} ml={{ xs: 0, md: 'auto' }}>
-            {t(HomeUIInfo.footer_info_terms)}
+            {t(HomeUIInfo.footer_info_copyright)}
           </Typography>
         </Stack>
       </Container>

@@ -65,8 +65,8 @@ const Signup = () => {
             />
             <PasswordInput
               name="password"
-              label={t(LoginAndSecurityInfo.password_new_password)}
-              placeholder={t(LoginAndSecurityInfo.password_new_password)}
+              label={t(LoginAndSecurityInfo.password_input)}
+              placeholder={t(LoginAndSecurityInfo.password_input)}
               control={control}
               errors={errors}
             />
@@ -85,7 +85,7 @@ const Signup = () => {
           {t(HomeUIInfo.sing_out_desc)}
           <Link component={RouterLink} to={ENDPOINTS.auth.signIn} sx={styles.formLink}>
             {' '}
-            {t(HomeUIInfo.sign_in_sing_in_btn)}
+            {t(HomeUIInfo.sing_in_link)}
           </Link>
         </Typography>
       </Stack>
