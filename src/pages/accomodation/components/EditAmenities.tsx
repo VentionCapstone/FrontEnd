@@ -119,6 +119,10 @@ export default function EditAmenities({
     mutate({ amenitiesToSave, isNewAccomodation: isNew });
   }, [currentAmenities, mutate, isNew, otherAmenities, t]);
 
+  const handleSaveAmenities = useCallback(() => {
+    void saveAmenities();
+  }, [saveAmenities]);
+
   return (
     <Box
       component="section"
@@ -221,7 +225,7 @@ export default function EditAmenities({
               fontWeight: 'bold',
               mt: '20px',
             }}
-            onClick={() => void saveAmenities()}
+            onClick={handleSaveAmenities}
           >
             Save
           </Button>

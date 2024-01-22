@@ -3,7 +3,6 @@ import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
-import { useBookingRoom } from '@src/api/mutations/booking/useBookingRoom';
 import useGetSingleAccommodationQuery from '@src/api/queries/accommodation/useGetSingleAccommodationQuery';
 import BookingForm from '@src/components/booking/BookingForm';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
@@ -28,16 +27,6 @@ function Accommodation() {
   const ownerId = getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.sub);
 
   const { isPending, data, isError } = useGetSingleAccommodationQuery(accommodationId as string);
-
-  const { mutateAsync } = useBookingRoom();
-
-  const submitReservation = async (reservationData: {
-    startDate: string;
-    endDate: string;
-    accommodationId: string;
-  }): Promise<void> => {
-    await mutateAsync(reservationData);
-  };
 
   useEffect(() => {
     if (data?.amenities && data?.amenities[0]) {
@@ -132,11 +121,7 @@ function Accommodation() {
               <Link to={ROUTES.accommodations.edit(data.id)}>Edit Accommodation</Link>
             </Box>
           ) : (
-            <BookingForm
-              onSubmit={submitReservation}
-              accomodationId={accommodationId}
-              price={data.price}
-            />
+            <BookingForm accomodationId={accommodationId} price={data.price} />
           )}
         </Box>
       </Box>
