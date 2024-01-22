@@ -4,7 +4,7 @@ export type PhoneCodesByCountry = {
   numLength: number;
 };
 
-export type LanguageList = {
+export type LanguageCollection = {
   name: string;
-  code: string;
+  code: 'en' | 'ru' | 'uz' | 'kz' | 'de';
 };

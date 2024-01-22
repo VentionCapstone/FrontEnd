@@ -65,8 +65,8 @@ export const ProfileLang = ({
           label="Language"
           sx={{ maxWidth: '40rem' }}
         >
-          {LANGUAGE_LIST.map((language, index) => (
-            <MenuItem key={index} value={language.code}>
+          {LANGUAGE_LIST.map((language) => (
+            <MenuItem key={language.code} value={language.code}>
               {language.name}
             </MenuItem>
           ))}

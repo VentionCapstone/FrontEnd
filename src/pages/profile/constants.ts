@@ -1,4 +1,4 @@
-import { LanguageList, PhoneCodesByCountry } from './constants.types';
+import { LanguageCollection, PhoneCodesByCountry } from './constants.types';
 
 export const PHONE_CODES_BY_COUNTRY: PhoneCodesByCountry[] = [
   { name: 'Uzbekistan', code: 998, numLength: 9 },
@@ -8,7 +8,7 @@ export const PHONE_CODES_BY_COUNTRY: PhoneCodesByCountry[] = [
 
 export const DEFAULT_COUNTRY = PHONE_CODES_BY_COUNTRY[0];
 
-export const LANGUAGE_LIST: LanguageList[] = [
+export const LANGUAGE_LIST: LanguageCollection[] = [
   { name: 'English', code: 'en' },
   { name: 'Русский', code: 'ru' },
   { name: "O'zbekcha", code: 'uz' },

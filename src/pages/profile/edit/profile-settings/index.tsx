@@ -18,16 +18,18 @@ import { ProfileCurrency } from './ProfileCurrency';
 import { ProfileLang } from './ProfileLang';
 
 function ProfileSettings() {
-  const profileId = useAppSelector(getProfile)?.id;
   const profile = useAppSelector(getProfile);
+  const { language: userLang, id: profileId } = profile ?? {};
+
   const { mutate } = useEditAccountMutation(profileId ?? '');
+
   const uiTheme = useMemo(
     () => getValueFromLocalStorage<ThemeMode>(LOCAL_STORAGE_KEYS.uiTheme),
     []
   );
 
   const [theme, setTheme] = useState<ThemeMode>(uiTheme ?? ThemeMode.light);
-  const language = useMemo(() => profile?.language || DEFAULT_LANGUAGE.code, [profile?.language]);
+  const language = useMemo(() => userLang || DEFAULT_LANGUAGE.code, [userLang]);
 
   const handleThemeChange = (e: SelectChangeEvent<ThemeMode>) => {
     const mode = e.target.value as ThemeMode;
