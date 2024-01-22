@@ -20,6 +20,7 @@ export default function YandexMap({ latitude, longitude, setCoords }: Props) {
       preload
       query={{
         apikey: import.meta.env.VITE_YANDEX_API_KEY as string,
+        suggest_apikey: import.meta.env.VITE_YANDEX_SUGGEST_API_KEY as string,
         lang: 'ru_RU',
         load: 'package.full',
       }}
