@@ -10,10 +10,11 @@ const GoogleLoginButton = () => {
   const { mutate: googleLogin } = useGoogleSignInMutation();
 
   const handleGoogleLogin = useCallback(
-    (token: string) => {
-      if (token) {
-        googleLogin(token);
+    (token?: string) => {
+      if (!token) {
+        return;
       }
+      googleLogin(token);
     },
     [googleLogin]
   );
@@ -22,9 +23,6 @@ const GoogleLoginButton = () => {
     <Box display="flex" justifyContent="center" margin={4}>
       <GoogleLogin
         onSuccess={({ credential }) => {
-          if (!credential) {
-            return;
-          }
           handleGoogleLogin(credential);
         }}
         onError={() => {
