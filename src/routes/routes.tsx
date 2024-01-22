@@ -25,6 +25,7 @@ const Payment = React.lazy(() => import('@src/pages/payment/Payment'));
 const SignIn = React.lazy(() => import('@src/pages/auth/SignIn'));
 const Signup = React.lazy(() => import('@src/pages/auth/Signup'));
 const ResetPassword = React.lazy(() => import('@src/pages/auth/ResetPassword'));
+const Host = React.lazy(() => import('@src/pages/host/Host'));
 
 const routes = createBrowserRouter([
   {
@@ -33,6 +34,7 @@ const routes = createBrowserRouter([
     children: [
       { path: '', element: <Main /> },
       { path: 'rooms/:id', element: <Accommodation /> },
+      { path: 'host/:id', element: <Host /> },
       { path: '*', element: <Navigate to="/" /> },
     ],
   },

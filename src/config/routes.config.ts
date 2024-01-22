@@ -13,6 +13,7 @@ export const ROUTES = {
     root: '/accommodations',
     create: '/accommodations/create',
     edit: (id: string) => `/accommodations/edit/${id}`,
+    details: (id: string) => `/rooms/${id}`,
   },
   bookings: {
     root: '/bookings',
@@ -20,5 +21,8 @@ export const ROUTES = {
   payment: {
     root: (id: string, accommodationId: string, startDate: string, endDate: string) =>
       `/book/${id}?accommodationId=${accommodationId}&startDate=${startDate}&endDate=${endDate}`,
+  },
+  host: {
+    details: (id: string) => `/host/${id}`,
   },
 } as const;

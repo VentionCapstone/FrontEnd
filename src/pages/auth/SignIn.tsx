@@ -11,6 +11,7 @@ import PasswordInput from '@src/components/input/PasswordInput';
 import { ENDPOINTS } from '@src/config/endpoints.config';
 import { SignInReq, signInSchema } from '@src/types/auth.types';
 import ForgotPasswordModal from './components/ForgotPasswordModal';
+import GoogleLoginButton from './components/GoogleLoginButton';
 import { styles } from './styles';
 
 const SignIn = () => {
@@ -96,6 +97,8 @@ const SignIn = () => {
       {isModalOpen && (
         <ForgotPasswordModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       )}
+
+      <GoogleLoginButton />
     </Box>
   );
 };
