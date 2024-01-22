@@ -32,7 +32,7 @@
 
     "home_ui": {
       "user_home_btn": {
-        "account": "Mening Profilim",
+        "account": "Mening profilim",
         "mylistings": "Mening ro'yhatlarim",
         "logout": "Chiqish"
       },
@@ -169,7 +169,7 @@
 
     "setting": {
       "title": "Sozlamalar",
-      "theme": "Mavzu",
+      "theme": "Ekran sozlamasi",
       "light": "Yorug'",
       "dark": "Qora",
       "language": "Tanlangan tillar",

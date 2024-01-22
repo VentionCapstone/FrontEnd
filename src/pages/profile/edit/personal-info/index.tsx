@@ -108,7 +108,6 @@ function PersonalInfo() {
             initial={
               <Typography variant={'sm'} color={'secondary2.main'}>
                 {profile.gender}
-                {/* {i18n.t(AccountEditPersonalInfo.male)} */}
               </Typography>
             }
             editable={genderRenderProps}

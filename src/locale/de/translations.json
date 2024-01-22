@@ -164,23 +164,22 @@
       }
     },
     "setting": {
-      "title": "Параметрлер",
-      "theme": "Тақырып",
-      "light": "Жарық",
-      "dark": "Қара",
-      "language": "Таңдалған тілдер",
+      "title": "Einstellungen",
+      "theme": "Thema",
+      "light": "Hell",
+      "dark": "Dunkel",
+      "language": "Ausgewählte Sprachen",
       "lang_desc": "Dies aktualisiert, was Sie auf Airbnb lesen, und wie wir mit Ihnen kommunizieren.",
       "currency_desc": "Wählen Sie Ihre bevorzugte Währung",
       "can_dollar": "Kanadischer Dollar",
-      "uzbek": "Өзбек тілі",
-      "russian": "Орыс тілі",
-      "english": "Ағылшын тілі",
-      "kazak": "Қазақ тілі",
-      "german": "Неміс тілі",
-      "currency": "Таңдалған валюта",
-      "dollar": "АҚШ доллары"
+      "uzbek": "Usbekisch",
+      "russian": "Russisch",
+      "english": "Englisch",
+      "kazak": "Kasachisch",
+      "german": "Deutsch",
+      "currency": "Ausgewählte Währung",
+      "dollar": "US-Dollar"
     },
-
     "aminities_list": {
       "title": "Was dieses Hotel bietet"
     },
