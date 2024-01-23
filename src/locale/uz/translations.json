@@ -284,6 +284,11 @@
     "owner_card": {
       "title": "Uy egasi",
       "joined_in": "Qo'shilgan"
+    },
+    "wishlist": {
+      "title": "Istaklar roʻyxati",
+      "wishlits_empty_title": "Birinchi istaklar ro'yxatingizni yarating",
+      "wishlits_empty_text": "Izlash jarayonida sevimli joylaringiz va tajribalaringizni istaklar ro'yxatiga saqlash uchun yurak belgisini bosing"
     }
   }
 }

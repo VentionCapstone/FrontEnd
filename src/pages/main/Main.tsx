@@ -2,7 +2,7 @@ import MapIcon from '@mui/icons-material/Map';
 import TuneIcon from '@mui/icons-material/Tune';
 import { Badge, Box, Button, Stack, Typography } from '@mui/material';
 import useGetAccommodationsQuery from '@src/api/queries/main/useGetAccommodationsQuery';
-import AccommodationCard from '@src/components/card/AccommodationCard';
+import AccommodationCard from '@src/components/card/acccommodationCard/AccommodationCard';
 import DataFetchError from '@src/components/shared/DataFetchError';
 import { Accommodation, DefaultSearchParamsType } from '@src/types/accommodation.types';
 import { ErrorTypes } from '@src/types/i18n.types';

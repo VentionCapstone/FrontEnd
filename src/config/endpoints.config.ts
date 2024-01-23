@@ -43,6 +43,11 @@ export const ENDPOINTS = {
     getAvailableDates: (accommodationId: string) => `/booking/available-dates/${accommodationId}`,
     book: '/booking/book',
   },
+  wishlist: {
+    root: '/wishlist',
+    addToWishlist: (accommodationId: string) => `/wishlist/${accommodationId}`,
+    deleteFromWishlist: (accommodationId: string) => `/wishlist/${accommodationId}`,
+  },
   host: {
     getHostProfile: (hostId: string) => `/users/host/${hostId}`,
   },

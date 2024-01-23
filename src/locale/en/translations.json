@@ -285,6 +285,11 @@
     "owner_card": {
       "title": "Hosted by",
       "joined_in": "Joined in"
+    },
+    "wishlist": {
+      "title": "Wishlist",
+      "wishlits_empty_title": "Create your first wishlist",
+      "wishlits_empty_text": "As you search, click the heart icon to save your favorite places and Experiences to a wishlist"
     }
   }
 }

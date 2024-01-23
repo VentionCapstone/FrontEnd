@@ -280,6 +280,11 @@
     "owner_card": {
       "title": "Gastgeber",
       "joined_in": "Beigetreten am"
+    },
+    "wishlist": {
+      "title": "Wunschzettel",
+      "wishlits_empty_title": "Erstelle deine erste Wunschliste",
+      "wishlits_empty_text": "Klicke während der Suche auf das Herzsymbol, um deine Lieblingsorte und Erlebnisse in einer Wunschliste zu speichern"
     }
   }
 }

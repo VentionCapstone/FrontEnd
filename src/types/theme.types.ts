@@ -22,6 +22,7 @@ declare module '@mui/material/styles' {
     sm: React.CSSProperties;
     lg: React.CSSProperties;
     xl: React.CSSProperties;
+    heading: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
@@ -29,6 +30,7 @@ declare module '@mui/material/styles' {
     sm?: React.CSSProperties;
     lg?: React.CSSProperties;
     xl?: React.CSSProperties;
+    heading?: React.CSSProperties;
   }
 }
 
@@ -38,5 +40,6 @@ declare module '@mui/material/Typography' {
     sm: true;
     lg: true;
     xl: true;
+    heading: true;
   }
 }

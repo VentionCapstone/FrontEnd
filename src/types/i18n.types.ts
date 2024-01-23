@@ -252,3 +252,9 @@ export enum OwnerCardInfo {
   title = 'owner_card.title',
   joined = 'owner_card.joined_in',
 }
+
+export enum Wishlist {
+  title = 'wishlist.title',
+  wishlits_empty_title = 'wishlist.wishlits_empty_title',
+  wishlits_empty_text = 'wishlist.wishlits_empty_text',
+}

@@ -172,7 +172,12 @@ const BookingForm: React.FC<BookingFormProps> = ({ accomodationId, price }) => {
         </>
       ) : (
         <Typography>
-          <Link component={RouterLink} to={ROUTES.auth.signIn} fontWeight={600}>
+          <Link
+            component={RouterLink}
+            to={ROUTES.auth.signIn}
+            fontWeight={600}
+            state={{ from: window.location.pathname }}
+          >
             {t(BookingForms.login)}
           </Link>{' '}
           {t(BookingForms.login_req)}

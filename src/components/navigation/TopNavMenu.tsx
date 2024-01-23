@@ -12,7 +12,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import useLogoutMutation from '@src/api/mutations/account/useLogoutMutation';
 import useGetUserQuery from '@src/api/queries/account/useGetUserQuery';
 import { ROUTES } from '@src/config/routes.config';
-import { HomeUIInfo } from '@src/types/i18n.types';
+import { HomeUIInfo, Wishlist } from '@src/types/i18n.types';
 import { mainNavigationStyles as styles } from './mainNavigation.styles';
 
 export const TopNavMenu = () => {
@@ -83,7 +83,17 @@ export const TopNavMenu = () => {
                 to={ROUTES.account.root}
                 onClick={handleClose}
               >
-                <MenuItem>{t(HomeUIInfo.user_home_btn_account)}</MenuItem>
+                <MenuItem sx={{ borderBottom: '1px solid', borderColor: 'secondary2.light' }}>
+                  {t(HomeUIInfo.user_home_btn_account)}
+                </MenuItem>
+              </Link>,
+              <Link
+                key={ROUTES.wishlist}
+                component={RouterLink}
+                to={ROUTES.wishlist}
+                onClick={handleClose}
+              >
+                <MenuItem>{t(Wishlist.title)}</MenuItem>
               </Link>,
               <Link
                 key={ROUTES.accommodations.root}
@@ -93,7 +103,11 @@ export const TopNavMenu = () => {
               >
                 <MenuItem>{t(HomeUIInfo.user_home_btn_mylistings)}</MenuItem>
               </Link>,
-              <MenuItem key="logout" onClick={handleLogout}>
+              <MenuItem
+                key="logout"
+                onClick={handleLogout}
+                sx={{ borderTop: '1px solid', borderColor: 'secondary2.light' }}
+              >
                 {t(HomeUIInfo.user_home_btn_logout)}
               </MenuItem>,
             ]
