@@ -9,7 +9,7 @@ import { BookType } from '@src/types/booking.types';
 import { STATUS } from '@src/types/global.types';
 import { ErrorTypes } from '@src/types/i18n.types';
 import { capitalize } from '@src/utils/capitalize';
-import AccommodationSkeleton from '../accommodations/AccommodationSkeleton';
+import AccommodationSkeleton from '../accommodations/components/AccommodationSkeleton';
 import BookingCard from './BookingCard';
 
 export default function Bookings() {
