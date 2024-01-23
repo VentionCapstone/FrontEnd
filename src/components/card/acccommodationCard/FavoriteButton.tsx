@@ -7,6 +7,8 @@ import useAddToWishlistMutation from '@src/api/mutations/wishlist/useAddToWishli
 import useDeleteFromWishlistMutation from '@src/api/mutations/wishlist/useDeleteFromWishlistMutation';
 import { accommodationCardStyles } from './accommodationCard.styles';
 
+const translucentDark = 'rgba(0, 0, 0, 0.5)';
+
 const FavoriteButton = ({
   isInWishlist,
   accommodationId,
@@ -27,7 +29,7 @@ const FavoriteButton = ({
   return (
     <Box sx={accommodationCardStyles.favoriteIcon}>
       <IconButton onClick={handleClickFavorite}>
-        <FavoriteIcon sx={{ color: inWishlist ? 'secondary.main' : 'rgba(0, 0, 0, 0.5)' }} />
+        <FavoriteIcon sx={{ color: inWishlist ? 'secondary.main' : translucentDark }} />
       </IconButton>
     </Box>
   );
