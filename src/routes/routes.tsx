@@ -19,8 +19,9 @@ const LoginAndSecurity = React.lazy(() => import('@src/pages/profile/edit/login-
 const PersonalInfo = React.lazy(() => import('@src/pages/profile/edit/personal-info'));
 const ProfileSetting = React.lazy(() => import('@src/pages/profile/edit/profile-settings'));
 const Accommodations = React.lazy(() => import('@src/pages/accommodations'));
-const Payment = React.lazy(() => import('@src/pages/payment/Payment'));
 const Accommodation = React.lazy(() => import('@src/pages/accomodation/Accommodation'));
+const Bookings = React.lazy(() => import('@src/pages/bookings'));
+const Payment = React.lazy(() => import('@src/pages/payment/Payment'));
 const SignIn = React.lazy(() => import('@src/pages/auth/SignIn'));
 const Signup = React.lazy(() => import('@src/pages/auth/Signup'));
 const ResetPassword = React.lazy(() => import('@src/pages/auth/ResetPassword'));
@@ -125,6 +126,14 @@ const routes = createBrowserRouter([
       { path: '/wishlist', element: <Wishlist /> },
 
       { path: '*', element: <Navigate to="/" /> },
+    ],
+  },
+  {
+    path: '/bookings',
+    element: <MainLayout />,
+    children: [
+      { path: '', element: <Bookings /> },
+      { path: '*', element: <Navigate to="/bookings" /> },
     ],
   },
 ]);

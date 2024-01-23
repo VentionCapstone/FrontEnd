@@ -251,6 +251,14 @@ export enum HostInfo {
   host_listings_empty = 'host.listings.empty',
 }
 
+export enum ReviewModal {
+  title = 'review_modal.title',
+  placeholder = 'review_modal.placeholder',
+  submit = 'review_modal.submit',
+  cancel = 'review_modal.cancel',
+  success = 'review_modal.success',
+}
+
 export enum OwnerCardInfo {
   title = 'owner_card.title',
   joined = 'owner_card.joined_in',

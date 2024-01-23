@@ -16,6 +16,12 @@ export const ACCEPT_UPLOAD_FILE_TYPE = ['jpg', 'gif', 'png'];
 
 export const DATE_MONTH_YEAR_FORMAT = 'MMMM YYYY';
 
+export const STATUSES = {
+  PENDING: 'PENDING',
+  ACTIVE: 'ACTIVE',
+  COMPLETED: 'COMPLETED',
+};
+
 export const DEFAULT_MALE_IMAGE =
   'https://i.pinimg.com/564x/48/6c/a0/486ca00640b169300b48e9ceacd8e401.jpg';
 

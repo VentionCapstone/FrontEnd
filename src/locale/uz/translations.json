@@ -289,6 +289,14 @@
         "empty": "Ushbu mezbonning kvartiralar ro'yxati mavjud emas"
       }
     },
+
+    "review_modal": {
+      "title": "Izoh qoldirish",
+      "placeholder": "Izoingizni qoldiring",
+      "submit": "Jo'natish",
+      "cancel": "Bekor qilish",
+      "success": "Izohingiz jo'natildi"
+    },
     "owner_card": {
       "title": "Uy egasi",
       "joined_in": "Qo'shilgan"

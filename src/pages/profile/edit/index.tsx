@@ -3,6 +3,7 @@ import {
   ChevronRight,
   GppGoodOutlined,
   HomeOutlined,
+  Luggage,
   SettingsOutlined,
 } from '@mui/icons-material';
 import Box from '@mui/material/Box';
@@ -212,6 +213,42 @@ function EditProfile() {
               <Box mr={'auto'}>
                 <Typography mb={{ md: '0.5rem' }} fontWeight={{ md: 600 }}>
                   {t(HomeUIInfo.user_home_btn_mylistings)}
+                </Typography>
+              </Box>
+              <ChevronRight
+                sx={{
+                  display: {
+                    md: 'none',
+                  },
+                }}
+              />
+            </Stack>
+          </Link>
+        </Box>
+        <Box display={{ xs: 'flex', md: 'none' }}>
+          <Link
+            component={RouterLink}
+            to={ROUTES.bookings.root}
+            width={'100%'}
+            sx={{ textDecoration: 'none' }}
+          >
+            <Stack
+              sx={editPageStyles.extraCard}
+              bgcolor={{
+                md: 'backgroundSecondary.main',
+              }}
+            >
+              <Luggage
+                sx={{
+                  fontSize: {
+                    xs: '1.5rem',
+                    md: '2.5rem',
+                  },
+                }}
+              />
+              <Box mr={'auto'}>
+                <Typography mb={{ md: '0.5rem' }} fontWeight={{ md: 600 }}>
+                  My Bookings
                 </Typography>
               </Box>
               <ChevronRight
