@@ -245,6 +245,13 @@
       "search_button": "Поиск",
       "input_location_no_options": "Введите местоположение"
     },
+    "amenities": {
+      "edit_success": "Изменения в размещении успешно сохранены",
+      "create_success": "Размещение успешно создано",
+      "already_exists": "Удобства уже существуют",
+      "cannot_contain_comma": "Удобства не могут содержать запятые",
+      "no_amenities_selected": "Нет удобств для сохранения"
+    },
 
     "host": {
       "profile": {

@@ -35,6 +35,14 @@ export enum PaymentInfo {
   button_type_cash = 'payment.button_type.cash',
 }
 
+export enum Amenities {
+  create_success = 'amenities.create_success',
+  edit_success = 'amenities.edit_success',
+  already_exists = 'amenities.already_exists',
+  cannot_contain_comma = 'amenities.cannot_contain_comma',
+  no_amenities_selected = 'amenities.no_amenities_selected',
+}
+
 export enum HomeUIInfo {
   user_home_btn_account = 'home_ui.user_home_btn.account',
   user_home_btn_mylistings = 'home_ui.user_home_btn.mylistings',

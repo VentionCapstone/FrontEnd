@@ -246,6 +246,13 @@
       "search_button": "Izlash",
       "input_location_no_options": "Joylashuvni kiriting"
     },
+    "amenities": {
+      "edit_success": "Turar joy oʻzgarishlari muvaffaqiyatli saqlandi",
+      "create_success": "Turar joy muvaffaqiyatli yaratildi",
+      "already_exists": "Qulayliklar allaqachon mavjud",
+      "cannot_contain_comma": "Qulayliklarda vergul bo'lishi mumkin emas",
+      "no_amenities_selected": "Saqlash uchun qulayliklar yo'q"
+    },
     "host": {
       "profile": {
         "subtitle": "Mezbon",

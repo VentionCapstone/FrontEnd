@@ -1,34 +1,39 @@
 import dayjs, { Dayjs } from 'dayjs';
 import { MouseEventHandler } from 'react';
 import { z } from 'zod';
+import { Amenities } from './amenity.types';
 
 export type AccommodationFields =
   | 'title'
-  | 'thumbnailUrl'
   | 'squareMeters'
   | 'numberOfRooms'
   | 'price'
   | 'allowedNumberOfPeople'
   | 'availableFrom'
+  | 'available'
   | 'availableTo'
   | 'description'
-  | 'previewImgUrl'
   | 'address.street'
   | 'address.city'
   | 'address.country'
   | 'address.zipCode';
 
 export const accommodationSchema = z.object({
-  title: z.string().min(10).max(100),
-  thumbnailUrl: z.string().url({ message: 'Thumbnail url must be a valid url' }),
+  title: z.string().min(5).max(100),
   squareMeters: z.number(),
-  numberOfRooms: z.number(),
+  numberOfRooms: z
+    .number()
+    .min(1, 'Number of rooms must be greater than 0')
+    .max(100, "Can't be more than 100 rooms"),
   price: z.number(),
-  allowedNumberOfPeople: z.number(),
+  allowedNumberOfPeople: z
+    .number()
+    .min(1, 'Allowed number of people must be greater than 0')
+    .max(100, "Can't be more than 100 people"),
   availableFrom: z.string(),
   availableTo: z.string(),
+  available: z.boolean(),
   description: z.string().min(10).max(256),
-  previewImgUrl: z.string(),
   address: z.object({
     street: z.string().min(3, 'Street name must be at least 3 characters'),
     city: z.string().min(3, 'City name must be at least 3 characters'),
@@ -59,10 +64,12 @@ export type AccommodationType = {
   price: number;
   allowedNumberOfPeople: number;
   availableFrom: string;
+  available: boolean;
   availableTo: string;
   description: string;
   previewImgUrl: string;
   address: AddressType;
+  amenities: Amenities[];
 };
 
 export type AddressType = {
@@ -225,12 +232,13 @@ export interface AccommodationSingle {
   allowedNumberOfPeople: number;
   availableFrom: string;
   availableTo: string;
+  available: boolean;
   description: string;
   previewImgUrl: string;
   isDeleted: boolean;
   address: Address;
   media: Media[];
-  amenities: Amenity[];
+  amenities: Amenities[];
   owner: Owner;
   timezoneOffset: number;
   title: string;
@@ -273,6 +281,26 @@ export interface Amenity {
   accommodationId: string;
   otherAmenities: string | null;
 }
+
+export interface AccommodationSearchParamsType {
+  handleSearchParamsChange: (params: URLSearchParams) => void;
+}
+type AcommodationPropsBase = {
+  isNew: boolean;
+  handleSearchParamsChange: (params: URLSearchParams) => void;
+};
+
+type CreateAccommodationProps = AcommodationPropsBase & {
+  isNew: true;
+  accommodation?: AccommodationSingle;
+};
+
+type UpdateAccommodationProps = AcommodationPropsBase & {
+  isNew: false;
+  accommodation: AccommodationSingle;
+};
+
+export type AccommodationFormProps = CreateAccommodationProps | UpdateAccommodationProps;
 
 export interface Owner {
   createdAt: string;

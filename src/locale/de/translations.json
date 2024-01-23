@@ -242,6 +242,13 @@
       "search_button": "Suche",
       "input_location_no_options": "Ort eingeben"
     },
+    "amenities": {
+      "edit_success": "Unterkunftsänderungen erfolgreich gespeichert",
+      "create_success": "Unterkunft erfolgreich erstellt",
+      "already_exists": "Annehmlichkeiten existieren bereits",
+      "cannot_contain_comma": "Annehmlichkeiten dürfen keine Kommata enthalten",
+      "no_amenities_selected": "Keine Annehmlichkeiten zum Speichern ausgewählt"
+    },
     "host": {
       "profile": {
         "subtitle": "Gastgeber",
