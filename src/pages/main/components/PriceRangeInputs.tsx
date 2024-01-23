@@ -4,6 +4,8 @@ import { ChangeEvent, useCallback } from 'react';
 
 import { ONLY_NUMBERS } from '@src/config/regexp.config';
 import { FormValue } from '@src/types/accommodation.types';
+import { HomeUIInfo } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 import { modalStyles } from './Modal.styles';
 
 type PriceRangeInputsProps = {
@@ -12,6 +14,7 @@ type PriceRangeInputsProps = {
 };
 
 function PriceRangeInputs({ value, setValue }: PriceRangeInputsProps) {
+  const { t } = useTranslation();
   const handleChangeMinimumPrice = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const inputValue = Number(e.target.value);
@@ -53,7 +56,7 @@ function PriceRangeInputs({ value, setValue }: PriceRangeInputsProps) {
   return (
     <Box sx={modalStyles.buttonContainer}>
       <TextField
-        label="Minimum"
+        label={t(HomeUIInfo.filters_button_price_price_min)}
         variant="outlined"
         fullWidth
         value={value.minPrice}
@@ -63,7 +66,7 @@ function PriceRangeInputs({ value, setValue }: PriceRangeInputsProps) {
         <HorizontalRuleIcon fontSize="large" />
       </Box>
       <TextField
-        label="Maximum"
+        label={t(HomeUIInfo.filters_button_price_price_max)}
         variant="outlined"
         fullWidth
         value={value.maxPrice}

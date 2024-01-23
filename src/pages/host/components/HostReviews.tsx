@@ -1,14 +1,15 @@
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { Box, IconButton, Typography, useMediaQuery, useTheme } from '@mui/material';
+import dayjs from 'dayjs';
+import { useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import Slider from '@src/components/shared/Slider';
 import { DATE_MONTH_YEAR_FORMAT } from '@src/constants';
 import { FONT_SIZES } from '@src/theme/themeTokens';
 import { HostProfile } from '@src/types/hostProfile.types';
 import { HostInfo } from '@src/types/i18n.types';
-import * as dayjs from 'dayjs';
-import { useCallback, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 function HostReviews({ host }: { host: HostProfile }) {
   const { t } = useTranslation();
