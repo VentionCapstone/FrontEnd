@@ -6,6 +6,7 @@ export const queryClient = new QueryClient({
     queries: {
       staleTime: STALE_TIME,
       refetchOnWindowFocus: false,
+      retry: false,
     },
   },
 });
@@ -18,6 +19,7 @@ export const QUERY_KEYS = {
     availableDates: 'available_dates',
 
     accommodation: 'accommodation',
+    hostedAccommodation: 'hostedAccommodation',
     accommodations: 'accommodations',
     accomodationReviews: 'accomodation_reviews',
   },

@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { useParams, useSearchParams } from 'react-router-dom';
 
-import { useGetAccommodation } from '@src/api/queries/accommodations/useGetAccommodation';
+import { useGetHostedAccommodation } from '@src/api/queries/accommodations/useGetHostedAccommodtion';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import DataFetchError from '@src/components/shared/DataFetchError';
 import { handleErrorInImage } from '@src/utils';
@@ -11,7 +11,7 @@ import UploadMedia from './components/UploadMedia';
 
 function UpdateAccommodation() {
   const { id } = useParams();
-  const { data: accommodation, isError, isPending } = useGetAccommodation({ id });
+  const { data: accommodation, isError, isPending } = useGetHostedAccommodation({ id });
 
   const [searchParams, setSearchParams] = useSearchParams();
 

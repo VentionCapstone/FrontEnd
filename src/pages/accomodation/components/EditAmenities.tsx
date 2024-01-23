@@ -1,6 +1,6 @@
 import { Check } from '@mui/icons-material';
-import { Box, Button, List, ListItem, TextField, Typography } from '@mui/material';
-import { FormEvent, useCallback, useEffect, useState } from 'react';
+import { Box, Button, List, ListItem, Typography } from '@mui/material';
+import { useCallback, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 import { useSaveAmenitiesMutation } from '@src/api/mutations/amenity/useSaveAmenitiesMutation';
@@ -24,7 +24,7 @@ export default function EditAmenities({
   const { t } = useTranslation();
   const [currentAmenities, setCurrentAmenities] = useState<AmenitySetting[] | undefined>(undefined);
   const [otherAmenities, setOtherAmenities] = useState<string[]>([]);
-  const [customAmenity, setCustomAmenity] = useState<string>('');
+  // const [customAmenity, setCustomAmenity] = useState<string>('');
 
   const { data: amenities } = useGetAmenityListQuery();
   const queryClient = useQueryClient();
@@ -75,28 +75,28 @@ export default function EditAmenities({
     [currentAmenities]
   );
 
-  const addCustomAmenity = useCallback(
-    (e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
+  // const addCustomAmenity = useCallback(
+  //   (e: FormEvent<HTMLFormElement>) => {
+  //     e.preventDefault();
 
-      if (customAmenity.trim()) {
-        if (customAmenity.includes(',')) {
-          toast.error(t(AmenitiesTr.cannot_contain_comma));
-          return;
-        }
+  //     if (customAmenity.trim()) {
+  //       if (customAmenity.includes(',')) {
+  //         toast.error(t(AmenitiesTr.cannot_contain_comma));
+  //         return;
+  //       }
 
-        const exists = otherAmenities?.find((amenity) => amenity === customAmenity);
+  //       const exists = otherAmenities?.find((amenity) => amenity === customAmenity);
 
-        if (!exists) {
-          setOtherAmenities((prev) => [...prev, customAmenity]);
-          setCustomAmenity('');
-        } else {
-          toast.error(t(AmenitiesTr.already_exists));
-        }
-      }
-    },
-    [customAmenity, otherAmenities, t]
-  );
+  //       if (!exists) {
+  //         setOtherAmenities((prev) => [...prev, customAmenity]);
+  //         setCustomAmenity('');
+  //       } else {
+  //         toast.error(t(AmenitiesTr.already_exists));
+  //       }
+  //     }
+  //   },
+  //   [customAmenity, otherAmenities, t]
+  // );
 
   const removeCustomAmenity = useCallback((amenity: string) => {
     setOtherAmenities((prev) => prev.filter((a) => a !== amenity));
@@ -190,7 +190,7 @@ export default function EditAmenities({
                 textAlign: 'center',
               }}
             >
-              <form onSubmit={addCustomAmenity}>
+              {/* <form onSubmit={addCustomAmenity}>
                 <Box
                   sx={{
                     display: 'flex',
@@ -213,7 +213,7 @@ export default function EditAmenities({
                     Add
                   </Button>
                 </Box>
-              </form>
+              </form> */}
             </Box>
           </Box>
           <Button

@@ -1,7 +1,8 @@
-import { Grid, Typography } from '@mui/material';
+import { Button, Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 import useGetSingleAccommodationQuery from '@src/api/queries/accommodation/useGetSingleAccommodationQuery';
 import BookingForm from '@src/components/booking/BookingForm';
@@ -12,7 +13,6 @@ import { ROUTES } from '@src/config/routes.config';
 import { AmenitySetting } from '@src/types/amenity.types';
 import { ErrorTypes } from '@src/types/i18n.types';
 import { getValueFromLocalStorage, handleErrorInImage, selectOnlyTrueAmenities } from '@src/utils';
-import { Link } from 'react-router-dom';
 import YandexMap from '../../components/shared/YandexMap';
 import { styles } from './Accommodation.styles';
 import AmenityList from './components/AmenityList';
@@ -27,6 +27,12 @@ function Accommodation() {
   const ownerId = getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.sub);
 
   const { isPending, data, isError } = useGetSingleAccommodationQuery(accommodationId as string);
+
+  const navigate = useNavigate();
+
+  const handleEditClick = (id: string) => {
+    navigate(ROUTES.accommodations.edit(id));
+  };
 
   useEffect(() => {
     if (data?.amenities && data?.amenities[0]) {
@@ -107,18 +113,25 @@ function Accommodation() {
           {ownerId === data.ownerId ? (
             <Box
               sx={{
-                'display': 'flex',
-                'justifyContent': 'center',
-                'alignItems': 'center',
-                'height': '100%',
-                '& a': {
-                  color: 'inherit',
-                  fontSize: '1.2rem',
-                  fontWeight: 600,
-                },
+                display: 'flex',
+                justifyContent: 'flex-end',
               }}
             >
-              <Link to={ROUTES.accommodations.edit(data.id)}>Edit Accommodation</Link>
+              <Button
+                variant="contained"
+                size="large"
+                sx={{
+                  'backgroundColor': 'primary.main',
+                  'fontWeight': 'bold',
+                  'color': 'white',
+                  '&:hover': {
+                    backgroundColor: 'primary.dark',
+                  },
+                }}
+                onClick={() => handleEditClick(data.id)}
+              >
+                Edit Accommodation
+              </Button>
             </Box>
           ) : (
             <BookingForm accomodationId={accommodationId} price={data.price} />

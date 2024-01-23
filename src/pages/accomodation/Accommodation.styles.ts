@@ -56,6 +56,7 @@ export const styles = {
     fontSize: {
       xs: '1rem',
       md: '1.3rem',
+      lg: '1.5rem',
     },
     marginBottom: '1rem',
   },
