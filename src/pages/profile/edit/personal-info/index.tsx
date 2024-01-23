@@ -25,7 +25,6 @@ import Gender from './EditGender';
 import PhoneNumber from './EditPhoneNumber';
 
 function PersonalInfo() {
-  const { t } = useTranslation();
   const user = useAppSelector(getUser);
   const profile = useAppSelector(getProfile);
   const imageUrl = profile?.imageUrl;

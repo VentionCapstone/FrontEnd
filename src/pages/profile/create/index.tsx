@@ -33,7 +33,6 @@ import UserFullName from './UserFullName';
 import UserPhoneNumber from './UserPhoneNumber';
 
 function CreateProfile() {
-  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
