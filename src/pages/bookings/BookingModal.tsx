@@ -1,9 +1,11 @@
 import { Box, Button, Divider, Modal, Typography } from '@mui/material';
+import dayjs from 'dayjs';
+import { useNavigate } from 'react-router-dom';
+
+import { Close } from '@mui/icons-material';
 import CustomImage from '@src/components/shared/CustomImage';
 import { STATUS } from '@src/types/global.types';
 import { lineClampStyle } from '@src/utils';
-import dayjs from 'dayjs';
-import { useNavigate } from 'react-router-dom';
 
 const style = {
   position: 'fixed',
@@ -55,15 +57,14 @@ export default function BookingModal({ open, handleClose, details }: Props) {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <Typography
-          id="modal-modal-title"
-          variant="h6"
-          component="h2"
-          sx={lineClampStyle(1)}
-          mb={2}
-        >
-          {details.title}
-        </Typography>
+        <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
+          <Typography variant="body1" sx={lineClampStyle(1)}>
+            {details.title}
+          </Typography>
+          <Button onClick={handleClose}>
+            <Close />
+          </Button>
+        </Box>
         <Box width="100%" borderRadius={2} overflow="hidden" position="relative">
           <CustomImage
             image={details.thumbnailUrl || details.previewImgUrl}

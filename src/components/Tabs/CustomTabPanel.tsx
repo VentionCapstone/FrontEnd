@@ -2,22 +2,22 @@ import { Box } from '@mui/material';
 
 interface TabPanelProps {
   children?: React.ReactNode;
-  index: number;
+  activeIndex: number;
   value: number;
 }
 
 export const CustomTabPanel = (props: TabPanelProps) => {
-  const { children, value, index, ...other } = props;
+  const { children, value, activeIndex, ...other } = props;
 
   return (
     <div
       role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
+      hidden={value !== activeIndex}
+      id={`simple-tabpanel-${activeIndex}`}
+      aria-labelledby={`simple-tab-${activeIndex}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === activeIndex && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
 };
