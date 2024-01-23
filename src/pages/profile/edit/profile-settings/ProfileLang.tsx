@@ -7,6 +7,7 @@ import {
   SelectChangeEvent,
   Typography,
 } from '@mui/material';
+import { AccountEditPersonalInfo, SettingsInfo } from '@src/types/i18n.types';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -26,6 +27,7 @@ export const ProfileLang = ({
 }) => {
   const profileId = useAppSelector(getProfile)?.id ?? '';
 
+  const { t } = useTranslation();
   const [language, setLanguage] = useState<string>(userLang);
   const { mutate } = useEditAccountMutation(profileId);
   const { i18n } = useTranslation();
@@ -47,14 +49,14 @@ export const ProfileLang = ({
   return (
     <>
       <Typography variant={'sm'} color={'secondary2.main'} mt={1}>
-        This updates what you read on Airbnb, and how we communicate with you.
+        {t(SettingsInfo.lang_desc)}
       </Typography>
 
       <FormControl
         size="small"
         sx={{ display: 'block', maxWidth: '40rem', mt: { xs: 2, md: 4 }, mb: 6 }}
       >
-        <InputLabel id="profile-lang-select-label">Language</InputLabel>
+        <InputLabel id="profile-lang-select-label">{t(SettingsInfo.language)}</InputLabel>
         <Select
           value={language}
           onChange={handleChange}
@@ -62,7 +64,7 @@ export const ProfileLang = ({
           size="small"
           labelId="profile-lang-select-label"
           id="profile-lang-select"
-          label="Language"
+          label={t(SettingsInfo.language)}
           sx={{ maxWidth: '40rem' }}
         >
           {LANGUAGE_LIST.map((language) => (
@@ -74,7 +76,7 @@ export const ProfileLang = ({
       </FormControl>
 
       <Button onClick={handleSubmit} variant={'contained'} size="small" sx={{ fontWeight: 600 }}>
-        Save
+        {t(AccountEditPersonalInfo.save_about)}
       </Button>
     </>
   );

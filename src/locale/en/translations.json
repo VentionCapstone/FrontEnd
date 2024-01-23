@@ -15,6 +15,7 @@
         "cash": "Pay with cash"
       }
     },
+
     "errors": {
       "default": "Something went wrong, try again",
 
@@ -22,11 +23,221 @@
       "accommodation_failed_to_get_list": "Failed to get accommodation list",
 
       "field_is_required": "This field is required",
-      "enter_valid_email": "Please, enter valid email address",
+      "enter_valid_email": "Please, enter a valid email address",
       "enter_valid_phone_number": "Please enter a valid phone number",
       "password_must_contain": "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character",
       "password_invalid_length": "Password must be at least 8 characters",
       "password_not_matching": "Passwords are not matching!"
+    },
+
+    "home_ui": {
+      "user_home_btn": {
+        "account": "Account",
+        "mylistings": "My Listings",
+        "logout": "Log out"
+      },
+      "register": {
+        "sign_in": {
+          "sing_in_btn": "Sign in",
+          "sing_title": "Sign In",
+          "sing_in_link": "sign in",
+          "title": "Please login",
+          "forgot_password": "Forgot password",
+          "forgot_password_modal": "Enter the email address associated with your account, and we’ll email you a link to reset your password.",
+          "send_resend_link": "Send reset link",
+          "forgot_password_desc": "If you do not have an account, please"
+        },
+        "sing_out": {
+          "sing_up_link": "sign up",
+          "sing_up_btn": "Sign up",
+          "sing_title": "Welcome to Airbnb",
+          "desc": "if you already have an account, please "
+        }
+      },
+      "filters_button": {
+        "filter": "Filter",
+        "price": {
+          "price_range": "Price range",
+          "price_description": "Nightly prices before fees and taxes",
+          "min": "Minimum",
+          "max": "Maximum"
+        },
+        "rooms": {
+          "title": "Rooms",
+          "any": "any"
+        },
+        "people": {
+          "title": "People",
+          "any": "any"
+        },
+        "sort": {
+          "title": "Sort",
+          "price-title": "Price",
+          "room-title": "Rooms",
+          "people-title": "People",
+          "price": ["any", "Low to High", "High to Low"],
+          "room": ["any", "Low to High", "High to Low"],
+          "people": ["any", "Low to High", "High to Low"]
+        },
+        "clear_btn": "Clear",
+        "filter_btn": "Filter"
+      },
+      "card": {
+        "night": "night"
+      },
+      "footer_info": {
+        "terms": "Terms",
+        "sitemap": "Sitemap",
+        "privacy": "Privacy",
+        "your_privacy_choices": "Your Privacy Choices",
+        "copyright": "© 2023 Airbnb, Inc."
+      }
+    },
+
+    "account_edit_page": {
+      "personal_info": "Personal Info",
+      "personal_desc": "Update your password and secure your account",
+      "login_secure": "Login & Security",
+      "login_secure_desc": "Provide personal details and how we can reach you",
+      "setting": "Settings",
+      "setting_desc": "Set your default language, and currency",
+      "airbnb_your_place": "Airbnb your place",
+      "airbnb_your_place_desc": "It`s simple to get set up and start earning."
+    },
+
+    "account_edit_personal-info": {
+      "name": {
+        "legal_name": "Legal name",
+        "legal_name_desc": "This is the name on your travel document, which could be a license or a passport.",
+        "edit": "edit",
+        "save": "Save",
+        "first_name": "First name",
+        "last_name": "Last name"
+      },
+      "gender": {
+        "your_gender": "Your gender",
+        "male": "Male",
+        "female": "Female",
+        "edit": "edit",
+        "save": "Save",
+        "select": "Select Your Gender",
+        "gender": "Gender"
+      },
+      "location": {
+        "where_do_live": "Where you live",
+        "edit": "edit",
+        "save": "Save",
+        "select": "Select Country",
+        "uzbekistan": "Uzbekistan",
+        "kazakistan": "Kazakhstan",
+        "russian": "Russia",
+        "country": "Country"
+      },
+      "number": {
+        "phone_number": "Phone number",
+        "phone_number_desc": "Add a number so confirmed guests and Airbnb can get in touch. You can add other numbers and choose how they’re used.",
+        "edit": "edit",
+        "save": "save"
+      },
+      "about": {
+        "about": "About you",
+        "about_desc": "Write something fun and punchy",
+        "about_textarea": "Tell us a little bit about yourself, so your future hosts or guests can get to know you.",
+        "edit": "edit",
+        "save": "save"
+      }
+    },
+
+    "login_and_security": {
+      "login_title": "Login & security",
+      "email": {
+        "edit": "Edit",
+        "email": "Email",
+        "email_desc": "Type your new email address",
+        "change_btn": "Change",
+        "cancel": "Cancel"
+      },
+      "password": {
+        "change_your_password": "Change you password",
+        "edit": "Edit",
+        "change_btn": "Change",
+        "cancel": "Cancel",
+        "current": "Current password",
+        "new_password": "New Password",
+        "confirm": "Confirm password",
+        "passport_placeholder": "Password"
+      }
+    },
+
+    "setting": {
+      "title": "Settings",
+      "theme": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "language": "Preferred language",
+      "lang_desc": "This updates what you read on Airbnb, and how we communicate with you.",
+      "currency_desc": "Select currency you prefer",
+      "can_dollar": "Canadian dollar",
+      "uzbek": "Uzbek",
+      "russian": "Russian",
+      "english": "English",
+      "kazak": "Kazak",
+      "german": "German",
+      "currency": "Preferred currency",
+      "dollar": "US Dollars"
+    },
+
+    "aminities_list": {
+      "title": "What this place offers"
+    },
+
+    "review_list": {
+      "title": "Rating",
+      "show_all": "Show all",
+      "reviews": "reviews"
+    },
+
+    "booking_form": {
+      "error_message": "Check-in date must be before the check-out date and must not be same",
+      "night": "night",
+      "you_will_not_charged_yet": "You will not charged yet",
+      "total": "Total",
+      "login": "login",
+      "login_required": "is required to make a reservation",
+      "reserve": "Reserve",
+      "check_in": "Check In",
+      "check_out": "Check Out"
+    },
+
+    "forgot_password_reset": {
+      "title": "Update password",
+      "description": "Enter your new password below to reset your password.",
+      "password": "Password",
+      "re_enter": "Re-enter your password",
+      "update": "Update"
+    },
+
+    "verify_email": {
+      "title": "Verifying email..."
+    },
+
+    "create_profile": {
+      "title": "Create Profile",
+      "legal_name": "Legal name",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "select_country": "Select country",
+      "uzbekistan": "Uzbekistan",
+      "russian": "Russia",
+      "kazakistan": "Kazakhstan",
+      "gender": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "phone_number": "Phone Number",
+      "description": "Description",
+      "description_desc": "Tell us a little bit about yourself, so your future hosts or guests can get to know you.",
+      "create_btn": "Create",
+      "country": "Country"
     },
     "searchTexts": {
       "input_date_label_checkin": "Check-in",
@@ -35,6 +246,13 @@
       "input_location_label_anywhere": "Anywhere",
       "search_button": "Search",
       "input_location_no_options": "Enter location"
+    },
+    "amenities": {
+      "edit_success": "Accommodation changes saved successfully",
+      "create_success": "Accommodation created successfully",
+      "already_exists": "Amenities already exists",
+      "cannot_contain_comma": "Amenities cannot contain commas",
+      "no_amenities_selected": "No amenities to save"
     },
     "host": {
       "profile": {
@@ -63,6 +281,15 @@
         "title": "{{firstName}}'s listings",
         "empty": "This host has no active accommodations"
       }
+    },
+    "owner_card": {
+      "title": "Hosted by",
+      "joined_in": "Joined in"
+    },
+    "wishlist": {
+      "title": "Wishlist",
+      "wishlits_empty_title": "Create your first wishlist",
+      "wishlits_empty_text": "As you search, click the heart icon to save your favorite places and Experiences to a wishlist"
     }
   }
 }

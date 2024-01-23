@@ -2,13 +2,13 @@ import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
 
 import { Coordinates } from '@src/types/global.types';
 
-type Props = {
+type YandexMapProps = {
   latitude: number;
   longitude: number;
   setCoords?: ([latitude, longitude]: Coordinates) => void;
 };
 
-export default function YandexMap({ latitude, longitude, setCoords }: Props) {
+export default function YandexMap({ latitude, longitude, setCoords }: YandexMapProps) {
   const handleMapClick = (e: { get: (arg0: string) => never }) => {
     if (!setCoords) return;
     const coords = e.get('coords');

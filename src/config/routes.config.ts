@@ -25,4 +25,5 @@ export const ROUTES = {
   host: {
     details: (id: string) => `/host/${id}`,
   },
+  wishlist: '/wishlist',
 } as const;

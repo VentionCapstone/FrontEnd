@@ -6,15 +6,18 @@ import Link from '@mui/material/Link';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 
 import useLogoutMutation from '@src/api/mutations/account/useLogoutMutation';
 import useGetUserQuery from '@src/api/queries/account/useGetUserQuery';
 import { ROUTES } from '@src/config/routes.config';
+import { HomeUIInfo, Wishlist } from '@src/types/i18n.types';
 import { mainNavigationStyles as styles } from './mainNavigation.styles';
 
 export const TopNavMenu = () => {
   const { data: user } = useGetUserQuery();
+  const { t } = useTranslation();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -80,7 +83,17 @@ export const TopNavMenu = () => {
                 to={ROUTES.account.root}
                 onClick={handleClose}
               >
-                <MenuItem>Account</MenuItem>
+                <MenuItem sx={{ borderBottom: '1px solid', borderColor: 'secondary2.light' }}>
+                  {t(HomeUIInfo.user_home_btn_account)}
+                </MenuItem>
+              </Link>,
+              <Link
+                key={ROUTES.wishlist}
+                component={RouterLink}
+                to={ROUTES.wishlist}
+                onClick={handleClose}
+              >
+                <MenuItem>{t(Wishlist.title)}</MenuItem>
               </Link>,
               <Link
                 key={ROUTES.accommodations.root}
@@ -88,7 +101,7 @@ export const TopNavMenu = () => {
                 to={ROUTES.accommodations.root}
                 onClick={handleClose}
               >
-                <MenuItem>My Listings</MenuItem>
+                <MenuItem>{t(HomeUIInfo.user_home_btn_mylistings)}</MenuItem>
               </Link>,
               <Link
                 key={ROUTES.bookings.root}
@@ -98,8 +111,12 @@ export const TopNavMenu = () => {
               >
                 <MenuItem>My Bookings</MenuItem>
               </Link>,
-              <MenuItem key="logout" onClick={handleLogout}>
-                Logout
+              <MenuItem
+                key="logout"
+                onClick={handleLogout}
+                sx={{ borderTop: '1px solid', borderColor: 'secondary2.light' }}
+              >
+                {t(HomeUIInfo.user_home_btn_logout)}
               </MenuItem>,
             ]
           : [
@@ -109,7 +126,7 @@ export const TopNavMenu = () => {
                 to={ROUTES.auth.signIn}
                 onClick={handleClose}
               >
-                <MenuItem>Sign In</MenuItem>
+                <MenuItem>{t(HomeUIInfo.sign_in_sing_in_btn)}</MenuItem>
               </Link>,
               <Link
                 key={ROUTES.auth.signUp}
@@ -117,7 +134,7 @@ export const TopNavMenu = () => {
                 to={ROUTES.auth.signUp}
                 onClick={handleClose}
               >
-                <MenuItem>Sign Up</MenuItem>
+                <MenuItem>{t(HomeUIInfo.sing_out_sing_up_btn)}</MenuItem>
               </Link>,
             ]}
       </Menu>

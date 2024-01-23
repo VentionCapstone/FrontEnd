@@ -8,6 +8,12 @@ export const DATE_MONTH_DAY = 'MMM DD';
 
 export const DEFAULT_LANGUAGE = 'en';
 
+export const MAX_UPLOAD_FILE_NUMBER = 20;
+
+export const MINUMUM_UPLOAD_FILE_NUMBER = 5;
+
+export const ACCEPT_UPLOAD_FILE_TYPE = ['jpg', 'gif', 'png'];
+
 export const DATE_MONTH_YEAR_FORMAT = 'MMMM YYYY';
 
 export const STATUSES = {

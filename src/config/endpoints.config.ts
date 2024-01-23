@@ -28,6 +28,8 @@ export const ENDPOINTS = {
     restoreAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}/restore`,
     getAccommodationReviews: (accommodationId: string) =>
       `/accommodations/${accommodationId}/reviews`,
+    uploadMediaToAccommodation: (accommodationId: string) =>
+      `/accommodations/${accommodationId}/file`,
   },
   payment: {
     root: '/payment',
@@ -41,6 +43,11 @@ export const ENDPOINTS = {
     book: '/booking/book',
     getBookingList: '/booking/my-bookings',
     getAvailableDates: (accommodationId: string) => `/booking/available-dates/${accommodationId}`,
+  },
+  wishlist: {
+    root: '/wishlist',
+    addToWishlist: (accommodationId: string) => `/wishlist/${accommodationId}`,
+    deleteFromWishlist: (accommodationId: string) => `/wishlist/${accommodationId}`,
   },
   host: {
     getHostProfile: (hostId: string) => `/users/host/${hostId}`,

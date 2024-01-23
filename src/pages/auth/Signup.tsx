@@ -10,10 +10,13 @@ import InputForm from '@src/components/input/InputForm';
 import PasswordInput from '@src/components/input/PasswordInput';
 import { ENDPOINTS } from '@src/config/endpoints.config';
 import { SignUpReq, signUpSchema } from '@src/types/auth.types';
+import { HomeUIInfo, LoginAndSecurityInfo } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 import GoogleLoginButton from './components/GoogleLoginButton';
 import { styles } from './styles';
 
 const Signup = () => {
+  const { t } = useTranslation();
   const {
     handleSubmit,
     control,
@@ -38,11 +41,11 @@ const Signup = () => {
   return (
     <Box sx={styles.formContainer}>
       <Typography variant="subtitle1" align="center" margin={5} fontWeight="bold">
-        Sign up
+        {t(HomeUIInfo.sing_out_sing_up_btn)}
       </Typography>
       <Divider />
       <Stack p={4} spacing={3}>
-        <Typography variant="h5">Welcome to Airbnb</Typography>
+        <Typography variant="h5"> {t(HomeUIInfo.sing_out_sing_title)}</Typography>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack gap={3}>
@@ -53,8 +56,8 @@ const Signup = () => {
                 <InputForm
                   {...field}
                   type="email"
-                  placeholder="Email"
-                  label="Email"
+                  placeholder={t(LoginAndSecurityInfo.email)}
+                  label={t(LoginAndSecurityInfo.email)}
                   error={!!errors.email}
                   helperText={errors.email?.message}
                 />
@@ -62,26 +65,27 @@ const Signup = () => {
             />
             <PasswordInput
               name="password"
-              label="Password"
-              placeholder="Password"
+              label={t(LoginAndSecurityInfo.password_input)}
+              placeholder={t(LoginAndSecurityInfo.password_input)}
               control={control}
               errors={errors}
             />
             <PasswordInput
               name="confirm_password"
-              label="Confirm password"
-              placeholder="Confirm password"
+              label={t(LoginAndSecurityInfo.password_confirm)}
+              placeholder={t(LoginAndSecurityInfo.password_confirm)}
               control={control}
               errors={errors}
             />
           </Stack>
-          <ButtonPrimary loading={isPending}>Sign up</ButtonPrimary>
+          <ButtonPrimary loading={isPending}> {t(HomeUIInfo.sing_out_sing_up_btn)}</ButtonPrimary>
         </form>
 
         <Typography variant="subtitle2" align="center" color="secondary2.main">
-          if you already have an account, please{' '}
+          {t(HomeUIInfo.sing_out_desc)}
           <Link component={RouterLink} to={ENDPOINTS.auth.signIn} sx={styles.formLink}>
-            sign in
+            {' '}
+            {t(HomeUIInfo.sing_in_link)}
           </Link>
         </Typography>
       </Stack>

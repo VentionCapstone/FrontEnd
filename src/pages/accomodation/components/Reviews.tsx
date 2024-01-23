@@ -15,9 +15,12 @@ import { useCallback, useState } from 'react';
 
 import useGetReviewsQuery from '@src/api/queries/reviews/useGetReviewsQuery';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
+import { ReviewList } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 import { Review } from './Review';
 
 export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
+  const { t } = useTranslation();
   const { data: reviews, isLoading } = useGetReviewsQuery(accommodationId);
   const [open, setOpen] = useState(false);
 
@@ -39,7 +42,7 @@ export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
         borderColor={'secondary2.light'}
         mb={12}
       >
-        <Typography fontSize={'2rem'}>Rating</Typography>
+        <Typography fontSize={'2rem'}>{t(ReviewList.title)}</Typography>
         <Typography fontSize={'3.5rem'} fontWeight={600}>
           {reviews.averageRate.toFixed(1)}
         </Typography>
@@ -76,7 +79,7 @@ export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
           textTransform: 'none',
         }}
       >
-        Show all {reviews.totalCount} reviews
+        {t(ReviewList.show_all)} {reviews.totalCount} {t(ReviewList.reviews)}
       </Button>
 
       {/* Modal */}
