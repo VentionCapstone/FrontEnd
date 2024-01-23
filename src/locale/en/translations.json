@@ -282,6 +282,14 @@
         "empty": "This host has no active accommodations"
       }
     },
+
+    "review_modal": {
+      "title": "Leave a review",
+      "placeholder": "Write your review here...",
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "success": "Review submitted"
+    },
     "owner_card": {
       "title": "Hosted by",
       "joined_in": "Joined in"

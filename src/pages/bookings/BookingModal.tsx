@@ -3,10 +3,12 @@ import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 
 import { Close } from '@mui/icons-material';
+import ReviewModal from '@src/components/review/ReviewModal';
 import CustomImage from '@src/components/shared/CustomImage';
 import { STATUSES } from '@src/constants';
 import { STATUS } from '@src/types/global.types';
 import { lineClampStyle } from '@src/utils';
+import { useState } from 'react';
 
 const style = {
   position: 'fixed',
@@ -38,6 +40,7 @@ type Props = {
 };
 
 export default function BookingModal({ open, handleClose, details }: Props) {
+  const [reviewModalOpen, setReviewModalOpen] = useState(false);
   const navigate = useNavigate();
   const startDate = dayjs(details.startDate);
   const endDate = dayjs(details.endDate);
@@ -112,13 +115,24 @@ export default function BookingModal({ open, handleClose, details }: Props) {
         )}
         {details.status === STATUSES.COMPLETED && (
           <Box width="100%" display="flex" justifyContent="flex-end" mt={2}>
-            <Button fullWidth variant="contained" color="primary">
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              onClick={() => setReviewModalOpen(true)}
+            >
               <Typography variant="sm" fontWeight="700" color="white">
                 Add review
               </Typography>
             </Button>
           </Box>
         )}
+        <ReviewModal
+          open={reviewModalOpen}
+          setOpen={setReviewModalOpen}
+          bookingId={details.id}
+          accommodationId={details.accommodationId}
+        />
       </Box>
     </Modal>
   );
