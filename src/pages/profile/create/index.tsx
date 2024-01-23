@@ -63,7 +63,7 @@ function CreateProfile() {
     const profileData: Profile = {
       ...data,
       phoneNumber: selectedCountry.code + data.phoneNumber,
-      language: DEFAULT_LANGUAGE,
+      language: DEFAULT_LANGUAGE.code,
       uiTheme: ThemeMode.light,
     };
 

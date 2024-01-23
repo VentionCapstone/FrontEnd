@@ -192,6 +192,7 @@
     "aminities_list": {
       "title": "Qanday qulayliklar mavjud"
     },
+
     "review_list": {
       "title": "Reyting",
       "show_all": "Barcha",
@@ -240,6 +241,7 @@
       "create_btn": "Yaratish",
       "country": "Mamlakat"
     },
+
     "searchTexts": {
       "input_date_label_checkin": "Kirish kuni",
       "input_date_label_checkout": "Chiqish kuni",
@@ -254,6 +256,7 @@
       "profile_create": "Profil muvaffaqiyatli yaratildi",
       "profile_change": "Profil muvaffaqiyatli o'zgartirildi"
     },
+
     "amenities": {
       "edit_success": "Turar joy oʻzgarishlari muvaffaqiyatli saqlandi",
       "create_success": "Turar joy muvaffaqiyatli yaratildi",
@@ -261,6 +264,7 @@
       "cannot_contain_comma": "Qulayliklarda vergul bo'lishi mumkin emas",
       "no_amenities_selected": "Saqlash uchun qulayliklar yo'q"
     },
+
     "host": {
       "profile": {
         "subtitle": "Mezbon",
@@ -297,10 +301,12 @@
       "cancel": "Bekor qilish",
       "success": "Izohingiz jo'natildi"
     },
+
     "owner_card": {
       "title": "Uy egasi",
       "joined_in": "Qo'shilgan"
     },
+
     "wishlist": {
       "title": "Istaklar roʻyxati",
       "wishlits_empty_title": "Birinchi istaklar ro'yxatingizni yarating",

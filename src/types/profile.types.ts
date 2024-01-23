@@ -15,8 +15,7 @@ export interface Profile {
   imageUrl: string;
   gender: Gender;
   country: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  language: any;
+  language: string;
   uiTheme: ThemeMode;
   description: string;
 }

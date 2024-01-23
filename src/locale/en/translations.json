@@ -56,6 +56,7 @@
           "desc": "if you already have an account, please "
         }
       },
+
       "filters_button": {
         "filter": "Filter",
         "price": {
@@ -241,6 +242,7 @@
       "create_btn": "Create",
       "country": "Country"
     },
+
     "searchTexts": {
       "input_date_label_checkin": "Check-in",
       "input_date_label_checkout": "Check-out",
@@ -255,6 +257,7 @@
       "profile_image_change": "Profile image changed successfully",
       "profile_change": "Profile changed successfully"
     },
+
     "amenities": {
       "edit_success": "Accommodation changes saved successfully",
       "create_success": "Accommodation created successfully",
@@ -262,6 +265,7 @@
       "cannot_contain_comma": "Amenities cannot contain commas",
       "no_amenities_selected": "No amenities to save"
     },
+
     "host": {
       "profile": {
         "subtitle": "Host",
@@ -298,10 +302,12 @@
       "cancel": "Cancel",
       "success": "Review submitted"
     },
+
     "owner_card": {
       "title": "Hosted by",
       "joined_in": "Joined in"
     },
+
     "wishlist": {
       "title": "Wishlist",
       "wishlits_empty_title": "Create your first wishlist",

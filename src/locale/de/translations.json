@@ -95,6 +95,7 @@
         "copyright": "© 2023 Airbnb, Inc."
       }
     },
+
     "account_edit_page": {
       "personal_info": "Persönliche Informationen",
       "personal_desc": "Aktualisieren Sie Ihr persönliches Passwort und sichern Sie Ihr Konto",
@@ -148,6 +149,7 @@
         "save": "Speichern"
       }
     },
+
     "login_and_security": {
       "login_title": "Anmeldung und Sicherheit",
       "email": {
@@ -168,6 +170,7 @@
         "password": "Passwort"
       }
     },
+
     "setting": {
       "title": "Einstellungen",
       "theme": "Thema",
@@ -185,6 +188,7 @@
       "currency": "Ausgewählte Währung",
       "dollar": "US-Dollar"
     },
+
     "aminities_list": {
       "title": "Was dieses Hotel bietet"
     },
@@ -252,6 +256,7 @@
       "profile_image_change": "Profilbild erfolgreich geändert",
       "profile_change": "Profil erfolgreich geändert"
     },
+
     "amenities": {
       "edit_success": "Unterkunftsänderungen erfolgreich gespeichert",
       "create_success": "Unterkunft erfolgreich erstellt",
@@ -259,6 +264,7 @@
       "cannot_contain_comma": "Annehmlichkeiten dürfen keine Kommata enthalten",
       "no_amenities_selected": "Keine Annehmlichkeiten zum Speichern ausgewählt"
     },
+
     "host": {
       "profile": {
         "subtitle": "Gastgeber",
@@ -295,10 +301,12 @@
       "cancel": "Abbrechen",
       "success": "Bewertung abgegeben"
     },
+
     "owner_card": {
       "title": "Gastgeber",
       "joined_in": "Beigetreten am"
     },
+
     "wishlist": {
       "title": "Wunschzettel",
       "wishlits_empty_title": "Erstelle deine erste Wunschliste",

@@ -95,6 +95,7 @@
         "copyright": "© 2023 Airbnb, Inc."
       }
     },
+
     "account_edit_page": {
       "personal_info": "Жеке ақпарат",
       "personal_desc": "Жеке құпия сөзіңізді жаңартыңыз және тіркелгіңізді қауіпсіздікке дайындаңыз",
@@ -148,6 +149,7 @@
         "save": "сақтау"
       }
     },
+
     "login_and_security": {
       "login_title": "Кіру және қауіпсіздік",
       "email": {
@@ -168,6 +170,7 @@
         "password": "Құпиясөз"
       }
     },
+
     "setting": {
       "title": "Параметрлер",
       "theme": "Тақырып",
@@ -185,9 +188,11 @@
       "currency": "Таңдалған валюта",
       "dollar": "АҚШ доллары"
     },
+
     "aminities_list": {
       "title": "Бұл орта не береді"
     },
+
     "review_list": {
       "title": "Рейтинг",
       "show_all": "Барлықты көрсету",
@@ -236,6 +241,7 @@
       "create_btn": "Жасау",
       "country": "Әулет"
     },
+
     "searchTexts": {
       "input_date_label_checkin": "Тіркелу күні",
       "input_date_label_checkout": "Шығу күні",
@@ -250,6 +256,7 @@
       "profile_error_creating": "Профиль жасауда қателік!",
       "profile_change": "Профиль сәтті түрде өзгертілді"
     },
+
     "amenities": {
       "edit_success": "Жаттықтау сәтті сақталды",
       "create_success": "Жаттықтау сәтті жасалды",
@@ -294,10 +301,12 @@
       "cancel": "Бас тарту",
       "success": "Пікір жіберілді"
     },
+
     "owner_card": {
       "title": "Басқарушы",
       "joined_in": "Қосылды"
     },
+
     "wishlist": {
       "title": "Қалаулар тізімі",
       "wishlits_empty_title": "Өзіңіздің бірінші тілек тізімін жасаңыз",
