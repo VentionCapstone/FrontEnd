@@ -28,6 +28,8 @@ export const ENDPOINTS = {
     restoreAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}/restore`,
     getAccommodationReviews: (accommodationId: string) =>
       `/accommodations/${accommodationId}/reviews`,
+    uploadMediaToAccommodation: (accommodationId: string) =>
+      `/accommodations/${accommodationId}/file`,
   },
   payment: {
     root: '/payment',

@@ -19,7 +19,7 @@ export const useDeleteAccommodation = () => {
     onSuccess: async (_, accommodationId) => {
       await queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.query.accommodations] });
       await queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.query.accommodation, accommodationId],
+        queryKey: [QUERY_KEYS.query.hostedAccommodation, accommodationId],
       });
       toast.success('Accommodation deleted successfully');
       navigate(ROUTES.accommodations.root);

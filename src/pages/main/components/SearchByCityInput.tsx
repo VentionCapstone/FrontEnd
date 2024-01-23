@@ -106,7 +106,7 @@ export default function SearchByCityInput({ location, setLocation }: SearchByCit
   useEffect(() => {
     let active = true;
 
-    if (!autocompleteService.current && window.google) {
+    if (!autocompleteService.current && window.google?.maps) {
       autocompleteService.current = new google.maps.places.AutocompleteService();
     }
     if (!autocompleteService.current) {

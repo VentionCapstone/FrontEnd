@@ -7,6 +7,7 @@ import ProfileEditRoute from './ProfileEditRoute';
 
 import UserRoute from './UserRoute';
 
+import ErrorPage from '@src/components/shared/ErrorPage';
 import MainLayout from '@src/layouts/MainLayout';
 import UserLayout from '@src/layouts/UserLayout';
 
@@ -18,7 +19,6 @@ const LoginAndSecurity = React.lazy(() => import('@src/pages/profile/edit/login-
 const PersonalInfo = React.lazy(() => import('@src/pages/profile/edit/personal-info'));
 const ProfileSetting = React.lazy(() => import('@src/pages/profile/edit/profile-settings'));
 const Accommodations = React.lazy(() => import('@src/pages/accommodations'));
-const AccommodationForm = React.lazy(() => import('@src/pages/accommodations/AccommodationForm'));
 const Payment = React.lazy(() => import('@src/pages/payment/Payment'));
 const Accommodation = React.lazy(() => import('@src/pages/accomodation/Accommodation'));
 const SignIn = React.lazy(() => import('@src/pages/auth/SignIn'));
@@ -26,11 +26,18 @@ const Signup = React.lazy(() => import('@src/pages/auth/Signup'));
 const ResetPassword = React.lazy(() => import('@src/pages/auth/ResetPassword'));
 const Host = React.lazy(() => import('@src/pages/host/Host'));
 const Wishlist = React.lazy(() => import('../pages/wishlist'));
+const AccommodationCreate = React.lazy(
+  () => import('@src/pages/accommodations/CreateAccommodation')
+);
+const AccommodationUpdate = React.lazy(
+  () => import('@src/pages/accommodations/UpdateAccommodation')
+);
 
 const routes = createBrowserRouter([
   //unprotected
   {
     path: '/',
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '',
@@ -109,8 +116,8 @@ const routes = createBrowserRouter([
         path: '/accommodations',
         children: [
           { index: true, element: <Accommodations /> },
-          { path: 'create', element: <AccommodationForm /> },
-          { path: 'edit/:id', element: <AccommodationForm /> },
+          { path: 'create', element: <AccommodationCreate /> },
+          { path: 'edit/:id', element: <AccommodationUpdate /> },
           { path: '*', element: <Navigate to="/accommodations" /> },
         ],
       },

@@ -9,7 +9,7 @@ import { ErrorTypes } from '@src/types/i18n.types';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSearchParams } from 'react-router-dom';
-import AccommodationSkeleton from '../accommodations/AccommodationSkeleton';
+import AccommodationSkeleton from '../accommodations/components/AccommodationSkeleton';
 import MapModal from './components/MapModal';
 import MainModal from './components/Modal';
 import SearchBar from './components/SearchBar';
