@@ -15,3 +15,9 @@ export const MINUMUM_UPLOAD_FILE_NUMBER = 5;
 export const ACCEPT_UPLOAD_FILE_TYPE = ['jpg', 'gif', 'png'];
 
 export const DATE_MONTH_YEAR_FORMAT = 'MMMM YYYY';
+
+export const STATUSES = {
+  PENDING: 'PENDING',
+  ACTIVE: 'ACTIVE',
+  COMPLETED: 'COMPLETED',
+};
