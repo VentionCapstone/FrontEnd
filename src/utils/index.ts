@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
 
-import ErrorImage from '@src/assets/no-image.png';
+import ErrorImage from '@src/assets/no-image.jpg';
 import { DEFAULT_LANGUAGE, LANGUAGE_LIST } from '@src/constants/index';
 import { Amenities } from '@src/types/amenity.types';
 import { ThemeMode } from '@src/types/profile.types';

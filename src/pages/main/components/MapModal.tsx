@@ -84,7 +84,7 @@ export default function MapModal({ open, setOpen, searchParamsAsObject }: MapMod
                                 <div style="font-weight: bold; font-size: 20px; margin-bottom: 8px;">
                                   ${accommodation.title}
                                 </div>
-                                <img src="${accommodation.thumbnailUrl}" alt="" onerror="this.onerror=null; this.src='/src/assets/no-image.png';"  style="width: 250px; height: 150px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); margin-bottom: 8px;border-radius: 10px;  max-height: 150px; object-fit: cover;" />
+                                <img src="${accommodation.thumbnailUrl}" alt="" onerror="this.onerror=null; this.src='/src/assets/no-image.jpg';"  style="width: 250px; height: 150px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); margin-bottom: 8px;border-radius: 10px;  max-height: 150px; object-fit: cover;" />
                                 <Typography mt={2}>
                                   ${accommodation.address.city}, ${accommodation.address.country}
                                 </Typography>

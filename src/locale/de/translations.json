@@ -249,7 +249,8 @@
 
     "profileActions": {
       "profile_create": "Profil erfolgreich erstellt",
-      "profile_image_change": "Profilbild erfolgreich geändert"
+      "profile_image_change": "Profilbild erfolgreich geändert",
+      "profile_change": "Profil erfolgreich geändert"
     },
     "amenities": {
       "edit_success": "Unterkunftsänderungen erfolgreich gespeichert",

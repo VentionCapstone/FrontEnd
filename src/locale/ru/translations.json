@@ -250,7 +250,8 @@
 
     "profileActions": {
       "profile_image_change": "Изображение профиля успешно изменено",
-      "profile_create": "Профиль успешно создан"
+      "profile_create": "Профиль успешно создан",
+      "profile_change": "Профиль успешно изменен"
     },
     "amenities": {
       "edit_success": "Изменения в размещении успешно сохранены",

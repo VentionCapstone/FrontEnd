@@ -80,7 +80,7 @@ export default function Accommodations() {
               >
                 <Box display="flex" flexDirection="column" gap={2}>
                   <Box width="100%" borderRadius={2} overflow="hidden" position="relative">
-                    <CustomImage image={thumbnailUrl || previewImgUrl} name={`${id} thumbnail`} />
+                    <CustomImage image={previewImgUrl || thumbnailUrl} name={`${id} thumbnail`} />
                     {isDeleted && (
                       <Box
                         position="absolute"

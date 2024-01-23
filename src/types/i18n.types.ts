@@ -265,4 +265,5 @@ export enum Wishlist {
 export enum ProfileActions {
   profile_image_change = 'profileActions.profile_image_change',
   profile_create = 'profileActions.profile_create',
+  profile_change = 'profileActions.profile_change',
 }

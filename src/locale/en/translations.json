@@ -252,7 +252,8 @@
 
     "profileActions": {
       "profile_create": "Profile created successfully",
-      "profile_image_change": "Profile image changed successfully"
+      "profile_image_change": "Profile image changed successfully",
+      "profile_change": "Profile changed successfully"
     },
     "amenities": {
       "edit_success": "Accommodation changes saved successfully",

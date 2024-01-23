@@ -251,7 +251,8 @@
 
     "profileActions": {
       "profile_image_change": "Profil rasmi muvaffaqiyatli o'zgartirildi",
-      "profile_create": "Profil muvaffaqiyatli yaratildi"
+      "profile_create": "Profil muvaffaqiyatli yaratildi",
+      "profile_change": "Profil muvaffaqiyatli o'zgartirildi"
     },
     "amenities": {
       "edit_success": "Turar joy oʻzgarishlari muvaffaqiyatli saqlandi",

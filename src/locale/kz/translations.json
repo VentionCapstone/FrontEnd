@@ -247,7 +247,8 @@
 
     "profileActions": {
       "profile_create": "Профиль сәтті жасалды",
-      "profile_error_creating": "Профиль жасауда қателік!"
+      "profile_error_creating": "Профиль жасауда қателік!",
+      "profile_change": "Профиль сәтті түрде өзгертілді"
     },
     "amenities": {
       "edit_success": "Жаттықтау сәтті сақталды",
