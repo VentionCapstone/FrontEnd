@@ -4,9 +4,11 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { useGetBookingList } from '@src/api/queries/booking/useGetBookingList';
 import DataFetchError from '@src/components/shared/DataFetchError';
+import { STATUSES } from '@src/constants';
 import { BookType } from '@src/types/booking.types';
 import { STATUS } from '@src/types/global.types';
 import { ErrorTypes } from '@src/types/i18n.types';
+import { capitalize } from '@src/utils/capitalize';
 import AccommodationSkeleton from '../accommodations/AccommodationSkeleton';
 import BookingCard from './BookingCard';
 
@@ -14,13 +16,18 @@ export default function Bookings() {
   const [value, setValue] = useState<STATUS>('PENDING');
 
   const a11yProps = useMemo(() => {
-    return (index: number) => ({
-      'id': `simple-tab-${index}`,
-      'aria-controls': `simple-tabpanel-${index}`,
+    return Object.values(STATUSES).map((status, index) => {
+      return {
+        'label': capitalize(status),
+        'status': status,
+        'value': status,
+        'id': `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+      };
     });
   }, []);
 
-  const { data, isPending, isError, hasNextPage, fetchNextPage } = useGetBookingList(value);
+  const { data, isError, hasNextPage, fetchNextPage } = useGetBookingList(value);
 
   const bookings = useMemo(
     () => data?.pages.reduce((acc, page) => [...acc, ...page.data], [] as BookType[]),
@@ -43,9 +50,6 @@ export default function Bookings() {
     []
   );
 
-  if (isPending) {
-    return renderAccommodationSkeleton();
-  }
   if (isError) {
     return <DataFetchError errorKey={ErrorTypes.accommodation_failed_to_get_list} />;
   }
@@ -60,9 +64,9 @@ export default function Bookings() {
 
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleTabChange} aria-label="basic tabs example">
-          <Tab label="Pending" value="PENDING" {...a11yProps(0)} />
-          <Tab label="Active" value="ACTIVE" {...a11yProps(1)} />
-          <Tab label="Completed" value="COMPLETED" {...a11yProps(2)} />
+          {a11yProps.map((props, index) => (
+            <Tab key={index} {...props} />
+          ))}
         </Tabs>
       </Box>
       <Box pt={2}>

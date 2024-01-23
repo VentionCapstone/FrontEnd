@@ -9,3 +9,9 @@ export const DATE_MONTH_DAY = 'MMM DD';
 export const DEFAULT_LANGUAGE = 'en';
 
 export const DATE_MONTH_YEAR_FORMAT = 'MMMM YYYY';
+
+export const STATUSES = {
+  PENDING: 'PENDING',
+  ACTIVE: 'ACTIVE',
+  COMPLETED: 'COMPLETED',
+};

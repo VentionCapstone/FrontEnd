@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Close } from '@mui/icons-material';
 import CustomImage from '@src/components/shared/CustomImage';
+import { STATUSES } from '@src/constants';
 import { STATUS } from '@src/types/global.types';
 import { lineClampStyle } from '@src/utils';
 
@@ -100,7 +101,7 @@ export default function BookingModal({ open, handleClose, details }: Props) {
             {details.status}
           </Typography>
         </Box>
-        {details.status === 'PENDING' && (
+        {details.status === STATUSES.PENDING && (
           <Box width="100%" display="flex" justifyContent="flex-end" mt={2} onClick={handlePay}>
             <Button fullWidth variant="contained" color="primary">
               <Typography variant="sm" fontWeight="700" color="white">
@@ -109,7 +110,7 @@ export default function BookingModal({ open, handleClose, details }: Props) {
             </Button>
           </Box>
         )}
-        {details.status === 'COMPLETED' && (
+        {details.status === STATUSES.COMPLETED && (
           <Box width="100%" display="flex" justifyContent="flex-end" mt={2}>
             <Button fullWidth variant="contained" color="primary">
               <Typography variant="sm" fontWeight="700" color="white">
