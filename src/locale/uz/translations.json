@@ -37,7 +37,9 @@
       "input_location_no_options": "Joylashuvni kiriting"
     },
     "wishlist": {
-      "title": "Istaklar roʻyxati"
+      "title": "Istaklar roʻyxati",
+      "wishlits_empty_title": "Birinchi istaklar ro'yxatingizni yarating",
+      "wishlits_empty_text": "Izlash jarayonida sevimli joylaringiz va tajribalaringizni istaklar ro'yxatiga saqlash uchun yurak belgisini bosing"
     }
   }
 }

@@ -37,7 +37,9 @@
       "input_location_no_options": "Ort eingeben"
     },
     "wishlist": {
-      "title": "Wunschzettel"
+      "title": "Wunschzettel",
+      "wishlits_empty_title": "Erstelle deine erste Wunschliste",
+      "wishlits_empty_text": "Klicke während der Suche auf das Herzsymbol, um deine Lieblingsorte und Erlebnisse in einer Wunschliste zu speichern"
     }
   }
 }

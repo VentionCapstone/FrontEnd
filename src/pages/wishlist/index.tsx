@@ -21,10 +21,20 @@ const Wishlist = () => {
       </Typography>
 
       <Box sx={mainStyles.accommmodationCard}>
-        {wishlist &&
+        {wishlist?.length ? (
           wishlist.map(({ id, accommodation }) => (
             <AccommodationCard key={id} accommodation={accommodation} />
-          ))}
+          ))
+        ) : (
+          <Box>
+            <Typography fontSize={'1.25rem'} fontWeight={600} mb={1}>
+              {t(WishlistTypes.wishlits_empty_title)}
+            </Typography>
+            <Typography variant={'sm'} color={'secondary2.main'} maxWidth={'30rem'}>
+              {t(WishlistTypes.wishlits_empty_text)}
+            </Typography>
+          </Box>
+        )}
       </Box>
     </div>
   );

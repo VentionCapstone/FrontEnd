@@ -37,4 +37,6 @@ export enum PaymentInfo {
 
 export enum Wishlist {
   title = 'wishlist.title',
+  wishlits_empty_title = 'wishlist.wishlits_empty_title',
+  wishlits_empty_text = 'wishlist.wishlits_empty_text',
 }

@@ -37,7 +37,9 @@
       "input_location_no_options": "Enter location"
     },
     "wishlist": {
-      "title": "Wishlist"
+      "title": "Wishlist",
+      "wishlits_empty_title": "Create your first wishlist",
+      "wishlits_empty_text": "As you search, click the heart icon to save your favorite places and Experiences to a wishlist"
     }
   }
 }
