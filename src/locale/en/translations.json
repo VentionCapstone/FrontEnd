@@ -271,6 +271,14 @@
         "title": "{{firstName}}'s listings",
         "empty": "This host has no active accommodations"
       }
+    },
+
+    "review_modal": {
+      "title": "Leave a review",
+      "placeholder": "Write your review here...",
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "success": "Review submitted"
     }
   }
 }

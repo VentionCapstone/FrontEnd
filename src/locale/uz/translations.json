@@ -271,6 +271,14 @@
         "title": "{{firstName}}ning ro'yxatlari",
         "empty": "Ushbu mezbonning kvartiralar ro'yxati mavjud emas"
       }
+    },
+
+    "review_modal": {
+      "title": "Izoh qoldirish",
+      "placeholder": "Izoingizni qoldiring",
+      "submit": "Jo'natish",
+      "cancel": "Bekor qilish",
+      "success": "Izohingiz jo'natildi"
     }
   }
 }

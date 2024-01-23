@@ -44,4 +44,8 @@ export const ENDPOINTS = {
   host: {
     getHostProfile: (hostId: string) => `/users/host/${hostId}`,
   },
+  review: {
+    create: (accommodationId: string, bookingId: string) =>
+      `/reviews/${accommodationId}?bookingId=${bookingId}`,
+  },
 } as const;

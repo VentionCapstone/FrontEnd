@@ -267,6 +267,14 @@
         "title": "Inserate von {{firstName}}",
         "empty": "Dieser Gastgeber hat keine aktiven Unterkünfte"
       }
+    },
+
+    "review_modal": {
+      "title": "Bewertung hinterlassen",
+      "placeholder": "Schreiben Sie hier Ihre Bewertung...",
+      "submit": "Absenden",
+      "cancel": "Abbrechen",
+      "success": "Bewertung abgegeben"
     }
   }
 }
