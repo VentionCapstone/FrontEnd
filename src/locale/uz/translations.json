@@ -40,6 +40,7 @@
         "sign_in": {
           "sing_in_btn": "Kirish",
           "sing_title": "Kirish",
+          "sing_in_link": "kirish",
           "title": "Iltimos, kirishni tanlang",
           "forgot_password": "Parolingizni unutdingizmi?",
           "forgot_password_modal": "Akkauntingizga bog'liq elektron pochta manzilini kiriting, va biz sizga parolingizni qayta tiklash uchun havola yuboramiz.",
@@ -47,6 +48,7 @@
           "forgot_password_desc": "Agar akkauntngiz yo'q bo'lsa, ro'yxatdan o'ting"
         },
         "sing_out": {
+          "sing_up_link": "ro'yxatdan o'tish",
           "sing_up_btn": "Ro'yxatdan o'tish",
           "sing_title": "Xush kelibsiz Airbnb",
           "desc": "Agar allaqachon akkauntingiz bo'lsa, Iltimos, kirishni tanlang"
@@ -244,6 +246,13 @@
       "search_button": "Izlash",
       "input_location_no_options": "Joylashuvni kiriting"
     },
+    "amenities": {
+      "edit_success": "Turar joy oʻzgarishlari muvaffaqiyatli saqlandi",
+      "create_success": "Turar joy muvaffaqiyatli yaratildi",
+      "already_exists": "Qulayliklar allaqachon mavjud",
+      "cannot_contain_comma": "Qulayliklarda vergul bo'lishi mumkin emas",
+      "no_amenities_selected": "Saqlash uchun qulayliklar yo'q"
+    },
     "host": {
       "profile": {
         "subtitle": "Mezbon",
@@ -279,6 +288,15 @@
       "submit": "Jo'natish",
       "cancel": "Bekor qilish",
       "success": "Izohingiz jo'natildi"
+    },
+    "owner_card": {
+      "title": "Uy egasi",
+      "joined_in": "Qo'shilgan"
+    },
+    "wishlist": {
+      "title": "Istaklar roʻyxati",
+      "wishlits_empty_title": "Birinchi istaklar ro'yxatingizni yarating",
+      "wishlits_empty_text": "Izlash jarayonida sevimli joylaringiz va tajribalaringizni istaklar ro'yxatiga saqlash uchun yurak belgisini bosing"
     }
   }
 }

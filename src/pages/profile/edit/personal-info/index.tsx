@@ -71,12 +71,7 @@ function PersonalInfo() {
 
   return (
     <>
-      <Typography
-        mb={{ xs: 4, md: 6, lg: 10 }}
-        fontSize={{ xs: '1.5rem', md: '2rem' }}
-        fontWeight={600}
-        component={'h1'}
-      >
+      <Typography mb={{ xs: 4, md: 6, lg: 10 }} variant={'heading'}>
         {t(AccountEditPageInfo.personal_info)}
       </Typography>
 

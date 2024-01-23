@@ -24,12 +24,7 @@ function LoginAndSecurity() {
 
   return (
     <>
-      <Typography
-        mb={{ xs: 4, md: 6, lg: 10 }}
-        fontSize={{ xs: '1.5rem', md: '2rem' }}
-        fontWeight={600}
-        component={'h1'}
-      >
+      <Typography mb={{ xs: 4, md: 6, lg: 10 }} variant={'heading'}>
         {t(LoginAndSecurityInfo.login_title)}
       </Typography>
 
@@ -45,7 +40,7 @@ function LoginAndSecurity() {
         />
 
         <EditablePanel
-          panelHeading={t(LoginAndSecurityInfo.password)}
+          panelHeading={t(LoginAndSecurityInfo.password_input)}
           initial={
             <Typography variant={'sm'} color={'secondary2.main'}>
               {t(LoginAndSecurityInfo.password_change_your_password)}

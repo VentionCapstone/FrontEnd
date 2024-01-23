@@ -15,6 +15,9 @@ export const ROUTES = {
     edit: (id: string) => `/accommodations/edit/${id}`,
     details: (id: string) => `/rooms/${id}`,
   },
+  bookings: {
+    root: '/bookings',
+  },
   payment: {
     root: (id: string, accommodationId: string, startDate: string, endDate: string) =>
       `/book/${id}?accommodationId=${accommodationId}&startDate=${startDate}&endDate=${endDate}`,
@@ -22,4 +25,5 @@ export const ROUTES = {
   host: {
     details: (id: string) => `/host/${id}`,
   },
+  wishlist: '/wishlist',
 } as const;

@@ -1,20 +1,19 @@
 import { Add } from '@mui/icons-material';
 import { Box, IconButton, Typography } from '@mui/material';
+import { useCallback, useMemo } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { Link } from 'react-router-dom';
 
 import { useGetAccommodations } from '@src/api/queries/accommodations/useGetAccommodations';
 import CustomImage from '@src/components/shared/CustomImage';
+import DataFetchError from '@src/components/shared/DataFetchError';
 import { ROUTES } from '@src/config/routes.config';
 import { useAppSelector } from '@src/hooks/redux-hooks';
 import { getUser } from '@src/stores/slices/authSlice';
-import { lineClampStyle } from '@src/utils';
-
-import DataFetchError from '@src/components/shared/DataFetchError';
 import { AccommodationType } from '@src/types/accommodation.types';
 import { ErrorTypes } from '@src/types/i18n.types';
-import { useCallback, useMemo } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import AccommodationSkeleton from './AccommodationSkeleton';
+import { lineClampStyle } from '@src/utils';
+import AccommodationSkeleton from './components/AccommodationSkeleton';
 
 export default function Accommodations() {
   const profileId = useAppSelector(getUser)?.id ?? '';
@@ -46,7 +45,7 @@ export default function Accommodations() {
 
   return (
     <Box>
-      <Box display="flex" alignItems="center" justifyContent="space-between" my={8}>
+      <Box display="flex" alignItems="center" justifyContent="space-between" my={4}>
         <Typography variant={'lg'} fontWeight={600}>
           Your Accommodations
         </Typography>
@@ -58,7 +57,7 @@ export default function Accommodations() {
       </Box>
 
       {accommodations?.length === 0 ? (
-        <Typography textAlign={'center'} variant={'h6'}>
+        <Typography textAlign={'center'} variant={'h6'} mt={8}>
           You haven&apos;t created any accommodations yet
         </Typography>
       ) : (
@@ -71,7 +70,7 @@ export default function Accommodations() {
           <Box display="grid" gap={8} gridTemplateColumns={'repeat(auto-fill, minmax(280px, 1fr))'}>
             {accommodations?.map(({ id, title, thumbnailUrl, previewImgUrl, isDeleted, price }) => (
               <Link
-                to={ROUTES.accommodations.edit(id)}
+                to={ROUTES.accommodations.details(id)}
                 key={id}
                 style={{
                   color: 'inherit',

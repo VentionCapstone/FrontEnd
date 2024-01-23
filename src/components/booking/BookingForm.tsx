@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { useBookingRoom } from '@src/api/mutations/booking/useBookingRoom';
 import { useGetAvailableDates } from '@src/api/queries/booking/useGetAvailableDates';
 import { ROUTES } from '@src/config/routes.config';
 import { DATE_FORMAT_MONTH_FIRST } from '@src/constants';
@@ -16,18 +17,14 @@ import ButtonPrimary from '../../components/button/ButtonPrimary';
 import { ReservationData, createReservationData, selectDatesType, selectedDateType } from './time';
 
 interface BookingFormProps {
-  onSubmit: (reservationData: {
-    startDate: string;
-    endDate: string;
-    accommodationId: string;
-  }) => void;
   accomodationId: unknown;
   price: number;
 }
 
-const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, price }) => {
+const BookingForm: React.FC<BookingFormProps> = ({ accomodationId, price }) => {
   const { t } = useTranslation();
   const isUserLoggedIn = useAppSelector(hasToken);
+  const { mutate } = useBookingRoom();
 
   const { data, isPending, isError } = useGetAvailableDates(
     accomodationId as string,
@@ -113,10 +110,10 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, pri
           accommodationId
         );
 
-        onSubmit(reservationData);
+        mutate(reservationData);
       }
     },
-    [startDate, endDate, accommodationId, onSubmit]
+    [startDate, endDate, accommodationId, mutate]
   );
 
   return (
@@ -175,7 +172,12 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, accomodationId, pri
         </>
       ) : (
         <Typography>
-          <Link component={RouterLink} to={ROUTES.auth.signIn} fontWeight={600}>
+          <Link
+            component={RouterLink}
+            to={ROUTES.auth.signIn}
+            fontWeight={600}
+            state={{ from: window.location.pathname }}
+          >
             {t(BookingForms.login)}
           </Link>{' '}
           {t(BookingForms.login_req)}

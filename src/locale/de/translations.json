@@ -38,6 +38,7 @@
       "register": {
         "sign_in": {
           "sing_in_btn": "Anmelden",
+          "sing_in_link": "anmelden",
           "sing_title": "Anmelden",
           "title": "Bitte einloggen",
           "forgot_password": "Passwort vergessen",
@@ -47,6 +48,7 @@
         },
         "sing_out": {
           "sing_up_btn": "Registrieren",
+          "sing_up_link": "registrieren",
           "sing_title": "Willkommen bei Airbnb",
           "desc": "Wenn Sie bereits ein Konto haben, melden Sie sich bitte an"
         }
@@ -240,6 +242,13 @@
       "search_button": "Suche",
       "input_location_no_options": "Ort eingeben"
     },
+    "amenities": {
+      "edit_success": "Unterkunftsänderungen erfolgreich gespeichert",
+      "create_success": "Unterkunft erfolgreich erstellt",
+      "already_exists": "Annehmlichkeiten existieren bereits",
+      "cannot_contain_comma": "Annehmlichkeiten dürfen keine Kommata enthalten",
+      "no_amenities_selected": "Keine Annehmlichkeiten zum Speichern ausgewählt"
+    },
     "host": {
       "profile": {
         "subtitle": "Gastgeber",
@@ -275,6 +284,15 @@
       "submit": "Absenden",
       "cancel": "Abbrechen",
       "success": "Bewertung abgegeben"
+    },
+    "owner_card": {
+      "title": "Gastgeber",
+      "joined_in": "Beigetreten am"
+    },
+    "wishlist": {
+      "title": "Wunschzettel",
+      "wishlits_empty_title": "Erstelle deine erste Wunschliste",
+      "wishlits_empty_text": "Klicke während der Suche auf das Herzsymbol, um deine Lieblingsorte und Erlebnisse in einer Wunschliste zu speichern"
     }
   }
 }

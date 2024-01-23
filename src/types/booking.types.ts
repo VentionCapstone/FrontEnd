@@ -10,13 +10,26 @@ export interface AvailableDatesResponse {
 
 export interface BookResponse {
   success: boolean;
-  data: Book;
+  data: BookType;
 }
 
-interface Book {
+export interface BookListResponse {
+  data: BookType[];
+  success: boolean;
+  totalCount: number;
+}
+
+export interface BookType {
   id: string;
   startDate: string;
   endDate: string;
   status: string;
   accommodationId: string;
+  paymentId: string;
+  accommodation: {
+    title: string;
+    thumbnailUrl: string;
+    previewImgUrl: string;
+    price: number;
+  };
 }
