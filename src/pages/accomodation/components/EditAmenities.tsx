@@ -24,7 +24,6 @@ export default function EditAmenities({
   const { t } = useTranslation();
   const [currentAmenities, setCurrentAmenities] = useState<AmenitySetting[] | undefined>(undefined);
   const [otherAmenities, setOtherAmenities] = useState<string[]>([]);
-  // const [customAmenity, setCustomAmenity] = useState<string>('');
 
   const { data: amenities } = useGetAmenityListQuery();
   const queryClient = useQueryClient();
@@ -74,29 +73,6 @@ export default function EditAmenities({
     },
     [currentAmenities]
   );
-
-  // const addCustomAmenity = useCallback(
-  //   (e: FormEvent<HTMLFormElement>) => {
-  //     e.preventDefault();
-
-  //     if (customAmenity.trim()) {
-  //       if (customAmenity.includes(',')) {
-  //         toast.error(t(AmenitiesTr.cannot_contain_comma));
-  //         return;
-  //       }
-
-  //       const exists = otherAmenities?.find((amenity) => amenity === customAmenity);
-
-  //       if (!exists) {
-  //         setOtherAmenities((prev) => [...prev, customAmenity]);
-  //         setCustomAmenity('');
-  //       } else {
-  //         toast.error(t(AmenitiesTr.already_exists));
-  //       }
-  //     }
-  //   },
-  //   [customAmenity, otherAmenities, t]
-  // );
 
   const removeCustomAmenity = useCallback((amenity: string) => {
     setOtherAmenities((prev) => prev.filter((a) => a !== amenity));
@@ -185,36 +161,6 @@ export default function EditAmenities({
                 </ListItem>
               ))}
             </List>
-            <Box
-              sx={{
-                textAlign: 'center',
-              }}
-            >
-              {/* <form onSubmit={addCustomAmenity}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    gap: '5px',
-                    justifyContent: 'center',
-                    alignItems: 'stretch',
-                    marginTop: '10px',
-                  }}
-                >
-                  <TextField
-                    size="small"
-                    placeholder="Add custom amenity"
-                    value={customAmenity}
-                    onChange={(e) => setCustomAmenity(e.target.value)}
-                    sx={{
-                      outline: 'none',
-                    }}
-                  />
-                  <Button variant="outlined" color="secondary" type="submit">
-                    Add
-                  </Button>
-                </Box>
-              </form> */}
-            </Box>
           </Box>
           <Button
             variant="contained"

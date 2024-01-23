@@ -1,6 +1,7 @@
 export const ENDPOINTS = {
   auth: {
     signIn: '/auth/signin',
+    googleSignIn: '/auth/google/login',
     signUp: '/auth/signup',
     verifyEmail: '/auth/verify',
     updateEmail: '/auth/email',
@@ -41,5 +42,8 @@ export const ENDPOINTS = {
   booking: {
     getAvailableDates: (accommodationId: string) => `/booking/available-dates/${accommodationId}`,
     book: '/booking/book',
+  },
+  host: {
+    getHostProfile: (hostId: string) => `/users/host/${hostId}`,
   },
 } as const;

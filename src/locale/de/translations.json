@@ -16,17 +16,223 @@
       }
     },
     "errors": {
-      "default": "Etwas ist schief gegangen, versuchen Sie es erneut",
+      "default": "Etwas ist schief gelaufen, versuche es erneut",
 
       "accommodation_failed_to_get_single": "Fehler beim Abrufen einer einzelnen Unterkunft",
       "accommodation_failed_to_get_list": "Fehler beim Abrufen der Liste von Unterkünften",
 
       "field_is_required": "Dieses Feld ist erforderlich",
-      "enter_valid_email": "Bitte geben Sie eine gültige Email Adresse an",
+      "enter_valid_email": "Bitte geben Sie eine gültige E-Mail-Adresse an",
       "enter_valid_phone_number": "Bitte geben Sie eine gültige Telefonnummer ein",
       "password_must_contain": "Das Passwort muss mindestens einen Großbuchstaben, einen Kleinbuchstaben, eine Zahl und ein Sonderzeichen enthalten",
       "password_invalid_length": "Das Passwort muss mindestens 8 Zeichen lang sein",
       "password_not_matching": "Passwörter stimmen nicht überein!"
+    },
+
+    "home_ui": {
+      "user_home_btn": {
+        "account": "Konto",
+        "mylistings": "Meine Einträge",
+        "logout": "Ausloggen"
+      },
+      "register": {
+        "sign_in": {
+          "sing_in_btn": "Anmelden",
+          "sing_in_link": "anmelden",
+          "sing_title": "Anmelden",
+          "title": "Bitte einloggen",
+          "forgot_password": "Passwort vergessen",
+          "forgot_password_modal": "Geben Sie die mit Ihrem Konto verknüpfte E-Mail-Adresse ein, und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts per E-Mail.",
+          "send_resend_link": "Link zum Zurücksetzen senden",
+          "forgot_password_desc": "Wenn Sie noch kein Konto haben, melden Sie sich bitte an"
+        },
+        "sing_out": {
+          "sing_up_btn": "Registrieren",
+          "sing_up_link": "registrieren",
+          "sing_title": "Willkommen bei Airbnb",
+          "desc": "Wenn Sie bereits ein Konto haben, melden Sie sich bitte an"
+        }
+      },
+      "filters_button": {
+        "filter": "Filter",
+        "price": {
+          "price_range": "Preisklasse",
+          "price_description": "Preise pro Nacht vor Gebühren und Steuern",
+          "min": "Minimum",
+          "max": "Maximum"
+        },
+        "rooms": {
+          "title": "Zimmer",
+          "any": "Beliebig"
+        },
+        "people": {
+          "title": "Leute",
+          "any": "Beliebig"
+        },
+        "sort": {
+          "title": "Sortieren",
+          "price-title": "Preis",
+          "room-title": "Zimmer",
+          "people-title": "Leute",
+          "price": ["beliebig", "Niedrig bis Hoch", "Hoch bis Niedrig"],
+          "room": ["beliebig", "Niedrig bis Hoch", "Hoch bis Niedrig"],
+          "people": ["beliebig", "Niedrig bis Hoch", "Hoch bis Niedrig"]
+        },
+        "clear_btn": "Löschen",
+        "filter_btn": "Filter"
+      },
+      "card": {
+        "night": "Nacht"
+      },
+      "footer_info": {
+        "terms": "Bedingungen",
+        "sitemap": "Seitenverzeichnis",
+        "privacy": "Privatsphäre",
+        "your_privacy_choices": "Ihre Datenschutzeinstellungen",
+        "copyright": "© 2023 Airbnb, Inc."
+      }
+    },
+    "account_edit_page": {
+      "personal_info": "Persönliche Informationen",
+      "personal_desc": "Aktualisieren Sie Ihr persönliches Passwort und sichern Sie Ihr Konto",
+      "login_secure": "Anmeldung & Sicherheit",
+      "login_secure_desc": "Geben Sie sichere Details an und wie wir Sie erreichen können",
+      "setting": "Einstellungen",
+      "setting_desc": "Legen Sie Ihre Standardsprache und Währung fest",
+      "airbnb_your_place": "Verleihe deine Unterkunft auf Airbnb",
+      "airbnb_your_place_desc": "Es ist einfach einzurichten und mit dem Verdienen zu beginnen."
+    },
+
+    "account_edit_personal-info": {
+      "name": {
+        "legal_name": "Legal Name",
+        "legal_name_desc": "Dies ist der Name in Ihrem Reisedokument, das eine Lizenz oder einen Pass sein kann.",
+        "edit": "Bearbeiten",
+        "save": "Speichern",
+        "first_name": "Vorname",
+        "last_name": "Nachname"
+      },
+      "gender": {
+        "your_gender": "Ihr Geschlecht",
+        "male": "männlich",
+        "female": "weiblich",
+        "edit": "Bearbeiten",
+        "save": "Speichern",
+        "select": "Wählen Sie Ihr Geschlecht",
+        "gender": "Geschlecht"
+      },
+      "location": {
+        "where_do_live": "Wo leben Sie",
+        "edit": "Bearbeiten",
+        "save": "Speichern",
+        "select": "Wählen Sie Ihr Land",
+        "uzbekistan": "Usbekistan",
+        "kazakhstan": "Kasachstan",
+        "russia": "Russland",
+        "country": "Land"
+      },
+      "number": {
+        "phone_number": "Telefonnummer",
+        "phone_number_desc": "Fügen Sie eine Nummer hinzu, damit bestätigte Gäste und Airbnb Kontakt aufnehmen können. Sie können weitere Nummern hinzufügen und auswählen, wie sie verwendet werden sollen.",
+        "edit": "Bearbeiten",
+        "save": "Speichern"
+      },
+      "about": {
+        "about": "Über Sie",
+        "about_desc": "Schreiben Sie etwas Unterhaltsames und Prägnantes",
+        "about_textarea": "Erzählen Sie uns ein wenig über sich selbst, damit Ihre zukünftigen Gastgeber oder Gäste Sie kennenlernen können.",
+        "edit": "Bearbeiten",
+        "save": "Speichern"
+      }
+    },
+    "login_and_security": {
+      "login_title": "Anmeldung und Sicherheit",
+      "email": {
+        "edit": "Bearbeiten",
+        "email": "E-Mail",
+        "email_desc": "Geben Sie Ihre neue E-Mail-Adresse ein",
+        "change_btn": "Ändern",
+        "cancel": "Abbrechen"
+      },
+      "password": {
+        "change_your_password": "Ändern Sie Ihr Passwort",
+        "edit": "Bearbeiten",
+        "change_btn": "Ändern",
+        "cancel": "Abbrechen",
+        "current": "Aktuelles Passwort",
+        "new_password": "Neues Passwort",
+        "confirm": "Passwort bestätigen",
+        "password": "Passwort"
+      }
+    },
+    "setting": {
+      "title": "Einstellungen",
+      "theme": "Thema",
+      "light": "Hell",
+      "dark": "Dunkel",
+      "language": "Ausgewählte Sprachen",
+      "lang_desc": "Dies aktualisiert, was Sie auf Airbnb lesen, und wie wir mit Ihnen kommunizieren.",
+      "currency_desc": "Wählen Sie Ihre bevorzugte Währung",
+      "can_dollar": "Kanadischer Dollar",
+      "uzbek": "Usbekisch",
+      "russian": "Russisch",
+      "english": "Englisch",
+      "kazak": "Kasachisch",
+      "german": "Deutsch",
+      "currency": "Ausgewählte Währung",
+      "dollar": "US-Dollar"
+    },
+    "aminities_list": {
+      "title": "Was dieses Hotel bietet"
+    },
+
+    "review_list": {
+      "title": "Bewertung",
+      "show_all": "Alle anzeigen",
+      "reviews": "Bewertungen"
+    },
+
+    "booking_form": {
+      "error_message": "Das Anreisedatum muss vor dem Abreisedatum liegen und darf nicht identisch sein",
+      "night": "Nacht",
+      "you_will_not_charged_yet": "Sie werden noch nicht belastet",
+      "total": "Gesamt",
+      "login": "Anmelden",
+      "login_required": "ist erforderlich, um eine Reservierung vorzunehmen",
+      "reserve": "Reservieren",
+      "check_in": "Einchecken",
+      "check_out": "Auschecken"
+    },
+
+    "forgot_password_reset": {
+      "title": "Passwort aktualisieren",
+      "description": "Geben Sie Ihr neues Passwort unten ein, um Ihr Passwort zurückzusetzen.",
+      "password": "Passwort",
+      "re_enter": "Geben Sie Ihr Passwort erneut ein",
+      "update": "Aktualisieren"
+    },
+
+    "verify_email": {
+      "title": "E-Mail-Verifizierung..."
+    },
+
+    "create_profile": {
+      "title": "Profil erstellen",
+      "legal_name": "Rechtlicher Name",
+      "first_name": "Vorname",
+      "last_name": "Nachname",
+      "select_country": "Land auswählen",
+      "uzbekistan": "Usbekistan",
+      "russian": "Russland",
+      "kazakhstan": "Kasachstan",
+      "gender": "Geschlecht",
+      "male": "Männlich",
+      "female": "Weiblich",
+      "phone_number": "Telefonnummer",
+      "description": "Beschreibung",
+      "description_desc": "Erzählen Sie uns ein wenig über sich selbst, damit Ihre zukünftigen Gastgeber oder Gäste Sie kennenlernen können.",
+      "create_btn": "Erstellen",
+      "country": "Land"
     },
     "searchTexts": {
       "input_date_label_checkin": "Check-in",
@@ -42,6 +248,38 @@
       "already_exists": "Annehmlichkeiten existieren bereits",
       "cannot_contain_comma": "Annehmlichkeiten dürfen keine Kommata enthalten",
       "no_amenities_selected": "Keine Annehmlichkeiten zum Speichern ausgewählt"
+    },
+    "host": {
+      "profile": {
+        "subtitle": "Gastgeber",
+        "rating": "Bewertung",
+        "reviews": "Bewertungen",
+        "listings": "Inserate"
+      },
+      "verified": {
+        "title": "Bestätigte Informationen von {{firstName}}",
+        "identity": "Identität",
+        "email": "E-Mail-Adresse",
+        "phone": "Telefonnummer"
+      },
+      "about": {
+        "title": "Über {{firstName}}",
+        "joined": "Beigetreten im Jahr {{joinedAt}}",
+        "language": "Spricht {{language}}",
+        "lives_in": "Lebt in {{country}}"
+      },
+      "reviews": {
+        "title": "Neueste Bewertungen von {{firstName}}",
+        "empty": "Dieser Gastgeber hat noch keine Bewertungen"
+      },
+      "listings": {
+        "title": "Inserate von {{firstName}}",
+        "empty": "Dieser Gastgeber hat keine aktiven Unterkünfte"
+      }
+    },
+    "owner_card": {
+      "title": "Gastgeber",
+      "joined_in": "Beigetreten am"
     }
   }
 }

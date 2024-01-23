@@ -16,6 +16,7 @@ import { getValueFromLocalStorage, handleErrorInImage, selectOnlyTrueAmenities }
 import YandexMap from '../../components/shared/YandexMap';
 import { styles } from './Accommodation.styles';
 import AmenityList from './components/AmenityList';
+import OwnerCard from './components/OwnerCard';
 import { Reviews } from './components/Reviews';
 import { buildAmenityList } from './utils/amenityListBuilder';
 
@@ -134,7 +135,10 @@ function Accommodation() {
               </Button>
             </Box>
           ) : (
-            <BookingForm accomodationId={accommodationId} price={data.price} />
+            <>
+              <BookingForm accomodationId={accommodationId} price={data.price} />
+              <OwnerCard owner={data.owner} />
+            </>
           )}
         </Box>
       </Box>

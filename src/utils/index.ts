@@ -1,6 +1,7 @@
 import toast from 'react-hot-toast';
 
 import ErrorImage from '@src/assets/no-image.png';
+import { DEFAULT_LANGUAGE, LANGUAGE_LIST } from '@src/pages/profile/constants';
 import { Amenities } from '@src/types/amenity.types';
 import { ThemeMode } from '@src/types/profile.types';
 
@@ -93,4 +94,8 @@ export const selectOnlyTrueAmenities = (amenities: Amenities) => {
 export const handleErrorInImage = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
   e.currentTarget.src = ErrorImage;
   e.currentTarget.style.objectFit = 'contain';
+};
+
+export const convertCodeToLanguage = (value: string): string => {
+  return LANGUAGE_LIST.find((lang) => lang.code === value)?.name || DEFAULT_LANGUAGE.name;
 };

@@ -2,6 +2,7 @@ import { MuiStylesObject } from '@src/types/utility.types';
 
 export const footerStyles = {
   stickyFooter: {
+    zIndex: 999,
     display: {
       xs: 'none',
       md: 'block',
