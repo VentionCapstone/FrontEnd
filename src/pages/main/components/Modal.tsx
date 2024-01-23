@@ -3,6 +3,8 @@ import { Box, Button, Fade, Modal, Stack, Typography } from '@mui/material';
 import { useCallback, useMemo, useState } from 'react';
 
 import { FormValue, MainModalProps } from '@src/types/accommodation.types';
+import { HomeUIInfo } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 import { modalStyles } from './Modal.styles';
 import PriceRangeInputs from './PriceRangeInputs';
 import PriceRangeSlider from './PriceRangeSlider';
@@ -20,6 +22,7 @@ export default function MainModal({
   checkInDate,
   checkOutDate,
 }: MainModalProps) {
+  const { t } = useTranslation();
   const { totalMinPrice, totalMaxPrice } = priceRange;
   const { minPeople, minRooms, minPrice, maxPrice, orderByPrice, orderByRoom, orderByPeople } =
     filters;
@@ -98,7 +101,7 @@ export default function MainModal({
             alignItems={'center'}
             flexGrow={'0'}
           >
-            <Typography variant="lg">Filter</Typography>
+            <Typography variant="lg">{t(HomeUIInfo.filters_button_filter)}</Typography>
             <Button
               disableRipple
               disableFocusRipple
@@ -117,45 +120,47 @@ export default function MainModal({
             }}
           >
             <Box>
-              <Typography>Price Range</Typography>
-              <Typography variant={'sm'}>Nightly prices before fees and taxes</Typography>
+              <Typography> {t(HomeUIInfo.filters_button_price_price_range)}</Typography>
+              <Typography variant={'sm'}>
+                {t(HomeUIInfo.filters_button_price_price_description)}
+              </Typography>
               <Box sx={modalStyles.sliderContainer}>
                 <PriceRangeSlider value={value} setValue={setValue} />
                 <PriceRangeInputs value={value} setValue={setValue} />
               </Box>
             </Box>
             <SortBox
-              title="Rooms"
+              title={t(HomeUIInfo.filters_button_rooms_title)}
               options={roomsAndPeopleQuantity}
               minItem={value.minRooms}
               setValue={setValue}
               name={'minRooms'}
             />
             <SortBox
-              title="People"
+              title={t(HomeUIInfo.filters_button_people_title)}
               options={roomsAndPeopleQuantity}
               minItem={value.minPeople}
               setValue={setValue}
               name={'minPeople'}
             />
             <Box mb={'1rem'}>
-              <Typography variant="lg">Sort</Typography>
+              <Typography variant="lg">{t(HomeUIInfo.filters_button_sort_title)}</Typography>
               <SortBox
-                title="Price"
+                title={t(HomeUIInfo.filters_button_sort_price_title)}
                 options={sortOptions}
                 minItem={value.orderByPrice}
                 setValue={setValue}
                 name={'orderByPrice'}
               />
               <SortBox
-                title="Rooms"
+                title={t(HomeUIInfo.filters_button_sort_room_title)}
                 options={sortOptions}
                 minItem={value.orderByRoom}
                 setValue={setValue}
                 name={'orderByRoom'}
               />
               <SortBox
-                title="People"
+                title={t(HomeUIInfo.filters_button_sort_people_title)}
                 options={sortOptions}
                 minItem={value.orderByPeople}
                 setValue={setValue}
@@ -171,10 +176,10 @@ export default function MainModal({
             flexGrow={'0'}
           >
             <Button variant="contained" onClick={handleFilterClear}>
-              Clear
+              {t(HomeUIInfo.filters_button_clear_btn)}
             </Button>
             <Button variant="contained" onClick={handleFilterClick}>
-              Filter
+              {t(HomeUIInfo.filters_button_filter_btn)}
             </Button>
           </Stack>
         </Box>

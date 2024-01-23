@@ -14,6 +14,10 @@ export const FONT_SIZES = {
     fontSize: '0.875rem',
     lineHeight: '1.25rem',
   },
+  md: {
+    fontSize: '1.2rem',
+    lineHeight: '1.4rem',
+  },
   lg: {
     fontSize: '1.375rem',
     lineHeight: '1.75rem',
@@ -21,6 +25,13 @@ export const FONT_SIZES = {
   xl: {
     fontSize: '1.5rem',
     lineHeight: '2rem',
+  },
+  heading: {
+    'fontSize': '1.5rem',
+    'fontWeight': 600,
+    '@media (min-width:768px)': {
+      fontSize: '2rem',
+    },
   },
 };
 
@@ -55,6 +66,7 @@ const lightTheme: ThemeOptions = {
     sm: FONT_SIZES.sm,
     lg: FONT_SIZES.lg,
     xl: FONT_SIZES.xl,
+    heading: FONT_SIZES.heading,
   },
   breakpoints: {
     values: {
@@ -80,6 +92,7 @@ const lightTheme: ThemeOptions = {
           sm: 'p',
           lg: 'p',
           xl: 'p',
+          heading: 'h1',
         },
       },
     },
@@ -117,6 +130,7 @@ const darkTheme: ThemeOptions = {
     sm: FONT_SIZES.sm,
     lg: FONT_SIZES.lg,
     xl: FONT_SIZES.xl,
+    heading: FONT_SIZES.heading,
   },
   breakpoints: {
     values: {
@@ -142,6 +156,7 @@ const darkTheme: ThemeOptions = {
           sm: 'p',
           lg: 'p',
           xl: 'p',
+          heading: 'h1',
         },
       },
     },

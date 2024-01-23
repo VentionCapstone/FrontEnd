@@ -25,7 +25,7 @@ import {
   PHONE_CODES_BY_COUNTRY,
 } from '@src/constants';
 import { PhoneCodesByCountry } from '@src/constants/constant.types';
-import { ErrorTypes, ProfileActions } from '@src/types/i18n.types';
+import { CreateProfileForm, ErrorTypes, ProfileActions } from '@src/types/i18n.types';
 import { Gender, Profile, ThemeMode } from '@src/types/profile.types';
 import { useTranslation } from 'react-i18next';
 import AddImage from '../AddImage';
@@ -33,6 +33,7 @@ import UserFullName from './UserFullName';
 import UserPhoneNumber from './UserPhoneNumber';
 
 function CreateProfile() {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -101,7 +102,7 @@ function CreateProfile() {
   return (
     <>
       <Typography fontSize={{ xs: '1.5rem', md: '2rem' }} fontWeight={600} component={'h1'} mb={8}>
-        Create Profile
+        {t(CreateProfileForm.title)}
       </Typography>
 
       <form onSubmit={(e) => void handleSubmit(onSubmit)(e)}>
@@ -116,11 +117,13 @@ function CreateProfile() {
             <Stack direction={{ md: 'row' }} columnGap={4} rowGap={8}>
               <Box width={'100%'}>
                 <Typography fontWeight={600} mb={{ xs: 3, md: 4 }}>
-                  Select country
+                  {t(CreateProfileForm.select_country)}
                 </Typography>
 
                 <FormControl fullWidth size="small">
-                  <InputLabel id="user-country-select-label">Coutry</InputLabel>
+                  <InputLabel id="user-country-select-label">
+                    {t(CreateProfileForm.country)}
+                  </InputLabel>
                   <Controller
                     name="country"
                     control={control}
@@ -140,19 +143,21 @@ function CreateProfile() {
 
               <Box width={'100%'}>
                 <Typography fontWeight={600} mb={4}>
-                  Select your gender
+                  {t(CreateProfileForm.gender)}
                 </Typography>
 
                 <FormControl fullWidth size="small">
-                  <InputLabel id="user-gender-select-label">Gender</InputLabel>
+                  <InputLabel id="user-gender-select-label">
+                    {t(CreateProfileForm.gender)}
+                  </InputLabel>
                   <Controller
                     name="gender"
                     control={control}
                     defaultValue={Gender.male}
                     render={({ field }) => (
                       <Select {...field} labelId="user-gender-select-label" label="Gender">
-                        <MenuItem value={Gender.male}>Male</MenuItem>
-                        <MenuItem value={Gender.female}>Female</MenuItem>
+                        <MenuItem value={Gender.male}>{t(CreateProfileForm.male)}</MenuItem>
+                        <MenuItem value={Gender.female}>{t(CreateProfileForm.female)}</MenuItem>
                       </Select>
                     )}
                   />
@@ -169,10 +174,9 @@ function CreateProfile() {
           />
 
           <Box>
-            <Typography fontWeight={600}>Decsription</Typography>
+            <Typography fontWeight={600}>{t(CreateProfileForm.description)}</Typography>
             <Typography variant={'sm'} mt={1} mb={{ xs: 3, md: 4 }} color={'secondary2.main'}>
-              Tell us a little bit about yourself, so your future hosts or guests can get to know
-              you.
+              {t(CreateProfileForm.description_desc)}
             </Typography>
 
             <TextField
@@ -204,7 +208,7 @@ function CreateProfile() {
             textTransform: 'none',
           }}
         >
-          Create
+          {t(CreateProfileForm.create_btn)}
         </Button>
       </form>
     </>

@@ -1,17 +1,26 @@
 import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
 import { ConfirmationModalProps } from '@src/types/accommodation.types';
-import React from 'react';
 
 export default function ConfirmationModal({ open, onClose, onConfirm }: ConfirmationModalProps) {
   return (
-    <React.Fragment>
+    <>
       <Dialog
         open={open}
         onClose={onClose}
+        maxWidth="lg"
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">Delete this accommodation?</DialogTitle>
+        <DialogTitle
+          id="alert-dialog-title"
+          sx={{
+            fontSize: '1rem',
+            fontWeight: 600,
+            mb: -5,
+          }}
+        >
+          Are you sure you want to delete this accommodation?
+        </DialogTitle>
         <DialogActions>
           <Button onClick={onClose}>No</Button>
           <Button autoFocus onClick={onConfirm}>
@@ -19,6 +28,6 @@ export default function ConfirmationModal({ open, onClose, onConfirm }: Confirma
           </Button>
         </DialogActions>
       </Dialog>
-    </React.Fragment>
+    </>
   );
 }

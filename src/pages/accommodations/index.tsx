@@ -14,7 +14,7 @@ import { AccommodationType } from '@src/types/accommodation.types';
 import { ErrorTypes } from '@src/types/i18n.types';
 import { useCallback, useMemo } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import AccommodationSkeleton from './AccommodationSkeleton';
+import AccommodationSkeleton from './components/AccommodationSkeleton';
 
 export default function Accommodations() {
   const profileId = useAppSelector(getUser)?.id ?? '';
@@ -71,7 +71,7 @@ export default function Accommodations() {
           <Box display="grid" gap={8} gridTemplateColumns={'repeat(auto-fill, minmax(280px, 1fr))'}>
             {accommodations?.map(({ id, title, thumbnailUrl, previewImgUrl, isDeleted, price }) => (
               <Link
-                to={ROUTES.accommodations.edit(id)}
+                to={ROUTES.accommodations.details(id)}
                 key={id}
                 style={{
                   color: 'inherit',

@@ -11,8 +11,10 @@ import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 import { PHONE_CODES_BY_COUNTRY } from '@src/constants';
 import { PhoneCodesByCountry } from '@src/constants/constant.types';
+import { CreateProfileForm, ErrorTypes } from '@src/types/i18n.types';
 import { Profile } from '@src/types/profile.types';
 import { phoneNumLengthRegEx } from '@src/utils';
+import { useTranslation } from 'react-i18next';
 
 function UserPhoneNumber({
   register,
@@ -31,16 +33,17 @@ function UserPhoneNumber({
 
     if (country) setSelectedCountry(country);
   };
+  const { t } = useTranslation();
 
   return (
     <Box>
       <Typography fontWeight={600} mb={{ xs: 3, md: 4 }}>
-        Phone number
+        {t(CreateProfileForm.phone_number)}
       </Typography>
 
       <Stack gap={4} direction={{ md: 'row' }}>
         <FormControl fullWidth size="small">
-          <InputLabel id="number-country-select-label">Coutry</InputLabel>
+          <InputLabel id="number-country-select-label">{t(CreateProfileForm.country)}</InputLabel>
           <Select
             value={selectedCountry.name}
             onChange={handleCountryChange}
@@ -59,17 +62,17 @@ function UserPhoneNumber({
         <Box width={'100%'}>
           <TextField
             {...register('phoneNumber', {
-              required: 'This field is required',
+              required: `${t(ErrorTypes.field_is_required)}`,
               pattern: {
                 value: phoneNumLengthRegEx(selectedCountry.numLength),
-                message: 'Please enter a valid phone number',
+                message: `${t(ErrorTypes.enter_valid_phone_number)}`,
               },
             })}
             error={!!errors.phoneNumber}
             helperText={errors.phoneNumber?.message}
             fullWidth
             size="small"
-            label="Phone number"
+            label={t(CreateProfileForm.phone_number)}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">+{selectedCountry.code}</InputAdornment>

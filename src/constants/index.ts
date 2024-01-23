@@ -1,4 +1,4 @@
-import { PhoneCodesByCountry } from './constant.types';
+import { LanguageCollection, PhoneCodesByCountry } from './constant.types';
 
 export const DATE_FORMAT = 'MM-DD-YYYY';
 
@@ -8,7 +8,13 @@ export const DATE_FORMAT_MONTH_FIRST = 'YYYY-MM-DD';
 
 export const DATE_MONTH_DAY = 'MMM DD';
 
-export const DEFAULT_LANGUAGE = 'en';
+export const MAX_UPLOAD_FILE_NUMBER = 20;
+
+export const MINUMUM_UPLOAD_FILE_NUMBER = 5;
+
+export const ACCEPT_UPLOAD_FILE_TYPE = ['jpg', 'gif', 'png'];
+
+export const DATE_MONTH_YEAR_FORMAT = 'MMMM YYYY';
 
 export const DEFAULT_MALE_IMAGE =
   'https://i.pinimg.com/564x/48/6c/a0/486ca00640b169300b48e9ceacd8e401.jpg';
@@ -23,3 +29,13 @@ export const PHONE_CODES_BY_COUNTRY: PhoneCodesByCountry[] = [
 ];
 
 export const DEFAULT_COUNTRY = PHONE_CODES_BY_COUNTRY[0];
+
+export const LANGUAGE_LIST: LanguageCollection[] = [
+  { name: 'English', code: 'en' },
+  { name: 'Русский', code: 'ru' },
+  { name: "O'zbekcha", code: 'uz' },
+  { name: 'Қазақша', code: 'kz' },
+  { name: 'Deutsche', code: 'de' },
+];
+
+export const DEFAULT_LANGUAGE = LANGUAGE_LIST[0];

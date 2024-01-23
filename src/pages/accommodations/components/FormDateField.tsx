@@ -24,7 +24,11 @@ export const FormDateField = memo(({ name, label, control, helperText }: FormFie
           label={label}
           format={DATE_FORMAT}
           helperText={helperText}
-          value={dayjs(field.value)}
+          value={
+            typeof field.value === 'string' || typeof field.value === 'number'
+              ? dayjs(field.value)
+              : null
+          }
           onChange={(newValue) => field.onChange(dayjs(newValue))}
         />
       </LocalizationProvider>
