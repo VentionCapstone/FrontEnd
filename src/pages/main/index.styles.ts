@@ -1,5 +1,4 @@
 import { MuiStylesObject } from '@src/types/utility.types';
-import { pink } from '@mui/material/colors';
 
 export const mainStyles = {
   badgeNumber: {
@@ -69,7 +68,7 @@ export const mainStyles = {
     width: 50,
     height: 50,
     minWidth: 50,
-    backgroundColor: pink[500],
+    backgroundColor: 'secondary.main',
     padding: 0,
   },
   mobileSearchBarButton: {

@@ -1,7 +1,5 @@
-import LanguageIcon from '@mui/icons-material/Language';
 import Box from '@mui/material/Box';
 import Container, { ContainerProps } from '@mui/material/Container';
-import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -10,6 +8,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import logo from '@src/assets/logo.png';
 import { ROUTES } from '@src/config/routes.config';
+import { PROJECT_NAME } from '@src/constants';
 import useIntersectionObserver from '@src/hooks/useIntersectionObserver';
 import { BottomNav } from './BottomNavigation';
 import { TopNavMenu } from './TopNavMenu';
@@ -39,17 +38,13 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
                 <Box
                   src={logo}
                   component={'img'}
-                  sx={{ width: '2rem', height: '2rem', objectFit: 'contain' }}
+                  sx={{ width: '2rem', height: '2rem', objectFit: 'contain', mr: 1 }}
                 />
                 <Typography variant={'xl'} fontWeight={800} color={'secondary.main'}>
-                  airbnb
+                  {PROJECT_NAME}
                 </Typography>
               </Stack>
             </Link>
-
-            <IconButton aria-label="global-settings" sx={{ mr: 4, color: 'secondary2.main' }}>
-              <LanguageIcon sx={{ fontSize: '1.25rem' }} />
-            </IconButton>
 
             <TopNavMenu />
           </Stack>

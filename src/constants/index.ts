@@ -9,3 +9,5 @@ export const DATE_MONTH_DAY = 'MMM DD';
 export const DEFAULT_LANGUAGE = 'en';
 
 export const DATE_MONTH_YEAR_FORMAT = 'MMMM YYYY';
+
+export const PROJECT_NAME = 'QuickStay';
