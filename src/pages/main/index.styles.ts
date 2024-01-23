@@ -1,5 +1,5 @@
-import { MuiStylesObject } from '@src/types/utility.types';
 import { pink } from '@mui/material/colors';
+import { MuiStylesObject } from '@src/types/utility.types';
 
 export const mainStyles = {
   badgeNumber: {
@@ -49,7 +49,7 @@ export const mainStyles = {
     justifyContent: 'flex-start',
     alignItems: 'center',
     mb: 8,
-    width: '97%',
+    width: '98%',
   },
   searchDesktopContainer: {
     p: 0,

@@ -1,6 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material';
 import { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { ROUTES } from '@src/config/routes.config';
 import { useAppSelector } from '@src/hooks/redux-hooks';
@@ -9,6 +10,7 @@ import { Wishlist } from '@src/types/wishlist.types';
 import CustomImage from '../../shared/CustomImage';
 import FavoriteButton from './FavoriteButton';
 import { accommodationCardStyles } from './accommodationCard.styles';
+import { HomeUIInfo } from '@src/types/i18n.types';
 
 function AccommodationCard({
   accommodation: {
@@ -22,6 +24,7 @@ function AccommodationCard({
   accommodation: Wishlist['accommodation'];
 }) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const isLoggedIn = useAppSelector(hasToken);
 
   const handleClickAccommodation = () => {
@@ -43,7 +46,7 @@ function AccommodationCard({
             <Box component={'span'} fontWeight={800}>
               ${price}{' '}
             </Box>
-            night
+            {t(HomeUIInfo.card_night)}
           </Typography>
         </Stack>
       </Stack>

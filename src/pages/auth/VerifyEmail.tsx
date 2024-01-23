@@ -4,8 +4,11 @@ import { useSearchParams } from 'react-router-dom';
 
 import useVerifyEmailMutation from '@src/api/mutations/auth/useVerifyEmailMutation';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
+import { VerifyEmails } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 
 function VerifyEmail() {
+  const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token') || '';
 
@@ -27,7 +30,7 @@ function VerifyEmail() {
         height: '30vh',
       }}
     >
-      <Typography variant="h4">Verifying email...</Typography>
+      <Typography variant="h4">{t(VerifyEmails.title)}</Typography>
     </Box>
   );
 }

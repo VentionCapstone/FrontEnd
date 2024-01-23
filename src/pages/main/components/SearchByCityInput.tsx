@@ -6,12 +6,12 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { debounce } from '@mui/material/utils';
 import { SearchByCityInputProps } from '@src/types/accommodation.types';
+import { SearchTexts } from '@src/types/i18n.types';
 import parse from 'autosuggest-highlight/parse';
 import * as React from 'react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { mainStyles } from '../index.styles';
-import { SearchTexts } from '@src/types/i18n.types';
 import { useTranslation } from 'react-i18next';
+import { mainStyles } from '../index.styles';
 
 const GOOGLE_MAPS_API_KEY: string = import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string;
 

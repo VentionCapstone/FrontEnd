@@ -13,6 +13,10 @@ export const FONT_SIZES = {
     fontSize: '0.875rem',
     lineHeight: '1.25rem',
   },
+  md: {
+    fontSize: '1.2rem',
+    lineHeight: '1.4rem',
+  },
   lg: {
     fontSize: '1.375rem',
     lineHeight: '1.75rem',

@@ -89,6 +89,7 @@ export interface PriceRange {
 }
 
 export interface Accommodation {
+  title: string;
   id: string;
   thumbnailUrl: string;
   squareMeters: number;
@@ -126,6 +127,12 @@ export type MainModalProps = {
   location: string;
   checkInDate: string;
   checkOutDate: string;
+};
+
+export type MapModalProps = {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  searchParamsAsObject: Record<string, string>;
 };
 
 export type SearchBarProps = {
@@ -225,6 +232,7 @@ export interface AccommodationSingle {
   address: Address;
   media: Media[];
   amenities: Amenity[];
+  owner: Owner;
   timezoneOffset: number;
   title: string;
 }
@@ -265,4 +273,17 @@ export interface Amenity {
   hasAirportTransfer: boolean;
   accommodationId: string;
   otherAmenities: string | null;
+}
+
+export interface Owner {
+  createdAt: string;
+  firstName: string;
+  id: string;
+  isVerified: boolean;
+  lastName: string;
+  profile: {
+    country: string;
+    imageUrl: string;
+    language: string;
+  };
 }

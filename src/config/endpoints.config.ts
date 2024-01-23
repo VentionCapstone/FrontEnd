@@ -1,6 +1,7 @@
 export const ENDPOINTS = {
   auth: {
     signIn: '/auth/signin',
+    googleSignIn: '/auth/google/login',
     signUp: '/auth/signup',
     verifyEmail: '/auth/verify',
     updateEmail: '/auth/email',
@@ -44,5 +45,8 @@ export const ENDPOINTS = {
     root: '/wishlist',
     addToWishlist: (accommodationId: string) => `/wishlist/${accommodationId}`,
     deleteFromWishlist: (accommodationId: string) => `/wishlist/${accommodationId}`,
+  },
+  host: {
+    getHostProfile: (hostId: string) => `/users/host/${hostId}`,
   },
 } as const;

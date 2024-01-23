@@ -10,11 +10,15 @@ import InputForm from '@src/components/input/InputForm';
 import PasswordInput from '@src/components/input/PasswordInput';
 import { ENDPOINTS } from '@src/config/endpoints.config';
 import { SignInReq, signInSchema } from '@src/types/auth.types';
+import { HomeUIInfo, LoginAndSecurityInfo } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 import ForgotPasswordModal from './components/ForgotPasswordModal';
+import GoogleLoginButton from './components/GoogleLoginButton';
 import { styles } from './styles';
 
 const SignIn = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useTranslation();
 
   const {
     handleSubmit,
@@ -44,11 +48,11 @@ const SignIn = () => {
   return (
     <Box sx={styles.formContainer}>
       <Typography variant="subtitle1" align="center" margin={5} fontWeight="bold">
-        Sign In
+        {t(HomeUIInfo.sign_in_sing_title)}
       </Typography>
       <Divider />
       <Stack p={4} spacing={2}>
-        <Typography variant="h5">Please login</Typography>
+        <Typography variant="h5">{t(HomeUIInfo.sign_in_title)}</Typography>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack gap={3}>
@@ -59,8 +63,8 @@ const SignIn = () => {
                 <InputForm
                   {...field}
                   type="email"
-                  placeholder="Email"
-                  label="Email"
+                  placeholder={t(LoginAndSecurityInfo.email)}
+                  label={t(LoginAndSecurityInfo.email)}
                   error={!!errors.email}
                   helperText={errors.email?.message}
                 />
@@ -68,26 +72,26 @@ const SignIn = () => {
             />
             <PasswordInput
               name="password"
-              label="Password"
-              placeholder="Password"
+              label={t(LoginAndSecurityInfo.password_input)}
+              placeholder={t(LoginAndSecurityInfo.password_input)}
               control={control}
               errors={errors}
             />
           </Stack>
           <ButtonPrimary type="submit" loading={isPending}>
-            Sign in
+            {t(HomeUIInfo.sign_in_sing_in_btn)}
           </ButtonPrimary>
         </form>
 
         <Box sx={styles.formForgotPasswordContainer}>
           <Button sx={styles.formForgotPasswordButton} onClick={handleModal}>
-            Forgot Password?
+            {t(HomeUIInfo.sign_in_forgot_password)}
           </Button>
         </Box>
         <Typography variant="subtitle2" align="center" color="secondary2.main">
-          If you do not have an account, please{' '}
+          {t(HomeUIInfo.sign_in_forgot_password_desc)}{' '}
           <Link component={RouterLink} to={ENDPOINTS.auth.signUp} sx={styles.formLink}>
-            sign up
+            {t(HomeUIInfo.sing_up_link)}
           </Link>
         </Typography>
       </Stack>
@@ -96,6 +100,8 @@ const SignIn = () => {
       {isModalOpen && (
         <ForgotPasswordModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       )}
+
+      <GoogleLoginButton />
     </Box>
   );
 };
