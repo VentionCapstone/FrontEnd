@@ -45,7 +45,7 @@ function LoginAndSecurity() {
         />
 
         <EditablePanel
-          panelHeading={t(LoginAndSecurityInfo.password)}
+          panelHeading={t(LoginAndSecurityInfo.password_input)}
           initial={
             <Typography variant={'sm'} color={'secondary2.main'}>
               {t(LoginAndSecurityInfo.password_change_your_password)}

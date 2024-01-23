@@ -49,7 +49,10 @@ export enum HomeUIInfo {
   sign_in_forgot_password_desc = 'home_ui.register.sign_in.forgot_password_desc',
   sing_out_sing_up_btn = 'home_ui.register.sing_out.sing_up_btn',
   sing_out_sing_title = 'home_ui.register.sing_out.sing_title',
+  sing_out_passport_placeholder = 'home_ui.register.sing_out.passport_placeholder',
   sing_out_desc = 'home_ui.register.sing_out.desc',
+  sing_in_link = 'home_ui.register.sign_in.sing_in_link',
+  sing_up_link = 'home_ui.register.sing_out.sing_up_link',
 
   filters_button_filter = 'home_ui.filters_button.filter',
   filters_button_price_price_range = 'home_ui.filters_button.price.price_range',
@@ -84,7 +87,7 @@ export enum AccountEditPageInfo {
   login_secure_desc = 'account_edit_page.login_secure_desc',
   setting = 'account_edit_page.setting',
   setting_desc = 'account_edit_page.setting_desc',
-  male = 'male',
+  male = '',
   airbnb_your_place = 'account_edit_page.airbnb_your_place',
   airbnb_your_place_desc = 'account_edit_page.airbnb_your_place_desc',
 }
@@ -144,7 +147,7 @@ export enum LoginAndSecurityInfo {
   password_current = 'login_and_security.password.current',
   password_new_password = 'login_and_security.password.new_password',
   password_confirm = 'login_and_security.password.confirm',
-  password = 'login_and_security.password.password',
+  password_input = 'login_and_security.password.passport_placeholder',
 }
 
 export enum SettingsInfo {
@@ -181,7 +184,7 @@ export enum BookingForms {
   you_will_not_charged_yet = 'booking_form.you_will_not_charged_yet',
   total = 'booking_form.total',
   login = 'booking_form.login',
-  login_req = 'booking_form.login_req',
+  login_req = 'booking_form.login_required',
   reserve = 'booking_form.reserve',
   check_in = 'booking_form.check_in',
   check_out = 'booking_form.check_out',
@@ -235,4 +238,9 @@ export enum HostInfo {
   host_reviews_empty = 'host.reviews.empty',
   host_listings_title = 'host.listings.title',
   host_listings_empty = 'host.listings.empty',
+}
+
+export enum OwnerCardInfo {
+  title = 'owner_card.title',
+  joined = 'owner_card.joined_in',
 }

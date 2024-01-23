@@ -72,14 +72,14 @@ const SignIn = () => {
             />
             <PasswordInput
               name="password"
-              label={t(LoginAndSecurityInfo.password)}
-              placeholder={t(LoginAndSecurityInfo.password)}
+              label={t(LoginAndSecurityInfo.password_input)}
+              placeholder={t(LoginAndSecurityInfo.password_input)}
               control={control}
               errors={errors}
             />
           </Stack>
           <ButtonPrimary type="submit" loading={isPending}>
-            {t(HomeUIInfo.sign_in_sing_title)}
+            {t(HomeUIInfo.sign_in_sing_in_btn)}
           </ButtonPrimary>
         </form>
 
@@ -89,9 +89,9 @@ const SignIn = () => {
           </Button>
         </Box>
         <Typography variant="subtitle2" align="center" color="secondary2.main">
-          {t(HomeUIInfo.sing_out_sing_title)}{' '}
+          {t(HomeUIInfo.sign_in_forgot_password_desc)}{' '}
           <Link component={RouterLink} to={ENDPOINTS.auth.signUp} sx={styles.formLink}>
-            {t(HomeUIInfo.sing_out_sing_up_btn)}
+            {t(HomeUIInfo.sing_up_link)}
           </Link>
         </Typography>
       </Stack>

@@ -6,8 +6,10 @@ import { Link } from 'react-router-dom';
 import { ROUTES } from '@src/config/routes.config';
 import { DATE_MONTH_YEAR_FORMAT } from '@src/constants';
 import { Owner } from '@src/types/accommodation.types';
-
+import { OwnerCardInfo } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 function OwnerCard({ owner }: { owner: Owner }) {
+  const { t } = useTranslation();
   const { id, firstName, lastName, createdAt, profile, isVerified } = owner;
 
   return (
@@ -21,7 +23,7 @@ function OwnerCard({ owner }: { owner: Owner }) {
         boxShadow: 5,
       }}
     >
-      <Typography variant="h6">Hosted by</Typography>
+      <Typography variant="h6">{t(OwnerCardInfo.title)}</Typography>
       <Link to={ROUTES.host.details(id)} style={{ textDecoration: 'none' }}>
         <Box display="flex" alignItems="center" mt={3} gap={2}>
           <Box sx={{ position: 'relative' }}>
@@ -55,7 +57,8 @@ function OwnerCard({ owner }: { owner: Owner }) {
           <Box ml={2}>
             <Typography fontWeight={600} variant="h6">{`${firstName} ${lastName}`}</Typography>
             <Typography variant="body2" color="text.secondary">
-              Joined in {dayjs(createdAt).format(DATE_MONTH_YEAR_FORMAT)} · {profile.country}
+              {t(OwnerCardInfo.joined)} {dayjs(createdAt).format(DATE_MONTH_YEAR_FORMAT)} ·{' '}
+              {profile.country}
             </Typography>
           </Box>
         </Box>

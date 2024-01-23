@@ -38,6 +38,7 @@
       "register": {
         "sign_in": {
           "sing_in_btn": "Anmelden",
+          "sing_in_link": "anmelden",
           "sing_title": "Anmelden",
           "title": "Bitte einloggen",
           "forgot_password": "Passwort vergessen",
@@ -47,6 +48,7 @@
         },
         "sing_out": {
           "sing_up_btn": "Registrieren",
+          "sing_up_link": "registrieren",
           "sing_title": "Willkommen bei Airbnb",
           "desc": "Wenn Sie bereits ein Konto haben, melden Sie sich bitte an"
         }
@@ -267,6 +269,10 @@
         "title": "Inserate von {{firstName}}",
         "empty": "Dieser Gastgeber hat keine aktiven Unterkünfte"
       }
+    },
+    "owner_card": {
+      "title": "Gastgeber",
+      "joined_in": "Beigetreten am"
     }
   }
 }
