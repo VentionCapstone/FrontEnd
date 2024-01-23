@@ -12,6 +12,9 @@ export enum ErrorTypes {
   password_must_contain = 'errors.password_must_contain',
   password_invalid_length = 'errors.password_invalid_length',
   password_not_matching = 'errors.password_not_matching',
+
+  //profile
+  profile_error_creating = 'errors.profile_error_creating',
 }
 
 export enum SearchTexts {
@@ -33,4 +36,9 @@ export enum PaymentInfo {
   total_price = 'payment.total_price',
   button_type_card = 'payment.button_type.card',
   button_type_cash = 'payment.button_type.cash',
+}
+
+export enum ProfileActions {
+  profile_image_change = 'profileActions.profile_image_change',
+  profile_create = 'profileActions.profile_create',
 }

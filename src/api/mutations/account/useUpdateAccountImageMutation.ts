@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 
 import httpClient from '@src/api/httpClient';
 import { ENDPOINTS } from '@src/config/endpoints.config';
-import { QUERY_KEYS, queryClient } from '@src/config/react-query.config';
+import { QUERY_KEYS } from '@src/config/react-query.config';
 
 function useUpdateAccountImageMutation(imageFile: File | null) {
   return useMutation({
@@ -17,10 +17,6 @@ function useUpdateAccountImageMutation(imageFile: File | null) {
       await httpClient.post(ENDPOINTS.account.updateProfileImage(profileId), formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-    },
-
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.query.user] });
     },
   });
 }

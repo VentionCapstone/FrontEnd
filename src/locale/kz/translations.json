@@ -15,6 +15,7 @@
         "cash": "Нақты ақша арқылы төлеу"
       }
     },
+
     "errors": {
       "default": "Сәтсіз аяқталды, қайталап көріңіз",
 
@@ -26,8 +27,11 @@
       "enter_valid_phone_number": "Жарамды телефон нөмірін енгізіңіз",
       "password_must_contain": "Құпия сөзде кем дегенде бір бас әріп, бір кіші әріп, бір сан және бір арнайы таңба болуы керек",
       "password_invalid_length": "Құпия сөз кемінде 8 таңбадан тұруы керек",
-      "password_not_matching": "Құпия сөздер сәйкес келмейді!"
+      "password_not_matching": "Құпия сөздер сәйкес келмейді!",
+
+      "profile_image_change": "Профиль суреті сәтті өзгертілді"
     },
+
     "searchTexts": {
       "input_date_label_checkin": "Тіркелу күні",
       "input_date_label_checkout": "Шығу күні",
@@ -35,6 +39,11 @@
       "input_location_label_anywhere": "Барлық жерде",
       "search_button": "Іздеу",
       "input_location_no_options": "Орынды енгізіңіз"
+    },
+
+    "profileActions": {
+      "profile_create": "Профиль сәтті жасалды",
+      "profile_error_creating": "Профиль жасауда қателік!"
     }
   }
 }

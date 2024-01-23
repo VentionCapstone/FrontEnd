@@ -15,6 +15,7 @@
         "cash": "Оплатить наличными"
       }
     },
+
     "errors": {
       "default": "Что-то пошло не так, попробуйте ещё раз",
 
@@ -26,8 +27,11 @@
       "enter_valid_phone_number": "Пожалуйста, введите действующий телефонный номер",
       "password_must_contain": "Пароль должен содержать хотя бы одну заглавную букву, одну строчную букву, одну цифру и один специальный символ.",
       "password_invalid_length": "Пароль должен быть не менее 8 символов",
-      "password_not_matching": "Пароли не совпадают!"
+      "password_not_matching": "Пароли не совпадают!",
+
+      "profile_error_creating": "Ошибка при создании профиля!"
     },
+
     "searchTexts": {
       "input_date_label_checkin": "Заезд",
       "input_date_label_checkout": "Выезд",
@@ -35,6 +39,11 @@
       "input_location_label_anywhere": "Везде",
       "search_button": "Поиск",
       "input_location_no_options": "Введите местоположение"
+    },
+
+    "profileActions": {
+      "profile_image_change": "Изображение профиля успешно изменено",
+      "profile_create": "Профиль успешно создан"
     }
   }
 }

@@ -7,21 +7,28 @@ import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 import useCreateAccountMutation from '@src/api/mutations/account/useCreateAccountMutation';
 import useUpdateAccountImageMutation from '@src/api/mutations/account/useUpdateAccountImageMutation';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import { QUERY_KEYS, queryClient } from '@src/config/react-query.config';
 import { ROUTES } from '@src/config/routes.config';
-import { DEFAULT_LANGUAGE } from '@src/constants';
+import {
+  DEFAULT_COUNTRY,
+  DEFAULT_FEMALE_IMAGE,
+  DEFAULT_LANGUAGE,
+  DEFAULT_MALE_IMAGE,
+  PHONE_CODES_BY_COUNTRY,
+} from '@src/constants';
+import { PhoneCodesByCountry } from '@src/constants/constant.types';
+import { ErrorTypes, ProfileActions } from '@src/types/i18n.types';
 import { Gender, Profile, ThemeMode } from '@src/types/profile.types';
-import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import AddImage from '../AddImage';
-import { DEFAULT_COUNTRY, PHONE_CODES_BY_COUNTRY } from '../constants';
-import { PhoneCodesByCountry } from '../constants.types';
 import UserFullName from './UserFullName';
 import UserPhoneNumber from './UserPhoneNumber';
 
@@ -34,30 +41,24 @@ function CreateProfile() {
     control,
   } = useForm<Profile>();
 
-  const defaultMaleImage =
-    'https://i.pinimg.com/564x/48/6c/a0/486ca00640b169300b48e9ceacd8e401.jpg';
-  const defaultFemaleImage =
-    'https://i.pinimg.com/564x/39/42/01/39420149269ede36847932935b26f0b8.jpg';
-
   const [selectedCountry, setSelectedCountry] = useState<PhoneCodesByCountry>(DEFAULT_COUNTRY);
   const [profileImage, setProfileImage] = useState<File | null>(null);
-  const { mutate: createAccountMutation, isPending: profileCreatePending } =
-    useCreateAccountMutation();
-  const {
-    mutate: updateAccountImage,
-    isSuccess,
-    isPending: imageUpdatePending,
-  } = useUpdateAccountImageMutation(profileImage);
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const confirmCreation = useCallback(async () => {
+  const { mutate: createAccountMutation, isPending: profileCreatePending } =
+    useCreateAccountMutation();
+  const { mutate: updateAccountImage, isPending: imageUpdatePending } =
+    useUpdateAccountImageMutation(profileImage);
+
+  const confirmCreation = async () => {
+    navigate(ROUTES.root);
+    toast.success(t(ProfileActions.profile_create));
     await queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.query.user] });
-    navigate(ROUTES.account.edit);
-    toast.success('Profile created!');
-  }, [navigate]);
+  };
 
   const onSubmit: SubmitHandler<Profile> = (data) => {
-    const defaultImage = data.gender === Gender.male ? defaultMaleImage : defaultFemaleImage;
+    const defaultImage = data.gender === Gender.male ? DEFAULT_MALE_IMAGE : DEFAULT_FEMALE_IMAGE;
 
     const profileData: Profile = {
       ...data,
@@ -70,7 +71,11 @@ function CreateProfile() {
       if (profileImage) {
         createAccountMutation(profileData, {
           onSuccess: (res) => {
-            updateAccountImage(res.id);
+            updateAccountImage(res.id, {
+              onSuccess: () => {
+                confirmCreation().catch((error) => console.error(error));
+              },
+            });
           },
         });
       } else {
@@ -78,23 +83,18 @@ function CreateProfile() {
           { ...profileData, imageUrl: defaultImage },
           {
             onSuccess: () => {
-              confirmCreation().catch((error) => console.log(error));
+              confirmCreation().catch((error) => console.error(error));
             },
           }
         );
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      toast.error(t(ErrorTypes.profile_error_creating));
     }
 
     reset();
   };
-
-  useEffect(() => {
-    if (isSuccess) {
-      confirmCreation().catch((error) => console.log(error));
-    }
-  }, [isSuccess, confirmCreation]);
 
   if (profileCreatePending || imageUpdatePending) return <LoadingPrimary />;
 

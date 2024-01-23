@@ -3,11 +3,14 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { useCallback, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 import useUpdateAccountImageMutation from '@src/api/mutations/account/useUpdateAccountImageMutation';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
+import { QUERY_KEYS, queryClient } from '@src/config/react-query.config';
 import { useAppSelector } from '@src/hooks/redux-hooks';
 import { getProfile, getUser } from '@src/stores/slices/authSlice';
+import { ProfileActions } from '@src/types/i18n.types';
 import AddImage from '../../AddImage';
 import EditablePanel from '../EditablePanel';
 import Country from './EditCountry';
@@ -23,19 +26,19 @@ function PersonalInfo() {
   const profileId = profile?.id;
 
   const [newProfileImage, setNewProfileImage] = useState<File | null>(null);
-  const { mutate, isSuccess } = useUpdateAccountImageMutation(newProfileImage);
+  const { t } = useTranslation();
+  const { mutate } = useUpdateAccountImageMutation(newProfileImage);
 
-  useEffect(() => {
-    if (newProfileImage) {
-      mutate(profileId);
-    }
-  }, [newProfileImage, mutate, profileId]);
-
-  useEffect(() => {
-    if (isSuccess) {
-      toast.success('Profile image changed successefully');
-    }
-  }, [isSuccess]);
+  const updateUserImage = useCallback(() => {
+    mutate(profileId, {
+      onSuccess: () => {
+        toast.success(t(ProfileActions.profile_image_change));
+        queryClient
+          .invalidateQueries({ queryKey: [QUERY_KEYS.query.user] })
+          .catch((error) => console.error(error));
+      },
+    });
+  }, [mutate, profileId, t]);
 
   const fullNameRenderProps = useCallback(
     (data: () => void) => (
@@ -69,6 +72,12 @@ function PersonalInfo() {
     ),
     [profile?.description]
   );
+
+  useEffect(() => {
+    if (newProfileImage) {
+      updateUserImage();
+    }
+  }, [newProfileImage, updateUserImage]);
 
   if (!user || !profile) return <LoadingPrimary />;
 

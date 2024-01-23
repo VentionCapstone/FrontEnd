@@ -9,10 +9,10 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
+import { PHONE_CODES_BY_COUNTRY } from '@src/constants';
+import { PhoneCodesByCountry } from '@src/constants/constant.types';
 import { Profile } from '@src/types/profile.types';
 import { phoneNumLengthRegEx } from '@src/utils';
-import { PHONE_CODES_BY_COUNTRY } from '../constants';
-import { PhoneCodesByCountry } from '../constants.types';
 
 function UserPhoneNumber({
   register,

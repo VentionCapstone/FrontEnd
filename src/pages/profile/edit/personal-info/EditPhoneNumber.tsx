@@ -14,11 +14,11 @@ import { useCallback, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
+import { DEFAULT_COUNTRY, PHONE_CODES_BY_COUNTRY } from '@src/constants';
+import { PhoneCodesByCountry } from '@src/constants/constant.types';
 import { useAppSelector } from '@src/hooks/redux-hooks';
 import { getProfile } from '@src/stores/slices/authSlice';
 import { phoneNumLengthRegEx } from '@src/utils';
-import { DEFAULT_COUNTRY, PHONE_CODES_BY_COUNTRY } from '../../constants';
-import { PhoneCodesByCountry } from '../../constants.types';
 
 const PhoneNumber = ({ collapsePanel }: { collapsePanel: () => void }) => {
   const {

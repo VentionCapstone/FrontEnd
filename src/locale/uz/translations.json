@@ -15,6 +15,7 @@
         "cash": "Naqd pul bilan to'lash"
       }
     },
+
     "errors": {
       "default": "Nimadir noto'g'ri ketdi, yana urinib ko'ring",
 
@@ -26,8 +27,11 @@
       "enter_valid_phone_number": "Iltimos, yaroqli telefon raqamini kiriting",
       "password_must_contain": "Parol kamida bitta katta harf, bitta kichik harf, bitta raqam va bitta maxsus belgidan iborat bo'lishi kerak",
       "password_invalid_length": "Parol kamida 8 ta belgidan iborat bo'lishi kerak",
-      "password_not_matching": "Parollar mos emas!"
+      "password_not_matching": "Parollar mos emas!",
+
+      "profile_error_creating": "Profil yaratishda xatolik!"
     },
+
     "searchTexts": {
       "input_date_label_checkin": "Kirish kuni",
       "input_date_label_checkout": "Chiqish kuni",
@@ -35,6 +39,11 @@
       "input_location_label_anywhere": "Har qayer",
       "search_button": "Izlash",
       "input_location_no_options": "Joylashuvni kiriting"
+    },
+
+    "profileActions": {
+      "profile_image_change": "Profil rasmi muvaffaqiyatli o'zgartirildi",
+      "profile_create": "Profil muvaffaqiyatli yaratildi"
     }
   }
 }
