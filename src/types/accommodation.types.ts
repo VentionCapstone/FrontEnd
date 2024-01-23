@@ -89,6 +89,7 @@ export interface PriceRange {
 }
 
 export interface Accommodation {
+  title: string;
   id: string;
   thumbnailUrl: string;
   squareMeters: number;
@@ -125,6 +126,12 @@ export type MainModalProps = {
   location: string;
   checkInDate: string;
   checkOutDate: string;
+};
+
+export type MapModalProps = {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  searchParamsAsObject: Record<string, string>;
 };
 
 export type SearchBarProps = {
