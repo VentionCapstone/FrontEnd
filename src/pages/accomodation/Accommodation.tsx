@@ -1,20 +1,23 @@
-import { Grid, Typography } from '@mui/material';
+import { Button, Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
-import { useBookingRoom } from '@src/api/mutations/booking/useBookingRoom';
 import useGetSingleAccommodationQuery from '@src/api/queries/accommodation/useGetSingleAccommodationQuery';
 import BookingForm from '@src/components/booking/BookingForm';
 import ShowPhotos from '@src/components/full-view-accommodation/full-view-accommodation';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import DataFetchError from '@src/components/shared/DataFetchError';
+import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
+import { ROUTES } from '@src/config/routes.config';
 import { AmenitySetting } from '@src/types/amenity.types';
 import { ErrorTypes } from '@src/types/i18n.types';
-import { handleErrorInImage, selectOnlyTrueAmenities } from '@src/utils';
-import YandexMap from '../../components/YandexMap';
+import { getValueFromLocalStorage, handleErrorInImage, selectOnlyTrueAmenities } from '@src/utils';
+import YandexMap from '../../components/shared/YandexMap';
 import { styles } from './Accommodation.styles';
 import AmenityList from './components/AmenityList';
+import OwnerCard from './components/OwnerCard';
 import { Reviews } from './components/Reviews';
 import { buildAmenityList } from './utils/amenityListBuilder';
 
@@ -27,20 +30,20 @@ function Accommodation() {
   const handleGridItemClick = () => {
     setOpenDialog(true);
   };
+
+  const ownerId = getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.sub);
+
+
   const { isPending, data, isError } = useGetSingleAccommodationQuery(accommodationId as string);
 
-  const { mutateAsync } = useBookingRoom();
+  const navigate = useNavigate();
 
-  const submitReservation = async (reservationData: {
-    startDate: string;
-    endDate: string;
-    accommodationId: string;
-  }): Promise<void> => {
-    await mutateAsync(reservationData);
+  const handleEditClick = (id: string) => {
+    navigate(ROUTES.accommodations.edit(id));
   };
 
   useEffect(() => {
-    if (data?.amenities) {
+    if (data?.amenities && data?.amenities[0]) {
       const listOfTrueAmenities = selectOnlyTrueAmenities(data?.amenities[0]);
 
       setAmenities(buildAmenityList(listOfTrueAmenities));
@@ -127,11 +130,35 @@ function Accommodation() {
           <AmenityList amenities={amenities} />
         </Box>
         <Box flex={0.4}>
-          <BookingForm
-            onSubmit={submitReservation}
-            accomodationId={accommodationId}
-            price={data.price}
-          />
+          {ownerId === data.ownerId ? (
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+              }}
+            >
+              <Button
+                variant="contained"
+                size="large"
+                sx={{
+                  'backgroundColor': 'primary.main',
+                  'fontWeight': 'bold',
+                  'color': 'white',
+                  '&:hover': {
+                    backgroundColor: 'primary.dark',
+                  },
+                }}
+                onClick={() => handleEditClick(data.id)}
+              >
+                Edit Accommodation
+              </Button>
+            </Box>
+          ) : (
+            <>
+              <BookingForm accomodationId={accommodationId} price={data.price} />
+              <OwnerCard owner={data.owner} />
+            </>
+          )}
         </Box>
       </Box>
       <Reviews accommodationId={accommodationId || ''} />

@@ -16,11 +16,14 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
 import { useAppSelector } from '@src/hooks/redux-hooks';
 import { getProfile } from '@src/stores/slices/authSlice';
+import { AccountEditPersonalInfo, ErrorTypes } from '@src/types/i18n.types';
 import { phoneNumLengthRegEx } from '@src/utils';
+import { useTranslation } from 'react-i18next';
 import { DEFAULT_COUNTRY, PHONE_CODES_BY_COUNTRY } from '../../constants';
 import { PhoneCodesByCountry } from '../../constants.types';
 
 const PhoneNumber = ({ collapsePanel }: { collapsePanel: () => void }) => {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -49,20 +52,21 @@ const PhoneNumber = ({ collapsePanel }: { collapsePanel: () => void }) => {
   return (
     <>
       <Typography variant={'sm'} color={'secondary2.main'} mt={1}>
-        Add a number so confirmed guests and Airbnb can get in touch. You can add other numbers and
-        choose how they’re used.
+        {t(AccountEditPersonalInfo.phone_number_desc)}
       </Typography>
 
       <form onSubmit={(e) => void handleSubmit(onSubmit)(e)}>
         <Grid container spacing={4} mt={{ xs: 2, md: 4 }} mb={6}>
           <Grid item xs={12} lg={6}>
             <FormControl fullWidth size="small">
-              <InputLabel id="edit-number-country-select-label">Coutry</InputLabel>
+              <InputLabel id="edit-number-country-select-label">
+                {t(AccountEditPersonalInfo.country)}
+              </InputLabel>
               <Select
                 value={selectedCountry.name}
                 onChange={handleCountryChange}
                 labelId="edit-number-country-select-label"
-                label="Country"
+                label={t(AccountEditPersonalInfo.country)}
               >
                 {PHONE_CODES_BY_COUNTRY.map((country, index) => (
                   <MenuItem key={index} value={country.name}>
@@ -76,17 +80,17 @@ const PhoneNumber = ({ collapsePanel }: { collapsePanel: () => void }) => {
           <Grid item xs={12} lg={6}>
             <TextField
               {...register('phoneNumber', {
-                required: 'This field is required',
+                required: `${t(ErrorTypes.field_is_required)}`,
                 pattern: {
                   value: phoneNumLengthRegEx(selectedCountry.numLength),
-                  message: 'Please enter a valid phone number',
+                  message: `${t(ErrorTypes.enter_valid_phone_number)}`,
                 },
               })}
               error={!!errors.phoneNumber}
               helperText={errors.phoneNumber?.message}
               fullWidth
               size="small"
-              label="Phone number"
+              label={t(AccountEditPersonalInfo.phone_number)}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">+{selectedCountry.code}</InputAdornment>
@@ -103,7 +107,8 @@ const PhoneNumber = ({ collapsePanel }: { collapsePanel: () => void }) => {
           size="small"
           sx={{ display: 'block', fontWeight: 600, ml: 'auto' }}
         >
-          Save
+          {' '}
+          {t(AccountEditPersonalInfo.save_name)}
         </Button>
       </form>
     </>

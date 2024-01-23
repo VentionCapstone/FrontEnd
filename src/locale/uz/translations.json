@@ -15,18 +15,228 @@
         "cash": "Naqd pul bilan to'lash"
       }
     },
-    "errors": {
-      "default": "Nimadir noto'g'ri ketdi, yana urinib ko'ring",
 
-      "accommodation_failed_to_get_single": "Biror bir joy haqida ma'lumot olishda muammo yuz berdi",
+    "errors": {
+      "default": "Nimadir noto'g'ri ketdi, qaytadan urinib ko'ring",
+
+      "accommodation_failed_to_get_single": "Bitta joy ma'lumotini olishda xatolik yuz berdi",
       "accommodation_failed_to_get_list": "Mehmonxona ro'yxatini olishda xatolik yuz berdi",
 
-      "field_is_required": "Parollar mos emas",
-      "enter_valid_email": "Iltimos, yaroqli elektron pochta manzilini kiriting",
-      "enter_valid_phone_number": "Iltimos, yaroqli telefon raqamini kiriting",
-      "password_must_contain": "Parol kamida bitta katta harf, bitta kichik harf, bitta raqam va bitta maxsus belgidan iborat bo'lishi kerak",
+      "field_is_required": "Ushbu maydonni to'ldirish shart",
+      "enter_valid_email": "Iltimos, haqiqiy elektron pochta manzilingizni kiriting",
+      "enter_valid_phone_number": "Iltimos, haqiqiy telefon raqamingizni kiriting",
+      "password_must_contain": "Parol kamida bir katta harf, bir kichik harf, bir raqam va bir maxsus belgidan iborat bo'lishi kerak",
       "password_invalid_length": "Parol kamida 8 ta belgidan iborat bo'lishi kerak",
       "password_not_matching": "Parollar mos emas!"
+    },
+
+    "home_ui": {
+      "user_home_btn": {
+        "account": "Mening profilim",
+        "mylistings": "Mening ro'yhatlarim",
+        "logout": "Chiqish"
+      },
+      "register": {
+        "sign_in": {
+          "sing_in_btn": "Kirish",
+          "sing_title": "Kirish",
+          "sing_in_link": "kirish",
+          "title": "Iltimos, kirishni tanlang",
+          "forgot_password": "Parolingizni unutdingizmi?",
+          "forgot_password_modal": "Akkauntingizga bog'liq elektron pochta manzilini kiriting, va biz sizga parolingizni qayta tiklash uchun havola yuboramiz.",
+          "send_resend_link": "Qayta tiklash havolasini yuborish",
+          "forgot_password_desc": "Agar akkauntngiz yo'q bo'lsa, ro'yxatdan o'ting"
+        },
+        "sing_out": {
+          "sing_up_link": "ro'yxatdan o'tish",
+          "sing_up_btn": "Ro'yxatdan o'tish",
+          "sing_title": "Xush kelibsiz Airbnb",
+          "desc": "Agar allaqachon akkauntingiz bo'lsa, Iltimos, kirishni tanlang"
+        }
+      },
+      "filters_button": {
+        "filter": "Filtr",
+        "price": {
+          "price_range": "Narx Oraliqi",
+          "price_description": "To'lovlardan va soliqlardan oldin tungi narxlar",
+          "min": "Minimum",
+          "max": "Maksimum"
+        },
+        "rooms": {
+          "title": "Xonalar",
+          "any": "Har qanday"
+        },
+        "people": {
+          "title": "Odamlar",
+          "any": "Har qanday"
+        },
+        "sort": {
+          "title": "Saralash",
+          "price-title": "Narx",
+          "room-title": "Xonalar",
+          "people-title": "Odamlar",
+          "price": ["Har qanday", "Pastdan yuqoriga", "yuqoridan pastga"],
+          "room": ["Har qanday", "Pastdan yuqoriga", "yuqoridan pastga"],
+          "people": ["Har qanday", "Pastdan yuqoriga", "yuqoridan pastga"]
+        },
+        "clear_btn": "Tozalash",
+        "filter_btn": "Filtr"
+      },
+      "card": {
+        "night": "Kunlik"
+      },
+      "footer_info": {
+        "terms": "Shartlar",
+        "sitemap": "Sayt xaritasi",
+        "privacy": "Maxfiylik",
+        "your_privacy_choices": "Sizning maxfiylik tanlovlaringiz",
+        "copyright": "© 2023 Airbnb, Inc."
+      }
+    },
+
+    "account_edit_page": {
+      "personal_info": "Shaxsiy ma'lumot",
+      "personal_desc": "Shaxsiy parolingizni yangilang va hisobingizni himoyalang",
+      "login_secure": "Kirish va Himoya",
+      "login_secure_desc": "Xavfsiz ma'lumotlarni taqdim eting va biz siz bilan qanday aloqaga chiqishimizni tanlang",
+      "setting": "Sozlamalar",
+      "setting_desc": "O'z taqdimot tilini va valyutangizni belgilang",
+      "airbnb_your_place": "Airbnb joyingizni ijaraga bering",
+      "airbnb_your_place_desc": "O'rnatish va daromad olish juda oson."
+    },
+
+    "account_edit_personal-info": {
+      "name": {
+        "legal_name": "Haqiqiy ism",
+        "legal_name_desc": "Bu sayohat hujjatingizdagi ism, unda yuridik ko'rik yoki passport bo'lishi mumkin.",
+        "edit": "tahrirlash",
+        "save": "saqlash",
+        "first_name": "Ism",
+        "last_name": "Familiya"
+      },
+      "gender": {
+        "your_gender": "Sizning jinsingiz",
+        "male": "erkak",
+        "female": "ayol",
+        "edit": "tahrirlash",
+        "save": "saqlash",
+        "select": "Jinsingizni tanlang",
+        "gender": "Jins"
+      },
+      "location": {
+        "where_do_live": "Qayerda yashaysiz",
+        "edit": "tahrirlash",
+        "save": "saqlash",
+        "select": "Mamlakatingizni tanlang",
+        "uzbekistan": "O'zbekiston",
+        "kazakhstan": "Qozog'iston",
+        "russia": "Rossiya",
+        "country": "Mamlakat"
+      },
+      "number": {
+        "phone_number": "Telefon raqam",
+        "phone_number_desc": "Tasdiqlangan mehmonlar va Airbnb siz bilan bog'lanish uchun raqam qo'shing. Siz boshqa raqamlarni qo'shishingiz va ularni qanday foydalanilishini tanlashingiz mumkin.",
+        "edit": "tahrirlash",
+        "save": "saqlash"
+      },
+      "about": {
+        "about": "Siz haqingizda",
+        "about_desc": "Qiziq va jozibali narsa yozing",
+        "about_textarea": "O'zingiz haqida qisqa nima deyishni ayt, huddi kelgan yoki keluvchi tashrif buyuruvchilaringiz bilan tanishishlari uchun.",
+        "edit": "tahrirlash",
+        "save": "saqlash"
+      }
+    },
+
+    "login_and_security": {
+      "login_title": "Kirish va Xavfsizlik",
+      "email": {
+        "edit": "Tahrirlash",
+        "email": "Elektron pochta",
+        "email_desc": "Yangi elektron pochta manzilingizni kiriting",
+        "change_btn": "O'zgartirish",
+        "cancel": "Bekor qilish"
+      },
+      "password": {
+        "change_your_password": "Parolingizni o'zgartirish",
+        "edit": "Tahrirlash",
+        "change_btn": "O'zgartirish",
+        "cancel": "Bekor qilish",
+        "current": "Joriy parol",
+        "new_password": "Yangi Parol",
+        "confirm": "Parolni tasdiqlang",
+        "password": "Parol"
+      }
+    },
+
+    "setting": {
+      "title": "Sozlamalar",
+      "theme": "Ekran sozlamasi",
+      "light": "Yorug'",
+      "dark": "Qora",
+      "language": "Tanlangan tillar",
+      "lang_desc": "Bu sizni Airbnb saytida o'qigan ma'lumotlaringizni va siz bilan muloqot qilish usullarini yangilaydi.",
+      "currency_desc": "Siz tanlagan valyutani tanlang",
+      "can_dollar": "Kanada dollari",
+      "uzbek": "O'zbekcha",
+      "russian": "Ruscha",
+      "english": "Inglizcha",
+      "kazak": "Qozog'istoncha",
+      "german": "Nemischa",
+      "currency": "Tanlangan valyuta",
+      "dollar": "AQSH dollari"
+    },
+
+    "aminities_list": {
+      "title": "Qanday qulayliklar mavjud"
+    },
+    "review_list": {
+      "title": "Reyting",
+      "show_all": "Barcha",
+      "reviews": "izohlar ko'rish"
+    },
+
+    "booking_form": {
+      "error_message": "Kirish sanasi chiqish sanasidan oldin va bir xil bo'lishi kerak",
+      "night": "kunlik",
+      "you_will_not_charged_yet": "Hali to'lanmagan ekansiz",
+      "total": "Jami",
+      "login": "Kirish",
+      "login_required": "band qilish uchun kerak",
+      "reserve": "Band qilish",
+      "check_in": "Kirish",
+      "check_out": "Chiqish"
+    },
+
+    "forgot_password_reset": {
+      "title": "Parolni yangilash",
+      "description": "Parolni qayta tiklash uchun yangi parolingizni quyidagi maydonchaga kiriting.",
+      "password": "Parol",
+      "re_enter": "Parolingizni qayta kiriting",
+      "update": "Yangilash"
+    },
+
+    "verify_email": {
+      "title": "Elektron pochta tekshirilmoqda..."
+    },
+
+    "create_profile": {
+      "title": "Profil yaratish",
+      "legal_name": "Yasovchi nomi",
+      "first_name": "Ism",
+      "last_name": "Familiya",
+      "select_country": "Davlatni tanlang",
+      "uzbekistan": "O'zbekiston",
+      "russian": "Rossiya",
+      "kazakhstan": "Qozog'iston",
+      "gender": "Jins",
+      "male": "Erkak",
+      "female": "Ayol",
+      "phone_number": "Telefon raqam",
+      "description": "Tavsif",
+      "description_desc": "O'zingiz haqingizda qisqa ma'lumot bering, shunday qilib, kelajakdagi mehmonlar yoki mehmonlar sizni taniyishlari mumkin bo'lsin.",
+      "create_btn": "Yaratish",
+      "country": "Mamlakat"
     },
     "searchTexts": {
       "input_date_label_checkin": "Kirish kuni",
@@ -35,6 +245,50 @@
       "input_location_label_anywhere": "Har qayer",
       "search_button": "Izlash",
       "input_location_no_options": "Joylashuvni kiriting"
+    },
+    "amenities": {
+      "edit_success": "Turar joy oʻzgarishlari muvaffaqiyatli saqlandi",
+      "create_success": "Turar joy muvaffaqiyatli yaratildi",
+      "already_exists": "Qulayliklar allaqachon mavjud",
+      "cannot_contain_comma": "Qulayliklarda vergul bo'lishi mumkin emas",
+      "no_amenities_selected": "Saqlash uchun qulayliklar yo'q"
+    },
+    "host": {
+      "profile": {
+        "subtitle": "Mezbon",
+        "rating": "Reyting",
+        "reviews": "Fikrlar",
+        "listings": "Kvartiralar"
+      },
+      "verified": {
+        "title": "{{firstName}}'ning tasdiqlangan ma'lumoti",
+        "identity": "Shaxsiy ma'lumot",
+        "email": "Elektron manzil",
+        "phone": "Telefon raqami"
+      },
+      "about": {
+        "title": "{{firstName}} haqida",
+        "joined": "{{joinedAt}} sanada qo'shildi",
+        "language": "{{language}} tilida gapiradi",
+        "lives_in": "{{country}} da yashaydi"
+      },
+      "reviews": {
+        "title": "{{firstName}}ning so'nggi fikrlari",
+        "empty": "Ushbu mezbon haqida hech qanday fikr mavjud emas"
+      },
+      "listings": {
+        "title": "{{firstName}}ning ro'yxatlari",
+        "empty": "Ushbu mezbonning kvartiralar ro'yxati mavjud emas"
+      }
+    },
+    "owner_card": {
+      "title": "Uy egasi",
+      "joined_in": "Qo'shilgan"
+    },
+    "wishlist": {
+      "title": "Istaklar roʻyxati",
+      "wishlits_empty_title": "Birinchi istaklar ro'yxatingizni yarating",
+      "wishlits_empty_text": "Izlash jarayonida sevimli joylaringiz va tajribalaringizni istaklar ro'yxatiga saqlash uchun yurak belgisini bosing"
     }
   }
 }

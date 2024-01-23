@@ -14,6 +14,7 @@ function useGetAccommodationsQuery({ searchParamsAsObject }: AccommodationsQuery
     queryKey: ['accommodations', searchParamsAsObject],
     queryFn: async ({ pageParam }) => {
       const {
+        limit,
         minPrice,
         maxPrice,
         minRooms,
@@ -31,7 +32,7 @@ function useGetAccommodationsQuery({ searchParamsAsObject }: AccommodationsQuery
         {
           params: {
             page: pageParam,
-            limit: AMOUNT_PER_PAGE,
+            limit: limit || AMOUNT_PER_PAGE,
             maxPrice: Number(maxPrice) || null,
             minPrice: Number(minPrice) || null,
             minRooms: Number(minRooms) || null,

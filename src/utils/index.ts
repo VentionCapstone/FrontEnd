@@ -1,7 +1,8 @@
 import toast from 'react-hot-toast';
 
 import ErrorImage from '@src/assets/no-image.png';
-import { Amenity } from '@src/types/accommodation.types';
+import { DEFAULT_LANGUAGE, LANGUAGE_LIST } from '@src/pages/profile/constants';
+import { Amenities } from '@src/types/amenity.types';
 import { ThemeMode } from '@src/types/profile.types';
 
 export const convertImageToBase64 = (file: File): Promise<string> => {
@@ -82,8 +83,7 @@ export const lineClampStyle = (line: number) => {
   };
 };
 
-export const selectOnlyTrueAmenities = (amenities: Amenity) => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+export const selectOnlyTrueAmenities = (amenities: Amenities) => {
   const trueAmenities = Object.entries(amenities)
     .filter(([, value]) => value === true)
     .map(([key]) => key);
@@ -94,4 +94,8 @@ export const selectOnlyTrueAmenities = (amenities: Amenity) => {
 export const handleErrorInImage = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
   e.currentTarget.src = ErrorImage;
   e.currentTarget.style.objectFit = 'contain';
+};
+
+export const convertCodeToLanguage = (value: string): string => {
+  return LANGUAGE_LIST.find((lang) => lang.code === value)?.name || DEFAULT_LANGUAGE.name;
 };

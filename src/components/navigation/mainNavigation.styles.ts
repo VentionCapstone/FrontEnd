@@ -47,5 +47,11 @@ export const mainNavigationStyles = {
       textDecoration: 'none',
       width: '100%',
     },
+    '.MuiMenuItem-root': {
+      py: 3,
+    },
+    '.MuiList-root': {
+      padding: 0,
+    },
   },
 } satisfies MuiStylesObject;
