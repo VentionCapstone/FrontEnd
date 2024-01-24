@@ -24,10 +24,8 @@ export const QUERY_KEYS = {
     accomodationReviews: 'accomodation_reviews',
 
     media: 'media',
-=======
 
     wishlist: 'wishlist',
-
   },
 
   mutation: {

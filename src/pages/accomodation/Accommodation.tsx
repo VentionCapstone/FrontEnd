@@ -27,12 +27,14 @@ function Accommodation() {
   const [amenities, setAmenities] = useState<AmenitySetting[]>([]);
   const [openDialog, setOpenDialog] = useState(false);
 
-  const handleGridItemClick = () => {
+  const handleOpenDialog = () => {
     setOpenDialog(true);
+  };
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
   };
 
   const ownerId = getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.sub);
-
 
   const { isPending, data, isError } = useGetSingleAccommodationQuery(accommodationId as string);
 
@@ -69,17 +71,10 @@ function Accommodation() {
   return (
     <Box paddingX={10}>
       <Grid container columnSpacing={2}>
-        <Grid onClick={handleGridItemClick} item xs={12} md={6} flex={1} sx={styles.image_left}>
+        <Grid onClick={handleOpenDialog} item xs={12} md={6} flex={1} sx={styles.image_left}>
           <img src={image_1.imageUrl} alt={image_1.accommodationId} onError={handleErrorInImage} />
         </Grid>
-        <Grid
-          onClick={handleGridItemClick}
-          item
-          container
-          spacing={2}
-          flex={1}
-          sx={styles.image_list}
-        >
+        <Grid onClick={handleOpenDialog} item container spacing={2} flex={1} sx={styles.image_list}>
           <Grid item md={6}>
             <img
               src={image_2.imageUrl}
@@ -111,7 +106,7 @@ function Accommodation() {
           <ShowPhotos
             id={accommodationId as string}
             open={openDialog}
-            onClose={() => setOpenDialog(false)}
+            onClose={handleCloseDialog}
           />
         </Grid>
       </Grid>
