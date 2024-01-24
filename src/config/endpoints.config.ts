@@ -44,8 +44,9 @@ export const ENDPOINTS = {
     getAmenityList: '/amenities',
   },
   booking: {
-    getAvailableDates: (accommodationId: string) => `/booking/available-dates/${accommodationId}`,
     book: '/booking/book',
+    getBookingList: '/booking/my-bookings',
+    getAvailableDates: (accommodationId: string) => `/booking/available-dates/${accommodationId}`,
   },
   wishlist: {
     root: '/wishlist',
@@ -54,5 +55,9 @@ export const ENDPOINTS = {
   },
   host: {
     getHostProfile: (hostId: string) => `/users/host/${hostId}`,
+  },
+  review: {
+    create: (accommodationId: string, bookingId: string) =>
+      `/reviews/${accommodationId}?bookingId=${bookingId}`,
   },
 } as const;
