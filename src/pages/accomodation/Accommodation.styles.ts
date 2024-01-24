@@ -23,6 +23,7 @@ export const styles = {
         'xl': '558px',
         '2xl': '608px',
       },
+      cursor: 'pointer',
     },
   },
   image_list: {
@@ -30,6 +31,7 @@ export const styles = {
       xs: 'none',
       md: 'flex',
     },
+    'position': 'relative',
     '& img': {
       width: '100%',
       objectFit: 'cover',
@@ -39,17 +41,20 @@ export const styles = {
         'xl': '275px',
         '2xl': '300px',
       },
+      cursor: 'pointer',
     },
   },
   image_right_top: {
     '& img': {
       borderTopRightRadius: '15px',
     },
+    'cursor': 'pointer',
   },
   image_right_bottom: {
     '& img': {
       borderBottomRightRadius: '15px',
     },
+    'cursor': 'pointer',
   },
   heading: {
     fontWeight: 'bold',
