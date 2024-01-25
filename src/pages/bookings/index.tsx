@@ -13,7 +13,7 @@ import AccommodationSkeleton from '../accommodations/components/AccommodationSke
 import BookingCard from './BookingCard';
 
 export default function Bookings() {
-  const [value, setValue] = useState<STATUS>('PENDING');
+  const [value, setValue] = useState<STATUS>('ACTIVE');
 
   const a11yProps = useMemo(() => {
     return Object.values(STATUSES).map((status, index) => {

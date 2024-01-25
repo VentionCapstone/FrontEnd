@@ -69,7 +69,7 @@ function Accommodation() {
   const [image_1, image_2, image_3, image_4, image_5] = data.media;
 
   return (
-    <Box paddingX={10}>
+    <Box>
       <Grid container columnSpacing={2}>
         <Grid onClick={handleOpenDialog} item xs={12} md={6} flex={1} sx={styles.image_left}>
           <img src={image_1.imageUrl} alt={image_1.accommodationId} onError={handleErrorInImage} />

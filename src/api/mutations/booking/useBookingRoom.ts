@@ -28,6 +28,9 @@ export const useBookingRoom = () => {
       await queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.query.bookings, STATUSES.PENDING],
       });
+      await queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.query.availableDates, data.accommodationId],
+      });
     },
   });
 };
