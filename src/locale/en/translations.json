@@ -27,7 +27,12 @@
       "enter_valid_phone_number": "Please enter a valid phone number",
       "password_must_contain": "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character",
       "password_invalid_length": "Password must be at least 8 characters",
-      "password_not_matching": "Passwords are not matching!"
+      "password_not_matching": "Passwords are not matching!",
+
+      "profile_error_creating": "Error creating profile!",
+
+      "image_failed_convert": "Image conversion failed!",
+      "image_invalid_selection": "Please select a valid image under 10MB"
     },
 
     "home_ui": {
@@ -54,6 +59,7 @@
           "desc": "if you already have an account, please "
         }
       },
+
       "filters_button": {
         "filter": "Filter",
         "price": {
@@ -239,6 +245,7 @@
       "create_btn": "Create",
       "country": "Country"
     },
+
     "searchTexts": {
       "input_date_label_checkin": "Check-in",
       "input_date_label_checkout": "Check-out",
@@ -247,6 +254,13 @@
       "search_button": "Search",
       "input_location_no_options": "Enter location"
     },
+
+    "profileActions": {
+      "profile_create": "Profile created successfully",
+      "profile_image_change": "Profile image changed successfully",
+      "profile_change": "Profile changed successfully"
+    },
+
     "amenities": {
       "edit_success": "Accommodation changes saved successfully",
       "create_success": "Accommodation created successfully",
@@ -254,6 +268,7 @@
       "cannot_contain_comma": "Amenities cannot contain commas",
       "no_amenities_selected": "No amenities to save"
     },
+
     "host": {
       "profile": {
         "subtitle": "Host",
@@ -290,10 +305,12 @@
       "cancel": "Cancel",
       "success": "Review submitted"
     },
+
     "owner_card": {
       "title": "Hosted by",
       "joined_in": "Joined in"
     },
+
     "wishlist": {
       "title": "Wishlist",
       "wishlits_empty_title": "Create your first wishlist",

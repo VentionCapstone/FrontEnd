@@ -1,4 +1,5 @@
-import { CircularProgress, Box } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
+import { SECONDARY_MAIN } from '@src/theme/themeTokens';
 
 function LoadingPrimary({ height = '100vh' }: { height?: string }) {
   return (
@@ -10,7 +11,7 @@ function LoadingPrimary({ height = '100vh' }: { height?: string }) {
         height: height,
       }}
     >
-      <CircularProgress color="error" variant="indeterminate" />
+      <CircularProgress sx={{ color: SECONDARY_MAIN }} variant="indeterminate" />
     </Box>
   );
 }

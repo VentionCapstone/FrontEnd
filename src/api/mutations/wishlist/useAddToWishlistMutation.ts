@@ -18,7 +18,12 @@ function useAddToWishlistMutation() {
       return data;
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.query.wishlist] });
+      await queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.query.wishlist],
+      });
+      await queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.query.accommodations],
+      });
     },
   });
 }

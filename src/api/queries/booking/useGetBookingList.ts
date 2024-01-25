@@ -5,8 +5,9 @@ import { ENDPOINTS } from '@src/config/endpoints.config';
 import { AMOUNT_PER_PAGE } from '@src/config/pagination.config';
 import { QUERY_KEYS } from '@src/config/react-query.config';
 import { BookListResponse } from '@src/types/booking.types';
+import { STATUS } from '@src/types/global.types';
 
-export const useGetBookingList = (status?: string) => {
+export const useGetBookingList = (status?: STATUS) => {
   return useInfiniteQuery({
     queryKey: [QUERY_KEYS.query.bookings, status],
     queryFn: async ({ pageParam }) => {

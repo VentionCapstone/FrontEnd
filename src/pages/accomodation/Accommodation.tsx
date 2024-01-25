@@ -37,8 +37,8 @@ function Accommodation() {
   };
 
   useEffect(() => {
-    if (data?.amenities && data?.amenities[0]) {
-      const listOfTrueAmenities = selectOnlyTrueAmenities(data?.amenities[0]);
+    if (data?.amenities) {
+      const listOfTrueAmenities = selectOnlyTrueAmenities(data?.amenities);
 
       setAmenities(buildAmenityList(listOfTrueAmenities));
     }
@@ -60,7 +60,9 @@ function Accommodation() {
 
   return (
     <Box>
+
       <ImagesList data={data} />
+
       <Box sx={styles.content}>
         <Box flex={0.6}>
           <Box>

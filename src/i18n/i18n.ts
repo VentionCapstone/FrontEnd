@@ -20,8 +20,10 @@ i18n
       uz: uzTranslations,
     },
     lng:
-      localStorage.getItem(LOCAL_STORAGE_KEYS.language) || navigator.language || DEFAULT_LANGUAGE,
-    fallbackLng: DEFAULT_LANGUAGE,
+      localStorage.getItem(LOCAL_STORAGE_KEYS.language) ||
+      navigator.language ||
+      DEFAULT_LANGUAGE.code,
+    fallbackLng: DEFAULT_LANGUAGE.code,
   })
   .catch((error) => {
     console.error('Failed to initialize i18n:', error);

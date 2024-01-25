@@ -2,14 +2,20 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { useCallback, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
-import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
+import useUpdateAccountImageMutation from '@src/api/mutations/account/useUpdateAccountImageMutation';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
+import { QUERY_KEYS, queryClient } from '@src/config/react-query.config';
 import { useAppSelector } from '@src/hooks/redux-hooks';
 import i18n from '@src/i18n/i18n';
 import { getProfile, getUser } from '@src/stores/slices/authSlice';
-import { AccountEditPageInfo, AccountEditPersonalInfo } from '@src/types/i18n.types';
-import { useTranslation } from 'react-i18next';
+import {
+  AccountEditPageInfo,
+  AccountEditPersonalInfo,
+  ProfileActions,
+} from '@src/types/i18n.types';
 import AddImage from '../../AddImage';
 import EditablePanel from '../EditablePanel';
 import Country from './EditCountry';
@@ -19,20 +25,25 @@ import Gender from './EditGender';
 import PhoneNumber from './EditPhoneNumber';
 
 function PersonalInfo() {
-  const { t } = useTranslation();
   const user = useAppSelector(getUser);
   const profile = useAppSelector(getProfile);
-  const profileId = profile?.id ?? '';
-  const imageUrl = profile?.imageUrl ?? '';
+  const imageUrl = profile?.imageUrl;
+  const profileId = profile?.id;
 
-  const { mutate } = useEditAccountMutation(profileId);
-  const [newProfileImage, setNewProfileImage] = useState('');
+  const [newProfileImage, setNewProfileImage] = useState<File | null>(null);
+  const { t } = useTranslation();
+  const { mutate } = useUpdateAccountImageMutation(newProfileImage);
 
-  useEffect(() => {
-    if (newProfileImage) {
-      mutate({ imageUrl: newProfileImage });
-    }
-  }, [newProfileImage, mutate]);
+  const updateUserImage = useCallback(() => {
+    mutate(profileId, {
+      onSuccess: () => {
+        toast.success(t(ProfileActions.profile_image_change));
+        queryClient
+          .invalidateQueries({ queryKey: [QUERY_KEYS.query.user] })
+          .catch((error) => console.error(error));
+      },
+    });
+  }, [mutate, profileId, t]);
 
   const fullNameRenderProps = useCallback(
     (data: () => void) => (
@@ -67,6 +78,12 @@ function PersonalInfo() {
     [profile?.description]
   );
 
+  useEffect(() => {
+    if (newProfileImage) {
+      updateUserImage();
+    }
+  }, [newProfileImage, updateUserImage]);
+
   if (!user || !profile) return <LoadingPrimary />;
 
   return (
@@ -77,7 +94,7 @@ function PersonalInfo() {
 
       <Stack direction={{ md: 'row' }}>
         <Box mr={{ md: 12, lg: 20 }} mb={{ xs: 12 }}>
-          <AddImage imageUrl={imageUrl} setImageUrl={setNewProfileImage} />
+          <AddImage imageUrl={imageUrl} setNewProfileImage={setNewProfileImage} />
         </Box>
 
         <Box
