@@ -297,6 +297,20 @@
       "title": "Istaklar roʻyxati",
       "wishlits_empty_title": "Birinchi istaklar ro'yxatingizni yarating",
       "wishlits_empty_text": "Izlash jarayonida sevimli joylaringiz va tajribalaringizni istaklar ro'yxatiga saqlash uchun yurak belgisini bosing"
+    },
+    "bookings": {
+      "title": "Sizning band qilganlaringiz",
+      "pending": "Kutilmoqda",
+      "active": "Faol",
+      "completed": "Bajarildi",
+      "status": "Holat",
+      "total": "Jami",
+      "check_in": "Kirish",
+      "check_out": "Chiqish",
+      "desc_not_booked": "Siz hali hech qanday joylashuvlarni band qilmadingiz",
+      "pay_now": "Xozir to'lang",
+      "my_bookings": "Band qilganlarim",
+      "add_review": "Izoh qo'shish"
     }
   }
 }

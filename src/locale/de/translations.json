@@ -293,6 +293,20 @@
       "title": "Wunschzettel",
       "wishlits_empty_title": "Erstelle deine erste Wunschliste",
       "wishlits_empty_text": "Klicke während der Suche auf das Herzsymbol, um deine Lieblingsorte und Erlebnisse in einer Wunschliste zu speichern"
+    },
+    "bookings": {
+      "title": "Ihre Buchungen",
+      "pending": "Ausstehend",
+      "active": "Aktiv",
+      "completed": "Abgeschlossen",
+      "status": "Status",
+      "total": "Gesamt",
+      "check_in": "Check-in",
+      "check_out": "Check-out",
+      "desc_not_booked": "Sie haben noch keine Unterkünfte gebucht",
+      "pay_now": "Jetzt bezahlen",
+      "my_bookings": "Meine Buchungen",
+      "add_review": "Bewertung hinzufügen"
     }
   }
 }

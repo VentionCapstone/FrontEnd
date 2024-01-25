@@ -266,3 +266,18 @@ export enum Wishlist {
   wishlits_empty_title = 'wishlist.wishlits_empty_title',
   wishlits_empty_text = 'wishlist.wishlits_empty_text',
 }
+
+export enum BookingsRoute {
+  title = 'bookings.title',
+  pending = 'bookings.pending',
+  active = 'bookings.active',
+  status = 'bookings.status',
+  completed = 'bookings.completed',
+  total = 'bookings.total',
+  check_in = 'bookings.check_in',
+  check_out = 'bookings.check_out',
+  desc_not_booked = 'bookings.desc_not_booked',
+  pay_now = 'bookings.pay_now',
+  my_bookings = 'bookings.my_bookings',
+  add_review = 'bookings.add_review',
+}
