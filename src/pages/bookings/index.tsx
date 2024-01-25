@@ -13,7 +13,7 @@ import AccommodationSkeleton from '../accommodations/components/AccommodationSke
 import BookingCard from './BookingCard';
 
 export default function Bookings() {
-  const [value, setValue] = useState<STATUS>('PENDING');
+  const [value, setValue] = useState<STATUS>('ACTIVE');
 
   const a11yProps = useMemo(() => {
     return Object.values(STATUSES).map((status, index) => {
@@ -27,7 +27,7 @@ export default function Bookings() {
     });
   }, []);
 
-  const { data, isError, hasNextPage, fetchNextPage } = useGetBookingList(value);
+  const { data, isError, hasNextPage, fetchNextPage, isFetching } = useGetBookingList(value);
 
   const bookings = useMemo(
     () => data?.pages.reduce((acc, page) => [...acc, ...page.data], [] as BookType[]),
@@ -70,6 +70,8 @@ export default function Bookings() {
         </Tabs>
       </Box>
       <Box pt={2}>
+        {isFetching && renderAccommodationSkeleton()}
+
         {bookings?.length === 0 ? (
           <Typography textAlign={'center'} variant={'h6'} mt={8}>
             You haven&apos;t booked any accommodations yet
@@ -84,6 +86,7 @@ export default function Bookings() {
             <Box
               display="grid"
               gap={8}
+              mt={8}
               gridTemplateColumns={'repeat(auto-fill, minmax(280px, 1fr))'}
             >
               {bookings?.map(
