@@ -127,17 +127,11 @@ const routes = createBrowserRouter([
         ],
       },
 
+      { path: '/bookings', element: <Bookings /> },
+
       { path: '/wishlist', element: <Wishlist /> },
 
       { path: '*', element: <Navigate to="/" /> },
-    ],
-  },
-  {
-    path: '/bookings',
-    element: <MainLayout />,
-    children: [
-      { path: '', element: <Bookings /> },
-      { path: '*', element: <Navigate to="/bookings" /> },
     ],
   },
 ]);

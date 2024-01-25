@@ -3,6 +3,7 @@ import { PaletteMode, ThemeOptions } from '@mui/material';
 export const PRIMARY_LIGHT_THEME = '#222222';
 export const PRIMARY_DARK_THEME = '#ffffff';
 export const FOOTER_BG_LIGHT = '#f7f7f7';
+export const SECONDARY_MAIN = '#FF385C';
 
 export const FONT_SIZES = {
   xs: {
@@ -42,7 +43,7 @@ const lightTheme: ThemeOptions = {
       main: PRIMARY_LIGHT_THEME,
     },
     secondary: {
-      main: '#FF385C',
+      main: SECONDARY_MAIN,
       dark: '#FF2B52',
     },
     secondary2: {
@@ -106,7 +107,7 @@ const darkTheme: ThemeOptions = {
       main: PRIMARY_DARK_THEME,
     },
     secondary: {
-      main: '#FF385C',
+      main: SECONDARY_MAIN,
       dark: '#FF2B52',
     },
     secondary2: {

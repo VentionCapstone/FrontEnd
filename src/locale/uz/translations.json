@@ -27,7 +27,12 @@
       "enter_valid_phone_number": "Iltimos, haqiqiy telefon raqamingizni kiriting",
       "password_must_contain": "Parol kamida bir katta harf, bir kichik harf, bir raqam va bir maxsus belgidan iborat bo'lishi kerak",
       "password_invalid_length": "Parol kamida 8 ta belgidan iborat bo'lishi kerak",
-      "password_not_matching": "Parollar mos emas!"
+      "password_not_matching": "Parollar mos emas!",
+
+      "profile_error_creating": "Profil yaratishda xatolik!",
+
+      "image_failed_convert": "Rasmni o'zgartirishda xatolik!",
+      "image_invalid_selection": "Iltimos, 10 MB dan kichik bo'lgan haqiqiy rasmni tanlang!"
     },
 
     "home_ui": {
@@ -190,6 +195,7 @@
     "aminities_list": {
       "title": "Qanday qulayliklar mavjud"
     },
+
     "review_list": {
       "title": "Reyting",
       "show_all": "Barcha",
@@ -238,6 +244,7 @@
       "create_btn": "Yaratish",
       "country": "Mamlakat"
     },
+
     "searchTexts": {
       "input_date_label_checkin": "Kirish kuni",
       "input_date_label_checkout": "Chiqish kuni",
@@ -246,6 +253,13 @@
       "search_button": "Izlash",
       "input_location_no_options": "Joylashuvni kiriting"
     },
+
+    "profileActions": {
+      "profile_image_change": "Profil rasmi muvaffaqiyatli o'zgartirildi",
+      "profile_create": "Profil muvaffaqiyatli yaratildi",
+      "profile_change": "Profil muvaffaqiyatli o'zgartirildi"
+    },
+
     "amenities": {
       "edit_success": "Turar joy oʻzgarishlari muvaffaqiyatli saqlandi",
       "create_success": "Turar joy muvaffaqiyatli yaratildi",
@@ -253,6 +267,7 @@
       "cannot_contain_comma": "Qulayliklarda vergul bo'lishi mumkin emas",
       "no_amenities_selected": "Saqlash uchun qulayliklar yo'q"
     },
+
     "host": {
       "profile": {
         "subtitle": "Mezbon",
@@ -289,10 +304,12 @@
       "cancel": "Bekor qilish",
       "success": "Izohingiz jo'natildi"
     },
+
     "owner_card": {
       "title": "Uy egasi",
       "joined_in": "Qo'shilgan"
     },
+
     "wishlist": {
       "title": "Istaklar roʻyxati",
       "wishlits_empty_title": "Birinchi istaklar ro'yxatingizni yarating",

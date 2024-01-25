@@ -1,7 +1,7 @@
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import useAddToWishlistMutation from '@src/api/mutations/wishlist/useAddToWishlistMutation';
 import useDeleteFromWishlistMutation from '@src/api/mutations/wishlist/useDeleteFromWishlistMutation';
@@ -25,6 +25,10 @@ const FavoriteButton = ({
     inWishlist ? deleteFromWishlist(accommodationId) : addToWishlist(accommodationId);
     setInWishlist((prev) => !prev);
   };
+
+  useEffect(() => {
+    setInWishlist(isInWishlist);
+  }, [isInWishlist]);
 
   return (
     <Box sx={accommodationCardStyles.favoriteIcon}>
