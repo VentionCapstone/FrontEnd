@@ -314,6 +314,7 @@
       "add_review": "Add review"
     },
     "create_accommodation_route": {
+      "no_accommodation_created": "You have not created any accommodations yet",
       "title_your_acc": "Your Accommodations",
       "create_title": "Create Accommodation",
       "basic_info": "Basic Information",
@@ -342,7 +343,12 @@
       "upload_btn": "Upload from your device",
       "choose_at_least_5": "Choose at least 5 images",
       "add_aminities": "Add amenities",
-      "save_btn": "Save"
+      "save_btn": "Save",
+      "deleted": "Deleted",
+      "create": "Create",
+      "edit": "Edit",
+      "accommodation": "Accommodation",
+      "amenities": "amenities"
     }
   }
 }

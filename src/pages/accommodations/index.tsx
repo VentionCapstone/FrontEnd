@@ -11,11 +11,13 @@ import { ROUTES } from '@src/config/routes.config';
 import { useAppSelector } from '@src/hooks/redux-hooks';
 import { getUser } from '@src/stores/slices/authSlice';
 import { AccommodationType } from '@src/types/accommodation.types';
-import { ErrorTypes } from '@src/types/i18n.types';
+import { CreateAccommodationRoute, ErrorTypes } from '@src/types/i18n.types';
 import { lineClampStyle } from '@src/utils';
+import { useTranslation } from 'react-i18next';
 import AccommodationSkeleton from './components/AccommodationSkeleton';
 
 export default function Accommodations() {
+  const { t } = useTranslation();
   const profileId = useAppSelector(getUser)?.id ?? '';
 
   const { data, isPending, isError, hasNextPage, fetchNextPage } = useGetAccommodations(profileId);
@@ -47,7 +49,7 @@ export default function Accommodations() {
     <Box>
       <Box display="flex" alignItems="center" justifyContent="space-between" my={4}>
         <Typography variant={'lg'} fontWeight={600}>
-          Your Accommodations
+          {t(CreateAccommodationRoute.title_your_acc)}
         </Typography>
         <Link to={ROUTES.accommodations.create}>
           <IconButton>
@@ -58,7 +60,7 @@ export default function Accommodations() {
 
       {accommodations?.length === 0 ? (
         <Typography textAlign={'center'} variant={'h6'} mt={8}>
-          You haven&apos;t created any accommodations yet
+          {t(CreateAccommodationRoute.no_acc_created)}
         </Typography>
       ) : (
         <InfiniteScroll
@@ -100,7 +102,7 @@ export default function Accommodations() {
                           fontSize="large"
                           fontWeight="600"
                         >
-                          Deleted
+                          {t(CreateAccommodationRoute.deleted)}
                         </Typography>
                       </Box>
                     )}
