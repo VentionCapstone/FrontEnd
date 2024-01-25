@@ -84,9 +84,6 @@ function Main() {
     []
   );
 
-  if (isPending) {
-    renderAccommodationSkeleton();
-  }
   if (isError) {
     return <DataFetchError errorKey={ErrorTypes.accommodation_failed_to_get_list} />;
   }
@@ -110,6 +107,8 @@ function Main() {
           </Button>
         </Badge>
       </Box>
+
+      {isPending && renderAccommodationSkeleton()}
 
       {accommodations?.length === 0 && (
         <Stack justifyContent={'center'} alignItems={'center'} height="20vh">
