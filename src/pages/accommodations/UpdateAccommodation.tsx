@@ -48,7 +48,7 @@ function UpdateAccommodation() {
         <EditAmenities
           accommodationId={accommodationId}
           isNew={false}
-          accommodationAmenities={accommodation.data.amenities[0]}
+          accommodationAmenities={accommodation.data.amenities}
         />
       )}
     </Box>

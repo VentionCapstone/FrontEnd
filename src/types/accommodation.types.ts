@@ -243,7 +243,7 @@ export interface AccommodationSingle {
   isDeleted: boolean;
   address: Address;
   media: Media[];
-  amenities: Amenities[];
+  amenities: Amenities;
   owner: Owner;
   timezoneOffset: number;
   title: string;

@@ -3,6 +3,7 @@ export const ROUTES = {
   auth: {
     signIn: '/auth/signin',
     signUp: '/auth/signup',
+    confirmEmail: '/auth/confirm-email',
   },
   account: {
     root: '/account',
