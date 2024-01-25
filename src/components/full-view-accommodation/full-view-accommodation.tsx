@@ -21,40 +21,65 @@ export interface ShowPhotosProps {
   id: string;
   open: boolean;
   onClose: () => void;
+  handleOpen: () => void;
+  isMobile?: boolean;
 }
 
-export default function ShowPhotos({ id, open, onClose }: ShowPhotosProps) {
+export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: ShowPhotosProps) {
   const { data } = UseGetAllMediaQuery(id);
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, data?.length ?? 0 - 1));
-  };
+  const handleNext = React.useCallback(() => {
+    setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, (data?.length ?? 0) - 1));
+  }, [data]);
 
-  const handlePrev = () => {
+  const handlePrev = React.useCallback(() => {
     setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
-  };
+  }, []);
 
   const handleClose = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     onClose();
   };
 
+  React.useEffect(() => {
+    const handleKeyDown = (event: React.KeyboardEvent) => {
+      switch (event.key) {
+        case 'ArrowLeft':
+          handlePrev();
+          break;
+        case 'ArrowRight':
+          handleNext();
+          break;
+        default:
+          break;
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown as () => void);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown as () => void);
+    };
+  }, [currentIndex, handleNext, handlePrev]);
+
   return (
     <React.Fragment>
-      <Button
-        variant="contained"
-        color="inherit"
-        onClick={onClose}
-        sx={{ position: 'absolute', right: '8%', bottom: '10%' }}
-      >
-        Show all photos
-      </Button>
+      {!isMobile && (
+        <Button
+          variant="contained"
+          color="inherit"
+          onClick={handleOpen}
+          sx={{ position: 'absolute', right: '3%', bottom: '10%' }}
+        >
+          Show all photos
+        </Button>
+      )}
+
       <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
         <Toolbar>
           <IconButton
             edge="start"
-            sx={{ marginLeft: 10 }}
+            sx={{ marginLeft: '1rem' }}
             color="inherit"
             onClick={(e) => handleClose(e)}
             aria-label="close"
