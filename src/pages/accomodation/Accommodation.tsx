@@ -45,8 +45,8 @@ function Accommodation() {
   };
 
   useEffect(() => {
-    if (data?.amenities && data?.amenities[0]) {
-      const listOfTrueAmenities = selectOnlyTrueAmenities(data?.amenities[0]);
+    if (data?.amenities) {
+      const listOfTrueAmenities = selectOnlyTrueAmenities(data?.amenities);
 
       setAmenities(buildAmenityList(listOfTrueAmenities));
     }
