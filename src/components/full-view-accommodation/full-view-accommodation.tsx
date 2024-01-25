@@ -26,7 +26,8 @@ export interface ShowPhotosProps {
 }
 
 export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: ShowPhotosProps) {
-  const { data } = UseGetAllMediaQuery(id);
+  const [shouldFetch, setShouldFetch] = React.useState(false);
+  const { data } = UseGetAllMediaQuery(id, shouldFetch);
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
   const handleNext = React.useCallback(() => {
@@ -68,7 +69,10 @@ export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: 
         <Button
           variant="contained"
           color="inherit"
-          onClick={handleOpen}
+          onClick={() => {
+            handleOpen();
+            setShouldFetch(true);
+          }}
           sx={{ position: 'absolute', right: '3%', bottom: '10%' }}
         >
           Show all photos

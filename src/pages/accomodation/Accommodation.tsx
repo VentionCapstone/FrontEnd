@@ -60,7 +60,6 @@ function Accommodation() {
 
   return (
     <Box>
-
       <ImagesList data={data} />
 
       <Box sx={styles.content}>
