@@ -219,8 +219,8 @@
     },
 
     "create_profile": {
-      "title": "Профиль создать",
-      "legal_name": "Фамилия",
+      "title": "Cоздать профиль",
+      "legal_name": "Фамилия и имя",
       "first_name": "Имя",
       "last_name": "Фамилия",
       "select_country": "Выберите страну",
