@@ -29,7 +29,10 @@
       "password_invalid_length": "Parol kamida 8 ta belgidan iborat bo'lishi kerak",
       "password_not_matching": "Parollar mos emas!",
 
-      "profile_error_creating": "Profil yaratishda xatolik!"
+      "profile_error_creating": "Profil yaratishda xatolik!",
+
+      "image_failed_convert": "Rasmni o'zgartirishda xatolik!",
+      "image_invalid_selection": "Iltimos, 10 MB dan kichik bo'lgan haqiqiy rasmni tanlang!"
     },
 
     "home_ui": {

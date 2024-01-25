@@ -29,7 +29,10 @@
       "password_invalid_length": "Пароль должен быть не менее 8 символов",
       "password_not_matching": "Пароли не совпадают!",
 
-      "profile_error_creating": "Ошибка при создании профиля!"
+      "profile_error_creating": "Ошибка при создании профиля!",
+
+      "image_failed_convert": "Ошибка преобразования изображения!",
+      "image_invalid_selection": "Пожалуйста, выберите допустимое изображение размером менее 10 МБ!"
     },
 
     "home_ui": {

@@ -29,7 +29,10 @@
       "password_invalid_length": "Das Passwort muss mindestens 8 Zeichen lang sein",
       "password_not_matching": "Passwörter stimmen nicht überein!",
 
-      "profile_error_creating": "Fehler beim Erstellen des Profils!"
+      "profile_error_creating": "Fehler beim Erstellen des Profils!",
+
+      "image_failed_convert": "Bildkonvertierung fehlgeschlagen!",
+      "image_invalid_selection": "Bitte wählen Sie ein gültiges Bild unter 10 MB aus!"
     },
 
     "home_ui": {

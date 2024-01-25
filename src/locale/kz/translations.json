@@ -29,7 +29,10 @@
       "password_invalid_length": "Құпия сөз кемінде 8 символдан тұруы керек",
       "password_not_matching": "Құпия сөздер сәйкес келмейді!",
 
-      "profile_image_change": "Профиль суреті сәтті өзгертілді"
+      "profile_image_change": "Профиль суреті сәтті өзгертілді",
+
+      "image_failed_convert": "Суретті түрлендіру мүмкін болмады!",
+      "image_invalid_selection": "10 МБ-тан аспайтын жарамды суретті таңдаңыз!"
     },
 
     "home_ui": {

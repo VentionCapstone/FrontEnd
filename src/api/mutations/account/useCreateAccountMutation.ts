@@ -8,11 +8,8 @@ import { Profile } from '@src/types/profile.types';
 function useCreateAccountMutation() {
   return useMutation({
     mutationKey: [QUERY_KEYS.mutation.createAccount],
-    mutationFn: async (profileToSave: Profile) => {
-      const { data } = await httpClient.post<Profile>(
-        ENDPOINTS.account.createUserProfile,
-        profileToSave
-      );
+    mutationFn: async (profile: Profile) => {
+      const { data } = await httpClient.post<Profile>(ENDPOINTS.account.createUserProfile, profile);
 
       return data;
     },

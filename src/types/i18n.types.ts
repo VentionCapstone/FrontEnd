@@ -15,6 +15,10 @@ export enum ErrorTypes {
 
   //profile
   profile_error_creating = 'errors.profile_error_creating',
+
+  //image
+  image_failed_convert = 'errors.image_failed_convert',
+  image_invalid_selection = 'errors.image_invalid_selection',
 }
 
 export enum SearchTexts {

@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import useCreateAccountMutation from '@src/api/mutations/account/useCreateAccountMutation';
@@ -27,7 +28,6 @@ import {
 import { PhoneCodesByCountry } from '@src/constants/constant.types';
 import { CreateProfileForm, ErrorTypes, ProfileActions } from '@src/types/i18n.types';
 import { Gender, Profile, ThemeMode } from '@src/types/profile.types';
-import { useTranslation } from 'react-i18next';
 import AddImage from '../AddImage';
 import UserFullName from './UserFullName';
 import UserPhoneNumber from './UserPhoneNumber';
@@ -51,10 +51,13 @@ function CreateProfile() {
   const { mutate: updateAccountImage, isPending: imageUpdatePending } =
     useUpdateAccountImageMutation(profileImage);
 
-  const confirmCreation = async () => {
+  const confirmCreation = () => {
     navigate(ROUTES.root);
     toast.success(t(ProfileActions.profile_create));
-    await queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.query.user] });
+    queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.query.user] }).catch((err) => {
+      console.error(err);
+      toast.error(ErrorTypes.default);
+    });
   };
 
   const onSubmit: SubmitHandler<Profile> = (data) => {
@@ -70,10 +73,10 @@ function CreateProfile() {
     try {
       if (profileImage) {
         createAccountMutation(profileData, {
-          onSuccess: (res) => {
-            updateAccountImage(res.id, {
+          onSuccess: (profile) => {
+            updateAccountImage(profile.id, {
               onSuccess: () => {
-                confirmCreation().catch((error) => console.error(error));
+                confirmCreation();
               },
             });
           },
@@ -83,7 +86,7 @@ function CreateProfile() {
           { ...profileData, imageUrl: defaultImage },
           {
             onSuccess: () => {
-              confirmCreation().catch((error) => console.error(error));
+              confirmCreation();
             },
           }
         );

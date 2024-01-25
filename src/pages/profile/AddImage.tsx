@@ -6,6 +6,9 @@ import Typography from '@mui/material/Typography';
 import { ChangeEventHandler, useState } from 'react';
 import toast from 'react-hot-toast';
 
+import { IMAGE_MAX_SIZE } from '@src/constants';
+import i18n from '@src/i18n/i18n';
+import { ErrorTypes } from '@src/types/i18n.types';
 import { convertImageToBase64 } from '@src/utils';
 
 function AddImage({
@@ -15,18 +18,26 @@ function AddImage({
   imageUrl?: string;
   setNewProfileImage: React.Dispatch<React.SetStateAction<File | null>>;
 }) {
+  const { t } = i18n;
+
   const [imagePreview, setImagePreview] = useState(imageUrl ?? '');
   const handleChangeInput: ChangeEventHandler<HTMLInputElement> = (e) => {
     const file = e.target.files?.[0];
 
-    if (!file) return;
+    if (file) {
+      const imageFormat = file.type.startsWith('image/');
 
-    setNewProfileImage(file);
-    convertImageToBase64(file)
-      .then((imageBase64) => {
-        setImagePreview(imageBase64);
-      })
-      .catch(() => toast.error('Image conversion failed!'));
+      if (!imageFormat || file.size >= IMAGE_MAX_SIZE) {
+        return toast.error(t(ErrorTypes.image_invalid_selection));
+      }
+
+      setNewProfileImage(file);
+      convertImageToBase64(file)
+        .then((imageBase64) => {
+          setImagePreview(imageBase64);
+        })
+        .catch(() => toast.error(t(ErrorTypes.image_failed_convert)));
+    }
   };
 
   return (
