@@ -35,9 +35,17 @@ export interface ShowPhotosProps {
   onClose: () => void;
   handleOpen: () => void;
   isMobile?: boolean;
+  isDesktop?: boolean;
 }
 
-export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: ShowPhotosProps) {
+export default function ShowPhotos({
+  id,
+  open,
+  onClose,
+  handleOpen,
+  isMobile,
+  isDesktop,
+}: ShowPhotosProps) {
   const { data } = useGetAllMediaQuery(id, open);
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -134,15 +142,15 @@ export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: 
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            height: '100vh',
+            height: '80vh',
           }}
         >
           {data && (
             <ImageList
-              sx={isMobile ? { width: '100vw' } : { width: '90vw' }}
+              sx={isMobile ? { width: '100vw' } : { width: '90vw', marginTop: '3.5rem' }}
               variant="quilted"
               cols={1}
-              rowHeight={isMobile ? 400 : 900}
+              rowHeight={isDesktop ? 900 : isMobile ? 400 : 600}
             >
               <Slider
                 itemsPerView={1}
