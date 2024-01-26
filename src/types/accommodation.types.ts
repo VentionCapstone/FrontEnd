@@ -19,13 +19,16 @@ export type AccommodationFields =
   | 'address.zipCode';
 
 export const accommodationSchema = z.object({
-  title: z.string().min(5).max(100),
-  squareMeters: z.number(),
+  title: z
+    .string()
+    .min(5, 'Title must be at least 5 characters')
+    .max(100, 'Title must be less than 100 characters'),
+  squareMeters: z.number().max(1000, 'Square meters must be less than 1000'),
   numberOfRooms: z
     .number()
     .min(1, 'Number of rooms must be greater than 0')
     .max(100, "Can't be more than 100 rooms"),
-  price: z.number(),
+  price: z.number().max(10000, 'Price must be less than 10000'),
   allowedNumberOfPeople: z
     .number()
     .min(1, 'Allowed number of people must be greater than 0')
@@ -33,7 +36,10 @@ export const accommodationSchema = z.object({
   availableFrom: z.string(),
   availableTo: z.string(),
   available: z.boolean(),
-  description: z.string().min(10).max(256),
+  description: z
+    .string()
+    .min(10, 'Description must be at least 10 characters')
+    .max(256, 'Description must be less than 256 characters'),
   address: z.object({
     street: z.string().min(3, 'Street name must be at least 3 characters'),
     city: z.string().min(3, 'City name must be at least 3 characters'),

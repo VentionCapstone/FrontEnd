@@ -52,7 +52,7 @@ function AccommodationForm({
       description: '',
       allowedNumberOfPeople: 1,
       availableFrom: String(new Date()),
-      availableTo: String(new Date(dayjs().add(1, 'week').toDate())),
+      availableTo: String(new Date(dayjs().add(2, 'week').toDate())),
       numberOfRooms: 1,
       available: true,
       price: 1,
