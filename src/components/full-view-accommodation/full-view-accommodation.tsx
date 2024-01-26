@@ -5,14 +5,26 @@ import Dialog from '@mui/material/Dialog';
 import IconButton from '@mui/material/IconButton';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
-import { UseGetAllMediaQuery } from '@src/api/queries/media/useGetAllMediaQuery';
-import * as React from 'react';
+import { useGetAllMediaQuery } from '@src/api/queries/media/useGetAllMediaQuery';
 
-const Transition = React.forwardRef(function Transition(
+import {
+  KeyboardEvent,
+  MouseEvent,
+  ReactElement,
+  Ref,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import Slider from '../shared/Slider';
+
+const Transition = forwardRef(function Transition(
   props: TransitionProps & {
-    children: React.ReactElement;
+    children: ReactElement;
   },
-  ref: React.Ref<unknown>
+  ref: Ref<unknown>
 ) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -26,25 +38,29 @@ export interface ShowPhotosProps {
 }
 
 export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: ShowPhotosProps) {
-  const [shouldFetch, setShouldFetch] = React.useState(false);
-  const { data } = UseGetAllMediaQuery(id, shouldFetch);
-  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const { data } = useGetAllMediaQuery(id, open);
 
-  const handleNext = React.useCallback(() => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  const handleNext = useCallback(() => {
     setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, (data?.length ?? 0) - 1));
   }, [data]);
 
-  const handlePrev = React.useCallback(() => {
+  const handlePrev = useCallback(() => {
     setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
   }, []);
 
-  const handleClose = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClose = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     onClose();
   };
 
-  React.useEffect(() => {
-    const handleKeyDown = (event: React.KeyboardEvent) => {
+  useEffect(() => {
+    const dialogElement = dialogRef.current as HTMLDivElement;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
       switch (event.key) {
         case 'ArrowLeft':
           handlePrev();
@@ -56,30 +72,47 @@ export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: 
           break;
       }
     };
-    window.addEventListener('keydown', handleKeyDown as () => void);
+
+    dialogElement?.addEventListener('keydown', handleKeyDown as () => void);
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown as () => void);
+      dialogElement?.removeEventListener('keydown', handleKeyDown as () => void);
     };
   }, [currentIndex, handleNext, handlePrev]);
 
+  const renderImages = () => {
+    return data?.map((item, index) => (
+      <ImageListItem sx={{ width: '100%', height: '100%' }} key={index} cols={1} rows={1}>
+        <img
+          style={{ objectFit: 'fill', height: '100%' }}
+          src={item.imageUrl}
+          alt={`photo-${index}`}
+          loading="lazy"
+        />
+      </ImageListItem>
+    ));
+  };
+
   return (
-    <React.Fragment>
+    <>
       {!isMobile && (
         <Button
           variant="contained"
           color="inherit"
-          onClick={() => {
-            handleOpen();
-            setShouldFetch(true);
-          }}
+          onClick={handleOpen}
           sx={{ position: 'absolute', right: '3%', bottom: '10%' }}
         >
           Show all photos
         </Button>
       )}
 
-      <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
+      <Dialog
+        fullScreen
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Transition}
+        ref={dialogRef}
+      >
         <Toolbar>
           <IconButton
             edge="start"
@@ -98,38 +131,44 @@ export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: 
         <Grid sx={{ height: '100%', margin: '0 auto' }}>
           {data && (
             <ImageList
-              sx={{ height: '100%', margin: '0 auto' }}
+              sx={isMobile ? { width: '20rem' } : { width: '40rem' }}
               variant="quilted"
               cols={1}
-              rowHeight={'auto'}
+              rowHeight={isMobile ? 300 : 490}
             >
-              <ImageListItem
-                key={data[currentIndex].id}
-                sx={{ Maxheight: '50%', maxWidth: '80%', margin: '10px auto' }}
+              <Slider
+                itemsPerView={1}
+                onStepChange={setCurrentIndex}
+                activeStep={currentIndex}
+                maxSteps={data.length}
+                showIndicators={true}
               >
-                <img src={data[currentIndex].imageUrl} loading="lazy" />
-              </ImageListItem>
+                {renderImages()}
+              </Slider>
             </ImageList>
           )}
-
-          <IconButton
-            sx={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)' }}
-            color="inherit"
-            onClick={handlePrev}
-            disabled={currentIndex === 0}
-          >
-            <ArrowBackIos />
-          </IconButton>
-          <IconButton
-            sx={{ position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)' }}
-            color="inherit"
-            onClick={handleNext}
-            disabled={currentIndex === (data?.length ?? 0) - 1}
-          >
-            <ArrowForwardIos />
-          </IconButton>
+          {!isMobile && (
+            <>
+              <IconButton
+                sx={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)' }}
+                color="inherit"
+                onClick={handlePrev}
+                disabled={currentIndex === 0}
+              >
+                <ArrowBackIos />
+              </IconButton>
+              <IconButton
+                sx={{ position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)' }}
+                color="inherit"
+                onClick={handleNext}
+                disabled={currentIndex === (data?.length ?? 0) - 1}
+              >
+                <ArrowForwardIos />
+              </IconButton>
+            </>
+          )}
         </Grid>
       </Dialog>
-    </React.Fragment>
+    </>
   );
 }

@@ -1,61 +1,6 @@
 import { MuiStylesObject } from '@src/types/utility.types';
 
 export const styles = {
-  image_left: {
-    '& img': {
-      width: '100%',
-      objectFit: 'cover',
-      borderTopLeftRadius: '15px',
-      borderBottomLeftRadius: '15px',
-      borderTopRightRadius: {
-        xs: '15px',
-        md: '0',
-      },
-      borderBottomRightRadius: {
-        xs: '15px',
-        md: '0',
-      },
-      height: {
-        'xs': '310px',
-        'sm': '360px',
-        'md': '408px',
-        'lg': '458px',
-        'xl': '558px',
-        '2xl': '608px',
-      },
-      cursor: 'pointer',
-    },
-  },
-  image_list: {
-    'display': {
-      xs: 'none',
-      md: 'flex',
-    },
-    'position': 'relative',
-    '& img': {
-      width: '100%',
-      objectFit: 'cover',
-      height: {
-        'md': '200px',
-        'lg': '225px',
-        'xl': '275px',
-        '2xl': '300px',
-      },
-      cursor: 'pointer',
-    },
-  },
-  image_right_top: {
-    '& img': {
-      borderTopRightRadius: '15px',
-    },
-    'cursor': 'pointer',
-  },
-  image_right_bottom: {
-    '& img': {
-      borderBottomRightRadius: '15px',
-    },
-    'cursor': 'pointer',
-  },
   heading: {
     fontWeight: 'bold',
     fontSize: {

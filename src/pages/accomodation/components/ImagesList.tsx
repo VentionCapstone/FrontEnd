@@ -1,10 +1,12 @@
 import { Box, ImageList, ImageListItem, useMediaQuery, useTheme } from '@mui/material';
 import ShowPhotos from '@src/components/full-view-accommodation/full-view-accommodation';
 import Slider from '@src/components/shared/Slider';
-import { AccommodationSingle } from '@src/types/accommodation.types';
+import { Media } from '@src/types/accommodation.types';
+import { renderedImageType } from '@src/types/accommodationImages.types';
 import { useState } from 'react';
+import { getImageSources } from '../utils/imagesListUtils';
 
-export default function ImagesList({ data }: { data: AccommodationSingle }) {
+export default function ImagesList({ imagesData }: { imagesData: Media[] }) {
   const [openDialog, setOpenDialog] = useState(false);
 
   const handleOpenDialog = () => {
@@ -13,64 +15,27 @@ export default function ImagesList({ data }: { data: AccommodationSingle }) {
   const handleCloseDialog = () => {
     setOpenDialog(false);
   };
-  const [image_1, image_2, image_3, image_4, image_5] = data.media;
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [activeStep, setActiveStep] = useState(0);
 
-  function cutImgUrl(url: string) {
-    const parts = url.split('?');
-    return parts[0];
-  }
+  const images = imagesData.slice(0, 5).map((image, index) => ({
+    url: image.thumbnailUrl,
+    cols: index === 0 ? 2 : 1,
+    rows: index === 0 ? 4 : 2,
+  }));
 
-  const images = [
-    {
-      url: image_1.thumbnailUrl,
-      cols: 2,
-      rows: 4,
-    },
-    {
-      url: image_2.thumbnailUrl,
-      cols: 1,
-      rows: 2,
-    },
-    {
-      url: image_3.thumbnailUrl,
-      cols: 1,
-      rows: 2,
-    },
-    {
-      url: image_4.thumbnailUrl,
-      cols: 1,
-      rows: 2,
-    },
-    {
-      url: image_5.thumbnailUrl,
-      cols: 1,
-      rows: 2,
-    },
-  ];
-
-  function srcset(image: string, size: number, rows = 1, cols = 1) {
-    const cuttedUrl = cutImgUrl(image);
-
-    return {
-      src: `${cuttedUrl}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
-      srcSet: `${cuttedUrl}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format&dpr=2 2x`,
-    };
-  }
-
-  function renderImageList(images: { url: string; rows: number; cols: number }[]) {
+  function renderImageList(images: renderedImageType[], height: string) {
     return images.map((item, index) => {
       const { url, rows, cols } = item;
 
       return (
         <ImageListItem key={index} cols={cols} rows={rows} onClick={handleOpenDialog}>
           <img
-            style={{ borderRadius: 5, objectFit: 'cover', cursor: 'pointer' }}
-            {...srcset(url, 121, rows, cols)}
+            style={{ borderRadius: 5, objectFit: 'cover', cursor: 'pointer', height }}
+            {...getImageSources({ url, rows, cols })}
             loading="lazy"
           />
         </ImageListItem>
@@ -88,11 +53,11 @@ export default function ImagesList({ data }: { data: AccommodationSingle }) {
             maxSteps={5}
             showIndicators={true}
           >
-            {renderImageList(images)}
+            {renderImageList(images, '250px')}
           </Slider>
           <ShowPhotos
             isMobile={isMobile}
-            id={data.id}
+            id={imagesData[0].accommodationId}
             onClose={handleCloseDialog}
             handleOpen={handleOpenDialog}
             open={openDialog}
@@ -105,9 +70,9 @@ export default function ImagesList({ data }: { data: AccommodationSingle }) {
           cols={4}
           rowHeight={100}
         >
-          {renderImageList(images)}
+          {renderImageList(images, '100%')}
           <ShowPhotos
-            id={data.id}
+            id={imagesData[0].accommodationId}
             onClose={handleCloseDialog}
             handleOpen={handleOpenDialog}
             open={openDialog}

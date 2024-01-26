@@ -4,7 +4,7 @@ import { QUERY_KEYS } from '@src/config/react-query.config';
 import { AllMediaResponse } from '@src/types/accommodation.types';
 import { useQuery } from '@tanstack/react-query';
 
-export function UseGetAllMediaQuery(id: string, enabled = false) {
+export function useGetAllMediaQuery(id: string, enabled: boolean) {
   return useQuery({
     queryKey: [QUERY_KEYS.query.media, id],
     queryFn: async () => {

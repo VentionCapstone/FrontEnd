@@ -60,7 +60,7 @@ function Accommodation() {
 
   return (
     <Box>
-      <ImagesList data={data} />
+      <ImagesList imagesData={data.media} />
 
       <Box sx={styles.content}>
         <Box flex={0.6}>
