@@ -319,3 +319,15 @@ export enum CreateAccommodationRoute {
   accommodation = 'create_accommodation_route.accommodation',
   amenities = 'create_accommodation_route.amenities',
 }
+
+export enum ToastMessages {
+  ErrorSessionExpired = 'toast.error_session_expired',
+  ErrorImg = 'toast.error_img',
+  ErrorTheme = 'toast.error_theme',
+  ErrorUtil = 'toast.error_util',
+  SuccessAccDel = 'toast.success_acc_del',
+  SuccessAccRestored = 'toast.success_acc_restored',
+  SuccessProfile = 'toast.success_profile',
+  SuccessUpdated = 'toast.success_updated',
+  SuccessEmail = 'toast.success_email',
+}

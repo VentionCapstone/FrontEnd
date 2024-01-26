@@ -349,6 +349,17 @@
       "edit": "Edit",
       "accommodation": "Accommodation",
       "amenities": "amenities"
+    },
+    "toast": {
+      "error_session_expired": "Your session has expired, please sign in again",
+      "error_img": "Image conversion failed!",
+      "error_theme": "Error changing theme!",
+      "error_util": "Error retrieving value",
+      "success_acc_del": "Accommodation deleted successfully",
+      "success_acc_restored": "Accommodation restored successfully",
+      "success_profile": "Profile created!",
+      "success_updated": "Updated successfully!",
+      "success_email": "Email verified"
     }
   }
 }

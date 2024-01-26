@@ -13,8 +13,9 @@ import { logout, setToken } from '@src/stores/slices/authSlice';
 import { store } from '@src/stores/store';
 import { RefreshResponse, RefreshingPromise, isRefreshingType } from '@src/types/auth.types';
 import { ErrorResponse } from '@src/types/error.types';
-import { ErrorTypes } from '@src/types/i18n.types';
+import { ErrorTypes, ToastMessages } from '@src/types/i18n.types';
 import { getValueFromLocalStorage } from '@src/utils';
+import { useTranslation } from 'react-i18next';
 
 let isRefreshing: isRefreshingType = false;
 
@@ -60,10 +61,11 @@ async function resErrInterceptor(error: AxiosError<ErrorResponse>) {
     if (!isRefreshing) {
       // If not already refreshing, initiate token refresh
       isRefreshing = refreshAccessToken().then((res) => {
+        const { t } = useTranslation();
         if ('error' in res) {
           store.dispatch(logout());
           httpClient.defaults.headers.common['Authorization'] = '';
-          toast.error('Your session has expired, please sign in again');
+          toast.error(`${t(ToastMessages.ErrorSessionExpired)}`);
 
           return res;
         }

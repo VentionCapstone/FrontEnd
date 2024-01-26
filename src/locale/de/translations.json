@@ -344,6 +344,17 @@
       "edit": "Bearbeiten",
       "accommodation": "Unterkunft",
       "amenities": "Ausstattung"
+    },
+    "toast": {
+      "error_session_expired": "Ihre Sitzung ist abgelaufen, bitte melden Sie sich erneut an",
+      "error_img": "Bildkonvertierung fehlgeschlagen!",
+      "error_theme": "Fehler beim Ändern des Themas!",
+      "error_util": "Fehler beim Abrufen des Werts",
+      "success_acc_del": "Unterkunft erfolgreich gelöscht",
+      "success_acc_restored": "Unterkunft erfolgreich wiederhergestellt",
+      "success_profile": "Profil erstellt!",
+      "success_updated": "Erfolgreich aktualisiert!",
+      "success_email": "E-Mail verifiziert"
     }
   }
 }

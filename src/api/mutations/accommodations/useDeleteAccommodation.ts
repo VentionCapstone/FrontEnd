@@ -4,10 +4,13 @@ import httpClient from '@src/api/httpClient';
 import { ENDPOINTS } from '@src/config/endpoints.config';
 import { QUERY_KEYS } from '@src/config/react-query.config';
 import { ROUTES } from '@src/config/routes.config';
+import { ToastMessages } from '@src/types/i18n.types';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 export const useDeleteAccommodation = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -21,7 +24,7 @@ export const useDeleteAccommodation = () => {
       await queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.query.hostedAccommodation, accommodationId],
       });
-      toast.success('Accommodation deleted successfully');
+      toast.success(`${t(ToastMessages.SuccessAccDel)}`);
       navigate(ROUTES.accommodations.root);
     },
   });

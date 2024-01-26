@@ -6,9 +6,12 @@ import httpClient from '@src/api/httpClient';
 import { ENDPOINTS } from '@src/config/endpoints.config';
 import { QUERY_KEYS } from '@src/config/react-query.config';
 import { ROUTES } from '@src/config/routes.config';
+import { ToastMessages } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 
 function useVerifyEmailMutation(token: string) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return useMutation({
     mutationKey: [QUERY_KEYS.mutation.verifyEmail],
@@ -16,7 +19,7 @@ function useVerifyEmailMutation(token: string) {
       await httpClient.post<string>(ENDPOINTS.auth.verifyEmail, { token });
     },
     onSuccess: () => {
-      toast.success('Email verified');
+      toast.success(`${t(ToastMessages.SuccessEmail)}`);
       navigate(ROUTES.auth.signIn);
     },
   });

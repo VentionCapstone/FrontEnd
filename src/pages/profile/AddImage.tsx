@@ -6,8 +6,10 @@ import Typography from '@mui/material/Typography';
 import { ChangeEventHandler } from 'react';
 import toast from 'react-hot-toast';
 
+import { ToastMessages } from '@src/types/i18n.types';
 import { Profile } from '@src/types/profile.types';
 import { convertImageToBase64 } from '@src/utils';
+import { useTranslation } from 'react-i18next';
 
 function AddImage({
   imageUrl,
@@ -16,6 +18,7 @@ function AddImage({
   imageUrl: Profile['imageUrl'];
   setImageUrl: React.Dispatch<React.SetStateAction<string>>;
 }) {
+  const { t } = useTranslation();
   const handleChangeInput: ChangeEventHandler<HTMLInputElement> = (e) => {
     const file = e.target.files?.[0];
 
@@ -25,7 +28,7 @@ function AddImage({
       .then((imageBase64) => {
         setImageUrl(imageBase64);
       })
-      .catch(() => toast.error('Image conversion failed!'));
+      .catch(() => toast.error(`${t(ToastMessages.ErrorImg)}`));
   };
 
   return (

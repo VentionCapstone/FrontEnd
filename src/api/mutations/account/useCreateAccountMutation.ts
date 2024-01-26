@@ -6,9 +6,11 @@ import httpClient from '@src/api/httpClient';
 import { ENDPOINTS } from '@src/config/endpoints.config';
 import { QUERY_KEYS } from '@src/config/react-query.config';
 import { ROUTES } from '@src/config/routes.config';
+import { ToastMessages } from '@src/types/i18n.types';
 import { Profile } from '@src/types/profile.types';
-
+import { useTranslation } from 'react-i18next';
 function useCreateAccountMutation() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -20,7 +22,7 @@ function useCreateAccountMutation() {
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.query.user] });
       navigate(ROUTES.account.root);
-      toast.success('Profile created!');
+      toast.success(`${t(ToastMessages.SuccessProfile)}`);
     },
   });
 }
