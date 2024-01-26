@@ -17,7 +17,7 @@ export default function ImagesList({ imagesData }: { imagesData: Media[] }) {
   };
 
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const [activeStep, setActiveStep] = useState(0);
 
@@ -53,7 +53,7 @@ export default function ImagesList({ imagesData }: { imagesData: Media[] }) {
             maxSteps={5}
             showIndicators={true}
           >
-            {renderImageList(images, '250px')}
+            {renderImageList(images, '350px')}
           </Slider>
           <ShowPhotos
             isMobile={isMobile}

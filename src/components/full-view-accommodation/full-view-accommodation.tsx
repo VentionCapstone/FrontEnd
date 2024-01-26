@@ -84,7 +84,7 @@ export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: 
     return data?.map((item, index) => (
       <ImageListItem sx={{ width: '100%', height: '100%' }} key={index} cols={1} rows={1}>
         <img
-          style={{ objectFit: 'fill', height: '100%' }}
+          style={{ objectFit: 'contain', height: '100%', width: '100%' }}
           src={item.imageUrl}
           alt={`photo-${index}`}
           loading="lazy"
@@ -128,13 +128,21 @@ export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: 
           </Typography>
         </Toolbar>
 
-        <Grid sx={{ height: '100%', margin: '0 auto' }}>
+        <Grid
+          sx={{
+            margin: '0 auto',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100vh',
+          }}
+        >
           {data && (
             <ImageList
-              sx={isMobile ? { width: '20rem' } : { width: '40rem' }}
+              sx={isMobile ? { width: '100vw' } : { width: '90vw' }}
               variant="quilted"
               cols={1}
-              rowHeight={isMobile ? 300 : 490}
+              rowHeight={isMobile ? 400 : 900}
             >
               <Slider
                 itemsPerView={1}
