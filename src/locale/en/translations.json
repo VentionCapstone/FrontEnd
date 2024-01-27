@@ -57,6 +57,11 @@
           "sing_up_btn": "Sign up",
           "sing_title": "Welcome to Airbnb",
           "desc": "if you already have an account, please "
+        },
+        "auth-confirmed": {
+          "check_email": "Check your email",
+          "check_desc": "You should receive an email with a link to confirm your email address.",
+          "return": "Return to sign up"
         }
       },
 

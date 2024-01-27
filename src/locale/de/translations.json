@@ -57,6 +57,11 @@
           "sing_up_link": "registrieren",
           "sing_title": "Willkommen bei Airbnb",
           "desc": "Wenn Sie bereits ein Konto haben, melden Sie sich bitte an"
+        },
+        "auth-confirmed": {
+          "check_email": "Überprüfen Sie Ihre E-Mail",
+          "check_desc": "Sie sollten eine E-Mail mit einem Link erhalten, um Ihre E-Mail-Adresse zu bestätigen.",
+          "return": "Zurück zur Anmeldung"
         }
       },
       "filters_button": {

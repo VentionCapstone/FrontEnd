@@ -55,6 +55,10 @@ export enum HomeUIInfo {
   user_home_btn_mylistings = 'home_ui.user_home_btn.mylistings',
   user_home_btn_logout = 'home_ui.user_home_btn.logout',
 
+  check_email = 'home_ui.register.auth-confirmed.check_email',
+  check_desc = 'home_ui.register.auth-confirmed.check_desc',
+  return = 'home_ui.register.auth-confirmed.return',
+
   sign_in_sing_in_btn = 'home_ui.register.sign_in.sing_in_btn',
   sign_in_sing_title = 'home_ui.register.sign_in.sing_title',
   sign_in_title = 'home_ui.register.sign_in.title',

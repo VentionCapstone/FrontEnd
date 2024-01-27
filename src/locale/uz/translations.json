@@ -57,6 +57,11 @@
           "sing_up_btn": "Ro'yxatdan o'tish",
           "sing_title": "Xush kelibsiz Airbnb",
           "desc": "Agar allaqachon akkauntingiz bo'lsa, Iltimos, kirishni tanlang"
+        },
+        "auth-confirmed": {
+          "check_email": "Elektron pochtangizni tekshiring",
+          "check_desc": "Elektron pochta manzilingizni tasdiqlash uchun havola bilan elektron xat olasiz.",
+          "return": "Ro'yxatdan o'tishga qaytish"
         }
       },
       "filters_button": {
