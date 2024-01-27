@@ -23,7 +23,6 @@ export const QUERY_KEYS = {
     accommodations: 'accommodations',
     accomodationReviews: 'accomodation_reviews',
 
-
     media: 'media',
 
     bookings: 'bookings',
@@ -41,5 +40,6 @@ export const QUERY_KEYS = {
 
     addToWishlist: 'add_to_wishlist',
     deleteFromWishlist: 'delete_from_wishlist',
+    updateUserImage: 'update_user_image',
   },
 } as const;

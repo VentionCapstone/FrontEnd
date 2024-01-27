@@ -84,9 +84,6 @@ function Main() {
     []
   );
 
-  if (isPending) {
-    renderAccommodationSkeleton();
-  }
   if (isError) {
     return <DataFetchError errorKey={ErrorTypes.accommodation_failed_to_get_list} />;
   }
@@ -117,6 +114,12 @@ function Main() {
         </Stack>
       )}
 
+      {isPending && (
+        <Box sx={mainStyles.accommmodationCard}>
+          <AccommodationSkeleton />;
+        </Box>
+      )}
+
       {accommodations?.length !== 0 && (
         <InfiniteScroll
           dataLength={accommodations?.length || 0}
@@ -145,6 +148,7 @@ function Main() {
           checkOutDate={searchParamsAsObject['checkOutDate']}
         />
       )}
+
       <MapModal
         open={openMapModal}
         setOpen={setOpenMapModal}

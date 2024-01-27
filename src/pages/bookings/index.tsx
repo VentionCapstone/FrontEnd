@@ -1,5 +1,6 @@
 import { Box, Tab, Tabs, Typography } from '@mui/material';
 import { useCallback, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { useGetBookingList } from '@src/api/queries/booking/useGetBookingList';
@@ -9,13 +10,12 @@ import { BookType } from '@src/types/booking.types';
 import { STATUS } from '@src/types/global.types';
 import { BookingsRoute, ErrorTypes } from '@src/types/i18n.types';
 import { capitalize } from '@src/utils/capitalize';
-import { useTranslation } from 'react-i18next';
 import AccommodationSkeleton from '../accommodations/components/AccommodationSkeleton';
 import BookingCard from './BookingCard';
 
 export default function Bookings() {
   const { t } = useTranslation();
-  const [value, setValue] = useState<STATUS>('PENDING');
+  const [value, setValue] = useState<STATUS>('ACTIVE');
 
   const a11yProps = useMemo(() => {
     return Object.values(STATUSES).map((status, index) => {
@@ -29,7 +29,7 @@ export default function Bookings() {
     });
   }, []);
 
-  const { data, isError, hasNextPage, fetchNextPage } = useGetBookingList(value);
+  const { data, isError, hasNextPage, fetchNextPage, isFetching } = useGetBookingList(value);
 
   const bookings = useMemo(
     () => data?.pages.reduce((acc, page) => [...acc, ...page.data], [] as BookType[]),
@@ -72,6 +72,8 @@ export default function Bookings() {
         </Tabs>
       </Box>
       <Box pt={2}>
+        {isFetching && renderAccommodationSkeleton()}
+
         {bookings?.length === 0 ? (
           <Typography textAlign={'center'} variant={'h6'} mt={8}>
             {t(BookingsRoute.desc_not_booked)}
@@ -86,6 +88,7 @@ export default function Bookings() {
             <Box
               display="grid"
               gap={8}
+              mt={8}
               gridTemplateColumns={'repeat(auto-fill, minmax(280px, 1fr))'}
             >
               {bookings?.map(

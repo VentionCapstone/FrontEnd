@@ -27,8 +27,14 @@
       "enter_valid_phone_number": "Пожалуйста, введите действующий телефонный номер",
       "password_must_contain": "Пароль должен содержать хотя бы одну заглавную букву, одну строчную букву, одну цифру и один специальный символ.",
       "password_invalid_length": "Пароль должен быть не менее 8 символов",
-      "password_not_matching": "Пароли не совпадают!"
+      "password_not_matching": "Пароли не совпадают!",
+
+      "profile_error_creating": "Ошибка при создании профиля!",
+
+      "image_failed_convert": "Ошибка преобразования изображения!",
+      "image_invalid_selection": "Пожалуйста, выберите допустимое изображение размером менее 10 МБ!"
     },
+
     "home_ui": {
       "user_home_btn": {
         "account": "Aккаунт",
@@ -104,6 +110,7 @@
       "airbnb_your_place": "Airbnb ваше место",
       "airbnb_your_place_desc": "Это просто: начните настраивать и зарабатывать."
     },
+
     "account_edit_personal-info": {
       "image": {
         "edit": "Редактировать",
@@ -150,6 +157,7 @@
         "save": "сохранить"
       }
     },
+
     "login_and_security": {
       "login_title": "Вход и безопасность",
       "email": {
@@ -170,6 +178,7 @@
         "passport_placeholder": "Пароль"
       }
     },
+
     "setting": {
       "title": "Настройки",
       "theme": "Тема",
@@ -249,6 +258,13 @@
       "search_button": "Поиск",
       "input_location_no_options": "Введите местоположение"
     },
+
+    "profileActions": {
+      "profile_image_change": "Изображение профиля успешно изменено",
+      "profile_create": "Профиль успешно создан",
+      "profile_change": "Профиль успешно изменен"
+    },
+
     "amenities": {
       "edit_success": "Изменения в размещении успешно сохранены",
       "create_success": "Размещение успешно создано",
@@ -293,10 +309,12 @@
       "cancel": "Отмена",
       "success": "Отзыв отправлен"
     },
+
     "owner_card": {
       "title": "Владелец",
       "joined_in": "Присоединился в"
     },
+
     "wishlist": {
       "title": "Список желаний",
       "wishlits_empty_title": "Создайте свой первый список желаний",

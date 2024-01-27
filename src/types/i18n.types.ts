@@ -12,6 +12,13 @@ export enum ErrorTypes {
   password_must_contain = 'errors.password_must_contain',
   password_invalid_length = 'errors.password_invalid_length',
   password_not_matching = 'errors.password_not_matching',
+
+  //profile
+  profile_error_creating = 'errors.profile_error_creating',
+
+  //image
+  image_failed_convert = 'errors.image_failed_convert',
+  image_invalid_selection = 'errors.image_invalid_selection',
 }
 
 export enum SearchTexts {
@@ -345,4 +352,10 @@ export enum EditAccommodation {
   Yes = 'edit_accommodation.yes',
   No = 'edit_accommodation.no',
   Restore = 'edit_accommodation.restore',
+}
+
+export enum ProfileActions {
+  profile_image_change = 'profileActions.profile_image_change',
+  profile_create = 'profileActions.profile_create',
+  profile_change = 'profileActions.profile_change',
 }

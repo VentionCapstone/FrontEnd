@@ -7,7 +7,6 @@ import ProfileEditRoute from './ProfileEditRoute';
 
 import UserRoute from './UserRoute';
 
-import ErrorPage from '@src/components/shared/ErrorPage';
 import MainLayout from '@src/layouts/MainLayout';
 import UserLayout from '@src/layouts/UserLayout';
 
@@ -27,6 +26,10 @@ const Signup = React.lazy(() => import('@src/pages/auth/Signup'));
 const ResetPassword = React.lazy(() => import('@src/pages/auth/ResetPassword'));
 const Host = React.lazy(() => import('@src/pages/host/Host'));
 const Wishlist = React.lazy(() => import('../pages/wishlist'));
+const ConfirmEmail = React.lazy(() => import('../pages/auth/components/ConfirmEmail'));
+const ErrorBoundaryFallback = React.lazy(
+  () => import('../components/shared/ErrorBoundaryFallback')
+);
 const AccommodationCreate = React.lazy(
   () => import('@src/pages/accommodations/CreateAccommodation')
 );
@@ -38,7 +41,7 @@ const routes = createBrowserRouter([
   //unprotected
   {
     path: '/',
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorBoundaryFallback />,
     children: [
       {
         path: '',
@@ -72,6 +75,7 @@ const routes = createBrowserRouter([
       { path: 'signin', element: <SignIn /> },
       { path: 'signup', element: <Signup /> },
       { path: 'verify', element: <VerifyEmail /> },
+      { path: 'confirm-email', element: <ConfirmEmail /> },
       { path: 'forgot-password-reset', element: <ResetPassword /> },
     ],
   },
@@ -123,17 +127,11 @@ const routes = createBrowserRouter([
         ],
       },
 
+      { path: '/bookings', element: <Bookings /> },
+
       { path: '/wishlist', element: <Wishlist /> },
 
       { path: '*', element: <Navigate to="/" /> },
-    ],
-  },
-  {
-    path: '/bookings',
-    element: <MainLayout />,
-    children: [
-      { path: '', element: <Bookings /> },
-      { path: '*', element: <Navigate to="/bookings" /> },
     ],
   },
 ]);

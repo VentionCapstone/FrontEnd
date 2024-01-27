@@ -11,12 +11,12 @@ import {
 import { useCallback, useState } from 'react';
 
 import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
+import { PHONE_CODES_BY_COUNTRY } from '@src/constants';
 import { useAppSelector } from '@src/hooks/redux-hooks';
 import { getProfile } from '@src/stores/slices/authSlice';
 import { AccountEditPersonalInfo } from '@src/types/i18n.types';
 import { Profile } from '@src/types/profile.types';
 import { useTranslation } from 'react-i18next';
-import { PHONE_CODES_BY_COUNTRY } from '../../constants';
 
 const Country = ({
   collapsePanel,

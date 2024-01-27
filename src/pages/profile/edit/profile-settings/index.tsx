@@ -8,6 +8,7 @@ import { useCallback, useMemo, useState } from 'react';
 
 import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
 import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
+import { DEFAULT_LANGUAGE } from '@src/constants';
 import { useAppSelector } from '@src/hooks/redux-hooks';
 import i18n from '@src/i18n/i18n';
 import { getProfile } from '@src/stores/slices/authSlice';
@@ -15,7 +16,6 @@ import { SettingsInfo } from '@src/types/i18n.types';
 import { ThemeMode } from '@src/types/profile.types';
 import { convertCodeToLanguage, getValueFromLocalStorage } from '@src/utils';
 import { useTranslation } from 'react-i18next';
-import { DEFAULT_LANGUAGE } from '../../constants';
 import EditablePanel from '../EditablePanel';
 import { ProfileCurrency } from './ProfileCurrency';
 import { ProfileLang } from './ProfileLang';
