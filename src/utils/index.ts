@@ -1,11 +1,11 @@
 import toast from 'react-hot-toast';
 
 import ErrorImage from '@src/assets/no-image.png';
+import i18n from '@src/i18n/i18n';
 import { DEFAULT_LANGUAGE, LANGUAGE_LIST } from '@src/pages/profile/constants';
 import { Amenities } from '@src/types/amenity.types';
-import { ThemeMode } from '@src/types/profile.types';
 import { ToastMessages } from '@src/types/i18n.types';
-import { useTranslation } from 'react-i18next';
+import { ThemeMode } from '@src/types/profile.types';
 
 export const convertImageToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -30,8 +30,6 @@ export const getPalleteMode = (mode: ThemeMode | null): ThemeMode => {
 };
 
 export const getValueFromLocalStorage = <T>(key: string): T | null => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { t } = useTranslation();
   try {
     const serializedData = localStorage.getItem(key);
     if (serializedData === null) return null;
@@ -43,7 +41,7 @@ export const getValueFromLocalStorage = <T>(key: string): T | null => {
     }
   } catch (error) {
     console.error('Error retrieving value from local storage:', error);
-    toast.error(`${t(ToastMessages.ErrorUtil)}`);
+    toast.error(`${i18n.t(ToastMessages.ErrorUtil)}`);
 
     return null;
   }

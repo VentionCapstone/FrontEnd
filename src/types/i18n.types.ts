@@ -331,3 +331,16 @@ export enum ToastMessages {
   SuccessUpdated = 'toast.success_updated',
   SuccessEmail = 'toast.success_email',
 }
+
+export enum EditAccommodation {
+  ShowAllImages = 'edit_accommodation.show_all_images',
+  EditAccommodation = 'edit_accommodation.edit_accommodation',
+  Guests = 'edit_accommodation.guests',
+  Rooms = 'edit_accommodation.rooms',
+  SqMeter = 'edit_accommodation.sq_meter',
+  Delete = 'edit_accommodation.delete',
+  AreYouSureDel = 'edit_accommodation.are_you_sure_del',
+  Yes = 'edit_accommodation.yes',
+  No = 'edit_accommodation.no',
+  Restore = 'edit_accommodation.restore',
+}

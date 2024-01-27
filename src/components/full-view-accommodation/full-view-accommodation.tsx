@@ -6,7 +6,9 @@ import IconButton from '@mui/material/IconButton';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 import { UseGetAllMediaQuery } from '@src/api/queries/media/useGetAllMediaQuery';
+import { EditAccommodation } from '@src/types/i18n.types';
 import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -24,6 +26,7 @@ export interface ShowPhotosProps {
 }
 
 export default function ShowPhotos({ id, open, onClose }: ShowPhotosProps) {
+  const { t } = useTranslation();
   const { data } = UseGetAllMediaQuery(id);
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
@@ -48,7 +51,7 @@ export default function ShowPhotos({ id, open, onClose }: ShowPhotosProps) {
         onClick={onClose}
         sx={{ position: 'absolute', right: '8%', bottom: '10%' }}
       >
-        Show all photos
+        {t(EditAccommodation.ShowAllImages)}
       </Button>
       <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
         <Toolbar>

@@ -315,7 +315,7 @@
     "create_accommodation_route": {
       "no_accommodation_created": "Siz hali hech qanday joylashuvlar yaratmadingiz",
       "title_your_acc": "Sizning joylashuvingiz",
-      "create_title": "Joylashuv yaratish",
+      "create_title": "Turar joy yarating",
       "basic_info": "Asosiy ma'lumotlar",
       "title_input": "Nomi",
       "desc_input": "Ta'rif",
@@ -331,7 +331,7 @@
       "address": "Manzil",
       "country": "Mamlakat",
       "city": "Shahar",
-      "street": "Kocha",
+      "street": "Ko'cha",
       "zip_code": "Pochta indeksi",
       "cancel_btn": "Bekor qilish",
       "next_btn": "Keyingi qadam",
@@ -346,10 +346,10 @@
       "deleted": "O'chirildi",
       "create": "Yaratish",
       "edit": "Tahrir qilish",
-      "accommodation": "Joylashuv"
+      "accommodation": "Turar joy"
     },
     "toast": {
-      "error_session_expired": "Sessiyangiz muddati o'tib ketgan, iltimos, qayta kirin",
+      "error_session_expired": "Muddati o'tib ketgan, iltimos, qayta ko'ring",
       "error_img": "Rasm o'zgartirishda xato yuz berdi!",
       "error_theme": "Mavzu o'zgartirishda xato!",
       "error_util": "Qiymatni olishda xato",
@@ -358,6 +358,18 @@
       "success_profile": "Profil muvaffaqiyatli yaratildi!",
       "success_updated": "Muvaffaqiyatli yangilandi!",
       "success_email": "Elektron pochta tasdiqlandi"
+    },
+    "edit_accommodation": {
+      "show_all_images": "Barcha rasmlarni ko'rsatish",
+      "edit_accommodation": "Turar joyni o'zgartirish",
+      "guests": "Mehmonlar",
+      "rooms": "Xonalar",
+      "sq_meter": "Kvadrat metr",
+      "delete": "O'chirish",
+      "are_you_sure_del": "Haqiqatan ham ushbu makorni o'chirib tashlashni istaysizmi?",
+      "yes": "Ha",
+      "no": "Yo'q",
+      "restore": "Qayta tiklash"
     }
   }
 }

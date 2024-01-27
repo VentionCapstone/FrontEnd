@@ -360,6 +360,18 @@
       "success_profile": "Profile created!",
       "success_updated": "Updated successfully!",
       "success_email": "Email verified"
+    },
+    "edit_accommodation": {
+      "show_all_images": "Show all images",
+      "edit_accommodation": "Edit Accommodation",
+      "guests": "Guests",
+      "rooms": "Rooms",
+      "sq_meter": "Square meters",
+      "delete": "Delete",
+      "are_you_sure_del": "Are you sure you want to delete this accommodation?",
+      "yes": "Yes",
+      "no": "No",
+      "restore": "Restore"
     }
   }
 }

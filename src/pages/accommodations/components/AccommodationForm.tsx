@@ -19,7 +19,7 @@ import {
 } from '@src/types/accommodation.types';
 import { Coordinates } from '@src/types/global.types';
 
-import { CreateAccommodationRoute } from '@src/types/i18n.types';
+import { CreateAccommodationRoute, EditAccommodation } from '@src/types/i18n.types';
 import { useTranslation } from 'react-i18next';
 import FormFields from './FormFields';
 import ConfirmationModal from './Modal';
@@ -154,7 +154,7 @@ function AccommodationForm({
                 onClick={isDeleted ? handleRestore : toggleOpen}
                 loading={isDeleted ? isRestorePending : isDeletePending}
               >
-                {isDeleted ? 'Restore' : 'Delete'}
+                {isDeleted ? `${t(EditAccommodation.Restore)}` : `${t(EditAccommodation.Delete)}`}
               </LoadingButton>
             </>
           )}

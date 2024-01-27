@@ -355,6 +355,18 @@
       "success_profile": "Profil erstellt!",
       "success_updated": "Erfolgreich aktualisiert!",
       "success_email": "E-Mail verifiziert"
+    },
+    "edit_accommodation": {
+      "show_all_images": "Alle Bilder anzeigen",
+      "edit_accommodation": "Unterkunft bearbeiten",
+      "guests": "Gäste",
+      "rooms": "Zimmer",
+      "sq_meter": "Quadratmeter",
+      "delete": "Löschen",
+      "are_you_sure_del": "Möchten Sie diese Unterkunft wirklich löschen?",
+      "yes": "Ja",
+      "no": "Nein",
+      "restore": "Wiederherstellen"
     }
   }
 }
