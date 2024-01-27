@@ -35,17 +35,9 @@ export interface ShowPhotosProps {
   onClose: () => void;
   handleOpen: () => void;
   isMobile?: boolean;
-  isDesktop?: boolean;
 }
 
-export default function ShowPhotos({
-  id,
-  open,
-  onClose,
-  handleOpen,
-  isMobile,
-  isDesktop,
-}: ShowPhotosProps) {
+export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: ShowPhotosProps) {
   const { data } = useGetAllMediaQuery(id, open);
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -90,9 +82,9 @@ export default function ShowPhotos({
 
   const renderImages = () => {
     return data?.map((item, index) => (
-      <ImageListItem sx={{ width: '100%', height: '100%' }} key={index} cols={1} rows={1}>
+      <ImageListItem sx={{ width: '100%', height: '70vh' }} key={index} cols={1} rows={1}>
         <img
-          style={{ objectFit: 'contain', height: '100%', width: '100%' }}
+          style={{ objectFit: 'contain', height: '80vh', width: '100vw' }}
           src={item.imageUrl}
           alt={`photo-${index}`}
           loading="lazy"
@@ -147,17 +139,24 @@ export default function ShowPhotos({
         >
           {data && (
             <ImageList
-              sx={isMobile ? { width: '100vw' } : { width: '90vw', marginTop: '3.5rem' }}
+              sx={
+                isMobile
+                  ? { width: '100vw' }
+                  : {
+                      width: '80vw',
+                      height: '100vh',
+                      marginTop: '15rem',
+                    }
+              }
               variant="quilted"
               cols={1}
-              rowHeight={isDesktop ? 900 : isMobile ? 400 : 600}
+              rowHeight={'auto'}
             >
               <Slider
                 itemsPerView={1}
                 onStepChange={setCurrentIndex}
                 activeStep={currentIndex}
                 maxSteps={data.length}
-                showIndicators={true}
               >
                 {renderImages()}
               </Slider>

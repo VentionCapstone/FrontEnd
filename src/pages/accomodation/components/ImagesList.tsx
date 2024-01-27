@@ -18,7 +18,6 @@ export default function ImagesList({ imagesData }: { imagesData: Media[] }) {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  const isDesktop = useMediaQuery(theme.breakpoints.down('2xl'));
 
   const [activeStep, setActiveStep] = useState(0);
 
@@ -58,7 +57,6 @@ export default function ImagesList({ imagesData }: { imagesData: Media[] }) {
           </Slider>
           <ShowPhotos
             isMobile={isMobile}
-            isDesktop={isDesktop}
             id={imagesData[0].accommodationId}
             onClose={handleCloseDialog}
             handleOpen={handleOpenDialog}
