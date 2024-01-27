@@ -104,6 +104,10 @@
     },
 
     "account_edit_personal-info": {
+      "image": {
+        "edit": "Bearbeiten",
+        "add": "Hinzufügen"
+      },
       "name": {
         "legal_name": "Legal Name",
         "legal_name_desc": "Dies ist der Name in Ihrem Reisedokument, das eine Lizenz oder einen Pass sein kann.",

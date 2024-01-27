@@ -106,6 +106,10 @@
     },
 
     "account_edit_personal-info": {
+      "image": {
+        "edit": "Edit",
+        "add": "Add"
+      },
       "name": {
         "legal_name": "Legal name",
         "legal_name_desc": "This is the name on your travel document, which could be a license or a passport.",

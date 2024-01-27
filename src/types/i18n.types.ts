@@ -101,6 +101,8 @@ export enum AccountEditPageInfo {
 }
 
 export enum AccountEditPersonalInfo {
+  image_add = 'account_edit_personal-info.image.add',
+  image_edit = 'account_edit_personal-info.image.edit',
   name = 'account_edit_personal-info.name',
   legal_name = 'account_edit_personal-info.name.legal_name',
   legal_name_desc = 'account_edit_personal-info.name.legal_name_desc',

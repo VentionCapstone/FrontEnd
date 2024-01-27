@@ -106,13 +106,17 @@
     },
 
     "account_edit_personal-info": {
+      "image": {
+        "edit": "O'zgartirish",
+        "add": "Rasm Qo'shish"
+      },
       "name": {
         "legal_name": "Haqiqiy ism",
         "legal_name_desc": "Bu sayohat hujjatingizdagi ism, unda yuridik ko'rik yoki passport bo'lishi mumkin.",
         "edit": "tahrirlash",
         "save": "saqlash",
         "first_name": "Ism",
-        "last_name": "Familiya"
+        "last_name": "Familia"
       },
       "gender": {
         "your_gender": "Sizning jinsingiz",
@@ -222,9 +226,9 @@
 
     "create_profile": {
       "title": "Profil yaratish",
-      "legal_name": "Yasovchi nomi",
+      "legal_name": "Ism Familia",
       "first_name": "Ism",
-      "last_name": "Familiya",
+      "last_name": "Familia",
       "select_country": "Davlatni tanlang",
       "uzbekistan": "O'zbekiston",
       "russian": "Rossiya",
