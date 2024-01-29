@@ -380,8 +380,8 @@
       "error_img": "Rasm o'zgartirishda xato yuz berdi!",
       "error_theme": "Mavzu o'zgartirishda xato!",
       "error_util": "Qiymatni olishda xato",
-      "success_acc_del": "Mehmonxona muvaffaqiyatli o'chirildi",
-      "success_acc_restored": "Mehmonxona muvaffaqiyatli tiklandi",
+      "success_accommodation_deleted": "Mehmonxona muvaffaqiyatli o'chirildi",
+      "success_accommodation_restored": "Mehmonxona muvaffaqiyatli tiklandi",
       "success_profile": "Profil muvaffaqiyatli yaratildi!",
       "success_updated": "Muvaffaqiyatli yangilandi!",
       "success_email": "Elektron pochta tasdiqlandi"

@@ -381,8 +381,8 @@
       "error_img": "Bildkonvertierung fehlgeschlagen!",
       "error_theme": "Fehler beim Ändern des Themas!",
       "error_util": "Fehler beim Abrufen des Werts",
-      "success_acc_del": "Unterkunft erfolgreich gelöscht",
-      "success_acc_restored": "Unterkunft erfolgreich wiederhergestellt",
+      "success_accommodation_deleted": "Unterkunft erfolgreich gelöscht",
+      "success_accommodation_restored": "Unterkunft erfolgreich wiederhergestellt",
       "success_profile": "Profil erstellt!",
       "success_updated": "Erfolgreich aktualisiert!",
       "success_email": "E-Mail verifiziert"

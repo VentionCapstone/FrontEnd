@@ -24,7 +24,7 @@ export const useDeleteAccommodation = () => {
       await queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.query.hostedAccommodation, accommodationId],
       });
-      toast.success(t(ToastMessages.SuccessAccountDeleted));
+      toast.success(t(ToastMessages.SuccessAccommodationDeleted));
       navigate(ROUTES.accommodations.root);
     },
   });

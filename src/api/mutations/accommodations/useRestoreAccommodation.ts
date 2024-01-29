@@ -27,7 +27,7 @@ export const useRestoreAccommodation = () => {
       await queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.query.hostedAccommodation, res.data?.data.id],
       });
-      toast.success(`${t(ToastMessages.SuccessAccRestored)}`);
+      toast.success(t(ToastMessages.SuccessAccommodationRestored));
       navigate(ROUTES.accommodations.root);
     },
   });

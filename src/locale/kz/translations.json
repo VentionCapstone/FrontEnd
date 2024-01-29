@@ -381,8 +381,8 @@
       "error_img": "Суретті ауыстыру сәтсіз аяқталды!",
       "error_theme": "Тақырыпты өзгерту кезінде қате!",
       "error_util": "Мәнін алу кезінде қате",
-      "success_acc_del": "Жатау сәтті жойылды",
-      "success_acc_restored": "Жатау сәтті қалпына келтірілді",
+      "success_accommodation_deleted": "Жатау сәтті жойылды",
+      "success_accommodation_restored": "Жатау сәтті қалпына келтірілді",
       "success_profile": "Профиль сәтті жасалды!",
       "success_updated": "Сәтті жаңартылды!",
       "success_email": "Электронды пошта тексерілді"
