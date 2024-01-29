@@ -134,7 +134,7 @@ function Accommodation() {
           <AmenityList amenities={amenities} />
         </Box>
         <Box flex={0.4}>
-          {ownerId == data.ownerId ? (
+          {ownerId === data.ownerId ? (
             <Box
               sx={{
                 display: 'flex',

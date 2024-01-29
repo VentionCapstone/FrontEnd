@@ -19,7 +19,7 @@ function useVerifyEmailMutation(token: string) {
       await httpClient.post<string>(ENDPOINTS.auth.verifyEmail, { token });
     },
     onSuccess: () => {
-      toast.success(`${t(ToastMessages.SuccessEmail)}`);
+      toast.success(t(ToastMessages.email_verified));
       navigate(ROUTES.auth.signIn);
     },
   });

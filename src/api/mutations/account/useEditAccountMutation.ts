@@ -18,7 +18,7 @@ function useEditAccountMutation(profileId: string) {
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.query.user] });
-      toast.success(`${t(ToastMessages.SuccessUpdated)}`);
+      toast.success(t(ToastMessages.Profile_change));
     },
   });
 }

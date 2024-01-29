@@ -63,7 +63,7 @@ async function resErrInterceptor(error: AxiosError<ErrorResponse>) {
         if ('error' in res) {
           store.dispatch(logout());
           httpClient.defaults.headers.common['Authorization'] = '';
-          toast.error(`${i18n.t(ToastMessages.ErrorSessionExpired)}`);
+          toast.error(i18n.t(ToastMessages.ErrorSessionExpired));
 
           return res;
         }

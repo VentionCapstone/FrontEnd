@@ -339,11 +339,11 @@ export enum ToastMessages {
   ErrorImg = 'toast.error_img',
   ErrorTheme = 'toast.error_theme',
   ErrorUtil = 'toast.error_util',
-  SuccessAccDel = 'toast.success_acc_del',
+  SuccessAccountDeleted = 'toast.success_acc_del',
   SuccessAccRestored = 'toast.success_acc_restored',
   SuccessProfile = 'toast.success_profile',
-  SuccessUpdated = 'toast.success_updated',
-  SuccessEmail = 'toast.success_email',
+  Profile_change = 'toast.success_updated',
+  email_verified = 'toast.success_email',
 }
 
 export enum EditAccommodation {
