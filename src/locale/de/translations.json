@@ -339,6 +339,7 @@
       "add_review": "Bewertung hinzufügen"
     },
     "create_accommodation_route": {
+      "no_accommodation_found": "Keine Unterkünfte gefunden",
       "no_accommodation_created": "Sie haben bisher keine Unterkünfte erstellt",
       "title_your_acc": "Ihre Unterkünfte",
       "create_title": "Unterkunft erstellen",

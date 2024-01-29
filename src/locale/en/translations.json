@@ -340,6 +340,7 @@
       "add_review": "Add review"
     },
     "create_accommodation_route": {
+      "no_accommodation_found": "No accommodations found",
       "no_accommodation_created": "You have not created any accommodations yet",
       "title_your_acc": "Your Accommodations",
       "create_title": "Create Accommodation",

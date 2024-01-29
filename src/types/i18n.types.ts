@@ -296,6 +296,7 @@ export enum BookingsRoute {
 }
 
 export enum CreateAccommodationRoute {
+  no_acc_found = 'create_accommodation_route.no_accommodation_found',
   no_acc_created = 'create_accommodation_route.no_accommodation_created',
   title_your_acc = 'create_accommodation_route.title_your_acc',
   create_title = 'create_accommodation_route.create_title',

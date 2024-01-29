@@ -339,6 +339,7 @@
       "add_review": "Пікір қосу"
     },
     "create_accommodation_route": {
+      "no_accommodation_found": "Тұрмыстар табылмады",
       "no_accommodation_created": "Сіз әлі жаттығуларды қалдырмағансыз",
       "title_your_acc": "Сіздің тұрарларыңыз",
       "create_title": "Тұрар құру",

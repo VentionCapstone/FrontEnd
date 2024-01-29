@@ -339,6 +339,7 @@
       "add_review": "Izoh qo'shish"
     },
     "create_accommodation_route": {
+      "no_accommodation_found": "Mehmonxona topilmadi",
       "no_accommodation_created": "Siz hali hech qanday joylashuvlar yaratmadingiz",
       "title_your_acc": "Sizning joylashuvingiz",
       "create_title": "Turar joy yarating",

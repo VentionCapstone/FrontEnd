@@ -340,6 +340,7 @@
       "add_review": "Добавить отзыв"
     },
     "create_accommodation_route": {
+      "no_accommodation_found": "Жилье не найдено",
       "no_accommodation_created": "Вы еще не создали никаких размещений",
       "title_your_acc": "Ваши размещения",
       "create_title": "Создать размещение",
