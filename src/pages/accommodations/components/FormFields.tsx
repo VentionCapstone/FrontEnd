@@ -1,7 +1,7 @@
 import { Box, Checkbox, Typography } from '@mui/material';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 
-import YandexMap from '@src/components/shared/YandexMap';
+import SelectLocation from '@src/components/shared/SelectLocation';
 import { AccommodationReq } from '@src/types/accommodation.types';
 import { Coordinates } from '@src/types/global.types';
 import { FormDateField } from './FormDateField';
@@ -22,6 +22,7 @@ function FormFields({
   longitudeWatch,
   handleCoordsChange,
 }: FormDateFieldProps) {
+  console.log(latitudeWatch, longitudeWatch, handleCoordsChange);
   return (
     <Box
       sx={{
@@ -221,11 +222,7 @@ function FormFields({
       </Box>
 
       <Box mt={5}>
-        <YandexMap
-          latitude={latitudeWatch}
-          longitude={longitudeWatch}
-          setCoords={handleCoordsChange}
-        />
+        <SelectLocation />
       </Box>
     </Box>
   );

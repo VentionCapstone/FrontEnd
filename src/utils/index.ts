@@ -99,3 +99,8 @@ export const handleErrorInImage = (e: React.SyntheticEvent<HTMLImageElement, Eve
 export const convertCodeToLanguage = (value: string): string => {
   return LANGUAGE_LIST.find((lang) => lang.code === value)?.name || DEFAULT_LANGUAGE.name;
 };
+
+export const parseCoord = (coord: string) => {
+  const splitted = coord.split(' ');
+  return [Number.parseFloat(splitted[1]), Number.parseFloat(splitted[0])];
+};
