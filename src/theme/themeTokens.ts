@@ -121,10 +121,14 @@ const darkTheme: ThemeOptions = {
       main: '#717171',
     },
     backgroundSecondary: {
-      main: PRIMARY_LIGHT_THEME,
+      main: '#23272E',
     },
     backgroundFooter: {
-      main: PRIMARY_LIGHT_THEME,
+      main: '#23272E',
+    },
+    background: {
+      default: '#282D38',
+      paper: '#23272E',
     },
   },
   typography: {

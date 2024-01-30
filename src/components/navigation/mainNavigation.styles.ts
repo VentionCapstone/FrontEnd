@@ -52,6 +52,7 @@ export const mainNavigationStyles = {
     },
     '.MuiList-root': {
       padding: 0,
+      bgcolor: 'background.default',
     },
   },
 
