@@ -13,7 +13,13 @@ import SearchResults from './SearchResults';
 
 const API_KEY = import.meta.env.VITE_YANDEX_API_KEY as string;
 
-function SearchLocation({ address, setAddress }: MapViewType) {
+function SearchLocation({
+  address,
+  setAddress,
+  handleCoordsChange,
+  handleAddressChange,
+  addressWatch,
+}: MapViewType) {
   const [keyword, setKeyword] = useState<string>('');
   const [results, setResults] = useState<FeatureMember[]>([]);
   const [isSelecterOpen, setIsSelecterOpen] = useState<boolean>(false);
@@ -23,6 +29,18 @@ function SearchLocation({ address, setAddress }: MapViewType) {
     setKeyword('');
     setIsSelecterOpen(false);
     setAddress(item);
+    handleCoordsChange(
+      item.Point.pos
+        .split(' ')
+        .reverse()
+        .map((item) => Number(item)) as [number, number]
+    );
+    const address = {
+      country: item.metaDataProperty.GeocoderMetaData.Address.Components[0]?.name,
+      city: item.metaDataProperty.GeocoderMetaData.Address.Components[1]?.name,
+      street: item.metaDataProperty.GeocoderMetaData.Address.Components[2]?.name,
+    };
+    handleAddressChange(address);
   };
 
   useEffect(() => {
@@ -87,6 +105,11 @@ function SearchLocation({ address, setAddress }: MapViewType) {
         mb: 8,
       }}
     >
+      {addressWatch.country.length > 0 && (
+        <Typography variant="body1" mb={2}>
+          Location: {addressWatch.country}, {addressWatch.city}, {addressWatch?.street}
+        </Typography>
+      )}
       <TextField
         value={keyword}
         placeholder="Search location"
@@ -98,10 +121,11 @@ function SearchLocation({ address, setAddress }: MapViewType) {
       />
       {address && (
         <Typography variant="body1" mt={2}>
-          Selected Location:{' '}
+          Selected location:{' '}
           {address?.metaDataProperty.GeocoderMetaData.AddressDetails.Country.AddressLine}
         </Typography>
       )}
+
       {isSelecterOpen && (
         <SearchResults items={results} handleItemClick={handleItemClick} loading={isPending} />
       )}

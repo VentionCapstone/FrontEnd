@@ -1,3 +1,5 @@
+import { AddressWatchType, SelectAddress } from './accommodation.types';
+
 export interface SelectedAddress {
   metaDataProperty: MetaDataProperty;
   name: string;
@@ -155,6 +157,9 @@ export interface Thoroughfare {
 export interface MapViewType {
   address: GeoObject | null;
   setAddress: (address: GeoObject) => void;
+  handleCoordsChange: (coords: [number, number]) => void;
+  handleAddressChange: (address: SelectAddress) => void;
+  addressWatch: AddressWatchType;
 }
 
 export interface MapMouseEvent {

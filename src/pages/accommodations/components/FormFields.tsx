@@ -2,27 +2,25 @@ import { Box, Checkbox, Typography } from '@mui/material';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 
 import SelectLocation from '@src/components/shared/SelectLocation';
-import { AccommodationReq } from '@src/types/accommodation.types';
-import { Coordinates } from '@src/types/global.types';
+import { AccommodationReq, AddressWatchType, SelectAddress } from '@src/types/accommodation.types';
 import { FormDateField } from './FormDateField';
 import { FormField } from './FormField';
 
 interface FormDateFieldProps {
   control: Control<AccommodationReq>;
   errors: FieldErrors<AccommodationReq>;
-  latitudeWatch: number;
-  longitudeWatch: number;
-  handleCoordsChange: (coords: Coordinates) => void;
+  addressWatch: AddressWatchType;
+  handleCoordsChange: (coords: [number, number]) => void;
+  handleAddressChange: (address: SelectAddress) => void;
 }
 
 function FormFields({
   control,
   errors,
-  latitudeWatch,
-  longitudeWatch,
+  addressWatch,
   handleCoordsChange,
+  handleAddressChange,
 }: FormDateFieldProps) {
-  console.log(latitudeWatch, longitudeWatch, handleCoordsChange);
   return (
     <Box
       sx={{
@@ -175,7 +173,13 @@ function FormFields({
         <Typography variant="h6" mb={4}>
           Address
         </Typography>
-        <Box
+        <SelectLocation
+          handleCoordsChange={handleCoordsChange}
+          handleAddressChange={handleAddressChange}
+          addressWatch={addressWatch}
+        />
+
+        {/* <Box
           sx={{
             'display': 'flex',
             'flexWrap': 'wrap',
@@ -218,11 +222,7 @@ function FormFields({
             error={!!errors.address?.zipCode}
             helperText={errors.address?.zipCode?.message}
           />
-        </Box>
-      </Box>
-
-      <Box mt={5}>
-        <SelectLocation />
+        </Box> */}
       </Box>
     </Box>
   );

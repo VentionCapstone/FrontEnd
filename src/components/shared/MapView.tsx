@@ -8,7 +8,7 @@ import { useMutation } from '@tanstack/react-query';
 
 const API_KEY = import.meta.env.VITE_YANDEX_API_KEY as string;
 
-const MapView = ({ address, setAddress }: MapViewType) => {
+const MapView = ({ address, setAddress, handleCoordsChange, addressWatch }: MapViewType) => {
   const map = useRef<ymaps.Map>();
 
   useEffect(() => {
@@ -31,7 +31,13 @@ const MapView = ({ address, setAddress }: MapViewType) => {
     const target = event.originalEvent.target;
     const coord = target.geometry.getCoordinates();
 
+    handleCoordsChange(coord);
+
     mutate(coord);
+  };
+
+  const checkCoordinates = () => {
+    return addressWatch.latitude > 0 && addressWatch.longitude > 0;
   };
 
   return (
@@ -44,15 +50,21 @@ const MapView = ({ address, setAddress }: MapViewType) => {
         <Map
           state={{
             zoom: 15,
-            center: [41.2971, 69.2815],
+            center: checkCoordinates()
+              ? [addressWatch.latitude, addressWatch.longitude]
+              : [41.2971, 69.2815],
             controls: [],
           }}
-          height={300}
+          height={400}
           width={'100%'}
           instanceRef={map}
         >
           <Placemark
-            geometry={address ? parseCoord(address.Point.pos) : [41.2971, 69.2815]}
+            geometry={
+              checkCoordinates()
+                ? [addressWatch.latitude, addressWatch.longitude]
+                : [41.2971, 69.2815]
+            }
             properties={{
               balloonContent: address ? address.name : 'Select location',
             }}

@@ -12,11 +12,11 @@ export type AccommodationFields =
   | 'availableFrom'
   | 'available'
   | 'availableTo'
-  | 'description'
-  | 'address.street'
-  | 'address.city'
-  | 'address.country'
-  | 'address.zipCode';
+  | 'description';
+// | 'address.street'
+// | 'address.city'
+// | 'address.country'
+// | 'address.zipCode';
 
 export const accommodationSchema = z.object({
   title: z
@@ -41,10 +41,10 @@ export const accommodationSchema = z.object({
     .min(10, 'Description must be at least 10 characters')
     .max(256, 'Description must be less than 256 characters'),
   address: z.object({
-    street: z.string().min(3, 'Street name must be at least 3 characters'),
+    street: z.string(),
     city: z.string().min(3, 'City name must be at least 3 characters'),
     country: z.string().min(3, 'Country name must be at least 3 characters'),
-    zipCode: z.string().min(3, 'Zip code must be at least 3 characters'),
+    zipCode: z.string(),
     latitude: z.number(),
     longitude: z.number(),
   }),
@@ -324,4 +324,19 @@ export interface Owner {
     imageUrl: string;
     language: string;
   };
+}
+
+export interface SelectAddress {
+  city: string;
+  country: string;
+  street: string;
+}
+
+export interface AddressWatchType {
+  street: string;
+  city: string;
+  country: string;
+  zipCode: string;
+  latitude: number;
+  longitude: number;
 }
