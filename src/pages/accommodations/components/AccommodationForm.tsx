@@ -62,7 +62,7 @@ function AccommodationForm({
         street: '',
         city: '',
         country: '',
-        zipCode: '100',
+        zipCode: '1',
         latitude: 0,
         longitude: 0,
       },

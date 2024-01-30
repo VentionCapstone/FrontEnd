@@ -13,10 +13,6 @@ export type AccommodationFields =
   | 'available'
   | 'availableTo'
   | 'description';
-// | 'address.street'
-// | 'address.city'
-// | 'address.country'
-// | 'address.zipCode';
 
 export const accommodationSchema = z.object({
   title: z

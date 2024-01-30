@@ -178,51 +178,6 @@ function FormFields({
           handleAddressChange={handleAddressChange}
           addressWatch={addressWatch}
         />
-
-        {/* <Box
-          sx={{
-            'display': 'flex',
-            'flexWrap': 'wrap',
-            'gap': '1rem',
-            '& > div': {
-              width: {
-                xs: '100%',
-                sm: '47%',
-                md: '47%',
-                lg: '24%',
-              },
-            },
-          }}
-        >
-          <FormField
-            name="address.country"
-            label="Country"
-            control={control}
-            error={!!errors.address?.country}
-            helperText={errors.address?.country?.message}
-          />
-          <FormField
-            name="address.city"
-            label="City"
-            control={control}
-            error={!!errors.address?.city}
-            helperText={errors.address?.city?.message}
-          />
-          <FormField
-            name="address.street"
-            label="Street"
-            control={control}
-            error={!!errors.address?.street}
-            helperText={errors.address?.street?.message}
-          />
-          <FormField
-            name="address.zipCode"
-            label="Zip Code"
-            control={control}
-            error={!!errors.address?.zipCode}
-            helperText={errors.address?.zipCode?.message}
-          />
-        </Box> */}
       </Box>
     </Box>
   );
