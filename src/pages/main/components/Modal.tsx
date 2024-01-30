@@ -95,12 +95,7 @@ export default function MainModal({
     <Modal open={open} onClose={handleClose}>
       <Fade in={open}>
         <Box sx={modalStyles.modalContainer}>
-          <Stack
-            direction={'row'}
-            justifyContent={'space-between'}
-            alignItems={'center'}
-            flexGrow={'0'}
-          >
+          <Stack direction={'row'} sx={modalStyles.modalHeader}>
             <Typography variant="lg">{t(HomeUIInfo.filters_button_filter)}</Typography>
             <Button
               disableRipple
@@ -108,13 +103,15 @@ export default function MainModal({
               sx={modalStyles.closeButton}
               onClick={handleClose}
             >
-              <CloseIcon />
+              <CloseIcon sx={{ color: 'secondary2.main' }} />
             </Button>
           </Stack>
+
           <Stack
             rowGap={4}
-            marginTop={'1rem'}
             flexGrow={'1'}
+            px={5}
+            py={2}
             sx={{
               overflowY: 'auto',
             }}
@@ -143,7 +140,7 @@ export default function MainModal({
               setValue={setValue}
               name={'minPeople'}
             />
-            <Box mb={'1rem'}>
+            <Box>
               <Typography variant="lg">{t(HomeUIInfo.filters_button_sort_title)}</Typography>
               <SortBox
                 title={t(HomeUIInfo.filters_button_sort_price_title)}
@@ -168,14 +165,9 @@ export default function MainModal({
               />
             </Box>
           </Stack>
-          <Stack
-            direction={'row'}
-            justifyContent={'space-between'}
-            columnGap={'1rem'}
-            marginTop={'2rem'}
-            flexGrow={'0'}
-          >
-            <Button variant="contained" onClick={handleFilterClear}>
+
+          <Stack sx={modalStyles.modalFooter} direction={'row'}>
+            <Button variant="outlined" onClick={handleFilterClear}>
               {t(HomeUIInfo.filters_button_clear_btn)}
             </Button>
             <Button variant="contained" onClick={handleFilterClick}>

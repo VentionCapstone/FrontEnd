@@ -1,7 +1,10 @@
 import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
 import { ConfirmationModalProps } from '@src/types/accommodation.types';
+import { EditAccommodation } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 
 export default function ConfirmationModal({ open, onClose, onConfirm }: ConfirmationModalProps) {
+  const { t } = useTranslation();
   return (
     <>
       <Dialog
@@ -19,12 +22,12 @@ export default function ConfirmationModal({ open, onClose, onConfirm }: Confirma
             mb: -5,
           }}
         >
-          Are you sure you want to delete this accommodation?
+          {t(EditAccommodation.AreYouSureDel)}
         </DialogTitle>
         <DialogActions>
-          <Button onClick={onClose}>No</Button>
+          <Button onClick={onClose}>{t(EditAccommodation.No)}</Button>
           <Button autoFocus onClick={onConfirm}>
-            Yes
+            {t(EditAccommodation.Yes)}
           </Button>
         </DialogActions>
       </Dialog>

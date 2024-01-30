@@ -3,7 +3,8 @@ import { PaletteMode, ThemeOptions } from '@mui/material';
 export const PRIMARY_LIGHT_THEME = '#222222';
 export const PRIMARY_DARK_THEME = '#ffffff';
 export const FOOTER_BG_LIGHT = '#f7f7f7';
-export const SECONDARY_MAIN = '#FF385C';
+export const SECONDARY_MAIN = '#82A6EE';
+export const SECONDARY_DARK = '#7397de';
 
 export const FONT_SIZES = {
   xs: {
@@ -44,7 +45,7 @@ const lightTheme: ThemeOptions = {
     },
     secondary: {
       main: SECONDARY_MAIN,
-      dark: '#FF2B52',
+      dark: SECONDARY_DARK,
     },
     secondary2: {
       light: '#DDDDDD',
@@ -59,9 +60,6 @@ const lightTheme: ThemeOptions = {
   },
   typography: {
     fontFamily: 'Nunito, sans-serif',
-    button: {
-      textTransform: 'none',
-    },
     xs: FONT_SIZES.xs,
     sm: FONT_SIZES.sm,
     lg: FONT_SIZES.lg,
@@ -96,6 +94,14 @@ const lightTheme: ThemeOptions = {
         },
       },
     },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontWeight: 600,
+          textTransform: 'none',
+        },
+      },
+    },
   },
 } as const;
 
@@ -108,24 +114,25 @@ const darkTheme: ThemeOptions = {
     },
     secondary: {
       main: SECONDARY_MAIN,
-      dark: '#FF2B52',
+      dark: SECONDARY_DARK,
     },
     secondary2: {
       light: '#DDDDDD',
       main: '#717171',
     },
     backgroundSecondary: {
-      main: PRIMARY_LIGHT_THEME,
+      main: '#23272E',
     },
     backgroundFooter: {
-      main: PRIMARY_LIGHT_THEME,
+      main: '#23272E',
+    },
+    background: {
+      default: '#282D38',
+      paper: '#23272E',
     },
   },
   typography: {
     fontFamily: 'Nunito, sans-serif',
-    button: {
-      textTransform: 'none',
-    },
     xs: FONT_SIZES.xs,
     sm: FONT_SIZES.sm,
     lg: FONT_SIZES.lg,
@@ -157,6 +164,14 @@ const darkTheme: ThemeOptions = {
           lg: 'p',
           xl: 'p',
           heading: 'h1',
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontWeight: 600,
+          textTransform: 'none',
         },
       },
     },

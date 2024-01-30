@@ -3,6 +3,8 @@ import { Control, Controller, FieldErrors } from 'react-hook-form';
 
 import SelectLocation from '@src/components/shared/SelectLocation';
 import { AccommodationReq, AddressWatchType, SelectAddress } from '@src/types/accommodation.types';
+import { CreateAccommodationRoute } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 import { FormDateField } from './FormDateField';
 import { FormField } from './FormField';
 
@@ -21,6 +23,7 @@ function FormFields({
   handleCoordsChange,
   handleAddressChange,
 }: FormDateFieldProps) {
+  const { t } = useTranslation();
   return (
     <Box
       sx={{
@@ -36,7 +39,7 @@ function FormFields({
     >
       <Box>
         <Typography variant="h6" mb={4}>
-          Basic Information
+          {t(CreateAccommodationRoute.basic_info)}
         </Typography>
         <Box
           sx={{
@@ -54,14 +57,14 @@ function FormFields({
         >
           <FormField
             name="title"
-            label="Title"
+            label={t(CreateAccommodationRoute.title_input)}
             control={control}
             error={!!errors.title}
             helperText={errors.title?.message}
           />
           <FormField
             name="description"
-            label="Description"
+            label={t(CreateAccommodationRoute.desc_input)}
             control={control}
             error={!!errors.description}
             helperText={errors.description?.message}
@@ -71,7 +74,7 @@ function FormFields({
 
       <Box>
         <Typography variant="h6" mb={4}>
-          Availability
+          {t(CreateAccommodationRoute.availability)}
         </Typography>
         <Box
           sx={{
@@ -89,13 +92,13 @@ function FormFields({
         >
           <FormDateField
             name="availableFrom"
-            label="Available From"
+            label={t(CreateAccommodationRoute.available_from)}
             control={control}
             helperText={errors.availableFrom?.message}
           />
           <FormDateField
             name="availableTo"
-            label="Available To"
+            label={t(CreateAccommodationRoute.available_to)}
             control={control}
             helperText={errors.availableTo?.message}
           />
@@ -111,14 +114,14 @@ function FormFields({
                 />
               )}
             />
-            <Typography variant="body1">Available</Typography>
+            <Typography variant="body1"> {t(CreateAccommodationRoute.available)}</Typography>
           </Box>
         </Box>
       </Box>
 
       <Box>
         <Typography variant="h6" mb={4}>
-          Details
+          {t(CreateAccommodationRoute.details)}
         </Typography>
         <Box
           sx={{
@@ -138,7 +141,7 @@ function FormFields({
             type="number"
             control={control}
             name="allowedNumberOfPeople"
-            label="Allowed Number Of People"
+            label={t(CreateAccommodationRoute.allowed_people)}
             error={!!errors.allowedNumberOfPeople}
             helperText={errors.allowedNumberOfPeople?.message}
           />
@@ -146,7 +149,7 @@ function FormFields({
             type="number"
             control={control}
             name="numberOfRooms"
-            label="Number Of Rooms"
+            label={t(CreateAccommodationRoute.number_rooms)}
             error={!!errors.numberOfRooms}
             helperText={errors.numberOfRooms?.message}
           />
@@ -154,7 +157,7 @@ function FormFields({
             type="number"
             control={control}
             name="price"
-            label="Price"
+            label={t(CreateAccommodationRoute.price)}
             error={!!errors.price}
             helperText={errors.price?.message}
           />
@@ -162,7 +165,7 @@ function FormFields({
             type="number"
             control={control}
             name="squareMeters"
-            label="Square Meters"
+            label={t(CreateAccommodationRoute.sq_meter)}
             error={!!errors.squareMeters}
             helperText={errors.squareMeters?.message}
           />
@@ -171,7 +174,7 @@ function FormFields({
 
       <Box>
         <Typography variant="h6" mb={4}>
-          Address
+          {t(CreateAccommodationRoute.address)}
         </Typography>
         <SelectLocation
           handleCoordsChange={handleCoordsChange}

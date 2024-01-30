@@ -20,6 +20,8 @@ import {
 } from '@src/types/accommodation.types';
 import { Coordinates } from '@src/types/global.types';
 
+import { CreateAccommodationRoute, EditAccommodation } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 import FormFields from './FormFields';
 import ConfirmationModal from './Modal';
 
@@ -28,6 +30,7 @@ function AccommodationForm({
   accommodation,
   isNew,
 }: AccommodationFormProps) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
@@ -138,7 +141,8 @@ function AccommodationForm({
   return (
     <Box>
       <Typography variant="lg" textAlign="center" pb={4} fontWeight={600}>
-        {isNew ? 'Create' : 'Edit'} Accommodation
+        {isNew ? `${t(CreateAccommodationRoute.create)}` : `${t(CreateAccommodationRoute.edit)}`}{' '}
+        {t(CreateAccommodationRoute.accommodation)}
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormFields
@@ -162,7 +166,7 @@ function AccommodationForm({
                 onClick={isDeleted ? handleRestore : toggleOpen}
                 loading={isDeleted ? isRestorePending : isDeletePending}
               >
-                {isDeleted ? 'Restore' : 'Delete'}
+                {isDeleted ? `${t(EditAccommodation.Restore)}` : `${t(EditAccommodation.Delete)}`}
               </LoadingButton>
             </>
           )}
@@ -176,9 +180,11 @@ function AccommodationForm({
             }}
           >
             <Button size="large" sx={{ mt: 4 }} variant="outlined" onClick={navigateToRoot}>
-              Cancel
+              {t(CreateAccommodationRoute.cancel_btn)}
             </Button>
-            <ButtonPrimary loading={isPending}>Next Step</ButtonPrimary>
+            <ButtonPrimary loading={isPending}>
+              {t(CreateAccommodationRoute.next_btn)}
+            </ButtonPrimary>
           </Box>
         </Box>
       </form>

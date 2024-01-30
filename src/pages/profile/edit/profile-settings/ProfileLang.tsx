@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 
 import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
 import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
-import { LANGUAGE_LIST } from '@src/constants/index';
+import { LANGUAGE_LIST, PROJECT_NAME } from '@src/constants/index';
 import { useAppSelector } from '@src/hooks/redux-hooks';
 import { getProfile } from '@src/stores/slices/authSlice';
 import { setValueToLocalStorage } from '@src/utils';
@@ -49,7 +49,7 @@ export const ProfileLang = ({
   return (
     <>
       <Typography variant={'sm'} color={'secondary2.main'} mt={1}>
-        {t(SettingsInfo.lang_desc)}
+        {t(SettingsInfo.lang_desc, { name: PROJECT_NAME })}
       </Typography>
 
       <FormControl

@@ -9,7 +9,7 @@ import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import { QUERY_KEYS } from '@src/config/react-query.config';
 import { ROUTES } from '@src/config/routes.config';
 import { Amenities, AmenitiesProps, AmenitySetting } from '@src/types/amenity.types';
-import { Amenities as AmenitiesTr } from '@src/types/i18n.types';
+import { Amenities as AmenitiesTr, CreateAccommodationRoute } from '@src/types/i18n.types';
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -111,7 +111,9 @@ export default function EditAmenities({
       }}
     >
       <Typography variant="h4" component="h2">
-        {isNew ? 'Add amenities' : 'Edit amenities'}
+        {isNew
+          ? `${t(CreateAccommodationRoute.add_aminities)}`
+          : `${t(CreateAccommodationRoute.edit)} ${t(CreateAccommodationRoute.amenities)}`}
       </Typography>
       {currentAmenities ? (
         <>
@@ -173,7 +175,7 @@ export default function EditAmenities({
             }}
             onClick={handleSaveAmenities}
           >
-            Save
+            {t(CreateAccommodationRoute.save_btn)}
           </Button>
         </>
       ) : (

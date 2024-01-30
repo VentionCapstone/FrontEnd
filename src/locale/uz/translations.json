@@ -55,8 +55,13 @@
         "sing_out": {
           "sing_up_link": "ro'yxatdan o'tish",
           "sing_up_btn": "Ro'yxatdan o'tish",
-          "sing_title": "Xush kelibsiz Airbnb",
+          "sing_title": "Xush kelibsiz {{name}}",
           "desc": "Agar allaqachon akkauntingiz bo'lsa, Iltimos, kirishni tanlang"
+        },
+        "auth-confirmed": {
+          "check_email": "Elektron pochtangizni tekshiring",
+          "check_desc": "Elektron pochta manzilingizni tasdiqlash uchun havola bilan elektron xat olasiz.",
+          "return": "Ro'yxatdan o'tishga qaytish"
         }
       },
       "filters_button": {
@@ -95,7 +100,7 @@
         "sitemap": "Sayt xaritasi",
         "privacy": "Maxfiylik",
         "your_privacy_choices": "Sizning maxfiylik tanlovlaringiz",
-        "copyright": "© 2023 Airbnb, Inc."
+        "copyright": "© 2023 {{name}}, Inc."
       }
     },
 
@@ -106,18 +111,22 @@
       "login_secure_desc": "Xavfsiz ma'lumotlarni taqdim eting va biz siz bilan qanday aloqaga chiqishimizni tanlang",
       "setting": "Sozlamalar",
       "setting_desc": "O'z taqdimot tilini va valyutangizni belgilang",
-      "airbnb_your_place": "Airbnb joyingizni ijaraga bering",
+      "airbnb_your_place": "{{name}} joyingizni ijaraga bering",
       "airbnb_your_place_desc": "O'rnatish va daromad olish juda oson."
     },
 
     "account_edit_personal-info": {
+      "image": {
+        "edit": "O'zgartirish",
+        "add": "Rasm Qo'shish"
+      },
       "name": {
         "legal_name": "Haqiqiy ism",
         "legal_name_desc": "Bu sayohat hujjatingizdagi ism, unda yuridik ko'rik yoki passport bo'lishi mumkin.",
         "edit": "tahrirlash",
         "save": "saqlash",
         "first_name": "Ism",
-        "last_name": "Familiya"
+        "last_name": "Familia"
       },
       "gender": {
         "your_gender": "Sizning jinsingiz",
@@ -140,7 +149,7 @@
       },
       "number": {
         "phone_number": "Telefon raqam",
-        "phone_number_desc": "Tasdiqlangan mehmonlar va Airbnb siz bilan bog'lanish uchun raqam qo'shing. Siz boshqa raqamlarni qo'shishingiz va ularni qanday foydalanilishini tanlashingiz mumkin.",
+        "phone_number_desc": "Tasdiqlangan mehmonlar va {{name}} siz bilan bog'lanish uchun raqam qo'shing. Siz boshqa raqamlarni qo'shishingiz va ularni qanday foydalanilishini tanlashingiz mumkin.",
         "edit": "tahrirlash",
         "save": "saqlash"
       },
@@ -180,7 +189,7 @@
       "light": "Yorug'",
       "dark": "Qora",
       "language": "Tanlangan tillar",
-      "lang_desc": "Bu sizni Airbnb saytida o'qigan ma'lumotlaringizni va siz bilan muloqot qilish usullarini yangilaydi.",
+      "lang_desc": "Bu sizni {{name}} saytida o'qigan ma'lumotlaringizni va siz bilan muloqot qilish usullarini yangilaydi.",
       "currency_desc": "Siz tanlagan valyutani tanlang",
       "can_dollar": "Kanada dollari",
       "uzbek": "O'zbekcha",
@@ -228,9 +237,9 @@
 
     "create_profile": {
       "title": "Profil yaratish",
-      "legal_name": "Yasovchi nomi",
+      "legal_name": "Ism Familia",
       "first_name": "Ism",
-      "last_name": "Familiya",
+      "last_name": "Familia",
       "select_country": "Davlatni tanlang",
       "uzbekistan": "O'zbekiston",
       "russian": "Rossiya",
@@ -314,6 +323,80 @@
       "title": "Istaklar roʻyxati",
       "wishlits_empty_title": "Birinchi istaklar ro'yxatingizni yarating",
       "wishlits_empty_text": "Izlash jarayonida sevimli joylaringiz va tajribalaringizni istaklar ro'yxatiga saqlash uchun yurak belgisini bosing"
+    },
+    "bookings": {
+      "title": "Sizning band qilganlaringiz",
+      "pending": "Kutilmoqda",
+      "active": "Faol",
+      "completed": "Bajarildi",
+      "status": "Holat",
+      "total": "Jami",
+      "check_in": "Kirish",
+      "check_out": "Chiqish",
+      "desc_not_booked": "Siz hali hech qanday joylashuvlarni band qilmadingiz",
+      "pay_now": "Xozir to'lang",
+      "my_bookings": "Band qilganlarim",
+      "add_review": "Izoh qo'shish"
+    },
+    "create_accommodation_route": {
+      "no_accommodation_found": "Mehmonxona topilmadi",
+      "no_accommodation_created": "Siz hali hech qanday joylashuvlar yaratmadingiz",
+      "title_your_acc": "Sizning joylashuvingiz",
+      "create_title": "Turar joy yarating",
+      "basic_info": "Asosiy ma'lumotlar",
+      "title_input": "Nomi",
+      "desc_input": "Ta'rif",
+      "availability": "Mavjudlik",
+      "available_from": "Mavjud sana",
+      "available_to": "Mavjud sanadan",
+      "available": "Mavjud",
+      "details": "Tafsilotlar",
+      "allowed_people": "Ruxsat etilgan odam soni",
+      "number_rooms": "Xonalar soni",
+      "price": "Narx",
+      "sq_meter": "Kvadrat metr",
+      "address": "Manzil",
+      "country": "Mamlakat",
+      "city": "Shahar",
+      "street": "Ko'cha",
+      "zip_code": "Pochta indeksi",
+      "cancel_btn": "Bekor qilish",
+      "next_btn": "Keyingi qadam",
+      "add_image_title": "Uyning suratlarini qo'shing",
+      "add_image_desc": "Boshlash uchun 5 ta surat kerak. Siz keyinroq ham qo'shishingiz yoki o'zgartirishingiz mumkin.",
+      "drag_drop": "Suratlarni bu yerga torting va qo'ying",
+      "five_images": "Eng kamida 5 ta surat tanlang",
+      "upload_btn": "Qurilmangizdan yuklang",
+      "choose_at_least_5": "Eng kamida 5 ta surat tanlang",
+      "add_aminities": "Qo'shimchalar qo'shish",
+      "save_btn": "Saqlash",
+      "deleted": "O'chirildi",
+      "create": "Yaratish",
+      "edit": "Tahrir qilish",
+      "accommodation": "Turar joy"
+    },
+    "toast": {
+      "error_session_expired": "Muddati o'tib ketgan, iltimos, qayta ko'ring",
+      "error_img": "Rasm o'zgartirishda xato yuz berdi!",
+      "error_theme": "Mavzu o'zgartirishda xato!",
+      "error_util": "Qiymatni olishda xato",
+      "success_accommodation_deleted": "Mehmonxona muvaffaqiyatli o'chirildi",
+      "success_accommodation_restored": "Mehmonxona muvaffaqiyatli tiklandi",
+      "success_profile": "Profil muvaffaqiyatli yaratildi!",
+      "success_updated": "Muvaffaqiyatli yangilandi!",
+      "success_email": "Elektron pochta tasdiqlandi"
+    },
+    "edit_accommodation": {
+      "show_all_images": "Barcha rasmlarni ko'rsatish",
+      "edit_accommodation": "Turar joyni o'zgartirish",
+      "guests": "Mehmonlar",
+      "rooms": "Xonalar",
+      "sq_meter": "Kvadrat metr",
+      "delete": "O'chirish",
+      "are_you_sure_del": "Haqiqatan ham ushbu makorni o'chirib tashlashni istaysizmi?",
+      "yes": "Ha",
+      "no": "Yo'q",
+      "restore": "Qayta tiklash"
     }
   }
 }

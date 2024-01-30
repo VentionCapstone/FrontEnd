@@ -12,15 +12,15 @@ import {
 } from '@mui/material';
 import { useCallback, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
-import { DEFAULT_COUNTRY, PHONE_CODES_BY_COUNTRY } from '@src/constants';
+import { DEFAULT_COUNTRY, PHONE_CODES_BY_COUNTRY, PROJECT_NAME } from '@src/constants';
 import { PhoneCodesByCountry } from '@src/constants/constant.types';
 import { useAppSelector } from '@src/hooks/redux-hooks';
 import { getProfile } from '@src/stores/slices/authSlice';
 import { AccountEditPersonalInfo, ErrorTypes } from '@src/types/i18n.types';
 import { phoneNumLengthRegEx } from '@src/utils';
-import { useTranslation } from 'react-i18next';
 
 const PhoneNumber = ({ collapsePanel }: { collapsePanel: () => void }) => {
   const { t } = useTranslation();
@@ -52,7 +52,7 @@ const PhoneNumber = ({ collapsePanel }: { collapsePanel: () => void }) => {
   return (
     <>
       <Typography variant={'sm'} color={'secondary2.main'} mt={1}>
-        {t(AccountEditPersonalInfo.phone_number_desc)}
+        {t(AccountEditPersonalInfo.phone_number_desc, { name: PROJECT_NAME })}
       </Typography>
 
       <form onSubmit={(e) => void handleSubmit(onSubmit)(e)}>

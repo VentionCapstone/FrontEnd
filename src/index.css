@@ -17,3 +17,19 @@ button,
 select {
   font: inherit;
 }
+
+/* ----------------custom-scroll-bar---------------- */
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+::-webkit-scrollbar-track {
+  background: none;
+}
+::-webkit-scrollbar-thumb {
+  background: #caced2;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b2b8c2;
+}

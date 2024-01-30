@@ -2,8 +2,10 @@ import Box from '@mui/material/Box';
 import Container, { ContainerProps } from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { HomeUIInfo } from '@src/types/i18n.types';
 import { useTranslation } from 'react-i18next';
+
+import { PROJECT_NAME } from '@src/constants';
+import { HomeUIInfo } from '@src/types/i18n.types';
 import { footerStyles } from './footerStyles';
 
 export const Footer = ({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) => {
@@ -22,7 +24,7 @@ export const Footer = ({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) =
           <Typography variant={'sm'}>{t(HomeUIInfo.footer_info_privacy)}</Typography>
           <Typography variant={'sm'}>{t(HomeUIInfo.footer_info_your_privacy_choices)}</Typography>
           <Typography variant={'sm'} ml={{ xs: 0, md: 'auto' }}>
-            {t(HomeUIInfo.footer_info_copyright)}
+            {t(HomeUIInfo.footer_info_copyright, { name: PROJECT_NAME })}
           </Typography>
         </Stack>
       </Container>
