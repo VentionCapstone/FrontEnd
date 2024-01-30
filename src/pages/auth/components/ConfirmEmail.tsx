@@ -2,10 +2,13 @@ import DoneIcon from '@mui/icons-material/Done';
 import { Box, IconButton, Link, Typography, useTheme } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { ROUTES } from '@src/config/routes.config';
+import { HomeUIInfo } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 import { confirmEmailSyles } from './styles';
 
 function ConfirmEmail() {
+  const { t } = useTranslation();
   const theme = useTheme();
   const mobileScreen = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -16,10 +19,10 @@ function ConfirmEmail() {
           <DoneIcon sx={confirmEmailSyles.icon} />
         </IconButton>
         <Typography variant={mobileScreen ? 'h6' : 'xl'} textAlign="center" fontWeight={700} mb={4}>
-          Check your email
+          {t(HomeUIInfo.check_email)}
         </Typography>
         <Typography variant={mobileScreen ? 'sm' : 'body1'} sx={confirmEmailSyles.description}>
-          You should receive an email with a link to confirm your email address.
+          {t(HomeUIInfo.check_desc)}
         </Typography>
         <Link
           component={RouterLink}
@@ -27,7 +30,7 @@ function ConfirmEmail() {
           color={'secondary2.main'}
           sx={confirmEmailSyles.link}
         >
-          Return to sign up
+          {t(HomeUIInfo.return)}
         </Link>
       </Box>
     </Box>

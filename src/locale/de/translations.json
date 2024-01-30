@@ -57,6 +57,11 @@
           "sing_up_link": "registrieren",
           "sing_title": "Willkommen bei {{name}}",
           "desc": "Wenn Sie bereits ein Konto haben, melden Sie sich bitte an"
+        },
+        "auth-confirmed": {
+          "check_email": "Überprüfen Sie Ihre E-Mail",
+          "check_desc": "Sie sollten eine E-Mail mit einem Link erhalten, um Ihre E-Mail-Adresse zu bestätigen.",
+          "return": "Zurück zur Anmeldung"
         }
       },
       "filters_button": {
@@ -111,6 +116,10 @@
     },
 
     "account_edit_personal-info": {
+      "image": {
+        "edit": "Bearbeiten",
+        "add": "Hinzufügen"
+      },
       "name": {
         "legal_name": "Legal Name",
         "legal_name_desc": "Dies ist der Name in Ihrem Reisedokument, das eine Lizenz oder einen Pass sein kann.",
@@ -246,8 +255,8 @@
     },
 
     "searchTexts": {
-      "input_date_label_checkin": "Check-in",
-      "input_date_label_checkout": "Check-out",
+      "input_date_label_checkin": "Einchecken",
+      "input_date_label_checkout": "Kasse",
       "input_location_label_default": "Zielort",
       "input_location_label_anywhere": "Überall",
       "search_button": "Suche",
@@ -314,6 +323,81 @@
       "title": "Wunschzettel",
       "wishlits_empty_title": "Erstelle deine erste Wunschliste",
       "wishlits_empty_text": "Klicke während der Suche auf das Herzsymbol, um deine Lieblingsorte und Erlebnisse in einer Wunschliste zu speichern"
+    },
+    "bookings": {
+      "title": "Ihre Buchungen",
+      "pending": "Ausstehend",
+      "active": "Aktiv",
+      "completed": "Abgeschlossen",
+      "status": "Status",
+      "total": "Gesamt",
+      "check_in": "Einchecken",
+      "check_out": "Kasse",
+      "desc_not_booked": "Sie haben noch keine Unterkünfte gebucht",
+      "pay_now": "Jetzt bezahlen",
+      "my_bookings": "Meine Buchungen",
+      "add_review": "Bewertung hinzufügen"
+    },
+    "create_accommodation_route": {
+      "no_accommodation_found": "Keine Unterkünfte gefunden",
+      "no_accommodation_created": "Sie haben bisher keine Unterkünfte erstellt",
+      "title_your_acc": "Ihre Unterkünfte",
+      "create_title": "Unterkunft erstellen",
+      "basic_info": "Grundinformationen",
+      "title_input": "Titel",
+      "desc_input": "Beschreibung",
+      "availability": "Verfügbarkeit",
+      "available_from": "Verfügbar ab",
+      "available_to": "Verfügbar bis",
+      "available": "Verfügbar",
+      "details": "Details",
+      "allowed_people": "Erlaubte Anzahl von Personen",
+      "number_rooms": "Anzahl der Zimmer",
+      "price": "Preis",
+      "sq_meter": "Quadratmeter",
+      "address": "Adresse",
+      "country": "Land",
+      "city": "Stadt",
+      "street": "Straße",
+      "zip_code": "Postleitzahl",
+      "cancel_btn": "Abbrechen",
+      "next_btn": "Nächster Schritt",
+      "add_image_title": "Fügen Sie einige Fotos von Ihrem Haus hinzu",
+      "add_image_desc": "Sie benötigen 5 Fotos, um loszulegen. Sie können später mehr hinzufügen oder Änderungen vornehmen.",
+      "drag_drop": "Ziehen Sie Ihre Fotos hierher",
+      "five_images": "Wählen Sie mindestens 5 Bilder aus",
+      "upload_btn": "Vom Gerät hochladen",
+      "choose_at_least_5": "Wählen Sie mindestens 5 Bilder aus",
+      "add_aminities": "Annehmlichkeiten hinzufügen",
+      "save_btn": "Speichern",
+      "deleted": "Gelöscht",
+      "create": "Erstellen",
+      "edit": "Bearbeiten",
+      "accommodation": "Unterkunft",
+      "amenities": "Ausstattung"
+    },
+    "toast": {
+      "error_session_expired": "Ihre Sitzung ist abgelaufen, bitte melden Sie sich erneut an",
+      "error_img": "Bildkonvertierung fehlgeschlagen!",
+      "error_theme": "Fehler beim Ändern des Themas!",
+      "error_util": "Fehler beim Abrufen des Werts",
+      "success_accommodation_deleted": "Unterkunft erfolgreich gelöscht",
+      "success_accommodation_restored": "Unterkunft erfolgreich wiederhergestellt",
+      "success_profile": "Profil erstellt!",
+      "success_updated": "Erfolgreich aktualisiert!",
+      "success_email": "E-Mail verifiziert"
+    },
+    "edit_accommodation": {
+      "show_all_images": "Alle Bilder anzeigen",
+      "edit_accommodation": "Unterkunft bearbeiten",
+      "guests": "Gäste",
+      "rooms": "Zimmer",
+      "sq_meter": "Quadratmeter",
+      "delete": "Löschen",
+      "are_you_sure_del": "Möchten Sie diese Unterkunft wirklich löschen?",
+      "yes": "Ja",
+      "no": "Nein",
+      "restore": "Wiederherstellen"
     }
   }
 }

@@ -34,7 +34,6 @@ export const ENDPOINTS = {
 
     uploadMediaToAccommodation: (accommodationId: string) =>
       `/accommodations/${accommodationId}/file`,
-
   },
   payment: {
     root: '/payment',
