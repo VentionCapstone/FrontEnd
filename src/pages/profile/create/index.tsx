@@ -206,7 +206,6 @@ function CreateProfile() {
             },
             mt: 8,
             fontSize: '1rem',
-            fontWeight: 600,
             textTransform: 'none',
           }}
         >

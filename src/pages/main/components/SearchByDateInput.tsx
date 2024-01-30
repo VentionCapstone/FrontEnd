@@ -1,8 +1,8 @@
 import { DatePicker, MobileDatePicker } from '@mui/x-date-pickers';
-import dayjs from 'dayjs';
-import { mainStyles } from '../index.styles';
 import { SearchByDateInputProps } from '@src/types/accommodation.types';
+import dayjs from 'dayjs';
 import 'dayjs/plugin/isSameOrBefore';
+import { mainStyles } from '../index.styles';
 
 const SearchByDateInput = ({
   isMobile,
@@ -47,6 +47,9 @@ const SearchByDateInput = ({
         },
         actionBar: {
           actions: ['clear'],
+        },
+        textField: {
+          size: 'small',
         },
       }}
       value={date !== '' ? UtcTimeToLocal(dayjs(date)) : null}

@@ -54,4 +54,12 @@ export const mainNavigationStyles = {
       padding: 0,
     },
   },
+
+  profileImage: {
+    bgcolor: 'secondary2.light',
+    objectFit: 'cover',
+    width: '2rem',
+    height: '2rem',
+    borderRadius: '50%',
+  },
 } satisfies MuiStylesObject;

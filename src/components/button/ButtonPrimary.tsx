@@ -8,6 +8,7 @@ function ButtonPrimary({ children, loading, disabled }: LoadingButtonProps) {
       size="large"
       variant="contained"
       sx={{
+        'fontWeight': 600,
         'mt': 4,
         'bgcolor': 'secondary.main',
         ':hover': {

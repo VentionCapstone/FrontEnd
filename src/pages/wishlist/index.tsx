@@ -15,12 +15,12 @@ const Wishlist = () => {
   if (isLoading) return <LoadingPrimary />;
 
   return (
-    <div>
+    <Box>
       <Typography mb={{ xs: 4, md: 6, lg: 10 }} variant={'heading'}>
         {t(WishlistTypes.title)}
       </Typography>
 
-      <Box sx={mainStyles.accommmodationCard}>
+      <Box sx={{ ...mainStyles.accommmodationCard, justifyContent: 'flex-start' }}>
         {wishlist?.length ? (
           wishlist.map(({ id, accommodation }) => (
             <AccommodationCard key={id} accommodation={accommodation} />
@@ -36,7 +36,7 @@ const Wishlist = () => {
           </Box>
         )}
       </Box>
-    </div>
+    </Box>
   );
 };
 

@@ -98,12 +98,12 @@ function Main() {
         />
         <Badge invisible={!invisible} color="primary" badgeContent=" " sx={mainStyles.badgeNumber}>
           <Button variant="outlined" sx={mainStyles.filterButton} onClick={handleOpen}>
-            <TuneIcon fontSize="small" />
+            <TuneIcon sx={{ fontSize: { xs: '1.25rem', md: '1.5rem' } }} />
           </Button>
         </Badge>
         <Badge invisible={!invisible} color="primary" badgeContent=" " sx={mainStyles.badgeNumber}>
           <Button variant="outlined" sx={mainStyles.filterButton} onClick={handleOpenMapModal}>
-            <MapIcon fontSize="small" />
+            <MapIcon sx={{ fontSize: { xs: '1.25rem', md: '1.5rem' } }} />
           </Button>
         </Badge>
       </Box>

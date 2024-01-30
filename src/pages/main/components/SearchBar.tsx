@@ -1,18 +1,21 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { Box, Button, Fade, Modal } from '@mui/material';
-import { pink } from '@mui/material/colors';
-import { DefaultSearchParamsType, SearchBarProps } from '@src/types/accommodation.types';
+import SearchIcon from '@mui/icons-material/Search';
+import { Box, Button, Fade, Modal, Stack, Typography } from '@mui/material';
+import { SearchTexts } from '@src/types/i18n.types';
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/plugin/isSameOrAfter';
 import 'dayjs/plugin/isSameOrBefore';
 import { useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { IoSearchSharp } from 'react-icons/io5';
+
+import logo from '@src/assets/logo.png';
+import { PROJECT_NAME } from '@src/constants';
+import { DefaultSearchParamsType, SearchBarProps } from '@src/types/accommodation.types';
 import { mainStyles } from '../index.styles';
 import { modalStyles } from './Modal.styles';
 import SearchByCityInput from './SearchByCityInput';
 import SearchByDateInput from './SearchByDateInput';
-import { SearchTexts } from '@src/types/i18n.types';
-import { useTranslation } from 'react-i18next';
 
 export default function SearchBar({
   priceRange,
@@ -159,47 +162,84 @@ export default function SearchBar({
         />
 
         <Button variant="contained" onClick={handleSearchClick} sx={mainStyles.searchButton}>
-          <IoSearchSharp color={'#fce4ec'} size={20} />
+          <IoSearchSharp color={'background.default'} size={20} />
         </Button>
       </Box>
 
+      <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', gap: 1.5, mr: 'auto' }}>
+        <Box
+          src={logo}
+          component={'img'}
+          sx={{ width: '1.75rem', height: '1.75rem', objectFit: 'contain' }}
+        />
+
+        <Typography
+          sx={{
+            display: {
+              xs: 'none',
+              sm: 'block',
+            },
+            fontWeight: 800,
+            color: 'secondary.main',
+            lineHeight: '1rem',
+          }}
+        >
+          {PROJECT_NAME}
+        </Typography>
+      </Box>
+
       <Button variant="text" onClick={handleOpen} sx={mainStyles.mobileSearchBarButton}>
-        {t(SearchTexts.search_button)}
+        <SearchIcon sx={{ fontSize: '1.35rem' }} />
       </Button>
 
       {isSearchModalOpen && (
         <Modal open={isSearchModalOpen} onClose={handleClose}>
           <Fade in={isSearchModalOpen}>
-            <Box sx={modalStyles.searchModalContainer}>
-              <Button sx={modalStyles.searchCloseButton} onClick={handleClose}>
-                <CloseIcon />
-              </Button>
-              <SearchByCityInput location={location} setLocation={setLocation} />
-              <SearchByDateInput
-                isMobile={true}
-                label={t(SearchTexts.input_date_label_checkin)}
-                date={checkInDate}
-                minDate={dayjs()}
-                maxDate={getCheckInMaxDate()}
-                handleDateChange={handleCheckInChange}
-                UtcTimeToLocal={UtcTimeToLocal}
-              />
-              <SearchByDateInput
-                isMobile={true}
-                label={t(SearchTexts.input_date_label_checkout)}
-                date={checkOutDate}
-                minDate={getCheckOutMinDate()}
-                maxDate={undefined}
-                handleDateChange={handleCheckOutChange}
-                UtcTimeToLocal={UtcTimeToLocal}
-              />
-              <Button
-                variant="contained"
-                onClick={handleSearchModalClick}
-                sx={{ backgroundColor: pink[500] }}
-              >
-                {t(SearchTexts.search_button)}
-              </Button>
+            <Box sx={modalStyles.modalContainer}>
+              <Stack padding={5}>
+                <Button sx={modalStyles.searchCloseButton} onClick={handleClose}>
+                  <CloseIcon />
+                </Button>
+              </Stack>
+
+              <Box flexGrow={1} px={5}>
+                <SearchByCityInput location={location} setLocation={setLocation} />
+
+                <Stack direction={'row'} gap={2} mt={6}>
+                  <SearchByDateInput
+                    isMobile={true}
+                    label={t(SearchTexts.input_date_label_checkin)}
+                    date={checkInDate}
+                    minDate={dayjs()}
+                    maxDate={getCheckInMaxDate()}
+                    handleDateChange={handleCheckInChange}
+                    UtcTimeToLocal={UtcTimeToLocal}
+                  />
+                  <SearchByDateInput
+                    isMobile={true}
+                    label={t(SearchTexts.input_date_label_checkout)}
+                    date={checkOutDate}
+                    minDate={getCheckOutMinDate()}
+                    maxDate={undefined}
+                    handleDateChange={handleCheckOutChange}
+                    UtcTimeToLocal={UtcTimeToLocal}
+                  />
+                </Stack>
+              </Box>
+
+              <Box padding={5}>
+                <Button
+                  variant="contained"
+                  onClick={handleSearchModalClick}
+                  sx={{
+                    'bgcolor': 'secondary.main',
+                    ':hover': { bgcolor: 'secondary.dark' },
+                  }}
+                  fullWidth
+                >
+                  {t(SearchTexts.search_button)}
+                </Button>
+              </Box>
             </Box>
           </Fade>
         </Modal>

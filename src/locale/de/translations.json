@@ -55,7 +55,7 @@
         "sing_out": {
           "sing_up_btn": "Registrieren",
           "sing_up_link": "registrieren",
-          "sing_title": "Willkommen bei Airbnb",
+          "sing_title": "Willkommen bei {{name}}",
           "desc": "Wenn Sie bereits ein Konto haben, melden Sie sich bitte an"
         }
       },
@@ -95,7 +95,7 @@
         "sitemap": "Seitenverzeichnis",
         "privacy": "Privatsphäre",
         "your_privacy_choices": "Ihre Datenschutzeinstellungen",
-        "copyright": "© 2023 Airbnb, Inc."
+        "copyright": "© 2023 {{name}}, Inc."
       }
     },
 
@@ -106,7 +106,7 @@
       "login_secure_desc": "Geben Sie sichere Details an und wie wir Sie erreichen können",
       "setting": "Einstellungen",
       "setting_desc": "Legen Sie Ihre Standardsprache und Währung fest",
-      "airbnb_your_place": "Verleihe deine Unterkunft auf Airbnb",
+      "airbnb_your_place": "Verleihe deine Unterkunft auf {{name}}",
       "airbnb_your_place_desc": "Es ist einfach einzurichten und mit dem Verdienen zu beginnen."
     },
 
@@ -140,7 +140,7 @@
       },
       "number": {
         "phone_number": "Telefonnummer",
-        "phone_number_desc": "Fügen Sie eine Nummer hinzu, damit bestätigte Gäste und Airbnb Kontakt aufnehmen können. Sie können weitere Nummern hinzufügen und auswählen, wie sie verwendet werden sollen.",
+        "phone_number_desc": "Fügen Sie eine Nummer hinzu, damit bestätigte Gäste und {{name}} Kontakt aufnehmen können. Sie können weitere Nummern hinzufügen und auswählen, wie sie verwendet werden sollen.",
         "edit": "Bearbeiten",
         "save": "Speichern"
       },
@@ -180,7 +180,7 @@
       "light": "Hell",
       "dark": "Dunkel",
       "language": "Ausgewählte Sprachen",
-      "lang_desc": "Dies aktualisiert, was Sie auf Airbnb lesen, und wie wir mit Ihnen kommunizieren.",
+      "lang_desc": "Dies aktualisiert, was Sie auf {{name}} lesen, und wie wir mit Ihnen kommunizieren.",
       "currency_desc": "Wählen Sie Ihre bevorzugte Währung",
       "can_dollar": "Kanadischer Dollar",
       "uzbek": "Usbekisch",

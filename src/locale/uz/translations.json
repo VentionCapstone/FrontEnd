@@ -55,7 +55,7 @@
         "sing_out": {
           "sing_up_link": "ro'yxatdan o'tish",
           "sing_up_btn": "Ro'yxatdan o'tish",
-          "sing_title": "Xush kelibsiz Airbnb",
+          "sing_title": "Xush kelibsiz {{name}}",
           "desc": "Agar allaqachon akkauntingiz bo'lsa, Iltimos, kirishni tanlang"
         }
       },
@@ -95,7 +95,7 @@
         "sitemap": "Sayt xaritasi",
         "privacy": "Maxfiylik",
         "your_privacy_choices": "Sizning maxfiylik tanlovlaringiz",
-        "copyright": "© 2023 Airbnb, Inc."
+        "copyright": "© 2023 {{name}}, Inc."
       }
     },
 
@@ -106,7 +106,7 @@
       "login_secure_desc": "Xavfsiz ma'lumotlarni taqdim eting va biz siz bilan qanday aloqaga chiqishimizni tanlang",
       "setting": "Sozlamalar",
       "setting_desc": "O'z taqdimot tilini va valyutangizni belgilang",
-      "airbnb_your_place": "Airbnb joyingizni ijaraga bering",
+      "airbnb_your_place": "{{name}} joyingizni ijaraga bering",
       "airbnb_your_place_desc": "O'rnatish va daromad olish juda oson."
     },
 
@@ -140,7 +140,7 @@
       },
       "number": {
         "phone_number": "Telefon raqam",
-        "phone_number_desc": "Tasdiqlangan mehmonlar va Airbnb siz bilan bog'lanish uchun raqam qo'shing. Siz boshqa raqamlarni qo'shishingiz va ularni qanday foydalanilishini tanlashingiz mumkin.",
+        "phone_number_desc": "Tasdiqlangan mehmonlar va {{name}} siz bilan bog'lanish uchun raqam qo'shing. Siz boshqa raqamlarni qo'shishingiz va ularni qanday foydalanilishini tanlashingiz mumkin.",
         "edit": "tahrirlash",
         "save": "saqlash"
       },
@@ -180,7 +180,7 @@
       "light": "Yorug'",
       "dark": "Qora",
       "language": "Tanlangan tillar",
-      "lang_desc": "Bu sizni Airbnb saytida o'qigan ma'lumotlaringizni va siz bilan muloqot qilish usullarini yangilaydi.",
+      "lang_desc": "Bu sizni {{name}} saytida o'qigan ma'lumotlaringizni va siz bilan muloqot qilish usullarini yangilaydi.",
       "currency_desc": "Siz tanlagan valyutani tanlang",
       "can_dollar": "Kanada dollari",
       "uzbek": "O'zbekcha",

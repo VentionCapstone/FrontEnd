@@ -29,7 +29,7 @@ export default function MapModal({ open, setOpen, searchParamsAsObject }: MapMod
   return (
     <Modal open={open} onClose={handleClose}>
       <Fade in={open}>
-        <Box sx={modalStyles.modalContainer}>
+        <Box sx={modalStyles.modalContainer} p={5}>
           <Stack
             mb={4}
             direction={'row'}
@@ -44,7 +44,7 @@ export default function MapModal({ open, setOpen, searchParamsAsObject }: MapMod
               sx={modalStyles.closeButton}
               onClick={handleClose}
             >
-              <CloseIcon />
+              <CloseIcon sx={{ color: 'secondary2.main' }} />
             </Button>
           </Stack>
           <Box style={{ width: '100%', height: '90%' }}>
