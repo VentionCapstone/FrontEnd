@@ -1,4 +1,3 @@
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -17,15 +16,16 @@ import { mainNavigationStyles as styles } from './mainNavigation.styles';
 
 export const TopNavMenu = () => {
   const { data: user } = useGetUserQuery();
+  const { mutate: logOut } = useLogoutMutation();
   const { t } = useTranslation();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const userImage = user?.profile?.imageUrl;
+
   const handleTouch = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
-
-  const { mutate: logOut } = useLogoutMutation();
 
   const handleClose = useCallback(() => {
     setAnchorEl(null);
@@ -45,8 +45,8 @@ export const TopNavMenu = () => {
         onClick={handleTouch}
         sx={styles.button}
       >
+        {user && <Box component={'img'} src={userImage} sx={styles.profileImage} />}
         <MenuRoundedIcon sx={{ mx: 2, fontSize: '1.25rem', color: 'secondary2.main' }} />
-        <AccountCircleIcon fontSize="large" sx={{ color: 'secondary2.light' }} />
       </Button>
 
       <Menu

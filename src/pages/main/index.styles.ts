@@ -1,4 +1,3 @@
-import { pink } from '@mui/material/colors';
 import { MuiStylesObject } from '@src/types/utility.types';
 
 export const mainStyles = {
@@ -7,50 +6,90 @@ export const mainStyles = {
     justifyContent: 'center',
     alignContent: 'center',
   },
+
   filterButton: {
-    display: 'flex',
-    gap: '0.5rem',
     padding: '0',
     margin: '0',
-    borderRadius: '50%',
+    borderRadius: { md: '50%' },
+    borderColor: 'secondary2.light',
     width: {
-      xs: '40px',
+      xs: '35px',
       md: '50px',
     },
     height: {
-      xs: '40px',
+      xs: '35px',
       md: '50px',
     },
-    minWidth: {
-      xs: '40px',
-      md: '50px',
-    },
+    minWidth: 0,
     color: 'secondary2.main',
   },
+
   accommmodationCard: {
     display: 'flex',
     flexWrap: 'wrap',
     rowGap: 10,
     columnGap: 4,
+    justifyContent: 'space-between',
   },
+
   searchInput: {
-    'width': {
-      md: '30%',
+    'width': '100%',
+    '& fieldset': {
+      borderColor: 'secondary2.light',
     },
     '.MuiInputBase-root': {
-      borderRadius: '40px',
-      border: 'none',
+      borderRadius: {
+        xs: 2,
+        md: '999px',
+      },
+    },
+    '.MuiInputBase-input': {
+      fontSize: '0.875rem',
     },
   },
+
   searchBarBox: {
     display: 'flex',
-    margin: 2,
     gap: 2,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    mb: 8,
-    width: '98%',
+    bgcolor: 'background.default',
+    borderBottom: '1px solid',
+    borderColor: 'secondary2.light',
+    mb: {
+      xs: 'none',
+      md: 6,
+    },
+    p: {
+      xs: '1rem 1.5rem',
+      md: 0,
+    },
+    position: {
+      xs: 'fixed',
+      md: 'static',
+    },
+    top: {
+      xs: 0,
+      md: 'auto',
+    },
+    left: {
+      xs: 0,
+      md: 'auto',
+    },
+    right: {
+      xs: 0,
+      md: 'auto',
+    },
+    border: {
+      md: 'none',
+    },
+    zIndex: {
+      xs: 100,
+      md: 0,
+    },
+    boxShadow: { xs: '0px 4px 8px rgba(0, 0, 0, 0.12)', md: 'none' },
   },
+
   searchDesktopContainer: {
     p: 0,
     ml: 0,
@@ -63,21 +102,33 @@ export const mainStyles = {
     gap: 2,
     width: '100%',
   },
+
   searchButton: {
-    borderRadius: '50%',
-    width: 50,
-    height: 50,
-    minWidth: 50,
-    backgroundColor: pink[500],
-    padding: 0,
+    'borderRadius': '50%',
+    'width': 50,
+    'height': 50,
+    'minWidth': 50,
+    'ml': 6,
+    'backgroundColor': 'secondary.main',
+    'padding': 0,
+    ':hover': {
+      bgcolor: 'secondary.dark',
+    },
   },
+
   mobileSearchBarButton: {
-    border: '1px solid black',
-    borderRadius: '40px',
-    width: '100%',
     display: {
       xs: 'flex',
       md: 'none',
     },
+    padding: '0',
+    margin: '0',
+    border: '1px solid',
+    borderRadius: { md: '50%' },
+    borderColor: 'secondary2.light',
+    width: '35px',
+    height: '35px',
+    minWidth: 0,
+    color: 'secondary2.main',
   },
 } satisfies MuiStylesObject;

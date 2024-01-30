@@ -47,3 +47,5 @@ export const LANGUAGE_LIST: LanguageCollection[] = [
 export const DEFAULT_LANGUAGE = LANGUAGE_LIST[0];
 
 export const IMAGE_MAX_SIZE = 10 * 1024 * 1024;
+
+export const PROJECT_NAME = 'StayHop';

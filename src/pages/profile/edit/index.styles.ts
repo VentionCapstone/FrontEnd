@@ -10,7 +10,7 @@ export const editPageStyles = {
       xs: '9rem',
       md: '12rem',
     },
-    bgcolor: 'primary.main',
+    bgcolor: 'secondary2.light',
     borderRadius: '50%',
     flexShrink: 0,
     objectFit: 'cover',

@@ -55,7 +55,7 @@
         "sing_out": {
           "sing_up_link": "sign up",
           "sing_up_btn": "Sign up",
-          "sing_title": "Welcome to Airbnb",
+          "sing_title": "Welcome to {{name}}",
           "desc": "if you already have an account, please "
         },
         "auth-confirmed": {
@@ -101,7 +101,7 @@
         "sitemap": "Sitemap",
         "privacy": "Privacy",
         "your_privacy_choices": "Your Privacy Choices",
-        "copyright": "© 2023 Airbnb, Inc."
+        "copyright": "© 2023 {{name}}, Inc."
       }
     },
 
@@ -112,7 +112,7 @@
       "login_secure_desc": "Provide personal details and how we can reach you",
       "setting": "Settings",
       "setting_desc": "Set your default language, and currency",
-      "airbnb_your_place": "Airbnb your place",
+      "airbnb_your_place": "{{name}} your place",
       "airbnb_your_place_desc": "It`s simple to get set up and start earning."
     },
 
@@ -150,7 +150,7 @@
       },
       "number": {
         "phone_number": "Phone number",
-        "phone_number_desc": "Add a number so confirmed guests and Airbnb can get in touch. You can add other numbers and choose how they’re used.",
+        "phone_number_desc": "Add a number so confirmed guests and {{name}} can get in touch. You can add other numbers and choose how they’re used.",
         "edit": "edit",
         "save": "save"
       },
@@ -190,7 +190,7 @@
       "light": "Light",
       "dark": "Dark",
       "language": "Preferred language",
-      "lang_desc": "This updates what you read on Airbnb, and how we communicate with you.",
+      "lang_desc": "This updates what you read on {{name}}, and how we communicate with you.",
       "currency_desc": "Select currency you prefer",
       "can_dollar": "Canadian dollar",
       "uzbek": "Uzbek",
