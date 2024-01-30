@@ -12,7 +12,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import useLogoutMutation from '@src/api/mutations/account/useLogoutMutation';
 import useGetUserQuery from '@src/api/queries/account/useGetUserQuery';
 import { ROUTES } from '@src/config/routes.config';
-import { HomeUIInfo, Wishlist } from '@src/types/i18n.types';
+import { BookingsRoute, HomeUIInfo, Wishlist } from '@src/types/i18n.types';
 import { mainNavigationStyles as styles } from './mainNavigation.styles';
 
 export const TopNavMenu = () => {
@@ -109,7 +109,7 @@ export const TopNavMenu = () => {
                 to={ROUTES.bookings.root}
                 onClick={handleClose}
               >
-                <MenuItem>My Bookings</MenuItem>
+                <MenuItem>{t(BookingsRoute.my_bookings)}</MenuItem>
               </Link>,
               <MenuItem
                 key="logout"

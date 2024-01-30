@@ -33,8 +33,8 @@ function CustomImage({ image, name }: SingleImageProps) {
         'transition': 'transform 0.5s ease',
         '&:hover': { transform: 'scale(1.1)' },
         '& img': {
-          width: imageStates[currentState] ? '80%' : '100%',
-          objectFit: imageStates[currentState] ? 'contain' : 'cover',
+          width: '100%',
+          objectFit: 'cover',
           objectPosition: 'center',
           mx: 'auto',
           height: {
