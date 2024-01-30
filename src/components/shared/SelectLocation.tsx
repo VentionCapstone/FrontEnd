@@ -1,6 +1,8 @@
+import { useState } from 'react';
+
 import { AddressWatchType, SelectAddress } from '@src/types/accommodation.types';
 import { GeoObject } from '@src/types/yandex_map.types';
-import { useState } from 'react';
+
 import MapView from './MapView';
 import SearchLocation from './SearchLocation';
 

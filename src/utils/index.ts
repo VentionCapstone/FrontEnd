@@ -100,7 +100,14 @@ export const convertCodeToLanguage = (value: string): string => {
   return LANGUAGE_LIST.find((lang) => lang.code === value)?.name || DEFAULT_LANGUAGE.name;
 };
 
-export const parseCoord = (coord: string) => {
+export const parseCoord = (coord: string): [number, number] => {
   const splitted = coord.split(' ');
   return [Number.parseFloat(splitted[1]), Number.parseFloat(splitted[0])];
+};
+
+export const stringToNumberOfArray = (str: string) => {
+  return str
+    .split(' ')
+    .reverse()
+    .map((item) => Number(item)) as [number, number];
 };

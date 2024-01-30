@@ -1,39 +1,34 @@
 import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
-import axios from 'axios';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-import { MapMouseEvent, MapViewType, SuggestionsResponse } from '@src/types/yandex_map.types';
+import useGetSelectedAddress from '@src/api/queries/accommodation/useGetSelectedAddress';
+import { DEFAULT_LATITUDE, DEFAULT_LONGITUDE } from '@src/constants';
+import { MapMouseEvent, MapViewType } from '@src/types/yandex_map.types';
 import { parseCoord } from '@src/utils';
-import { useMutation } from '@tanstack/react-query';
-
-const API_KEY = import.meta.env.VITE_YANDEX_API_KEY as string;
 
 const MapView = ({ address, setAddress, handleCoordsChange, addressWatch }: MapViewType) => {
   const map = useRef<ymaps.Map>();
+  const [selectedLocation, setSelectedLocation] = useState<[number, number]>([0, 0]);
 
   useEffect(() => {
     if (map.current && address) {
-      void map.current.setCenter(parseCoord(address.Point.pos), 15, {});
+      const coords = parseCoord(address.Point.pos);
+      void map.current.setCenter(coords, 15, {});
     }
   }, [address]);
 
-  const { mutate } = useMutation({
-    mutationFn: async (value: [number, number]) => {
-      const { data } = await axios.get<SuggestionsResponse>(
-        `https://geocode-maps.yandex.ru/1.x/?apikey=${API_KEY}&format=json&geocode=${value[1]},${value[0]}`
-      );
-      const listOfSuggestions = data.response.GeoObjectCollection.featureMember[0].GeoObject;
-      setAddress(listOfSuggestions);
-    },
-  });
+  const { data } = useGetSelectedAddress(selectedLocation);
+
+  useEffect(() => {
+    if (data) {
+      setAddress(data);
+    }
+  }, [data, setAddress]);
 
   const handleDragEnd = (event: MapMouseEvent) => {
-    const target = event.originalEvent.target;
-    const coord = target.geometry.getCoordinates();
-
+    const coord = event.originalEvent.target.geometry.getCoordinates();
+    setSelectedLocation(coord);
     handleCoordsChange(coord);
-
-    mutate(coord);
   };
 
   const checkCoordinates = () => {
@@ -45,6 +40,8 @@ const MapView = ({ address, setAddress, handleCoordsChange, addressWatch }: MapV
       <YMaps
         query={{
           apikey: import.meta.env.VITE_YANDEX_API_KEY as string,
+          load: 'package.full',
+          lang: 'en_US',
         }}
       >
         <Map
@@ -52,7 +49,7 @@ const MapView = ({ address, setAddress, handleCoordsChange, addressWatch }: MapV
             zoom: 15,
             center: checkCoordinates()
               ? [addressWatch.latitude, addressWatch.longitude]
-              : [41.2971, 69.2815],
+              : [DEFAULT_LATITUDE, DEFAULT_LONGITUDE],
             controls: [],
           }}
           height={400}
@@ -63,7 +60,7 @@ const MapView = ({ address, setAddress, handleCoordsChange, addressWatch }: MapV
             geometry={
               checkCoordinates()
                 ? [addressWatch.latitude, addressWatch.longitude]
-                : [41.2971, 69.2815]
+                : [DEFAULT_LATITUDE, DEFAULT_LONGITUDE]
             }
             properties={{
               balloonContent: address ? address.name : 'Select location',

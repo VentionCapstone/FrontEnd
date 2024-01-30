@@ -29,12 +29,12 @@ export const ENDPOINTS = {
     restoreAccommodation: (accommodationId: string) => `/accommodations/${accommodationId}/restore`,
     getAccommodationReviews: (accommodationId: string) =>
       `/accommodations/${accommodationId}/reviews`,
-
     getAccommodationMedia: (accommodationId: string) => `/accommodations/${accommodationId}/media`,
-
     uploadMediaToAccommodation: (accommodationId: string) =>
       `/accommodations/${accommodationId}/file`,
-
+    getListOfSuggestedLocations: (value: string) => `${YANDEX_API_URL}&geocode=${value}`,
+    getSelectedLocation: (value: [number, number]) =>
+      `${YANDEX_API_URL}&geocode=${value[1]},${value[0]}`,
   },
   payment: {
     root: '/payment',
@@ -62,3 +62,8 @@ export const ENDPOINTS = {
       `/reviews/${accommodationId}?bookingId=${bookingId}`,
   },
 } as const;
+
+const BASE_YANDEX_URL = import.meta.env.VITE_YANDEX_SUGGEST_API_URL as string;
+const YANDEX_API = import.meta.env.VITE_YANDEX_API_KEY as string;
+
+export const YANDEX_API_URL = `${BASE_YANDEX_URL}&apikey=${YANDEX_API}`;
