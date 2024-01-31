@@ -415,7 +415,8 @@
       "are_you_sure_del": "Möchten Sie diese Unterkunft wirklich löschen?",
       "yes": "Ja",
       "no": "Nein",
-      "restore": "Wiederherstellen"
+      "restore": "Wiederherstellen",
+      "close": "dichtbij"
     }
   }
 }
