@@ -150,6 +150,8 @@ export default function SearchByCityInput({ location, setLocation }: SearchByCit
       filterOptions={(x) => x}
       options={options}
       autoComplete
+      autoHighlight={true}
+      autoSelect={true}
       filterSelectedOptions
       value={location ? location : options.find((place) => place === value)}
       noOptionsText={t(SearchTexts.input_location_no_options)}
