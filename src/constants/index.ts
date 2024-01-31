@@ -1,4 +1,4 @@
-import { YANDEX_API_URL } from '@src/api/queries/api';
+import { YANDEX_API_URL } from '@src/api/api';
 import { LanguageCollection, PhoneCodesByCountry } from './constant.types';
 
 export const DATE_FORMAT = 'MM-DD-YYYY';
@@ -64,5 +64,7 @@ export const YANDEX_MAP_QUERY = {
   load: 'package.full',
   lang: 'en_US',
 } as const;
+
+export const YANDEX_MAP_CONTROL = ['zoomControl', 'fullscreenControl'];
 
 export const PROJECT_NAME = 'StayHop';

@@ -7,6 +7,7 @@ import { Amenities } from '@src/types/amenity.types';
 import { Coordinates } from '@src/types/global.types';
 import { ToastMessages } from '@src/types/i18n.types';
 import { ThemeMode } from '@src/types/profile.types';
+import { SuggestionsResponse } from '@src/types/yandex_map.types';
 
 export const convertImageToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -121,3 +122,7 @@ export const stringToNumberOfArray = (str: string) => {
     .reverse()
     .map((item) => Number(item)) as Coordinates;
 };
+
+export function selectGeoSearchFeaturedObjects(searchResponse: SuggestionsResponse) {
+  return searchResponse?.response?.GeoObjectCollection?.featureMember ?? [];
+}

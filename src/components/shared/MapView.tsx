@@ -2,7 +2,12 @@ import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import useGetSelectedAddress from '@src/api/queries/accommodation/useGetSelectedAddress';
-import { DEFAULT_COORDINATES, DEFAULT_ZOOM, YANDEX_MAP_QUERY } from '@src/constants';
+import {
+  DEFAULT_COORDINATES,
+  DEFAULT_ZOOM,
+  YANDEX_MAP_CONTROL,
+  YANDEX_MAP_QUERY,
+} from '@src/constants';
 import { Coordinates } from '@src/types/global.types';
 import { MapMouseEvent, MapViewProps } from '@src/types/yandex_map.types';
 import { parseCoord } from '@src/utils';
@@ -54,7 +59,7 @@ const MapView = ({ address, setAddress, onCoordsChange, addressWatch }: MapViewP
         state={{
           zoom: DEFAULT_ZOOM,
           center: checkCoordinates ? coordinates : DEFAULT_COORDINATES,
-          controls: [],
+          controls: YANDEX_MAP_CONTROL,
         }}
         height={400}
         width={'100%'}

@@ -1,4 +1,4 @@
-import { YANDEX_API_URL } from '@src/api/queries/api';
+import { YANDEX_API_URL } from '@src/api/api';
 
 export const ENDPOINTS = {
   auth: {

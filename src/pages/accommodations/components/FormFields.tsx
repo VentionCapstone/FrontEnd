@@ -3,6 +3,7 @@ import { Control, Controller, FieldErrors } from 'react-hook-form';
 
 import SelectLocation from '@src/components/shared/SelectLocation';
 import { AccommodationReq, AddressWatchType, SelectAddress } from '@src/types/accommodation.types';
+import { Coordinates } from '@src/types/global.types';
 import { CreateAccommodationRoute } from '@src/types/i18n.types';
 import { useTranslation } from 'react-i18next';
 import { FormDateField } from './FormDateField';
@@ -12,7 +13,7 @@ interface FormDateFieldProps {
   control: Control<AccommodationReq>;
   errors: FieldErrors<AccommodationReq>;
   addressWatch: AddressWatchType;
-  handleCoordsChange: (coords: [number, number]) => void;
+  handleCoordsChange: (coords: Coordinates) => void;
   handleAddressChange: (address: SelectAddress) => void;
 }
 

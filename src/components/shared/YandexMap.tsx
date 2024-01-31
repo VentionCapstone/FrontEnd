@@ -1,5 +1,11 @@
 import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
-import { DEFAULT_LATITUDE, DEFAULT_LONGITUDE } from '@src/constants';
+import {
+  DEFAULT_LATITUDE,
+  DEFAULT_LONGITUDE,
+  DEFAULT_ZOOM,
+  YANDEX_MAP_CONTROL,
+  YANDEX_MAP_QUERY,
+} from '@src/constants';
 import { useMemo } from 'react';
 
 type YandexMapProps = {
@@ -13,19 +19,14 @@ export default function YandexMap({ latitude, longitude }: YandexMapProps) {
   }, [latitude, longitude]);
 
   return (
-    <YMaps
-      preload
-      query={{
-        lang: 'en_US',
-        load: 'package.full',
-      }}
-    >
+    <YMaps preload query={YANDEX_MAP_QUERY}>
       <Map
         height={300}
         width={'100%'}
         state={{
-          zoom: 15,
+          zoom: DEFAULT_ZOOM,
           center: coordinates,
+          controls: YANDEX_MAP_CONTROL,
         }}
       >
         <Placemark geometry={coordinates} />

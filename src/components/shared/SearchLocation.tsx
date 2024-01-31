@@ -1,9 +1,17 @@
 import { Box, TextField, Typography } from '@mui/material';
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
+import {
+  ChangeEvent,
+  EventHandler,
+  MouseEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import useGetLocationSuggestions from '@src/api/queries/accommodation/useGetLocationSuggestions';
 import { FeatureMember, GeoObject, SerachLocationProps } from '@src/types/yandex_map.types';
-import { stringToNumberOfArray } from '@src/utils';
+import { selectGeoSearchFeaturedObjects, stringToNumberOfArray } from '@src/utils';
 import DataFetchError from './DataFetchError';
 import SearchResults from './SearchResults';
 
@@ -22,8 +30,9 @@ function SearchLocation({
   const { data, isError } = useGetLocationSuggestions(searchInput);
 
   useEffect(() => {
-    if (data && data.response.GeoObjectCollection.featureMember.length > 0) {
-      const formattedData = data.response.GeoObjectCollection.featureMember.flat();
+    if (data) {
+      const formattedData = selectGeoSearchFeaturedObjects(data);
+
       setResults(formattedData);
       setIsSelecterOpen(true);
     } else {
@@ -32,18 +41,18 @@ function SearchLocation({
   }, [data]);
 
   useEffect(() => {
-    const pageClickEvent = (e: MouseEvent) => {
+    const pageClickEvent: EventHandler<MouseEvent> = (e) => {
       if (resultsRef.current && !resultsRef.current.contains(e.target as Node)) {
         setIsSelecterOpen(!isSelecterOpen);
       }
     };
 
     if (isSelecterOpen) {
-      window.addEventListener('click', pageClickEvent);
+      window.addEventListener('click', pageClickEvent as unknown as EventListener);
     }
 
     return () => {
-      window.removeEventListener('click', pageClickEvent);
+      window.removeEventListener('click', pageClickEvent as unknown as EventListener);
     };
   }, [isSelecterOpen]);
 
