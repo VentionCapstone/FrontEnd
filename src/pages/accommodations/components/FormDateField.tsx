@@ -1,4 +1,4 @@
-import { DateField, LocalizationProvider } from '@mui/x-date-pickers';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import { memo } from 'react';
@@ -20,16 +20,17 @@ export const FormDateField = memo(({ name, label, control, helperText }: FormFie
     control={control}
     render={({ field }) => (
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DateField
+        <DatePicker
           label={label}
           format={DATE_FORMAT}
-          helperText={helperText}
-          value={
-            typeof field.value === 'string' || typeof field.value === 'number'
-              ? dayjs(field.value)
-              : null
-          }
-          onChange={(newValue) => field.onChange(dayjs(newValue))}
+          slotProps={{
+            textField: {
+              helperText: helperText,
+            },
+          }}
+          value={typeof field.value === 'string' ? dayjs(field.value) : null}
+          disablePast
+          onChange={(newValue) => field.onChange(newValue?.format(DATE_FORMAT))}
         />
       </LocalizationProvider>
     )}

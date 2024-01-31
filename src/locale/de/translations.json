@@ -32,7 +32,21 @@
       "profile_error_creating": "Fehler beim Erstellen des Profils!",
 
       "image_failed_convert": "Bildkonvertierung fehlgeschlagen!",
-      "image_invalid_selection": "Bitte wählen Sie ein gültiges Bild unter 10 MB aus!"
+      "image_invalid_selection": "Bitte wählen Sie ein gültiges Bild unter 10 MB aus!",
+
+      "accommodation_title_min_length": "Titel muss mindestens 5 Zeichen enthalten",
+      "accommodation_title_max_length": "Titel muss weniger als 100 Zeichen enthalten",
+      "accommodation_square_meters_max": "Quadratmeter muss weniger als 1000 sein",
+      "accommodation_number_rooms_min": "Anzahl der Zimmer muss mindestens 1 sein",
+      "accommodation_number_rooms_max": "Anzahl der Zimmer muss weniger als 50 sein",
+      "accommodation_price_max": "Preis muss weniger als 10000 sein",
+      "accommodation_allowed_number_people_min": "Erlaubte Anzahl der Personen muss mindestens 1 sein",
+      "accommodation_allowed_number_people_max": "Erlaubte Anzahl der Personen muss weniger als 50 sein",
+      "accommodation_description_min_length": "Beschreibung muss mindestens 10 Zeichen enthalten",
+      "accommodation_description_max_length": "Beschreibung muss weniger als 1000 Zeichen enthalten",
+      "accommodation_address_country_min_length": "Land muss mindestens 3 Zeichen enthalten",
+      "accommodation_address_city_min_length": "Stadt muss mindestens 3 Zeichen enthalten",
+      "accommodation_address_street_min_length": "Straße muss mindestens 3 Zeichen enthalten"
     },
 
     "home_ui": {
@@ -374,7 +388,11 @@
       "create": "Erstellen",
       "edit": "Bearbeiten",
       "accommodation": "Unterkunft",
-      "amenities": "Ausstattung"
+      "amenities": "ausstattung",
+      "search_place": "Ort suchen",
+      "selected_place": "Ausgewählter Ort",
+      "location": "Ort",
+      "no_results": "Keine Ergebnisse gefunden"
     },
     "toast": {
       "error_session_expired": "Ihre Sitzung ist abgelaufen, bitte melden Sie sich erneut an",

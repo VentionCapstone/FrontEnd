@@ -11,6 +11,7 @@ import { STATUS } from '@src/types/global.types';
 import { BookingsRoute, ErrorTypes } from '@src/types/i18n.types';
 import { capitalize } from '@src/utils/capitalize';
 import AccommodationSkeleton from '../accommodations/components/AccommodationSkeleton';
+import { mainStyles } from '../main/index.styles';
 import BookingCard from './BookingCard';
 
 export default function Bookings() {
@@ -43,15 +44,6 @@ export default function Bookings() {
     setValue(newValue);
   };
 
-  const renderAccommodationSkeleton = useCallback(
-    () => (
-      <Box display="grid" gap={8} gridTemplateColumns={'repeat(auto-fill, minmax(280px, 1fr))'}>
-        <AccommodationSkeleton />;
-      </Box>
-    ),
-    []
-  );
-
   if (isError) {
     return <DataFetchError errorKey={ErrorTypes.accommodation_failed_to_get_list} />;
   }
@@ -64,7 +56,7 @@ export default function Bookings() {
         </Typography>
       </Box>
 
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 3 }}>
         <Tabs value={value} onChange={handleTabChange} aria-label="basic tabs example">
           {a11yProps.map((props, index) => (
             <Tab key={index} {...props} />
@@ -72,7 +64,7 @@ export default function Bookings() {
         </Tabs>
       </Box>
       <Box pt={2}>
-        {isFetching && renderAccommodationSkeleton()}
+        {isFetching && <AccommodationSkeleton />}
 
         {bookings?.length === 0 ? (
           <Typography textAlign={'center'} variant={'h6'} mt={8}>
@@ -83,14 +75,9 @@ export default function Bookings() {
             next={handleNextPage}
             hasMore={hasNextPage}
             dataLength={bookings?.length || 0}
-            loader={renderAccommodationSkeleton()}
+            loader={<AccommodationSkeleton />}
           >
-            <Box
-              display="grid"
-              gap={8}
-              mt={8}
-              gridTemplateColumns={'repeat(auto-fill, minmax(280px, 1fr))'}
-            >
+            <Box sx={mainStyles.accommmodationCard}>
               {bookings?.map(
                 ({ id, accommodation, accommodationId, startDate, endDate, status }) => (
                   <BookingCard

@@ -4,8 +4,10 @@ import ErrorImage from '@src/assets/no-image.jpg';
 import { DEFAULT_LANGUAGE, LANGUAGE_LIST } from '@src/constants/index';
 import i18n from '@src/i18n/i18n';
 import { Amenities } from '@src/types/amenity.types';
+import { Coordinates } from '@src/types/global.types';
 import { ToastMessages } from '@src/types/i18n.types';
 import { ThemeMode } from '@src/types/profile.types';
+import { SuggestionsResponse } from '@src/types/yandex_map.types';
 
 export const convertImageToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -100,3 +102,27 @@ export const handleErrorInImage = (e: React.SyntheticEvent<HTMLImageElement, Eve
 export const convertCodeToLanguage = (value: string): string => {
   return LANGUAGE_LIST.find((lang) => lang.code === value)?.name || DEFAULT_LANGUAGE.name;
 };
+
+export const parseCoord = (coord: string): Coordinates | null => {
+  const splitted = coord.split(' ');
+  const latitude = Number.parseFloat(splitted[1]);
+  const longitude = Number.parseFloat(splitted[0]);
+
+  if (isNaN(latitude) || isNaN(longitude)) {
+    console.error('Invalid coordinates:', coord);
+    return null;
+  }
+
+  return [latitude, longitude];
+};
+
+export const stringToNumberOfArray = (str: string) => {
+  return str
+    .split(' ')
+    .reverse()
+    .map((item) => Number(item)) as Coordinates;
+};
+
+export function selectGeoSearchFeaturedObjects(searchResponse: SuggestionsResponse) {
+  return searchResponse?.response?.GeoObjectCollection?.featureMember ?? [];
+}

@@ -29,7 +29,7 @@ export const mainStyles = {
     flexWrap: 'wrap',
     rowGap: 10,
     columnGap: 4,
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
   },
 
   searchInput: {
