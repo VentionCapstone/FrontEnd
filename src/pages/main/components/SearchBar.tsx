@@ -48,10 +48,6 @@ export default function SearchBar({
     [timezoneOffset]
   );
 
-  useEffect(() => {
-    handleSearchClick();
-  }, [location, checkOutDate]);
-
   const handleSearchClick = useCallback(() => {
     const newSearchParamsAsObject: DefaultSearchParamsType = {
       minPrice: minPrice !== '0' ? minPrice : totalMinPrice.toString(),
@@ -82,6 +78,10 @@ export default function SearchBar({
     checkOutDate,
     setSearchParams,
   ]);
+
+  useEffect(() => {
+    handleSearchClick();
+  }, [location, checkOutDate]);
 
   const handleSearchModalClick = useCallback(() => {
     handleSearchClick();
