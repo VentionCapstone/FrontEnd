@@ -13,3 +13,4 @@ export function getImageSources({ url, rows = 1, cols = 1 }: RenderedImage) {
     srcSet: `${cuttedUrl}?w=${cols}&h=${rows}&fit=crop&auto=format&dpr=2 2x`,
   };
 }
+export const MAX_IMAGES = 5;

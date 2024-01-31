@@ -4,7 +4,7 @@ import Slider from '@src/components/shared/Slider';
 import { Media } from '@src/types/accommodation.types';
 import { RenderedImage } from '@src/types/accommodationImages.types';
 import { useMemo, useState } from 'react';
-import { getImageSources } from '../utils/imagesListUtils';
+import { MAX_IMAGES, getImageSources } from '../utils/imagesListUtils';
 
 export default function ImagesList({ images }: { images: Media[] }) {
   const [openDialog, setOpenDialog] = useState(false);
@@ -22,7 +22,7 @@ export default function ImagesList({ images }: { images: Media[] }) {
   const [activeStep, setActiveStep] = useState(0);
 
   const formattedImages = useMemo(() => {
-    return images.slice(0, 5).map((image, index) => ({
+    return images.slice(0, MAX_IMAGES).map((image, index) => ({
       url: image.thumbnailUrl,
       cols: index === 0 ? 2 : 1,
       rows: index === 0 ? 4 : 2,
@@ -62,7 +62,7 @@ export default function ImagesList({ images }: { images: Media[] }) {
             isMobile={isMobile}
             id={images[0].accommodationId}
             onClose={handleCloseDialog}
-            handleOpen={handleOpenDialog}
+            onOpen={handleOpenDialog}
             open={openDialog}
           />
         </>
@@ -77,7 +77,7 @@ export default function ImagesList({ images }: { images: Media[] }) {
           <ShowPhotos
             id={images[0].accommodationId}
             onClose={handleCloseDialog}
-            handleOpen={handleOpenDialog}
+            onOpen={handleOpenDialog}
             open={openDialog}
           />
         </ImageList>

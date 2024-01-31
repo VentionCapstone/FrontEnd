@@ -34,11 +34,11 @@ export interface ShowPhotosProps {
   id: string;
   open: boolean;
   onClose: () => void;
-  handleOpen: () => void;
+  onOpen: () => void;
   isMobile?: boolean;
 }
 
-export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: ShowPhotosProps) {
+export default function ShowPhotos({ id, open, onClose, onOpen, isMobile }: ShowPhotosProps) {
   const { data } = useGetAllMediaQuery(id, open);
   const { t } = useTranslation();
 
@@ -102,7 +102,7 @@ export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: 
         <Button
           variant="contained"
           color="inherit"
-          onClick={handleOpen}
+          onClick={onOpen}
           sx={{ position: 'absolute', right: '8%', bottom: '10%' }}
         >
           {t(EditAccommodation.ShowAllImages)}
@@ -122,7 +122,7 @@ export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: 
             sx={{ marginLeft: '1rem' }}
             color="inherit"
             onClick={(e) => handleClose(e)}
-            aria-label="close"
+            aria-label={t(EditAccommodation.Close)}
           >
             <ArrowBackIos />
           </IconButton>

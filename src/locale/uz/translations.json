@@ -396,7 +396,8 @@
       "are_you_sure_del": "Haqiqatan ham ushbu makorni o'chirib tashlashni istaysizmi?",
       "yes": "Ha",
       "no": "Yo'q",
-      "restore": "Qayta tiklash"
+      "restore": "Qayta tiklash",
+      "close": "yopmoq"
     }
   }
 }

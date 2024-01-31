@@ -357,6 +357,7 @@ export enum EditAccommodation {
   Yes = 'edit_accommodation.yes',
   No = 'edit_accommodation.no',
   Restore = 'edit_accommodation.restore',
+  Close = 'edit_accommodation.close',
 }
 
 export enum ProfileActions {
