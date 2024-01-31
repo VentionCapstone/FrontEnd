@@ -17,8 +17,9 @@ export const ACCEPT_UPLOAD_FILE_TYPE = ['jpg', 'gif', 'png'];
 export const DATE_MONTH_YEAR_FORMAT = 'MMMM YYYY';
 
 export const STATUSES = {
-  ACTIVE: 'ACTIVE',
   PENDING: 'PENDING',
+  ACTIVE: 'ACTIVE',
+  UPCOMING: 'UPCOMING',
   COMPLETED: 'COMPLETED',
 };
 

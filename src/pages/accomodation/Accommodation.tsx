@@ -3,6 +3,7 @@ import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import useGetSingleAccommodationQuery from '@src/api/queries/accommodation/useGetSingleAccommodationQuery';
 import BookingForm from '@src/components/booking/BookingForm';
@@ -14,7 +15,6 @@ import { ROUTES } from '@src/config/routes.config';
 import { AmenitySetting } from '@src/types/amenity.types';
 import { EditAccommodation, ErrorTypes } from '@src/types/i18n.types';
 import { getValueFromLocalStorage, handleErrorInImage, selectOnlyTrueAmenities } from '@src/utils';
-import { useTranslation } from 'react-i18next';
 import YandexMap from '../../components/shared/YandexMap';
 import { styles } from './Accommodation.styles';
 import AmenityList from './components/AmenityList';
@@ -147,7 +147,6 @@ function Accommodation() {
                 sx={{
                   'backgroundColor': 'primary.main',
                   'fontWeight': 'bold',
-                  'color': 'white',
                   '&:hover': {
                     backgroundColor: 'primary.dark',
                   },

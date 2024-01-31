@@ -17,7 +17,7 @@ export const ROUTES = {
     details: (id: string) => `/rooms/${id}`,
   },
   bookings: {
-    root: '/bookings',
+    root: '/bookings?status=ACTIVE',
   },
   payment: {
     root: (id: string, accommodationId: string, startDate: string, endDate: string) =>

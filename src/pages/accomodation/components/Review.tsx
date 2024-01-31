@@ -19,7 +19,7 @@ export const Review = ({ review }: { review: ReviewType }) => {
     user: { firstName, lastName, profile },
   } = review;
 
-  const userImage = profile.imageUrl ?? '';
+  const userImage = profile?.imageUrl ?? '';
   const formattedTime = dayjs(createdAt).fromNow();
 
   return (

@@ -5,11 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { Close } from '@mui/icons-material';
 import ReviewModal from '@src/components/review/ReviewModal';
 import CustomImage from '@src/components/shared/CustomImage';
-import { STATUSES } from '@src/constants';
-import { STATUS } from '@src/types/global.types';
+import { Status } from '@src/types/global.types';
 import { BookingsRoute } from '@src/types/i18n.types';
 import { lineClampStyle } from '@src/utils';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const style = {
@@ -32,7 +31,7 @@ export type DetailsProps = {
   previewImgUrl: string;
   startDate: string;
   endDate: string;
-  status: STATUS;
+  status: Status;
 };
 
 type Props = {
@@ -56,6 +55,15 @@ export default function BookingModal({ open, handleClose, details }: Props) {
     );
   };
 
+  const handleBookingModalOpen = () => {
+    setReviewModalOpen(true);
+  };
+
+  const handleReviewModalClose = useCallback(() => {
+    setReviewModalOpen(false);
+    handleClose();
+  }, [handleClose]);
+
   return (
     <Modal
       open={open}
@@ -64,11 +72,11 @@ export default function BookingModal({ open, handleClose, details }: Props) {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
+        <Box display="flex" alignItems="center" justifyContent="space-between" mb={4}>
           <Typography variant="body1" sx={lineClampStyle(1)}>
             {details.title}
           </Typography>
-          <Button onClick={handleClose}>
+          <Button sx={{ minWidth: 0, padding: 0 }} onClick={handleClose}>
             <Close />
           </Button>
         </Box>
@@ -104,14 +112,14 @@ export default function BookingModal({ open, handleClose, details }: Props) {
             {t(BookingsRoute.status)}
           </Typography>
           <Typography variant="sm" color="secondary2.main">
-            {details.status == 'PENDING'
+            {details.status == Status.pending
               ? `${t(BookingsRoute.pending)}`
-              : details.status == 'ACTIVE'
+              : details.status == Status.active
                 ? `${t(BookingsRoute.active)}`
                 : `${t(BookingsRoute.completed)}`}
           </Typography>
         </Box>
-        {details.status === STATUSES.PENDING && (
+        {details.status === Status.pending && (
           <Box width="100%" display="flex" justifyContent="flex-end" mt={2} onClick={handlePay}>
             <Button fullWidth variant="contained" color="primary">
               <Typography variant="sm" fontWeight="700" color="white">
@@ -120,23 +128,24 @@ export default function BookingModal({ open, handleClose, details }: Props) {
             </Button>
           </Box>
         )}
-        {details.status === STATUSES.COMPLETED && (
+        {details.status === Status.completed && (
           <Box width="100%" display="flex" justifyContent="flex-end" mt={2}>
             <Button
               fullWidth
               variant="contained"
               color="primary"
-              onClick={() => setReviewModalOpen(true)}
+              sx={{ fontWeight: 700 }}
+              onClick={handleBookingModalOpen}
             >
-              <Typography variant="sm" fontWeight="700" color="white">
-                {t(BookingsRoute.add_review)}
-              </Typography>
+              {t(BookingsRoute.add_review)}
             </Button>
           </Box>
         )}
+
         <ReviewModal
           open={reviewModalOpen}
           setOpen={setReviewModalOpen}
+          handleClose={handleReviewModalClose}
           bookingId={details.id}
           accommodationId={details.accommodationId}
         />

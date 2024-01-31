@@ -45,7 +45,7 @@ export const TopNavMenu = () => {
         onClick={handleTouch}
         sx={styles.button}
       >
-        {user && <Box component={'img'} src={userImage} sx={styles.profileImage} />}
+        {userImage && <Box component={'img'} src={userImage} sx={styles.profileImage} />}
         <MenuRoundedIcon sx={{ mx: 2, fontSize: '1.25rem', color: 'secondary2.main' }} />
       </Button>
 

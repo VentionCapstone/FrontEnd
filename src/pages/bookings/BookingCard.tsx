@@ -1,8 +1,8 @@
 import { Box, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import CustomImage from '@src/components/shared/CustomImage';
-import { STATUS } from '@src/types/global.types';
+import { Status } from '@src/types/global.types';
 import { lineClampStyle } from '@src/utils';
 import BookingModal from './BookingModal';
 
@@ -17,7 +17,7 @@ interface BookingCardProps {
   accommodationId: string;
   startDate: string;
   endDate: string;
-  status: STATUS;
+  status: Status;
 }
 
 const BookingCard = React.memo(
@@ -25,7 +25,7 @@ const BookingCard = React.memo(
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleClose = useCallback(() => setOpen(false), []);
 
     return (
       <Box gap={2} display="flex" flexDirection="column">
