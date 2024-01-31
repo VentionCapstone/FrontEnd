@@ -22,6 +22,7 @@ function SelectLocation({ onCoordsChange, onAddressChange, addressWatch }: Selec
         setAddress={setAddress}
         onCoordsChange={onCoordsChange}
         addressWatch={addressWatch}
+        onAddressChange={onAddressChange}
       />
     </>
   );

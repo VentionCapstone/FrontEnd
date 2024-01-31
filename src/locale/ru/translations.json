@@ -44,8 +44,8 @@
       "accommodation_allowed_number_people_max": "Разрешенное количество людей должно быть менее 50",
       "accommodation_description_min_length": "Описание должно содержать не менее 10 символов",
       "accommodation_description_max_length": "Описание должно содержать менее 1000 символов",
-      "accommodation_address_country_min_length": "Страна должна содержать не менее 3 символов",
-      "accommodation_address_city_min_length": "Город должен содержать не менее 3 символов",
+      "accommodation_address_country_min_length": "Страна не должна быть пустой",
+      "accommodation_address_city_min_length": "Город не должен быть пустым",
       "accommodation_address_street_min_length": "Улица должна содержать не менее 3 символов"
     },
 

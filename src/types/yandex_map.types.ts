@@ -160,6 +160,7 @@ export interface MapViewProps {
   setAddress: (address: GeoObject) => void;
   onCoordsChange: (coords: Coordinates) => void;
   addressWatch: AddressWatchType;
+  onAddressChange: (address: SelectAddress) => void;
 }
 
 export interface SerachLocationProps {

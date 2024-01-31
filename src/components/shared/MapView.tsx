@@ -14,7 +14,13 @@ import { MapMouseEvent, MapViewProps } from '@src/types/yandex_map.types';
 import { parseCoord } from '@src/utils';
 import DataFetchError from './DataFetchError';
 
-const MapView = ({ address, setAddress, onCoordsChange, addressWatch }: MapViewProps) => {
+const MapView = ({
+  address,
+  setAddress,
+  onCoordsChange,
+  addressWatch,
+  onAddressChange,
+}: MapViewProps) => {
   const map = useRef<ymaps.Map>();
   const [selectedLocation, setSelectedLocation] = useState<Coordinates>([0, 0]);
 
@@ -30,8 +36,12 @@ const MapView = ({ address, setAddress, onCoordsChange, addressWatch }: MapViewP
   useEffect(() => {
     if (data) {
       setAddress(data);
+      const { Components } = data.metaDataProperty.GeocoderMetaData.Address;
+      const [country, city, street] = Components.slice(0, 3).map((comp) => comp?.name || '');
+
+      onAddressChange({ country, city, street });
     }
-  }, [data, setAddress]);
+  }, [data, setAddress, onAddressChange]);
 
   const handleDragEnd = useCallback(
     (event: MapMouseEvent) => {
@@ -42,12 +52,10 @@ const MapView = ({ address, setAddress, onCoordsChange, addressWatch }: MapViewP
     [onCoordsChange]
   );
 
-  const checkCoordinates = useMemo(() => {
-    return addressWatch.latitude !== 0 && addressWatch.longitude !== 0;
-  }, [addressWatch.latitude, addressWatch.longitude]);
-
   const coordinates: Coordinates = useMemo(() => {
-    return [addressWatch.latitude, addressWatch.longitude];
+    return addressWatch.latitude !== 0 && addressWatch.longitude !== 0
+      ? [addressWatch.latitude, addressWatch.longitude]
+      : DEFAULT_COORDINATES;
   }, [addressWatch.latitude, addressWatch.longitude]);
 
   if (isError) {
@@ -59,7 +67,7 @@ const MapView = ({ address, setAddress, onCoordsChange, addressWatch }: MapViewP
       <Map
         state={{
           zoom: DEFAULT_ZOOM,
-          center: checkCoordinates ? coordinates : DEFAULT_COORDINATES,
+          center: coordinates,
           controls: YANDEX_MAP_CONTROL,
         }}
         height={400}
@@ -67,7 +75,7 @@ const MapView = ({ address, setAddress, onCoordsChange, addressWatch }: MapViewP
         instanceRef={map}
       >
         <Placemark
-          geometry={checkCoordinates ? coordinates : DEFAULT_COORDINATES}
+          geometry={coordinates}
           properties={{
             balloonContent: address ? address.name : PROJECT_NAME,
           }}
@@ -82,5 +90,4 @@ const MapView = ({ address, setAddress, onCoordsChange, addressWatch }: MapViewP
   );
 };
 
-const MemoMapView = memo(MapView);
-export default MemoMapView;
+export default memo(MapView);

@@ -5,6 +5,7 @@ import { ENDPOINTS } from '@src/config/endpoints.config';
 import { QUERY_KEYS } from '@src/config/react-query.config';
 import { Coordinates } from '@src/types/global.types';
 import { SuggestionsResponse } from '@src/types/yandex_map.types';
+import { selectGeoSearchFeaturedObjects } from '@src/utils';
 
 function useGetSelectedAddress(selectedCoordinates: Coordinates) {
   const [latitude, longitude] = selectedCoordinates;
@@ -15,7 +16,8 @@ function useGetSelectedAddress(selectedCoordinates: Coordinates) {
       const { data } = await axios.get<SuggestionsResponse>(
         ENDPOINTS.accommodation.getSelectedLocation(selectedCoordinates)
       );
-      return data?.response?.GeoObjectCollection?.featureMember[0]?.GeoObject;
+      const response = selectGeoSearchFeaturedObjects(data);
+      return response[0]?.GeoObject;
     },
     enabled: latitude !== 0 && longitude !== 0,
   });

@@ -1,4 +1,5 @@
 import { YANDEX_API_URL } from '@src/api/api';
+import { Coordinates } from '@src/types/global.types';
 
 export const ENDPOINTS = {
   auth: {
@@ -34,9 +35,10 @@ export const ENDPOINTS = {
     getAccommodationMedia: (accommodationId: string) => `/accommodations/${accommodationId}/media`,
     uploadMediaToAccommodation: (accommodationId: string) =>
       `/accommodations/${accommodationId}/file`,
-    getListOfSuggestedLocations: (value: string) => `${YANDEX_API_URL}&geocode=${value}`,
-    getSelectedLocation: (value: [number, number]) =>
-      `${YANDEX_API_URL}&geocode=${value[1]},${value[0]}`,
+    getListOfSuggestedLocations: (coordinates: string) =>
+      `${YANDEX_API_URL}&geocode=${coordinates}`,
+    getSelectedLocation: (coordinates: Coordinates) =>
+      `${YANDEX_API_URL}&geocode=${coordinates[1]},${coordinates[0]}`,
   },
   payment: {
     root: '/payment',

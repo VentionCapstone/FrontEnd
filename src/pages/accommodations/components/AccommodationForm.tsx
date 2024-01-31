@@ -162,7 +162,14 @@ function AccommodationForm({
               <LoadingButton
                 variant="contained"
                 size="large"
-                color={isDeleted ? 'primary' : 'secondary'}
+                sx={{
+                  'fontWeight': 600,
+                  'mt': 4,
+                  'bgcolor': 'secondary.main',
+                  ':hover': {
+                    bgcolor: 'secondary.dark',
+                  },
+                }}
                 onClick={isDeleted ? handleRestore : toggleOpen}
                 loading={isDeleted ? isRestorePending : isDeletePending}
               >

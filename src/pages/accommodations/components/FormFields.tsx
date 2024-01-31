@@ -177,6 +177,11 @@ function FormFields({
         <Typography variant="h6" mb={4}>
           {t(CreateAccommodationRoute.address)}
         </Typography>
+        {errors.address && (
+          <Typography variant="body2" color="error" mb={2}>
+            {errors.address.country?.message} - {errors.address.city?.message}
+          </Typography>
+        )}
         <SelectLocation
           onCoordsChange={handleCoordsChange}
           onAddressChange={handleAddressChange}
