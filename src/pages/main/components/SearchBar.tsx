@@ -48,7 +48,7 @@ export default function SearchBar({
     [timezoneOffset]
   );
 
-  const handleSearchClick = useCallback(() => {
+  const handleSearch = useCallback(() => {
     const newSearchParamsAsObject: DefaultSearchParamsType = {
       minPrice: minPrice !== '0' ? minPrice : totalMinPrice.toString(),
       maxPrice: maxPrice !== '0' ? maxPrice : totalMaxPrice.toString(),
@@ -80,13 +80,13 @@ export default function SearchBar({
   ]);
 
   useEffect(() => {
-    handleSearchClick();
+    handleSearch();
   }, [location, checkOutDate]);
 
   const handleSearchModalClick = useCallback(() => {
-    handleSearchClick();
+    handleSearch();
     handleClose();
-  }, [handleClose, handleSearchClick]);
+  }, [handleClose, handleSearch]);
 
   const handleCheckInChange = useCallback(
     (newValue: dayjs.Dayjs | null) => {
