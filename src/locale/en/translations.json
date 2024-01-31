@@ -392,7 +392,8 @@
       "amenities": "amenities",
       "search_place": "Search a place",
       "selected_place": "Selected place",
-      "location": "Location"
+      "location": "Location",
+      "no_results": "No results found"
     },
     "toast": {
       "error_session_expired": "Your session has expired, please sign in again",

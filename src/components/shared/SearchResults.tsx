@@ -1,7 +1,11 @@
 import { Box } from '@mui/material';
+import { CreateAccommodationRoute } from '@src/types/i18n.types';
 import { SearchResultsProps } from '@src/types/yandex_map.types';
+import { useTranslation } from 'react-i18next';
 
 const SearchResults = ({ items, onItemClick }: SearchResultsProps) => {
+  const { t } = useTranslation();
+
   return (
     <Box
       sx={{
@@ -45,7 +49,7 @@ const SearchResults = ({ items, onItemClick }: SearchResultsProps) => {
           ))}
         </Box>
       ) : (
-        <p>No results</p>
+        <p>{t(CreateAccommodationRoute.no_results)}</p>
       )}
     </Box>
   );

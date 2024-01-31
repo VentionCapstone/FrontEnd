@@ -391,7 +391,8 @@
       "amenities": "ausstattung",
       "search_place": "Ort suchen",
       "selected_place": "Ausgewählter Ort",
-      "location": "Ort"
+      "location": "Ort",
+      "no_results": "Keine Ergebnisse gefunden"
     },
     "toast": {
       "error_session_expired": "Ihre Sitzung ist abgelaufen, bitte melden Sie sich erneut an",

@@ -391,7 +391,8 @@
       "amenities": "имареттер",
       "search_place": "Орын іздеу",
       "selected_place": "Таңдалған орын",
-      "location": "Орналасу"
+      "location": "Орналасу",
+      "no_results": "Нәтижелер табылмады"
     },
     "toast": {
       "error_session_expired": "Сессиясы аяқталды, қайта кіру өтінеміз",

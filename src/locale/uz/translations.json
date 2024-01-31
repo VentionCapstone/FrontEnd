@@ -391,7 +391,8 @@
       "amenities": "qulayliklar",
       "search_place": "Joyni qidirish",
       "selected_place": "Tanlangan joy",
-      "location": "Joylashuv"
+      "location": "Joylashuv",
+      "no_results": "Natijalar topilmadi"
     },
     "toast": {
       "error_session_expired": "Muddati o'tib ketgan, iltimos, qayta ko'ring",

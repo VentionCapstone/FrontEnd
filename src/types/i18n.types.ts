@@ -350,6 +350,7 @@ export enum CreateAccommodationRoute {
   search_place = 'create_accommodation_route.search_place',
   selected_place = 'create_accommodation_route.selected_place',
   location = 'create_accommodation_route.location',
+  no_results = 'create_accommodation_route.no_results',
 }
 
 export enum ToastMessages {
