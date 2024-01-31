@@ -3,7 +3,7 @@
 
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Button, Fade, Modal, Stack, Typography } from '@mui/material';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { MapModalProps } from '@src/types/accommodation.types';
 import { modalStyles } from './Modal.styles';
@@ -12,8 +12,6 @@ const maxAccommInMap = import.meta.env.VITE_MAX_ACCOMMODATIONS_IN_MAP as string;
 const originUrl = import.meta.env.VITE_ORIGIN_URL as string;
 
 export default function MapModal({ open, setOpen, searchParamsAsObject }: MapModalProps) {
-  const [mapInitialized, setMapInitialized] = useState(false);
-
   const { location } = searchParamsAsObject;
 
   const handleClose = useCallback(() => setOpen(false), [setOpen]);
