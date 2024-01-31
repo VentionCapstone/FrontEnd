@@ -10,7 +10,6 @@ import { EditAccommodation } from '@src/types/i18n.types';
 import { useTranslation } from 'react-i18next';
 
 import {
-  KeyboardEvent,
   MouseEvent,
   ReactElement,
   Ref,
@@ -63,7 +62,7 @@ export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: 
   useEffect(() => {
     const dialogElement = dialogRef.current as HTMLDivElement;
 
-    const handleKeyDown = (event: KeyboardEvent<Element>) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       switch (event.key) {
         case 'ArrowLeft':
           handlePrev();
@@ -76,10 +75,10 @@ export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: 
       }
     };
 
-    dialogElement?.addEventListener('keydown', handleKeyDown as () => void);
+    dialogElement?.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      dialogElement?.removeEventListener('keydown', handleKeyDown as () => void);
+      dialogElement?.removeEventListener('keydown', handleKeyDown);
     };
   }, [currentIndex, handleNext, handlePrev]);
 
