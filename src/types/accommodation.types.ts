@@ -1,7 +1,9 @@
+import i18n from '@src/i18n/i18n';
 import dayjs, { Dayjs } from 'dayjs';
 import { MouseEventHandler } from 'react';
 import { z } from 'zod';
 import { Amenities } from './amenity.types';
+import { ErrorTypes } from './i18n.types';
 
 export type AccommodationFields =
   | 'title'
@@ -17,29 +19,29 @@ export type AccommodationFields =
 export const accommodationSchema = z.object({
   title: z
     .string()
-    .min(5, 'Title must be at least 5 characters')
-    .max(100, 'Title must be less than 100 characters'),
-  squareMeters: z.number().max(1000, 'Square meters must be less than 1000'),
+    .min(5, i18n.t(ErrorTypes.accommodation_title_min_length))
+    .max(100, i18n.t(ErrorTypes.accommodation_title_max_length)),
+  squareMeters: z.number().max(1000, i18n.t(ErrorTypes.accommodation_square_meters_max)),
   numberOfRooms: z
     .number()
-    .min(1, 'Number of rooms must be greater than 0')
-    .max(100, "Can't be more than 100 rooms"),
-  price: z.number().max(10000, 'Price must be less than 10000'),
+    .min(1, i18n.t(ErrorTypes.accommodation_number_rooms_min))
+    .max(100, i18n.t(ErrorTypes.accommodation_number_rooms_max)),
+  price: z.number().max(10000, i18n.t(ErrorTypes.accommodation_price_max)),
   allowedNumberOfPeople: z
     .number()
-    .min(1, 'Allowed number of people must be greater than 0')
-    .max(100, "Can't be more than 100 people"),
+    .min(1, i18n.t(ErrorTypes.accommodation_allowed_number_people_min))
+    .max(100, i18n.t(ErrorTypes.accommodation_allowed_number_people_max)),
   availableFrom: z.string(),
   availableTo: z.string(),
   available: z.boolean(),
   description: z
     .string()
-    .min(10, 'Description must be at least 10 characters')
-    .max(256, 'Description must be less than 256 characters'),
+    .min(10, i18n.t(ErrorTypes.accommodation_description_min_length))
+    .max(256, i18n.t(ErrorTypes.accommodation_description_max_length)),
   address: z.object({
-    street: z.string(),
-    city: z.string().min(3, 'City name must be at least 3 characters'),
-    country: z.string().min(3, 'Country name must be at least 3 characters'),
+    street: z.string().min(3, i18n.t(ErrorTypes.accommodation_address_country_min_length)),
+    city: z.string().min(3, i18n.t(ErrorTypes.accommodation_address_city_min_length)),
+    country: z.string().min(3, i18n.t(ErrorTypes.accommodation_address_country_min_length)),
     zipCode: z.string(),
     latitude: z.number(),
     longitude: z.number(),

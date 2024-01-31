@@ -32,7 +32,21 @@
       "profile_error_creating": "Error creating profile!",
 
       "image_failed_convert": "Image conversion failed!",
-      "image_invalid_selection": "Please select a valid image under 10MB"
+      "image_invalid_selection": "Please select a valid image under 10MB",
+
+      "accommodation_title_min_length": "Title must be at least 5 characters",
+      "accommodation_title_max_length": "Title must be less than 100 characters",
+      "accommodation_square_meters_max": "Square meters must be less than 1000",
+      "accommodation_number_rooms_min": "Number of rooms must be at least 1",
+      "accommodation_number_rooms_max": "Number of rooms must be less than 50",
+      "accommodation_price_max": "Price must be less than 10000",
+      "accommodation_allowed_number_people_min": "Allowed number of people must be at least 1",
+      "accommodation_allowed_number_people_max": "Allowed number of people must be less than 50",
+      "accommodation_description_min_length": "Description must be at least 10 characters",
+      "accommodation_description_max_length": "Description must be less than 1000 characters",
+      "accommodation_address_country_min_length": "Country must be at least 3 characters",
+      "accommodation_address_city_min_length": "City must be at least 3 characters",
+      "accommodation_address_street_min_length": "Street must be at least 3 characters"
     },
 
     "home_ui": {
@@ -375,7 +389,10 @@
       "create": "Create",
       "edit": "Edit",
       "accommodation": "Accommodation",
-      "amenities": "amenities"
+      "amenities": "amenities",
+      "search_place": "Search a place",
+      "selected_place": "Selected place",
+      "location": "Location"
     },
     "toast": {
       "error_session_expired": "Your session has expired, please sign in again",

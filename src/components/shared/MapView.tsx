@@ -5,6 +5,7 @@ import useGetSelectedAddress from '@src/api/queries/accommodation/useGetSelected
 import {
   DEFAULT_COORDINATES,
   DEFAULT_ZOOM,
+  PROJECT_NAME,
   YANDEX_MAP_CONTROL,
   YANDEX_MAP_QUERY,
 } from '@src/constants';
@@ -68,7 +69,7 @@ const MapView = ({ address, setAddress, onCoordsChange, addressWatch }: MapViewP
         <Placemark
           geometry={checkCoordinates ? coordinates : DEFAULT_COORDINATES}
           properties={{
-            balloonContent: address ? address.name : 'Select location',
+            balloonContent: address ? address.name : PROJECT_NAME,
           }}
           options={{
             draggable: true,

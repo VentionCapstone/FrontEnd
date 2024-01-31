@@ -10,8 +10,10 @@ import {
 } from 'react';
 
 import useGetLocationSuggestions from '@src/api/queries/accommodation/useGetLocationSuggestions';
+import { CreateAccommodationRoute } from '@src/types/i18n.types';
 import { FeatureMember, GeoObject, SerachLocationProps } from '@src/types/yandex_map.types';
 import { selectGeoSearchFeaturedObjects, stringToNumberOfArray } from '@src/utils';
+import { useTranslation } from 'react-i18next';
 import DataFetchError from './DataFetchError';
 import SearchResults from './SearchResults';
 
@@ -28,6 +30,7 @@ function SearchLocation({
   const resultsRef = useRef<HTMLDivElement | null>(null);
 
   const { data, isError } = useGetLocationSuggestions(searchInput);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (data) {
@@ -83,12 +86,13 @@ function SearchLocation({
     <Box sx={{ position: 'relative', mb: 8 }}>
       {!address && addressWatch.country.length > 0 && (
         <Typography variant="body1" mb={2}>
-          Location: {addressWatch.country}, {addressWatch.city}, {addressWatch?.street}
+          {t(CreateAccommodationRoute.location)}: {addressWatch.country}, {addressWatch.city},{' '}
+          {addressWatch?.street}
         </Typography>
       )}
       <TextField
         value={searchInput}
-        placeholder="Search location"
+        placeholder={t(CreateAccommodationRoute.search_place)}
         onChange={handleChange}
         ref={resultsRef}
         sx={{
@@ -101,7 +105,7 @@ function SearchLocation({
       />
       {address && (
         <Typography variant="body1" mt={2}>
-          Selected location:{' '}
+          {t(CreateAccommodationRoute.selected_place)}:{' '}
           {address.metaDataProperty?.GeocoderMetaData?.AddressDetails?.Country?.AddressLine}
         </Typography>
       )}
