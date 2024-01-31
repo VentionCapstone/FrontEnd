@@ -26,9 +26,9 @@ function FilterChip({ minItem, item, onSelect }: FilterChipProps) {
       'paddingY': '18px',
       'cursor': 'pointer',
       'backgroundColor': minItem === id ? 'primary.main' : 'transparent',
-      'color': minItem === id ? 'secondary2.light' : 'primary.main',
+      'color': minItem === id ? 'background.default' : 'primary.main',
       ':hover': {
-        color: minItem === id ? 'secondary2.light' : 'primary.main',
+        color: minItem === id ? 'background.default' : 'primary.main',
         borderColor: 'primary.main',
         backgroundColor: minItem === id ? 'primary.main' : 'transparent',
       },

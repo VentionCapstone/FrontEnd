@@ -17,6 +17,7 @@ export default function AccommodationSkeleton() {
     >
       <Skeleton variant="rounded" width="100%" height={230} />
       <Skeleton variant="text" width="100%" />
+      <Skeleton variant="text" width="75%" />
       <Skeleton variant="text" width="50%" />
     </Box>
   ));

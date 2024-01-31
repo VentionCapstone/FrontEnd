@@ -23,7 +23,6 @@ export const QUERY_KEYS = {
     accommodations: 'accommodations',
     accomodationReviews: 'accomodation_reviews',
 
-
     media: 'media',
 
     bookings: 'bookings',

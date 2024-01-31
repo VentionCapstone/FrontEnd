@@ -52,6 +52,15 @@ export const mainNavigationStyles = {
     },
     '.MuiList-root': {
       padding: 0,
+      bgcolor: 'background.default',
     },
+  },
+
+  profileImage: {
+    bgcolor: 'secondary2.light',
+    objectFit: 'cover',
+    width: '2rem',
+    height: '2rem',
+    borderRadius: '50%',
   },
 } satisfies MuiStylesObject;
