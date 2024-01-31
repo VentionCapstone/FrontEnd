@@ -2,11 +2,11 @@ import { Box, ImageList, ImageListItem, useMediaQuery, useTheme } from '@mui/mat
 import ShowPhotos from '@src/components/full-view-accommodation/full-view-accommodation';
 import Slider from '@src/components/shared/Slider';
 import { Media } from '@src/types/accommodation.types';
-import { renderedImageType } from '@src/types/accommodationImages.types';
-import { useState } from 'react';
+import { RenderedImage } from '@src/types/accommodationImages.types';
+import { useMemo, useState } from 'react';
 import { getImageSources } from '../utils/imagesListUtils';
 
-export default function ImagesList({ imagesData }: { imagesData: Media[] }) {
+export default function ImagesList({ images }: { images: Media[] }) {
   const [openDialog, setOpenDialog] = useState(false);
 
   const handleOpenDialog = () => {
@@ -21,20 +21,23 @@ export default function ImagesList({ imagesData }: { imagesData: Media[] }) {
 
   const [activeStep, setActiveStep] = useState(0);
 
-  const images = imagesData.slice(0, 5).map((image, index) => ({
-    url: image.thumbnailUrl,
-    cols: index === 0 ? 2 : 1,
-    rows: index === 0 ? 4 : 2,
-  }));
+  const formattedImages = useMemo(() => {
+    return images.slice(0, 5).map((image, index) => ({
+      url: image.thumbnailUrl,
+      cols: index === 0 ? 2 : 1,
+      rows: index === 0 ? 4 : 2,
+    }));
+  }, [images]);
 
-  function renderImageList(images: renderedImageType[], height: string) {
-    return images.map((item, index) => {
+  function renderImageList(formattedImages: RenderedImage[], height: string) {
+    return formattedImages.map((item, index) => {
       const { url, rows, cols } = item;
 
       return (
         <ImageListItem key={index} cols={cols} rows={rows} onClick={handleOpenDialog}>
-          <img
-            style={{ borderRadius: 5, objectFit: 'cover', cursor: 'pointer', height }}
+          <Box
+            component={'img'}
+            sx={{ objectFit: 'cover', cursor: 'pointer', height, width: '100%' }}
             {...getImageSources({ url, rows, cols })}
             loading="lazy"
           />
@@ -53,11 +56,11 @@ export default function ImagesList({ imagesData }: { imagesData: Media[] }) {
             maxSteps={5}
             showIndicators={true}
           >
-            {renderImageList(images, '350px')}
+            {renderImageList(formattedImages, '350px')}
           </Slider>
           <ShowPhotos
             isMobile={isMobile}
-            id={imagesData[0].accommodationId}
+            id={images[0].accommodationId}
             onClose={handleCloseDialog}
             handleOpen={handleOpenDialog}
             open={openDialog}
@@ -70,9 +73,9 @@ export default function ImagesList({ imagesData }: { imagesData: Media[] }) {
           cols={4}
           rowHeight={100}
         >
-          {renderImageList(images, '100%')}
+          {renderImageList(formattedImages, '100%')}
           <ShowPhotos
-            id={imagesData[0].accommodationId}
+            id={images[0].accommodationId}
             onClose={handleCloseDialog}
             handleOpen={handleOpenDialog}
             open={openDialog}

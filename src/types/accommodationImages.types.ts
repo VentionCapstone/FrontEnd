@@ -1,1 +1,1 @@
-export type renderedImageType = { url: string; rows: number; cols: number };
+export type RenderedImage = { url: string; rows: number; cols: number };

@@ -1,5 +1,5 @@
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
-import { Grid, ImageList, ImageListItem, Toolbar, Typography } from '@mui/material';
+import { Box, ImageList, ImageListItem, Toolbar, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import IconButton from '@mui/material/IconButton';
@@ -60,7 +60,7 @@ export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: 
   useEffect(() => {
     const dialogElement = dialogRef.current as HTMLDivElement;
 
-    const handleKeyDown = (event: KeyboardEvent) => {
+    const handleKeyDown = (event: KeyboardEvent<Element>) => {
       switch (event.key) {
         case 'ArrowLeft':
           handlePrev();
@@ -83,8 +83,9 @@ export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: 
   const renderImages = () => {
     return data?.map((item, index) => (
       <ImageListItem sx={{ width: '100%', height: '70vh' }} key={index} cols={1} rows={1}>
-        <img
-          style={{ objectFit: 'contain', height: '80vh', width: '100vw' }}
+        <Box
+          component={'img'}
+          sx={{ objectFit: 'contain', height: '80vh', width: '100vw' }}
           src={item.imageUrl}
           alt={`photo-${index}`}
           loading="lazy"
@@ -128,7 +129,7 @@ export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: 
           </Typography>
         </Toolbar>
 
-        <Grid
+        <Box
           sx={{
             margin: '0 auto',
             display: 'flex',
@@ -182,7 +183,7 @@ export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: 
               </IconButton>
             </>
           )}
-        </Grid>
+        </Box>
       </Dialog>
     </>
   );
