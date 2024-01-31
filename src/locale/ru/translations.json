@@ -32,7 +32,21 @@
       "profile_error_creating": "Ошибка при создании профиля!",
 
       "image_failed_convert": "Ошибка преобразования изображения!",
-      "image_invalid_selection": "Пожалуйста, выберите допустимое изображение размером менее 10 МБ!"
+      "image_invalid_selection": "Пожалуйста, выберите допустимое изображение размером менее 10 МБ!",
+
+      "accommodation_title_min_length": "Заголовок должен содержать не менее 5 символов",
+      "accommodation_title_max_length": "Заголовок должен содержать менее 100 символов",
+      "accommodation_square_meters_max": "Квадратные метры должны быть менее 1000",
+      "accommodation_number_rooms_min": "Количество комнат должно быть не менее 1",
+      "accommodation_number_rooms_max": "Количество комнат должно быть менее 50",
+      "accommodation_price_max": "Цена должна быть менее 10000",
+      "accommodation_allowed_number_people_min": "Разрешенное количество людей должно быть не менее 1",
+      "accommodation_allowed_number_people_max": "Разрешенное количество людей должно быть менее 50",
+      "accommodation_description_min_length": "Описание должно содержать не менее 10 символов",
+      "accommodation_description_max_length": "Описание должно содержать менее 1000 символов",
+      "accommodation_address_country_min_length": "Страна не должна быть пустой",
+      "accommodation_address_city_min_length": "Город не должен быть пустым",
+      "accommodation_address_street_min_length": "Улица должна содержать не менее 3 символов"
     },
 
     "home_ui": {
@@ -375,7 +389,11 @@
       "create": "Создать",
       "edit": "Редактировать",
       "accommodation": "Размещение",
-      "amenities": "удобства"
+      "amenities": "удобства",
+      "search_place": "Поиск местоположения",
+      "selected_place": "Выбранное место",
+      "location": "Местоположение",
+      "no_results": "Результатов не найдено"
     },
     "toast": {
       "error_session_expired": "Ваша сессия истекла, пожалуйста, войдите снова",
@@ -398,7 +416,8 @@
       "are_you_sure_del": "Вы уверены, что хотите удалить это размещение?",
       "yes": "Да",
       "no": "Нет",
-      "restore": "Восстановить"
+      "restore": "Восстановить",
+      "close": "закрывать"
     }
   }
 }

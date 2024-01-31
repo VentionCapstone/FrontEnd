@@ -1,8 +1,8 @@
 import { Box, Checkbox, Typography } from '@mui/material';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 
-import YandexMap from '@src/components/shared/YandexMap';
-import { AccommodationReq } from '@src/types/accommodation.types';
+import SelectLocation from '@src/components/shared/SelectLocation';
+import { AccommodationReq, AddressWatchType, SelectAddress } from '@src/types/accommodation.types';
 import { Coordinates } from '@src/types/global.types';
 import { CreateAccommodationRoute } from '@src/types/i18n.types';
 import { useTranslation } from 'react-i18next';
@@ -12,17 +12,17 @@ import { FormField } from './FormField';
 interface FormDateFieldProps {
   control: Control<AccommodationReq>;
   errors: FieldErrors<AccommodationReq>;
-  latitudeWatch: number;
-  longitudeWatch: number;
+  addressWatch: AddressWatchType;
   handleCoordsChange: (coords: Coordinates) => void;
+  handleAddressChange: (address: SelectAddress) => void;
 }
 
 function FormFields({
   control,
   errors,
-  latitudeWatch,
-  longitudeWatch,
+  addressWatch,
   handleCoordsChange,
+  handleAddressChange,
 }: FormDateFieldProps) {
   const { t } = useTranslation();
   return (
@@ -177,57 +177,15 @@ function FormFields({
         <Typography variant="h6" mb={4}>
           {t(CreateAccommodationRoute.address)}
         </Typography>
-        <Box
-          sx={{
-            'display': 'flex',
-            'flexWrap': 'wrap',
-            'gap': '1rem',
-            '& > div': {
-              width: {
-                xs: '100%',
-                sm: '47%',
-                md: '47%',
-                lg: '24%',
-              },
-            },
-          }}
-        >
-          <FormField
-            name="address.country"
-            label={t(CreateAccommodationRoute.country)}
-            control={control}
-            error={!!errors.address?.country}
-            helperText={errors.address?.country?.message}
-          />
-          <FormField
-            name="address.city"
-            label={t(CreateAccommodationRoute.city)}
-            control={control}
-            error={!!errors.address?.city}
-            helperText={errors.address?.city?.message}
-          />
-          <FormField
-            name="address.street"
-            label={t(CreateAccommodationRoute.street)}
-            control={control}
-            error={!!errors.address?.street}
-            helperText={errors.address?.street?.message}
-          />
-          <FormField
-            name="address.zipCode"
-            label={t(CreateAccommodationRoute.zip_code)}
-            control={control}
-            error={!!errors.address?.zipCode}
-            helperText={errors.address?.zipCode?.message}
-          />
-        </Box>
-      </Box>
-
-      <Box mt={5}>
-        <YandexMap
-          latitude={latitudeWatch}
-          longitude={longitudeWatch}
-          setCoords={handleCoordsChange}
+        {errors.address && (
+          <Typography variant="body2" color="error" mb={2}>
+            {errors.address.country?.message} - {errors.address.city?.message}
+          </Typography>
+        )}
+        <SelectLocation
+          onCoordsChange={handleCoordsChange}
+          onAddressChange={handleAddressChange}
+          addressWatch={addressWatch}
         />
       </Box>
     </Box>

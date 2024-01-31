@@ -1,46 +1,35 @@
 import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
-
-import { Coordinates } from '@src/types/global.types';
+import {
+  DEFAULT_LATITUDE,
+  DEFAULT_LONGITUDE,
+  DEFAULT_ZOOM,
+  YANDEX_MAP_CONTROL,
+  YANDEX_MAP_QUERY,
+} from '@src/constants';
+import { useMemo } from 'react';
 
 type YandexMapProps = {
   latitude: number;
   longitude: number;
-  setCoords?: ([latitude, longitude]: Coordinates) => void;
 };
 
-export default function YandexMap({ latitude, longitude, setCoords }: YandexMapProps) {
-  const handleMapClick = (e: { get: (arg0: string) => never }) => {
-    if (!setCoords) return;
-    const coords = e.get('coords');
-    setCoords(coords);
-  };
+export default function YandexMap({ latitude, longitude }: YandexMapProps) {
+  const coordinates = useMemo(() => {
+    return [latitude || DEFAULT_LATITUDE, longitude || DEFAULT_LONGITUDE];
+  }, [latitude, longitude]);
 
   return (
-    <YMaps
-      preload
-      query={{
-        apikey: import.meta.env.VITE_YANDEX_API_KEY as string,
-        suggest_apikey: import.meta.env.VITE_YANDEX_SUGGEST_API_KEY as string,
-        lang: 'ru_RU',
-        load: 'package.full',
-      }}
-    >
+    <YMaps preload query={YANDEX_MAP_QUERY}>
       <Map
         height={300}
         width={'100%'}
-        onClick={handleMapClick}
         state={{
-          zoom: 15,
-          center: [latitude || 41.2971, longitude || 69.2815],
+          zoom: DEFAULT_ZOOM,
+          center: coordinates,
+          controls: YANDEX_MAP_CONTROL,
         }}
       >
-        <Placemark
-          geometry={[latitude || 41.2971, longitude || 69.2815]}
-          options={{
-            draggable: true,
-            preset: 'islands#redDotIcon',
-          }}
-        />
+        <Placemark geometry={coordinates} />
       </Map>
     </YMaps>
   );

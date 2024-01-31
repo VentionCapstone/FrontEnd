@@ -77,15 +77,6 @@ function Main() {
 
   const handleOpenMapModal = useCallback(() => setOpenMapModal(true), []);
 
-  const renderAccommodationSkeleton = useCallback(
-    () => (
-      <Box sx={mainStyles.accommmodationCard}>
-        <AccommodationSkeleton />;
-      </Box>
-    ),
-    []
-  );
-
   if (isError) {
     return <DataFetchError errorKey={ErrorTypes.accommodation_failed_to_get_list} />;
   }
@@ -116,18 +107,14 @@ function Main() {
         </Stack>
       )}
 
-      {isPending && (
-        <Box sx={mainStyles.accommmodationCard}>
-          <AccommodationSkeleton />;
-        </Box>
-      )}
+      {isPending && <AccommodationSkeleton />}
 
       {accommodations?.length !== 0 && (
         <InfiniteScroll
           dataLength={accommodations?.length || 0}
           next={handleNextPage}
           hasMore={hasNextPage}
-          loader={renderAccommodationSkeleton()}
+          loader={<AccommodationSkeleton />}
         >
           <Box sx={mainStyles.accommmodationCard}>
             {accommodations?.map((accommodation) => (

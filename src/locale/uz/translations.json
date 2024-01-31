@@ -32,7 +32,21 @@
       "profile_error_creating": "Profil yaratishda xatolik!",
 
       "image_failed_convert": "Rasmni o'zgartirishda xatolik!",
-      "image_invalid_selection": "Iltimos, 10 MB dan kichik bo'lgan haqiqiy rasmni tanlang!"
+      "image_invalid_selection": "Iltimos, 10 MB dan kichik bo'lgan haqiqiy rasmni tanlang!",
+
+      "accommodation_title_min_length": "Sarlavha kamida 5 belgidan iborat bo'lishi kerak",
+      "accommodation_title_max_length": "Sarlavha 100 belgidan kam bo'lishi kerak",
+      "accommodation_square_meters_max": "Kvadrat metrlar 1000 dan kam bo'lishi kerak",
+      "accommodation_number_rooms_min": "Xonalar soni kamida 1 bo'lishi kerak",
+      "accommodation_number_rooms_max": "Xonalar soni 50 dan kam bo'lishi kerak",
+      "accommodation_price_max": "Narx 10000 dan kam bo'lishi kerak",
+      "accommodation_allowed_number_people_min": "Ruxsat etilgan odam soni kamida 1 bo'lishi kerak",
+      "accommodation_allowed_number_people_max": "Ruxsat etilgan odam soni 50 dan kam bo'lishi kerak",
+      "accommodation_description_min_length": "Tavsif kamida 10 belgidan iborat bo'lishi kerak",
+      "accommodation_description_max_length": "Tavsif 1000 belgidan kam bo'lishi kerak",
+      "accommodation_address_country_min_length": "Mamlakat kamida 3 belgidan iborat bo'lishi kerak",
+      "accommodation_address_city_min_length": "Shahar kamida 3 belgidan iborat bo'lishi kerak",
+      "accommodation_address_street_min_length": "Ko'cha kamida 3 belgidan iborat bo'lishi kerak"
     },
 
     "home_ui": {
@@ -373,7 +387,12 @@
       "deleted": "O'chirildi",
       "create": "Yaratish",
       "edit": "Tahrir qilish",
-      "accommodation": "Turar joy"
+      "accommodation": "Turar joy",
+      "amenities": "qulayliklar",
+      "search_place": "Joyni qidirish",
+      "selected_place": "Tanlangan joy",
+      "location": "Joylashuv",
+      "no_results": "Natijalar topilmadi"
     },
     "toast": {
       "error_session_expired": "Muddati o'tib ketgan, iltimos, qayta ko'ring",
@@ -396,7 +415,8 @@
       "are_you_sure_del": "Haqiqatan ham ushbu makorni o'chirib tashlashni istaysizmi?",
       "yes": "Ha",
       "no": "Yo'q",
-      "restore": "Qayta tiklash"
+      "restore": "Qayta tiklash",
+      "close": "yopmoq"
     }
   }
 }
