@@ -41,8 +41,6 @@ export const modalStyles = {
       backgroundColor: 'transparent',
     },
     'padding': 0,
-    'display': 'flex',
-    'justifyContent': 'end',
   },
 
   sliderContainer: {
@@ -69,6 +67,8 @@ export const modalStyles = {
     'display': 'flex',
     'justifyContent': 'end',
     'color': 'secondary2.main',
+    'marginLeft': 'auto',
+    'minWidth': '0',
   },
 
   modalFooter: {
