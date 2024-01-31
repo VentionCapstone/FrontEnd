@@ -1,5 +1,6 @@
 import { Box, Tab, Tabs, Typography } from '@mui/material';
 import { useCallback, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { useGetBookingList } from '@src/api/queries/booking/useGetBookingList';
@@ -7,12 +8,13 @@ import DataFetchError from '@src/components/shared/DataFetchError';
 import { STATUSES } from '@src/constants';
 import { BookType } from '@src/types/booking.types';
 import { STATUS } from '@src/types/global.types';
-import { ErrorTypes } from '@src/types/i18n.types';
+import { BookingsRoute, ErrorTypes } from '@src/types/i18n.types';
 import { capitalize } from '@src/utils/capitalize';
 import AccommodationSkeleton from '../accommodations/components/AccommodationSkeleton';
 import BookingCard from './BookingCard';
 
 export default function Bookings() {
+  const { t } = useTranslation();
   const [value, setValue] = useState<STATUS>('ACTIVE');
 
   const a11yProps = useMemo(() => {
@@ -58,7 +60,7 @@ export default function Bookings() {
     <Box>
       <Box display="flex" alignItems="center" justifyContent="space-between" my={4}>
         <Typography variant={'lg'} fontWeight={600}>
-          Your Bookings
+          {t(BookingsRoute.title)}
         </Typography>
       </Box>
 
@@ -74,7 +76,7 @@ export default function Bookings() {
 
         {bookings?.length === 0 ? (
           <Typography textAlign={'center'} variant={'h6'} mt={8}>
-            You haven&apos;t booked any accommodations yet
+            {t(BookingsRoute.desc_not_booked)}
           </Typography>
         ) : (
           <InfiniteScroll

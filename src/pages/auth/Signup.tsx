@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Box, Divider, Link, Stack, Typography } from '@mui/material';
 import { useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 
 import useSignupMutation from '@src/api/mutations/auth/useSignupMutation';
@@ -9,9 +10,9 @@ import ButtonPrimary from '@src/components/button/ButtonPrimary';
 import InputForm from '@src/components/input/InputForm';
 import PasswordInput from '@src/components/input/PasswordInput';
 import { ENDPOINTS } from '@src/config/endpoints.config';
+import { PROJECT_NAME } from '@src/constants';
 import { SignUpReq, signUpSchema } from '@src/types/auth.types';
 import { HomeUIInfo, LoginAndSecurityInfo } from '@src/types/i18n.types';
-import { useTranslation } from 'react-i18next';
 import GoogleLoginButton from './components/GoogleLoginButton';
 import { styles } from './styles';
 
@@ -45,7 +46,9 @@ const Signup = () => {
       </Typography>
       <Divider />
       <Stack p={4} spacing={3}>
-        <Typography variant="h5"> {t(HomeUIInfo.sing_out_sing_title)}</Typography>
+        <Typography variant="h5">
+          {t(HomeUIInfo.sing_out_sing_title, { name: PROJECT_NAME })}
+        </Typography>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack gap={3}>

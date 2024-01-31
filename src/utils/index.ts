@@ -2,7 +2,9 @@ import toast from 'react-hot-toast';
 
 import ErrorImage from '@src/assets/no-image.jpg';
 import { DEFAULT_LANGUAGE, LANGUAGE_LIST } from '@src/constants/index';
+import i18n from '@src/i18n/i18n';
 import { Amenities } from '@src/types/amenity.types';
+import { ToastMessages } from '@src/types/i18n.types';
 import { ThemeMode } from '@src/types/profile.types';
 
 export const convertImageToBase64 = (file: File): Promise<string> => {
@@ -39,7 +41,7 @@ export const getValueFromLocalStorage = <T>(key: string): T | null => {
     }
   } catch (error) {
     console.error('Error retrieving value from local storage:', error);
-    toast.error('Error retrieving value');
+    toast.error(`${i18n.t(ToastMessages.ErrorUtil)}`);
 
     return null;
   }
@@ -93,7 +95,6 @@ export const selectOnlyTrueAmenities = (amenities: Amenities) => {
 
 export const handleErrorInImage = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
   e.currentTarget.src = ErrorImage;
-  e.currentTarget.style.objectFit = 'contain';
 };
 
 export const convertCodeToLanguage = (value: string): string => {

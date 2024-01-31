@@ -17,6 +17,7 @@ import useLogoutMutation from '@src/api/mutations/account/useLogoutMutation';
 import houseIcon from '@src/assets/house.png';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import { ROUTES } from '@src/config/routes.config';
+import { PROJECT_NAME } from '@src/constants';
 import { useAppSelector } from '@src/hooks/redux-hooks';
 import { getUser } from '@src/stores/slices/authSlice';
 import { AccountEditPageInfo, HomeUIInfo } from '@src/types/i18n.types';
@@ -49,7 +50,7 @@ function EditProfile() {
           <Stack direction={'row'} gap={'1rem'} justifyContent={'space-between'}>
             <Stack gap={'0.25rem'}>
               <Typography fontSize={'1.125rem'} fontWeight={600}>
-                {t(AccountEditPageInfo.airbnb_your_place)}
+                {t(AccountEditPageInfo.airbnb_your_place, { name: PROJECT_NAME })}
               </Typography>
               <Typography variant={'sm'} color={'secondary2.main'}>
                 {t(AccountEditPageInfo.airbnb_your_place_desc)}
@@ -175,7 +176,11 @@ function EditProfile() {
               <Typography mb={{ md: '0.5rem' }} fontWeight={{ md: 600 }}>
                 {t(AccountEditPageInfo.setting)}
               </Typography>
-              <Typography display={{ xs: 'none', md: 'block' }} color={'secondary2.main'}>
+              <Typography
+                variant={'sm'}
+                display={{ xs: 'none', md: 'block' }}
+                color={'secondary2.main'}
+              >
                 {t(AccountEditPageInfo.setting_desc)}
               </Typography>
             </Box>

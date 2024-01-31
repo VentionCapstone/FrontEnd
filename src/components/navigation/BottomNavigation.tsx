@@ -50,7 +50,8 @@ export const BottomNav = () => {
 
         {isLoggedIn && [
           <BottomNavigationAction
-            key={'Trips'}
+            value={ROUTES.bookings.root}
+            key={ROUTES.bookings.root}
             label="Trips"
             icon={<ChatBubbleOutlineRoundedIcon />}
           />,

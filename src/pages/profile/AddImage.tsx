@@ -5,10 +5,10 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { ChangeEventHandler, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 import { IMAGE_MAX_SIZE } from '@src/constants';
-import i18n from '@src/i18n/i18n';
-import { ErrorTypes } from '@src/types/i18n.types';
+import { AccountEditPersonalInfo, ErrorTypes } from '@src/types/i18n.types';
 import { convertImageToBase64 } from '@src/utils';
 
 function AddImage({
@@ -18,9 +18,8 @@ function AddImage({
   imageUrl?: string;
   setNewProfileImage: React.Dispatch<React.SetStateAction<File | null>>;
 }) {
-  const { t } = i18n;
-
   const [imagePreview, setImagePreview] = useState(imageUrl ?? '');
+  const { t } = useTranslation();
   const handleChangeInput: ChangeEventHandler<HTMLInputElement> = (e) => {
     const file = e.target.files?.[0];
 
@@ -72,7 +71,9 @@ function AddImage({
         <Stack direction={'row'} sx={{ gap: '0.25rem', alignItems: 'center' }}>
           <PhotoCameraIcon sx={{ fontSize: '1rem' }} />
           <Typography variant={'sm'} fontWeight={700}>
-            {imageUrl ? 'Edit' : 'Add'}
+            {imageUrl
+              ? `${t(AccountEditPersonalInfo.image_edit)}`
+              : `${t(AccountEditPersonalInfo.image_add)}`}
           </Typography>
         </Stack>
       </InputLabel>
