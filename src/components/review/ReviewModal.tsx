@@ -8,19 +8,20 @@ import {
   TextField,
 } from '@mui/material';
 import { useCreateReviewMutation } from '@src/api/mutations/review/useCreateReviewMutation';
-import { useCallback, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { ReviewModal as ReviewModalTr } from '../../types/i18n.types';
 
 type ReviewModalProps = {
   open: boolean;
-  setOpen: (open: boolean) => void;
+  handleClose: () => void;
+  setOpen: Dispatch<SetStateAction<boolean>>;
   bookingId: string;
   accommodationId: string;
 };
 
-function ReviewModal({ open, setOpen, bookingId, accommodationId }: ReviewModalProps) {
+function ReviewModal({ open, handleClose, bookingId, accommodationId, setOpen }: ReviewModalProps) {
   const { t } = useTranslation();
   const [rating, setRating] = useState(0);
   const [feedback, setFeedback] = useState('');
@@ -32,21 +33,37 @@ function ReviewModal({ open, setOpen, bookingId, accommodationId }: ReviewModalP
 
   const onConfirm = useCallback(() => {
     mutate({ rating, feedback });
-    setOpen(false);
-  }, [setOpen, mutate, rating, feedback]);
+  }, [mutate, rating, feedback]);
 
-  if (isSuccess) {
-    toast.success(t(ReviewModalTr.success));
-    setOpen(false);
-    setRating(0);
-    setFeedback('');
-  }
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success(t(ReviewModalTr.success));
+      handleClose();
+      setRating(0);
+      setFeedback('');
+    }
+  }, [isSuccess, t, handleClose]);
 
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      fullWidth
+      sx={{
+        '.MuiPaper-root': {
+          borderRadius: 2,
+          bgcolor: 'background.default',
+        },
+      }}
+    >
       <DialogTitle>{t(ReviewModalTr.title)}</DialogTitle>
       <DialogContent
-        sx={{ display: 'flex', flexDirection: 'column', gap: 5, alignItems: 'center' }}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 5,
+          alignItems: 'center',
+        }}
       >
         <Rating
           sx={{

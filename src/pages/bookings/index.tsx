@@ -1,13 +1,14 @@
 import { Box, Tab, Tabs, Typography } from '@mui/material';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useSearchParams } from 'react-router-dom';
 
 import { useGetBookingList } from '@src/api/queries/booking/useGetBookingList';
 import DataFetchError from '@src/components/shared/DataFetchError';
 import { STATUSES } from '@src/constants';
 import { BookType } from '@src/types/booking.types';
-import { STATUS } from '@src/types/global.types';
+import { Status } from '@src/types/global.types';
 import { BookingsRoute, ErrorTypes } from '@src/types/i18n.types';
 import { capitalize } from '@src/utils/capitalize';
 import AccommodationSkeleton from '../accommodations/components/AccommodationSkeleton';
@@ -16,7 +17,11 @@ import BookingCard from './BookingCard';
 
 export default function Bookings() {
   const { t } = useTranslation();
-  const [value, setValue] = useState<STATUS>('ACTIVE');
+  const [bookingParams, setBookingParams] = useSearchParams();
+  const bookingStatus = (bookingParams.get('status') as Status) ?? Status.active;
+
+  const { data, isError, hasNextPage, fetchNextPage, isFetching } =
+    useGetBookingList(bookingStatus);
 
   const a11yProps = useMemo(() => {
     return Object.values(STATUSES).map((status, index) => {
@@ -30,8 +35,6 @@ export default function Bookings() {
     });
   }, []);
 
-  const { data, isError, hasNextPage, fetchNextPage, isFetching } = useGetBookingList(value);
-
   const bookings = useMemo(
     () => data?.pages.reduce((acc, page) => [...acc, ...page.data], [] as BookType[]),
     [data]
@@ -39,9 +42,9 @@ export default function Bookings() {
 
   const handleNextPage = useCallback(() => fetchNextPage(), [fetchNextPage]);
 
-  const handleTabChange = (event: React.SyntheticEvent, newValue: STATUS) => {
+  const handleTabChange = (event: React.SyntheticEvent, newValue: Status) => {
     event.preventDefault();
-    setValue(newValue);
+    setBookingParams({ status: newValue });
   };
 
   if (isError) {
@@ -57,7 +60,7 @@ export default function Bookings() {
       </Box>
 
       <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 3 }}>
-        <Tabs value={value} onChange={handleTabChange} aria-label="basic tabs example">
+        <Tabs value={bookingStatus} onChange={handleTabChange} aria-label="basic tabs example">
           {a11yProps.map((props, index) => (
             <Tab key={index} {...props} />
           ))}
@@ -87,7 +90,7 @@ export default function Bookings() {
                     accommodationId={accommodationId}
                     startDate={startDate}
                     endDate={endDate}
-                    status={status as STATUS}
+                    status={status as Status}
                   />
                 )
               )}
