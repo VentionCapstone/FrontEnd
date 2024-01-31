@@ -4,6 +4,7 @@ import ErrorImage from '@src/assets/no-image.jpg';
 import { DEFAULT_LANGUAGE, LANGUAGE_LIST } from '@src/constants/index';
 import i18n from '@src/i18n/i18n';
 import { Amenities } from '@src/types/amenity.types';
+import { Coordinates } from '@src/types/global.types';
 import { ToastMessages } from '@src/types/i18n.types';
 import { ThemeMode } from '@src/types/profile.types';
 
@@ -101,14 +102,22 @@ export const convertCodeToLanguage = (value: string): string => {
   return LANGUAGE_LIST.find((lang) => lang.code === value)?.name || DEFAULT_LANGUAGE.name;
 };
 
-export const parseCoord = (coord: string): [number, number] => {
+export const parseCoord = (coord: string): Coordinates | null => {
   const splitted = coord.split(' ');
-  return [Number.parseFloat(splitted[1]), Number.parseFloat(splitted[0])];
+  const latitude = Number.parseFloat(splitted[1]);
+  const longitude = Number.parseFloat(splitted[0]);
+
+  if (isNaN(latitude) || isNaN(longitude)) {
+    console.error('Invalid coordinates:', coord);
+    return null;
+  }
+
+  return [latitude, longitude];
 };
 
 export const stringToNumberOfArray = (str: string) => {
   return str
     .split(' ')
     .reverse()
-    .map((item) => Number(item)) as [number, number];
+    .map((item) => Number(item)) as Coordinates;
 };

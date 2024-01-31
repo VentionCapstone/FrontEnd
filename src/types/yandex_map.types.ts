@@ -1,4 +1,5 @@
 import { AddressWatchType, SelectAddress } from './accommodation.types';
+import { Coordinates } from './global.types';
 
 export interface SelectedAddress {
   metaDataProperty: MetaDataProperty;
@@ -154,21 +155,39 @@ export interface Thoroughfare {
   ThoroughfareName: string;
 }
 
-export interface MapViewType {
+export interface MapViewProps {
   address: GeoObject | null;
   setAddress: (address: GeoObject) => void;
-  handleCoordsChange: (coords: [number, number]) => void;
-  handleAddressChange: (address: SelectAddress) => void;
+  onCoordsChange: (coords: Coordinates) => void;
   addressWatch: AddressWatchType;
+}
+
+export interface SerachLocationProps {
+  address: GeoObject | null;
+  setAddress: (address: GeoObject) => void;
+  onCoordsChange: (coords: Coordinates) => void;
+  onAddressChange: (address: SelectAddress) => void;
+  addressWatch: AddressWatchType;
+}
+
+export interface SelectLocationProps {
+  onCoordsChange: (coords: Coordinates) => void;
+  onAddressChange: (address: SelectAddress) => void;
+  addressWatch: AddressWatchType;
+}
+
+export interface SearchResultsProps {
+  items: FeatureMember[];
+  onItemClick: (item: GeoObject) => void;
 }
 
 export interface MapMouseEvent {
   originalEvent: {
     domEvent: string;
-    position: [number, number];
+    position: Coordinates;
     target: {
       geometry: {
-        getCoordinates: () => [number, number];
+        getCoordinates: () => Coordinates;
       };
     };
     type: string;

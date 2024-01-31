@@ -1,12 +1,7 @@
 import { Box } from '@mui/material';
-import { FeatureMember, GeoObject } from '@src/types/yandex_map.types';
+import { SearchResultsProps } from '@src/types/yandex_map.types';
 
-interface SearchResultsProps {
-  items: FeatureMember[];
-  handleItemClick: (item: GeoObject) => void;
-}
-
-const SearchResults = ({ items, handleItemClick }: SearchResultsProps) => {
+const SearchResults = ({ items, onItemClick }: SearchResultsProps) => {
   return (
     <Box
       sx={{
@@ -32,9 +27,8 @@ const SearchResults = ({ items, handleItemClick }: SearchResultsProps) => {
         <Box>
           {items.map(({ GeoObject }) => (
             <Box
-              component={'div'}
               key={GeoObject.uri}
-              onClick={() => handleItemClick(GeoObject)}
+              onClick={() => onItemClick(GeoObject)}
               sx={{
                 'display': 'flex',
                 'gap': '10px',

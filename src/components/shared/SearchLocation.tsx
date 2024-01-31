@@ -2,7 +2,7 @@ import { Box, TextField, Typography } from '@mui/material';
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 
 import useGetLocationSuggestions from '@src/api/queries/accommodation/useGetLocationSuggestions';
-import { FeatureMember, GeoObject, MapViewType } from '@src/types/yandex_map.types';
+import { FeatureMember, GeoObject, SerachLocationProps } from '@src/types/yandex_map.types';
 import { stringToNumberOfArray } from '@src/utils';
 import DataFetchError from './DataFetchError';
 import SearchResults from './SearchResults';
@@ -10,10 +10,10 @@ import SearchResults from './SearchResults';
 function SearchLocation({
   address,
   setAddress,
-  handleCoordsChange,
-  handleAddressChange,
+  onCoordsChange,
+  onAddressChange,
   addressWatch,
-}: MapViewType) {
+}: SerachLocationProps) {
   const [searchInput, setSearchInput] = useState<string>('');
   const [results, setResults] = useState<FeatureMember[]>([]);
   const [isSelecterOpen, setIsSelecterOpen] = useState<boolean>(false);
@@ -60,10 +60,10 @@ function SearchLocation({
       const { Components } = item.metaDataProperty.GeocoderMetaData.Address;
       const [country, city, street] = Components.slice(0, 3).map((comp) => comp?.name || '');
 
-      handleCoordsChange(stringToNumberOfArray(item.Point.pos) as [number, number]);
-      handleAddressChange({ country, city, street });
+      onCoordsChange(stringToNumberOfArray(item.Point.pos));
+      onAddressChange({ country, city, street });
     },
-    [handleAddressChange, handleCoordsChange, setAddress]
+    [onAddressChange, onCoordsChange, setAddress]
   );
 
   if (isError) {
@@ -93,10 +93,10 @@ function SearchLocation({
       {address && (
         <Typography variant="body1" mt={2}>
           Selected location:{' '}
-          {address.metaDataProperty.GeocoderMetaData.AddressDetails.Country.AddressLine}
+          {address.metaDataProperty?.GeocoderMetaData?.AddressDetails?.Country?.AddressLine}
         </Typography>
       )}
-      {isSelecterOpen && <SearchResults items={results} handleItemClick={handleItemClick} />}
+      {isSelecterOpen && <SearchResults items={results} onItemClick={handleItemClick} />}
     </Box>
   );
 }

@@ -1,22 +1,23 @@
 import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import useGetSelectedAddress from '@src/api/queries/accommodation/useGetSelectedAddress';
-import { DEFAULT_COORDINATES } from '@src/constants';
-import { MapMouseEvent, MapViewType } from '@src/types/yandex_map.types';
+import { DEFAULT_COORDINATES, DEFAULT_ZOOM, YANDEX_MAP_QUERY } from '@src/constants';
+import { Coordinates } from '@src/types/global.types';
+import { MapMouseEvent, MapViewProps } from '@src/types/yandex_map.types';
 import { parseCoord } from '@src/utils';
 import DataFetchError from './DataFetchError';
 
-const MapView = ({ address, setAddress, handleCoordsChange, addressWatch }: MapViewType) => {
+const MapView = ({ address, setAddress, onCoordsChange, addressWatch }: MapViewProps) => {
   const map = useRef<ymaps.Map>();
-  const [selectedLocation, setSelectedLocation] = useState<[number, number]>([0, 0]);
+  const [selectedLocation, setSelectedLocation] = useState<Coordinates>([0, 0]);
 
   const { data, isError } = useGetSelectedAddress(selectedLocation);
 
   useEffect(() => {
     if (map.current && address) {
-      const coords = parseCoord(address.Point.pos);
-      void map.current.setCenter(coords, 15, {});
+      const coords = parseCoord(address.Point.pos) ?? DEFAULT_COORDINATES;
+      void map.current.setCenter(coords, DEFAULT_ZOOM, {});
     }
   }, [address]);
 
@@ -30,33 +31,29 @@ const MapView = ({ address, setAddress, handleCoordsChange, addressWatch }: MapV
     (event: MapMouseEvent) => {
       const coord = event.originalEvent.target.geometry.getCoordinates();
       setSelectedLocation(coord);
-      handleCoordsChange(coord);
+      onCoordsChange(coord);
     },
-    [handleCoordsChange]
+    [onCoordsChange]
   );
 
-  const checkCoordinates = useCallback(() => {
-    return addressWatch.latitude > 0 && addressWatch.longitude > 0;
-  }, [addressWatch]);
+  const checkCoordinates = useMemo(() => {
+    return addressWatch.latitude !== 0 && addressWatch.longitude !== 0;
+  }, [addressWatch.latitude, addressWatch.longitude]);
+
+  const coordinates: Coordinates = useMemo(() => {
+    return [addressWatch.latitude, addressWatch.longitude];
+  }, [addressWatch.latitude, addressWatch.longitude]);
 
   if (isError) {
     return <DataFetchError />;
   }
 
   return (
-    <YMaps
-      query={{
-        apikey: import.meta.env.VITE_YANDEX_API_KEY as string,
-        load: 'package.full',
-        lang: 'en_US',
-      }}
-    >
+    <YMaps query={YANDEX_MAP_QUERY}>
       <Map
         state={{
-          zoom: 15,
-          center: checkCoordinates()
-            ? [addressWatch.latitude, addressWatch.longitude]
-            : DEFAULT_COORDINATES,
+          zoom: DEFAULT_ZOOM,
+          center: checkCoordinates ? coordinates : DEFAULT_COORDINATES,
           controls: [],
         }}
         height={400}
@@ -64,11 +61,7 @@ const MapView = ({ address, setAddress, handleCoordsChange, addressWatch }: MapV
         instanceRef={map}
       >
         <Placemark
-          geometry={
-            checkCoordinates()
-              ? [addressWatch.latitude, addressWatch.longitude]
-              : DEFAULT_COORDINATES
-          }
+          geometry={checkCoordinates ? coordinates : DEFAULT_COORDINATES}
           properties={{
             balloonContent: address ? address.name : 'Select location',
           }}
@@ -83,4 +76,5 @@ const MapView = ({ address, setAddress, handleCoordsChange, addressWatch }: MapV
   );
 };
 
-export default MapView;
+const MemoMapView = memo(MapView);
+export default MemoMapView;

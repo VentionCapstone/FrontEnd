@@ -1,5 +1,6 @@
 import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
 import { DEFAULT_LATITUDE, DEFAULT_LONGITUDE } from '@src/constants';
+import { useMemo } from 'react';
 
 type YandexMapProps = {
   latitude: number;
@@ -7,6 +8,10 @@ type YandexMapProps = {
 };
 
 export default function YandexMap({ latitude, longitude }: YandexMapProps) {
+  const coordinates = useMemo(() => {
+    return [latitude || DEFAULT_LATITUDE, longitude || DEFAULT_LONGITUDE];
+  }, [latitude, longitude]);
+
   return (
     <YMaps
       preload
@@ -20,10 +25,10 @@ export default function YandexMap({ latitude, longitude }: YandexMapProps) {
         width={'100%'}
         state={{
           zoom: 15,
-          center: [latitude || DEFAULT_LATITUDE, longitude || DEFAULT_LONGITUDE],
+          center: coordinates,
         }}
       >
-        <Placemark geometry={[latitude || DEFAULT_LATITUDE, longitude || DEFAULT_LONGITUDE]} />
+        <Placemark geometry={coordinates} />
       </Map>
     </YMaps>
   );

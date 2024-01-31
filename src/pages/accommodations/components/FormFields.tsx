@@ -177,8 +177,8 @@ function FormFields({
           {t(CreateAccommodationRoute.address)}
         </Typography>
         <SelectLocation
-          handleCoordsChange={handleCoordsChange}
-          handleAddressChange={handleAddressChange}
+          onCoordsChange={handleCoordsChange}
+          onAddressChange={handleAddressChange}
           addressWatch={addressWatch}
         />
       </Box>

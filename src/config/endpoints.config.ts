@@ -1,3 +1,5 @@
+import { YANDEX_API_URL } from '@src/api/queries/api';
+
 export const ENDPOINTS = {
   auth: {
     signIn: '/auth/signin',
@@ -62,8 +64,3 @@ export const ENDPOINTS = {
       `/reviews/${accommodationId}?bookingId=${bookingId}`,
   },
 } as const;
-
-const BASE_YANDEX_URL = import.meta.env.VITE_YANDEX_SUGGEST_API_URL as string;
-const YANDEX_API = import.meta.env.VITE_YANDEX_API_KEY as string;
-
-export const YANDEX_API_URL = `${BASE_YANDEX_URL}&apikey=${YANDEX_API}`;

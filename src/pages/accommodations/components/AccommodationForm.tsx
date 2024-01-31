@@ -74,7 +74,7 @@ function AccommodationForm({
   });
 
   const addressWatch = watch('address');
-  const isDeleted: boolean = !!accommodation?.isDeleted;
+  const isDeleted: boolean = accommodation?.isDeleted || false;
 
   const navigateToRoot = () => {
     navigate(ROUTES.accommodations.root);

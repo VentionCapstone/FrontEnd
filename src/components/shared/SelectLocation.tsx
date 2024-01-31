@@ -1,22 +1,11 @@
 import { useState } from 'react';
 
-import { AddressWatchType, SelectAddress } from '@src/types/accommodation.types';
-import { GeoObject } from '@src/types/yandex_map.types';
+import { GeoObject, SelectLocationProps } from '@src/types/yandex_map.types';
 
 import MapView from './MapView';
 import SearchLocation from './SearchLocation';
 
-type SelectLocationType = {
-  handleCoordsChange: (coords: [number, number]) => void;
-  handleAddressChange: (address: SelectAddress) => void;
-  addressWatch: AddressWatchType;
-};
-
-function SelectLocation({
-  handleCoordsChange,
-  handleAddressChange,
-  addressWatch,
-}: SelectLocationType) {
+function SelectLocation({ onCoordsChange, onAddressChange, addressWatch }: SelectLocationProps) {
   const [address, setAddress] = useState<GeoObject | null>(null);
 
   return (
@@ -24,15 +13,14 @@ function SelectLocation({
       <SearchLocation
         address={address}
         setAddress={setAddress}
-        handleCoordsChange={handleCoordsChange}
-        handleAddressChange={handleAddressChange}
+        onCoordsChange={onCoordsChange}
+        onAddressChange={onAddressChange}
         addressWatch={addressWatch}
       />
       <MapView
         address={address}
         setAddress={setAddress}
-        handleCoordsChange={handleCoordsChange}
-        handleAddressChange={handleAddressChange}
+        onCoordsChange={onCoordsChange}
         addressWatch={addressWatch}
       />
     </>
