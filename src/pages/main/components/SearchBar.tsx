@@ -5,10 +5,8 @@ import { SearchTexts } from '@src/types/i18n.types';
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/plugin/isSameOrAfter';
 import 'dayjs/plugin/isSameOrBefore';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IoSearchSharp } from 'react-icons/io5';
-
 import logo from '@src/assets/logo.png';
 import { PROJECT_NAME } from '@src/constants';
 import { DefaultSearchParamsType, SearchBarProps } from '@src/types/accommodation.types';
@@ -49,6 +47,10 @@ export default function SearchBar({
     },
     [timezoneOffset]
   );
+
+  useEffect(() => {
+    handleSearchClick();
+  }, [location, checkOutDate]);
 
   const handleSearchClick = useCallback(() => {
     const newSearchParamsAsObject: DefaultSearchParamsType = {
@@ -160,10 +162,6 @@ export default function SearchBar({
           handleDateChange={handleCheckOutChange}
           UtcTimeToLocal={UtcTimeToLocal}
         />
-
-        <Button variant="contained" onClick={handleSearchClick} sx={mainStyles.searchButton}>
-          <IoSearchSharp color={'background.default'} size={20} />
-        </Button>
       </Box>
 
       <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', gap: 1.5, mr: 'auto' }}>
