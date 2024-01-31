@@ -14,6 +14,8 @@ import {
   MAX_UPLOAD_FILE_NUMBER,
   MINUMUM_UPLOAD_FILE_NUMBER,
 } from '@src/constants';
+import { CreateAccommodationRoute } from '@src/types/i18n.types';
+import { useTranslation } from 'react-i18next';
 import { uploadMediaStyles } from './styles';
 
 function UploadMedia({
@@ -23,6 +25,7 @@ function UploadMedia({
   accommodationId: string;
   handleSearchParamsChange: (params: URLSearchParams) => void;
 }) {
+  const { t } = useTranslation();
   const [images, setImages] = useState<ImageListType>([]);
 
   const theme = useTheme();
@@ -61,7 +64,7 @@ function UploadMedia({
           mt={10}
           fontWeight={700}
         >
-          Add some photos of your house
+          {t(CreateAccommodationRoute.add_image_title)}
         </Typography>
         <Typography
           variant="sm"
@@ -70,7 +73,7 @@ function UploadMedia({
           color={'secondary2.main'}
           fontWeight={700}
         >
-          You will need 5 photos to get started. You can add more or make changes later.
+          {t(CreateAccommodationRoute.add_image_desc)}
         </Typography>
       </Box>
       <ImageUploading
@@ -86,7 +89,7 @@ function UploadMedia({
             <Box textAlign={'center'}>
               {images.length > 0 ? (
                 <Box sx={uploadMediaStyles.availableImageContainer}>
-                  <Typography mt={2}>Choose at least 5 images</Typography>
+                  <Typography mt={2}>{t(CreateAccommodationRoute.five_images)}</Typography>
                   <IconButton onClick={onImageUpload}>
                     <AddIcon />
                   </IconButton>
@@ -100,10 +103,10 @@ function UploadMedia({
                     fontWeight={600}
                     mt={3}
                   >
-                    Drag & Drop your photos here
+                    {t(CreateAccommodationRoute.drag_drop)}
                   </Typography>
-                  <Typography mb={5}>Choose at leat 5 images</Typography>
-                  <Button onClick={onImageUpload}>Upload from your device</Button>
+                  <Typography mb={5}>{t(CreateAccommodationRoute.five_images)}</Typography>
+                  <Button onClick={onImageUpload}>{t(CreateAccommodationRoute.upload_btn)}</Button>
                 </Box>
               )}
             </Box>
@@ -136,7 +139,7 @@ function UploadMedia({
       </ImageUploading>
       <Box component="form" onClick={handleNextButtonClick} sx={uploadMediaStyles.mainButton}>
         <ButtonPrimary type="submit" disabled={isNextButtonDisabled} loading={isPending}>
-          Next Step
+          {t(CreateAccommodationRoute.next_btn)}
         </ButtonPrimary>
       </Box>
     </Box>

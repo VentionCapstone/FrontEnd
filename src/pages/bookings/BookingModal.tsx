@@ -7,8 +7,10 @@ import ReviewModal from '@src/components/review/ReviewModal';
 import CustomImage from '@src/components/shared/CustomImage';
 import { STATUSES } from '@src/constants';
 import { STATUS } from '@src/types/global.types';
+import { BookingsRoute } from '@src/types/i18n.types';
 import { lineClampStyle } from '@src/utils';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const style = {
   position: 'fixed',
@@ -40,6 +42,7 @@ type Props = {
 };
 
 export default function BookingModal({ open, handleClose, details }: Props) {
+  const { t } = useTranslation();
   const [reviewModalOpen, setReviewModalOpen] = useState(false);
   const navigate = useNavigate();
   const startDate = dayjs(details.startDate);
@@ -78,13 +81,13 @@ export default function BookingModal({ open, handleClose, details }: Props) {
         <Box display="flex" mt={4} mb={2} alignItems="center" justifyContent="space-between">
           <Box>
             <Typography variant="sm" fontWeight="700">
-              Check-in
+              {t(BookingsRoute.check_in)}
             </Typography>
             <Typography variant="sm">{startDate.format('DD/MM/YYYY')}</Typography>
           </Box>
           <Box>
             <Typography variant="sm" fontWeight="700">
-              Check-out
+              {t(BookingsRoute.check_out)}
             </Typography>
             <Typography variant="sm">{endDate.format('DD/MM/YYYY')}</Typography>
           </Box>
@@ -92,23 +95,27 @@ export default function BookingModal({ open, handleClose, details }: Props) {
         <Divider />
         <Box display="flex" alignItems="center" mt={2} justifyContent="space-between">
           <Typography variant="sm" fontWeight="700">
-            Total
+            {t(BookingsRoute.total)}
           </Typography>
           <Typography fontWeight="700">${details.price * diff}</Typography>
         </Box>
         <Box display="flex" alignItems="center" mt={2} justifyContent="space-between">
           <Typography variant="sm" fontWeight="700">
-            Status
+            {t(BookingsRoute.status)}
           </Typography>
           <Typography variant="sm" color="secondary2.main">
-            {details.status}
+            {details.status == 'PENDING'
+              ? `${t(BookingsRoute.pending)}`
+              : details.status == 'ACTIVE'
+                ? `${t(BookingsRoute.active)}`
+                : `${t(BookingsRoute.completed)}`}
           </Typography>
         </Box>
         {details.status === STATUSES.PENDING && (
           <Box width="100%" display="flex" justifyContent="flex-end" mt={2} onClick={handlePay}>
             <Button fullWidth variant="contained" color="primary">
               <Typography variant="sm" fontWeight="700" color="white">
-                Pay now
+                {t(BookingsRoute.pay_now)}
               </Typography>
             </Button>
           </Box>
@@ -122,7 +129,7 @@ export default function BookingModal({ open, handleClose, details }: Props) {
               onClick={() => setReviewModalOpen(true)}
             >
               <Typography variant="sm" fontWeight="700" color="white">
-                Add review
+                {t(BookingsRoute.add_review)}
               </Typography>
             </Button>
           </Box>

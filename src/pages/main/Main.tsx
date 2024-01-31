@@ -5,8 +5,9 @@ import useGetAccommodationsQuery from '@src/api/queries/main/useGetAccommodation
 import AccommodationCard from '@src/components/card/acccommodationCard/AccommodationCard';
 import DataFetchError from '@src/components/shared/DataFetchError';
 import { Accommodation, DefaultSearchParamsType } from '@src/types/accommodation.types';
-import { ErrorTypes } from '@src/types/i18n.types';
+import { CreateAccommodationRoute, ErrorTypes } from '@src/types/i18n.types';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSearchParams } from 'react-router-dom';
 import AccommodationSkeleton from '../accommodations/components/AccommodationSkeleton';
@@ -29,6 +30,7 @@ const defaultSearchParams: DefaultSearchParamsType = {
 };
 
 function Main() {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [openMapModal, setOpenMapModal] = useState(false);
 
@@ -98,19 +100,19 @@ function Main() {
         />
         <Badge invisible={!invisible} color="primary" badgeContent=" " sx={mainStyles.badgeNumber}>
           <Button variant="outlined" sx={mainStyles.filterButton} onClick={handleOpen}>
-            <TuneIcon fontSize="small" />
+            <TuneIcon sx={{ fontSize: { xs: '1.25rem', md: '1.5rem' } }} />
           </Button>
         </Badge>
         <Badge invisible={!invisible} color="primary" badgeContent=" " sx={mainStyles.badgeNumber}>
           <Button variant="outlined" sx={mainStyles.filterButton} onClick={handleOpenMapModal}>
-            <MapIcon fontSize="small" />
+            <MapIcon sx={{ fontSize: { xs: '1.25rem', md: '1.5rem' } }} />
           </Button>
         </Badge>
       </Box>
 
       {accommodations?.length === 0 && (
         <Stack justifyContent={'center'} alignItems={'center'} height="20vh">
-          <Typography variant={'lg'}>No accommodations found</Typography>
+          <Typography variant={'lg'}>{t(CreateAccommodationRoute.no_acc_found)}</Typography>
         </Stack>
       )}
 

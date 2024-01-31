@@ -1,16 +1,16 @@
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { memo } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import { ROUTES } from '@src/config/routes.config';
 import { useAppSelector } from '@src/hooks/redux-hooks';
 import { hasToken } from '@src/stores/slices/authSlice';
-import { Wishlist } from '@src/types/wishlist.types';
+import { Accommodation } from '@src/types/accommodation.types';
+import { HomeUIInfo } from '@src/types/i18n.types';
 import CustomImage from '../../shared/CustomImage';
 import FavoriteButton from './FavoriteButton';
 import { accommodationCardStyles } from './accommodationCard.styles';
-import { HomeUIInfo } from '@src/types/i18n.types';
 
 function AccommodationCard({
   accommodation: {
@@ -19,9 +19,10 @@ function AccommodationCard({
     price,
     address: { country, city },
     isInWishlist,
+    title,
   },
 }: {
-  accommodation: Wishlist['accommodation'];
+  accommodation: Accommodation;
 }) {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -33,23 +34,32 @@ function AccommodationCard({
 
   return (
     <Box sx={accommodationCardStyles.root}>
-      <Stack gap={3} width="100%">
+      <Box flexGrow={1}>
         <Box onClick={handleClickAccommodation} sx={accommodationCardStyles.imageBox}>
           <CustomImage image={thumbnailUrl} name={country} />
           {isLoggedIn && <FavoriteButton isInWishlist={isInWishlist} accommodationId={id} />}
         </Box>
-        <Stack>
-          <Typography mt={2}>
-            {city}, {country}
-          </Typography>
-          <Typography>
-            <Box component={'span'} fontWeight={800}>
-              ${price}{' '}
-            </Box>
-            {t(HomeUIInfo.card_night)}
-          </Typography>
-        </Stack>
-      </Stack>
+      </Box>
+
+      <Typography fontWeight={600} sx={accommodationCardStyles.singleLine}>
+        {title}
+      </Typography>
+
+      <Typography
+        variant={'sm'}
+        sx={accommodationCardStyles.singleLine}
+        color={'secondary2.main'}
+        marginBlock={0.5}
+      >
+        {city}, {country}
+      </Typography>
+
+      <Typography variant={'sm'}>
+        <Box component={'span'} fontWeight={800}>
+          ${price}{' '}
+        </Box>
+        {t(HomeUIInfo.card_night)}
+      </Typography>
     </Box>
   );
 }

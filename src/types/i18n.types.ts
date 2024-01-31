@@ -55,6 +55,10 @@ export enum HomeUIInfo {
   user_home_btn_mylistings = 'home_ui.user_home_btn.mylistings',
   user_home_btn_logout = 'home_ui.user_home_btn.logout',
 
+  check_email = 'home_ui.register.auth-confirmed.check_email',
+  check_desc = 'home_ui.register.auth-confirmed.check_desc',
+  return = 'home_ui.register.auth-confirmed.return',
+
   sign_in_sing_in_btn = 'home_ui.register.sign_in.sing_in_btn',
   sign_in_sing_title = 'home_ui.register.sign_in.sing_title',
   sign_in_title = 'home_ui.register.sign_in.title',
@@ -108,6 +112,8 @@ export enum AccountEditPageInfo {
 }
 
 export enum AccountEditPersonalInfo {
+  image_add = 'account_edit_personal-info.image.add',
+  image_edit = 'account_edit_personal-info.image.edit',
   name = 'account_edit_personal-info.name',
   legal_name = 'account_edit_personal-info.name.legal_name',
   legal_name_desc = 'account_edit_personal-info.name.legal_name_desc',
@@ -272,6 +278,85 @@ export enum Wishlist {
   title = 'wishlist.title',
   wishlits_empty_title = 'wishlist.wishlits_empty_title',
   wishlits_empty_text = 'wishlist.wishlits_empty_text',
+}
+
+export enum BookingsRoute {
+  title = 'bookings.title',
+  pending = 'bookings.pending',
+  active = 'bookings.active',
+  status = 'bookings.status',
+  completed = 'bookings.completed',
+  total = 'bookings.total',
+  check_in = 'bookings.check_in',
+  check_out = 'bookings.check_out',
+  desc_not_booked = 'bookings.desc_not_booked',
+  pay_now = 'bookings.pay_now',
+  my_bookings = 'bookings.my_bookings',
+  add_review = 'bookings.add_review',
+}
+
+export enum CreateAccommodationRoute {
+  no_acc_found = 'create_accommodation_route.no_accommodation_found',
+  no_acc_created = 'create_accommodation_route.no_accommodation_created',
+  title_your_acc = 'create_accommodation_route.title_your_acc',
+  create_title = 'create_accommodation_route.create_title',
+  basic_info = 'create_accommodation_route.basic_info',
+  title_input = 'create_accommodation_route.title_input',
+  desc_input = 'create_accommodation_route.desc_input',
+  availability = 'create_accommodation_route.availability',
+  available_from = 'create_accommodation_route.available_from',
+  available_to = 'create_accommodation_route.available_to',
+  available = 'create_accommodation_route.available',
+  details = 'create_accommodation_route.details',
+  allowed_people = 'create_accommodation_route.allowed_people',
+  number_rooms = 'create_accommodation_route.number_rooms',
+  price = 'create_accommodation_route.price',
+  sq_meter = 'create_accommodation_route.sq_meter',
+  address = 'create_accommodation_route.address',
+  country = 'create_accommodation_route.country',
+  city = 'create_accommodation_route.city',
+  street = 'create_accommodation_route.street',
+  zip_code = 'create_accommodation_route.zip_code',
+  cancel_btn = 'create_accommodation_route.cancel_btn',
+  next_btn = 'create_accommodation_route.next_btn',
+  add_image_title = 'create_accommodation_route.add_image_title',
+  add_image_desc = 'create_accommodation_route.add_image_desc',
+  drag_drop = 'create_accommodation_route.drag_drop',
+  five_images = 'create_accommodation_route.five_images',
+  upload_btn = 'create_accommodation_route.upload_btn',
+  choose_at_least_5 = 'create_accommodation_route.choose_at_least_5',
+  add_aminities = 'create_accommodation_route.add_aminities',
+  save_btn = 'create_accommodation_route.save_btn',
+  deleted = 'create_accommodation_route.deleted',
+  create = 'create_accommodation_route.create',
+  edit = 'create_accommodation_route.edit',
+  accommodation = 'create_accommodation_route.accommodation',
+  amenities = 'create_accommodation_route.amenities',
+}
+
+export enum ToastMessages {
+  ErrorSessionExpired = 'toast.error_session_expired',
+  ErrorImg = 'toast.error_img',
+  ErrorTheme = 'toast.error_theme',
+  ErrorUtil = 'toast.error_util',
+  SuccessAccommodationDeleted = 'toast.success_accommodation_deleted',
+  SuccessAccommodationRestored = 'toast.success_accommodation_restored',
+  SuccessProfile = 'toast.success_profile',
+  Profile_change = 'toast.success_updated',
+  email_verified = 'toast.success_email',
+}
+
+export enum EditAccommodation {
+  ShowAllImages = 'edit_accommodation.show_all_images',
+  EditAccommodation = 'edit_accommodation.edit_accommodation',
+  Guests = 'edit_accommodation.guests',
+  Rooms = 'edit_accommodation.rooms',
+  SqMeter = 'edit_accommodation.sq_meter',
+  Delete = 'edit_accommodation.delete',
+  AreYouSureDel = 'edit_accommodation.are_you_sure_del',
+  Yes = 'edit_accommodation.yes',
+  No = 'edit_accommodation.no',
+  Restore = 'edit_accommodation.restore',
 }
 
 export enum ProfileActions {

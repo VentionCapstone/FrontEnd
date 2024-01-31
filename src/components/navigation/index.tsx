@@ -10,6 +10,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import logo from '@src/assets/logo.png';
 import { ROUTES } from '@src/config/routes.config';
+import { PROJECT_NAME } from '@src/constants';
 import useIntersectionObserver from '@src/hooks/useIntersectionObserver';
 import { BottomNav } from './BottomNavigation';
 import { TopNavMenu } from './TopNavMenu';
@@ -35,20 +36,29 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
               sx={{ textDecoration: 'none' }}
               mr={'auto'}
             >
-              <Stack direction={'row'} alignItems={'center'} gap={1}>
+              <Stack direction={'row'} alignItems={'center'} gap={1.5}>
                 <Box
                   src={logo}
                   component={'img'}
-                  sx={{ width: '2rem', height: '2rem', objectFit: 'contain' }}
+                  sx={{ width: '2.2rem', height: '2.2rem', objectFit: 'contain' }}
                 />
-                <Typography variant={'xl'} fontWeight={800} color={'secondary.main'}>
-                  airbnb
+
+                <Typography
+                  variant={'xl'}
+                  fontWeight={800}
+                  color={'secondary.main'}
+                  lineHeight={'1.5rem'}
+                >
+                  {PROJECT_NAME}
                 </Typography>
               </Stack>
             </Link>
 
-            <IconButton aria-label="global-settings" sx={{ mr: 4, color: 'secondary2.main' }}>
-              <LanguageIcon sx={{ fontSize: '1.25rem' }} />
+            <IconButton
+              aria-label="global-settings"
+              sx={{ mr: 4, color: 'secondary.main', padding: 1 }}
+            >
+              <LanguageIcon sx={{ fontSize: '1.5rem' }} />
             </IconButton>
 
             <TopNavMenu />

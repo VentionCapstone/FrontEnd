@@ -11,8 +11,13 @@ import DataFetchError from '@src/components/shared/DataFetchError';
 import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
 import { ROUTES } from '@src/config/routes.config';
 import { AmenitySetting } from '@src/types/amenity.types';
+
 import { ErrorTypes } from '@src/types/i18n.types';
 import { getValueFromLocalStorage, selectOnlyTrueAmenities } from '@src/utils';
+import { EditAccommodation, ErrorTypes } from '@src/types/i18n.types';
+import { getValueFromLocalStorage, handleErrorInImage, selectOnlyTrueAmenities } from '@src/utils';
+import { useTranslation } from 'react-i18next';
+
 import YandexMap from '../../components/shared/YandexMap';
 import { styles } from './Accommodation.styles';
 import AmenityList from './components/AmenityList';
@@ -22,6 +27,7 @@ import { Reviews } from './components/Reviews';
 import { buildAmenityList } from './utils/amenityListBuilder';
 
 function Accommodation() {
+  const { t } = useTranslation();
   const { id: accommodationId } = useParams();
 
   const [amenities, setAmenities] = useState<AmenitySetting[]>([]);
@@ -67,9 +73,16 @@ function Accommodation() {
           <Box>
             <Typography sx={styles.heading}>{data.title}</Typography>
             <Box display={'flex'} gap={1} flexWrap={'wrap'}>
-              <Typography>{data.allowedNumberOfPeople} Guests -</Typography>
-              <Typography> {data.numberOfRooms} Rooms -</Typography>
-              <Typography>{data.squareMeters} Square meters</Typography>
+              <Typography>
+                {data.allowedNumberOfPeople} {t(EditAccommodation.Guests)} -
+              </Typography>
+              <Typography>
+                {' '}
+                {data.numberOfRooms} {t(EditAccommodation.Rooms)} -
+              </Typography>
+              <Typography>
+                {data.squareMeters} {t(EditAccommodation.SqMeter)}
+              </Typography>
             </Box>
             <Typography mt={2}>{data?.description}</Typography>
           </Box>
@@ -97,7 +110,7 @@ function Accommodation() {
                 }}
                 onClick={() => handleEditClick(data.id)}
               >
-                Edit Accommodation
+                {t(EditAccommodation.EditAccommodation)}
               </Button>
             </Box>
           ) : (

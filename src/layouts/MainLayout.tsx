@@ -9,7 +9,11 @@ function MainLayout() {
   return (
     <Stack minHeight={'100svh'}>
       <MainNavigation maxWidth={'xl'} />
-      <Container maxWidth={'xl'} disableGutters sx={{ p: 6, pb: { xs: 20, md: 17 }, flexGrow: 1 }}>
+      <Container
+        maxWidth={'xl'}
+        disableGutters
+        sx={{ pt: { xs: 22, md: 6 }, pb: { xs: 20, md: 17 }, paddingInline: 6, flexGrow: 1 }}
+      >
         <Outlet />
       </Container>
       <StickyFooter maxWidth={'xl'} />
