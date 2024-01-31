@@ -147,7 +147,7 @@ function Accommodation() {
                 sx={{
                   'backgroundColor': 'primary.main',
                   'fontWeight': 'bold',
-                  'color': 'white',
+                  'color': 'secondary.main',
                   '&:hover': {
                     backgroundColor: 'primary.dark',
                   },

@@ -1,10 +1,11 @@
 import { Add } from '@mui/icons-material';
-import { Box, IconButton, Typography } from '@mui/material';
+import { Box, IconButton, Link, Typography } from '@mui/material';
 import { useCallback, useMemo } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { useGetAccommodations } from '@src/api/queries/accommodations/useGetAccommodations';
+import { accommodationCardStyles } from '@src/components/card/acccommodationCard/accommodationCard.styles';
 import CustomImage from '@src/components/shared/CustomImage';
 import DataFetchError from '@src/components/shared/DataFetchError';
 import { ROUTES } from '@src/config/routes.config';
@@ -14,6 +15,7 @@ import { AccommodationType } from '@src/types/accommodation.types';
 import { CreateAccommodationRoute, ErrorTypes } from '@src/types/i18n.types';
 import { lineClampStyle } from '@src/utils';
 import { useTranslation } from 'react-i18next';
+import { mainStyles } from '../main/index.styles';
 import AccommodationSkeleton from './components/AccommodationSkeleton';
 
 export default function Accommodations() {
@@ -29,18 +31,6 @@ export default function Accommodations() {
 
   const handleNextPage = useCallback(() => fetchNextPage(), [fetchNextPage]);
 
-  const renderAccommodationSkeleton = useCallback(
-    () => (
-      <Box display="grid" gap={8} gridTemplateColumns={'repeat(auto-fill, minmax(280px, 1fr))'}>
-        <AccommodationSkeleton />;
-      </Box>
-    ),
-    []
-  );
-
-  if (isPending) {
-    renderAccommodationSkeleton();
-  }
   if (isError) {
     return <DataFetchError errorKey={ErrorTypes.accommodation_failed_to_get_list} />;
   }
@@ -51,12 +41,14 @@ export default function Accommodations() {
         <Typography variant={'lg'} fontWeight={600}>
           {t(CreateAccommodationRoute.title_your_acc)}
         </Typography>
-        <Link to={ROUTES.accommodations.create}>
+        <Link component={RouterLink} to={ROUTES.accommodations.create}>
           <IconButton>
             <Add />
           </IconButton>
         </Link>
       </Box>
+
+      {isPending && <AccommodationSkeleton />}
 
       {accommodations?.length === 0 ? (
         <Typography textAlign={'center'} variant={'h6'} mt={8}>
@@ -67,13 +59,15 @@ export default function Accommodations() {
           dataLength={accommodations?.length || 0}
           next={handleNextPage}
           hasMore={hasNextPage}
-          loader={renderAccommodationSkeleton()}
+          loader={<AccommodationSkeleton />}
         >
-          <Box display="grid" gap={8} gridTemplateColumns={'repeat(auto-fill, minmax(280px, 1fr))'}>
+          <Box sx={mainStyles.accommmodationCard}>
             {accommodations?.map(({ id, title, thumbnailUrl, previewImgUrl, isDeleted, price }) => (
               <Link
+                component={RouterLink}
                 to={ROUTES.accommodations.details(id)}
                 key={id}
+                sx={accommodationCardStyles.root}
                 style={{
                   color: 'inherit',
                   textDecoration: 'none',
