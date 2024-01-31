@@ -12,10 +12,8 @@ import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
 import { ROUTES } from '@src/config/routes.config';
 import { AmenitySetting } from '@src/types/amenity.types';
 
-import { ErrorTypes } from '@src/types/i18n.types';
-import { getValueFromLocalStorage, selectOnlyTrueAmenities } from '@src/utils';
 import { EditAccommodation, ErrorTypes } from '@src/types/i18n.types';
-import { getValueFromLocalStorage, handleErrorInImage, selectOnlyTrueAmenities } from '@src/utils';
+import { getValueFromLocalStorage, selectOnlyTrueAmenities } from '@src/utils';
 import { useTranslation } from 'react-i18next';
 
 import YandexMap from '../../components/shared/YandexMap';

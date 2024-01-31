@@ -5,9 +5,8 @@ import Dialog from '@mui/material/Dialog';
 import IconButton from '@mui/material/IconButton';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
-import { UseGetAllMediaQuery } from '@src/api/queries/media/useGetAllMediaQuery';
+import { useGetAllMediaQuery } from '@src/api/queries/media/useGetAllMediaQuery';
 import { EditAccommodation } from '@src/types/i18n.types';
-import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -43,7 +42,6 @@ export interface ShowPhotosProps {
 export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: ShowPhotosProps) {
   const { data } = useGetAllMediaQuery(id, open);
   const { t } = useTranslation();
-  const [currentIndex, setCurrentIndex] = React.useState(0);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -106,9 +104,9 @@ export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: 
           variant="contained"
           color="inherit"
           onClick={handleOpen}
-          sx={{ position: 'absolute', right: '3%', bottom: '10%' }}
+          sx={{ position: 'absolute', right: '8%', bottom: '10%' }}
         >
-          Show all photos
+          {t(EditAccommodation.ShowAllImages)}
         </Button>
       )}
 
@@ -119,10 +117,6 @@ export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: 
         TransitionComponent={Transition}
         ref={dialogRef}
       >
-        {t(EditAccommodation.ShowAllImages)}
-      </Button>
-      <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
-
         <Toolbar>
           <IconButton
             edge="start"
@@ -137,7 +131,6 @@ export default function ShowPhotos({ id, open, onClose, handleOpen, isMobile }: 
             {currentIndex + 1} / {data?.length ?? 0}
           </Typography>
         </Toolbar>
-
         <Box
           sx={{
             margin: '0 auto',
