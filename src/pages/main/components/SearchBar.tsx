@@ -53,7 +53,7 @@ export default function SearchBar({
       minPrice: minPrice ? minPrice : totalMinPrice.toString(),
       maxPrice: maxPrice ? maxPrice : totalMaxPrice.toString(),
       minRooms: minRooms ? minRooms : '0',
-      minPeople: minRooms ? minRooms : '0',
+      minPeople: minPeople ? minPeople : '0',
       orderByPrice: orderByPrice ? orderByPrice : 'any',
       orderByPeople: orderByPeople ? orderByPrice : 'any',
       orderByRoom: orderByRoom ? orderByRoom : 'any',
