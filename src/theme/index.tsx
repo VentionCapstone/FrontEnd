@@ -29,7 +29,7 @@ const ThemeWrapper = ({ children }: { children: React.ReactNode }) => {
         toast.error(`${t(ToastMessages.ErrorTheme)}`);
       }
     }
-  }, [profileThemeMode, localThemeMode]);
+  }, [profileThemeMode, localThemeMode, t]);
 
   return (
     <ThemeProvider theme={theme}>

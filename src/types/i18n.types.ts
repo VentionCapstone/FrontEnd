@@ -299,6 +299,7 @@ export enum BookingsRoute {
   title = 'bookings.title',
   pending = 'bookings.pending',
   active = 'bookings.active',
+  upcoming = 'bookings.upcoming',
   status = 'bookings.status',
   completed = 'bookings.completed',
   total = 'bookings.total',
