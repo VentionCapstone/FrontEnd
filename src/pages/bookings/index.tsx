@@ -1,10 +1,11 @@
-import { Box, Tab, Tabs, Typography } from '@mui/material';
+import { Box, Stack, Tab, Tabs, Typography } from '@mui/material';
 import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSearchParams } from 'react-router-dom';
 
 import { useGetBookingList } from '@src/api/queries/booking/useGetBookingList';
+import BackButton from '@src/components/button/BackButton';
 import DataFetchError from '@src/components/shared/DataFetchError';
 import { STATUSES } from '@src/constants';
 import i18n from '@src/i18n/i18n';
@@ -66,11 +67,13 @@ export default function Bookings() {
 
   return (
     <Box>
-      <Box display="flex" alignItems="center" justifyContent="space-between" my={4}>
-        <Typography variant={'lg'} fontWeight={600}>
-          {t(BookingsRoute.title)}
-        </Typography>
-      </Box>
+      <Stack direction={'row'} gap={4} alignItems={'center'} mb={{ xs: 6, md: 8, lg: 10 }}>
+        <Box display={{ xs: 'block', md: 'none' }}>
+          <BackButton />
+        </Box>
+
+        <Typography variant={'heading'}>{t(BookingsRoute.title)}</Typography>
+      </Stack>
 
       <Box sx={{ borderBottom: 1, borderColor: 'secondary2.light', mb: 3 }}>
         <Tabs value={bookingStatus} onChange={handleTabChange} aria-label="basic tabs example">

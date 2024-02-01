@@ -1,10 +1,11 @@
 import { Add } from '@mui/icons-material';
-import { Box, IconButton, Link, Typography } from '@mui/material';
+import { Box, IconButton, Link, Stack, Typography } from '@mui/material';
 import { useCallback, useMemo } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Link as RouterLink } from 'react-router-dom';
 
 import { useGetAccommodations } from '@src/api/queries/accommodations/useGetAccommodations';
+import BackButton from '@src/components/button/BackButton';
 import { accommodationCardStyles } from '@src/components/card/acccommodationCard/accommodationCard.styles';
 import CustomImage from '@src/components/shared/CustomImage';
 import DataFetchError from '@src/components/shared/DataFetchError';
@@ -37,11 +38,23 @@ export default function Accommodations() {
 
   return (
     <Box>
-      <Box display="flex" alignItems="center" justifyContent="space-between" my={4}>
-        <Typography variant={'lg'} fontWeight={600}>
-          {t(CreateAccommodationRoute.title_your_acc)}
-        </Typography>
-        <Link component={RouterLink} to={ROUTES.accommodations.create}>
+      <Box
+        display="flex"
+        alignItems={{ xs: 'stretch', md: 'center' }}
+        justifyContent="space-between"
+        flexDirection={{ xs: 'column', md: 'row' }}
+        mb={{ xs: 6, md: 8, lg: 10 }}
+        gap={4}
+      >
+        <Stack direction={'row'} gap={4} alignItems={'center'}>
+          <Box display={{ xs: 'block', md: 'none' }}>
+            <BackButton />
+          </Box>
+
+          <Typography variant={'heading'}>{t(CreateAccommodationRoute.title_your_acc)}</Typography>
+        </Stack>
+
+        <Link component={RouterLink} to={ROUTES.accommodations.create} mx={{ xs: 'auto', md: 0 }}>
           <IconButton>
             <Add />
           </IconButton>
@@ -51,7 +64,7 @@ export default function Accommodations() {
       {isPending && <AccommodationSkeleton />}
 
       {accommodations?.length === 0 ? (
-        <Typography textAlign={'center'} variant={'h6'} mt={8}>
+        <Typography textAlign={'center'} variant={'h6'}>
           {t(CreateAccommodationRoute.no_acc_created)}
         </Typography>
       ) : (

@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import { useCallback, useMemo, useState } from 'react';
 
 import useEditAccountMutation from '@src/api/mutations/account/useEditAccountMutation';
+import BackButton from '@src/components/button/BackButton';
 import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
 import { DEFAULT_LANGUAGE } from '@src/constants';
 import { useAppSelector } from '@src/hooks/redux-hooks';
@@ -17,7 +18,6 @@ import { ThemeMode } from '@src/types/profile.types';
 import { convertCodeToLanguage, getValueFromLocalStorage } from '@src/utils';
 import { useTranslation } from 'react-i18next';
 import EditablePanel from '../EditablePanel';
-import { ProfileCurrency } from './ProfileCurrency';
 import { ProfileLang } from './ProfileLang';
 
 function ProfileSettings() {
@@ -45,16 +45,13 @@ function ProfileSettings() {
     [language]
   );
 
-  const currencyRenderProps = useCallback(
-    (data: () => void) => <ProfileCurrency collapsePanel={data} userCurrency="USD" />,
-    []
-  );
-
   return (
     <>
-      <Typography mb={{ xs: 4, md: 6, lg: 10 }} variant={'heading'}>
-        {t(SettingsInfo.title)}
-      </Typography>
+      <Stack direction={'row'} gap={4} alignItems={'center'} mb={{ xs: 6, md: 8, lg: 10 }}>
+        <BackButton />
+
+        <Typography variant={'heading'}>{t(SettingsInfo.title)}</Typography>
+      </Stack>
 
       <Box maxWidth={'60rem'}>
         <Stack
@@ -89,16 +86,6 @@ function ProfileSettings() {
             </Typography>
           }
           editable={languageRenderProps}
-        />
-
-        <EditablePanel
-          panelHeading={i18n.t(SettingsInfo.currency)}
-          initial={
-            <Typography variant={'sm'} color={'secondary2.main'}>
-              {t(SettingsInfo.dollar)}
-            </Typography>
-          }
-          editable={currencyRenderProps}
         />
       </Box>
     </>
