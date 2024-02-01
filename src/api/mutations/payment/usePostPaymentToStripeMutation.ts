@@ -36,6 +36,9 @@ function usePostPaymentToStripeMutation(bookingId: string) {
         queryKey: [QUERY_KEYS.query.bookings, STATUSES.ACTIVE],
       });
       await queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.query.bookings, STATUSES.UPCOMING],
+      });
+      await queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.query.bookings, STATUSES.PENDING],
       });
     },
