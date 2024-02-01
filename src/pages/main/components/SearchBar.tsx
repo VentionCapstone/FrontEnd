@@ -50,8 +50,8 @@ export default function SearchBar({
 
   const handleSearch = useCallback(() => {
     const newSearchParamsAsObject: DefaultSearchParamsType = {
-      minPrice: minPrice === '0' ? totalMinPrice.toString() : minPrice,
-      maxPrice: maxPrice === '0' ? totalMaxPrice.toString() : maxPrice,
+      minPrice: minPrice ? minPrice : totalMinPrice.toString(),
+      maxPrice: maxPrice ? maxPrice : totalMaxPrice.toString(),
       minRooms: minRooms ? minRooms : '0',
       minPeople: minRooms ? minRooms : '0',
       orderByPrice: orderByPrice ? orderByPrice : 'any',
@@ -93,6 +93,7 @@ export default function SearchBar({
       if (!newValue) {
         setCheckInDate('');
         setCheckOutDate('');
+        handleSearch();
         return;
       }
       const localizedcheckinTime = localTimeToUtc(dayjs(newValue));
@@ -100,8 +101,9 @@ export default function SearchBar({
       if (!checkOutDate || checkInDate === checkOutDate) {
         setCheckOutDate(localizedcheckinTime.add(1, 'day').toISOString());
       }
+      handleSearch();
     },
-    [checkInDate, checkOutDate, localTimeToUtc]
+    [checkInDate, checkOutDate, localTimeToUtc, handleSearch]
   );
 
   const handleCheckOutChange = useCallback(
