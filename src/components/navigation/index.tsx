@@ -1,4 +1,4 @@
-import { IconButton, MenuItem, Paper, Popper } from '@mui/material';
+import { IconButton, MenuItem, Popover } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container, { ContainerProps } from '@mui/material/Container';
 import Link from '@mui/material/Link';
@@ -26,7 +26,6 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
   const scrollWatcherRef = useRef<Element | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [language, setLanguage] = useState('english');
-  const [openLanguageMenu, setOpenLanguageMenu] = useState(false);
 
   const { entry } = useIntersectionObserver(scrollWatcherRef);
   const dinamicShadow = entry?.isIntersecting ? 'none' : '0px 6px 16px rgba(0, 0, 0, 0.12)';
@@ -45,13 +44,20 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
     [i18n]
   );
 
-  const handleIconButtonClick = () => {
-    setOpenLanguageMenu((prev) => !prev);
+  const handleLanguageMenuClose = () => {};
+
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
   };
 
-  const handleLanguageMenuClose = () => {
-    setOpenLanguageMenu(false);
+  const handleClose = () => {
+    setAnchorEl(null);
   };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
 
   return (
     <>
@@ -86,45 +92,40 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
             </Link>
 
             <IconButton
+              aria-describedby={id}
               aria-label="global-settings"
-              onClick={handleIconButtonClick}
+              onClick={handleClick}
               sx={{ mr: 4, color: 'secondary.main', padding: 1 }}
             >
               <LanguageIcon sx={{ fontSize: '1.5rem' }} />
             </IconButton>
-
-            <Popper
-              open={openLanguageMenu}
-              anchorEl={scrollWatcherRef.current}
-              placement="bottom-end"
-              sx={styles.navigation}
+            <Popover
+              id={id}
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
             >
-              <Paper
-                sx={{
-                  position: 'fixed',
-                  right: 240,
-                  top: 80,
-                  zIndex: 100,
-                }}
-                elevation={3}
-              >
-                <Stack>
-                  {LANGUAGE_LIST.map((lang) => (
-                    <MenuItem
-                      key={lang.code}
-                      value={lang.code}
-                      onClick={() => {
-                        handleChange({ target: { value: lang.code } } as SelectChangeEvent<string>);
-                        handleLanguageMenuClose();
-                      }}
-                    >
-                      {lang.name}
-                    </MenuItem>
-                  ))}
-                </Stack>
-              </Paper>
-            </Popper>
-
+              <Stack>
+                {LANGUAGE_LIST.map((lang) => (
+                  <MenuItem
+                    key={lang.code}
+                    value={lang.code}
+                    onClick={() => {
+                      handleChange({
+                        target: { value: lang.code },
+                      } as SelectChangeEvent<string>);
+                      handleLanguageMenuClose();
+                    }}
+                  >
+                    {lang.name}
+                  </MenuItem>
+                ))}
+              </Stack>
+            </Popover>
             <TopNavMenu />
           </Stack>
         </Container>
