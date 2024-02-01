@@ -32,7 +32,7 @@ export const DEFAULT_FEMALE_IMAGE =
 
 export const PHONE_CODES_BY_COUNTRY: PhoneCodesByCountry[] = [
   { name: 'Uzbekistan', code: 998, numLength: 9 },
-  { name: 'Russia', code: 7, numLength: 11 },
+  { name: 'Russia', code: 7, numLength: 10 },
   { name: 'Kazakhstan', code: 7, numLength: 10 },
 ];
 

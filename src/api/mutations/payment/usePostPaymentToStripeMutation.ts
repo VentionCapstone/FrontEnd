@@ -7,7 +7,6 @@ import httpClient from '@src/api/httpClient';
 import { ENDPOINTS } from '@src/config/endpoints.config';
 import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
 import { QUERY_KEYS } from '@src/config/react-query.config';
-import { ROUTES } from '@src/config/routes.config';
 import { STATUSES } from '@src/constants';
 import { ResponsePayment } from '@src/types/payment.types';
 import { getValueFromLocalStorage, removeFromLocalStorage } from '@src/utils';
@@ -31,7 +30,7 @@ function usePostPaymentToStripeMutation(bookingId: string) {
     },
     onSuccess: async (data) => {
       removeFromLocalStorage(LOCAL_STORAGE_KEYS.clientSecret);
-      navigate(ROUTES.bookings.root);
+      navigate('/bookings?status=UPCOMING');
       toast.success(data.message);
       await queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.query.bookings, STATUSES.ACTIVE],

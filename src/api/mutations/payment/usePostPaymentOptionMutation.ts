@@ -6,7 +6,6 @@ import httpClient from '@src/api/httpClient';
 import { ENDPOINTS } from '@src/config/endpoints.config';
 import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
 import { QUERY_KEYS } from '@src/config/react-query.config';
-import { ROUTES } from '@src/config/routes.config';
 import { STATUSES } from '@src/constants';
 import { ResponsePayment } from '@src/types/payment.types';
 import { removeFromLocalStorage, setValueToLocalStorage } from '@src/utils';
@@ -29,7 +28,7 @@ function usePostPaymentOptionMutation(bookingId: string, paymentOption: string) 
       } else {
         removeFromLocalStorage(LOCAL_STORAGE_KEYS.clientSecret);
         toast.success(data.message);
-        navigate(ROUTES.bookings.root);
+        navigate('/bookings?status=UPCOMING');
         await queryClient.invalidateQueries({
           queryKey: [QUERY_KEYS.query.bookings, STATUSES.ACTIVE],
         });

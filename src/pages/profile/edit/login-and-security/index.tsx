@@ -1,6 +1,7 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import { useCallback } from 'react';
 
+import BackButton from '@src/components/button/BackButton';
 import { useAppSelector } from '@src/hooks/redux-hooks';
 import { LoginAndSecurityInfo } from '@src/types/i18n.types';
 import { useTranslation } from 'react-i18next';
@@ -24,9 +25,11 @@ function LoginAndSecurity() {
 
   return (
     <>
-      <Typography mb={{ xs: 4, md: 6, lg: 10 }} variant={'heading'}>
-        {t(LoginAndSecurityInfo.login_title)}
-      </Typography>
+      <Stack direction={'row'} gap={4} alignItems={'center'} mb={{ xs: 6, md: 8, lg: 10 }}>
+        <BackButton />
+
+        <Typography variant={'heading'}>{t(LoginAndSecurityInfo.login_title)}</Typography>
+      </Stack>
 
       <Box maxWidth={'60rem'}>
         <EditablePanel

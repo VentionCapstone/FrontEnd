@@ -11,6 +11,7 @@ const PasswordInput = <TFieldValues extends FieldValues>({
   placeholder,
   control,
   errors,
+  size = 'medium',
 }: PasswordInputProps<TFieldValues>) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -27,6 +28,7 @@ const PasswordInput = <TFieldValues extends FieldValues>({
           <TextField
             {...field}
             label={label}
+            size={size}
             placeholder={placeholder}
             error={!!errors[name]}
             type={showPassword ? 'text' : 'password'}
@@ -40,7 +42,11 @@ const PasswordInput = <TFieldValues extends FieldValues>({
                     onClick={handleTogglePasswordVisibility}
                     edge="end"
                   >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                    {showPassword ? (
+                      <VisibilityOff fontSize="small" />
+                    ) : (
+                      <Visibility fontSize="small" />
+                    )}
                   </IconButton>
                 </InputAdornment>
               ),
