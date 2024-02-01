@@ -7,12 +7,25 @@ import { useSearchParams } from 'react-router-dom';
 import { useGetBookingList } from '@src/api/queries/booking/useGetBookingList';
 import DataFetchError from '@src/components/shared/DataFetchError';
 import { STATUSES } from '@src/constants';
+import i18n from '@src/i18n/i18n';
 import { BookType } from '@src/types/booking.types';
 import { Status } from '@src/types/global.types';
 import { BookingsRoute, ErrorTypes } from '@src/types/i18n.types';
-import { capitalize } from '@src/utils/capitalize';
 import AccommodationSkeleton from '../accommodations/components/AccommodationSkeleton';
 import BookingCard from './BookingCard';
+
+const translateTabStatus = (status: Status) => {
+  const { t } = i18n;
+
+  const tabStatusTranslation: Record<Status, string> = {
+    PENDING: t(BookingsRoute.pending),
+    ACTIVE: t(BookingsRoute.active),
+    UPCOMING: t(BookingsRoute.upcoming),
+    COMPLETED: t(BookingsRoute.completed),
+  };
+
+  return tabStatusTranslation[status];
+};
 
 export default function Bookings() {
   const { t } = useTranslation();
@@ -25,7 +38,7 @@ export default function Bookings() {
   const a11yProps = useMemo(() => {
     return Object.values(STATUSES).map((status, index) => {
       return {
-        'label': capitalize(status),
+        'label': translateTabStatus(status as Status),
         'status': status,
         'value': status,
         'id': `simple-tab-${index}`,
@@ -67,7 +80,7 @@ export default function Bookings() {
         </Typography>
       </Box>
 
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'secondary2.light' }}>
         <Tabs value={bookingStatus} onChange={handleTabChange} aria-label="basic tabs example">
           {a11yProps.map((props, index) => (
             <Tab key={index} {...props} />

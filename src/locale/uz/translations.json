@@ -329,6 +329,7 @@
       "pending": "Kutilmoqda",
       "active": "Faol",
       "completed": "Bajarildi",
+      "upcoming": "Yaqinlashib kelayotgan",
       "status": "Holat",
       "total": "Jami",
       "check_in": "Kirish",

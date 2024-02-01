@@ -329,6 +329,7 @@
       "pending": "Ausstehend",
       "active": "Aktiv",
       "completed": "Abgeschlossen",
+      "upcoming": "Bevorstehende",
       "status": "Status",
       "total": "Gesamt",
       "check_in": "Einchecken",
