@@ -5,6 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Box, Button, Fade, Modal, Stack, Typography } from '@mui/material';
 import { useCallback, useEffect } from 'react';
 
+import { DEFAULT_COORDINATES } from '@src/constants';
 import { MapModalProps } from '@src/types/accommodation.types';
 import { modalStyles } from './Modal.styles';
 
@@ -28,8 +29,12 @@ export default function MapModal({ open, setOpen, searchParamsAsObject }: MapMod
   }
 
   useEffect(() => {
+    if (!location) {
+      initMapWithCoordinates(DEFAULT_COORDINATES);
+      return;
+    }
     if (location.trim() === '') {
-      initMapWithCoordinates([55.76, 37.64]);
+      initMapWithCoordinates(DEFAULT_COORDINATES);
       return;
     }
     const geocoder = ymaps.geocode(location);
