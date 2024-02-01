@@ -10,6 +10,7 @@ import { modalStyles } from './Modal.styles';
 
 const maxAccommInMap = import.meta.env.VITE_MAX_ACCOMMODATIONS_IN_MAP as string;
 const originUrl = import.meta.env.VITE_ORIGIN_URL as string;
+const serverUrl = import.meta.env.VITE_API_URL as string;
 
 export default function MapModal({ open, setOpen, searchParamsAsObject }: MapModalProps) {
   const { location } = searchParamsAsObject;
@@ -137,7 +138,7 @@ export default function MapModal({ open, setOpen, searchParamsAsObject }: MapMod
     const MyBalloonContentLayout = ymaps.templateLayoutFactory.createClass(
       `<div class="balloon" style="background-color: white; width: 300px; border-radius: 15px">
         <div class="img-container">
-          <img src="$[properties.thumbnailUrl]"   style="width: 300px; height: 250px; object-fit: cover; border-radius: 15px 15px 0 0" alt="" />
+          <img src="$[properties.thumbnailUrl]"    onerror="this.onerror=null; this.src='/src/assets/no-image.jpg';" style="width: 300px; height: 250px; object-fit: cover; border-radius: 15px 15px 0 0" alt="" />
         </div>
         <div class="info-container"  style="padding: 10px">
           <div class="title" style="display: flex; align-self: center; justify-content: space-between;">
@@ -205,8 +206,7 @@ export default function MapModal({ open, setOpen, searchParamsAsObject }: MapMod
       .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
       .join('&');
 
-    const url = `http://localhost:3000/api/accommodations/map?bbox=%b&${queryParamsString}`;
-
+    const url = `${serverUrl}/accommodations/map?bbox=%b&${queryParamsString}`;
     const loadingObjectManager = new ymaps.LoadingObjectManager(url, {
       clusterize: true,
       clusterHasBalloon: false,
