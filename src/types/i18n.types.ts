@@ -19,6 +19,21 @@ export enum ErrorTypes {
   //image
   image_failed_convert = 'errors.image_failed_convert',
   image_invalid_selection = 'errors.image_invalid_selection',
+
+  // accommodation
+  accommodation_title_min_length = 'errors.accommodation_title_min_length',
+  accommodation_title_max_length = 'errors.accommodation_title_max_length',
+  accommodation_square_meters_max = 'errors.accommodation_square_meters_max',
+  accommodation_number_rooms_min = 'errors.accommodation_number_rooms_min',
+  accommodation_number_rooms_max = 'errors.accommodation_number_rooms_max',
+  accommodation_price_max = 'errors.accommodation_price_max',
+  accommodation_allowed_number_people_min = 'errors.accommodation_allowed_number_people_min',
+  accommodation_allowed_number_people_max = 'errors.accommodation_allowed_number_people_max',
+  accommodation_description_min_length = 'errors.accommodation_description_min_length',
+  accommodation_description_max_length = 'errors.accommodation_description_max_length',
+  accommodation_address_country_min_length = 'errors.accommodation_address_country_min_length',
+  accommodation_address_city_min_length = 'errors.accommodation_address_city_min_length',
+  accommodation_address_street_min_length = 'errors.accommodation_address_street_min_length',
 }
 
 export enum SearchTexts {
@@ -333,6 +348,10 @@ export enum CreateAccommodationRoute {
   edit = 'create_accommodation_route.edit',
   accommodation = 'create_accommodation_route.accommodation',
   amenities = 'create_accommodation_route.amenities',
+  search_place = 'create_accommodation_route.search_place',
+  selected_place = 'create_accommodation_route.selected_place',
+  location = 'create_accommodation_route.location',
+  no_results = 'create_accommodation_route.no_results',
 }
 
 export enum ToastMessages {
@@ -358,6 +377,7 @@ export enum EditAccommodation {
   Yes = 'edit_accommodation.yes',
   No = 'edit_accommodation.no',
   Restore = 'edit_accommodation.restore',
+  Close = 'edit_accommodation.close',
 }
 
 export enum ProfileActions {

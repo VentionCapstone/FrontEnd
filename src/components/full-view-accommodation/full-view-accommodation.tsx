@@ -1,20 +1,31 @@
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
-import { Grid, ImageList, ImageListItem, Toolbar, Typography } from '@mui/material';
+import { Box, ImageList, ImageListItem, Toolbar, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import IconButton from '@mui/material/IconButton';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
-import { UseGetAllMediaQuery } from '@src/api/queries/media/useGetAllMediaQuery';
+import { useGetAllMediaQuery } from '@src/api/queries/media/useGetAllMediaQuery';
 import { EditAccommodation } from '@src/types/i18n.types';
-import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 
-const Transition = React.forwardRef(function Transition(
+import {
+  MouseEvent,
+  ReactElement,
+  Ref,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import Slider from '../shared/Slider';
+
+const Transition = forwardRef(function Transition(
   props: TransitionProps & {
-    children: React.ReactElement;
+    children: ReactElement;
   },
-  ref: React.Ref<unknown>
+  ref: Ref<unknown>
 ) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -23,44 +34,95 @@ export interface ShowPhotosProps {
   id: string;
   open: boolean;
   onClose: () => void;
+  onOpen: () => void;
+  isMobile?: boolean;
 }
 
-export default function ShowPhotos({ id, open, onClose }: ShowPhotosProps) {
+export default function ShowPhotos({ id, open, onClose, onOpen, isMobile }: ShowPhotosProps) {
+  const { data } = useGetAllMediaQuery(id, open);
   const { t } = useTranslation();
-  const { data } = UseGetAllMediaQuery(id);
-  const [currentIndex, setCurrentIndex] = React.useState(0);
 
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, data?.length ?? 0 - 1));
-  };
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handlePrev = () => {
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, (data?.length ?? 0) - 1));
+  }, [data]);
+
+  const handlePrev = useCallback(() => {
     setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
-  };
+  }, []);
 
-  const handleClose = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClose = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     onClose();
   };
 
+  useEffect(() => {
+    const dialogElement = dialogRef.current as HTMLDivElement;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      switch (event.key) {
+        case 'ArrowLeft':
+          handlePrev();
+          break;
+        case 'ArrowRight':
+          handleNext();
+          break;
+        default:
+          break;
+      }
+    };
+
+    dialogElement?.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      dialogElement?.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [currentIndex, handleNext, handlePrev]);
+
+  const renderImages = () => {
+    return data?.map((item, index) => (
+      <ImageListItem sx={{ width: '100%', height: '70vh' }} key={index} cols={1} rows={1}>
+        <Box
+          component={'img'}
+          sx={{ objectFit: 'contain', height: '80vh', width: '100vw' }}
+          src={item.imageUrl}
+          alt={`photo-${index}`}
+          loading="lazy"
+        />
+      </ImageListItem>
+    ));
+  };
+
   return (
-    <React.Fragment>
-      <Button
-        variant="contained"
-        color="inherit"
-        onClick={onClose}
-        sx={{ position: 'absolute', right: '8%', bottom: '10%' }}
+    <>
+      {!isMobile && (
+        <Button
+          variant="contained"
+          color="inherit"
+          onClick={onOpen}
+          sx={{ position: 'absolute', right: '8%', bottom: '10%' }}
+        >
+          {t(EditAccommodation.ShowAllImages)}
+        </Button>
+      )}
+
+      <Dialog
+        fullScreen
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Transition}
+        ref={dialogRef}
       >
-        {t(EditAccommodation.ShowAllImages)}
-      </Button>
-      <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
         <Toolbar>
           <IconButton
             edge="start"
-            sx={{ marginLeft: 10 }}
+            sx={{ marginLeft: '1rem' }}
             color="inherit"
             onClick={(e) => handleClose(e)}
-            aria-label="close"
+            aria-label={t(EditAccommodation.Close)}
           >
             <ArrowBackIos />
           </IconButton>
@@ -68,42 +130,62 @@ export default function ShowPhotos({ id, open, onClose }: ShowPhotosProps) {
             {currentIndex + 1} / {data?.length ?? 0}
           </Typography>
         </Toolbar>
-
-        <Grid sx={{ height: '100%', margin: '0 auto' }}>
+        <Box
+          sx={{
+            margin: '0 auto',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '80vh',
+          }}
+        >
           {data && (
             <ImageList
-              sx={{ height: '100%', margin: '0 auto' }}
+              sx={
+                isMobile
+                  ? { width: '100vw' }
+                  : {
+                      width: '80vw',
+                      height: '100vh',
+                      marginTop: '15rem',
+                    }
+              }
               variant="quilted"
               cols={1}
               rowHeight={'auto'}
             >
-              <ImageListItem
-                key={data[currentIndex].id}
-                sx={{ Maxheight: '50%', maxWidth: '80%', margin: '10px auto' }}
+              <Slider
+                itemsPerView={1}
+                onStepChange={setCurrentIndex}
+                activeStep={currentIndex}
+                maxSteps={data.length}
               >
-                <img src={data[currentIndex].imageUrl} loading="lazy" />
-              </ImageListItem>
+                {renderImages()}
+              </Slider>
             </ImageList>
           )}
-
-          <IconButton
-            sx={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)' }}
-            color="inherit"
-            onClick={handlePrev}
-            disabled={currentIndex === 0}
-          >
-            <ArrowBackIos />
-          </IconButton>
-          <IconButton
-            sx={{ position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)' }}
-            color="inherit"
-            onClick={handleNext}
-            disabled={currentIndex === (data?.length ?? 0) - 1}
-          >
-            <ArrowForwardIos />
-          </IconButton>
-        </Grid>
+          {!isMobile && (
+            <>
+              <IconButton
+                sx={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)' }}
+                color="inherit"
+                onClick={handlePrev}
+                disabled={currentIndex === 0}
+              >
+                <ArrowBackIos />
+              </IconButton>
+              <IconButton
+                sx={{ position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)' }}
+                color="inherit"
+                onClick={handleNext}
+                disabled={currentIndex === (data?.length ?? 0) - 1}
+              >
+                <ArrowForwardIos />
+              </IconButton>
+            </>
+          )}
+        </Box>
       </Dialog>
-    </React.Fragment>
+    </>
   );
 }

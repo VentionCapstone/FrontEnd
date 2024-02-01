@@ -28,6 +28,9 @@ export const QUERY_KEYS = {
     bookings: 'bookings',
 
     wishlist: 'wishlist',
+
+    listOfSuggestions: 'list_of_suggestions',
+    selectedLocation: 'selected_location',
   },
 
   mutation: {

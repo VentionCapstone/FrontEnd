@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import React, { useCallback, useState } from 'react';
 
+import { accommodationCardStyles } from '@src/components/card/acccommodationCard/accommodationCard.styles';
 import CustomImage from '@src/components/shared/CustomImage';
 import { Status } from '@src/types/global.types';
 import { lineClampStyle } from '@src/utils';
@@ -28,7 +29,7 @@ const BookingCard = React.memo(
     const handleClose = useCallback(() => setOpen(false), []);
 
     return (
-      <Box gap={2} display="flex" flexDirection="column">
+      <Box sx={accommodationCardStyles.root}>
         <Box
           width="100%"
           borderRadius={2}

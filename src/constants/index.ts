@@ -1,3 +1,4 @@
+import { YANDEX_API_URL } from '@src/api/api';
 import { LanguageCollection, PhoneCodesByCountry } from './constant.types';
 
 export const DATE_FORMAT = 'MM-DD-YYYY';
@@ -48,5 +49,23 @@ export const LANGUAGE_LIST: LanguageCollection[] = [
 export const DEFAULT_LANGUAGE = LANGUAGE_LIST[0];
 
 export const IMAGE_MAX_SIZE = 10 * 1024 * 1024;
+
+export const DEFAULT_LATITUDE = 41.2971;
+
+export const DEFAULT_LONGITUDE = 69.2815;
+
+export const DEFAULT_COORDINATES: [number, number] = [DEFAULT_LATITUDE, DEFAULT_LONGITUDE];
+
+export const SEARCH_ALLOWED_LENGTH = 2;
+
+export const DEFAULT_ZOOM = 15;
+
+export const YANDEX_MAP_QUERY = {
+  apikey: YANDEX_API_URL,
+  load: 'package.full',
+  lang: 'en_US',
+} as const;
+
+export const YANDEX_MAP_CONTROL = ['zoomControl', 'fullscreenControl'];
 
 export const PROJECT_NAME = 'StayHop';
