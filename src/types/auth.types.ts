@@ -90,6 +90,7 @@ export interface PasswordInputProps<TFieldValues extends FieldValues> {
   placeholder: string;
   control: Control<TFieldValues>;
   errors: FieldErrors<TFieldValues>;
+  size?: 'small' | 'medium';
 }
 
 export interface CommonResponse {

@@ -1,10 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
 import { useForm } from 'react-hook-form';
 
 import useUpdatePasswordMutation from '@src/api/mutations/account/useUpdatePasswordMutation';
+import PasswordInput from '@src/components/input/PasswordInput';
 import { LoginAndSecurityInfo } from '@src/types/i18n.types';
 import { UpdatePasswordData, updatePasswordSchema } from '@src/types/profile.types';
 import { useTranslation } from 'react-i18next';
@@ -12,10 +12,10 @@ import { useTranslation } from 'react-i18next';
 export const UpdatePassword = ({ collapsePanel }: { collapsePanel: () => void }) => {
   const { t } = useTranslation();
   const {
-    register,
     handleSubmit,
     reset,
     formState: { errors },
+    control,
   } = useForm<UpdatePasswordData>({
     resolver: zodResolver(updatePasswordSchema),
   });
@@ -32,37 +32,31 @@ export const UpdatePassword = ({ collapsePanel }: { collapsePanel: () => void })
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack gap={4} mt={3} mb={6} maxWidth={'40rem'}>
-        <TextField
-          {...register('currentPassword')}
-          fullWidth
-          required
-          label={`${t(LoginAndSecurityInfo.password_current)}`}
-          type={'password'}
+        <PasswordInput
+          name="currentPassword"
+          label={t(LoginAndSecurityInfo.password_current)}
+          placeholder={t(LoginAndSecurityInfo.password_current)}
+          control={control}
+          errors={errors}
           size="small"
-          error={!!errors.currentPassword}
-          helperText={errors.currentPassword?.message}
         />
 
-        <TextField
-          {...register('newPassword')}
-          fullWidth
-          required
-          label={`${t(LoginAndSecurityInfo.password_new_password)}`}
-          type={'password'}
+        <PasswordInput
+          name="newPassword"
+          label={t(LoginAndSecurityInfo.password_new_password)}
+          placeholder={t(LoginAndSecurityInfo.password_new_password)}
+          control={control}
+          errors={errors}
           size="small"
-          error={!!errors.newPassword}
-          helperText={errors.newPassword?.message}
         />
 
-        <TextField
-          {...register('confirmPassword')}
-          fullWidth
-          required
-          label={`${t(LoginAndSecurityInfo.password_confirm)}`}
-          type={'password'}
+        <PasswordInput
+          name="confirmPassword"
+          label={t(LoginAndSecurityInfo.password_confirm)}
+          placeholder={t(LoginAndSecurityInfo.password_confirm)}
+          control={control}
+          errors={errors}
           size="small"
-          error={!!errors.confirmPassword}
-          helperText={errors.confirmPassword?.message}
         />
       </Stack>
 
