@@ -50,8 +50,8 @@ export default function SearchBar({
 
   const handleSearch = useCallback(() => {
     const newSearchParamsAsObject: DefaultSearchParamsType = {
-      minPrice: minPrice ? minPrice : '0',
-      maxPrice: maxPrice ? maxPrice : '0',
+      minPrice: minPrice === '0' ? totalMinPrice.toString() : minPrice,
+      maxPrice: maxPrice === '0' ? totalMaxPrice.toString() : maxPrice,
       minRooms: minRooms ? minRooms : '0',
       minPeople: minRooms ? minRooms : '0',
       orderByPrice: orderByPrice ? orderByPrice : 'any',
