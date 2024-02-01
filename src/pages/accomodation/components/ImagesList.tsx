@@ -3,6 +3,7 @@ import ShowPhotos from '@src/components/full-view-accommodation/full-view-accomm
 import Slider from '@src/components/shared/Slider';
 import { Media } from '@src/types/accommodation.types';
 import { RenderedImage } from '@src/types/accommodationImages.types';
+import { handleErrorInImage } from '@src/utils';
 import { useMemo, useState } from 'react';
 import { MAX_IMAGES, getImageSources } from '../utils/imagesListUtils';
 
@@ -39,6 +40,7 @@ export default function ImagesList({ images }: { images: Media[] }) {
             component={'img'}
             sx={{ objectFit: 'cover', cursor: 'pointer', height, width: '100%' }}
             {...getImageSources({ url, rows, cols })}
+            onError={handleErrorInImage}
             loading="lazy"
           />
         </ImageListItem>
