@@ -83,11 +83,6 @@ export default function SearchBar({
     handleSearch();
   }, [location, checkOutDate]);
 
-  const handleSearchModalClick = useCallback(() => {
-    handleSearch();
-    handleClose();
-  }, [handleClose, handleSearch]);
-
   const handleCheckInChange = useCallback(
     (newValue: dayjs.Dayjs | null) => {
       if (!newValue) {
@@ -223,20 +218,6 @@ export default function SearchBar({
                     UtcTimeToLocal={UtcTimeToLocal}
                   />
                 </Stack>
-              </Box>
-
-              <Box padding={5}>
-                <Button
-                  variant="contained"
-                  onClick={handleSearchModalClick}
-                  sx={{
-                    'bgcolor': 'secondary.main',
-                    ':hover': { bgcolor: 'secondary.dark' },
-                  }}
-                  fullWidth
-                >
-                  {t(SearchTexts.search_button)}
-                </Button>
               </Box>
             </Box>
           </Fade>
