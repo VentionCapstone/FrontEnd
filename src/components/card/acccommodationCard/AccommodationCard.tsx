@@ -1,8 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-
 import { ROUTES } from '@src/config/routes.config';
 import { useAppSelector } from '@src/hooks/redux-hooks';
 import { hasToken } from '@src/stores/slices/authSlice';
@@ -24,12 +22,11 @@ function AccommodationCard({
 }: {
   accommodation: Accommodation;
 }) {
-  const navigate = useNavigate();
   const { t } = useTranslation();
   const isLoggedIn = useAppSelector(hasToken);
 
   const handleClickAccommodation = () => {
-    navigate(ROUTES.accommodations.details(id));
+    window.open(ROUTES.accommodations.details(id), '_blank');
   };
 
   return (
