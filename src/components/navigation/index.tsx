@@ -15,12 +15,15 @@ import useIntersectionObserver from '@src/hooks/useIntersectionObserver';
 import { BottomNav } from './BottomNavigation';
 import { TopNavMenu } from './TopNavMenu';
 import { mainNavigationStyles as styles } from './mainNavigation.styles';
+import { useSearchParams } from 'react-router-dom';
 
 function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) {
   const scrollWatcherRef = useRef<Element | null>(null);
   const { entry } = useIntersectionObserver(scrollWatcherRef);
 
   const dinamicShadow = entry?.isIntersecting ? 'none' : '0px 6px 16px rgba(0, 0, 0, 0.12)';
+
+  const [searchParams] = useSearchParams();
 
   return (
     <>
@@ -32,7 +35,10 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
           <Stack direction={'row'} alignItems={'center'}>
             <Link
               component={RouterLink}
-              to={ROUTES.root}
+              to={{
+                pathname: ROUTES.root,
+                search: searchParams.toString(),
+              }}
               sx={{ textDecoration: 'none' }}
               mr={'auto'}
             >
