@@ -5,6 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Box, Button, Fade, Modal, Stack, Typography } from '@mui/material';
 import { useCallback, useEffect } from 'react';
 
+import { DEFAULT_COORDINATES } from '@src/constants';
 import { MapModalProps } from '@src/types/accommodation.types';
 import { modalStyles } from './Modal.styles';
 
@@ -28,8 +29,8 @@ export default function MapModal({ open, setOpen, searchParamsAsObject }: MapMod
   }
 
   useEffect(() => {
-    if (location.trim() === '') {
-      initMapWithCoordinates([55.76, 37.64]);
+    if (!location || location.trim() === '') {
+      initMapWithCoordinates(DEFAULT_COORDINATES);
       return;
     }
     const geocoder = ymaps.geocode(location);
@@ -201,12 +202,21 @@ export default function MapModal({ open, setOpen, searchParamsAsObject }: MapMod
       checkOutDate: checkOutDate || null,
     };
 
-    const queryParamsString = Object.entries(newParams)
-      .filter(([key, value]) => value !== null)
-      .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
-      .join('&');
+    function setURLSearchParams(baseUrl, params) {
+      const url = new URL(baseUrl);
 
-    const url = `${serverUrl}/accommodations/map?bbox=%b&${queryParamsString}`;
+      for (const [key, value] of Object.entries(params)) {
+        if (value !== null) {
+          url.searchParams.set(key, value);
+        }
+      }
+
+      const modifiedUrl = url.href + '&bbox=%b';
+      return modifiedUrl;
+    }
+
+    const url = setURLSearchParams(`${serverUrl}/accommodations/map`, newParams);
+
     const loadingObjectManager = new ymaps.LoadingObjectManager(url, {
       clusterize: true,
       clusterHasBalloon: false,
