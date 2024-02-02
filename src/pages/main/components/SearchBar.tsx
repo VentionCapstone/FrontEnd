@@ -50,16 +50,16 @@ export default function SearchBar({
 
   const handleSearch = useCallback(() => {
     const newSearchParamsAsObject: DefaultSearchParamsType = {
-      minPrice: minPrice !== '0' ? minPrice : totalMinPrice.toString(),
-      maxPrice: maxPrice !== '0' ? maxPrice : totalMaxPrice.toString(),
-      minRooms: minRooms,
-      minPeople: minPeople,
-      orderByPrice: orderByPrice,
-      orderByPeople: orderByPeople,
-      orderByRoom: orderByRoom,
-      location: location,
-      checkInDate: checkInDate,
-      checkOutDate: checkOutDate,
+      minPrice: minPrice ? minPrice : totalMinPrice.toString(),
+      maxPrice: maxPrice ? maxPrice : totalMaxPrice.toString(),
+      minRooms: minRooms ? minRooms : '0',
+      minPeople: minPeople ? minPeople : '0',
+      orderByPrice: orderByPrice ? orderByPrice : 'any',
+      orderByPeople: orderByPeople ? orderByPrice : 'any',
+      orderByRoom: orderByRoom ? orderByRoom : 'any',
+      location: location ? location : '',
+      checkInDate: checkInDate ? checkInDate : '',
+      checkOutDate: checkOutDate ? checkOutDate : '',
     };
     const newSearchParams = new URLSearchParams(newSearchParamsAsObject);
     setSearchParams(newSearchParams);
