@@ -1,15 +1,16 @@
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, Button, Fade, Modal, Stack, Typography } from '@mui/material';
-import { SearchTexts } from '@src/types/i18n.types';
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/plugin/isSameOrAfter';
 import 'dayjs/plugin/isSameOrBefore';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
 import logo from '@src/assets/logo.png';
 import { PROJECT_NAME } from '@src/constants';
 import { DefaultSearchParamsType, SearchBarProps } from '@src/types/accommodation.types';
+import { SearchTexts } from '@src/types/i18n.types';
 import { mainStyles } from '../index.styles';
 import { modalStyles } from './Modal.styles';
 import SearchByCityInput from './SearchByCityInput';
@@ -50,16 +51,16 @@ export default function SearchBar({
 
   const handleSearch = useCallback(() => {
     const newSearchParamsAsObject: DefaultSearchParamsType = {
-      minPrice: minPrice !== '0' ? minPrice : totalMinPrice.toString(),
-      maxPrice: maxPrice !== '0' ? maxPrice : totalMaxPrice.toString(),
-      minRooms: minRooms,
-      minPeople: minPeople,
-      orderByPrice: orderByPrice,
-      orderByPeople: orderByPeople,
-      orderByRoom: orderByRoom,
-      location: location,
-      checkInDate: checkInDate,
-      checkOutDate: checkOutDate,
+      minPrice: minPrice ? minPrice : totalMinPrice.toString(),
+      maxPrice: maxPrice ? maxPrice : totalMaxPrice.toString(),
+      minRooms: minRooms ? minRooms : '0',
+      minPeople: minPeople ? minPeople : '0',
+      orderByPrice: orderByPrice ? orderByPrice : 'any',
+      orderByPeople: orderByPeople ? orderByPrice : 'any',
+      orderByRoom: orderByRoom ? orderByRoom : 'any',
+      location: location ? location : '',
+      checkInDate: checkInDate ? checkInDate : '',
+      checkOutDate: checkOutDate ? checkOutDate : '',
     };
     const newSearchParams = new URLSearchParams(newSearchParamsAsObject);
     setSearchParams(newSearchParams);
@@ -81,7 +82,7 @@ export default function SearchBar({
 
   useEffect(() => {
     handleSearch();
-  }, [location, checkOutDate]);
+  }, [location, checkOutDate, handleSearch]);
 
   const handleSearchModalClick = useCallback(() => {
     handleSearch();
@@ -93,6 +94,7 @@ export default function SearchBar({
       if (!newValue) {
         setCheckInDate('');
         setCheckOutDate('');
+        handleSearch();
         return;
       }
       const localizedcheckinTime = localTimeToUtc(dayjs(newValue));
@@ -101,7 +103,7 @@ export default function SearchBar({
         setCheckOutDate(localizedcheckinTime.add(1, 'day').toISOString());
       }
     },
-    [checkInDate, checkOutDate, localTimeToUtc]
+    [checkInDate, checkOutDate, localTimeToUtc, handleSearch]
   );
 
   const handleCheckOutChange = useCallback(

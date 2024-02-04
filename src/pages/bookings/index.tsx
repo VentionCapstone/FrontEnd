@@ -24,7 +24,7 @@ const translateTabStatus = (status: Status) => {
     ACTIVE: t(BookingsRoute.active),
     UPCOMING: t(BookingsRoute.upcoming),
     COMPLETED: t(BookingsRoute.completed),
-  };
+  } as const;
 
   return tabStatusTranslation[status];
 };

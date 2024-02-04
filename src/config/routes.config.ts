@@ -1,3 +1,5 @@
+import { Status } from '@src/types/global.types';
+
 export const ROUTES = {
   root: '/',
   auth: {
@@ -17,7 +19,7 @@ export const ROUTES = {
     details: (id: string) => `/rooms/${id}`,
   },
   bookings: {
-    root: '/bookings?status=ACTIVE',
+    root: (status = Status.active) => `/bookings?status=${status}`,
   },
   payment: {
     root: (id: string, accommodationId: string, startDate: string, endDate: string) =>

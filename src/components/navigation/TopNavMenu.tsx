@@ -104,9 +104,9 @@ export const TopNavMenu = () => {
                 <MenuItem>{t(HomeUIInfo.user_home_btn_mylistings)}</MenuItem>
               </Link>,
               <Link
-                key={ROUTES.bookings.root}
+                key={ROUTES.bookings.root()}
                 component={RouterLink}
-                to={ROUTES.bookings.root}
+                to={ROUTES.bookings.root()}
                 onClick={handleClose}
               >
                 <MenuItem>{t(BookingsRoute.my_bookings)}</MenuItem>
