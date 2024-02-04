@@ -7,7 +7,7 @@ import ReviewModal from '@src/components/review/ReviewModal';
 import CustomImage from '@src/components/shared/CustomImage';
 import { Status } from '@src/types/global.types';
 import { BookingsRoute } from '@src/types/i18n.types';
-import { lineClampStyle } from '@src/utils';
+import { lineClampStyle, translateTabStatus } from '@src/utils';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -111,12 +111,9 @@ export default function BookingModal({ open, handleClose, details }: Props) {
           <Typography variant="sm" fontWeight="700">
             {t(BookingsRoute.status)}
           </Typography>
+
           <Typography variant="sm" color="secondary2.main">
-            {details.status == Status.pending
-              ? `${t(BookingsRoute.pending)}`
-              : details.status == Status.active
-                ? `${t(BookingsRoute.active)}`
-                : `${t(BookingsRoute.completed)}`}
+            {translateTabStatus(details.status)}
           </Typography>
         </Box>
         {details.status === Status.pending && (

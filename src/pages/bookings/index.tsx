@@ -8,26 +8,13 @@ import { useGetBookingList } from '@src/api/queries/booking/useGetBookingList';
 import BackButton from '@src/components/button/BackButton';
 import DataFetchError from '@src/components/shared/DataFetchError';
 import { STATUSES } from '@src/constants';
-import i18n from '@src/i18n/i18n';
 import { BookType } from '@src/types/booking.types';
 import { Status } from '@src/types/global.types';
 import { BookingsRoute, ErrorTypes } from '@src/types/i18n.types';
+import { translateTabStatus } from '@src/utils';
 import AccommodationSkeleton from '../accommodations/components/AccommodationSkeleton';
 import { mainStyles } from '../main/index.styles';
 import BookingCard from './BookingCard';
-
-const translateTabStatus = (status: Status) => {
-  const { t } = i18n;
-
-  const tabStatusTranslation: Record<Status, string> = {
-    PENDING: t(BookingsRoute.pending),
-    ACTIVE: t(BookingsRoute.active),
-    UPCOMING: t(BookingsRoute.upcoming),
-    COMPLETED: t(BookingsRoute.completed),
-  } as const;
-
-  return tabStatusTranslation[status];
-};
 
 export default function Bookings() {
   const { t } = useTranslation();
