@@ -17,9 +17,10 @@ type UploadImageProps = {
   images: ImageListType;
   setImages: (images: ImageListType) => void;
   mutate: () => void;
+  isNew: boolean;
 };
 
-function UploadImage({ images, setImages, mutate }: UploadImageProps) {
+function UploadImage({ images, setImages, mutate, isNew }: UploadImageProps) {
   const { t } = useTranslation();
 
   const theme = useTheme();
@@ -45,15 +46,17 @@ function UploadImage({ images, setImages, mutate }: UploadImageProps) {
         >
           {t(CreateAccommodationRoute.add_image_title)}
         </Typography>
-        <Typography
-          variant="sm"
-          mt={2}
-          textAlign="center"
-          color={'secondary2.main'}
-          fontWeight={700}
-        >
-          {t(CreateAccommodationRoute.add_image_desc)}
-        </Typography>
+        {isNew && (
+          <Typography
+            variant="sm"
+            mt={2}
+            textAlign="center"
+            color={'secondary2.main'}
+            fontWeight={700}
+          >
+            {t(CreateAccommodationRoute.add_image_desc)}
+          </Typography>
+        )}
       </Box>
 
       <ImageUploading
@@ -69,7 +72,11 @@ function UploadImage({ images, setImages, mutate }: UploadImageProps) {
             <Box textAlign={'center'}>
               {images.length > 0 ? (
                 <Box sx={uploadMediaStyles.availableImageContainer}>
-                  <Typography mt={2}>{t(CreateAccommodationRoute.five_images)}</Typography>
+                  {isNew ? (
+                    <Typography mt={2}>{t(CreateAccommodationRoute.five_images)}</Typography>
+                  ) : (
+                    <Typography mt={2}>{t(CreateAccommodationRoute.choose_images)}</Typography>
+                  )}
                   <IconButton onClick={onImageUpload}>
                     <AddIcon />
                   </IconButton>
@@ -85,7 +92,9 @@ function UploadImage({ images, setImages, mutate }: UploadImageProps) {
                   >
                     {t(CreateAccommodationRoute.drag_drop)}
                   </Typography>
-                  <Typography mb={5}>{t(CreateAccommodationRoute.five_images)}</Typography>
+                  {isNew && (
+                    <Typography mb={5}>{t(CreateAccommodationRoute.five_images)}</Typography>
+                  )}
                   <Button onClick={onImageUpload}>{t(CreateAccommodationRoute.upload_btn)}</Button>
                 </Box>
               )}

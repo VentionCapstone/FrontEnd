@@ -29,7 +29,7 @@ function Accommodation() {
 
   const [amenities, setAmenities] = useState<AmenitySetting[]>([]);
 
-  const ownerId = getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.sub);
+  const ownerId = getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.sub)?.toString();
 
   const { isPending, data, isError } = useGetSingleAccommodationQuery(accommodationId as string);
 

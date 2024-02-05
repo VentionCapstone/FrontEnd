@@ -34,7 +34,9 @@ function AddMedia({ accommodationId, handleSearchParamsChange }: AddMediaProps) 
     <>
       {isPending && <LoadingPrimary height="60vh" />}
 
-      {!isPending && <UploadImage setImages={setImages} images={images} mutate={mutate} />}
+      {!isPending && (
+        <UploadImage setImages={setImages} images={images} mutate={mutate} isNew={true} />
+      )}
     </>
   );
 }

@@ -341,6 +341,7 @@ export enum CreateAccommodationRoute {
   five_images = 'create_accommodation_route.five_images',
   upload_btn = 'create_accommodation_route.upload_btn',
   choose_at_least_5 = 'create_accommodation_route.choose_at_least_5',
+  choose_images = 'create_accommodation_route.choose_images',
   add_aminities = 'create_accommodation_route.add_aminities',
   save_btn = 'create_accommodation_route.save_btn',
   deleted = 'create_accommodation_route.deleted',
