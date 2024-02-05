@@ -40,7 +40,7 @@ select {
 }
 .popover {
   display: block;
-  width: 300px;
+  width: 310px;
   height: 300px;
   border-radius: 15px;
   position: relative;
@@ -48,8 +48,20 @@ select {
 
 .popover .close {
   position: absolute;
-  right: 15px;
+  right: 20px;
   top: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 85%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease;
+}
+
+.popover .close:hover {
+  background: rgb(255 255 255);
 }
 
 .btn {
@@ -71,4 +83,10 @@ select {
 .accomm__price span {
   font-weight: 700;
   font-size: 20px;
+}
+
+.balloon__container {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 2px 2px 11px -1px black;
 }

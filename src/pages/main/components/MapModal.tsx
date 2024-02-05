@@ -59,15 +59,19 @@ export default function MapModal({ open, setOpen, searchParamsAsObject }: MapMod
     });
 
     const MyBalloonLayout = ymaps.templateLayoutFactory.createClass(
-      '<div  class="popover top" >' +
-        '<a class="close" href="#"><svg style="width: 26px;padding: 3px;height: 26px;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="800px" width="800px" version="1.1" id="Capa_1" viewBox="0 0 490 490" xml:space="preserve"><polygon points="456.851,0 245,212.564 33.149,0 0.708,32.337 212.669,245.004 0.708,457.678 33.149,490 245,277.443 456.851,490   489.292,457.678 277.331,245.004 489.292,32.337 "/></svg></a>' +
-        '<div class="arrow"></div>' +
-        '<div class="popover-inner">' +
-        `<a class="ballon__link" href="${originUrl}/rooms/$[properties.accommodationId]">` +
-        '$[[options.contentLayout observeSize minWidth=300 maxWidth=300 maxHeight=450]]' +
-        '</a>' +
-        '</div>' +
-        '</div>',
+      `<div  class="popover top" >
+        <a class="close" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 16px; width: 16px; stroke: black; stroke-width: 3; overflow: visible;">
+            <path d="m6 6 20 20M26 6 6 26"></path>
+          </svg>
+        </a>
+        <div class="arrow"></div>
+        <div class="popover-inner">
+          <a class="ballon__link" href="${originUrl}/rooms/$[properties.accommodationId]">
+            $[[options.contentLayout observeSize minWidth=310 maxWidth=310 maxHeight=420]]
+          </a>
+          </div>
+      </div>`,
       {
         build: function () {
           this.constructor.superclass.build.call(this);
@@ -137,40 +141,42 @@ export default function MapModal({ open, setOpen, searchParamsAsObject }: MapMod
     );
 
     const MyBalloonContentLayout = ymaps.templateLayoutFactory.createClass(
-      `<div class="balloon" style="background-color: white; width: 300px; border-radius: 15px">
-        <div class="img-container">
-          <img src="$[properties.thumbnailUrl]"    onerror="this.onerror=null; this.src='/src/assets/no-image.jpg';" style="width: 300px; height: 250px; object-fit: cover; border-radius: 15px 15px 0 0" alt="" />
-        </div>
-        <div class="info-container"  style="padding: 10px">
-          <div class="title" style="display: flex; align-self: center; justify-content: space-between;">
-            <div style=" font-weight: 700;margin-right: 40px; margin: 10px 30px 10px 0">
-            $[properties.balloonAdress]
-            </div>
-            <div style="display: flex; align-items: center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 32 32"
-                aria-hidden="true"
-                role="presentation"
-                focusable="false"
-                style="
-                  display: block;
-                  height: 12px;
-                  width: 12px;
-                  fill: currentcolor;
-                  margin-right: 7px;
-                "
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"
-                ></path>
-              </svg>
-              4,73
-            </div>
+      `<div class="balloon" style="width: 290px; height: 400px; padding: 5px; border-radius: 15px">
+        <div class="balloon__container">
+          <div class="img-container">
+            <img src="$[properties.thumbnailUrl]"    onerror="this.onerror=null; this.src='/src/assets/no-image.jpg';" style="width: 300px; height: 250px; object-fit: cover; border-radius: 15px 15px 0 0" alt="" />
           </div>
-          <div class="accomm__title" style="margin-bottom: 4px">$[properties.balloonAccommTitle]</div>
-          <div class="accomm__price"><span>$[properties.iconCaption]</span> night</div>
+          <div class="info-container"  style="padding: 10px">
+            <div class="title" style="display: flex; align-self: center; justify-content: space-between;">
+              <div style=" font-weight: 700;margin-right: 40px; margin: 10px 30px 10px 0">
+                $[properties.balloonAdress]
+              </div>
+              <div style="display: flex; align-items: center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 32 32"
+                  aria-hidden="true"
+                  role="presentation"
+                  focusable="false"
+                  style="
+                    display: block;
+                    height: 12px;
+                    width: 12px;
+                    fill: currentcolor;
+                    margin-right: 7px;
+                  "
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"
+                  ></path>
+                </svg>
+                4,73
+              </div>
+            </div>
+            <div class="accomm__title" style="margin-bottom: 4px">$[properties.balloonAccommTitle]</div>
+            <div class="accomm__price"><span>$[properties.iconCaption]</span> night</div>
+          </div>
         </div>
       </div>`
     );
