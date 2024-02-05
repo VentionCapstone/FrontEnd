@@ -20,6 +20,7 @@ import {
 } from '@src/types/accommodation.types';
 import { Coordinates } from '@src/types/global.types';
 
+import { ACCOMMODATION_STEPS } from '@src/constants';
 import { CreateAccommodationRoute, EditAccommodation } from '@src/types/i18n.types';
 import { useTranslation } from 'react-i18next';
 import FormFields from './FormFields';
@@ -95,7 +96,12 @@ function AccommodationForm({
       availableFrom: dayjs(data.availableFrom).toISOString(),
       availableTo: dayjs(data.availableTo).toISOString(),
     });
-    handleSearchParamsChange(new URLSearchParams({ currentStep: '2', accommodationId: id }));
+    handleSearchParamsChange(
+      new URLSearchParams({
+        currentStep: ACCOMMODATION_STEPS.media,
+        accommodationId: id,
+      })
+    );
   };
 
   const handleDelete = useCallback(() => {
