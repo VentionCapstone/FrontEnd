@@ -9,6 +9,8 @@ import { useGetAllMediaQuery } from '@src/api/queries/media/useGetAllMediaQuery'
 import { EditAccommodation } from '@src/types/i18n.types';
 import { useTranslation } from 'react-i18next';
 
+import { handleErrorInImage } from '@src/utils';
+
 import {
   MouseEvent,
   ReactElement,
@@ -90,6 +92,7 @@ export default function ShowPhotos({ id, open, onClose, onOpen, isMobile }: Show
           sx={{ objectFit: 'contain', height: '80vh', width: '100vw' }}
           src={item.imageUrl}
           alt={`photo-${index}`}
+          onError={handleErrorInImage}
           loading="lazy"
         />
       </ImageListItem>

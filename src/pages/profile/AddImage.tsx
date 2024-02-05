@@ -47,7 +47,7 @@ function AddImage({
         sx={{
           width: '12rem',
           height: '12rem',
-          bgcolor: 'primary.main',
+          bgcolor: 'secondary2.light',
           borderRadius: '50%',
           objectFit: 'cover',
         }}

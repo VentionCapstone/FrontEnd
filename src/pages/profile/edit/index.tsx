@@ -233,7 +233,7 @@ function EditProfile() {
         <Box display={{ xs: 'flex', md: 'none' }}>
           <Link
             component={RouterLink}
-            to={ROUTES.bookings.root}
+            to={ROUTES.bookings.root()}
             width={'100%'}
             sx={{ textDecoration: 'none' }}
           >

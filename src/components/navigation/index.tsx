@@ -6,7 +6,7 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { useRef } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useSearchParams } from 'react-router-dom';
 
 import logo from '@src/assets/logo.png';
 import { ROUTES } from '@src/config/routes.config';
@@ -17,6 +17,7 @@ import { TopNavMenu } from './TopNavMenu';
 import { mainNavigationStyles as styles } from './mainNavigation.styles';
 
 function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) {
+  const [searchParams] = useSearchParams();
   const scrollWatcherRef = useRef<Element | null>(null);
   const { entry } = useIntersectionObserver(scrollWatcherRef);
 
@@ -32,7 +33,10 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
           <Stack direction={'row'} alignItems={'center'}>
             <Link
               component={RouterLink}
-              to={ROUTES.root}
+              to={{
+                pathname: ROUTES.root,
+                search: searchParams.toString(),
+              }}
               sx={{ textDecoration: 'none' }}
               mr={'auto'}
             >

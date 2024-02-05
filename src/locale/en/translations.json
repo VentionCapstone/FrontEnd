@@ -344,6 +344,7 @@
       "pending": "Pending",
       "active": "Active",
       "completed": "Completed",
+      "upcoming": "Upcoming",
       "status": "Status",
       "total": "Total",
       "check_in": "Check-in",

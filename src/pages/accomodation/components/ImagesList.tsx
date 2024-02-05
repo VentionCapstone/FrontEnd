@@ -1,9 +1,11 @@
 import { Box, ImageList, ImageListItem, useMediaQuery, useTheme } from '@mui/material';
+import { useMemo, useState } from 'react';
+
 import ShowPhotos from '@src/components/full-view-accommodation/full-view-accommodation';
 import Slider from '@src/components/shared/Slider';
 import { Media } from '@src/types/accommodation.types';
 import { RenderedImage } from '@src/types/accommodationImages.types';
-import { useMemo, useState } from 'react';
+import { handleErrorInImage } from '@src/utils';
 import { MAX_IMAGES, getImageSources } from '../utils/imagesListUtils';
 
 export default function ImagesList({ images }: { images: Media[] }) {
@@ -40,6 +42,7 @@ export default function ImagesList({ images }: { images: Media[] }) {
             sx={{ objectFit: 'cover', cursor: 'pointer', height, width: '100%' }}
             {...getImageSources({ url, rows, cols })}
             loading="lazy"
+            onError={handleErrorInImage}
           />
         </ImageListItem>
       );

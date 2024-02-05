@@ -4,8 +4,8 @@ import ErrorImage from '@src/assets/no-image.jpg';
 import { DEFAULT_LANGUAGE, LANGUAGE_LIST } from '@src/constants/index';
 import i18n from '@src/i18n/i18n';
 import { Amenities } from '@src/types/amenity.types';
-import { Coordinates } from '@src/types/global.types';
-import { ToastMessages } from '@src/types/i18n.types';
+import { Coordinates, Status } from '@src/types/global.types';
+import { BookingsRoute, ToastMessages } from '@src/types/i18n.types';
 import { ThemeMode } from '@src/types/profile.types';
 import { SuggestionsResponse } from '@src/types/yandex_map.types';
 
@@ -126,3 +126,16 @@ export const stringToNumberOfArray = (str: string) => {
 export function selectGeoSearchFeaturedObjects(searchResponse: SuggestionsResponse) {
   return searchResponse?.response?.GeoObjectCollection?.featureMember ?? [];
 }
+
+export const translateTabStatus = (status: Status) => {
+  const { t } = i18n;
+
+  const tabStatusTranslation: Record<Status, string> = {
+    PENDING: t(BookingsRoute.pending),
+    ACTIVE: t(BookingsRoute.active),
+    UPCOMING: t(BookingsRoute.upcoming),
+    COMPLETED: t(BookingsRoute.completed),
+  } as const;
+
+  return tabStatusTranslation[status];
+};
