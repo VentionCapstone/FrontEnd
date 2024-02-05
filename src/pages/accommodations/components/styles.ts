@@ -83,4 +83,27 @@ export const uploadMediaStyles = {
     columnGap: 2,
     mt: 4,
   },
+  listOfAvailableImagesContainer: {
+    width: {
+      xs: '100%',
+      sm: '80%',
+      md: '77%',
+      lg: '65%',
+    },
+    mx: 'auto',
+    mt: 10,
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    rowGap: 4,
+    columnGap: 3,
+  },
+  imageWrapper: {
+    width: {
+      xs: '44%',
+      md: '32%',
+    },
+    maxHeight: '200px',
+    position: 'relative',
+  },
 } satisfies MuiStylesObject;
