@@ -140,7 +140,7 @@ export default function BookingModal({ open, handleClose, details }: Props) {
         )}
 
         <ReviewModal
-          open={reviewModalOpen}
+          isOpen={reviewModalOpen}
           setOpen={setReviewModalOpen}
           handleClose={handleReviewModalClose}
           bookingId={details.id}

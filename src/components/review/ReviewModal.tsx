@@ -14,14 +14,20 @@ import { useTranslation } from 'react-i18next';
 import { ReviewModal as ReviewModalTr } from '../../types/i18n.types';
 
 type ReviewModalProps = {
-  open: boolean;
+  isOpen: boolean;
   handleClose: () => void;
   setOpen: Dispatch<SetStateAction<boolean>>;
   bookingId: string;
   accommodationId: string;
 };
 
-function ReviewModal({ open, handleClose, bookingId, accommodationId, setOpen }: ReviewModalProps) {
+function ReviewModal({
+  isOpen,
+  handleClose,
+  bookingId,
+  accommodationId,
+  setOpen,
+}: ReviewModalProps) {
   const { t } = useTranslation();
   const [rating, setRating] = useState(0);
   const [feedback, setFeedback] = useState('');
@@ -46,7 +52,7 @@ function ReviewModal({ open, handleClose, bookingId, accommodationId, setOpen }:
 
   return (
     <Dialog
-      open={open}
+      open={isOpen}
       onClose={onClose}
       fullWidth
       sx={{
