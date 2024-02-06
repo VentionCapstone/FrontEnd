@@ -1,6 +1,7 @@
 import httpClient from '@src/api/httpClient';
 import { ENDPOINTS } from '@src/config/endpoints.config';
-import { useMutation } from '@tanstack/react-query';
+import { QUERY_KEYS } from '@src/config/react-query.config';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ImageListType } from 'react-images-uploading';
 
 interface UpdateMediaAccommodationProps {
@@ -14,6 +15,8 @@ function useUpdateMediaAccommodationMutation({
   images,
   deletedImages,
 }: UpdateMediaAccommodationProps) {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: async () => {
       const formData = new FormData();
@@ -33,6 +36,9 @@ function useUpdateMediaAccommodationMutation({
           headers: { 'Content-Type': 'multipart/form-data' },
         }
       );
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.query.media] });
     },
   });
 }
