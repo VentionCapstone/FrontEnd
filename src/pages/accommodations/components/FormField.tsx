@@ -31,6 +31,7 @@ export const FormField = memo(
               MozAppearance: 'textfield',
             },
           }}
+          inputProps={{ min: 0 }}
           error={error}
           helperText={helperText}
           onChange={(e) =>

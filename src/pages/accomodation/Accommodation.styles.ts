@@ -13,7 +13,7 @@ export const styles = {
   content: {
     display: 'flex',
     justifyContent: 'space-between',
-    gap: 3,
+    gap: 8,
     flexDirection: {
       xs: 'column',
       lg: 'row',

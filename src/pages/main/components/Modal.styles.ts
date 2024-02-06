@@ -41,6 +41,7 @@ export const modalStyles = {
       backgroundColor: 'transparent',
     },
     'padding': 0,
+    'minWidth': 0,
   },
 
   sliderContainer: {

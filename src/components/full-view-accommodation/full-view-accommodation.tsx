@@ -106,7 +106,7 @@ export default function ShowPhotos({ id, open, onClose, onOpen, isMobile }: Show
           variant="contained"
           color="inherit"
           onClick={onOpen}
-          sx={{ position: 'absolute', right: '8%', bottom: '10%' }}
+          sx={{ position: 'absolute', right: '0.75rem', bottom: '0.75rem' }}
         >
           {t(EditAccommodation.ShowAllImages)}
         </Button>

@@ -46,7 +46,9 @@
       "accommodation_description_max_length": "Description must be less than 1000 characters",
       "accommodation_address_country_min_length": "Country should not be empty",
       "accommodation_address_city_min_length": "City should not be empty",
-      "accommodation_address_street_min_length": "Street must be at least 3 characters"
+      "accommodation_address_street_min_length": "Street must be at least 3 characters",
+
+      "language_update": "Error updating language"
     },
 
     "home_ui": {
