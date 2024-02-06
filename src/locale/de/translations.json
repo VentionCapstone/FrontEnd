@@ -46,7 +46,9 @@
       "accommodation_description_max_length": "Beschreibung muss weniger als 1000 Zeichen enthalten",
       "accommodation_address_country_min_length": "Land muss mindestens 3 Zeichen enthalten",
       "accommodation_address_city_min_length": "Stadt muss mindestens 3 Zeichen enthalten",
-      "accommodation_address_street_min_length": "Straße muss mindestens 3 Zeichen enthalten"
+      "accommodation_address_street_min_length": "Straße muss mindestens 3 Zeichen enthalten",
+
+      "language_update": "Fehler beim Aktualisieren der Sprache"
     },
 
     "home_ui": {
