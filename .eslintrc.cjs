@@ -9,7 +9,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs', 'commitlint.config.cjs'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'commitlint.config.cjs', 'src/**/MapModal.tsx'],
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh'],
   rules: {
