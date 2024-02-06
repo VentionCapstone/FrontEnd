@@ -1,3 +1,4 @@
+import { YANDEX_API_URL } from '@src/api/api';
 import { LanguageCollection, PhoneCodesByCountry } from './constant.types';
 
 export const DATE_FORMAT = 'MM-DD-YYYY';
@@ -17,8 +18,9 @@ export const ACCEPT_UPLOAD_FILE_TYPE = ['jpg', 'gif', 'png'];
 export const DATE_MONTH_YEAR_FORMAT = 'MMMM YYYY';
 
 export const STATUSES = {
-  ACTIVE: 'ACTIVE',
   PENDING: 'PENDING',
+  ACTIVE: 'ACTIVE',
+  UPCOMING: 'UPCOMING',
   COMPLETED: 'COMPLETED',
 };
 
@@ -30,7 +32,7 @@ export const DEFAULT_FEMALE_IMAGE =
 
 export const PHONE_CODES_BY_COUNTRY: PhoneCodesByCountry[] = [
   { name: 'Uzbekistan', code: 998, numLength: 9 },
-  { name: 'Russia', code: 7, numLength: 11 },
+  { name: 'Russia', code: 7, numLength: 10 },
   { name: 'Kazakhstan', code: 7, numLength: 10 },
 ];
 
@@ -47,5 +49,23 @@ export const LANGUAGE_LIST: LanguageCollection[] = [
 export const DEFAULT_LANGUAGE = LANGUAGE_LIST[0];
 
 export const IMAGE_MAX_SIZE = 10 * 1024 * 1024;
+
+export const DEFAULT_LATITUDE = 41.2971;
+
+export const DEFAULT_LONGITUDE = 69.2815;
+
+export const DEFAULT_COORDINATES: [number, number] = [DEFAULT_LATITUDE, DEFAULT_LONGITUDE];
+
+export const SEARCH_ALLOWED_LENGTH = 2;
+
+export const DEFAULT_ZOOM = 15;
+
+export const YANDEX_MAP_QUERY = {
+  apikey: YANDEX_API_URL,
+  load: 'package.full',
+  lang: 'en_US',
+} as const;
+
+export const YANDEX_MAP_CONTROL = ['zoomControl', 'fullscreenControl'];
 
 export const PROJECT_NAME = 'StayHop';

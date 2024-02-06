@@ -1,23 +1,24 @@
-import { Button, Grid, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 
 import useGetSingleAccommodationQuery from '@src/api/queries/accommodation/useGetSingleAccommodationQuery';
 import BookingForm from '@src/components/booking/BookingForm';
-import ShowPhotos from '@src/components/full-view-accommodation/full-view-accommodation';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import DataFetchError from '@src/components/shared/DataFetchError';
 import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
 import { ROUTES } from '@src/config/routes.config';
 import { AmenitySetting } from '@src/types/amenity.types';
+
 import { EditAccommodation, ErrorTypes } from '@src/types/i18n.types';
-import { getValueFromLocalStorage, handleErrorInImage, selectOnlyTrueAmenities } from '@src/utils';
-import { useTranslation } from 'react-i18next';
+import { getValueFromLocalStorage, selectOnlyTrueAmenities } from '@src/utils';
 import YandexMap from '../../components/shared/YandexMap';
 import { styles } from './Accommodation.styles';
 import AmenityList from './components/AmenityList';
+import ImagesList from './components/ImagesList';
 import OwnerCard from './components/OwnerCard';
 import { Reviews } from './components/Reviews';
 import { buildAmenityList } from './utils/amenityListBuilder';
@@ -27,14 +28,6 @@ function Accommodation() {
   const { id: accommodationId } = useParams();
 
   const [amenities, setAmenities] = useState<AmenitySetting[]>([]);
-  const [openDialog, setOpenDialog] = useState(false);
-
-  const handleOpenDialog = () => {
-    setOpenDialog(true);
-  };
-  const handleCloseDialog = () => {
-    setOpenDialog(false);
-  };
 
   const ownerId = getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.sub);
 
@@ -68,50 +61,10 @@ function Accommodation() {
     );
   }
 
-  const [image_1, image_2, image_3, image_4, image_5] = data.media;
-
   return (
     <Box>
-      <Grid container columnSpacing={2}>
-        <Grid onClick={handleOpenDialog} item xs={12} md={6} flex={1} sx={styles.image_left}>
-          <img src={image_1.imageUrl} alt={image_1.accommodationId} onError={handleErrorInImage} />
-        </Grid>
-        <Grid onClick={handleOpenDialog} item container spacing={2} flex={1} sx={styles.image_list}>
-          <Grid item md={6}>
-            <img
-              src={image_2.imageUrl}
-              alt={image_2.accommodationId}
-              onError={handleErrorInImage}
-            />
-          </Grid>
-          <Grid item md={6} sx={styles.image_right_top}>
-            <img
-              src={image_3.imageUrl}
-              alt={image_3.accommodationId}
-              onError={handleErrorInImage}
-            />
-          </Grid>
-          <Grid item md={6}>
-            <img
-              src={image_4.imageUrl}
-              alt={image_4.accommodationId}
-              onError={handleErrorInImage}
-            />
-          </Grid>
-          <Grid item md={6} sx={styles.image_right_bottom}>
-            <img
-              src={image_5.imageUrl}
-              alt={image_5.accommodationId}
-              onError={handleErrorInImage}
-            />
-          </Grid>
-          <ShowPhotos
-            id={accommodationId as string}
-            open={openDialog}
-            onClose={handleCloseDialog}
-          />
-        </Grid>
-      </Grid>
+      <ImagesList images={data.media} />
+
       <Box sx={styles.content}>
         <Box flex={0.6}>
           <Box>
@@ -147,7 +100,6 @@ function Accommodation() {
                 sx={{
                   'backgroundColor': 'primary.main',
                   'fontWeight': 'bold',
-                  'color': 'white',
                   '&:hover': {
                     backgroundColor: 'primary.dark',
                   },

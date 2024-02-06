@@ -5,7 +5,7 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { useCallback, useRef, useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useSearchParams } from 'react-router-dom';
 
 import LanguageIcon from '@mui/icons-material/Language';
 import { SelectChangeEvent } from '@mui/material';
@@ -21,6 +21,7 @@ import { BottomNav } from './BottomNavigation';
 import { TopNavMenu } from './TopNavMenu';
 import { mainNavigationStyles as styles } from './mainNavigation.styles';
 function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) {
+  const [searchParams] = useSearchParams();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { t } = useTranslation();
   const scrollWatcherRef = useRef<Element | null>(null);
@@ -69,7 +70,10 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
           <Stack direction={'row'} alignItems={'center'}>
             <Link
               component={RouterLink}
-              to={ROUTES.root}
+              to={{
+                pathname: ROUTES.root,
+                search: searchParams.toString(),
+              }}
               sx={{ textDecoration: 'none' }}
               mr={'auto'}
             >

@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
 import useUpdateAccountImageMutation from '@src/api/mutations/account/useUpdateAccountImageMutation';
+import BackButton from '@src/components/button/BackButton';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import { QUERY_KEYS, queryClient } from '@src/config/react-query.config';
 import { useAppSelector } from '@src/hooks/redux-hooks';
@@ -88,9 +89,11 @@ function PersonalInfo() {
 
   return (
     <>
-      <Typography mb={{ xs: 4, md: 6, lg: 10 }} variant={'heading'}>
-        {t(AccountEditPageInfo.personal_info)}
-      </Typography>
+      <Stack direction={'row'} gap={4} alignItems={'center'} mb={{ xs: 6, md: 8, lg: 10 }}>
+        <BackButton />
+
+        <Typography variant={'heading'}>{t(AccountEditPageInfo.personal_info)}</Typography>
+      </Stack>
 
       <Stack direction={{ md: 'row' }}>
         <Box mr={{ md: 12, lg: 20 }} mb={{ xs: 12 }}>

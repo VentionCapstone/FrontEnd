@@ -73,7 +73,7 @@ export const uploadMediaStyles = {
       sm: '26%',
       md: '20%',
       lg: '12%',
-      xl: '10%',
+      xl: '14%',
     },
     ml: 'auto',
   },

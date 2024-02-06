@@ -15,6 +15,7 @@ import { ROUTES } from '@src/config/routes.config';
 import {
   AccommodationFormProps,
   AccommodationReq,
+  SelectAddress,
   accommodationSchema,
 } from '@src/types/accommodation.types';
 import { Coordinates } from '@src/types/global.types';
@@ -55,7 +56,7 @@ function AccommodationForm({
       description: '',
       allowedNumberOfPeople: 1,
       availableFrom: String(new Date()),
-      availableTo: String(new Date(dayjs().add(1, 'week').toDate())),
+      availableTo: String(new Date(dayjs().add(2, 'week').toDate())),
       numberOfRooms: 1,
       available: true,
       price: 1,
@@ -64,7 +65,7 @@ function AccommodationForm({
         street: '',
         city: '',
         country: '',
-        zipCode: '',
+        zipCode: '1',
         latitude: 0,
         longitude: 0,
       },
@@ -72,9 +73,8 @@ function AccommodationForm({
     values: accommodation as AccommodationReq,
   });
 
-  const latitudeWatch = watch('address.latitude');
-  const longitudeWatch = watch('address.longitude');
-  const isDeleted: boolean = !!accommodation?.isDeleted;
+  const addressWatch = watch('address');
+  const isDeleted: boolean = accommodation?.isDeleted || false;
 
   const navigateToRoot = () => {
     navigate(ROUTES.accommodations.root);
@@ -126,6 +126,18 @@ function AccommodationForm({
     });
   };
 
+  const handleAddressChange = (address: SelectAddress) => {
+    setValue('address.city', address.city, {
+      shouldDirty: true,
+    });
+    setValue('address.country', address.country, {
+      shouldDirty: true,
+    });
+    setValue('address.street', address.street, {
+      shouldDirty: true,
+    });
+  };
+
   return (
     <Box>
       <Typography variant="lg" textAlign="center" pb={4} fontWeight={600}>
@@ -136,9 +148,9 @@ function AccommodationForm({
         <FormFields
           control={control}
           errors={errors}
-          latitudeWatch={latitudeWatch}
-          longitudeWatch={longitudeWatch}
+          addressWatch={addressWatch}
           handleCoordsChange={handleCoordsChange}
+          handleAddressChange={handleAddressChange}
         />
         <Box
           display="flex"
@@ -150,7 +162,14 @@ function AccommodationForm({
               <LoadingButton
                 variant="contained"
                 size="large"
-                color={isDeleted ? 'primary' : 'secondary'}
+                sx={{
+                  'fontWeight': 600,
+                  'mt': 4,
+                  'bgcolor': 'secondary.main',
+                  ':hover': {
+                    bgcolor: 'secondary.dark',
+                  },
+                }}
                 onClick={isDeleted ? handleRestore : toggleOpen}
                 loading={isDeleted ? isRestorePending : isDeletePending}
               >

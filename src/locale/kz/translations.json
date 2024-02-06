@@ -32,7 +32,21 @@
       "profile_image_change": "Профиль суреті сәтті өзгертілді",
 
       "image_failed_convert": "Суретті түрлендіру мүмкін болмады!",
-      "image_invalid_selection": "10 МБ-тан аспайтын жарамды суретті таңдаңыз!"
+      "image_invalid_selection": "10 МБ-тан аспайтын жарамды суретті таңдаңыз!",
+
+      "accommodation_title_min_length": "Тақырып кемінде 5 тауар атауы болуы керек",
+      "accommodation_title_max_length": "Тақырып 100 тауардан аз болуы керек",
+      "accommodation_square_meters_max": "Квадрат метрлер 1000-дан аз болуы керек",
+      "accommodation_number_rooms_min": "Көмекші көмбезді таңдау кемінде 1 болуы керек",
+      "accommodation_number_rooms_max": "Көмекші көмбезді таңдау 50-ден аз болуы керек",
+      "accommodation_price_max": "Баға 10000-дан аз болуы керек",
+      "accommodation_allowed_number_people_min": "Рұқсат етілген адам саны кемінде 1 болуы керек",
+      "accommodation_allowed_number_people_max": "Рұқсат етілген адам саны 50-ден аз болуы керек",
+      "accommodation_description_min_length": "Сипаттама кемінде 10 тауар болуы керек",
+      "accommodation_description_max_length": "Сипаттама 1000 тауардан аз болуы керек",
+      "accommodation_address_country_min_length": "Ел кемінде 3 тауар болуы керек",
+      "accommodation_address_city_min_length": "Қала кемінде 3 тауар болуы керек",
+      "accommodation_address_street_min_length": "Көше кемінде 3 тауар болуы керек"
     },
 
     "home_ui": {
@@ -329,6 +343,7 @@
       "pending": "Күтууда",
       "active": "Әрекетті",
       "completed": "Аяқталды",
+      "upcoming": "Aлдағы",
       "status": "Мәртебе",
       "total": "Жалпы",
       "check_in": "Кіру",
@@ -374,7 +389,11 @@
       "create": "Жасау",
       "edit": "Өңдеу",
       "accommodation": "Тұрау",
-      "amenities": "имареттер"
+      "amenities": "имареттер",
+      "search_place": "Орын іздеу",
+      "selected_place": "Таңдалған орын",
+      "location": "Орналасу",
+      "no_results": "Нәтижелер табылмады"
     },
     "toast": {
       "error_session_expired": "Сессиясы аяқталды, қайта кіру өтінеміз",
@@ -397,7 +416,8 @@
       "are_you_sure_del": "Сіз салымды өшіргіңіз келгеніне сенімдісіз бе?",
       "yes": "Иә",
       "no": "Жоқ",
-      "restore": "Қалпына келтіру"
+      "restore": "Қалпына келтіру",
+      "close": "жабық"
     }
   }
 }

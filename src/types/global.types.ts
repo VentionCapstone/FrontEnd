@@ -1,3 +1,8 @@
 export type Coordinates = [number, number];
 
-export type STATUS = 'PENDING' | 'ACTIVE' | 'COMPLETED';
+export enum Status {
+  pending = 'PENDING',
+  upcoming = 'UPCOMING',
+  active = 'ACTIVE',
+  completed = 'COMPLETED',
+}
