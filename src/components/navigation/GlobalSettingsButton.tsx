@@ -12,13 +12,14 @@ import { useAppSelector } from '@src/hooks/redux-hooks';
 import i18n from '@src/i18n/i18n';
 import { ErrorTypes } from '@src/types/i18n.types';
 import { setValueToLocalStorage } from '@src/utils';
+import { getProfile } from '@src/stores/slices/authSlice';
 
 const GlobalSettingsButton = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const open = Boolean(anchorEl);
   const { t } = useTranslation();
 
-  const profile = useAppSelector((state) => state.auth?.user?.profile);
+  const profile = useAppSelector(getProfile);
   const profileId = profile?.id ?? '';
   const { mutate } = useEditAccountMutation(profileId);
 

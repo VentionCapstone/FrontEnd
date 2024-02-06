@@ -8,6 +8,7 @@ import { DATE_MONTH_YEAR_FORMAT } from '@src/constants';
 import { Owner } from '@src/types/accommodation.types';
 import { OwnerCardInfo } from '@src/types/i18n.types';
 import { useTranslation } from 'react-i18next';
+
 function OwnerCard({ owner }: { owner: Owner }) {
   const { t } = useTranslation();
   const { id, firstName, lastName, createdAt, profile, isVerified } = owner;
@@ -15,18 +16,23 @@ function OwnerCard({ owner }: { owner: Owner }) {
   return (
     <Box
       sx={{
-        m: '5% auto',
         maxWidth: '400px',
+        width: '100%',
         borderRadius: 3,
-        border: '1px solid #b0b0b0 ',
-        p: '1.5em',
-        boxShadow: 5,
+        border: '1px solid',
+        borderColor: 'secondary2.light',
+        p: {
+          xs: 4,
+          md: 6,
+        },
+        boxShadow: 3,
       }}
     >
       <Typography variant="h6">{t(OwnerCardInfo.title)}</Typography>
+
       <Link to={ROUTES.host.details(id)} style={{ textDecoration: 'none' }}>
         <Box display="flex" alignItems="center" mt={3} gap={2}>
-          <Box sx={{ position: 'relative' }}>
+          <Box sx={{ position: 'relative', flexShrink: 0 }}>
             <Box
               component={'img'}
               src={profile.imageUrl}
@@ -39,6 +45,7 @@ function OwnerCard({ owner }: { owner: Owner }) {
                 objectFit: 'cover',
               }}
             />
+
             {isVerified && (
               <Box
                 component={VerifiedIcon}

@@ -26,7 +26,7 @@ export const Review = ({ review }: { review: ReviewType }) => {
     <Box>
       <Box
         display={'grid'}
-        gridTemplateColumns={'min-content auto'}
+        gridTemplateColumns={'max-content auto'}
         alignItems={'center'}
         columnGap={{ xs: 3, md: 4 }}
         rowGap={{ xs: 2, md: 3 }}
