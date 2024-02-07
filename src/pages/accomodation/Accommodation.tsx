@@ -1,4 +1,4 @@
-import { Button, Typography } from '@mui/material';
+import { Button, Divider, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -86,30 +86,24 @@ function Accommodation() {
 
           <AmenityList amenities={amenities} />
         </Box>
-        <Box flex={0.4}>
+
+        <Stack flex={0.4} alignItems={{ xs: 'center', lg: 'flex-end' }} gap={6}>
           {ownerId === data.ownerId ? (
             <>
-              <Box
+              <Button
+                variant="contained"
+                size="large"
                 sx={{
-                  display: 'flex',
-                  justifyContent: 'flex-end',
+                  'backgroundColor': 'primary.main',
+                  'fontWeight': 'bold',
+                  '&:hover': {
+                    backgroundColor: 'primary.dark',
+                  },
                 }}
+                onClick={() => handleEditClick(data.id)}
               >
-                <Button
-                  variant="contained"
-                  size="large"
-                  sx={{
-                    'backgroundColor': 'primary.main',
-                    'fontWeight': 'bold',
-                    '&:hover': {
-                      backgroundColor: 'primary.dark',
-                    },
-                  }}
-                  onClick={() => handleEditClick(data.id)}
-                >
-                  {t(EditAccommodation.EditAccommodation)}
-                </Button>
-              </Box>
+                {t(EditAccommodation.EditAccommodation)}
+              </Button>
               <OwnerCard owner={data.owner} />
             </>
           ) : (
@@ -117,12 +111,16 @@ function Accommodation() {
               <BookingForm accomodationId={accommodationId} price={data.price} />
             </>
           )}
-        </Box>
+        </Stack>
       </Box>
+
+      <Divider sx={{ my: 8 }} />
+
       <Reviews accommodationId={accommodationId || ''} />
-      <Box mt={'2rem'}>
-        <YandexMap latitude={data.address.latitude} longitude={data.address.longitude} />
-      </Box>
+
+      <Divider sx={{ my: 8 }} />
+
+      <YandexMap latitude={data.address.latitude} longitude={data.address.longitude} />
     </Box>
   );
 }

@@ -46,7 +46,9 @@
       "accommodation_description_max_length": "Описание должно содержать менее 1000 символов",
       "accommodation_address_country_min_length": "Страна не должна быть пустой",
       "accommodation_address_city_min_length": "Город не должен быть пустым",
-      "accommodation_address_street_min_length": "Улица должна содержать не менее 3 символов"
+      "accommodation_address_street_min_length": "Улица должна содержать не менее 3 символов",
+
+      "language_update": "Ошибка обновления языка"
     },
 
     "home_ui": {

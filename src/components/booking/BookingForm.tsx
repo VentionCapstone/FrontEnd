@@ -119,15 +119,15 @@ const BookingForm: React.FC<BookingFormProps> = ({ accomodationId, price }) => {
   return (
     <Box
       sx={{
-        m: '5% auto',
         maxWidth: '400px',
         borderRadius: 3,
-        border: '1px solid #b0b0b0 ',
+        border: '1px solid',
+        borderColor: 'secondary2.light',
         p: {
-          xs: '1em',
-          md: '1.5em',
+          xs: 4,
+          md: 6,
         },
-        boxShadow: 5,
+        boxShadow: 3,
       }}
     >
       {errorMessage && (

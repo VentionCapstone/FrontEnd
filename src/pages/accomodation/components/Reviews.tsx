@@ -85,17 +85,27 @@ export const Reviews = ({ accommodationId }: { accommodationId: string }) => {
       {/* Modal */}
       <Dialog open={open} onClose={toggleModal} maxWidth={'md'} fullScreen={mobileScreen}>
         <Stack
+          direction={{ xs: 'row-reverse', md: 'row' }}
           sx={{
             px: { xs: 6, md: 8 },
             py: { xs: 2, md: 4 },
+            alignItems: 'center',
             borderBottom: '1px solid',
             borderColor: 'secondary2.light',
           }}
         >
+          <Typography
+            fontWeight={'fontWeightMedium'}
+            mr={{ xs: 'auto', md: 0 }}
+            fontSize={'1.25rem'}
+          >
+            Reviews
+          </Typography>
+
           <IconButton
             aria-label="close"
             onClick={toggleModal}
-            sx={{ ml: { xs: 0, md: 'auto' }, mr: { xs: 'auto', md: 0 }, padding: 0 }}
+            sx={{ ml: { xs: 0, md: 'auto' }, padding: 0 }}
           >
             {mobileScreen ? <KeyboardArrowLeftRoundedIcon fontSize="large" /> : <CloseIcon />}
           </IconButton>

@@ -1,7 +1,5 @@
-import LanguageIcon from '@mui/icons-material/Language';
 import Box from '@mui/material/Box';
 import Container, { ContainerProps } from '@mui/material/Container';
-import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -13,14 +11,15 @@ import { ROUTES } from '@src/config/routes.config';
 import { PROJECT_NAME } from '@src/constants';
 import useIntersectionObserver from '@src/hooks/useIntersectionObserver';
 import { BottomNav } from './BottomNavigation';
+import GlobalSettingsButton from './GlobalSettingsButton';
 import { TopNavMenu } from './TopNavMenu';
 import { mainNavigationStyles as styles } from './mainNavigation.styles';
 
 function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) {
   const [searchParams] = useSearchParams();
   const scrollWatcherRef = useRef<Element | null>(null);
-  const { entry } = useIntersectionObserver(scrollWatcherRef);
 
+  const { entry } = useIntersectionObserver(scrollWatcherRef);
   const dinamicShadow = entry?.isIntersecting ? 'none' : '0px 6px 16px rgba(0, 0, 0, 0.12)';
 
   return (
@@ -58,12 +57,7 @@ function MainNavigation({ maxWidth }: { maxWidth: ContainerProps['maxWidth'] }) 
               </Stack>
             </Link>
 
-            <IconButton
-              aria-label="global-settings"
-              sx={{ mr: 4, color: 'secondary.main', padding: 1 }}
-            >
-              <LanguageIcon sx={{ fontSize: '1.5rem' }} />
-            </IconButton>
+            <GlobalSettingsButton />
 
             <TopNavMenu />
           </Stack>

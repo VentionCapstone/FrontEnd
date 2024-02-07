@@ -46,7 +46,9 @@
       "accommodation_description_max_length": "Tavsif 1000 belgidan kam bo'lishi kerak",
       "accommodation_address_country_min_length": "Mamlakat kamida 3 belgidan iborat bo'lishi kerak",
       "accommodation_address_city_min_length": "Shahar kamida 3 belgidan iborat bo'lishi kerak",
-      "accommodation_address_street_min_length": "Ko'cha kamida 3 belgidan iborat bo'lishi kerak"
+      "accommodation_address_street_min_length": "Ko'cha kamida 3 belgidan iborat bo'lishi kerak",
+
+      "language_update": "Tilni yangilashda xatolik"
     },
 
     "home_ui": {

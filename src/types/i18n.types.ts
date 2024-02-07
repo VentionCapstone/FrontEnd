@@ -34,6 +34,9 @@ export enum ErrorTypes {
   accommodation_address_country_min_length = 'errors.accommodation_address_country_min_length',
   accommodation_address_city_min_length = 'errors.accommodation_address_city_min_length',
   accommodation_address_street_min_length = 'errors.accommodation_address_street_min_length',
+
+  //language
+  language_update = 'errors.language_update',
 }
 
 export enum SearchTexts {

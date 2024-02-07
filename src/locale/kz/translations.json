@@ -46,7 +46,9 @@
       "accommodation_description_max_length": "Сипаттама 1000 тауардан аз болуы керек",
       "accommodation_address_country_min_length": "Ел кемінде 3 тауар болуы керек",
       "accommodation_address_city_min_length": "Қала кемінде 3 тауар болуы керек",
-      "accommodation_address_street_min_length": "Көше кемінде 3 тауар болуы керек"
+      "accommodation_address_street_min_length": "Көше кемінде 3 тауар болуы керек",
+
+      "language_update": "Тілді жаңарту кезінде қателік"
     },
 
     "home_ui": {

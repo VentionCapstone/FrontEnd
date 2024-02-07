@@ -77,7 +77,7 @@ export default function ImagesList({ images }: { images: Media[] }) {
         </>
       ) : (
         <ImageList
-          sx={{ width: '100%', height: '100%', position: 'relative' }}
+          sx={{ width: '100%', height: '100%', position: 'relative', borderRadius: 3 }}
           variant="quilted"
           cols={4}
           rowHeight={100}

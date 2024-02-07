@@ -138,11 +138,13 @@ function Main() {
         />
       )}
 
-      <MapModal
-        open={openMapModal}
-        setOpen={setOpenMapModal}
-        searchParamsAsObject={searchParamsAsObject}
-      />
+      {openMapModal && (
+        <MapModal
+          open={openMapModal}
+          setOpen={setOpenMapModal}
+          searchParamsAsObject={searchParamsAsObject}
+        />
+      )}
     </Box>
   );
 }
