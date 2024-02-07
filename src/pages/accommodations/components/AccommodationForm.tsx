@@ -156,6 +156,7 @@ function AccommodationForm({
           display="flex"
           justifyContent={isNew ? 'flex-end' : 'space-between'}
           alignItems={'center'}
+          gap={4}
         >
           {!isNew && (
             <>
@@ -163,11 +164,11 @@ function AccommodationForm({
                 variant="contained"
                 size="large"
                 sx={{
+                  'bgcolor': isDeleted ? 'success.light' : 'error.light',
                   'fontWeight': 600,
                   'mt': 4,
-                  'bgcolor': 'secondary.main',
                   ':hover': {
-                    bgcolor: 'secondary.dark',
+                    bgcolor: isDeleted ? 'success.main' : 'error.main',
                   },
                 }}
                 onClick={isDeleted ? handleRestore : toggleOpen}
@@ -184,6 +185,7 @@ function AccommodationForm({
               gap: 2,
               justifyContent: 'space-between',
               alignItems: 'center',
+              flexShrink: 0,
             }}
           >
             <Button size="large" sx={{ mt: 4 }} variant="outlined" onClick={navigateToRoot}>

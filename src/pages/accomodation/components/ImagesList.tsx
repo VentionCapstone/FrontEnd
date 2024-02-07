@@ -39,7 +39,13 @@ export default function ImagesList({ images }: { images: Media[] }) {
         <ImageListItem key={index} cols={cols} rows={rows} onClick={handleOpenDialog}>
           <Box
             component={'img'}
-            sx={{ objectFit: 'cover', cursor: 'pointer', height, width: '100%' }}
+            sx={{
+              objectFit: 'cover',
+              cursor: 'pointer',
+              height,
+              width: '100%',
+              borderRadius: { xs: 3, md: 0 },
+            }}
             {...getImageSources({ url, rows, cols })}
             loading="lazy"
             onError={handleErrorInImage}
