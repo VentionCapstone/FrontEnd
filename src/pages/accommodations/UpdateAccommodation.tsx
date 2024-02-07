@@ -4,9 +4,11 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { useGetHostedAccommodation } from '@src/api/queries/accommodations/useGetHostedAccommodtion';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import DataFetchError from '@src/components/shared/DataFetchError';
+
+import { AccommodationSteps } from '@src/types/global.types';
 import EditAmenities from '../accomodation/components/EditAmenities';
 import AccommodationForm from './components/AccommodationForm';
-import UploadMedia from './components/UploadMedia';
+import UpdateMedia from './components/UpdateMedia';
 
 function UpdateAccommodation() {
   const { id } = useParams();
@@ -14,7 +16,10 @@ function UpdateAccommodation() {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const currentStep = Number(searchParams.get('currentStep')) || 1;
+  const currentStepRaw = searchParams.get('currentStep');
+  const currentStep = currentStepRaw
+    ? (currentStepRaw as unknown as AccommodationSteps)
+    : AccommodationSteps.accommodationForm;
   const accommodationId = searchParams.get('accommodationId') || '';
 
   const handleSearchParamsChange = (params: URLSearchParams) => {
@@ -31,20 +36,21 @@ function UpdateAccommodation() {
 
   return (
     <Box>
-      {currentStep == 1 && (
+      {currentStep == AccommodationSteps.accommodationForm && (
         <AccommodationForm
           handleSearchParamsChange={handleSearchParamsChange}
           accommodation={accommodation.data}
           isNew={false}
         />
       )}
-      {currentStep == 2 && (
-        <UploadMedia
+      {currentStep == AccommodationSteps.media && (
+        <UpdateMedia
           accommodationId={accommodationId}
           handleSearchParamsChange={handleSearchParamsChange}
+          media={accommodation.data.media}
         />
       )}
-      {currentStep == 3 && (
+      {currentStep == AccommodationSteps.amenities && (
         <EditAmenities
           accommodationId={accommodationId}
           isNew={false}

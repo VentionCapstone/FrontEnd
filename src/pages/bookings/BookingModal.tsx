@@ -119,9 +119,7 @@ export default function BookingModal({ open, handleClose, details }: Props) {
         {details.status === Status.pending && (
           <Box width="100%" display="flex" justifyContent="flex-end" mt={2} onClick={handlePay}>
             <Button fullWidth variant="contained" color="primary">
-              <Typography variant="sm" fontWeight="700" color="white">
-                {t(BookingsRoute.pay_now)}
-              </Typography>
+              {t(BookingsRoute.pay_now)}
             </Button>
           </Box>
         )}

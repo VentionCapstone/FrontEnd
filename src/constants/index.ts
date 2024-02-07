@@ -13,7 +13,7 @@ export const MAX_UPLOAD_FILE_NUMBER = 20;
 
 export const MINUMUM_UPLOAD_FILE_NUMBER = 5;
 
-export const ACCEPT_UPLOAD_FILE_TYPE = ['jpg', 'gif', 'png'];
+export const ACCEPT_UPLOAD_FILE_TYPE = ['jpg', 'jpeg', 'png'];
 
 export const DATE_MONTH_YEAR_FORMAT = 'MMMM YYYY';
 

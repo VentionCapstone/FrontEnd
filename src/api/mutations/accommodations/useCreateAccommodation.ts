@@ -8,6 +8,7 @@ import {
   AccommodationSearchParamsType,
   AccommodationSingleResponse,
 } from '@src/types/accommodation.types';
+import { AccommodationSteps } from '@src/types/global.types';
 
 export const useCreateAccommodation = ({
   handleSearchParamsChange,
@@ -27,7 +28,10 @@ export const useCreateAccommodation = ({
 
     onSuccess: async (data) => {
       await queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.query.accommodations] });
-      const newParams = new URLSearchParams({ currentStep: '2', accommodationId: data.id });
+      const newParams = new URLSearchParams({
+        currentStep: AccommodationSteps.media.toString(),
+        accommodationId: data.id,
+      });
       handleSearchParamsChange(newParams);
     },
   });

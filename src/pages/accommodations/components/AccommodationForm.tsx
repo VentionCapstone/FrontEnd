@@ -18,7 +18,7 @@ import {
   SelectAddress,
   accommodationSchema,
 } from '@src/types/accommodation.types';
-import { Coordinates } from '@src/types/global.types';
+import { AccommodationSteps, Coordinates } from '@src/types/global.types';
 
 import { CreateAccommodationRoute, EditAccommodation } from '@src/types/i18n.types';
 import { useTranslation } from 'react-i18next';
@@ -95,7 +95,12 @@ function AccommodationForm({
       availableFrom: dayjs(data.availableFrom).toISOString(),
       availableTo: dayjs(data.availableTo).toISOString(),
     });
-    handleSearchParamsChange(new URLSearchParams({ currentStep: '2', accommodationId: id }));
+    handleSearchParamsChange(
+      new URLSearchParams({
+        currentStep: AccommodationSteps.media.toString(),
+        accommodationId: id,
+      })
+    );
   };
 
   const handleDelete = useCallback(() => {
@@ -156,6 +161,7 @@ function AccommodationForm({
           display="flex"
           justifyContent={isNew ? 'flex-end' : 'space-between'}
           alignItems={'center'}
+          gap={4}
         >
           {!isNew && (
             <>
@@ -164,10 +170,10 @@ function AccommodationForm({
                 size="large"
                 sx={{
                   'fontWeight': 600,
+                  'bgcolor': isDeleted ? 'success.light' : 'error.light',
                   'mt': 4,
-                  'bgcolor': 'secondary.main',
                   ':hover': {
-                    bgcolor: 'secondary.dark',
+                    bgcolor: isDeleted ? 'success.main' : 'error.main',
                   },
                 }}
                 onClick={isDeleted ? handleRestore : toggleOpen}
@@ -184,6 +190,7 @@ function AccommodationForm({
               gap: 2,
               justifyContent: 'space-between',
               alignItems: 'center',
+              flexShrink: 0,
             }}
           >
             <Button size="large" sx={{ mt: 4 }} variant="outlined" onClick={navigateToRoot}>

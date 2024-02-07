@@ -139,7 +139,7 @@ export default function ShowPhotos({ id, open, onClose, onOpen, isMobile }: Show
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            height: '80vh',
+            height: isMobile ? '80vh' : '60vh',
           }}
         >
           {data && (
@@ -149,7 +149,7 @@ export default function ShowPhotos({ id, open, onClose, onOpen, isMobile }: Show
                   ? { width: '100vw' }
                   : {
                       width: '80vw',
-                      height: '100vh',
+                      height: 'auto',
                       marginTop: '15rem',
                     }
               }

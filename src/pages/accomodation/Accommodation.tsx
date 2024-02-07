@@ -29,7 +29,7 @@ function Accommodation() {
 
   const [amenities, setAmenities] = useState<AmenitySetting[]>([]);
 
-  const ownerId = getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.sub);
+  const ownerId = getValueFromLocalStorage<string>(LOCAL_STORAGE_KEYS.sub)?.toString();
 
   const { isPending, data, isError } = useGetSingleAccommodationQuery(accommodationId as string);
 
@@ -91,11 +91,8 @@ function Accommodation() {
           {ownerId === data.ownerId ? (
             <Button
               variant="contained"
+              size="large"
               sx={{
-                'width': {
-                  xs: '100%',
-                  md: 'auto',
-                },
                 'backgroundColor': 'primary.main',
                 'fontWeight': 'bold',
                 '&:hover': {
@@ -107,11 +104,9 @@ function Accommodation() {
               {t(EditAccommodation.EditAccommodation)}
             </Button>
           ) : (
-            <>
-              <BookingForm accomodationId={accommodationId} price={data.price} />
-              <OwnerCard owner={data.owner} />
-            </>
+            <BookingForm accomodationId={accommodationId} price={data.price} />
           )}
+          <OwnerCard owner={data.owner} />
         </Stack>
       </Box>
 
