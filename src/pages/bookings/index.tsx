@@ -63,7 +63,13 @@ export default function Bookings() {
       </Stack>
 
       <Box sx={{ borderBottom: 1, borderColor: 'secondary2.light', mb: 3 }}>
-        <Tabs value={bookingStatus} onChange={handleTabChange} aria-label="basic tabs example">
+        <Tabs
+          value={bookingStatus}
+          onChange={handleTabChange}
+          variant="scrollable"
+          scrollButtons="auto"
+          aria-label="basic tabs example"
+        >
           {a11yProps.map((props, index) => (
             <Tab key={index} {...props} />
           ))}
