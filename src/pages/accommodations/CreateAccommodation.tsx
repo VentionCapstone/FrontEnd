@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 
-import { ACCOMMODATION_STEPS } from '@src/constants';
+import { AccommodationSteps } from '@src/types/global.types';
 import EditAmenities from '../accomodation/components/EditAmenities';
 import AccommodationForm from './components/AccommodationForm';
 import AddMedia from './components/AddMedia';
@@ -9,7 +9,10 @@ import AddMedia from './components/AddMedia';
 function CreateAccommodation() {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const currentStep = searchParams.get('currentStep') || ACCOMMODATION_STEPS.accommodationForm;
+  const currentStepRaw = searchParams.get('currentStep');
+  const currentStep = currentStepRaw
+    ? (currentStepRaw as unknown as AccommodationSteps)
+    : AccommodationSteps.accommodationForm;
   const accommodationId = searchParams.get('accommodationId') || '';
 
   const handleSearchParamsChange = (params: URLSearchParams) => {
@@ -18,16 +21,16 @@ function CreateAccommodation() {
 
   return (
     <Box>
-      {currentStep == ACCOMMODATION_STEPS.accommodationForm && (
+      {currentStep == AccommodationSteps.accommodationForm && (
         <AccommodationForm handleSearchParamsChange={handleSearchParamsChange} isNew={true} />
       )}
-      {currentStep == ACCOMMODATION_STEPS.media && (
+      {currentStep == AccommodationSteps.media && (
         <AddMedia
           accommodationId={accommodationId}
           handleSearchParamsChange={handleSearchParamsChange}
         />
       )}
-      {currentStep == ACCOMMODATION_STEPS.amenities && (
+      {currentStep == AccommodationSteps.amenities && (
         <EditAmenities accommodationId={accommodationId} isNew={true} />
       )}
     </Box>

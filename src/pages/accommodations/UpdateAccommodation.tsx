@@ -5,7 +5,7 @@ import { useGetHostedAccommodation } from '@src/api/queries/accommodations/useGe
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import DataFetchError from '@src/components/shared/DataFetchError';
 
-import { ACCOMMODATION_STEPS } from '@src/constants';
+import { AccommodationSteps } from '@src/types/global.types';
 import EditAmenities from '../accomodation/components/EditAmenities';
 import AccommodationForm from './components/AccommodationForm';
 import UpdateMedia from './components/UpdateMedia';
@@ -16,7 +16,10 @@ function UpdateAccommodation() {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const currentStep = searchParams.get('currentStep') || ACCOMMODATION_STEPS.accommodationForm;
+  const currentStepRaw = searchParams.get('currentStep');
+  const currentStep = currentStepRaw
+    ? (currentStepRaw as unknown as AccommodationSteps)
+    : AccommodationSteps.accommodationForm;
   const accommodationId = searchParams.get('accommodationId') || '';
 
   const handleSearchParamsChange = (params: URLSearchParams) => {
@@ -33,21 +36,21 @@ function UpdateAccommodation() {
 
   return (
     <Box>
-      {currentStep == ACCOMMODATION_STEPS.accommodationForm && (
+      {currentStep == AccommodationSteps.accommodationForm && (
         <AccommodationForm
           handleSearchParamsChange={handleSearchParamsChange}
           accommodation={accommodation.data}
           isNew={false}
         />
       )}
-      {currentStep == ACCOMMODATION_STEPS.media && (
+      {currentStep == AccommodationSteps.media && (
         <UpdateMedia
           accommodationId={accommodationId}
           handleSearchParamsChange={handleSearchParamsChange}
           media={accommodation.data.media}
         />
       )}
-      {currentStep == ACCOMMODATION_STEPS.amenities && (
+      {currentStep == AccommodationSteps.amenities && (
         <EditAmenities
           accommodationId={accommodationId}
           isNew={false}

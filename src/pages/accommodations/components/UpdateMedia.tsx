@@ -4,8 +4,8 @@ import { ImageListType } from 'react-images-uploading';
 import { Box } from '@mui/material';
 import useUpdateMediaAccommodationMutation from '@src/api/mutations/accommodations/useUpdateMediaAccommodationMutation';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
-import { ACCOMMODATION_STEPS } from '@src/constants';
 import { Media } from '@src/types/accommodation.types';
+import { AccommodationSteps } from '@src/types/global.types';
 import SingleImage from './SingleImage';
 import UploadImage from './UploadImage';
 import { uploadMediaStyles } from './styles';
@@ -31,7 +31,7 @@ function UpdateMedia({ accommodationId, handleSearchParamsChange, media }: Updat
     if (isSuccess) {
       handleSearchParamsChange(
         new URLSearchParams({
-          currentStep: ACCOMMODATION_STEPS.amenities,
+          currentStep: AccommodationSteps.amenities.toString(),
           accommodationId: accommodationId,
         })
       );
@@ -46,20 +46,18 @@ function UpdateMedia({ accommodationId, handleSearchParamsChange, media }: Updat
     [deletedImages, availableImages]
   );
 
+  if (isPending) {
+    return <LoadingPrimary height="60vh" />;
+  }
+
   return (
     <>
-      {isPending && <LoadingPrimary height="60vh" />}
-
-      {!isPending && (
-        <>
-          <Box sx={uploadMediaStyles.listOfAvailableImagesContainer}>
-            {availableImages.map(({ id, imageUrl }) => (
-              <SingleImage key={id} id={id} imageUrl={imageUrl} onDeleteImage={handleDeleteImage} />
-            ))}
-          </Box>
-          <UploadImage setImages={setImages} images={images} mutate={mutate} isNew={false} />
-        </>
-      )}
+      <Box sx={uploadMediaStyles.listOfAvailableImagesContainer}>
+        {availableImages.map(({ id, imageUrl }) => (
+          <SingleImage key={id} id={id} imageUrl={imageUrl} onDeleteImage={handleDeleteImage} />
+        ))}
+      </Box>
+      <UploadImage setImages={setImages} images={images} mutate={mutate} isNew={false} />
     </>
   );
 }

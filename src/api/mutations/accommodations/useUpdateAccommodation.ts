@@ -20,6 +20,9 @@ export const useUpdateAccommodation = () => {
       await queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.query.accommodation, res.data?.data.id],
       });
+      await queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.query.hostedAccommodation, res.data?.data.id],
+      });
     },
   });
 

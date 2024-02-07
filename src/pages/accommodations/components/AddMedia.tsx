@@ -3,7 +3,7 @@ import { ImageListType } from 'react-images-uploading';
 
 import useUploadMediaAccommodationMutation from '@src/api/mutations/accommodations/useUploadMediaAccommodationMutation';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
-import { ACCOMMODATION_STEPS } from '@src/constants';
+import { AccommodationSteps } from '@src/types/global.types';
 import UploadImage from './UploadImage';
 
 type AddMediaProps = {
@@ -23,22 +23,18 @@ function AddMedia({ accommodationId, handleSearchParamsChange }: AddMediaProps) 
     if (isSuccess) {
       handleSearchParamsChange(
         new URLSearchParams({
-          currentStep: ACCOMMODATION_STEPS.amenities,
+          currentStep: AccommodationSteps.amenities.toString(),
           accommodationId: accommodationId,
         })
       );
     }
   }, [isSuccess, accommodationId, handleSearchParamsChange]);
 
-  return (
-    <>
-      {isPending && <LoadingPrimary height="60vh" />}
+  if (isPending) {
+    return <LoadingPrimary height="60vh" />;
+  }
 
-      {!isPending && (
-        <UploadImage setImages={setImages} images={images} mutate={mutate} isNew={true} />
-      )}
-    </>
-  );
+  return <UploadImage setImages={setImages} images={images} mutate={mutate} isNew />;
 }
 
 export default AddMedia;

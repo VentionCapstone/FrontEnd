@@ -18,9 +18,8 @@ import {
   SelectAddress,
   accommodationSchema,
 } from '@src/types/accommodation.types';
-import { Coordinates } from '@src/types/global.types';
+import { AccommodationSteps, Coordinates } from '@src/types/global.types';
 
-import { ACCOMMODATION_STEPS } from '@src/constants';
 import { CreateAccommodationRoute, EditAccommodation } from '@src/types/i18n.types';
 import { useTranslation } from 'react-i18next';
 import FormFields from './FormFields';
@@ -98,7 +97,7 @@ function AccommodationForm({
     });
     handleSearchParamsChange(
       new URLSearchParams({
-        currentStep: ACCOMMODATION_STEPS.media,
+        currentStep: AccommodationSteps.media.toString(),
         accommodationId: id,
       })
     );

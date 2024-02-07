@@ -6,3 +6,9 @@ export enum Status {
   active = 'ACTIVE',
   completed = 'COMPLETED',
 }
+
+export enum AccommodationSteps {
+  accommodationForm = 1,
+  media,
+  amenities,
+}

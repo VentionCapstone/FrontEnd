@@ -88,31 +88,33 @@ function Accommodation() {
         </Box>
         <Box flex={0.4}>
           {ownerId === data.ownerId ? (
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-              }}
-            >
-              <Button
-                variant="contained"
-                size="large"
+            <>
+              <Box
                 sx={{
-                  'backgroundColor': 'primary.main',
-                  'fontWeight': 'bold',
-                  '&:hover': {
-                    backgroundColor: 'primary.dark',
-                  },
+                  display: 'flex',
+                  justifyContent: 'flex-end',
                 }}
-                onClick={() => handleEditClick(data.id)}
               >
-                {t(EditAccommodation.EditAccommodation)}
-              </Button>
-            </Box>
+                <Button
+                  variant="contained"
+                  size="large"
+                  sx={{
+                    'backgroundColor': 'primary.main',
+                    'fontWeight': 'bold',
+                    '&:hover': {
+                      backgroundColor: 'primary.dark',
+                    },
+                  }}
+                  onClick={() => handleEditClick(data.id)}
+                >
+                  {t(EditAccommodation.EditAccommodation)}
+                </Button>
+              </Box>
+              <OwnerCard owner={data.owner} />
+            </>
           ) : (
             <>
               <BookingForm accomodationId={accommodationId} price={data.price} />
-              <OwnerCard owner={data.owner} />
             </>
           )}
         </Box>

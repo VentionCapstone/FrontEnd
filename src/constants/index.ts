@@ -69,9 +69,3 @@ export const YANDEX_MAP_QUERY = {
 export const YANDEX_MAP_CONTROL = ['zoomControl', 'fullscreenControl'];
 
 export const PROJECT_NAME = 'StayHop';
-
-export const ACCOMMODATION_STEPS = {
-  accommodationForm: 'accommodationForm',
-  media: 'media',
-  amenities: 'amenities',
-} as const;
