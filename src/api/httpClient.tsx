@@ -53,23 +53,17 @@ function resInterceptor(response: AxiosResponse) {
   return response;
 }
 
-function handleSessionExpired() {
-  store.dispatch(logout());
-  httpClient.defaults.headers.common['Authorization'] = '';
-  toast.error(i18n.t(ToastMessages.ErrorSessionExpired), {
-    id: 'ErrorSessionExpired',
-  });
-}
-
 async function resErrInterceptor(error: AxiosError<ErrorResponse>) {
-  const originalRequest = error.config as AxiosRequestConfig;
-
   if (error.response?.status === 401) {
+    const originalRequest = error.config as AxiosRequestConfig;
+
     if (!isRefreshing) {
       // If not already refreshing, initiate token refresh
       isRefreshing = refreshAccessToken().then((res) => {
         if ('error' in res) {
-          handleSessionExpired();
+          store.dispatch(logout());
+          httpClient.defaults.headers.common['Authorization'] = '';
+          toast.error(i18n.t(ToastMessages.ErrorSessionExpired));
 
           return res;
         }
@@ -94,18 +88,6 @@ async function resErrInterceptor(error: AxiosError<ErrorResponse>) {
       }
     }
   } else {
-    // Logout the user if 'logoutUser' option set to true from the server
-    if (error.response?.data.options?.logoutUser) {
-      handleSessionExpired();
-
-      if (!originalRequest.headers) originalRequest.headers = {};
-      originalRequest.headers['Authorization'] = '';
-
-      const res = await axios(originalRequest);
-
-      return res;
-    }
-
     // Handle other error cases
     let info: string | undefined;
 

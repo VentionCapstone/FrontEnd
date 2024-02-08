@@ -3,9 +3,6 @@ import { ReactNode } from 'react';
 export type ErrorResponse = {
   success: boolean;
   error: Error;
-  options?: {
-    logoutUser?: boolean;
-  };
 };
 
 export type Error = {
