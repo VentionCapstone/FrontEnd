@@ -1,12 +1,11 @@
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import LanguageIcon from '@mui/icons-material/Language';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import { Box, List, ListItem, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
 
 import { DATE_MONTH_YEAR_FORMAT } from '@src/constants';
-import { FONT_SIZES } from '@src/theme/themeTokens';
 import { HostProfile } from '@src/types/hostProfile.types';
 import { HostInfo } from '@src/types/i18n.types';
 
@@ -15,51 +14,46 @@ function HostAbout({ host }: { host: HostProfile }) {
   const { firstName, joinedAt, language, country, description } = host;
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '0.4rem',
-        pb: '2.5rem',
-      }}
-    >
-      <Typography variant="h3" fontSize="2rem" fontWeight="800">
+    <Box>
+      <Typography fontSize="2rem" fontWeight="600">
         {t(HostInfo.host_about_title, { firstName })}
       </Typography>
-      <List
+
+      <Box
         sx={{
           display: 'grid',
           gridTemplateColumns: {
             xs: '1fr',
             md: '1fr 1fr',
           },
-          gap: '0.5rem',
+          rowGap: 2,
+          columnGap: 4,
+          color: 'secondary2.main',
+          px: 4,
+          my: 4,
         }}
       >
-        <ListItem>
-          <PersonAddIcon />
-          <Typography variant="subtitle1" fontSize={FONT_SIZES.md} fontWeight="500" ml={3}>
+        <Stack direction={'row'} gap={2}>
+          <PersonAddIcon fontSize="small" />
+          <Typography>
             {t(HostInfo.host_about_joined, {
               joinedAt: dayjs(joinedAt).format(DATE_MONTH_YEAR_FORMAT),
             })}
           </Typography>
-        </ListItem>
-        <ListItem>
-          <LanguageIcon />
-          <Typography variant="subtitle1" fontSize={FONT_SIZES.md} fontWeight="500" ml={3}>
-            {t(HostInfo.host_about_language, { language })}
-          </Typography>
-        </ListItem>
-        <ListItem>
-          <FmdGoodIcon />
-          <Typography variant="subtitle1" fontSize={FONT_SIZES.md} fontWeight="500" ml={3}>
-            {t(HostInfo.host_about_lives_in, { country })}
-          </Typography>
-        </ListItem>
-      </List>
-      <Typography variant="body1" fontSize={FONT_SIZES.md} fontWeight="500" px={2}>
-        {description}
-      </Typography>
+        </Stack>
+
+        <Stack direction={'row'} gap={2}>
+          <LanguageIcon fontSize="small" />
+          <Typography>{t(HostInfo.host_about_language, { language })}</Typography>
+        </Stack>
+
+        <Stack direction={'row'} gap={2}>
+          <FmdGoodIcon fontSize="small" />
+          <Typography>{t(HostInfo.host_about_lives_in, { country })}</Typography>
+        </Stack>
+      </Box>
+
+      <Typography>{description}</Typography>
     </Box>
   );
 }

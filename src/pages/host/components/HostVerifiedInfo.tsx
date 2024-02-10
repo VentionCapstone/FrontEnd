@@ -3,7 +3,6 @@ import { Box } from '@mui/system';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import { List, ListItem, ListItemIcon, Typography } from '@mui/material';
-import { FONT_SIZES } from '@src/theme/themeTokens';
 import { HostProfile } from '@src/types/hostProfile.types';
 import { HostInfo } from '@src/types/i18n.types';
 import { useTranslation } from 'react-i18next';
@@ -15,32 +14,42 @@ function HostVerifiedInfo({ host }: { host: HostProfile }) {
   return (
     <Box
       sx={{
-        flex: '1',
-        borderRadius: 5,
-        border: '1px solid #b0b0b0',
-        p: '1.5rem',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '1.5rem',
+        p: 6,
+        borderRadius: 3,
+        border: '1px solid',
+        borderColor: 'secondary2.light',
       }}
     >
-      <Typography variant="h3" fontWeight="700" fontSize="1.4rem">
+      <Typography fontWeight={600} mb={4}>
         {t(HostInfo.host_verified_title, { firstName })}
       </Typography>
-      <List disablePadding>
+
+      <List
+        disablePadding
+        sx={{
+          '.MuiListItemIcon-root': {
+            minWidth: 0,
+            mr: 2,
+          },
+        }}
+      >
         <ListItem>
-          <ListItemIcon>{isVerified ? <CheckIcon /> : <CloseIcon />}</ListItemIcon>
-          <Typography fontSize={FONT_SIZES.md}>{t(HostInfo.host_verified_identity)}</Typography>
+          <ListItemIcon>
+            {isVerified ? <CheckIcon sx={{ color: 'success.light' }} /> : <CloseIcon />}
+          </ListItemIcon>
+          <Typography variant="sm">{t(HostInfo.host_verified_identity)}</Typography>
         </ListItem>
         <ListItem>
-          <ListItemIcon>{isEmailVerified ? <CheckIcon /> : <CloseIcon />}</ListItemIcon>
-          <Typography fontSize={FONT_SIZES.md}>{t(HostInfo.host_verified_email)}</Typography>
+          <ListItemIcon>
+            {isEmailVerified ? <CheckIcon sx={{ color: 'success.light' }} /> : <CloseIcon />}
+          </ListItemIcon>
+          <Typography variant="sm">{t(HostInfo.host_verified_email)}</Typography>
         </ListItem>
         <ListItem>
           <ListItemIcon>
             <CloseIcon />
           </ListItemIcon>
-          <Typography fontSize={FONT_SIZES.md}>{t(HostInfo.host_verified_phone)}</Typography>
+          <Typography variant="sm">{t(HostInfo.host_verified_phone)}</Typography>
         </ListItem>
       </List>
     </Box>

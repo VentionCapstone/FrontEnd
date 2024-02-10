@@ -43,6 +43,7 @@ function Slider({
                 display: 'flex',
                 alignItems: 'stretch',
                 justifyContent: 'space-evenly',
+                gap: 4,
               }}
             >
               {children?.length
@@ -51,7 +52,7 @@ function Slider({
                     .map((child, childIndex) => {
                       return (
                         <Box
-                          sx={{ mx: 1, flex: 1, maxWidth: `${100 / itemsPerView}%` }}
+                          sx={{ flex: 1, maxWidth: `${100 / itemsPerView}%` }}
                           key={`step-${index}-${childIndex}`}
                         >
                           {React.cloneElement(child, {})}

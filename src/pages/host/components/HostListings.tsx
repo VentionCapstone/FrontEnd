@@ -1,6 +1,6 @@
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { Box, IconButton, Rating, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, IconButton, Rating, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import CustomImage from '@src/components/shared/CustomImage';
 import Slider from '@src/components/shared/Slider';
 import { ROUTES } from '@src/config/routes.config';
@@ -31,16 +31,13 @@ function HostListings({ host }: { host: HostProfile }) {
   }, []);
 
   return (
-    <Box
-      sx={{
-        py: '2.5rem',
-      }}
-    >
-      <Box display={'flex'}>
-        <Typography variant="h3" fontSize="1.6rem" fontWeight="800" mb={4} flex={1}>
+    <Box>
+      <Box display={'flex'} alignItems={'center'} mb={4}>
+        <Typography variant="lg" fontWeight="600" mr={'auto'}>
           {t(HostInfo.host_listings_title, { firstName })}
         </Typography>
-        <Box>
+
+        <Box flexShrink={0}>
           <IconButton onClick={handleBack} disabled={activeStep === 0} color="primary">
             <NavigateBeforeIcon />
           </IconButton>
@@ -49,6 +46,7 @@ function HostListings({ host }: { host: HostProfile }) {
           </IconButton>
         </Box>
       </Box>
+
       <Box>
         <Slider
           itemsPerView={itemsPerView}
@@ -69,11 +67,7 @@ function HostListings({ host }: { host: HostProfile }) {
             >
               <Box
                 sx={{
-                  flex: '1',
                   height: '22rem',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  p: 3,
                 }}
               >
                 <Box
@@ -82,7 +76,6 @@ function HostListings({ host }: { host: HostProfile }) {
                     pointerEvents: 'none',
                     height: '15rem',
                     borderRadius: 3,
-                    border: '1px solid #e0e0e0',
                   }}
                 >
                   <CustomImage
@@ -90,33 +83,30 @@ function HostListings({ host }: { host: HostProfile }) {
                     name="accommodation preview image"
                   />
                 </Box>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    flex: 1,
-                    mt: 2,
-                  }}
-                >
+
+                <Stack mt={4} gap={1}>
                   <Typography
-                    variant="subtitle1"
-                    fontSize="1rem"
-                    fontWeight="500"
-                    height={'3.2rem'}
-                    sx={{ mb: 1 }}
-                    // hidden
-                    overflow={'hidden'}
+                    sx={{
+                      WebkitLineClamp: 1,
+                      display: '-webkit-box',
+                      textOverflow: 'ellipsis',
+                      overflow: 'hidden',
+                      WebkitBoxOrient: 'vertical',
+                      whiteSpace: 'pre-wrap',
+                    }}
                   >
                     {accommodation.title}
                   </Typography>
+
                   <Rating
                     name="read-only"
+                    size="small"
                     value={accommodation.rating}
                     precision={0.5}
                     readOnly
-                    sx={{ mt: 1 }}
+                    sx={{ color: 'secondary.main' }}
                   />
-                </Box>
+                </Stack>
               </Box>
             </Link>
           ))}

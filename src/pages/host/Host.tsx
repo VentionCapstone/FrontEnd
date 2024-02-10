@@ -1,7 +1,7 @@
+import { Divider, Grid } from '@mui/material';
 import { Box } from '@mui/system';
 import { useParams } from 'react-router';
 
-import { Grid } from '@mui/material';
 import useGetHostProfileQuery from '@src/api/queries/host/useGetHostProfileQuery';
 import LoadingPrimary from '@src/components/loader/LoadingPrimary';
 import DataFetchError from '@src/components/shared/DataFetchError';
@@ -31,7 +31,7 @@ function Host() {
   return (
     <Grid
       container
-      spacing={{ lg: '4rem', xs: '2rem' }}
+      spacing={{ lg: '3rem', xs: '2rem' }}
       columns={{ xs: 1, md: 2, lg: 10 }}
       alignItems={'start'}
       pt={{ xs: '0.5rem', lg: '2rem' }}
@@ -44,7 +44,7 @@ function Host() {
         sx={{
           display: 'flex',
           flexDirection: { xs: 'column', md: 'row', lg: 'column' },
-          gap: '2rem',
+          gap: 6,
           position: { lg: 'sticky' },
           top: '2rem',
         }}
@@ -52,19 +52,16 @@ function Host() {
         <HostProfileCard host={host} />
         <HostVerifiedInfo host={host} />
       </Grid>
-      <Grid
-        item
-        xs={1}
-        md={2}
-        lg={7}
-        sx={{
-          '& > *:not(:last-child)': {
-            borderBottom: '1px solid #e0e0e0',
-          },
-        }}
-      >
+
+      <Grid item xs={1} md={2} lg={7}>
         <HostAbout host={host} />
+
+        <Divider sx={{ my: { xs: 8, md: 10 }, color: 'secondary2.light' }} />
+
         <HostReviews host={host} />
+
+        <Divider sx={{ my: { xs: 8, md: 10 }, color: 'secondary2.light' }} />
+
         <HostListings host={host} />
       </Grid>
     </Grid>

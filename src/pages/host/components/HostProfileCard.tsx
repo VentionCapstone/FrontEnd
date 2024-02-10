@@ -1,12 +1,12 @@
-import { Box } from '@mui/system';
-
 import StarIcon from '@mui/icons-material/Star';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { List, Typography } from '@mui/material';
+import { Box } from '@mui/system';
+import { useTranslation } from 'react-i18next';
+
 import { FONT_SIZES } from '@src/theme/themeTokens';
 import { HostProfile } from '@src/types/hostProfile.types';
 import { HostInfo } from '@src/types/i18n.types';
-import { useTranslation } from 'react-i18next';
 
 function HostProfileCard({ host }: { host: HostProfile }) {
   const { t } = useTranslation();
@@ -16,23 +16,24 @@ function HostProfileCard({ host }: { host: HostProfile }) {
   return (
     <Box
       sx={{
-        flex: '1',
-        borderRadius: 5,
-        border: '2px solid #00000005',
-        px: '1rem',
-        py: '.5rem',
-        boxShadow: 5,
         display: 'flex',
+        px: 4,
         gap: '1.5rem',
+        borderRadius: 3,
+        border: '1px solid',
+        borderColor: 'secondary2.light',
+        boxShadow: 3,
+        width: '100%',
       }}
     >
       <Box
         sx={{
-          width: '58%',
           display: 'flex',
+          flexGrow: 1,
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
+          overflow: 'hidden',
         }}
       >
         <Box sx={{ position: 'relative' }}>
@@ -63,18 +64,36 @@ function HostProfileCard({ host }: { host: HostProfile }) {
             />
           )}
         </Box>
-        <Typography variant="h2" fontSize="2.2rem" fontWeight="700">
+
+        <Typography
+          variant="xl"
+          sx={{
+            display: '-webkit-box',
+            WebkitLineClamp: 1,
+            fontWeight: 600,
+            textOverflow: 'ellipsis',
+            overflow: 'hidden',
+            WebkitBoxOrient: 'vertical',
+            whiteSpace: 'pre-wrap',
+            msWordBreak: 'break-all',
+            wordBreak: 'break-all',
+          }}
+        >
           {firstName}
         </Typography>
-        <Typography fontWeight="600">{t(HostInfo.host_card_subtitle)}</Typography>
+
+        <Typography>{t(HostInfo.host_card_subtitle)}</Typography>
       </Box>
+
       <List
         sx={{
           'display': 'flex',
           'flexDirection': 'column',
-          'flexGrow': 1,
+          'width': '33%',
+          'flexShrink': 0,
           '& > *:not(:last-child)': {
-            borderBottom: '1px solid #e0e0e0',
+            borderBottom: '1px solid',
+            borderColor: 'secondary2.light',
           },
           '& > *': {
             py: '0.8rem',
@@ -85,23 +104,22 @@ function HostProfileCard({ host }: { host: HostProfile }) {
           <Typography
             variant="subtitle2"
             fontSize={FONT_SIZES.md}
-            fontWeight="700"
+            fontWeight="600"
             lineHeight="1"
-            pb="0.2rem"
+            pb={0.5}
           >
             {reviews.count}
           </Typography>
-          <Typography fontWeight="700" fontSize="0.8rem">
-            {t(HostInfo.host_card_reviews)}
-          </Typography>
+          <Typography variant="xs">{t(HostInfo.host_card_reviews)}</Typography>
         </Box>
+
         <Box component="li">
           <Typography
             variant="subtitle2"
             fontSize={FONT_SIZES.md}
-            fontWeight="700"
+            fontWeight="600"
             lineHeight="1"
-            pb="0.2rem"
+            pb={0.5}
           >
             {parseFloat(rating || '0.0').toFixed(1)}
             <StarIcon
@@ -112,23 +130,20 @@ function HostProfileCard({ host }: { host: HostProfile }) {
               }}
             />
           </Typography>
-          <Typography fontWeight="700" fontSize="0.8rem">
-            {t(HostInfo.host_card_rating)}
-          </Typography>
+          <Typography variant="xs">{t(HostInfo.host_card_rating)}</Typography>
         </Box>
+
         <Box component="li">
           <Typography
             variant="subtitle2"
             fontSize={FONT_SIZES.md}
-            fontWeight="700"
+            fontWeight="600"
             lineHeight="1"
-            pb="0.2rem"
+            pb={0.5}
           >
             {accommodations?.length || 0}
           </Typography>
-          <Typography fontWeight="700" fontSize="0.8rem">
-            {t(HostInfo.host_card_listings)}
-          </Typography>
+          <Typography variant="xs">{t(HostInfo.host_card_listings)}</Typography>
         </Box>
       </List>
     </Box>
