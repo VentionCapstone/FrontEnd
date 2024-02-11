@@ -13,7 +13,7 @@ import { LOCAL_STORAGE_KEYS } from '@src/config/local-storage.config';
 import { ROUTES } from '@src/config/routes.config';
 import { AmenitySetting } from '@src/types/amenity.types';
 
-import { EditAccommodation, ErrorTypes } from '@src/types/i18n.types';
+import { AccommodationReservation, EditAccommodation, ErrorTypes } from '@src/types/i18n.types';
 import { getValueFromLocalStorage, selectOnlyTrueAmenities } from '@src/utils';
 import YandexMap from '../../components/shared/YandexMap';
 import { styles } from './Accommodation.styles';
@@ -37,6 +37,9 @@ function Accommodation() {
 
   const handleEditClick = (id: string) => {
     navigate(ROUTES.accommodations.edit(id));
+  };
+  const handleBookingsClick = () => {
+    navigate(ROUTES.accommodations.bookings(accommodationId as string));
   };
 
   useEffect(() => {
@@ -92,19 +95,23 @@ function Accommodation() {
             <Button
               variant="contained"
               size="large"
-              sx={{
-                'backgroundColor': 'primary.main',
-                'fontWeight': 'bold',
-                '&:hover': {
-                  backgroundColor: 'primary.dark',
-                },
-              }}
+              sx={styles.button}
               onClick={() => handleEditClick(data.id)}
             >
               {t(EditAccommodation.EditAccommodation)}
             </Button>
           ) : (
             <BookingForm accomodationId={accommodationId} price={data.price} />
+          )}
+          {ownerId === data.ownerId && (
+            <Button
+              variant="contained"
+              size="large"
+              sx={styles.button}
+              onClick={handleBookingsClick}
+            >
+              {t(AccommodationReservation.all_accommodation_reservations)}
+            </Button>
           )}
           <OwnerCard owner={data.owner} />
         </Stack>

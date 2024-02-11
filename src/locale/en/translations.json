@@ -422,6 +422,9 @@
       "no": "No",
       "restore": "Restore",
       "close": "close"
+    },
+    "accommodation_reservations": {
+      "all_accommodation_reservations": "All reservations"
     }
   }
 }

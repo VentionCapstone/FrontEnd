@@ -24,4 +24,12 @@ export const styles = {
     display: 'flex',
     justifyContent: 'space-between',
   },
+
+  button: {
+    'backgroundColor': 'primary.main',
+    'fontWeight': 'bold',
+    '&:hover': {
+      backgroundColor: 'primary.dark',
+    },
+  },
 } satisfies MuiStylesObject;

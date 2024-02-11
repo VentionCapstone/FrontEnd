@@ -17,6 +17,7 @@ export const ROUTES = {
     create: '/accommodations/create',
     edit: (id: string) => `/accommodations/edit/${id}`,
     details: (id: string) => `/rooms/${id}`,
+    bookings: (id: string) => `/accommodations/bookings/${id}`,
   },
   bookings: {
     root: (status = Status.active) => `/bookings?status=${status}`,

@@ -421,6 +421,9 @@
       "no": "Yo'q",
       "restore": "Qayta tiklash",
       "close": "yopmoq"
+    },
+    "accommodation_reservations": {
+      "all_accommodation_reservations": "Barcha rezervatsiyalar"
     }
   }
 }
