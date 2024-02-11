@@ -38,7 +38,12 @@ export const AccommodationBookingsStyles = {
   tableCell: { display: 'flex', alignItems: 'center', padding: '14px 12px' },
   tableRow: {
     'transitionDuration': '0.4s',
-
+    '&:nth-of-type(odd)': {
+      backgroundColor: 'action.hover',
+    },
+    '&:last-child td, &:last-child th': {
+      border: 0,
+    },
     ':hover': {
       backgroundColor: '#58598936',
     },

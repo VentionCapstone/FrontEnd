@@ -18,8 +18,9 @@ span.rdrMonthPicker {
   font-weight: 700;
 }
 
-th.tableHeadCell {
+th.table-head__cell {
   font-weight: 700;
+  font-size: 17px;
 }
 
 thead tr th {
@@ -28,4 +29,8 @@ thead tr th {
 div.rdrMonth,
 div.rdrMonths {
   width: inherit !important;
+}
+
+.table-row:nth-of-type(odd) {
+  background-color: antiquewhite;
 }

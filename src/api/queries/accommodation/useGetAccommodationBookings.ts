@@ -7,7 +7,7 @@ import { AccommodationBookingsResponse } from '@src/types/accommodation.types';
 
 export const useGetAccommodationReservations = (
   id: string,
-  optoins?: { currentMonth: string; nextMonth: string }
+  optoins?: { currentMonth?: string; nextMonth?: string; orderByStartDate?: string }
 ) => {
   return useQuery({
     queryKey: [QUERY_KEYS.query.accomodationReservations, id],

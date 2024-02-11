@@ -1,4 +1,4 @@
-export default [
+const dateRangeColors = [
   '#ff913d',
   '#8ed13e',
   '#3d91ff',
@@ -60,3 +60,5 @@ export default [
   '#70cbf3',
   '#ff3d3d',
 ];
+
+export default dateRangeColors;

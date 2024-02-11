@@ -15,13 +15,31 @@ import { AccommodationBookingsStyles } from './components/styles';
 import './index.css';
 import getRandomColor from './utils/generateColor';
 
-import colors from './components/colorsConstant';
+import { useMemo } from 'react';
+import dateRangeColors from './components/colorsConstant';
 
 export default function AccommodationReservations() {
   const isMdScreen = useMediaQuery('(min-width:650px) and (max-width:1023px)');
   const { id } = useParams();
 
-  const { isPending, data, isError } = useGetAccommodationReservations(id as string);
+  const { isPending, data, isError } = useGetAccommodationReservations(id as string, {
+    orderByStartDate: 'asc',
+  });
+
+  const reservationRanges = useMemo(() => {
+    if (!data || !data.data) return [];
+
+    return data.data.map((item, i) => {
+      if (!dateRangeColors[i]) {
+        dateRangeColors.push(getRandomColor());
+      }
+      return {
+        startDate: new Date(item.startDate),
+        endDate: new Date(item.endDate),
+        key: item.id,
+      };
+    });
+  }, [data]);
 
   if (isPending) {
     return (
@@ -35,31 +53,19 @@ export default function AccommodationReservations() {
     return <DataFetchError errorKey={ErrorTypes.accommodation_failed_to_get_list} />;
   }
 
-  const newArr = data.data.map((item, i: number) => {
-    if (!colors[i]) {
-      colors.push(getRandomColor());
-    }
-
-    return {
-      startDate: new Date(item.startDate),
-      endDate: new Date(item.endDate),
-      key: item.id,
-    };
-  });
-
   return (
     <>
       <BackButton />
       <Box sx={AccommodationBookingsStyles.mainContainer}>
-        <BasicTable data={data.data} colors={colors} />
+        <BasicTable data={data.data} colors={dateRangeColors} />
         <Box sx={AccommodationBookingsStyles.dateRangeContainer} className="customDatePickerWidth">
           <DateRange
             dragSelectionEnabled={true}
             showDateDisplay={false}
             months={2}
             direction={isMdScreen ? 'horizontal' : 'vertical'}
-            ranges={newArr}
-            rangeColors={colors}
+            ranges={reservationRanges}
+            rangeColors={dateRangeColors}
             onChange={() => {}}
           />
         </Box>
