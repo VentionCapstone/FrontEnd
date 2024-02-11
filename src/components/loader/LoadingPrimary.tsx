@@ -1,7 +1,7 @@
 import { Box, CircularProgress } from '@mui/material';
 import { SECONDARY_MAIN } from '@src/theme/themeTokens';
 
-function LoadingPrimary({ height = '100vh' }: { height?: string }) {
+function LoadingPrimary({ height = '80vh' }: { height?: string }) {
   return (
     <Box
       sx={{

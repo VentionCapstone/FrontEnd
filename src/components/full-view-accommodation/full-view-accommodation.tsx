@@ -7,10 +7,6 @@ import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 import { useGetAllMediaQuery } from '@src/api/queries/media/useGetAllMediaQuery';
 import { EditAccommodation } from '@src/types/i18n.types';
-import { useTranslation } from 'react-i18next';
-
-import { handleErrorInImage } from '@src/utils';
-
 import {
   MouseEvent,
   ReactElement,
@@ -21,6 +17,10 @@ import {
   useRef,
   useState,
 } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { handleErrorInImage } from '@src/utils';
+
 import Slider from '../shared/Slider';
 
 const Transition = forwardRef(function Transition(
@@ -85,13 +85,13 @@ export default function ShowPhotos({ id, open, onClose, onOpen, isMobile }: Show
   }, [currentIndex, handleNext, handlePrev]);
 
   const renderImages = () => {
-    return data?.map((item, index) => (
-      <ImageListItem sx={{ width: '100%', height: '70vh' }} key={index} cols={1} rows={1}>
+    return data?.map(({ id, imageUrl }) => (
+      <ImageListItem sx={{ width: '100%', height: '70vh' }} key={id} cols={1} rows={1}>
         <Box
           component={'img'}
           sx={{ objectFit: 'contain', height: '80vh', width: '100vw' }}
-          src={item.imageUrl}
-          alt={`photo-${index}`}
+          src={imageUrl}
+          alt={`photo-${id}`}
           onError={handleErrorInImage}
           loading="lazy"
         />
@@ -146,7 +146,7 @@ export default function ShowPhotos({ id, open, onClose, onOpen, isMobile }: Show
             <ImageList
               sx={
                 isMobile
-                  ? { width: '100vw' }
+                  ? { width: '95vw' }
                   : {
                       width: '80vw',
                       height: 'auto',
