@@ -3,6 +3,7 @@ import { Box, IconButton } from '@mui/material';
 
 import { useCallback } from 'react';
 import { uploadMediaStyles } from './styles';
+import { handleErrorInImage } from '@src/utils';
 
 type SingleImageProps = {
   id: string;
@@ -17,7 +18,12 @@ function SingleImage({ id, imageUrl, onDeleteImage }: SingleImageProps) {
 
   return (
     <Box key={id} sx={uploadMediaStyles.imageWrapper}>
-      <Box component={'img'} src={imageUrl} sx={uploadMediaStyles.image} />
+      <Box
+        component={'img'}
+        src={imageUrl}
+        sx={uploadMediaStyles.image}
+        onError={handleErrorInImage}
+      />
       <Box sx={uploadMediaStyles.imageActionContainer}>
         <IconButton sx={uploadMediaStyles.imageAction} size="small" onClick={handleDeleteImage}>
           <RemoveIcon />
