@@ -53,7 +53,7 @@
 
     "home_ui": {
       "user_home_btn": {
-        "account": "Mening profilim",
+        "account": "Profil",
         "mylistings": "Mening ro'yhatlarim",
         "logout": "Chiqish"
       },
@@ -336,7 +336,7 @@
     },
 
     "wishlist": {
-      "title": "Istaklar roʻyxati",
+      "title": "Istaklar",
       "wishlits_empty_title": "Birinchi istaklar ro'yxatingizni yarating",
       "wishlits_empty_text": "Izlash jarayonida sevimli joylaringiz va tajribalaringizni istaklar ro'yxatiga saqlash uchun yurak belgisini bosing"
     },
@@ -421,6 +421,11 @@
       "no": "Yo'q",
       "restore": "Qayta tiklash",
       "close": "yopmoq"
+    },
+
+    "bottom_nav": {
+      "explore": "Tadqiq",
+      "bookings": "Buyurtnomalar"
     }
   }
 }

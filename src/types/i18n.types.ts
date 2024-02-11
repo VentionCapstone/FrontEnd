@@ -389,3 +389,8 @@ export enum ProfileActions {
   profile_create = 'profileActions.profile_create',
   profile_change = 'profileActions.profile_change',
 }
+
+export enum BottomNavigation {
+  explore = 'bottom_nav.explore',
+  bookings = 'bottom_nav.bookings',
+}

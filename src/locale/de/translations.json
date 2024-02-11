@@ -421,6 +421,11 @@
       "no": "Nein",
       "restore": "Wiederherstellen",
       "close": "dichtbij"
+    },
+
+    "bottom_nav": {
+      "explore": "Erkunden",
+      "bookings": "Buchungen"
     }
   }
 }
