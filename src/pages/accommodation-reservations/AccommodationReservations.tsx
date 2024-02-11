@@ -58,9 +58,9 @@ export default function AccommodationReservations() {
             showDateDisplay={false}
             months={2}
             direction={isMdScreen ? 'horizontal' : 'vertical'}
-            onRangeFocusChange={() => console.log('SASASASS')}
             ranges={newArr}
             rangeColors={colors}
+            onChange={() => {}}
           />
         </Box>
       </Box>

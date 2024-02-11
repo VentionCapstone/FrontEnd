@@ -39,7 +39,7 @@ function Accommodation() {
     navigate(ROUTES.accommodations.edit(id));
   };
   const handleBookingsClick = () => {
-    navigate(ROUTES.accommodations.bookings(accommodationId as string));
+    navigate(ROUTES.accommodations.reservations(accommodationId as string));
   };
 
   useEffect(() => {

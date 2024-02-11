@@ -126,7 +126,7 @@ const routes = createBrowserRouter([
           { index: true, element: <Accommodations /> },
           { path: 'create', element: <AccommodationCreate /> },
           { path: 'edit/:id', element: <AccommodationUpdate /> },
-          { path: 'bookings/:id', element: <AccommodationReservations /> },
+          { path: 'reservations/:id', element: <AccommodationReservations /> },
           { path: '*', element: <Navigate to="/accommodations" /> },
         ],
       },
