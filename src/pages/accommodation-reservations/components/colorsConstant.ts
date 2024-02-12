@@ -1,4 +1,4 @@
-const dateRangeColors = [
+const COLORS = [
   '#ff913d',
   '#8ed13e',
   '#3d91ff',
@@ -61,4 +61,4 @@ const dateRangeColors = [
   '#ff3d3d',
 ];
 
-export default dateRangeColors;
+export default COLORS;

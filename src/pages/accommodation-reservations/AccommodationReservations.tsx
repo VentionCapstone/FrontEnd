@@ -16,8 +16,10 @@ import './index.css';
 import getRandomColor from './utils/generateColor';
 
 import { useMemo } from 'react';
-import dateRangeColors from './components/colorsConstant';
+import COLORS from './components/colorsConstant';
 import { sortOptions } from './components/data.constants';
+
+const dateRangeColors = [...COLORS];
 
 export default function AccommodationReservations() {
   const isMdScreen = useMediaQuery('(min-width:650px) and (max-width:1023px)');
