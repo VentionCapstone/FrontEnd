@@ -91,10 +91,11 @@ export default function Bookings() {
           >
             <Box sx={mainStyles.accommmodationCard}>
               {bookings?.map(
-                ({ id, accommodation, accommodationId, startDate, endDate, status }) => (
+                ({ id, accommodation, accommodationId, startDate, endDate, status, createdAt }) => (
                   <BookingCard
                     key={id}
                     id={id}
+                    createdAt={createdAt}
                     accommodation={accommodation}
                     accommodationId={accommodationId}
                     startDate={startDate}

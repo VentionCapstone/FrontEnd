@@ -1,11 +1,13 @@
 import { Box, Typography } from '@mui/material';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { accommodationCardStyles } from '@src/components/card/acccommodationCard/accommodationCard.styles';
 import CustomImage from '@src/components/shared/CustomImage';
 import { Status } from '@src/types/global.types';
 import { lineClampStyle } from '@src/utils';
+import dayjs from 'dayjs';
 import BookingModal from './BookingModal';
+import PendingTimer from './PendingTimer';
 
 interface BookingCardProps {
   id: string;
@@ -18,15 +20,40 @@ interface BookingCardProps {
   accommodationId: string;
   startDate: string;
   endDate: string;
+  createdAt: string;
   status: Status;
 }
 
 const BookingCard = React.memo(
-  ({ id, accommodation, accommodationId, startDate, endDate, status }: BookingCardProps) => {
+  ({
+    id,
+    accommodation,
+    accommodationId,
+    startDate,
+    endDate,
+    status,
+    createdAt,
+  }: BookingCardProps) => {
     const [open, setOpen] = useState(false);
+    const [remainingTime, setRemainingTime] = useState<number | null>(null);
 
     const handleOpen = () => setOpen(true);
     const handleClose = useCallback(() => setOpen(false), []);
+
+    useEffect(() => {
+      const calculateDifference = () => {
+        const deadlineTime = dayjs(createdAt).add(10, 'minute');
+        const difference = Math.ceil(deadlineTime.diff(dayjs(), 'minutes', true));
+        setRemainingTime(difference);
+      };
+
+      calculateDifference();
+      const intervalId = setInterval(calculateDifference, 60000);
+
+      return () => clearInterval(intervalId);
+    }, [createdAt]);
+
+    if (!remainingTime || remainingTime <= 0) return null;
 
     return (
       <Box sx={accommodationCardStyles.root}>
@@ -41,12 +68,14 @@ const BookingCard = React.memo(
             name={`${id} thumbnail`}
             image={accommodation.thumbnailUrl || accommodation.previewImgUrl}
           />
+
+          <PendingTimer remainingTime={remainingTime} />
         </Box>
-        <Box display="flex" alignItems="center" justifyContent="space-between">
-          <Typography variant="body1" sx={lineClampStyle(1)}>
-            {accommodation.title}
-          </Typography>
-        </Box>
+
+        <Typography sx={lineClampStyle(1)} mt={2}>
+          {accommodation.title}
+        </Typography>
+
         {open && (
           <BookingModal
             open={open}

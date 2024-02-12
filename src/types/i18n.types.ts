@@ -394,3 +394,7 @@ export enum BottomNavigation {
   explore = 'bottom_nav.explore',
   bookings = 'bottom_nav.bookings',
 }
+
+export enum PendingTimer {
+  minutes = 'pending_timer.minutes',
+}

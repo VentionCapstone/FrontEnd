@@ -426,6 +426,10 @@
     "bottom_nav": {
       "explore": "Tadqiq",
       "bookings": "Buyurtnomalar"
+    },
+
+    "pending_timer": {
+      "minutes": "min"
     }
   }
 }

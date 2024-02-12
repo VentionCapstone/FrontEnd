@@ -426,6 +426,10 @@
     "bottom_nav": {
       "explore": "Erkunden",
       "bookings": "Buchungen"
+    },
+
+    "pending_timer": {
+      "minutes": "min"
     }
   }
 }

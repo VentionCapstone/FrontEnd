@@ -427,6 +427,10 @@
     "bottom_nav": {
       "explore": "Исследовать",
       "bookings": "Бронирования"
+    },
+
+    "pending_timer": {
+      "minutes": "мин"
     }
   }
 }

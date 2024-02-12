@@ -23,6 +23,7 @@ export interface BookType {
   id: string;
   startDate: string;
   endDate: string;
+  createdAt: string;
   status: string;
   accommodationId: string;
   paymentId: string;
