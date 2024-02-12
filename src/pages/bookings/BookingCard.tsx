@@ -42,7 +42,7 @@ const BookingCard = React.memo(
 
     useEffect(() => {
       const calculateDifference = () => {
-        const deadlineTime = dayjs(createdAt).add(10, 'minute');
+        const deadlineTime = dayjs(createdAt).add(60, 'minute');
         const difference = Math.ceil(deadlineTime.diff(dayjs(), 'minutes', true));
         setRemainingTime(difference);
       };

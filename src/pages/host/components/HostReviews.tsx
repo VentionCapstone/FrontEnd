@@ -1,14 +1,13 @@
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { Box, IconButton, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
-import dayjs from 'dayjs';
+import { Box, IconButton, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Slider from '@src/components/shared/Slider';
-import { DATE_MONTH_YEAR_FORMAT } from '@src/constants';
 import { HostProfile } from '@src/types/hostProfile.types';
 import { HostInfo } from '@src/types/i18n.types';
+import ReviewListItem from './ReviewListItem';
 
 function HostReviews({ host }: { host: HostProfile }) {
   const { t } = useTranslation();
@@ -56,49 +55,7 @@ function HostReviews({ host }: { host: HostProfile }) {
         }
       >
         {reviews.list?.map((review) => (
-          <Stack
-            key={review.id}
-            sx={{
-              borderRadius: 3,
-              border: '1px solid',
-              borderColor: 'secondary2.light',
-              py: 4,
-              px: 6,
-              gap: 4,
-            }}
-          >
-            <Stack direction={'row'} alignItems={'center'} gap={3}>
-              <Box
-                component={'img'}
-                src={review.user.profile.imageUrl}
-                sx={{ width: 50, height: 50, borderRadius: '50%', objectFit: 'cover' }}
-              />
-              <Box>
-                <Typography fontWeight={600}>
-                  {review.user.firstName} {review.user.lastName}
-                </Typography>
-                <Typography variant="sm" color={'secondary2.main'}>
-                  {dayjs(joinedAt).format(DATE_MONTH_YEAR_FORMAT)}
-                </Typography>
-              </Box>
-            </Stack>
-
-            <Box height={'6.5rem'}>
-              <Typography
-                sx={{
-                  maxHeight: '100%',
-                  display: '-webkit-box',
-                  textOverflow: 'ellipsis',
-                  overflow: 'hidden',
-                  WebkitBoxOrient: 'vertical',
-                  whiteSpace: 'pre-wrap',
-                  WebkitLineClamp: 4,
-                }}
-              >
-                {review.feedback}
-              </Typography>
-            </Box>
-          </Stack>
+          <ReviewListItem review={review} joinedAt={joinedAt} key={review.id} />
         ))}
       </Slider>
     </Box>
