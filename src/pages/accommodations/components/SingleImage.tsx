@@ -1,6 +1,7 @@
 import RemoveIcon from '@mui/icons-material/Remove';
 import { Box, IconButton } from '@mui/material';
 
+import { handleImageError } from '@src/utils';
 import { useCallback } from 'react';
 import { uploadMediaStyles } from './styles';
 
@@ -17,7 +18,12 @@ function SingleImage({ id, imageUrl, onDeleteImage }: SingleImageProps) {
 
   return (
     <Box key={id} sx={uploadMediaStyles.imageWrapper}>
-      <Box component={'img'} src={imageUrl} sx={uploadMediaStyles.image} />
+      <Box
+        component={'img'}
+        src={imageUrl}
+        sx={uploadMediaStyles.image}
+        onError={handleImageError}
+      />
       <Box sx={uploadMediaStyles.imageActionContainer}>
         <IconButton sx={uploadMediaStyles.imageAction} size="small" onClick={handleDeleteImage}>
           <RemoveIcon />

@@ -95,7 +95,7 @@ export const selectOnlyTrueAmenities = (amenities: Amenities) => {
   return trueAmenities;
 };
 
-export const handleErrorInImage = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+export const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
   e.currentTarget.src = ErrorImage;
 };
 

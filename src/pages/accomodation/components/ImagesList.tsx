@@ -5,7 +5,7 @@ import ShowPhotos from '@src/components/full-view-accommodation/full-view-accomm
 import Slider from '@src/components/shared/Slider';
 import { Media } from '@src/types/accommodation.types';
 import { RenderedImage } from '@src/types/accommodationImages.types';
-import { handleErrorInImage } from '@src/utils';
+import { handleImageError } from '@src/utils';
 import { MAX_IMAGES, getImageSources } from '../utils/imagesListUtils';
 
 export default function ImagesList({ images }: { images: Media[] }) {
@@ -48,7 +48,7 @@ export default function ImagesList({ images }: { images: Media[] }) {
             }}
             {...getImageSources({ url, rows, cols })}
             loading="lazy"
-            onError={handleErrorInImage}
+            onError={handleImageError}
           />
         </ImageListItem>
       );

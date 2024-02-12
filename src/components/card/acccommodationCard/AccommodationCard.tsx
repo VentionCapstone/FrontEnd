@@ -33,9 +33,9 @@ function AccommodationCard({
   };
 
   return (
-    <Box sx={accommodationCardStyles.root}>
+    <Box sx={accommodationCardStyles.root} onClick={handleClickAccommodation}>
       <Box flexGrow={1}>
-        <Box onClick={handleClickAccommodation} sx={accommodationCardStyles.imageBox}>
+        <Box sx={accommodationCardStyles.imageBox}>
           <CustomImage image={thumbnailUrl} name={country} />
           {isLoggedIn && <FavoriteButton isInWishlist={isInWishlist} accommodationId={id} />}
         </Box>

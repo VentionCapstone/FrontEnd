@@ -5,7 +5,7 @@ import { mainStyles } from '@src/pages/main/index.styles';
 
 export default function AccommodationSkeleton() {
   return (
-    <Box sx={mainStyles.accommmodationCard}>
+    <Box sx={mainStyles.accommmodationCard} mt={10}>
       {Array.from({ length: AMOUNT_PER_PAGE }).map((_, i) => (
         <Box key={i} sx={accommodationCardStyles.root}>
           <Skeleton variant="rounded" width="100%" height={230} />
