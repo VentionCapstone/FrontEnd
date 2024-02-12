@@ -389,3 +389,7 @@ export enum ProfileActions {
   profile_create = 'profileActions.profile_create',
   profile_change = 'profileActions.profile_change',
 }
+
+export enum AccommodationReservation {
+  all_accommodation_reservations = 'accommodation_reservations.all_accommodation_reservations',
+}

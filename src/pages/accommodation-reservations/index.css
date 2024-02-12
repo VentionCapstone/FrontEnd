@@ -1,0 +1,36 @@
+.customDatePickerWidth,
+.customDatePickerWidth > div.rdrDateRangeWrapper {
+  border-radius: 5px;
+}
+.customDatePickerWidth > div.rdrDateRangeWrapper {
+  box-shadow:
+    0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+  font-size: inherit !important;
+  font-family: Nunito, sans-serif;
+  width: inherit !important;
+}
+
+span.rdrDayNumber,
+span.rdrWeekDay,
+span.rdrMonthPicker {
+  font-weight: 700;
+}
+
+th.table-head__cell {
+  font-weight: 700;
+  font-size: 17px;
+}
+
+thead tr th {
+  background: #19155738;
+}
+div.rdrMonth,
+div.rdrMonths {
+  width: inherit !important;
+}
+
+.table-row:nth-of-type(odd) {
+  background-color: antiquewhite;
+}

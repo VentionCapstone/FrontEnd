@@ -39,6 +39,8 @@ export const ENDPOINTS = {
       `${YANDEX_API_URL}&geocode=${coordinates}`,
     getSelectedLocation: (coordinates: Coordinates) =>
       `${YANDEX_API_URL}&geocode=${coordinates[1]},${coordinates[0]}`,
+    getAccommodationBookings: (accommodationId: string) =>
+      `/accommodations/${accommodationId}/reservations`,
   },
   payment: {
     root: '/payment',

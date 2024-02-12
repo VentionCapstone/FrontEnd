@@ -22,6 +22,7 @@ export const QUERY_KEYS = {
     hostedAccommodation: 'hostedAccommodation',
     accommodations: 'accommodations',
     accomodationReviews: 'accomodation_reviews',
+    accomodationReservations: 'accomodation_reservations',
 
     media: 'media',
 

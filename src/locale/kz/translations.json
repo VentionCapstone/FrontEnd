@@ -421,6 +421,9 @@
       "no": "Жоқ",
       "restore": "Қалпына келтіру",
       "close": "жабық"
+    },
+    "accommodation_reservations": {
+      "all_accommodation_reservations": "Барлық резервтер"
     }
   }
 }

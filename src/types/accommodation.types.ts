@@ -338,3 +338,25 @@ export interface AddressWatchType {
   latitude: number;
   longitude: number;
 }
+
+export interface AccommodationBookingsResponse {
+  success: boolean;
+  data: Booking[];
+}
+export interface Booking {
+  id: string;
+  userId: string;
+  startDate: string;
+  endDate: string;
+  status: string;
+  user: {
+    firstName: string;
+    lastName: string;
+    profile: {
+      imageUrl: string;
+    };
+  };
+  payment: null | {
+    totalAmount: number;
+  };
+}

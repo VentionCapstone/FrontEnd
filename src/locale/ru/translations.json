@@ -422,6 +422,9 @@
       "no": "Нет",
       "restore": "Восстановить",
       "close": "закрывать"
+    },
+    "accommodation_reservations": {
+      "all_accommodation_reservations": "Все бронирования"
     }
   }
 }
