@@ -36,7 +36,7 @@ export default function BasicTable({ data, colors }: Props) {
       data.user.firstName + ' ' + data.user.lastName,
       formatDate(data.startDate),
       formatDate(data.endDate),
-      '$' + getRandomIntegerFromRange(60, 200),
+      '$' + getRandomIntegerFromRange(90, 400),
       data.id,
       colors[i],
       data.user.profile.imageUrl
