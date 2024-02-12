@@ -7,7 +7,7 @@ import { AccommodationBookingsResponse } from '@src/types/accommodation.types';
 
 export const useGetAccommodationReservations = (
   id: string,
-  optoins?: { currentMonth?: string; nextMonth?: string; orderByStartDate?: string }
+  options?: { currentMonth?: string; nextMonth?: string; orderByStartDate?: string }
 ) => {
   return useQuery({
     queryKey: [QUERY_KEYS.query.accomodationReservations, id],
@@ -15,7 +15,7 @@ export const useGetAccommodationReservations = (
       const { data } = await httpClient.get<AccommodationBookingsResponse>(
         ENDPOINTS.accommodation.getAccommodationBookings(id),
         {
-          params: optoins,
+          params: options,
         }
       );
       return data;

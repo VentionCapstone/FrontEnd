@@ -17,14 +17,13 @@ import getRandomColor from './utils/generateColor';
 
 import { useMemo } from 'react';
 import dateRangeColors from './components/colorsConstant';
+import { sortOptions } from './components/data.constants';
 
 export default function AccommodationReservations() {
   const isMdScreen = useMediaQuery('(min-width:650px) and (max-width:1023px)');
   const { id } = useParams();
 
-  const { isPending, data, isError } = useGetAccommodationReservations(id as string, {
-    orderByStartDate: 'asc',
-  });
+  const { isPending, data, isError } = useGetAccommodationReservations(id as string, sortOptions);
 
   const reservationRanges = useMemo(() => {
     if (!data || !data.data) return [];

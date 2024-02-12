@@ -422,8 +422,8 @@
       "restore": "Қалпына келтіру",
       "close": "жабық"
     },
-    "accommodation_bookings": {
-      "all_accommodation_bookings": "Барлық резервтер"
+    "accommodation_reservations": {
+      "all_accommodation_reservations": "Барлық резервтер"
     }
   }
 }
