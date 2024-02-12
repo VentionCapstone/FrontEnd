@@ -1,11 +1,11 @@
 import { Box, Typography } from '@mui/material';
+import dayjs from 'dayjs';
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { accommodationCardStyles } from '@src/components/card/acccommodationCard/accommodationCard.styles';
 import CustomImage from '@src/components/shared/CustomImage';
 import { Status } from '@src/types/global.types';
 import { lineClampStyle } from '@src/utils';
-import dayjs from 'dayjs';
 import BookingModal from './BookingModal';
 import PendingTimer from './PendingTimer';
 
@@ -41,19 +41,21 @@ const BookingCard = React.memo(
     const handleClose = useCallback(() => setOpen(false), []);
 
     useEffect(() => {
-      const calculateDifference = () => {
-        const deadlineTime = dayjs(createdAt).add(60, 'minute');
-        const difference = Math.ceil(deadlineTime.diff(dayjs(), 'minutes', true));
-        setRemainingTime(difference);
-      };
+      if (status === Status.pending) {
+        const calculateDifference = () => {
+          const deadlineTime = dayjs(createdAt).add(60, 'minute');
+          const difference = Math.ceil(deadlineTime.diff(dayjs(), 'minutes', true));
+          setRemainingTime(difference);
+        };
 
-      calculateDifference();
-      const intervalId = setInterval(calculateDifference, 60000);
+        calculateDifference();
+        const intervalId = setInterval(calculateDifference, 60000);
 
-      return () => clearInterval(intervalId);
-    }, [createdAt]);
+        return () => clearInterval(intervalId);
+      }
+    }, [createdAt, status]);
 
-    if (!remainingTime || remainingTime <= 0) return null;
+    if (status === Status.pending && (!remainingTime || remainingTime <= 0)) return null;
 
     return (
       <Box sx={accommodationCardStyles.root}>
@@ -69,7 +71,7 @@ const BookingCard = React.memo(
             image={accommodation.thumbnailUrl || accommodation.previewImgUrl}
           />
 
-          <PendingTimer remainingTime={remainingTime} />
+          {status === Status.pending && <PendingTimer remainingTime={remainingTime} />}
         </Box>
 
         <Typography sx={lineClampStyle(1)} mt={2}>
