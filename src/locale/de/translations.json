@@ -424,6 +424,15 @@
     },
     "accommodation_reservations": {
       "all_accommodation_reservations": "Alle Reservierungen"
+    },
+
+    "bottom_nav": {
+      "explore": "Erkunden",
+      "bookings": "Buchungen"
+    },
+
+    "pending_timer": {
+      "minutes": "min"
     }
   }
 }

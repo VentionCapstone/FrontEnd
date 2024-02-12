@@ -393,3 +393,12 @@ export enum ProfileActions {
 export enum AccommodationReservation {
   all_accommodation_reservations = 'accommodation_reservations.all_accommodation_reservations',
 }
+
+export enum BottomNavigation {
+  explore = 'bottom_nav.explore',
+  bookings = 'bottom_nav.bookings',
+}
+
+export enum PendingTimer {
+  minutes = 'pending_timer.minutes',
+}

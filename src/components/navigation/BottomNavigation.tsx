@@ -6,16 +6,23 @@ import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Paper from '@mui/material/Paper';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { ROUTES } from '@src/config/routes.config';
 import { useAppSelector } from '@src/hooks/redux-hooks';
 import { hasToken } from '@src/stores/slices/authSlice';
+import {
+  BottomNavigation as BottomNavigationEnum,
+  HomeUIInfo,
+  Wishlist,
+} from '@src/types/i18n.types';
 import { mainNavigationStyles } from './mainNavigation.styles';
 
 export const BottomNav = () => {
   const route = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const isLoggedIn = useAppSelector(hasToken);
   const [selectedRoute, setSelectedRoute] = useState<string>(route.pathname);
 
@@ -40,11 +47,15 @@ export const BottomNav = () => {
         sx={mainNavigationStyles.bottomNav}
         onChange={handleRouteChange}
       >
-        <BottomNavigationAction value={ROUTES.root} label="Explore" icon={<SearchIcon />} />
+        <BottomNavigationAction
+          value={ROUTES.root}
+          label={t(BottomNavigationEnum.explore)}
+          icon={<SearchIcon />}
+        />
         <BottomNavigationAction
           value={ROUTES.wishlist}
           key={ROUTES.wishlist}
-          label="Wishlist"
+          label={t(Wishlist.title)}
           icon={<FavoriteBorderRoundedIcon />}
         />
 
@@ -52,13 +63,13 @@ export const BottomNav = () => {
           <BottomNavigationAction
             value={ROUTES.bookings.root()}
             key={ROUTES.bookings.root()}
-            label="Trips"
+            label={t(BottomNavigationEnum.bookings)}
             icon={<ChatBubbleOutlineRoundedIcon />}
           />,
           <BottomNavigationAction
             value={ROUTES.account.edit}
             key={ROUTES.account.edit}
-            label="Profile"
+            label={t(HomeUIInfo.user_home_btn_account)}
             icon={<AccountCircleOutlinedIcon />}
           />,
         ]}
@@ -66,7 +77,7 @@ export const BottomNav = () => {
         {!isLoggedIn && (
           <BottomNavigationAction
             value={ROUTES.auth.signIn}
-            label="Login"
+            label={t(HomeUIInfo.sign_in_sing_in_btn)}
             icon={<AccountCircleOutlinedIcon />}
           />
         )}

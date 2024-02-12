@@ -53,7 +53,7 @@
 
     "home_ui": {
       "user_home_btn": {
-        "account": "шот",
+        "account": "Шот",
         "mylistings": "Менің тізімдерім",
         "logout": "Шығу"
       },
@@ -336,7 +336,7 @@
     },
 
     "wishlist": {
-      "title": "Қалаулар тізімі",
+      "title": "Қалаулар",
       "wishlits_empty_title": "Өзіңіздің бірінші тілек тізімін жасаңыз",
       "wishlits_empty_text": "Іздеу барысында сүйікті орындарыңызды және Тәжірибелеріңізді тілек тізіміне сақтау үшін жүрек белгішесін басыңыз"
     },
@@ -424,6 +424,15 @@
     },
     "accommodation_reservations": {
       "all_accommodation_reservations": "Барлық резервтер"
+    },
+
+    "bottom_nav": {
+      "explore": "Зерттеу",
+      "bookings": "Бронирование"
+    },
+
+    "pending_timer": {
+      "minutes": "мин"
     }
   }
 }

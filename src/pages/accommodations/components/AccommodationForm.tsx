@@ -159,29 +159,29 @@ function AccommodationForm({
         />
         <Box
           display="flex"
+          mt={6}
+          flexDirection={{ xs: 'column', sm: 'row' }}
           justifyContent={isNew ? 'flex-end' : 'space-between'}
-          alignItems={'center'}
+          alignItems={{ sm: 'center' }}
           gap={4}
         >
           {!isNew && (
-            <>
-              <LoadingButton
-                variant="contained"
-                size="large"
-                sx={{
-                  'fontWeight': 600,
-                  'bgcolor': isDeleted ? 'success.light' : 'error.light',
-                  'mt': 4,
-                  ':hover': {
-                    bgcolor: isDeleted ? 'success.main' : 'error.main',
-                  },
-                }}
-                onClick={isDeleted ? handleRestore : toggleOpen}
-                loading={isDeleted ? isRestorePending : isDeletePending}
-              >
-                {isDeleted ? `${t(EditAccommodation.Restore)}` : `${t(EditAccommodation.Delete)}`}
-              </LoadingButton>
-            </>
+            <LoadingButton
+              variant="contained"
+              size="large"
+              sx={{
+                'fontWeight': 600,
+                'bgcolor': isDeleted ? 'success.light' : 'error.light',
+                ':hover': {
+                  bgcolor: isDeleted ? 'success.main' : 'error.main',
+                },
+                'order': { xs: 1, sm: 0 },
+              }}
+              onClick={isDeleted ? handleRestore : toggleOpen}
+              loading={isDeleted ? isRestorePending : isDeletePending}
+            >
+              {isDeleted ? `${t(EditAccommodation.Restore)}` : `${t(EditAccommodation.Delete)}`}
+            </LoadingButton>
           )}
 
           <Box
@@ -193,10 +193,15 @@ function AccommodationForm({
               flexShrink: 0,
             }}
           >
-            <Button size="large" sx={{ mt: 4 }} variant="outlined" onClick={navigateToRoot}>
+            <Button
+              size="large"
+              variant="outlined"
+              onClick={navigateToRoot}
+              sx={{ mr: { xs: 'auto', sm: 0 } }}
+            >
               {t(CreateAccommodationRoute.cancel_btn)}
             </Button>
-            <ButtonPrimary loading={isPending}>
+            <ButtonPrimary sx={{ mt: 0 }} loading={isPending}>
               {t(CreateAccommodationRoute.next_btn)}
             </ButtonPrimary>
           </Box>
