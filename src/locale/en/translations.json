@@ -423,6 +423,9 @@
       "restore": "Restore",
       "close": "close"
     },
+    "accommodation_reservations": {
+      "all_accommodation_reservations": "All reservations"
+    },
 
     "bottom_nav": {
       "explore": "Explore",

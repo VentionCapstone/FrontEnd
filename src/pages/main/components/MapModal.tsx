@@ -67,7 +67,7 @@ export default function MapModal({ open, setOpen, searchParamsAsObject }: MapMod
         </a>
         <div class="arrow"></div>
         <div class="popover-inner">
-          <a class="ballon__link" href="${originUrl}/rooms/$[properties.accommodationId]">
+          <a class="ballon__link" href="${originUrl}/rooms/$[properties.accommodationId]" target="_blank" rel="noopener noreferrer">
             $[[options.contentLayout observeSize minWidth=310 maxWidth=310 maxHeight=420]]
           </a>
           </div>

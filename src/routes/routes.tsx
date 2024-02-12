@@ -36,6 +36,9 @@ const AccommodationCreate = React.lazy(
 const AccommodationUpdate = React.lazy(
   () => import('@src/pages/accommodations/UpdateAccommodation')
 );
+const AccommodationReservations = React.lazy(
+  () => import('@src/pages/accommodation-reservations/AccommodationReservations')
+);
 
 const routes = createBrowserRouter([
   //unprotected
@@ -66,6 +69,7 @@ const routes = createBrowserRouter([
   //UserRoute
   {
     path: '/auth',
+    errorElement: <ErrorBoundaryFallback />,
     element: (
       <UserRoute>
         <UserLayout />
@@ -83,6 +87,7 @@ const routes = createBrowserRouter([
   //PrivateRoute
   {
     path: '/',
+    errorElement: <ErrorBoundaryFallback />,
     element: (
       <PrivateRoute>
         <UserLayout />
@@ -123,6 +128,7 @@ const routes = createBrowserRouter([
           { index: true, element: <Accommodations /> },
           { path: 'create', element: <AccommodationCreate /> },
           { path: 'edit/:id', element: <AccommodationUpdate /> },
+          { path: 'reservations/:id', element: <AccommodationReservations /> },
           { path: '*', element: <Navigate to="/accommodations" /> },
         ],
       },

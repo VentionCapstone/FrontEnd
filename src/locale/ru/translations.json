@@ -423,6 +423,9 @@
       "restore": "Восстановить",
       "close": "закрывать"
     },
+    "accommodation_reservations": {
+      "all_accommodation_reservations": "Все бронирования"
+    },
 
     "bottom_nav": {
       "explore": "Исследовать",

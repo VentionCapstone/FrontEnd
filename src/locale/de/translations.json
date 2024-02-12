@@ -422,6 +422,9 @@
       "restore": "Wiederherstellen",
       "close": "dichtbij"
     },
+    "accommodation_reservations": {
+      "all_accommodation_reservations": "Alle Reservierungen"
+    },
 
     "bottom_nav": {
       "explore": "Erkunden",

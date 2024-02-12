@@ -24,7 +24,7 @@ import DataFetchError from '@src/components/shared/DataFetchError';
 import { stripePromise } from '@src/config/stripe.config';
 import { DATE_MONTH_DAY } from '@src/constants';
 import { PaymentInfo } from '@src/types/i18n.types';
-import { handleErrorInImage, truncateReview } from '@src/utils';
+import { handleImageError, truncateReview } from '@src/utils';
 
 import { PaymentForm } from './components/PaymentForm';
 import { PAYMENT_OPTION } from './components/contants';
@@ -134,7 +134,7 @@ const Payment = () => {
         <Box sx={styles.payment_accommodation_container}>
           <Box sx={styles.payment_accommodation}>
             <Box sx={styles.paymanet_accommodation_image}>
-              <img src={previewImgUrl} alt={title} onError={handleErrorInImage} />
+              <img src={previewImgUrl} alt={title} onError={handleImageError} />
             </Box>
             <Stack justifyContent={'inherit'} sx={styles.payment_accommodation_details}>
               <Typography fontWeight={600} variant={mobileScreen ? 'sm' : 'subtitle1'}>

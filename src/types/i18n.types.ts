@@ -390,6 +390,10 @@ export enum ProfileActions {
   profile_change = 'profileActions.profile_change',
 }
 
+export enum AccommodationReservation {
+  all_accommodation_reservations = 'accommodation_reservations.all_accommodation_reservations',
+}
+
 export enum BottomNavigation {
   explore = 'bottom_nav.explore',
   bookings = 'bottom_nav.bookings',

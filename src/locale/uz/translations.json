@@ -422,6 +422,9 @@
       "restore": "Qayta tiklash",
       "close": "yopmoq"
     },
+    "accommodation_reservations": {
+      "all_accommodation_reservations": "Barcha rezervatsiyalar"
+    },
 
     "bottom_nav": {
       "explore": "Tadqiq",

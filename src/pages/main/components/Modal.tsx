@@ -63,8 +63,8 @@ export default function MainModal({
 
   const handleFilterClear = useCallback(() => {
     const defaultFilters = {
-      minPrice: totalMinPriceValue.toString(),
-      maxPrice: totalMaxPriceValue.toString(),
+      minPrice: '0',
+      maxPrice: '0',
       minRooms: '0',
       minPeople: '0',
       orderByPrice: 'any',

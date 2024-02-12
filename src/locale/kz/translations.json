@@ -422,6 +422,9 @@
       "restore": "Қалпына келтіру",
       "close": "жабық"
     },
+    "accommodation_reservations": {
+      "all_accommodation_reservations": "Барлық резервтер"
+    },
 
     "bottom_nav": {
       "explore": "Зерттеу",
