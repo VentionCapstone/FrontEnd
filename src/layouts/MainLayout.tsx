@@ -1,23 +1,26 @@
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
-import { Outlet } from 'react-router-dom';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
 
 import { StickyFooter } from '@src/components/footer/StickyFooter';
 import MainNavigation from '@src/components/navigation';
 
 function MainLayout() {
   return (
-    <Stack minHeight={'100svh'}>
-      <MainNavigation maxWidth={'xl'} />
-      <Container
-        maxWidth={'xl'}
-        disableGutters
-        sx={{ pt: { xs: 22, md: 6 }, pb: { xs: 20, md: 17 }, paddingInline: 6, flexGrow: 1 }}
-      >
-        <Outlet />
-      </Container>
-      <StickyFooter maxWidth={'xl'} />
-    </Stack>
+    <>
+      <ScrollRestoration />
+      <Stack minHeight={'100svh'}>
+        <MainNavigation maxWidth={'xl'} />
+        <Container
+          maxWidth={'xl'}
+          disableGutters
+          sx={{ pt: { xs: 22, md: 6 }, pb: { xs: 20, md: 17 }, paddingInline: 6, flexGrow: 1 }}
+        >
+          <Outlet />
+        </Container>
+        <StickyFooter maxWidth={'xl'} />
+      </Stack>
+    </>
   );
 }
 

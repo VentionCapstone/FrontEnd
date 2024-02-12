@@ -19,7 +19,7 @@ import {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { handleErrorInImage } from '@src/utils';
+import { handleImageError } from '@src/utils';
 
 import Slider from '../shared/Slider';
 
@@ -92,7 +92,7 @@ export default function ShowPhotos({ id, open, onClose, onOpen, isMobile }: Show
           sx={{ objectFit: 'contain', height: '80vh', width: '100vw' }}
           src={imageUrl}
           alt={`photo-${id}`}
-          onError={handleErrorInImage}
+          onError={handleImageError}
           loading="lazy"
         />
       </ImageListItem>

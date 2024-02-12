@@ -66,6 +66,7 @@ const routes = createBrowserRouter([
   //UserRoute
   {
     path: '/auth',
+    errorElement: <ErrorBoundaryFallback />,
     element: (
       <UserRoute>
         <UserLayout />
@@ -83,6 +84,7 @@ const routes = createBrowserRouter([
   //PrivateRoute
   {
     path: '/',
+    errorElement: <ErrorBoundaryFallback />,
     element: (
       <PrivateRoute>
         <UserLayout />
