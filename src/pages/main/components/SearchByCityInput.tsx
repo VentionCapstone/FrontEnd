@@ -72,10 +72,10 @@ export default function SearchByCityInput({ location, setLocation }: SearchByCit
   const formatLocationString = (locationString: string | undefined) => {
     if (!locationString) return;
     const parts: Array<string> = locationString.split(',').map((part) => part.trim());
-    const city = parts[0];
+    const city = parts.length > 1 ? parts[0] : null;
     const country = parts[parts.length - 1];
 
-    const formattedLocationString = `${city}, ${country}`;
+    const formattedLocationString = parts.length > 1 ? `${city}, ${country}` : country;
     return formattedLocationString;
   };
 
@@ -119,7 +119,8 @@ export default function SearchByCityInput({ location, setLocation }: SearchByCit
     }
 
     fetch(
-      { input: inputValue, types: ['(cities)'] },
+      { input: inputValue, types: ['geocode'] },
+      // { input: inputValue, types: ['(cities)'] },
       (results?: readonly google.maps.places.AutocompletePrediction[] | null) => {
         if (active) {
           let newOptions: readonly google.maps.places.AutocompletePrediction[] = [];
