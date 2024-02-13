@@ -120,7 +120,6 @@ export default function SearchByCityInput({ location, setLocation }: SearchByCit
 
     fetch(
       { input: inputValue, types: ['geocode'] },
-      // { input: inputValue, types: ['(cities)'] },
       (results?: readonly google.maps.places.AutocompletePrediction[] | null) => {
         if (active) {
           let newOptions: readonly google.maps.places.AutocompletePrediction[] = [];
